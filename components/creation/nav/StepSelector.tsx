@@ -46,7 +46,7 @@ export default function StepSelector(props) {
         orientation="vertical"
         connector={
           <Box
-            sx={{ display: "flex", height: "1rem", justifyContent: "center" }}
+            sx={{ display: "flex", height: ".75rem", justifyContent: "center" }}
           >
             <Divider
               orientation="vertical"
@@ -59,13 +59,13 @@ export default function StepSelector(props) {
         {steps.map((i: any, c: number) => (
           <Step key={i.title} sx={{ width: "100%", textAlign: "center" }}>
             <StepLabel classes={{ alternativeLabel: "", labelContainer: "" }}>
-              <Box sx={{ fontWeight: 440 }}>{i.title}</Box>
+              <Box sx={{ fontWeight: 440, fontSize: ".7rem" }}>{i.title}</Box>
               {c === props.value && (
                 <Box
                   sx={{
-                    fontSize: ".7rem",
+                    fontSize: ".6rem",
                     fontWeight: 300,
-                    color: "primary.text",
+                    color: "primary.lightText",
                   }}
                 >
                   {i.label}

@@ -6,13 +6,15 @@ export const LightTheme = createTheme({
       main: "#00868F",
     },
     divider: {
-      main: "rgba(159, 210, 219, 0.6)",
+      main: "rgb(51, 51, 51, .2)",
     },
     primary: {
       // light: will be calculated from palette.primary.main,
       main: "#00868F",
       light: "",
-      text: "rgba(0, 0, 0, 0.6)",
+      text: "rgba(0, 0, 0, 1)",
+      lightText: "rgba(0, 0, 0, 0.6)",
+
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
@@ -58,6 +60,7 @@ export const LightTheme = createTheme({
         },
         text: {
           fill: "rgba(224, 104, 4, 1)",
+          fontSize: ".8rem",
         },
         active: {},
         completed: {},
@@ -82,9 +85,10 @@ export const DarkTheme = createTheme({
     },
     primary: {
       // light: will be calculated from palette.primary.main,
-      main: "#00868F",
+      main: "#9FD2DB",
       light: "",
-      text: "rgba(255, 255, 255, 0.7)",
+      text: "rgba(255, 255, 255, 1)",
+      lightText: "rgba(255, 255, 255, 0.7)",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },

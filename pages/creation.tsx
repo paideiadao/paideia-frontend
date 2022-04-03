@@ -11,23 +11,27 @@ export default function Creation(props) {
   });
 
   let lookup = {
-      'light': '#FFFFFF',
-      'dark': 'rgba(17, 24, 39, 1)'
-  }
+    light: "#FFFFFF",
+    dark: "rgba(17, 24, 39, 1)",
+  };
 
   React.useEffect(() => {
-      let temp = theme === LightTheme ? 'light' : 'dark';
+    let temp = theme === LightTheme ? "light" : "dark";
     document.body.style.background = lookup[temp];
-  }, [theme])
+  }, [theme]);
 
   return (
     <ThemeProvider theme={theme}>
-      <Nav value={data.navStage} />
-      <Box sx={{position: 'fixed', ml: '15.5rem', top: '3.5rem'}}>
-        <Box onClick={() => theme === DarkTheme ? setTheme(LightTheme) : setTheme(DarkTheme)} sx={{color: 'primary.text'}}>
-            Toggle Theme
+      <Nav value={data.navStage} theme={theme} />
+      <Box sx={{ position: "fixed", ml: "15.5rem", top: "3.5rem" }}>
+        <Box
+          onClick={() =>
+            theme === DarkTheme ? setTheme(LightTheme) : setTheme(DarkTheme)
+          }
+          sx={{ color: "primary.text" }}
+        >
+          Toggle Theme
         </Box>
-
       </Box>
     </ThemeProvider>
   );

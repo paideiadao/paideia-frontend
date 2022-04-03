@@ -11,13 +11,13 @@ export default function Help(props) {
         alignItems: "center",
       }}
     >
-      <Box sx={{ fontSize: ".9rem", fontWeight: 450 }}>Need Help?</Box>
+      <Box sx={{ fontSize: ".8rem", fontWeight: 450 }}>Need Help?</Box>
       <Box
         sx={{
           fontSize: ".7rem",
           fontWeight: 400,
           mb: 2,
-          color: "primary.text",
+          color: "primary.lightText",
         }}
       >
         Learn more about DAOs
