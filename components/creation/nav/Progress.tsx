@@ -14,8 +14,8 @@ function CircularProgressWithLabel(
         width: "15rem",
         display: "flex",
         flexDirection: "column",
-        alignItems: 'center',
-        pt: '1rem'
+        alignItems: "center",
+        pt: "1rem",
       }}
     >
       <Box>
@@ -25,7 +25,7 @@ function CircularProgressWithLabel(
             {...props}
             size="4rem"
             value={props.value * 20}
-            color="secondary"
+            color="primary"
           />
           <Box
             sx={{
@@ -38,7 +38,7 @@ function CircularProgressWithLabel(
               alignItems: "center",
               justifyContent: "center",
               fontSize: "1.1rem",
-              fontWeight: 300,
+              fontWeight: 450,
             }}
           >
             {props.value * 20}%
@@ -46,7 +46,9 @@ function CircularProgressWithLabel(
         </Box>
       </Box>
 
-      <Box sx={{fontWeight: 500, fontSize: '.6rem'}}>DAO CREATION PROGRESS</Box>
+      <Box sx={{ fontWeight: 500, fontSize: ".6rem" }}>
+        DAO CREATION PROGRESS
+      </Box>
     </Box>
   );
 }
