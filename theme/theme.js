@@ -2,11 +2,17 @@ import { createTheme } from "@mui/material/styles";
 
 export const LightTheme = createTheme({
   palette: {
+    circle: {
+      main: "#00868F",
+    },
+    divider: {
+      main: "rgba(159, 210, 219, 0.6)",
+    },
     primary: {
       // light: will be calculated from palette.primary.main,
       main: "#00868F",
       light: "",
-
+      text: "rgba(0, 0, 0, 0.6)",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
@@ -26,14 +32,14 @@ export const LightTheme = createTheme({
   },
   components: {
     MuiStepLabel: {
-        styleOverrides: {
-            labelContainer: {
-                color: 'black',
-            },
-            label: {
-                fontWeight: 500
-            }
-        }
+      styleOverrides: {
+        labelContainer: {
+          color: "black",
+        },
+        label: {
+          fontWeight: 500,
+        },
+      },
     },
     MuiStepIcon: {
       styleOverrides: {
@@ -43,11 +49,11 @@ export const LightTheme = createTheme({
           },
           "&.Mui-active": {
             color: "#00868F",
-            '& text': {
-                fill: 'white'
-            }
+            "& text": {
+              fill: "white",
+            },
           },
-          
+
           color: "rgba(255, 130, 26, 0.08)",
         },
         text: {
@@ -62,16 +68,29 @@ export const LightTheme = createTheme({
 
 export const DarkTheme = createTheme({
   palette: {
+    circle: {
+      main: "#9FD2DB",
+    },
+    divider: {
+      main: "rgba(159, 210, 219, 0.2)",
+    },
+    backgroundColor: {
+      main: "rgba(17, 24, 39, 1)",
+    },
+    color: {
+      main: "white",
+    },
     primary: {
       // light: will be calculated from palette.primary.main,
-      main: "#1D1160",
-
+      main: "#00868F",
+      light: "",
+      text: "rgba(255, 255, 255, 0.7)",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
     secondary: {
       light: "#00788C",
-      main: "#00788C",
+      main: "rgba(224, 104, 4, 1)",
       // dark: will be calculated from palette.secondary.main,
       contrastText: "#E5E5E5",
     },
@@ -84,25 +103,46 @@ export const DarkTheme = createTheme({
     tonalOffset: 0.2,
   },
   components: {
-    MuiInputLabel: {
+    MuiStepLabel: {
       styleOverrides: {
         root: {
-          color: "#333333",
+          "&-label.Mui-completed": {
+            color: "white",
+          },
+        },
+        labelContainer: {
+          color: "white",
+        },
+        label: {
+          "&.Mui-completed": {
+            color: "white",
+          },
+          "&.Mui-active": {
+            color: "white",
+          },
         },
       },
     },
-    MuiMenuItem: {
+    MuiStepIcon: {
       styleOverrides: {
         root: {
-          color: "#1D1160",
+          "&.Mui-completed": {
+            color: "#66BB6A",
+          },
+          "&.Mui-active": {
+            color: "#00868F",
+            "& text": {
+              fill: "white",
+            },
+          },
+
+          color: "rgba(252, 158, 79, 0.08)",
         },
-      },
-    },
-    MuiTypography: {
-      styleOverrides: {
-        root: {
-          color: "#333333",
+        text: {
+          fill: "rgba(255, 207, 126, 1)",
         },
+        active: {},
+        completed: {},
       },
     },
   },

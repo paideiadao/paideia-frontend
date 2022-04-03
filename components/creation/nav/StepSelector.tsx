@@ -15,7 +15,7 @@ export default function StepSelector(props) {
       label: "Pick your name and url",
     },
     {
-      title: "Goveranance",
+      title: "Governance",
       label: "Manage how voting will work",
     },
     {
@@ -51,7 +51,7 @@ export default function StepSelector(props) {
             <Divider
               orientation="vertical"
               flexItem
-              style={{ background: "rgba(0, 0, 0, .125)" }}
+              style={{ background: "divider.main" }}
             />
           </Box>
         }
@@ -59,9 +59,17 @@ export default function StepSelector(props) {
         {steps.map((i: any, c: number) => (
           <Step key={i.title} sx={{ width: "100%", textAlign: "center" }}>
             <StepLabel classes={{ alternativeLabel: "", labelContainer: "" }}>
-              {i.title}
+              <Box sx={{ fontWeight: 440 }}>{i.title}</Box>
               {c === props.value && (
-                <Box sx={{ fontSize: ".7rem", fontWeight: 300 }}>{i.label}</Box>
+                <Box
+                  sx={{
+                    fontSize: ".7rem",
+                    fontWeight: 300,
+                    color: "primary.text",
+                  }}
+                >
+                  {i.label}
+                </Box>
               )}
             </StepLabel>
           </Step>

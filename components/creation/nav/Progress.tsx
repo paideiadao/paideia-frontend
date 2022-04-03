@@ -25,7 +25,8 @@ function CircularProgressWithLabel(
             {...props}
             size="4rem"
             value={props.value * 20}
-            color="primary"
+            // @ts-expect-error
+            color="circle"
           />
           <Box
             sx={{
