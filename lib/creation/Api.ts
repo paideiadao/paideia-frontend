@@ -8,15 +8,17 @@ export interface ICreationData {
 }
 
 interface IBasicInformation {
-  dao_name: string;
-  dao_url: string;
-  short_description: string;
+  daoName: string;
+  daoUrl: string;
+  shortDescription: string;
 }
 
 interface IGovernance {
   optimisticGovernance: boolean;
   quadraticVoting: boolean;
   supportNeeded: number;
+  supportNeededUnits: string;
+
   quorum: number;
   voteDuration: number;
   voteDurationUnits: string;
@@ -25,6 +27,8 @@ interface IGovernance {
     address: string;
     img: string;
   }[];
+  amount: number | string;
+  currency: string;
 }
 
 export class CreationApi extends AbstractApi {

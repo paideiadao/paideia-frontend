@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AlertTitle, Box } from "@mui/material";
+import { AlertTitle, Box, Divider } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import TextField from "@mui/material/TextField";
 import { GlobalContext } from "../../../lib/creation/Context";
@@ -9,21 +9,21 @@ const BasicInformation: React.FC = () => {
   let data = globalContext.api.data.basicInformation;
 
   React.useEffect(() => {
-    let clean = data.dao_name.toLowerCase().replaceAll(" ", "");
+    let clean = data.daoName.toLowerCase().replaceAll(" ", "");
     console.log(clean);
     globalContext.api.setData({
       ...globalContext.api.data,
       basicInformation: {
         ...data,
-        dao_url: clean === "" ? clean : clean + ".paideia.im",
+        daoUrl: clean === "" ? clean : clean + ".paideia.im",
       },
     });
-  }, [data.dao_name]);
+  }, [data.daoName]);
 
   return (
     <Box
       sx={{
-        width: "65%",
+        width: "70%",
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
@@ -45,13 +45,13 @@ const BasicInformation: React.FC = () => {
           <TextField
             label="DAO Name"
             sx={{ width: "100%" }}
-            value={data.dao_name}
+            value={data.daoName}
             onChange={(e) =>
               globalContext.api.setData({
                 ...globalContext.api.data,
                 basicInformation: {
                   ...data,
-                  dao_name: e.target.value,
+                  daoName: e.target.value,
                 },
               })
             }
@@ -61,13 +61,13 @@ const BasicInformation: React.FC = () => {
           <TextField
             label="DAO URL"
             sx={{ width: "100%" }}
-            value={data.dao_url}
+            value={data.daoUrl}
             onChange={(e) =>
               globalContext.api.setData({
                 ...globalContext.api.data,
                 basicInformation: {
                   ...data,
-                  dao_url: e.target.value,
+                  daoUrl: e.target.value,
                 },
               })
             }
@@ -92,20 +92,20 @@ const BasicInformation: React.FC = () => {
             maxLength: 250,
           }}
           multiline
-          value={data.short_description}
+          value={data.shortDescription}
           onChange={(e) =>
             globalContext.api.setData({
               ...globalContext.api.data,
               basicInformation: {
                 ...data,
-                short_description: e.target.value,
+                shortDescription: e.target.value,
               },
             })
           }
           rows={5}
           sx={{ width: "100%" }}
           FormHelperTextProps={{ sx: { textAlign: "right" } }}
-          helperText={`${data.short_description.length}/250`}
+          helperText={`${data.shortDescription.length}/250`}
         />
       </Box>
     </Box>

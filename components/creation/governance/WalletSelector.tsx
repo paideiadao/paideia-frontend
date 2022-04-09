@@ -30,7 +30,9 @@ const WalletSelector: React.FC<{
       <TextField
         label="Wallet Address"
         sx={{ width: "100%" }}
-        placeholder={props.data.alias === '' && "Search by name or wallet address"}
+        placeholder={
+          props.data.alias === "" && "Search by name or wallet address"
+        }
         helperText="Search by name or wallet address"
         onFocus={() => setFocused(true)}
         value={search}
@@ -41,19 +43,33 @@ const WalletSelector: React.FC<{
           },
         }}
         InputProps={{
-            readOnly: props.data.alias !== '',
+          readOnly: props.data.alias !== "",
           startAdornment: props.data.alias !== "" && (
-            <InputAdornment position="end" sx={{ mt: 1, pt: 1, pb: 1 }}>
-              <Avatar sx={{ fontSize: ".75rem", mr: 1, width: '2rem', height: '2rem' }}>
+            <InputAdornment
+              position="end"
+              sx={{ mt: 1, pt: 4, pb: 4, ml: "-.2rem" }}
+            >
+              <Avatar
+                sx={{
+                  fontSize: ".75rem",
+                  mr: 1,
+                  width: "2rem",
+                  height: "2rem",
+                }}
+              >
                 {props.data.img}
               </Avatar>
-              <Box sx={{color: 'primary.text', fontSize: '.9rem'}}>
-                  <Box>
-                    {props.data.alias} 
-                  </Box>
-                  <Box sx={{color: 'primary.lightText', fontSize: '.8rem', mt: '-.3rem'}}>
-                      {props.data.address}
-                  </Box>
+              <Box sx={{ color: "primary.text", fontSize: ".9rem" }}>
+                <Box>{props.data.alias}</Box>
+                <Box
+                  sx={{
+                    color: "primary.lightText",
+                    fontSize: ".8rem",
+                    mt: "-.3rem",
+                  }}
+                >
+                  {props.data.address}
+                </Box>
               </Box>
             </InputAdornment>
           ),
@@ -66,10 +82,10 @@ const WalletSelector: React.FC<{
                     marginRight: ".4rem",
                     cursor: "pointer",
                   }}
-                  onClick={() =>
-                    {setSearch('')
-                    props.set(undefined)}
-                  }
+                  onClick={() => {
+                    setSearch("");
+                    props.set(undefined);
+                  }}
                 />
               )}
 
@@ -80,7 +96,7 @@ const WalletSelector: React.FC<{
           ),
         }}
       />
-      {focused && props.data.alias === '' &&  (
+      {focused && props.data.alias === "" && (
         <Paper
           sx={{
             maxHeight: "15rem",
@@ -117,7 +133,7 @@ const WalletSelector: React.FC<{
                   key={`${i.address}-wallet-card`}
                   onClick={() => {
                     setFocused(false);
-                    setSearch('');
+                    setSearch("");
                     props.set(i);
                   }}
                 >

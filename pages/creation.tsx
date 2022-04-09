@@ -18,14 +18,15 @@ export default function Creation(props) {
   const [data, setData] = React.useState<ICreationData>({
     navStage: 0,
     basicInformation: {
-      dao_name: "",
-      dao_url: "",
-      short_description: "",
+      daoName: "",
+      daoUrl: "",
+      shortDescription: "",
     },
     governance: {
       optimisticGovernance: false,
       quadraticVoting: false,
       supportNeeded: 10,
+      supportNeededUnits: "days",
       quorum: 4,
       voteDuration: 10,
       voteDurationUnits: "days",
@@ -36,6 +37,8 @@ export default function Creation(props) {
           img: "",
         },
       ],
+      amount: "",
+      currency: "",
     },
   });
 
@@ -63,7 +66,7 @@ export default function Creation(props) {
             ml: "15.5rem",
             top: "3.5rem",
             width: "calc(100% - 16rem)",
-            mt: ".5rem",
+            mt: "2rem",
             display: "flex",
             flexDirection: "column",
           }}
