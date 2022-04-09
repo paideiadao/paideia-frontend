@@ -11,7 +11,7 @@ export default function Help(props) {
         alignItems: "center",
       }}
     >
-      <Box sx={{ fontSize: ".8rem", fontWeight: 450 }}>Need Help?</Box>
+      <Box sx={{ fontSize: ".8rem", fontWeight: 450 }}>Need help?</Box>
       <Box
         sx={{
           fontSize: ".7rem",

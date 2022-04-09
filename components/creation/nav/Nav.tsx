@@ -5,7 +5,7 @@ import StepSelector from "./StepSelector";
 import Help from "./Help";
 import DarkLogo from "../../../public/logos/dark_logo.svg";
 import LightLogo from "../../../public/logos/light_logo.svg";
-import { DarkTheme } from "../../../theme/theme.js";
+import { DarkTheme, LightTheme } from "../../../theme/theme.js";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Save from "@mui/icons-material/Save";
@@ -70,7 +70,15 @@ export default function Nav(props) {
           >
             <img src={logo.src} />
           </Box>
-          <Box sx={{ ml: "auto" }}>
+          <Box sx={{ ml: "auto", display: 'flex', alignItems: 'center' }}>
+            <Box
+              onClick={() =>
+                props.theme === DarkTheme ? props.setTheme(LightTheme) : props.setTheme(DarkTheme)
+              }
+              sx={{ color: "primary.text" }}
+            >
+              Toggle Theme
+            </Box>
             <Button variant="outlined" color="error">
               Cancel <DeleteIcon sx={{ ml: 1 }} />
             </Button>

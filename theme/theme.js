@@ -74,6 +74,9 @@ export const DarkTheme = createTheme({
     circle: {
       main: "#9FD2DB",
     },
+    alert: {
+      main: 'linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), #FFA726'
+    },
     divider: {
       main: "rgba(159, 210, 219, 0.2)",
     },
@@ -106,7 +109,66 @@ export const DarkTheme = createTheme({
     // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
   },
+  
   components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-notchedOutline": {
+            borderColor: "rgba(255, 255, 255, 0.3)"
+          },
+          "&:hover .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#9FD2DB"
+          },
+          color: 'rgba(255, 255, 255, 1)'
+        }
+      }
+    },
+    MuiAlert: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#191207',
+          color: '#FFE2B7',
+        },
+        MuiAlert: {
+          backgroundColor: 'rgba(255, 167, 38, .8)'
+        }
+      }
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          '&.Mui-disabled': {
+            color: 'rgba(255, 255, 255, 0.3)',
+            backgroundColor: 'rgba(255, 255, 255, 0.12)'
+          }
+        }
+      }, 
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          '& .MuiAlert-Icon': {
+            color: 'green'
+          }
+        }
+      }
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+         
+          color: 'rgba(255, 255, 255, 0.8)'
+        }
+      }
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: 'rgba(255, 255, 255, 0.8)'
+        }
+      }
+    }, 
     MuiStepLabel: {
       styleOverrides: {
         root: {
