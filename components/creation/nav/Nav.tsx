@@ -70,10 +70,12 @@ export default function Nav(props) {
           >
             <img src={logo.src} />
           </Box>
-          <Box sx={{ ml: "auto", display: 'flex', alignItems: 'center' }}>
+          <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
             <Box
               onClick={() =>
-                props.theme === DarkTheme ? props.setTheme(LightTheme) : props.setTheme(DarkTheme)
+                props.theme === DarkTheme
+                  ? props.setTheme(LightTheme)
+                  : props.setTheme(DarkTheme)
               }
               sx={{ color: "primary.text" }}
             >
