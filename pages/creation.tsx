@@ -25,8 +25,8 @@ export default function Creation(props) {
     governance: {
       optimisticGovernance: false,
       quadraticVoting: false,
-      supportNeeded: 10,
-      supportNeededUnits: "days",
+      timeToChallenge: 10,
+      timeToChallengeUnits: "days",
       quorum: 4,
       voteDuration: 10,
       voteDurationUnits: "days",
@@ -39,6 +39,7 @@ export default function Creation(props) {
       ],
       amount: "",
       currency: "",
+      supportNeeded: 50,
     },
   });
 
@@ -65,10 +66,13 @@ export default function Creation(props) {
             position: "fixed",
             ml: "15.5rem",
             top: "3.5rem",
-            width: "calc(100% - 16rem)",
-            mt: "2rem",
+            width: "calc(100% - 15.5rem)",
+            pt: "2rem",
             display: "flex",
             flexDirection: "column",
+            height: "calc(100% - 3.5rem)",
+            pb: "2rem",
+            overflowY: "scroll",
           }}
         >
           <Box

@@ -16,8 +16,8 @@ interface IBasicInformation {
 interface IGovernance {
   optimisticGovernance: boolean;
   quadraticVoting: boolean;
-  supportNeeded: number;
-  supportNeededUnits: string;
+  timeToChallenge: number;
+  timeToChallengeUnits: string;
 
   quorum: number;
   voteDuration: number;
@@ -29,6 +29,7 @@ interface IGovernance {
   }[];
   amount: number | string;
   currency: string;
+  supportNeeded: number;
 }
 
 export class CreationApi extends AbstractApi {

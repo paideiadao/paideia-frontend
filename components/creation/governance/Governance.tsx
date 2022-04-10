@@ -6,6 +6,7 @@ import {
   Divider,
   OutlinedInput,
   Select,
+  Slider,
   Switch,
 } from "@mui/material";
 import Alert from "@mui/material/Alert";
@@ -275,7 +276,7 @@ const Governance: React.FC = () => {
                 mt: ".8rem",
               }}
             >
-              <Box sx={{ width: "45%" }}>
+              <Box sx={{ width: "30%" }}>
                 <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
                   <InputLabel htmlFor={`challenge-time-input`}>
                     Challenge time
@@ -283,13 +284,13 @@ const Governance: React.FC = () => {
                   <OutlinedInput
                     id={`challenge-time-input`}
                     type="number"
-                    value={data.supportNeeded}
+                    value={data.timeToChallenge}
                     onChange={(e) =>
                       globalContext.api.setData({
                         ...globalContext.api.data,
                         governance: {
                           ...data,
-                          supportNeeded: e.target.value,
+                          timeToChallenge: e.target.value,
                         },
                       })
                     }
@@ -313,14 +314,14 @@ const Governance: React.FC = () => {
                             labelId="currency-select-label"
                             id="currency-select"
                             variant="outlined"
-                            value={data.supportNeededUnits}
+                            value={data.timeToChallengeUnits}
                             sx={{ height: "100%", color: "primary.text" }}
                             onChange={(e) =>
                               globalContext.api.setData({
                                 ...globalContext.api.data,
                                 governance: {
                                   ...data,
-                                  supportNeededUnits: e.target.value,
+                                  timeToChallengeUnits: e.target.value,
                                 },
                               })
                             }
@@ -341,10 +342,14 @@ const Governance: React.FC = () => {
           </>
         )}
       </Box>
-      <Box sx={{pb: "1rem",
+      <Box
+        sx={{
+          pb: "1rem",
           mb: "1rem",
           borderBottom: "1px solid",
-          borderBottomColor: "divider.main",}}>
+          borderBottomColor: "divider.main",
+        }}
+      >
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Box>Quadratic voting</Box>
           <Box sx={{ ml: "auto" }}>
@@ -385,6 +390,213 @@ const Governance: React.FC = () => {
             />
           </Box>
         </Box>
+      </Box>
+      <Box
+        sx={{
+          pb: "1rem",
+          mb: "1rem",
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box>Configure voting system</Box>
+        </Box>
+        <Box
+          sx={{
+            fontSize: ".9rem",
+            fontWeight: 410,
+            display: "flex",
+            alignItems: "center",
+            mt: 2,
+          }}
+        >
+          <Box>Support needed on single choice voting</Box>
+          <Box sx={{ ml: "auto" }}>
+            <Button variant="text">
+              Learn More{" "}
+              <InfoIcon style={{ fill: "primary.main", marginLeft: ".4rem" }} />
+            </Button>
+          </Box>
+        </Box>
+        <Box sx={{ display: "flex", alignItem: "center", mt: ".4rem" }}>
+          <Box sx={{ width: "90%", display: "flex", alignItems: "center" }}>
+            <Slider
+              value={data.supportNeeded}
+              min={51}
+              max={100}
+              onChange={(event, newValue) =>
+                globalContext.api.setData({
+                  ...globalContext.api.data,
+                  governance: {
+                    ...data,
+                    supportNeeded: newValue,
+                  },
+                })
+              }
+            />
+          </Box>
+          <Box
+            sx={{
+              width: "10%",
+              ml: "1rem",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <TextField
+              label="Value"
+              type="number"
+              value={data.supportNeeded}
+              onChange={(e) =>
+                globalContext.api.setData({
+                  ...globalContext.api.data,
+                  governance: {
+                    ...data,
+                    supportNeeded: e.target.value,
+                  },
+                })
+              }
+              InputProps={{
+                inputProps: { min: 51, max: 100 },
+                endAdornment: <Box>%</Box>,
+              }}
+            />
+          </Box>
+        </Box>
+        <Box sx={{ width: "100%", mt: 2 }}>
+          <Alert severity="warning" color="warning" sx={{ fontSize: ".8rem" }}>
+            <AlertTitle sx={{ fontSize: ".9rem" }}>
+              Only for single-choice voting
+            </AlertTitle>
+            Support will only apply to single-choice voting. It determines the
+            percentage of users that need to agree for a proposal to be
+            approved. Can't be set to less than 51%
+          </Alert>
+        </Box>
+        <Box
+          sx={{
+            fontSize: ".9rem",
+            fontWeight: 410,
+            display: "flex",
+            alignItems: "center",
+            mt: 2,
+          }}
+        >
+          <Box>Quorum</Box>
+          <Box sx={{ ml: "auto" }}>
+            <Button variant="text">
+              Learn More{" "}
+              <InfoIcon style={{ fill: "primary.main", marginLeft: ".4rem" }} />
+            </Button>
+          </Box>
+        </Box>
+        <Box sx={{ display: "flex", alignItem: "center", mt: ".4rem" }}>
+          <Box sx={{ width: "90%", display: "flex", alignItems: "center" }}>
+            <Slider
+              value={data.quorum}
+              min={0}
+              max={100}
+              onChange={(event, newValue) =>
+                globalContext.api.setData({
+                  ...globalContext.api.data,
+                  governance: {
+                    ...data,
+                    quorum: newValue,
+                  },
+                })
+              }
+            />
+          </Box>
+          <Box
+            sx={{
+              width: "10%",
+              ml: "1rem",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <TextField
+              label="Value"
+              type="number"
+              value={data.quorum}
+              onChange={(e) =>
+                globalContext.api.setData({
+                  ...globalContext.api.data,
+                  governance: {
+                    ...data,
+                    quorum: e.target.value,
+                  },
+                })
+              }
+              InputProps={{
+                inputProps: { min: 0, max: 100 },
+                endAdornment: <Box>%</Box>,
+              }}
+            />
+          </Box>
+        </Box>
+        <Box sx={{ fontSize: ".9rem", fontWeight: 410, mb: "1rem", ml: 1 }}>
+          How long does the voting period last for?
+        </Box>
+        <FormControl sx={{ m: 1, width: "30%" }} variant="outlined">
+          <InputLabel htmlFor={`challenge-time-input`}>
+            Vote duration
+          </InputLabel>
+          <OutlinedInput
+            id={`challenge-time-input`}
+            type="number"
+            value={data.voteDuration}
+            onChange={(e) =>
+              globalContext.api.setData({
+                ...globalContext.api.data,
+                governance: {
+                  ...data,
+                  voteDuration: e.target.value,
+                },
+              })
+            }
+            endAdornment={
+              <Box
+                sx={{
+                  height: "100%",
+                  width: "90%",
+                  backgroundColor: "backgroundColor.main",
+                  color: "primary.text",
+                  lineHeight: "350%",
+                  textAlign: "center",
+                  borderRadius: "0 .3rem .3rem 0",
+                  mr: "-.8rem",
+                  ml: ".5rem",
+                  display: "flex",
+                }}
+              >
+                <FormControl fullWidth>
+                  <Select
+                    labelId="currency-select-label"
+                    id="currency-select"
+                    variant="outlined"
+                    value={data.voteDurationUnits}
+                    sx={{ height: "100%", color: "primary.text" }}
+                    onChange={(e) =>
+                      globalContext.api.setData({
+                        ...globalContext.api.data,
+                        governance: {
+                          ...data,
+                          voteDurationUnits: e.target.value,
+                        },
+                      })
+                    }
+                  >
+                    <MenuItem value="minutes">Minutes</MenuItem>
+                    <MenuItem value="hours">Hours</MenuItem>
+                    <MenuItem value="days">Days</MenuItem>
+                    <MenuItem value="weeks">Weeks</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+            }
+            label="Vote duration"
+          />
+        </FormControl>
       </Box>
     </Box>
   );
