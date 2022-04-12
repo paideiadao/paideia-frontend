@@ -12,14 +12,14 @@ const TokenSymbol: React.FC<IData<ITokenomics>> = (props) => {
     let fileInput = e.currentTarget.files;
     // where to store the images??? will be helpful to create the apis for future use & maintainabiliity.
     if (fileInput && fileInput[0]) {
-        if (fileInput.length != 1) return;
-        if (fileInput[0].size > 1000000) {
-            setFileData(-1);
-            props.setData({ ...props.data, tokenImage: undefined });
+      if (fileInput.length != 1) return;
+      if (fileInput[0].size > 1000000) {
+        setFileData(-1);
+        props.setData({ ...props.data, tokenImage: undefined });
 
-            return;
-        }
-        
+        return;
+      }
+
       var reader = new FileReader();
 
       reader.onload = function (_e: any) {
@@ -28,10 +28,8 @@ const TokenSymbol: React.FC<IData<ITokenomics>> = (props) => {
 
       reader.readAsDataURL(fileInput[0]);
 
-        props.setData({ ...props.data, tokenImage: fileInput[0] });
-
+      props.setData({ ...props.data, tokenImage: fileInput[0] });
     }
-    
   }
   return (
     <>
@@ -77,33 +75,50 @@ const TokenSymbol: React.FC<IData<ITokenomics>> = (props) => {
               onChange={(e) => handleImage(e)}
             />
             <Box sx={{ color: "primary.text", fontSize: "1rem" }}>
-              {file === undefined || file === -1? 'To replace, drop your image here or ' :props.data.tokenImage.name}
-              {file === undefined || file === -1 && <Box
-                sx={{
-                  color: "primary.main",
-                  display: "inline",
-                  cursor: "pointer",
-                }}
+              {file === undefined || file === -1
+                ? "To replace, drop your image here or "
+                : props.data.tokenImage.name}
+              {file === undefined ||
+                (file === -1 && (
+                  <Box
+                    sx={{
+                      color: "primary.main",
+                      display: "inline",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      const fileInput =
+                        document.getElementById("token-image-upload");
+                      fileInput.click();
+                    }}
+                  >
+                    browse
+                  </Box>
+                ))}
+            </Box>
+            <Box sx={{ color: "primary.lightText" }}>
+              {file === undefined || file === -1
+                ? "File Max size 1Mb. Dimensions 48px by 48px."
+                : bytesToSize(props.data.tokenImage.size)}
+            </Box>
+            {file === -1 && (
+              <Box sx={{ color: "red", fontWeight: 500 }}>
+                File size too large.
+              </Box>
+            )}
+            {file !== undefined && file !== -1 && (
+              <Button
+                variant="contained"
+                sx={{ mt: ".5rem" }}
                 onClick={() => {
                   const fileInput =
                     document.getElementById("token-image-upload");
                   fileInput.click();
                 }}
               >
-                browse
-              </Box>}
-            </Box>
-            <Box sx={{ color: "primary.lightText" }}>
-              {file === undefined || file === -1 ? 'File Max size 1Mb. Dimensions 48px by 48px.' : bytesToSize(props.data.tokenImage.size)}
-            </Box>
-            {file === -1 && <Box sx={{ color: "red" }}>
-                File size too large.
-            </Box>}
-            {file !== undefined && file !== -1 && <Button variant='contained' sx={{mt: '.5rem'}} onClick={() => {
-                  const fileInput =
-                    document.getElementById("token-image-upload");
-                  fileInput.click();
-                }}>Replace</Button>}
+                Replace
+              </Button>
+            )}
           </Box>
         </Paper>
       </Paper>

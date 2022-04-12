@@ -33,6 +33,7 @@ export const Subheader: React.FC<{ title: string; small?: boolean }> = (
       sx={{
         color: "primary.text",
         fontSize: props.small ? ".9rem" : "1rem",
+        fontWeight: props.small ? 400 : 450,
         display: "flex",
         alignItems: "center",
       }}

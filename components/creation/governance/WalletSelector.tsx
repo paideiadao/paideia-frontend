@@ -13,14 +13,16 @@ const WalletSelector: React.FC<{
   };
   set: Function;
   number: number;
+  id: string;
+  mt?: string;
 }> = (props) => {
   const [focused, setFocused] = React.useState<boolean>(false);
   const [search, setSearch] = React.useState<string>("");
 
   return (
     <Box
-      sx={{ width: "100%", mt: "1rem", position: "relative" }}
-      key={props.number + "-governance-address-textfield"}
+      sx={{ width: "100%", mt: props.mt ? props.mt : "1rem", position: "relative" }}
+      key={props.number + props.id + "-textfield"}
       onBlur={() => setFocused(false)}
     >
       <TextField

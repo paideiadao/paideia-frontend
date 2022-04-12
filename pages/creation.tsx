@@ -47,6 +47,15 @@ export default function Creation(props) {
       tokenTicker: "",
       tokenAmount: 0,
       tokenImage: undefined,
+      tokenHolders: [
+        {
+          alias: "",
+          address: "",
+          img: "",
+          balance: 0,
+          percentage: 0,
+        },
+      ],
     },
   });
 

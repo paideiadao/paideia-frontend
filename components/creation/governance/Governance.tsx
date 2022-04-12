@@ -129,6 +129,7 @@ const Governance: React.FC = () => {
               {data.whitelist.map((i: any, c: number) => {
                 return (
                   <WalletSelector
+                    id="governance"
                     data={i}
                     number={c}
                     set={(j: any) => {
