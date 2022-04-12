@@ -418,7 +418,7 @@ const Governance: React.FC = () => {
           </Box>
         </Box>
         <Box sx={{ display: "flex", alignItem: "center", mt: ".4rem" }}>
-          <Box sx={{ width: "90%", display: "flex", alignItems: "center" }}>
+          <Box sx={{ width: "87%", display: "flex", alignItems: "center" }}>
             <Slider
               value={data.supportNeeded}
               min={51}
@@ -436,7 +436,7 @@ const Governance: React.FC = () => {
           </Box>
           <Box
             sx={{
-              width: "10%",
+              width: "13%",
               ml: "1rem",
               display: "flex",
               alignItems: "center",

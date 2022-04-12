@@ -28,6 +28,11 @@ export const LightTheme = createTheme({
       // dark: will be calculated from palette.secondary.main,
       contrastText: "#E5E5E5",
     },
+    fileInput: {
+      main: "rgb(0, 134, 143, 0.1)",
+      outer: "rgb(0, 134, 143, 0.1)",
+      border: 'rgba(255, 255, 255, 1)'
+    },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
     contrastThreshold: 3,
@@ -88,13 +93,17 @@ export const DarkTheme = createTheme({
     alert: {
       main: "linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), #FFA726",
     },
-    button: {},
     darkHover: {
       main: "rgba(17, 24, 39,.08)",
       text: "rgba(0, 0, 0, 1)",
     },
     divider: {
       main: "rgba(159, 210, 219, 0.2)",
+    },
+    fileInput: {
+      main: "rgba(45, 51, 64, 1)",
+      outer: "rgba(17, 24, 39, 1)",
+      border: 'rgba(255, 255, 255, 0.12)'
     },
     backgroundColor: {
       main: "rgba(17, 24, 39, 1)",

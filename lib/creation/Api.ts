@@ -5,6 +5,7 @@ export interface ICreationData {
   navStage: number;
   basicInformation: IBasicInformation;
   governance: IGovernance;
+  tokenomics: ITokenomics;
 }
 
 interface IBasicInformation {
@@ -30,6 +31,14 @@ interface IGovernance {
   amount: number | string;
   currency: string;
   supportNeeded: number;
+}
+
+export interface ITokenomics {
+  tokenName: string;
+  // check restrictions...
+  tokenTicker: string;
+  tokenAmount: number;
+  tokenImage: any;
 }
 
 export class CreationApi extends AbstractApi {

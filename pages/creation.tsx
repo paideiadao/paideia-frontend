@@ -42,6 +42,12 @@ export default function Creation(props) {
       currency: "",
       supportNeeded: 50,
     },
+    tokenomics: {
+      tokenName: "",
+      tokenTicker: "",
+      tokenAmount: 0,
+      tokenImage: undefined
+    },
   });
 
   let lookup = {

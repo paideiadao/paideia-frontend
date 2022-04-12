@@ -25,14 +25,16 @@ export const Header: React.FC<{ title: string; subtitle: string }> = (
   );
 };
 
-export const Subheader: React.FC<{ title: string }> = (props) => {
+export const Subheader: React.FC<{ title: string; small?: boolean }> = (
+  props
+) => {
   return (
     <Box
       sx={{
         color: "primary.text",
-        fontSize: "1rem",
-        mt: "1.5rem",
-        mb: ".5rem",
+        fontSize: props.small ? ".9rem" : "1rem",
+        display: "flex",
+        alignItems: "center",
       }}
     >
       {props.title}
@@ -40,11 +42,15 @@ export const Subheader: React.FC<{ title: string }> = (props) => {
   );
 };
 
-export const LearnMore: React.FC<{ title: string }> = (props) => {
+export const LearnMore: React.FC<{ title: string; small?: boolean }> = (
+  props
+) => {
   return (
-    <Box sx={{ display: "flex", alignItems: "center" }}>
-      <Subheader title={props.title} />
-      <Box sx={{ ml: "auto" }}>
+    <Box
+      sx={{ display: "flex", alignItems: "center", mt: "1rem", mb: ".5rem" }}
+    >
+      <Subheader title={props.title} small={props.small} />
+      <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
         <Button variant="text">
           Learn More{" "}
           <InfoIcon style={{ fill: "primary.main", marginLeft: ".4rem" }} />
