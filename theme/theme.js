@@ -31,7 +31,7 @@ export const LightTheme = createTheme({
     fileInput: {
       main: "rgb(0, 134, 143, 0.1)",
       outer: "rgb(0, 134, 143, 0.1)",
-      border: 'rgba(255, 255, 255, 1)'
+      border: "rgba(255, 255, 255, 1)",
     },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
@@ -103,7 +103,7 @@ export const DarkTheme = createTheme({
     fileInput: {
       main: "rgba(45, 51, 64, 1)",
       outer: "rgba(17, 24, 39, 1)",
-      border: 'rgba(255, 255, 255, 0.12)'
+      border: "rgba(255, 255, 255, 0.12)",
     },
     backgroundColor: {
       main: "rgba(17, 24, 39, 1)",

@@ -17,33 +17,36 @@ const Tokenomics: React.FC = () => {
         title="Token creation and distribution"
         subtitle="Decide your token name, ticker, and distribution, or bring in an existing token."
       />
-      <Box sx={{
+      <Box
+        sx={{
           borderBottom: "1px solid",
-          borderBottomColor: "divider.main", pb: '1rem'}}>
-      <TokenInformation
-        data={data}
-        setData={(tokenomicsData: ITokenomics) =>
-          globalContext.api.setData({
-            ...globalContext.api.data,
-            tokenomics: {
-              ...tokenomicsData,
-            },
-          })
-        }
-      />
-      <TokenSymbol
-        data={data}
-        setData={(tokenomicsData: ITokenomics) =>
-          globalContext.api.setData({
-            ...globalContext.api.data,
-            tokenomics: {
-              ...tokenomicsData,
-            },
-          })
-        }
-      />
+          borderBottomColor: "divider.main",
+          pb: "1rem",
+        }}
+      >
+        <TokenInformation
+          data={data}
+          setData={(tokenomicsData: ITokenomics) =>
+            globalContext.api.setData({
+              ...globalContext.api.data,
+              tokenomics: {
+                ...tokenomicsData,
+              },
+            })
+          }
+        />
+        <TokenSymbol
+          data={data}
+          setData={(tokenomicsData: ITokenomics) =>
+            globalContext.api.setData({
+              ...globalContext.api.data,
+              tokenomics: {
+                ...tokenomicsData,
+              },
+            })
+          }
+        />
       </Box>
-
     </Box>
   );
 };

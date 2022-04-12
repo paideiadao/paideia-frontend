@@ -46,7 +46,7 @@ export default function Creation(props) {
       tokenName: "",
       tokenTicker: "",
       tokenAmount: 0,
-      tokenImage: undefined
+      tokenImage: undefined,
     },
   });
 
