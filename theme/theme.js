@@ -17,6 +17,7 @@ export const LightTheme = createTheme({
       light: "",
       text: "rgba(0, 0, 0, 1)",
       lightText: "rgba(0, 0, 0, 0.6)",
+      selectedButton: "rgb(0, 134, 143, 0.1)",
 
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
@@ -87,6 +88,7 @@ export const DarkTheme = createTheme({
     alert: {
       main: "linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), #FFA726",
     },
+    button: {},
     darkHover: {
       main: "rgba(17, 24, 39,.08)",
       text: "rgba(0, 0, 0, 1)",
@@ -106,6 +108,7 @@ export const DarkTheme = createTheme({
       light: "",
       text: "rgba(255, 255, 255, 1)",
       lightText: "rgba(255, 255, 255, 0.7)",
+      selectedButton: "rgba(2, 136, 209, 0.1)",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },

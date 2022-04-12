@@ -11,6 +11,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { checkCompleteness } from "../lib/creation/Utilities";
 import Governance from "../components/creation/governance/Governance";
+import Tokenomics from "../components/creation/tokenomics/Tokenomics";
 
 export default function Creation(props) {
   const [alert, setAlert] = React.useState({ show: false });
@@ -48,7 +49,11 @@ export default function Creation(props) {
     dark: "#0E1420",
   };
 
-  let content = [<BasicInformation key={1} />, <Governance key={2} />];
+  let content = [
+    <BasicInformation key={1} />,
+    <Governance key={2} />,
+    <Tokenomics key={3} />,
+  ];
 
   React.useEffect(() => {
     let temp = theme === LightTheme ? "light" : "dark";

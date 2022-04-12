@@ -5,10 +5,6 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { walletStruct } from "../../../lib/creation/Constants";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const CustomInputComponent = ({ inputRef, ...rest }) => (
-  <input ref={inputRef} {...rest} type="text" />
-);
-
 const WalletSelector: React.FC<{
   data: {
     alias: string;
