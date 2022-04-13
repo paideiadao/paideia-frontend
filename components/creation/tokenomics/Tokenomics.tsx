@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import { GlobalContext, IGlobalContext } from "../../../lib/creation/Context";
 import { Header, Subheader } from "../utilities/HeaderComponents";
 import TokenInformation from "./TokenInformation";
-import { ITokenomics } from "../../../lib/creation/Api";
+import { ITokenHolder, ITokenomics } from "../../../lib/creation/Api";
 import TokenSymbol from "./TokenSymbol";
 import TokenHolders from "./TokenHolders";
 
@@ -20,6 +20,21 @@ const Tokenomics: React.FC = () => {
       },
     });
   };
+
+  let tokenAmount = data.tokenAmount;
+  let tokenHolders = data.tokenHolders;
+
+  React.useEffect(() => {
+    set({
+      ...globalContext.api.data.tokenomics,
+      tokenRemaining:
+        tokenAmount -
+        tokenHolders
+          .map((i: ITokenHolder) => i.balance)
+          .reduce((sum, current) => sum + current, 0),
+    });
+  }, [tokenHolders, tokenAmount]);
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column", width: "70%" }}>
       <Header

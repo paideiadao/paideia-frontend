@@ -90,6 +90,9 @@ export const DarkTheme = createTheme({
     circle: {
       main: "#9FD2DB",
     },
+    searchIcon: {
+      main: '#9FD2DB'
+    },
     alert: {
       main: "linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), #FFA726",
     },

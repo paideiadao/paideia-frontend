@@ -44,9 +44,11 @@ export default function Creation(props) {
     },
     tokenomics: {
       tokenName: "",
+      tokenId: "",
       tokenTicker: "",
       tokenAmount: 0,
       tokenImage: undefined,
+      tokenRemaining: 0,
       tokenHolders: [
         {
           alias: "",

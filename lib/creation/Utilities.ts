@@ -18,3 +18,15 @@ export function bytesToSize(bytes) {
   var i = Math.floor(Math.log(bytes) / Math.log(1024));
   return (bytes / Math.pow(1024, i)).toFixed(2) + " " + sizes[i];
 }
+
+export function balanceToPercentage(total: number, balance: number): number {
+  return parseFloat(((balance / total) * 100).toFixed(2));
+}
+
+export function percentageToBalance(total: number, percentage: number): number {
+  return parseFloat((total * percentage).toFixed(2));
+}
+
+export function percentage(value: number, places: number = 2): string {
+  return (value * 100).toFixed(2) + "%";
+}

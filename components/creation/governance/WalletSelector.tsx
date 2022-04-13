@@ -21,7 +21,11 @@ const WalletSelector: React.FC<{
 
   return (
     <Box
-      sx={{ width: "100%", mt: props.mt ? props.mt : "1rem", position: "relative" }}
+      sx={{
+        width: "100%",
+        mt: props.mt ? props.mt : "1rem",
+        position: "relative",
+      }}
       key={props.number + props.id + "-textfield"}
       onBlur={() => setFocused(false)}
     >
@@ -88,7 +92,7 @@ const WalletSelector: React.FC<{
               )}
 
               {props.data.alias === "" && (
-                <SearchIcon style={{ fill: "primary.text" }} />
+                <SearchIcon sx={{ fill: "#9FD2DB" }} />
               )}
             </InputAdornment>
           ),

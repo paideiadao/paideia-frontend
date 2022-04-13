@@ -33,19 +33,23 @@ interface IGovernance {
   supportNeeded: number;
 }
 
+export interface ITokenHolder {
+  alias: string;
+  address: string;
+  img: string;
+  balance: number;
+  percentage: number;
+}
+
 export interface ITokenomics {
   tokenName: string;
+  tokenId: string;
   // check restrictions...
   tokenTicker: string;
   tokenAmount: number;
   tokenImage: any;
-  tokenHolders: {
-    alias: string;
-    address: string;
-    img: string;
-    balance: number;
-    percentage: number;
-  }[];
+  tokenRemaining: number;
+  tokenHolders: ITokenHolder[];
 }
 
 export class CreationApi extends AbstractApi {
