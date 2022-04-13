@@ -78,8 +78,7 @@ const TokenSymbol: React.FC<IData<ITokenomics>> = (props) => {
               {file === undefined || file === -1
                 ? "To replace, drop your image here or "
                 : props.data.tokenImage.name}
-              {file === undefined ||
-                (file === -1 && (
+              {(file === undefined || file === -1 )&& (
                   <Box
                     sx={{
                       color: "primary.main",
@@ -94,7 +93,7 @@ const TokenSymbol: React.FC<IData<ITokenomics>> = (props) => {
                   >
                     browse
                   </Box>
-                ))}
+                )}
             </Box>
             <Box sx={{ color: "primary.lightText" }}>
               {file === undefined || file === -1
