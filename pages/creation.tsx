@@ -58,6 +58,7 @@ export default function Creation(props) {
           percentage: 0,
         },
       ],
+      activateTokenomics: false,
     },
   });
 

@@ -1,13 +1,13 @@
 import * as React from "react";
-import { AlertTitle, Box, Divider, Button, ButtonGroup } from "@mui/material";
-import Alert from "@mui/material/Alert";
-import TextField from "@mui/material/TextField";
+import { Box } from "@mui/material";
 import { GlobalContext, IGlobalContext } from "../../../lib/creation/Context";
 import { Header, Subheader } from "../utilities/HeaderComponents";
 import TokenInformation from "./TokenInformation";
 import { ITokenHolder, ITokenomics } from "../../../lib/creation/Api";
 import TokenSymbol from "./TokenSymbol";
 import TokenHolders from "./TokenHolders";
+import AdvancedTokenomics from "./AdvancedTokenomics";
+import TokenDistribution from "./TokenDistribution";
 
 const Tokenomics: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
@@ -58,6 +58,14 @@ const Tokenomics: React.FC = () => {
         />
       </Box>
       <TokenHolders
+        data={data}
+        setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
+      />
+      <AdvancedTokenomics
+        data={data}
+        setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
+      />
+      <TokenDistribution
         data={data}
         setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
       />

@@ -151,18 +151,20 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
         </Button>
       </Box>
 
-      <Box sx={{ width: "100%", mt: 2 }}>
-        <Alert severity="warning" color="warning" sx={{ fontSize: ".8rem" }}>
-          <AlertTitle sx={{ fontSize: ".9rem" }}>
-            Tokens will be automatically sent to the treasury
-          </AlertTitle>
-          You have {data.tokenRemaining} unassigned {data.tokenName} tokens
-          {data.tokenAmount > 0 &&
-            ` (${percentage(data.tokenRemaining / data.tokenAmount)})`}
-          . You can distribute them now by setting token configuration below or
-          if you choose not to do it now, they will go to the treasury.
-        </Alert>
-      </Box>
+      {data.tokenAmount > 0 && (
+        <Box sx={{ width: "100%", mt: 2 }}>
+          <Alert severity="warning" color="warning" sx={{ fontSize: ".8rem" }}>
+            <AlertTitle sx={{ fontSize: ".9rem" }}>
+              Tokens will be automatically sent to the treasury
+            </AlertTitle>
+            You have {data.tokenRemaining} unassigned {data.tokenName} tokens
+            {data.tokenAmount > 0 &&
+              ` (${percentage(data.tokenRemaining / data.tokenAmount)})`}
+            . You can distribute them now by setting token configuration below
+            or if you choose not to do it now, they will go to the treasury.
+          </Alert>
+        </Box>
+      )}
     </Box>
   );
 };

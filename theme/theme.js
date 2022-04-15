@@ -5,6 +5,9 @@ export const LightTheme = createTheme({
     circle: {
       main: "#00868F",
     },
+    circleBackground: {
+      main: 'rgba(0, 134, 143, 0.08)'
+    },
     divider: {
       main: "rgb(51, 51, 51, .2)",
     },
@@ -42,6 +45,11 @@ export const LightTheme = createTheme({
     tonalOffset: 0.2,
   },
   components: {
+    MuiCircularProgress: {
+      styleOverrides: {
+        
+      }
+    },
     MuiSelect: {
       styleOverrides: {
         icon: {
@@ -90,8 +98,11 @@ export const DarkTheme = createTheme({
     circle: {
       main: "#9FD2DB",
     },
+    circleBackground: {
+      main: 'rgba(159, 210, 219, 0.08)'
+    },
     searchIcon: {
-      main: '#9FD2DB'
+      main: "#9FD2DB",
     },
     alert: {
       main: "linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), #FFA726",

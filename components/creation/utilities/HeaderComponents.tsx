@@ -2,10 +2,12 @@ import { Box, Button } from "@mui/material";
 import * as React from "react";
 import InfoIcon from "@mui/icons-material/Info";
 
-export const Header: React.FC<{ title: string; subtitle: string }> = (
+export const Header: React.FC<{ title: string; subtitle?: string }> = (
   props
 ) => {
-  return (
+  return props.subtitle === undefined ? (
+    <Box sx={{ fontSize: "1.1rem", color: "primary.text" }}>{props.title}</Box>
+  ) : (
     <Box
       sx={{
         width: "100%",
@@ -16,11 +18,15 @@ export const Header: React.FC<{ title: string; subtitle: string }> = (
       <Box sx={{ fontSize: "1.1rem", color: "primary.text" }}>
         {props.title}
       </Box>
-      <Box
-        sx={{ width: "100%", color: "primary.lightText", fontSize: ".8rem" }}
-      >
-        {props.subtitle}
-      </Box>
+      <Subtitle subtitle={props.subtitle} />
+    </Box>
+  );
+};
+
+export const Subtitle: React.FC<{ subtitle: string }> = (props) => {
+  return (
+    <Box sx={{ width: "100%", color: "primary.lightText", fontSize: ".8rem" }}>
+      {props.subtitle}
     </Box>
   );
 };

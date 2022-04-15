@@ -48,10 +48,10 @@ const NewToken: React.FC<IData<ITokenomics>> = (props) => {
 };
 
 const ExistingToken: React.FC<IData<ITokenomics>> = (props) => {
-  let data = props.data
+  let data = props.data;
   return (
     <>
-      <Box sx={{ width: "100%", mt: '1rem', mb: '1rem' }}>
+      <Box sx={{ width: "100%", mt: "1rem", mb: "1rem" }}>
         <TextField
           value={data.tokenId}
           sx={{ width: "100%" }}
@@ -66,30 +66,30 @@ const ExistingToken: React.FC<IData<ITokenomics>> = (props) => {
       </Box>
       <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
         <Box sx={{ width: "50%", mr: ".5rem" }}>
-        <TextField
-          value={data.tokenName}
-          sx={{ width: "100%" }}
-          label="Token name"
-          onChange={(e) =>
-            props.setData({
-              ...data,
-              tokenName: e.target.value,
-            })
-          }
-        />
+          <TextField
+            value={data.tokenName}
+            sx={{ width: "100%" }}
+            label="Token name"
+            onChange={(e) =>
+              props.setData({
+                ...data,
+                tokenName: e.target.value,
+              })
+            }
+          />
         </Box>
         <Box sx={{ width: "50%", ml: ".5rem" }}>
-        <TextField
-          value={data.tokenTicker}
-          sx={{ width: "100%" }}
-          label="Token ticker"
-          onChange={(e) =>
-            props.setData({
-              ...data,
-              tokenTicker: e.target.value,
-            })
-          }
-        />
+          <TextField
+            value={data.tokenTicker}
+            sx={{ width: "100%" }}
+            label="Token ticker"
+            onChange={(e) =>
+              props.setData({
+                ...data,
+                tokenTicker: e.target.value,
+              })
+            }
+          />
         </Box>
       </Box>
     </>

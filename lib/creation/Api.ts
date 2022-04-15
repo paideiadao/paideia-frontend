@@ -50,6 +50,7 @@ export interface ITokenomics {
   tokenImage: any;
   tokenRemaining: number;
   tokenHolders: ITokenHolder[];
+  activateTokenomics: boolean;
 }
 
 export class CreationApi extends AbstractApi {
