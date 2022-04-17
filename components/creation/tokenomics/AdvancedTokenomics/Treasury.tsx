@@ -8,19 +8,24 @@ import {
   balanceToPercentage,
   percentageToBalance,
 } from "../../../../lib/creation/Utilities";
+import VestingSchedule, { IVestingSchedule } from "./VestingSchedule";
 
-interface ITreasuryInfo {
+export interface ITreasuryInfo {
   distributionName: string;
   balance: number;
   percentage: number;
+  vesting: boolean;
 }
 
 const Treasury: React.FC<{ data: IData<ITokenomics>; close: Function }> = (
   props
 ) => {
-  const [values, setValues] = React.useState<ITreasuryInfo[]>([
-    { distributionName: "", balance: 0, percentage: 0 },
-  ]);
+  const [value, setValue] = React.useState<ITreasuryInfo>({
+    distributionName: "",
+    balance: 0,
+    percentage: 0,
+    vesting: false,
+  });
   let data = props.data.data;
   console.log(data);
   return (
@@ -42,6 +47,7 @@ const Treasury: React.FC<{ data: IData<ITokenomics>; close: Function }> = (
           borderBottom: "1px solid",
           borderColor: "divider.main",
           mb: "1rem",
+          pl: "1rem",
         }}
       >
         <Header
@@ -49,63 +55,91 @@ const Treasury: React.FC<{ data: IData<ITokenomics>; close: Function }> = (
           subtitle="Organize your treasury into categories"
         />
       </Box>
-      <Box sx={{ width: "100%" }}>
+      <Box sx={{ width: "100%", pl: "1rem" }}>
         <Subheader title="GENERAL INFORMATION" small bold />
-        {values.map((i: ITreasuryInfo, c: number) => (
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              width: "100%",
-              mt: ".5rem",
-              mb: ".5rem",
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+            mt: ".5rem",
+            mb: ".5rem",
+          }}
+        >
+          <TextField
+            value={value.distributionName}
+            sx={{ width: "50%", mr: ".5rem" }}
+            onChange={(e: any) => {
+              setValue({ ...value, distributionName: e.target.value });
             }}
-          >
-            <TextField
-              value={i.distributionName}
-              sx={{ width: "50%", mr: ".5rem" }}
-              onChange={(e: any) => {
-                let temp = [...values];
-                temp[c].distributionName = e.target.value;
-                setValues(temp);
-              }}
-              label="Distribution Name"
-            />
-            <TextField
-              value={i.balance}
-              sx={{ width: "35%", mr: ".5rem" }}
-              onChange={(e: any) => {
-                let temp = [...values];
-                let balance = parseFloat(e.target.value);
-                let percentage = balanceToPercentage(data.tokenAmount, balance);
-                console.log("percentage", percentage);
-                temp[c].balance = balance;
-                temp[c].percentage = percentage;
-                setValues(temp);
-              }}
-              type="number"
-              label="Balance"
-            />
-            <TextField
-              value={i.percentage}
-              sx={{ width: "15%", mr: ".5rem" }}
-              onChange={(e: any) => {
-                let temp = [...values];
-                let percentage = parseFloat(e.target.value);
-                let balance = percentageToBalance(data.tokenAmount, percentage);
-                temp[c].percentage = e.target.value;
-                temp[c].balance = balance;
-                setValues(temp);
-              }}
-              type="number"
-              label="Percentage"
-              InputProps={{
-                endAdornment: <InputAdornment position="end">%</InputAdornment>,
-              }}
-            />
-          </Box>
-        ))}
+            label="Distribution Name"
+          />
+          <TextField
+            value={value.balance === 0 ? "" : value.balance}
+            sx={{ width: "27%", mr: ".5rem" }}
+            onChange={(e: any) => {
+              let temp = { ...value };
+              let balance = parseFloat(e.target.value);
+              let percentage = balanceToPercentage(data.tokenAmount, balance);
+              if (data.tokenRemaining === 0 && value.balance === 0) {
+                return;
+              }
+              if (
+                balance >= data.tokenAmount &&
+                balance <= data.tokenRemaining + value.balance
+              ) {
+                balance = data.tokenAmount;
+              } else if (balance > data.tokenRemaining + value.balance) {
+                return;
+              }
+              temp.balance = balance;
+              temp.percentage = percentage;
+              setValue(temp);
+            }}
+            type="number"
+            label="Balance"
+          />
+          <TextField
+            value={value.percentage === 0 ? "" : value.percentage}
+            sx={{ width: "23%", mr: ".5rem" }}
+            onChange={(e: any) => {
+              let temp = { ...value };
+              let percentage = parseFloat(e.target.value);
+              let balance = percentageToBalance(data.tokenAmount, percentage);
+              if (data.tokenRemaining === 0 && value.balance === 0) {
+                return;
+              }
+              if (
+                balance >= data.tokenAmount &&
+                balance <= data.tokenRemaining + value.balance
+              ) {
+                balance = data.tokenAmount;
+              } else if (balance > data.tokenRemaining + value.balance) {
+                return;
+              }
+              temp.percentage = e.target.value;
+              temp.balance = balance;
+              setValue(temp);
+            }}
+            type="number"
+            label="Percentage"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Box sx={{ color: "primary.text" }}>%</Box>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
       </Box>
+      <VestingSchedule
+        set={(data: IVestingSchedule) =>
+          setValue({ ...value, vesting: !value.vesting, ...data })
+        }
+        value={value.vesting}
+        id="treasury"
+      />
     </>
   );
 };

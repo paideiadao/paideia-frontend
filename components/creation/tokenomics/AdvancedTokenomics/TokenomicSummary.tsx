@@ -46,7 +46,11 @@ const TokenomicsRow: React.FC<{
         sx={{ width: "15%" }}
         InputProps={{
           readOnly: true,
-          endAdornment: <InputAdornment position="end">%</InputAdornment>,
+          endAdornment: (
+            <InputAdornment position="end">
+              <Box sx={{ color: "primary.text" }}>%</Box>
+            </InputAdornment>
+          ),
         }}
       />
     </Box>
@@ -54,7 +58,7 @@ const TokenomicsRow: React.FC<{
 };
 
 const TokenomicSummary: React.FC<IData<ITokenomics>> = (props) => {
-  const [addDistribution, setAddDistribution] = React.useState<boolean>(false);
+  const [distributions, setDistributions] = React.useState<number[]>([]);
 
   let data = props.data;
   let tokenHolderBalance = data.tokenHolders
@@ -85,13 +89,25 @@ const TokenomicSummary: React.FC<IData<ITokenomics>> = (props) => {
       {tokenomics.map((i: any) => {
         return <TokenomicsRow {...i} />;
       })}
-      {addDistribution ? (
+      {distributions.map((i: any, c: number) => (
         <AddDistribution
           data={{ ...props }}
-          close={() => setAddDistribution(false)}
+          close={() => {
+            let temp = [...distributions];
+            temp.splice(c, 1);
+            setDistributions(temp);
+          }}
         />
-      ) : (
-        data.tokenRemaining > 0 && <Button variant="text" onClick={() => setAddDistribution(true)}>
+      ))}
+      {data.tokenRemaining > 0 && (
+        <Button
+          variant="text"
+          onClick={() => {
+            let temp = [...distributions];
+            temp.push(temp.length);
+            setDistributions(temp);
+          }}
+        >
           <AddIcon sx={{ mr: ".3rem" }} />
           Add Distribution
         </Button>

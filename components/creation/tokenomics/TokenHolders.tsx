@@ -23,7 +23,6 @@ import {
 const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
   let globalContext = React.useContext(GlobalContext);
   let data = props.data;
-  console.log(data.tokenRemaining)
   return (
     <Box
       sx={{
@@ -45,7 +44,7 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
             >
               <Box
                 sx={{
-                  width: "60%",
+                  width: "57%",
                   mr: ".5rem",
                   display: "flex",
                   alignItem: "flex-start",
@@ -68,20 +67,28 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                   }}
                 />
               </Box>
-              <Box sx={{ width: "26%", mr: ".5rem" }}>
+              <Box sx={{ width: "23%", mr: ".5rem" }}>
                 <TextField
                   label="Balance"
                   type="number"
-                  value={data.tokenHolders[c].balance}
+                  value={
+                    data.tokenHolders[c].balance === 0
+                      ? ""
+                      : data.tokenHolders[c].balance
+                  }
                   onChange={(e) => {
                     let temp = [...data.tokenHolders];
                     let balance = parseFloat(e.target.value);
-                    if (data.tokenRemaining === 0 && data.tokenHolders[c].balance === 0) {
-                      return 
+                    if (
+                      data.tokenRemaining === 0 &&
+                      data.tokenHolders[c].balance === 0
+                    ) {
+                      return;
                     }
                     if (
                       balance >= data.tokenAmount &&
-                      balance <= data.tokenRemaining + data.tokenHolders[c].balance
+                      balance <=
+                        data.tokenRemaining + data.tokenHolders[c].balance
                     ) {
                       balance = data.tokenAmount;
                     } else if (
@@ -99,11 +106,15 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                   }}
                 />
               </Box>
-              <Box sx={{ width: "14%" }}>
+              <Box sx={{ width: "22%" }}>
                 <TextField
                   label="Percentage"
                   type="number"
-                  value={data.tokenHolders[c].percentage}
+                  value={
+                    data.tokenHolders[c].percentage === 0
+                      ? ""
+                      : data.tokenHolders[c].percentage
+                  }
                   onChange={(e) => {
                     let temp = [...data.tokenHolders];
                     let percentage = parseFloat(e.target.value);
@@ -112,12 +123,16 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                       props.data.tokenAmount,
                       percentage / 100
                     );
-                    if (data.tokenRemaining === 0 && data.tokenHolders[c].balance === 0) {
-                      return 
+                    if (
+                      data.tokenRemaining === 0 &&
+                      data.tokenHolders[c].balance === 0
+                    ) {
+                      return;
                     }
                     if (
                       balance >= data.tokenAmount &&
-                      balance <= data.tokenRemaining + data.tokenHolders[c].balance
+                      balance <=
+                        data.tokenRemaining + data.tokenHolders[c].balance
                     ) {
                       balance = data.tokenAmount;
                     } else if (
@@ -131,7 +146,9 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                   }}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position="end">%</InputAdornment>
+                      <InputAdornment position="end">
+                        <Box sx={{ color: "primary.text" }}>%</Box>
+                      </InputAdornment>
                     ),
                   }}
                 />
@@ -140,42 +157,46 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
           );
         })}
       </Box>
-      {data.tokenRemaining > 0 && data.tokenHolders.map((i: any) => i.balance).indexOf(0) === -1 && data.tokenHolders.map((i: any) => i.percentage).indexOf(0) === -1 && <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          mt: ".8rem",
-        }}
-      >
-        <Button
-          variant="text"
-          sx={{ mr: 2 }}
-          onClick={() => {
-            let temp = [...data.tokenHolders];
-            globalContext.api.setData({
-              ...globalContext.api.data,
-              tokenomics: {
-                ...data,
-                tokenHolders: temp.concat([
-                  {
-                    alias: "",
-                    address: "",
-                    img: "",
-                    balance: 0,
-                    percentage: 0,
+      {data.tokenRemaining > 0 &&
+        data.tokenHolders.map((i: any) => i.balance).indexOf(0) === -1 &&
+        data.tokenHolders.map((i: any) => i.percentage).indexOf(0) === -1 && (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              mt: ".8rem",
+            }}
+          >
+            <Button
+              variant="text"
+              sx={{ mr: 2 }}
+              onClick={() => {
+                let temp = [...data.tokenHolders];
+                globalContext.api.setData({
+                  ...globalContext.api.data,
+                  tokenomics: {
+                    ...data,
+                    tokenHolders: temp.concat([
+                      {
+                        alias: "",
+                        address: "",
+                        img: "",
+                        balance: 0,
+                        percentage: 0,
+                      },
+                    ]),
                   },
-                ]),
-              },
-            });
-          }}
-        >
-          Add Another <AddIcon />
-        </Button>
-        <Button variant="text">
-          Add from file <FileUploadIcon />
-        </Button>
-      </Box>}
+                });
+              }}
+            >
+              Add Another <AddIcon />
+            </Button>
+            <Button variant="text">
+              Add from file <FileUploadIcon />
+            </Button>
+          </Box>
+        )}
 
       {data.tokenAmount > 0 && (
         <Box sx={{ width: "100%", mt: 2 }}>

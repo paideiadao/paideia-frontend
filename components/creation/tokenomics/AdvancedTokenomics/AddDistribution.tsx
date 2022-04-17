@@ -47,8 +47,6 @@ const AddDistribution: React.FC<{
         mt: ".5rem",
         mb: ".5rem",
         width: "100%",
-        p: "1rem",
-        pt: ".5rem",
         position: "relative",
         justifyContent: "center",
       }}
@@ -71,6 +69,7 @@ const AddDistribution: React.FC<{
               borderBottom: "1px solid",
               borderColor: "divider.main",
               mb: "1rem",
+              pl: "1rem",
             }}
           >
             <Header
@@ -78,13 +77,13 @@ const AddDistribution: React.FC<{
               subtitle="Select what type of distribution you want to add from the list below."
             />
           </Box>
-          <Box>
+          <Box sx={{ pl: "1rem", pr: "1rem" }}>
             {distributionTypes.map((i: any) => {
               return (
                 <TextField
                   value={i.label}
                   sx={{
-                    width: "32.3%",
+                    width: "32.33%",
                     mr: "1%",
                     mb: ".5rem",
                     "&:hover": {

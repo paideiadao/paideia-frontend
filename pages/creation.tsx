@@ -59,6 +59,7 @@ export default function Creation(props) {
         },
       ],
       activateTokenomics: false,
+      distributions: [],
     },
   });
 

@@ -1,4 +1,5 @@
 import { Theme } from "@mui/material";
+import { ITreasuryInfo } from "../../components/creation/tokenomics/AdvancedTokenomics/Treasury";
 import { AbstractApi } from "../utilities";
 
 export interface ICreationData {
@@ -51,6 +52,7 @@ export interface ITokenomics {
   tokenRemaining: number;
   tokenHolders: ITokenHolder[];
   activateTokenomics: boolean;
+  distributions: ITreasuryInfo[];
 }
 
 export class CreationApi extends AbstractApi {
