@@ -91,9 +91,19 @@ const TeamPartners: React.FC<{
             label="Distribution Name"
             InputProps={{ readOnly: true }}
           />
-          <BalanceInput total={data.tokenAmount} remaining={data.tokenRemaining} balance={value.balance} value={value} set={setValue}/>
+          <BalanceInput
+            total={data.tokenAmount}
+            remaining={data.tokenRemaining}
+            balance={value.balance}
+            value={value}
+            set={setValue}
+          />
           <PercentageInput
-            total={data.tokenAmount} remaining={data.tokenRemaining} percentage={value.percentage} value={value} set={setValue}
+            total={data.tokenAmount}
+            remaining={data.tokenRemaining}
+            percentage={value.percentage}
+            value={value}
+            set={setValue}
           />
         </Box>
       </Box>

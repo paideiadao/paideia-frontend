@@ -19,6 +19,8 @@ import {
   percentageToBalance,
   percentage,
 } from "../../../lib/creation/Utilities";
+import PercentageInput from "../utilities/PercentageInput";
+import BalanceInput from "../utilities/BalanceInput";
 
 const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
   let globalContext = React.useContext(GlobalContext);
@@ -67,94 +69,27 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                   }}
                 />
               </Box>
-              <Box sx={{ width: "23%", mr: ".5rem" }}>
-                <TextField
-                  label="Balance"
-                  type="number"
-                  value={
-                    data.tokenHolders[c].balance === 0
-                      ? ""
-                      : data.tokenHolders[c].balance
-                  }
-                  onChange={(e) => {
-                    let temp = [...data.tokenHolders];
-                    let balance = parseFloat(e.target.value);
-                    balance = isNaN(balance) ? 0 : balance;
-                    if (
-                      data.tokenRemaining === 0 &&
-                      data.tokenHolders[c].balance === 0
-                    ) {
-                      return;
-                    }
-                    if (
-                      balance >= data.tokenAmount &&
-                      balance <=
-                        data.tokenRemaining + data.tokenHolders[c].balance
-                    ) {
-                      balance = data.tokenAmount;
-                    } else if (
-                      balance >
-                      data.tokenRemaining + data.tokenHolders[c].balance
-                    ) {
-                      return;
-                    }
-                    let percentage = balanceToPercentage(
-                      props.data.tokenAmount,
-                      balance
-                    );
-                    temp[c] = { ...temp[c], balance, percentage };
-                    props.setData({ ...props.data, tokenHolders: temp });
-                  }}
-                />
-              </Box>
-              <Box sx={{ width: "22%" }}>
-                <TextField
-                  label="Percentage"
-                  type="number"
-                  value={
-                    data.tokenHolders[c].percentage === 0
-                      ? ""
-                      : data.tokenHolders[c].percentage
-                  }
-                  onChange={(e) => {
-                    let temp = [...data.tokenHolders];
-                    let percentage = parseFloat(e.target.value);
-                    percentage = isNaN(percentage) ? 0 : percentage;
-
-                    let balance = percentageToBalance(
-                      props.data.tokenAmount,
-                      percentage / 100
-                    );
-                    if (
-                      data.tokenRemaining === 0 &&
-                      data.tokenHolders[c].balance === 0
-                    ) {
-                      return;
-                    }
-                    if (
-                      balance >= data.tokenAmount &&
-                      balance <=
-                        data.tokenRemaining + data.tokenHolders[c].balance
-                    ) {
-                      balance = data.tokenAmount;
-                    } else if (
-                      balance >
-                      data.tokenRemaining + data.tokenHolders[c].balance
-                    ) {
-                      return;
-                    }
-                    temp[c] = { ...temp[c], percentage, balance };
-                    props.setData({ ...props.data, tokenHolders: temp });
-                  }}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <Box sx={{ color: "primary.text" }}>%</Box>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Box>
+              <BalanceInput
+                total={data.tokenAmount}
+                remaining={data.tokenRemaining}
+                balance={data.tokenHolders[c].balance}
+                value={data.tokenHolders[c]}
+                set={(newValue: any) => {
+                  let temp = [...data.tokenHolders];
+                  temp[c] = { ...newValue };
+                  props.setData({ ...props.data, tokenHolders: temp });
+                }}
+              />
+              <PercentageInput
+                total={data.tokenAmount}
+                remaining={data.tokenRemaining}
+                percentage={data.tokenHolders[c].percentage}
+                value={data.tokenHolders[c]}
+                set={(newValue: any) => {
+                  let temp = [...data.tokenHolders];
+                  temp[c] = { ...newValue };
+                  props.setData({ ...props.data, tokenHolders: temp });
+                }}              />
             </Box>
           );
         })}

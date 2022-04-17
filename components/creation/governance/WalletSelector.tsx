@@ -30,6 +30,7 @@ const WalletSelector: React.FC<{
       onBlur={() => setFocused(false)}
     >
       <TextField
+        autoComplete="off"
         label="Wallet Address"
         sx={{ width: "100%" }}
         placeholder={
@@ -143,7 +144,12 @@ const WalletSelector: React.FC<{
                     <Avatar sx={{ fontSize: ".75rem" }}>{i.img}</Avatar>
                   </Box>
                   <Box>
-                    {i.alias} | {i.address}
+                    <Box>
+                      {i.alias}
+                    </Box>
+                    <Box sx={{fontSize: '.8rem'}}>
+                      {i.address}
+                    </Box>
                   </Box>
                 </Box>
               );

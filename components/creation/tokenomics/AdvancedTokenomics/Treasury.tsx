@@ -9,6 +9,8 @@ import {
   percentageToBalance,
 } from "../../../../lib/creation/Utilities";
 import VestingSchedule, { IVestingSchedule } from "./VestingSchedule";
+import BalanceInput from "../../utilities/BalanceInput";
+import PercentageInput from "../../utilities/PercentageInput";
 
 export interface ITreasuryInfo {
   distributionName: string;
@@ -98,64 +100,19 @@ const Treasury: React.FC<{
             }}
             label="Distribution Name"
           />
-          <TextField
-            value={value.balance === 0 ? "" : value.balance}
-            sx={{ width: "27%", mr: ".5rem" }}
-            onChange={(e: any) => {
-              let temp = { ...value };
-              let balance = parseFloat(e.target.value);
-              balance = isNaN(balance) ? 0 : balance;
-              let percentage = balanceToPercentage(data.tokenAmount, balance);
-              if (data.tokenRemaining === 0 && value.balance === 0) {
-                return;
-              }
-              if (
-                balance >= data.tokenAmount &&
-                balance <= data.tokenRemaining + value.balance
-              ) {
-                balance = data.tokenAmount;
-              } else if (balance > data.tokenRemaining + value.balance) {
-                return;
-              }
-              temp.balance = balance;
-              temp.percentage = percentage;
-              setValue(temp);
-            }}
-            type="number"
-            label="Balance"
+          <BalanceInput
+            total={data.tokenAmount}
+            remaining={data.tokenRemaining}
+            balance={value.balance}
+            value={value}
+            set={setValue}
           />
-          <TextField
-            value={value.percentage === 0 ? "" : value.percentage}
-            sx={{ width: "23%", mr: ".5rem" }}
-            onChange={(e: any) => {
-              let temp = { ...value };
-              let percentage = parseFloat(e.target.value);
-              percentage = isNaN(percentage) ? 0 : percentage;
-              let balance = percentageToBalance(data.tokenAmount, percentage);
-              if (data.tokenRemaining === 0 && value.balance === 0) {
-                return;
-              }
-              if (
-                balance >= data.tokenAmount &&
-                balance <= data.tokenRemaining + value.balance
-              ) {
-                balance = data.tokenAmount;
-              } else if (balance > data.tokenRemaining + value.balance) {
-                return;
-              }
-              temp.percentage = e.target.value;
-              temp.balance = balance;
-              setValue(temp);
-            }}
-            type="number"
-            label="Percentage"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <Box sx={{ color: "primary.text" }}>%</Box>
-                </InputAdornment>
-              ),
-            }}
+          <PercentageInput
+            total={data.tokenAmount}
+            remaining={data.tokenRemaining}
+            percentage={value.percentage}
+            value={value}
+            set={setValue}
           />
         </Box>
       </Box>
