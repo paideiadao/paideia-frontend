@@ -39,7 +39,7 @@ const NewToken: React.FC<IData<ITokenomics>> = (props) => {
         onChange={(e) =>
           props.setData({
             ...data,
-            tokenAmount: e.target.value,
+            tokenAmount: parseInt(e.target.value),
           })
         }
       />

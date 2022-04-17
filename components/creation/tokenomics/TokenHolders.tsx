@@ -23,6 +23,7 @@ import {
 const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
   let globalContext = React.useContext(GlobalContext);
   let data = props.data;
+  console.log(data.tokenRemaining)
   return (
     <Box
       sx={{
@@ -58,13 +59,11 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                   number={c}
                   set={(j: any) => {
                     let temp = [...data.tokenHolders];
-                    console.log(j);
                     if (j === undefined) {
                       temp.splice(c, 1);
                     } else {
                       temp[c] = { ...temp[c], ...j };
                     }
-                    console.log(temp[c]);
                     props.setData({ ...props.data, tokenHolders: temp });
                   }}
                 />
@@ -77,12 +76,25 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                   onChange={(e) => {
                     let temp = [...data.tokenHolders];
                     let balance = parseFloat(e.target.value);
+                    if (data.tokenRemaining === 0 && data.tokenHolders[c].balance === 0) {
+                      return 
+                    }
+                    if (
+                      balance >= data.tokenAmount &&
+                      balance <= data.tokenRemaining + data.tokenHolders[c].balance
+                    ) {
+                      balance = data.tokenAmount;
+                    } else if (
+                      balance >
+                      data.tokenRemaining + data.tokenHolders[c].balance
+                    ) {
+                      return;
+                    }
                     let percentage = balanceToPercentage(
                       props.data.tokenAmount,
                       balance
                     );
                     temp[c] = { ...temp[c], balance, percentage };
-                    console.log(temp[c]);
                     props.setData({ ...props.data, tokenHolders: temp });
                   }}
                 />
@@ -95,12 +107,26 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                   onChange={(e) => {
                     let temp = [...data.tokenHolders];
                     let percentage = parseFloat(e.target.value);
+
                     let balance = percentageToBalance(
                       props.data.tokenAmount,
-                      percentage
+                      percentage / 100
                     );
+                    if (data.tokenRemaining === 0 && data.tokenHolders[c].balance === 0) {
+                      return 
+                    }
+                    if (
+                      balance >= data.tokenAmount &&
+                      balance <= data.tokenRemaining + data.tokenHolders[c].balance
+                    ) {
+                      balance = data.tokenAmount;
+                    } else if (
+                      balance >
+                      data.tokenRemaining + data.tokenHolders[c].balance
+                    ) {
+                      return;
+                    }
                     temp[c] = { ...temp[c], percentage, balance };
-                    console.log(temp[c]);
                     props.setData({ ...props.data, tokenHolders: temp });
                   }}
                   InputProps={{
@@ -114,7 +140,7 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
           );
         })}
       </Box>
-      <Box
+      {data.tokenRemaining > 0 && data.tokenHolders.map((i: any) => i.balance).indexOf(0) === -1 && data.tokenHolders.map((i: any) => i.percentage).indexOf(0) === -1 && <Box
         sx={{
           display: "flex",
           alignItems: "center",
@@ -149,7 +175,7 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
         <Button variant="text">
           Add from file <FileUploadIcon />
         </Button>
-      </Box>
+      </Box>}
 
       {data.tokenAmount > 0 && (
         <Box sx={{ width: "100%", mt: 2 }}>

@@ -10,7 +10,6 @@ const BasicInformation: React.FC = () => {
 
   React.useEffect(() => {
     let clean = data.daoName.toLowerCase().replaceAll(" ", "");
-    console.log(clean);
     globalContext.api.setData({
       ...globalContext.api.data,
       basicInformation: {

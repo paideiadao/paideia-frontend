@@ -31,15 +31,17 @@ export const Subtitle: React.FC<{ subtitle: string }> = (props) => {
   );
 };
 
-export const Subheader: React.FC<{ title: string; small?: boolean }> = (
-  props
-) => {
+export const Subheader: React.FC<{
+  title: string;
+  small?: boolean;
+  bold?: boolean;
+}> = (props) => {
   return (
     <Box
       sx={{
         color: "primary.text",
         fontSize: props.small ? ".9rem" : "1rem",
-        fontWeight: props.small ? 400 : 450,
+        fontWeight: props.bold ? 500 : props.small ? 400 : 450,
         display: "flex",
         alignItems: "center",
       }}

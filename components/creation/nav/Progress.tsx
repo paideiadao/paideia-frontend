@@ -24,7 +24,7 @@ function CircularProgressWithLabel(
             variant="determinate"
             {...props}
             size="4rem"
-            sx={{position: 'relative', zIndex: 2}}
+            sx={{ position: "relative", zIndex: 2 }}
             value={props.value * 20}
             // @ts-expect-error
             color="circle"
@@ -32,7 +32,7 @@ function CircularProgressWithLabel(
           <CircularProgress
             variant="determinate"
             {...props}
-            sx={{position: 'absolute'}}
+            sx={{ position: "absolute" }}
             size="4rem"
             value={100}
             // @ts-expect-error

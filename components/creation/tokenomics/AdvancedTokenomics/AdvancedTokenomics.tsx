@@ -27,9 +27,11 @@ const AdvancedTokenomics: React.FC<IData<ITokenomics>> = (props) => {
           })
         }
       />
-      {data.activateTokenomics && <>
-        <TokenomicSummary {...props}/>
-      </>}
+      {data.activateTokenomics && (
+        <>
+          <TokenomicSummary {...props} />
+        </>
+      )}
     </Box>
   );
 };
