@@ -147,7 +147,7 @@ const WalletSelector: React.FC<{
                     <Box>
                       {i.alias}
                     </Box>
-                    <Box sx={{fontSize: '.8rem'}}>
+                    <Box sx={{fontSize: '.75rem'}}>
                       {i.address}
                     </Box>
                   </Box>

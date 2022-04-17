@@ -51,13 +51,14 @@ export const Subheader: React.FC<{
   title: string;
   small?: boolean;
   bold?: boolean;
+  light?: boolean;
 }> = (props) => {
   return (
     <Box
       sx={{
         color: "primary.text",
         fontSize: props.small ? ".9rem" : "1rem",
-        fontWeight: props.bold ? 500 : props.small ? 400 : 450,
+        fontWeight: props.bold ? 500 : (props.small || props.light ? 400 : 450),
         display: "flex",
         alignItems: "center",
       }}
@@ -67,14 +68,14 @@ export const Subheader: React.FC<{
   );
 };
 
-export const LearnMore: React.FC<{ title: string; small?: boolean }> = (
+export const LearnMore: React.FC<{ title: string; small?: boolean, light?: boolean }> = (
   props
 ) => {
   return (
     <Box
       sx={{ display: "flex", alignItems: "center", mt: "1rem", mb: ".5rem" }}
     >
-      <Subheader title={props.title} small={props.small} />
+      <Subheader title={props.title} small={props.small} light={props.light}/>
       <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
         <Button variant="text">
           Learn More{" "}

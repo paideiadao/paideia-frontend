@@ -3,8 +3,6 @@ import {
   AlertTitle,
   Box,
   Button,
-  InputAdornment,
-  TextField,
 } from "@mui/material";
 import * as React from "react";
 import { ITokenomics } from "../../../lib/creation/Api";
@@ -15,8 +13,6 @@ import { LearnMore } from "../utilities/HeaderComponents";
 import AddIcon from "@mui/icons-material/Add";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import {
-  balanceToPercentage,
-  percentageToBalance,
   percentage,
 } from "../../../lib/creation/Utilities";
 import PercentageInput from "../utilities/PercentageInput";

@@ -95,6 +95,12 @@ const TokenomicSummary: React.FC<IData<ITokenomics>> = (props) => {
             let temp = [...distributions];
             temp.splice(c, 1);
             setDistributions(temp);
+            let tempGlobalDistributions = [...data.distributions]
+            tempGlobalDistributions.splice(c, 1);
+            props.setData({
+              ...data,
+              distributions: tempGlobalDistributions
+            })
           }}
           c={c}
         />
