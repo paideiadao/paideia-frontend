@@ -15,19 +15,43 @@ export interface ITreasuryInfo {
   balance: number;
   percentage: number;
   vesting: boolean;
+  initialDistribution: number;
+  emissionStartDate: number;
+  emissionStartDateUnits: string;
+  frequency: string;
+  emissionLength: number;
+  emissionLengthUnits: string;
 }
 
-const Treasury: React.FC<{ data: IData<ITokenomics>; close: Function }> = (
-  props
-) => {
+const Treasury: React.FC<{
+  data: IData<ITokenomics>;
+  close: Function;
+  c: number;
+}> = (props) => {
+  let data = props.data.data;
   const [value, setValue] = React.useState<ITreasuryInfo>({
     distributionName: "",
     balance: 0,
     percentage: 0,
     vesting: false,
+    initialDistribution: 0,
+    emissionStartDate: 0,
+    emissionStartDateUnits: "weeks",
+    frequency: "weekly",
+    emissionLength: 0,
+    emissionLengthUnits: "weeks",
   });
-  let data = props.data.data;
-  console.log(data);
+
+  React.useEffect(() => {
+    /// add data to global context...
+    let temp = [...data.distributions];
+    temp[props.c] = { ...value };
+    props.data.setData({
+      ...data,
+      distributions: temp,
+    });
+  }, [value]);
+
   return (
     <>
       <DeleteIcon
@@ -134,9 +158,7 @@ const Treasury: React.FC<{ data: IData<ITokenomics>; close: Function }> = (
         </Box>
       </Box>
       <VestingSchedule
-        set={(data: IVestingSchedule) =>
-          setValue({ ...value, vesting: !value.vesting, ...data })
-        }
+        set={(data: IVestingSchedule) => setValue({ ...value, ...data })}
         value={value.vesting}
         id="treasury"
       />

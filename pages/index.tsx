@@ -6,7 +6,6 @@ import { GetStaticProps } from "next";
 import { Box } from "@mui/system";
 
 export default function Home(props) {
-  console.log(props);
   switch (props.wildcard) {
     case "home":
       return <Box>Paideia Home Here....</Box>;

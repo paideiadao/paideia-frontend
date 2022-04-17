@@ -3,7 +3,7 @@ import * as React from "react";
 import { ITokenomics } from "../../../../lib/creation/Api";
 import { IData } from "../../../../lib/utilities";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import Treasury from "./Treasury";
+import Treasury, { ITreasuryInfo } from "./Treasury";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Header } from "../../utilities/HeaderComponents";
 
@@ -12,6 +12,7 @@ const renderDisplay = (
   props: {
     data: IData<ITokenomics>;
     close: Function;
+    c: number;
   }
 ) => {
   switch (display) {
@@ -23,6 +24,7 @@ const renderDisplay = (
 const AddDistribution: React.FC<{
   data: IData<ITokenomics>;
   close: Function;
+  c: number;
 }> = (props) => {
   const [display, setDisplay] = React.useState<string>(undefined);
   const distributionTypes = [

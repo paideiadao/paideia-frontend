@@ -12,6 +12,7 @@ import * as React from "react";
 import LabeledSwitch from "../../utilities/LabeledSwitch";
 
 export interface IVestingSchedule {
+  vesting: boolean;
   initialDistribution: number;
   emissionStartDate: number;
   emissionStartDateUnits: string;
@@ -26,6 +27,7 @@ const VestingSchedule: React.FC<{
   id: string;
 }> = (props) => {
   const [value, setValue] = React.useState<IVestingSchedule>({
+    vesting: props.value,
     initialDistribution: 0,
     emissionStartDate: 0,
     emissionStartDateUnits: "weeks",
@@ -33,6 +35,11 @@ const VestingSchedule: React.FC<{
     emissionLength: 0,
     emissionLengthUnits: "weeks",
   });
+
+  React.useEffect(() => {
+    props.set(value);
+  }, [value]);
+
   return (
     <Box
       sx={{
@@ -48,7 +55,7 @@ const VestingSchedule: React.FC<{
         title="Set Vesting Schedule"
         subtitle="Prevent tokens from being sold for a specific period of time by distributing them through stages"
         value={props.value}
-        onChange={props.set}
+        onChange={() => setValue({ ...value, vesting: !value.vesting })}
       />
       {props.value && (
         <Box
@@ -175,19 +182,14 @@ const VestingSchedule: React.FC<{
             variant="outlined"
             hiddenLabel
           >
-            <InputLabel
-              htmlFor={`vesting-emission-length-${props.id}`}
-              shrink
-            >
+            <InputLabel htmlFor={`vesting-emission-length-${props.id}`} shrink>
               Emission Length
             </InputLabel>
             <OutlinedInput
               notched
               id={`vesting-emission-length-${props.id}`}
               type="number"
-              value={
-                value.emissionLength === 0 ? "" : value.emissionLength
-              }
+              value={value.emissionLength === 0 ? "" : value.emissionLength}
               onChange={(e: any) =>
                 setValue({
                   ...value,

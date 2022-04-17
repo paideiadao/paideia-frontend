@@ -76,7 +76,6 @@ const TokenomicSummary: React.FC<IData<ITokenomics>> = (props) => {
       percentage: percentage(data.tokenRemaining / data.tokenAmount, 2, false),
     },
   ];
-  console.log("data", data);
   return (
     <Box
       sx={{
@@ -86,7 +85,7 @@ const TokenomicSummary: React.FC<IData<ITokenomics>> = (props) => {
         alignItems: "center",
       }}
     >
-      {tokenomics.map((i: any) => {
+      {tokenomics.map((i: any, c: number) => {
         return <TokenomicsRow {...i} />;
       })}
       {distributions.map((i: any, c: number) => (
@@ -97,6 +96,7 @@ const TokenomicSummary: React.FC<IData<ITokenomics>> = (props) => {
             temp.splice(c, 1);
             setDistributions(temp);
           }}
+          c={c}
         />
       ))}
       {data.tokenRemaining > 0 && (

@@ -32,7 +32,7 @@ const NewToken: React.FC<IData<ITokenomics>> = (props) => {
         }
       />
       <TextField
-        value={data.tokenAmount}
+        value={data.tokenAmount === 0 ? "" : data.tokenAmount}
         sx={{ width: "25%", mt: "1rem", pr: ".5rem" }}
         label="Token amount"
         type="number"
