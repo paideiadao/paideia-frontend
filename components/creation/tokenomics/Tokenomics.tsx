@@ -6,7 +6,7 @@ import TokenInformation from "./TokenInformation";
 import { ITokenHolder, ITokenomics } from "../../../lib/creation/Api";
 import TokenSymbol from "./TokenSymbol";
 import TokenHolders from "./TokenHolders";
-import AdvancedTokenomics from "./AdvancedTokenomics";
+import AdvancedTokenomics from "./AdvancedTokenomics/AdvancedTokenomics";
 import TokenDistribution from "./TokenDistribution";
 
 const Tokenomics: React.FC = () => {

@@ -1,3 +1,4 @@
+import { PlayCircleOutlineSharp } from "@mui/icons-material";
 import { ICreationData } from "../../lib/creation/Api";
 
 export function checkCompleteness(_data: ICreationData): boolean {
@@ -27,6 +28,7 @@ export function percentageToBalance(total: number, percentage: number): number {
   return parseFloat((total * percentage).toFixed(2));
 }
 
-export function percentage(value: number, places: number = 2): string {
-  return (value * 100).toFixed(2) + "%";
+export function percentage(value: number, places: number = 2, showPerc: boolean=true): string {
+  console.log(value)
+  return isNaN(value) ? '0' + (showPerc ? "%" : '') : (value * 100).toFixed(places) + (showPerc ? "%" : '');
 }

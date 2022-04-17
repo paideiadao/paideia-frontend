@@ -1,10 +1,11 @@
 import { Box } from "@mui/material";
 import * as React from "react";
-import { ITokenomics } from "../../../lib/creation/Api";
-import { GlobalContext } from "../../../lib/creation/Context";
-import { IData } from "../../../lib/utilities";
-import { LearnMore, Subtitle } from "../utilities/HeaderComponents";
-import LabeledSwitch from "../utilities/LabeledSwitch";
+import { ITokenomics } from "../../../../lib/creation/Api";
+import { GlobalContext } from "../../../../lib/creation/Context";
+import { IData } from "../../../../lib/utilities";
+import { LearnMore, Subtitle } from "../../utilities/HeaderComponents";
+import LabeledSwitch from "../../utilities/LabeledSwitch";
+import TokenomicSummary from "./TokenomicSummary";
 
 const AdvancedTokenomics: React.FC<IData<ITokenomics>> = (props) => {
   let globalContext = React.useContext(GlobalContext);
@@ -26,6 +27,9 @@ const AdvancedTokenomics: React.FC<IData<ITokenomics>> = (props) => {
           })
         }
       />
+      {data.activateTokenomics && <>
+        <TokenomicSummary {...props}/>
+      </>}
     </Box>
   );
 };
