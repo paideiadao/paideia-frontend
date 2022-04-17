@@ -2,7 +2,7 @@ import * as React from "react";
 import { ITokenomics } from "../../../../lib/creation/Api";
 import { IData } from "../../../../lib/utilities";
 import { Box, InputAdornment, TextField } from "@mui/material";
-import { Header, Subheader } from "../../utilities/HeaderComponents";
+import { CapsInfo, Header, Subheader } from "../../utilities/HeaderComponents";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
   balanceToPercentage,
@@ -80,7 +80,7 @@ const Treasury: React.FC<{
         />
       </Box>
       <Box sx={{ width: "100%", pl: "1rem" }}>
-        <Subheader title="GENERAL INFORMATION" small bold />
+        <CapsInfo title="General Information" />
         <Box
           sx={{
             display: "flex",
@@ -104,6 +104,7 @@ const Treasury: React.FC<{
             onChange={(e: any) => {
               let temp = { ...value };
               let balance = parseFloat(e.target.value);
+              balance = isNaN(balance) ? 0 : balance;
               let percentage = balanceToPercentage(data.tokenAmount, balance);
               if (data.tokenRemaining === 0 && value.balance === 0) {
                 return;
@@ -129,6 +130,7 @@ const Treasury: React.FC<{
             onChange={(e: any) => {
               let temp = { ...value };
               let percentage = parseFloat(e.target.value);
+              percentage = isNaN(percentage) ? 0 : percentage;
               let balance = percentageToBalance(data.tokenAmount, percentage);
               if (data.tokenRemaining === 0 && value.balance === 0) {
                 return;

@@ -23,17 +23,23 @@ const Tokenomics: React.FC = () => {
 
   let tokenAmount = data.tokenAmount;
   let tokenHolders = data.tokenHolders;
+  let distributions = data.distributions;
 
+
+  console.log(distributions, tokenHolders)
   React.useEffect(() => {
     set({
       ...globalContext.api.data.tokenomics,
       tokenRemaining:
         tokenAmount -
-        tokenHolders
+        (tokenHolders.length === 0 ? 0 : tokenHolders
           .map((i: ITokenHolder) => i.balance)
-          .reduce((sum, current) => sum + current, 0),
+          .reduce((sum, current) => sum + current, 0))
+        - (distributions.length === 0 ? 0 : distributions
+          .map((i: any) => i.balance)
+          .reduce((sum, current) => sum + current, 0)),
     });
-  }, [tokenHolders, tokenAmount]);
+  }, [tokenHolders, tokenAmount, distributions]);
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", width: "70%" }}>

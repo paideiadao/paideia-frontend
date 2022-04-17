@@ -79,6 +79,7 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                   onChange={(e) => {
                     let temp = [...data.tokenHolders];
                     let balance = parseFloat(e.target.value);
+                    balance = isNaN(balance) ? 0 : balance;
                     if (
                       data.tokenRemaining === 0 &&
                       data.tokenHolders[c].balance === 0
@@ -118,6 +119,7 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                   onChange={(e) => {
                     let temp = [...data.tokenHolders];
                     let percentage = parseFloat(e.target.value);
+                    percentage = isNaN(percentage) ? 0 : percentage;
 
                     let balance = percentageToBalance(
                       props.data.tokenAmount,
