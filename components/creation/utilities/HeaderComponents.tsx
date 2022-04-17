@@ -23,11 +23,21 @@ export const Header: React.FC<{ title: string; subtitle?: string }> = (
   );
 };
 
-export const CapsInfo: React.FC<{title: string}> = (props) => {
-  return <Box sx={{ width: "100%", color: "primary.text", fontSize: ".8rem", fontWeight: 400, mb: '1rem' }}>
-    {props.title.toUpperCase()}
-  </Box>
-}
+export const CapsInfo: React.FC<{ title: string }> = (props) => {
+  return (
+    <Box
+      sx={{
+        width: "100%",
+        color: "primary.text",
+        fontSize: ".8rem",
+        fontWeight: 400,
+        mb: "1rem",
+      }}
+    >
+      {props.title.toUpperCase()}
+    </Box>
+  );
+};
 
 export const Subtitle: React.FC<{ subtitle: string }> = (props) => {
   return (

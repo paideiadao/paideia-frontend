@@ -6,6 +6,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import Treasury, { ITreasuryInfo } from "./Treasury";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Header } from "../../utilities/HeaderComponents";
+import TeamPartners from "./TeamPartners";
 
 const renderDisplay = (
   display: string,
@@ -18,6 +19,8 @@ const renderDisplay = (
   switch (display) {
     case "Treasury":
       return <Treasury {...props} />;
+    case "Team & Partners":
+      return <TeamPartners {...props} />;
   }
 };
 
