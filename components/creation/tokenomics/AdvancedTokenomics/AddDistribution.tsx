@@ -3,7 +3,7 @@ import * as React from "react";
 import { ITokenomics } from "../../../../lib/creation/Api";
 import { IData } from "../../../../lib/utilities";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import Treasury, { ITreasuryInfo } from "./Treasury";
+import Treasury from "./Treasury";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Header } from "../../utilities/HeaderComponents";
 import TeamPartners from "./TeamPartners";
@@ -11,6 +11,7 @@ import PrivateRound from "./PrivateRound";
 import PublicRound from "./PublicRound";
 import Airdrop from "./Airdrop";
 import Liquidity from "./Liquidity";
+import Staking from "./Staking";
 
 const renderDisplay = (
   display: string,
@@ -33,6 +34,8 @@ const renderDisplay = (
       return <Airdrop {...props} />;
     case "Liquidity":
       return <Liquidity {...props} />;
+    case "Staking":
+      return <Staking {...props} />;
   }
 };
 

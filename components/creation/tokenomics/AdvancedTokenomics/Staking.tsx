@@ -20,40 +20,37 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Alert from "@mui/material/Alert";
+import LabeledSwitch from "../../utilities/LabeledSwitch";
 
-export interface ILiquidityInfo {
+export interface IStakingInfo {
   distributionName: string;
   balance: number;
   percentage: number;
-  tokenPrice: number;
-  tradingPair: string;
-  dex: string;
-  liquidityStartDate: Date;
-  contingency: {
-    percentage: number;
-    balance: number;
-  };
+  emissionType: string;
+  startDate: Date;
+  endDate: Date;
+  stakingFee: boolean;
+  witholdPercentage: number;
 }
 
-const Liquidity: React.FC<{
+const Staking: React.FC<{
   data: IData<ITokenomics>;
   close: Function;
   c: number;
 }> = (props) => {
   let data = props.data.data;
   let start = new Date();
-  const [value, setValue] = React.useState<ILiquidityInfo>({
+  let end = new Date();
+  end.setDate(end.getDate() + 30);
+  const [value, setValue] = React.useState<IStakingInfo>({
     distributionName: "",
     balance: 0,
     percentage: 0,
-    tokenPrice: 0,
-    tradingPair: `${data.tokenTicker.toLowerCase()}/erg`,
-    dex: "ergodex",
-    liquidityStartDate: start,
-    contingency: {
-      percentage: 0,
-      balance: 0,
-    },
+    emissionType: "weekly",
+    startDate: start,
+    endDate: end,
+    stakingFee: false,
+    witholdPercentage: 0,
   });
 
   React.useEffect(() => {
@@ -89,8 +86,8 @@ const Liquidity: React.FC<{
         }}
       >
         <Header
-          title="Liquidity"
-          subtitle="Set aside tokens to provide liquidity to a specific trading pair inside a selected DEX."
+          title="Staking"
+          subtitle="Create a staking contract which distributes tokens over a fixed time-frame."
         />
       </Box>
       <Box
@@ -138,96 +135,68 @@ const Liquidity: React.FC<{
           />
         </Box>
       </Box>
-      <Box sx={{ width: "100%", pl: "1rem", pr: "1rem" }}>
+      <Box sx={{ width: "100%", pl: "1rem", pr: "1rem", pb: "1rem" }}>
         <CapsInfo title="Configuration" />
-        <TextField
-          value={value.tokenPrice === undefined ? "" : value.tokenPrice}
-          type="number"
-          sx={{ width: "32.5%", mr: ".5rem" }}
-          onChange={(e: any) => {
-            setValue({ ...value, tokenPrice: parseFloat(e.target.value) });
-          }}
-          label="Token Price"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <Box sx={{ color: "primary.lightText" }}>USD</Box>
-              </InputAdornment>
-            ),
-          }}
-        />
         <FormControl sx={{ width: "32.5%", mr: ".5rem" }}>
-          <InputLabel htmlFor={`trading-pair-label-${props.c}`} shrink>
-            Trading Pair
+          <InputLabel htmlFor={`vesting-frequency-label-${props.c}`} shrink>
+            Emission type
           </InputLabel>
           <Select
-            labelId={`trading-pair-label-${props.c}`}
-            id={`trading-pair-${props.c}`}
+            labelId={`emission-type-staking-${props.c}`}
+            id={`emission-type-staking-${props.c}`}
             variant="outlined"
-            label="Trading pair"
-            value={value.tradingPair}
+            label="Emission type"
+            value={value.emissionType}
             sx={{ height: "100%", color: "primary.text" }}
             onChange={(e: any) =>
               setValue({
                 ...value,
-                tradingPair: e.target.value,
+                emissionType: e.target.value,
               })
             }
           >
-            <MenuItem value={`${data.tokenTicker.toLowerCase()}/erg`}>
-              {data.tokenTicker.toUpperCase()}/ERG
-            </MenuItem>
+            <MenuItem value="hourly">Hourly</MenuItem>
+            <MenuItem value="daily">Daily</MenuItem>
+            <MenuItem value="weekly">Weekly</MenuItem>
+            <MenuItem value="monthly">Monthly</MenuItem>
+            <MenuItem value="yearly">Yearly</MenuItem>
           </Select>
         </FormControl>
-        <FormControl sx={{ width: "32.5%" }}>
-          <InputLabel htmlFor={`dex-label-${props.c}`} shrink>
-            DEX
-          </InputLabel>
-          <Select
-            labelId={`dex-label-${props.c}`}
-            id={`dex-${props.c}`}
-            variant="outlined"
-            label="DEX"
-            value={value.dex}
-            sx={{ height: "100%", color: "primary.text" }}
-            onChange={(e: any) =>
-              setValue({
-                ...value,
-                tradingPair: e.target.value,
-              })
-            }
-          >
-            <MenuItem value="ergodex">Ergodex</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          width: "100%",
-          pl: "1rem",
-          mt: "1rem",
-          mb: "1rem",
-          pb: "1rem",
-        }}
-      >
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
             views={["day"]}
             label="Start date"
-            value={value.liquidityStartDate}
+            value={value.startDate}
             InputAdornmentProps={{ position: "start", variant: "standard" }}
             onChange={(newValue) => {
-              setValue({ ...value, liquidityStartDate: newValue });
+              setValue({ ...value, startDate: newValue });
             }}
             renderInput={(params) => (
               <TextField
                 {...params}
                 helperText={null}
                 sx={{
-                  width: "31.75%",
+                  width: "32.5%",
                   mr: ".5rem",
+                  svg: { color: "primary.main" },
+                }}
+              />
+            )}
+          />
+          <DatePicker
+            views={["day"]}
+            label="End date"
+            value={value.endDate}
+            InputAdornmentProps={{ position: "start", variant: "standard" }}
+            onChange={(newValue) => {
+              setValue({ ...value, endDate: newValue });
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                helperText={null}
+                sx={{
+                  width: "32.5%",
                   svg: { color: "primary.main" },
                 }}
               />
@@ -235,40 +204,35 @@ const Liquidity: React.FC<{
           />
         </LocalizationProvider>
       </Box>
-      <Alert
-        severity="warning"
-        color="warning"
-        sx={{
-          mr: "1rem",
-          ml: "1rem",
-          mb: "1rem",
-          width: "100%",
-          fontSize: ".8rem",
-        }}
-      >
-        <AlertTitle sx={{ fontSize: ".9rem" }}>
-          Contingency fund needed
-        </AlertTitle>
-        By choosing a different denomication to value the trading pair, you must
-        set a contingency fund in case the token price goes down. Choose a
-        percentage to put aside, and any remainder will be returned to the
-        treasury after liquidity is added to the dex. If the price falls too far
-        and over-draws the contingency fund, fewer tokens will be added as
-        liquidity than you set here.
-      </Alert>
-      <Box sx={{ width: "100%", pl: "1rem", pb: "1rem" }}>
-        <PercentageInput
-          label="Contingency fund"
-          width="31.75%"
-          total={data.tokenAmount}
-          remaining={data.tokenRemaining}
-          percentage={value.contingency.percentage}
-          value={value.contingency}
-          set={(temp: any) => setValue({ ...value, contingency: { ...temp } })}
+      <Box sx={{ width: "100%", pl: "1rem", pb: "1rem", pr: ".6rem" }}>
+        <LabeledSwitch
+          small
+          title="DAOs staking fee"
+          subtitle="You can activate this option in order to withold some fo the staking rewards for the DAO's treasury."
+          value={value.stakingFee}
+          onChange={() => setValue({ ...value, stakingFee: !value.stakingFee })}
         />
+        {value.stakingFee && (
+          <TextField
+            value={value.witholdPercentage === 0 ? "" : value.witholdPercentage}
+            sx={{ width: "20%" }}
+            onChange={(e: any) =>
+              setValue({ ...value, witholdPercentage: e.target.value })
+            }
+            type="number"
+            label="Withold percentage"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Box sx={{ color: "primary.text" }}>%</Box>
+                </InputAdornment>
+              ),
+            }}
+          />
+        )}
       </Box>
     </>
   );
 };
 
-export default Liquidity;
+export default Staking;

@@ -3,6 +3,7 @@ import { IAirdropInfo } from "../../components/creation/tokenomics/AdvancedToken
 import { ILiquidityInfo } from "../../components/creation/tokenomics/AdvancedTokenomics/Liquidity";
 import { IPrivateRoundInfo } from "../../components/creation/tokenomics/AdvancedTokenomics/PrivateRound";
 import { IPublicRoundInfo } from "../../components/creation/tokenomics/AdvancedTokenomics/PublicRound";
+import { IStakingInfo } from "../../components/creation/tokenomics/AdvancedTokenomics/Staking";
 import { ITeamPartnersInfo } from "../../components/creation/tokenomics/AdvancedTokenomics/TeamPartners";
 import { ITreasuryInfo } from "../../components/creation/tokenomics/AdvancedTokenomics/Treasury";
 import { AbstractApi } from "../utilities";
@@ -64,6 +65,7 @@ export interface ITokenomics {
     | IPublicRoundInfo
     | IAirdropInfo
     | ILiquidityInfo
+    | IStakingInfo
   )[];
 }
 

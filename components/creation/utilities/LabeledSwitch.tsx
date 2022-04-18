@@ -7,6 +7,7 @@ const LabeledSwitch: React.FC<{
   value: boolean;
   onChange: Function;
   subtitle?: string;
+  small?: boolean;
 }> = (props) => {
   return (
     <Box sx={{ display: "flex", alignItems: "center", mt: "1rem", mb: "1rem" }}>
@@ -14,7 +15,11 @@ const LabeledSwitch: React.FC<{
         {props.subtitle === undefined ? (
           <Subheader title={props.title} />
         ) : (
-          <Header title={props.title} subtitle={props.subtitle} />
+          <Header
+            title={props.title}
+            subtitle={props.subtitle}
+            small={props.small}
+          />
         )}
       </Box>
       <Box sx={{ ml: "auto" }}>
