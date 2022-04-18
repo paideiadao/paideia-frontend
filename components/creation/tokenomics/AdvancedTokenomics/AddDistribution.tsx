@@ -9,6 +9,7 @@ import { Header } from "../../utilities/HeaderComponents";
 import TeamPartners from "./TeamPartners";
 import PrivateRound from "./PrivateRound";
 import PublicRound from "./PublicRound";
+import Airdrop from "./Airdrop";
 
 const renderDisplay = (
   display: string,
@@ -27,6 +28,8 @@ const renderDisplay = (
       return <PrivateRound {...props} />;
     case "Public Round":
       return <PublicRound {...props} />;
+    case "Airdrop":
+      return <Airdrop {...props}/>
   }
 };
 
