@@ -77,7 +77,7 @@ const Treasury: React.FC<{
           subtitle="Organize your treasury into categories"
         />
       </Box>
-      <Box sx={{ width: "100%", pl: "1rem", pr: '1rem' }}>
+      <Box sx={{ width: "100%", pl: "1rem", pr: "1rem" }}>
         <CapsInfo title="General Information" />
         <Box
           sx={{

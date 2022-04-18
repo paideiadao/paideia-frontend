@@ -22,13 +22,18 @@ import WalletSelector from "../../governance/WalletSelector";
 import Alert from "@mui/material/Alert";
 import { currencyFormatter } from "../../../utilities/currency";
 
-export interface IPrivateRoundInfo {
+export interface IPublicRoundInfo {
   distributionName: string;
   balance: number;
   percentage: number;
   tokenPrice: number;
-  startDate: Date;
-  endDate: Date;
+  maxPerWallet: number;
+  signUpStartDate: Date;
+  signUpEndDate: Date;
+  contributionStartDate: Date;
+  contributionEndDate: Date;
+  waitlistStartDate: Date;
+  waitlistEndDate: Date;
   tokenHolders: ITokenHolder[];
   vesting: boolean;
   initialDistribution: number;
@@ -39,7 +44,7 @@ export interface IPrivateRoundInfo {
   emissionLengthUnits: string;
 }
 
-const PrivateRound: React.FC<{
+const PublicRound: React.FC<{
   data: IData<ITokenomics>;
   close: Function;
   c: number;
@@ -48,13 +53,18 @@ const PrivateRound: React.FC<{
   let start = new Date();
   let end = new Date();
   end.setDate(end.getDate() + 30);
-  const [value, setValue] = React.useState<IPrivateRoundInfo>({
+  const [value, setValue] = React.useState<IPublicRoundInfo>({
     distributionName: "",
     balance: 0,
     percentage: 0,
     tokenPrice: undefined,
-    startDate: start,
-    endDate: end,
+    maxPerWallet: undefined,
+    signUpStartDate: start,
+    signUpEndDate: end,
+    contributionStartDate: start,
+    contributionEndDate: end,
+    waitlistStartDate: start,
+    waitlistEndDate: end,
     tokenHolders: [],
     vesting: false,
     initialDistribution: 0,
@@ -98,8 +108,8 @@ const PrivateRound: React.FC<{
         }}
       >
         <Header
-          title="Private Round"
-          subtitle="Invite a select audience to contribute funds to your project at a specific token value."
+          title="Public Round"
+          subtitle="Create a sign-up form to whitelist users for a public funding round."
         />
       </Box>
       <Box
@@ -149,60 +159,160 @@ const PrivateRound: React.FC<{
       </Box>
       <Box sx={{ width: "100%", pl: "1rem", pr: "1rem" }}>
         <CapsInfo title="Configuration" />
-        <TextField
-          value={value.tokenPrice === undefined ? "" : value.tokenPrice}
-          type="number"
-          sx={{ width: "32.5%", mr: ".5rem" }}
-          onChange={(e: any) => {
-            setValue({ ...value, tokenPrice: parseFloat(e.target.value) });
-          }}
-          label="Token Price"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <Box sx={{ color: "primary.lightText" }}>USD</Box>
-              </InputAdornment>
-            ),
-          }}
-        />
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DatePicker
-            views={["day"]}
-            label="Start date"
-            value={value.startDate}
-            InputAdornmentProps={{ position: "start", variant: "standard" }}
-            onChange={(newValue) => {
-              setValue({ ...value, startDate: newValue });
+        <Box sx={{ width: "100%", mt: "1rem", mb: "1rem" }}>
+          <TextField
+            value={value.tokenPrice === undefined ? "" : value.tokenPrice}
+            type="number"
+            sx={{ width: "49%", mr: ".5rem" }}
+            onChange={(e: any) => {
+              setValue({ ...value, tokenPrice: parseFloat(e.target.value) });
             }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                helperText={null}
-                sx={{
-                  width: "32.5%",
-                  mr: ".5rem",
-                  svg: { color: "primary.main" },
-                }}
-              />
-            )}
-          />
-          <DatePicker
-            views={["day"]}
-            label="End date"
-            value={value.endDate}
-            InputAdornmentProps={{ position: "start", variant: "standard" }}
-            onChange={(newValue) => {
-              setValue({ ...value, startDate: newValue });
+            label="Token Price"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Box sx={{ color: "primary.lightText" }}>USD</Box>
+                </InputAdornment>
+              ),
             }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                helperText={null}
-                sx={{ width: "32.5%", svg: { color: "primary.main" } }}
-              />
-            )}
           />
-        </LocalizationProvider>
+          <TextField
+            value={value.maxPerWallet === undefined ? "" : value.maxPerWallet}
+            type="number"
+            sx={{ width: "49%" }}
+            onChange={(e: any) => {
+              setValue({ ...value, maxPerWallet: parseFloat(e.target.value) });
+            }}
+            label="Max per wallet"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Box sx={{ color: "primary.lightText" }}>USD</Box>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+        <Box sx={{ width: "100%", mt: "1rem", mb: "1rem" }}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              views={["day"]}
+              label="Sign up start date"
+              value={value.signUpStartDate}
+              InputAdornmentProps={{ position: "start", variant: "standard" }}
+              onChange={(newValue) => {
+                setValue({ ...value, signUpStartDate: newValue });
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  helperText={null}
+                  sx={{
+                    width: "49%",
+                    mr: ".5rem",
+                    svg: { color: "primary.main" },
+                  }}
+                />
+              )}
+            />
+            <DatePicker
+              views={["day"]}
+              label="Sign up end date"
+              value={value.signUpEndDate}
+              InputAdornmentProps={{ position: "start", variant: "standard" }}
+              onChange={(newValue) => {
+                setValue({ ...value, signUpEndDate: newValue });
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  helperText={null}
+                  sx={{ width: "49%", svg: { color: "primary.main" } }}
+                />
+              )}
+            />
+          </LocalizationProvider>
+        </Box>
+        <Box sx={{ width: "100%", mt: "1rem", mb: "1rem" }}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              views={["day"]}
+              label="Contribution start date"
+              value={value.contributionStartDate}
+              InputAdornmentProps={{ position: "start", variant: "standard" }}
+              onChange={(newValue) => {
+                setValue({ ...value, contributionStartDate: newValue });
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  helperText={null}
+                  sx={{
+                    width: "49%",
+                    mr: ".5rem",
+                    svg: { color: "primary.main" },
+                  }}
+                />
+              )}
+            />
+            <DatePicker
+              views={["day"]}
+              label="Contribution end date"
+              value={value.contributionEndDate}
+              InputAdornmentProps={{ position: "start", variant: "standard" }}
+              onChange={(newValue) => {
+                setValue({ ...value, contributionEndDate: newValue });
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  helperText={null}
+                  sx={{ width: "49%", svg: { color: "primary.main" } }}
+                />
+              )}
+            />
+          </LocalizationProvider>
+        </Box>
+        <Box sx={{ width: "100%", mt: "1rem", mb: "1rem" }}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              views={["day"]}
+              label="Waiting start date"
+              value={value.waitlistStartDate}
+              InputAdornmentProps={{ position: "start", variant: "standard" }}
+              onChange={(newValue) => {
+                setValue({ ...value, waitlistStartDate: newValue });
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  helperText={null}
+                  sx={{
+                    width: "49%",
+                    mr: ".5rem",
+                    svg: { color: "primary.main" },
+                  }}
+                />
+              )}
+            />
+            <DatePicker
+              views={["day"]}
+              label="Waiting end date"
+              value={value.waitlistEndDate}
+              InputAdornmentProps={{ position: "start", variant: "standard" }}
+              onChange={(newValue) => {
+                setValue({ ...value, waitlistEndDate: newValue });
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  helperText={null}
+                  sx={{ width: "49%", svg: { color: "primary.main" } }}
+                />
+              )}
+            />
+          </LocalizationProvider>
+        </Box>
       </Box>
       <Box sx={{ width: "100%", pl: "1rem", mt: "1rem", pr: "1rem" }}>
         <CapsInfo title="Configuration" />
@@ -305,7 +415,7 @@ const PrivateRound: React.FC<{
       <VestingSchedule
         set={(data: IVestingSchedule) => setValue({ ...value, ...data })}
         value={value.vesting}
-        id="private-round"
+        id="public-round"
       />
       {value.tokenPrice !== undefined && value.balance !== 0 && (
         <Alert
@@ -314,7 +424,7 @@ const PrivateRound: React.FC<{
           sx={{ mr: "1rem", ml: "1rem", mb: "1rem", width: "100%" }}
         >
           <AlertTitle sx={{ fontSize: ".9rem" }}>
-            You are creating a private sale for{" "}
+            You are creating a public sale for{" "}
             {currencyFormatter(value.tokenPrice * value.balance)} USD
           </AlertTitle>
         </Alert>
@@ -323,4 +433,4 @@ const PrivateRound: React.FC<{
   );
 };
 
-export default PrivateRound;
+export default PublicRound;

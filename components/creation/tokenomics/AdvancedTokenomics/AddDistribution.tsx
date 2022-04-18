@@ -8,6 +8,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { Header } from "../../utilities/HeaderComponents";
 import TeamPartners from "./TeamPartners";
 import PrivateRound from "./PrivateRound";
+import PublicRound from "./PublicRound";
 
 const renderDisplay = (
   display: string,
@@ -24,6 +25,8 @@ const renderDisplay = (
       return <TeamPartners {...props} />;
     case "Private Round":
       return <PrivateRound {...props} />;
+    case "Public Round":
+      return <PublicRound {...props} />;
   }
 };
 
