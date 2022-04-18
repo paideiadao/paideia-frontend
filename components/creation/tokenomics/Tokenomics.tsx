@@ -8,6 +8,7 @@ import TokenSymbol from "./TokenSymbol";
 import TokenHolders from "./TokenHolders";
 import AdvancedTokenomics from "./AdvancedTokenomics/AdvancedTokenomics";
 import TokenDistribution from "./TokenDistribution";
+import { ILiquidityInfo } from "./AdvancedTokenomics/Liquidity";
 
 const Tokenomics: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
@@ -35,6 +36,12 @@ const Tokenomics: React.FC = () => {
           ? 0
           : tokenHolders
               .map((i: ITokenHolder) => i.balance)
+              .reduce((sum, current) => sum + current, 0)) -
+        (distributions.length === 0
+          ? 0
+          : distributions
+              .filter((i: any) => i.hasOwnProperty("contingency"))
+              .map((i: ILiquidityInfo) => i.contingency.balance)
               .reduce((sum, current) => sum + current, 0)) -
         (distributions.length === 0
           ? 0

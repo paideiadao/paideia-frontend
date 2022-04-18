@@ -10,6 +10,7 @@ import TeamPartners from "./TeamPartners";
 import PrivateRound from "./PrivateRound";
 import PublicRound from "./PublicRound";
 import Airdrop from "./Airdrop";
+import Liquidity from "./Liquidity";
 
 const renderDisplay = (
   display: string,
@@ -29,7 +30,9 @@ const renderDisplay = (
     case "Public Round":
       return <PublicRound {...props} />;
     case "Airdrop":
-      return <Airdrop {...props}/>
+      return <Airdrop {...props} />;
+    case "Liquidity":
+      return <Liquidity {...props} />;
   }
 };
 

@@ -8,11 +8,13 @@ const PercentageInput: React.FC<{
   percentage: number;
   value: any;
   set: Function;
+  label?: string;
+  width?: string;
 }> = (props) => {
   return (
     <TextField
       value={props.percentage === 0 ? "" : props.percentage}
-      sx={{ width: "23%" }}
+      sx={{ width: props.width === undefined ? "23%" : props.width }}
       onChange={(e: any) => {
         let temp = { ...props.value };
         let percentage = parseFloat(e.target.value);
@@ -35,7 +37,7 @@ const PercentageInput: React.FC<{
         props.set(temp);
       }}
       type="number"
-      label="Percentage"
+      label={props.label === undefined ? "Percentage" : props.label}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">

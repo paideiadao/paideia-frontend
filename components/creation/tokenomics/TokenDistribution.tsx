@@ -14,7 +14,7 @@ const TokenDistribution: React.FC<IData<ITokenomics>> = (props) => {
           <ButtonGroup variant="outlined" sx={{ width: "100%" }}>
             <Button
               sx={{
-                width: "50%",
+                width: "30%",
                 fontSize: ".8rem",
                 backgroundColor:
                   chartView === "pie" ? "primary.selectedButton" : "",
@@ -25,7 +25,7 @@ const TokenDistribution: React.FC<IData<ITokenomics>> = (props) => {
             </Button>
             <Button
               sx={{
-                width: "50%",
+                width: "40%",
                 fontSize: ".8rem",
                 backgroundColor:
                   chartView === "emission" ? "primary.selectedButton" : "",
@@ -36,7 +36,7 @@ const TokenDistribution: React.FC<IData<ITokenomics>> = (props) => {
             </Button>
             <Button
               sx={{
-                width: "50%",
+                width: "30%",
                 fontSize: ".8rem",
                 backgroundColor:
                   chartView === "table" ? "primary.selectedButton" : "",

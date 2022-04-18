@@ -1,4 +1,8 @@
 import { Theme } from "@mui/material";
+import { IAirdropInfo } from "../../components/creation/tokenomics/AdvancedTokenomics/Airdrop";
+import { ILiquidityInfo } from "../../components/creation/tokenomics/AdvancedTokenomics/Liquidity";
+import { IPrivateRoundInfo } from "../../components/creation/tokenomics/AdvancedTokenomics/PrivateRound";
+import { IPublicRoundInfo } from "../../components/creation/tokenomics/AdvancedTokenomics/PublicRound";
 import { ITeamPartnersInfo } from "../../components/creation/tokenomics/AdvancedTokenomics/TeamPartners";
 import { ITreasuryInfo } from "../../components/creation/tokenomics/AdvancedTokenomics/Treasury";
 import { AbstractApi } from "../utilities";
@@ -53,7 +57,14 @@ export interface ITokenomics {
   tokenRemaining: number;
   tokenHolders: ITokenHolder[];
   activateTokenomics: boolean;
-  distributions: (ITreasuryInfo | ITeamPartnersInfo)[];
+  distributions: (
+    | ITreasuryInfo
+    | ITeamPartnersInfo
+    | IPrivateRoundInfo
+    | IPublicRoundInfo
+    | IAirdropInfo
+    | ILiquidityInfo
+  )[];
 }
 
 export class CreationApi extends AbstractApi {
