@@ -48,7 +48,7 @@ const VestingSchedule: React.FC<{
         width: "100%",
         mt: "1rem",
         pl: "1rem",
-        pr: ".2rem",
+        pr: "1rem",
       }}
     >
       <LabeledSwitch

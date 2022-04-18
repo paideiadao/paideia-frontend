@@ -4,10 +4,6 @@ import { IData } from "../../../../lib/utilities";
 import { Box, InputAdornment, TextField } from "@mui/material";
 import { CapsInfo, Header, Subheader } from "../../utilities/HeaderComponents";
 import DeleteIcon from "@mui/icons-material/Delete";
-import {
-  balanceToPercentage,
-  percentageToBalance,
-} from "../../../../lib/creation/Utilities";
 import VestingSchedule, { IVestingSchedule } from "./VestingSchedule";
 import BalanceInput from "../../utilities/BalanceInput";
 import PercentageInput from "../../utilities/PercentageInput";
@@ -81,7 +77,7 @@ const Treasury: React.FC<{
           subtitle="Organize your treasury into categories"
         />
       </Box>
-      <Box sx={{ width: "100%", pl: "1rem" }}>
+      <Box sx={{ width: "100%", pl: "1rem", pr: '1rem' }}>
         <CapsInfo title="General Information" />
         <Box
           sx={{

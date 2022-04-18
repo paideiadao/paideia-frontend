@@ -4,17 +4,23 @@ import { ITokenHolder, ITokenomics } from "../../../../lib/creation/Api";
 import { IData } from "../../../../lib/utilities";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { CapsInfo, Header, LearnMore } from "../../utilities/HeaderComponents";
-import VestingSchedule, { IVestingSchedule } from "./VestingSchedule";
 import BalanceInput from "../../utilities/BalanceInput";
 import PercentageInput from "../../utilities/PercentageInput";
-import WalletSelector from "../../governance/WalletSelector";
+import VestingSchedule, { IVestingSchedule } from "./VestingSchedule";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import AddIcon from "@mui/icons-material/Add";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
+import WalletSelector from "../../governance/WalletSelector";
 
-export interface ITeamPartnersInfo {
+export interface IPrivateRoundInfo {
   distributionName: string;
   balance: number;
   percentage: number;
+  tokenPrice: number;
+  startDate: Date;
+  endDate: Date;
   tokenHolders: ITokenHolder[];
   vesting: boolean;
   initialDistribution: number;
@@ -25,16 +31,22 @@ export interface ITeamPartnersInfo {
   emissionLengthUnits: string;
 }
 
-const TeamPartners: React.FC<{
+const PrivateRound: React.FC<{
   data: IData<ITokenomics>;
   close: Function;
   c: number;
 }> = (props) => {
   let data = props.data.data;
-  const [value, setValue] = React.useState<ITeamPartnersInfo>({
-    distributionName: "Team & Partners",
+  let start = new Date();
+  let end = new Date()
+  end.setDate(end.getDate() + 30)
+  const [value, setValue] = React.useState<IPrivateRoundInfo>({
+    distributionName: "",
     balance: 0,
     percentage: 0,
+    tokenPrice: undefined,
+    startDate: start,
+    endDate: end,
     tokenHolders: [],
     vesting: false,
     initialDistribution: 0,
@@ -44,18 +56,6 @@ const TeamPartners: React.FC<{
     emissionLength: 0,
     emissionLengthUnits: "weeks",
   });
-  const [tokenRemaining, setTokenRemaining] = React.useState<number>(0);
-
-  React.useEffect(() => {
-    setTokenRemaining(
-      value.balance -
-        (value.tokenHolders.length === 0
-          ? 0
-          : value.tokenHolders
-              .map((i: any) => i.balance)
-              .reduce((sum, current) => sum + current, 0))
-    );
-  }, [value.balance, value.tokenHolders]);
 
   React.useEffect(() => {
     /// add data to global context...
@@ -67,7 +67,6 @@ const TeamPartners: React.FC<{
     });
   }, [value]);
 
-  console.log(tokenRemaining);
   return (
     <>
       <DeleteIcon
@@ -80,6 +79,7 @@ const TeamPartners: React.FC<{
         color="error"
         onClick={() => props.close()}
       />
+
       <Box
         sx={{
           width: "100%",
@@ -90,19 +90,11 @@ const TeamPartners: React.FC<{
         }}
       >
         <Header
-          title="Team & Partners"
-          subtitle="Distribute tokens between your team members or advisors."
+          title="Private Round"
+          subtitle="Invite a select audience to contribute funds to your project at a specific token value."
         />
       </Box>
-      <Box
-        sx={{
-          width: "100%",
-          pl: "1rem",
-          borderBottom: "1px solid",
-          borderColor: "divider.main",
-          pb: "1rem",
-        }}
-      >
+      <Box sx={{ width: "100%", pl: "1rem", pr: '1rem', borderBottom: '1px solid', borderColor: 'divider.main', mb: '1rem', pb: '1rem' }}>
         <CapsInfo title="General Information" />
         <Box
           sx={{
@@ -120,7 +112,6 @@ const TeamPartners: React.FC<{
               setValue({ ...value, distributionName: e.target.value });
             }}
             label="Distribution Name"
-            InputProps={{ readOnly: true }}
           />
           <BalanceInput
             total={data.tokenAmount}
@@ -138,7 +129,52 @@ const TeamPartners: React.FC<{
           />
         </Box>
       </Box>
-      <Box sx={{ width: "100%", pl: "1rem", mt: "1rem", pr: ".5rem" }}>
+      <Box sx={{ width: "100%", pl: "1rem", pr: '1rem' }}>
+        <CapsInfo title="Configuration" />
+        <TextField
+          value={value.tokenPrice === undefined ? "" : value.tokenPrice}
+          type="number"
+          sx={{ width: "32.5%", mr: ".5rem" }}
+          onChange={(e: any) => {
+            setValue({ ...value, tokenPrice: parseFloat(e.target.value) });
+          }}
+          label="Token Price"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <Box sx={{ color: "primary.lightText" }}>USD</Box>
+              </InputAdornment>
+            ),
+          }}
+        />
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DatePicker
+            views={["day"]}
+            label="Start date"
+            value={value.startDate}
+            InputAdornmentProps={{ position: 'start', variant: 'standard' }}
+            onChange={(newValue) => {
+              setValue({ ...value, startDate: newValue });
+            }}
+            renderInput={(params) => (
+              <TextField {...params} helperText={null} sx={{ width: "32.5%", mr: '.5rem', svg: {color: 'primary.main'} }}/>
+            )}
+          />
+          <DatePicker
+            views={["day"]}
+            label="End date"
+            value={value.endDate}
+            InputAdornmentProps={{ position: 'start', variant: 'standard' }}
+            onChange={(newValue) => {
+              setValue({ ...value, startDate: newValue });
+            }}
+            renderInput={(params) => (
+              <TextField {...params} helperText={null} sx={{ width: "32.5%", svg: {color: 'primary.main'} }}/>
+            )}
+          />
+        </LocalizationProvider>
+      </Box>
+      <Box sx={{ width: "100%", pl: "1rem", mt: "1rem", pr: "1rem" }}>
         <CapsInfo title="Configuration" />
         <LearnMore title="Token Holder Addresses" light />
         {value.tokenHolders.map((i: ITokenHolder, c: number) => {
@@ -173,7 +209,7 @@ const TeamPartners: React.FC<{
               </Box>
               <BalanceInput
                 total={value.balance}
-                remaining={tokenRemaining}
+                remaining={data.tokenRemaining}
                 balance={value.tokenHolders[c].balance}
                 value={value.tokenHolders[c]}
                 set={(newValue: any) => {
@@ -184,7 +220,7 @@ const TeamPartners: React.FC<{
               />
               <PercentageInput
                 total={value.balance}
-                remaining={tokenRemaining}
+                remaining={data.tokenRemaining}
                 percentage={value.tokenHolders[c].percentage}
                 value={value.tokenHolders[c]}
                 set={(newValue: any) => {
@@ -239,10 +275,10 @@ const TeamPartners: React.FC<{
       <VestingSchedule
         set={(data: IVestingSchedule) => setValue({ ...value, ...data })}
         value={value.vesting}
-        id={"team-and-partners"}
+        id="private-round"
       />
     </>
   );
 };
 
-export default TeamPartners;
+export default PrivateRound;

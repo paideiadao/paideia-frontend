@@ -33,7 +33,7 @@ export const LightTheme = createTheme({
     },
     fileInput: {
       main: "rgb(0, 134, 143, 0.1)",
-      outer: "rgb(0, 134, 143, 0.1)",
+      outer: "white",
       border: "rgba(255, 255, 255, 1)",
     },
     // Used by `getContrastText()` to maximize the contrast between

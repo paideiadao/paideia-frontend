@@ -1,9 +1,4 @@
-import {
-  Alert,
-  AlertTitle,
-  Box,
-  Button,
-} from "@mui/material";
+import { Alert, AlertTitle, Box, Button } from "@mui/material";
 import * as React from "react";
 import { ITokenomics } from "../../../lib/creation/Api";
 import { GlobalContext } from "../../../lib/creation/Context";
@@ -12,9 +7,7 @@ import WalletSelector from "../governance/WalletSelector";
 import { LearnMore } from "../utilities/HeaderComponents";
 import AddIcon from "@mui/icons-material/Add";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
-import {
-  percentage,
-} from "../../../lib/creation/Utilities";
+import { percentage } from "../../../lib/creation/Utilities";
 import PercentageInput from "../utilities/PercentageInput";
 import BalanceInput from "../utilities/BalanceInput";
 
@@ -85,7 +78,8 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                   let temp = [...data.tokenHolders];
                   temp[c] = { ...newValue };
                   props.setData({ ...props.data, tokenHolders: temp });
-                }}              />
+                }}
+              />
             </Box>
           );
         })}

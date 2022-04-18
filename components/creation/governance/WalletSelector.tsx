@@ -144,12 +144,8 @@ const WalletSelector: React.FC<{
                     <Avatar sx={{ fontSize: ".75rem" }}>{i.img}</Avatar>
                   </Box>
                   <Box>
-                    <Box>
-                      {i.alias}
-                    </Box>
-                    <Box sx={{fontSize: '.75rem'}}>
-                      {i.address}
-                    </Box>
+                    <Box>{i.alias}</Box>
+                    <Box sx={{ fontSize: ".75rem" }}>{i.address}</Box>
                   </Box>
                 </Box>
               );

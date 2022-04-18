@@ -7,6 +7,7 @@ import Treasury, { ITreasuryInfo } from "./Treasury";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Header } from "../../utilities/HeaderComponents";
 import TeamPartners from "./TeamPartners";
+import PrivateRound from "./PrivateRound";
 
 const renderDisplay = (
   display: string,
@@ -21,6 +22,8 @@ const renderDisplay = (
       return <Treasury {...props} />;
     case "Team & Partners":
       return <TeamPartners {...props} />;
+    case "Private Round":
+      return <PrivateRound {...props} />;
   }
 };
 
@@ -46,7 +49,7 @@ const AddDistribution: React.FC<{
         borderRadius: ".3rem",
         backgroundColor: "fileInput.outer",
         border: "1px solid",
-        borderColor: "fileInput.border",
+        borderColor: "divider.main",
         display: "flex",
         flexWrap: "wrap",
         mt: ".5rem",
