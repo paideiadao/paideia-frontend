@@ -1,4 +1,4 @@
-import { Box, Button, InputAdornment, TextField } from "@mui/material";
+import { Box, Button, InputAdornment, TextField, AlertTitle } from "@mui/material";
 import * as React from "react";
 import { ITokenHolder, ITokenomics } from "../../../../lib/creation/Api";
 import { IData } from "../../../../lib/utilities";
@@ -13,6 +13,8 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import AddIcon from "@mui/icons-material/Add";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import WalletSelector from "../../governance/WalletSelector";
+import Alert from "@mui/material/Alert";
+import { currencyFormatter } from "../../../utilities/currency";
 
 export interface IPrivateRoundInfo {
   distributionName: string;
@@ -277,6 +279,11 @@ const PrivateRound: React.FC<{
         value={value.vesting}
         id="private-round"
       />
+      {value.tokenPrice !== undefined && value.balance !== 0 && <Alert severity="warning" color="warning" sx={{ mr: '1rem', ml: '1rem', mb: '1rem', width: '100%' }}>
+          <AlertTitle sx={{ fontSize: ".9rem" }}>
+            You are creating a private sale for {currencyFormatter(value.tokenPrice * value.balance)} USD
+          </AlertTitle>
+        </Alert>}
     </>
   );
 };
