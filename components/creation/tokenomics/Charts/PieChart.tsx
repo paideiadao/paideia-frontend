@@ -32,6 +32,7 @@ const PieChart: React.FC<ITokenomics> = (props) => {
             value: i.balance
         }
     }))}
+    colors={{'scheme': 'category10'}}
     valueFormat={(value) => `${value} (${percentage(value / data.tokenAmount, 0, true)})`}
     sortByValue
     margin={{ top: 40, right: 70, bottom: 30, left: 70 }}
@@ -58,7 +59,7 @@ const PieChart: React.FC<ITokenomics> = (props) => {
         modifiers: [
             [
                 'darker',
-                2
+                3
             ]
         ]
     }}

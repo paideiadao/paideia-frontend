@@ -137,7 +137,7 @@ const Staking: React.FC<{
       </Box>
       <Box sx={{ width: "100%", pl: "1rem", pr: "1rem", pb: "1rem" }}>
         <CapsInfo title="Configuration" />
-        <FormControl sx={{ width: "32.5%", mr: ".5rem" }}>
+        <FormControl sx={{ width: "32.3%", mr: ".5rem" }}>
           <InputLabel htmlFor={`vesting-frequency-label-${props.c}`} shrink>
             Emission type
           </InputLabel>
@@ -176,7 +176,7 @@ const Staking: React.FC<{
                 {...params}
                 helperText={null}
                 sx={{
-                  width: "32.5%",
+                  width: "32.3%",
                   mr: ".5rem",
                   svg: { color: "primary.main" },
                 }}
@@ -196,7 +196,7 @@ const Staking: React.FC<{
                 {...params}
                 helperText={null}
                 sx={{
-                  width: "32.5%",
+                  width: "32.3%",
                   svg: { color: "primary.main" },
                 }}
               />
