@@ -1,11 +1,17 @@
 import { Box, Button, ButtonGroup } from "@mui/material";
 import * as React from "react";
 import { ITokenomics } from "../../../lib/creation/Api";
-import { IData } from "../../../lib/utilities";
+import { IData, IObj } from "../../../lib/utilities";
 import { Header } from "../utilities/HeaderComponents";
+import PieChart from "./Charts/PieChart";
 
 const TokenDistribution: React.FC<IData<ITokenomics>> = (props) => {
-  const [chartView, setChartView] = React.useState<string>("");
+  const [chartView, setChartView] = React.useState<string>("pie");
+  let chartLookup: IObj<JSX.Element> = {
+    'pie':  <PieChart {...props.data}/>,
+    'table': <Box>Table Here...</Box>,
+    'emission': <Box>Emission Here...</Box>
+  }
   return (
     <Box sx={{ mt: "1rem", mb: "1rem" }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -48,6 +54,9 @@ const TokenDistribution: React.FC<IData<ITokenomics>> = (props) => {
           </ButtonGroup>
         </Box>
       </Box>
+      <Box sx={{mt: '1rem', height: '25rem'}}>
+          {chartLookup[chartView]}
+      </Box>     
     </Box>
   );
 };
