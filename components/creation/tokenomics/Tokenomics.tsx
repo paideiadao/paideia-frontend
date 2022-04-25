@@ -9,6 +9,8 @@ import TokenHolders from "./TokenHolders";
 import AdvancedTokenomics from "./AdvancedTokenomics/AdvancedTokenomics";
 import TokenDistribution from "./TokenDistribution";
 import { ILiquidityInfo } from "./AdvancedTokenomics/Liquidity";
+import InfoIcon from "@mui/icons-material/Info";
+import { percentage } from "../../../lib/creation/Utilities";
 
 const Tokenomics: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
@@ -26,7 +28,6 @@ const Tokenomics: React.FC = () => {
   let tokenHolders = data.tokenHolders;
   let distributions = data.distributions;
 
-  console.log(distributions, tokenHolders);
   React.useEffect(() => {
     set({
       ...globalContext.api.data.tokenomics,
@@ -53,6 +54,30 @@ const Tokenomics: React.FC = () => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", width: "70%" }}>
+      {data.distributions.length > 0 && data.tokenAmount > 0 && (
+        <Box
+          sx={{
+            position: "sticky",
+            backgroundColor: "primary.main",
+            width: "143%",
+            ml: "-21.5%",
+            mt: "-2rem",
+            top: "-2rem",
+            zIndex: 100,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "secondary.contrastText",
+            pt: ".2rem",
+            pb: ".2rem",
+          }}
+        >
+          <InfoIcon sx={{ mr: ".5rem" }} />
+          You have a balance of {data.tokenRemaining} (
+          {percentage(data.tokenRemaining / data.tokenAmount, 0, true)})
+          unassigned tokens.
+        </Box>
+      )}
       <Header
         title="Token creation and distribution"
         subtitle="Decide your token name, ticker, and distribution, or bring in an existing token."

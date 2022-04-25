@@ -171,7 +171,7 @@ const PublicRound: React.FC<{
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <Box sx={{ color: "primary.lightText" }}>USD</Box>
+                  <Box sx={{ color: "primary.lightText" }}>SigUSD</Box>
                 </InputAdornment>
               ),
             }}
@@ -277,7 +277,7 @@ const PublicRound: React.FC<{
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
               views={["day"]}
-              label="Waiting start date"
+              label="Whitelist start date"
               value={value.waitlistStartDate}
               InputAdornmentProps={{ position: "start", variant: "standard" }}
               onChange={(newValue) => {
@@ -297,7 +297,7 @@ const PublicRound: React.FC<{
             />
             <DatePicker
               views={["day"]}
-              label="Waiting end date"
+              label="Whitelist end date"
               value={value.waitlistEndDate}
               InputAdornmentProps={{ position: "start", variant: "standard" }}
               onChange={(newValue) => {

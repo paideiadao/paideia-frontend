@@ -27,7 +27,7 @@ const TokenomicsRow: React.FC<{
       </Box>
       <TextField
         value={props.title}
-        sx={{ width: "50%", mr: ".5rem" }}
+        sx={{ width: "47%", mr: ".5rem" }}
         InputProps={{
           readOnly: true,
         }}
@@ -43,7 +43,7 @@ const TokenomicsRow: React.FC<{
       <TextField
         label="Percentage"
         value={props.percentage}
-        sx={{ width: "15%" }}
+        sx={{ width: "18%" }}
         InputProps={{
           readOnly: true,
           endAdornment: (

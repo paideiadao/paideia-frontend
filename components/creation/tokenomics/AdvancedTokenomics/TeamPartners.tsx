@@ -67,7 +67,6 @@ const TeamPartners: React.FC<{
     });
   }, [value]);
 
-  console.log(tokenRemaining);
   return (
     <>
       <DeleteIcon
@@ -111,6 +110,7 @@ const TeamPartners: React.FC<{
             width: "100%",
             mt: ".5rem",
             mb: ".5rem",
+            pr: "1rem",
           }}
         >
           <TextField
@@ -120,7 +120,6 @@ const TeamPartners: React.FC<{
               setValue({ ...value, distributionName: e.target.value });
             }}
             label="Distribution Name"
-            InputProps={{ readOnly: true }}
           />
           <BalanceInput
             total={data.tokenAmount}

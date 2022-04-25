@@ -3,7 +3,7 @@ import {
   Button,
   InputAdornment,
   TextField,
-  AlertTitle,
+  IconButton,
   ButtonGroup,
 } from "@mui/material";
 import * as React from "react";
@@ -22,6 +22,7 @@ import FileUploadIcon from "@mui/icons-material/FileUpload";
 import WalletSelector from "../../governance/WalletSelector";
 import Alert from "@mui/material/Alert";
 import { currencyFormatter } from "../../../utilities/currency";
+import LabeledSwitch from "../../utilities/LabeledSwitch";
 
 export interface IAirdropInfo {
   distributionName: string;
@@ -33,13 +34,15 @@ export interface IAirdropInfo {
   whitelistStartDate: Date;
   whitelistEndDate: Date;
   tokenHolders: ITokenHolder[];
-  vesting: boolean;
-  initialDistribution: number;
-  emissionStartDate: number;
-  emissionStartDateUnits: string;
-  frequency: string;
-  emissionLength: number;
-  emissionLengthUnits: string;
+  manualDataValidation: boolean;
+  whitelistInstructions: string;
+  validatedFields: IValidatedField[];
+  whitelistedAddress: ITokenHolder;
+}
+
+interface IValidatedField {
+  value: string,
+  number: number
 }
 
 const Airdrop: React.FC<{
@@ -61,13 +64,16 @@ const Airdrop: React.FC<{
     whitelistStartDate: start,
     whitelistEndDate: end,
     tokenHolders: [],
-    vesting: false,
-    initialDistribution: 0,
-    emissionStartDate: 0,
-    emissionStartDateUnits: "weeks",
-    frequency: "weekly",
-    emissionLength: 0,
-    emissionLengthUnits: "weeks",
+    manualDataValidation: false,
+    whitelistInstructions: "",
+    validatedFields: [],
+    whitelistedAddress: {
+      alias: '',
+      address: '',
+      img: '',
+      balance: 0,
+      percentage: 0
+    }
   });
 
   React.useEffect(() => {
@@ -259,105 +265,203 @@ const Airdrop: React.FC<{
             />
           </LocalizationProvider>
         )}
+        {value.distributionType === "whitelist" && (
+          <Box sx={{ width: "99.25%", mt: "1rem" }}>
+            <TextField
+              minRows={3}
+              multiline
+              sx={{ width: "100%" }}
+              label="Whitelist instructions"
+              value={value.whitelistInstructions}
+              onChange={(e: any) =>
+                setValue({ ...value, whitelistInstructions: e.target.value })
+              }
+            />
+          </Box>
+        )}
       </Box>
-      <Box sx={{ width: "100%", p: "1rem" }}>
-        <CapsInfo title="Configuration" />
-        <LearnMore title="Recepient wallet address" light />
-        {value.tokenHolders.map((i: ITokenHolder, c: number) => {
-          return (
-            <Box
-              sx={{ display: "flex", alignItems: "flex-start", height: "5rem" }}
-            >
+
+      {value.distributionType === "whitelist" ? (
+        <Box sx={{ pl: "1rem", pr: "1rem" }}>
+          <LabeledSwitch
+            small
+            onChange={() =>
+              setValue({
+                ...value,
+                manualDataValidation: !value.manualDataValidation,
+              })
+            }
+            value={value.manualDataValidation}
+            title="Activate manual data validation"
+            subtitle="Create input fields of data you want to validate and assign a user to manually go through the validation process"
+          />
+          {value.manualDataValidation === true && (
+            <Box sx={{ width: "100%", pb: "1rem" }}>
+              <LearnMore title="Fields that will be validated" />
+              <Box sx={{width: '100%'}}>
+                {value.validatedFields.map((i: IValidatedField, c: number) => {
+                  return <Box sx={{width: '100%', display: 'flex', alignItems: 'center'}}>
+                    <TextField
+                      label={`Input name (${i.number + 1})`}
+                      value={i.value}
+                      sx={{width: '100%', mt: '.5rem', mb: '.5rem'}}
+                      onChange={(e: any) => {
+                        let temp = [...value.validatedFields]
+                        temp[c].value = e.target.value;
+                        setValue({...value, validatedFields: temp})
+                      }}
+                      InputProps={{
+                        endAdornment: <InputAdornment position='end'>
+                          <IconButton onClick={() => {
+                            let temp = [...value.validatedFields]
+                            temp.splice(c, 1)
+                            setValue({...value, validatedFields: temp})
+                          }}>
+                            <DeleteIcon color='error'/>
+                          </IconButton>
+                        </InputAdornment>
+                      }}
+                    />
+                  </Box>
+                })}
+              </Box>
               <Box
                 sx={{
-                  width: "57%",
-                  mr: ".5rem",
                   display: "flex",
-                  alignItem: "flex-start",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  mb: '1rem', mt: '.5rem'
                 }}
               >
+                <Button variant="text" onClick={() => {
+                  let temp = [...value.validatedFields]
+                  temp.push({
+                    value: '', 
+                    number: temp.length
+                  })
+                  setValue({...value, validatedFields: temp})
+                }}>
+                  Add Input <AddIcon />
+                </Button>
+              </Box>
+              <Box sx={{width: '100%'}}>
                 <WalletSelector
-                  id="tokenomics"
-                  key={c + "tokenomics"}
-                  data={i}
-                  mt="0"
-                  number={c}
-                  set={(j: any) => {
+                    id="tokenomics"
+                    key='manual-whitelist-airdrop'
+                    data={value.whitelistedAddress}
+                    mt="0"
+                    number={1}
+                    set={(j: any) => setValue({...value, whitelistedAddress: j})}
+                  />
+              </Box>
+            </Box>
+          )}
+        </Box>
+      ) : (
+        <Box sx={{ width: "100%", p: "1rem" }}>
+          <CapsInfo title="Configuration" />
+          <LearnMore title="Recepient wallet address" light />
+          {value.tokenHolders.map((i: ITokenHolder, c: number) => {
+            return (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  height: "5rem",
+                }}
+              >
+                <Box
+                  sx={{
+                    width: "57%",
+                    mr: ".5rem",
+                    display: "flex",
+                    alignItem: "flex-start",
+                  }}
+                >
+                  <WalletSelector
+                    id="tokenomics"
+                    key={c + "tokenomics-airdrop"}
+                    data={i}
+                    mt="0"
+                    number={c}
+                    set={(j: any) => {
+                      let temp = [...value.tokenHolders];
+                      if (j === undefined) {
+                        temp.splice(c, 1);
+                      } else {
+                        temp[c] = { ...temp[c], ...j };
+                      }
+                      setValue({ ...value, tokenHolders: temp });
+                    }}
+                  />
+                </Box>
+                <BalanceInput
+                  total={value.balance}
+                  remaining={data.tokenRemaining}
+                  balance={value.tokenHolders[c].balance}
+                  value={value.tokenHolders[c]}
+                  set={(newValue: any) => {
                     let temp = [...value.tokenHolders];
-                    if (j === undefined) {
-                      temp.splice(c, 1);
-                    } else {
-                      temp[c] = { ...temp[c], ...j };
-                    }
+                    temp[c] = { ...newValue };
+                    setValue({ ...value, tokenHolders: temp });
+                  }}
+                />
+                <PercentageInput
+                  total={value.balance}
+                  remaining={data.tokenRemaining}
+                  percentage={value.tokenHolders[c].percentage}
+                  value={value.tokenHolders[c]}
+                  set={(newValue: any) => {
+                    let temp = [...value.tokenHolders];
+                    temp[c] = { ...newValue };
                     setValue({ ...value, tokenHolders: temp });
                   }}
                 />
               </Box>
-              <BalanceInput
-                total={value.balance}
-                remaining={data.tokenRemaining}
-                balance={value.tokenHolders[c].balance}
-                value={value.tokenHolders[c]}
-                set={(newValue: any) => {
-                  let temp = [...value.tokenHolders];
-                  temp[c] = { ...newValue };
-                  setValue({ ...value, tokenHolders: temp });
-                }}
-              />
-              <PercentageInput
-                total={value.balance}
-                remaining={data.tokenRemaining}
-                percentage={value.tokenHolders[c].percentage}
-                value={value.tokenHolders[c]}
-                set={(newValue: any) => {
-                  let temp = [...value.tokenHolders];
-                  temp[c] = { ...newValue };
-                  setValue({ ...value, tokenHolders: temp });
-                }}
-              />
-            </Box>
-          );
-        })}
-        {data.tokenRemaining > 0 &&
-          value.tokenHolders.map((i: any) => i.balance).indexOf(0) === -1 &&
-          value.tokenHolders.map((i: any) => i.percentage).indexOf(0) ===
-            -1 && (
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                mt: ".8rem",
-              }}
-            >
-              <Button
-                variant="text"
-                sx={{ mr: 2 }}
-                onClick={() => {
-                  let temp = [...value.tokenHolders];
-                  setValue({
-                    ...value,
-
-                    tokenHolders: temp.concat([
-                      {
-                        alias: "",
-                        address: "",
-                        img: "",
-                        balance: 0,
-                        percentage: 0,
-                      },
-                    ]),
-                  });
+            );
+          })}
+          {data.tokenRemaining > 0 &&
+            value.tokenHolders.map((i: any) => i.balance).indexOf(0) === -1 &&
+            value.tokenHolders.map((i: any) => i.percentage).indexOf(0) ===
+              -1 && (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  mt: ".8rem",
                 }}
               >
-                Add Another <AddIcon />
-              </Button>
-              <Button variant="text">
-                Add from file <FileUploadIcon />
-              </Button>
-            </Box>
-          )}
-      </Box>
+                <Button
+                  variant="text"
+                  sx={{ mr: 2 }}
+                  onClick={() => {
+                    let temp = [...value.tokenHolders];
+                    setValue({
+                      ...value,
+
+                      tokenHolders: temp.concat([
+                        {
+                          alias: "",
+                          address: "",
+                          img: "",
+                          balance: 0,
+                          percentage: 0,
+                        },
+                      ]),
+                    });
+                  }}
+                >
+                  Add Another <AddIcon />
+                </Button>
+                <Button variant="text">
+                  Add from file <FileUploadIcon />
+                </Button>
+              </Box>
+            )}
+        </Box>
+      )}
+      {}
     </>
   );
 };

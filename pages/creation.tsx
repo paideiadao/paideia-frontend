@@ -26,10 +26,10 @@ export default function Creation(props) {
     governance: {
       optimisticGovernance: false,
       quadraticVoting: false,
-      timeToChallenge: 10,
+      timeToChallenge: 0,
       timeToChallengeUnits: "days",
       quorum: 4,
-      voteDuration: 10,
+      voteDuration: 0,
       voteDurationUnits: "days",
       whitelist: [
         {
@@ -88,9 +88,9 @@ export default function Creation(props) {
         <Box
           sx={{
             position: "fixed",
-            ml: "15.5rem",
+            ml: "15rem",
             top: "3.5rem",
-            width: "calc(100% - 15.5rem)",
+            width: "calc(100% - 15rem)",
             pt: "2rem",
             display: "flex",
             flexDirection: "column",

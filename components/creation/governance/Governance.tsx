@@ -279,13 +279,16 @@ const Governance: React.FC = () => {
             >
               <Box sx={{ width: "30%" }}>
                 <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
-                  <InputLabel htmlFor={`challenge-time-input`}>
+                  <InputLabel htmlFor={`challenge-time-input`} shrink>
                     Challenge time
                   </InputLabel>
                   <OutlinedInput
+                    notched
                     id={`challenge-time-input`}
                     type="number"
-                    value={data.timeToChallenge}
+                    value={
+                      data.timeToChallenge === 0 ? "" : data.timeToChallenge
+                    }
                     onChange={(e) =>
                       globalContext.api.setData({
                         ...globalContext.api.data,
@@ -418,7 +421,9 @@ const Governance: React.FC = () => {
             </Button>
           </Box>
         </Box>
-        <Box sx={{ display: "flex", alignItem: "center", mt: ".4rem" }}>
+        <Box
+          sx={{ display: "flex", alignItem: "center", mt: ".4rem", pl: "1rem" }}
+        >
           <Box sx={{ width: "87%", display: "flex", alignItems: "center" }}>
             <Slider
               value={data.supportNeeded}
@@ -490,8 +495,10 @@ const Governance: React.FC = () => {
             </Button>
           </Box>
         </Box>
-        <Box sx={{ display: "flex", alignItem: "center", mt: ".4rem" }}>
-          <Box sx={{ width: "90%", display: "flex", alignItems: "center" }}>
+        <Box
+          sx={{ display: "flex", alignItem: "center", mt: ".4rem", pl: "1rem" }}
+        >
+          <Box sx={{ width: "87%", display: "flex", alignItems: "center" }}>
             <Slider
               value={data.quorum}
               min={0}
@@ -509,8 +516,8 @@ const Governance: React.FC = () => {
           </Box>
           <Box
             sx={{
-              width: "10%",
-              ml: "1rem",
+              width: "13%",
+              ml: "1.5rem",
               display: "flex",
               alignItems: "center",
             }}
@@ -539,13 +546,14 @@ const Governance: React.FC = () => {
           How long does the voting period last for?
         </Box>
         <FormControl sx={{ m: 1, width: "30%" }} variant="outlined">
-          <InputLabel htmlFor={`challenge-time-input`}>
+          <InputLabel htmlFor={`challenge-time-input`} shrink>
             Vote duration
           </InputLabel>
           <OutlinedInput
+            notched
             id={`challenge-time-input`}
             type="number"
-            value={data.voteDuration}
+            value={data.voteDuration === 0 ? "" : data.voteDuration}
             onChange={(e) =>
               globalContext.api.setData({
                 ...globalContext.api.data,

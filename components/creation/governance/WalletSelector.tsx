@@ -67,7 +67,7 @@ const WalletSelector: React.FC<{
                 <Box
                   sx={{
                     color: "primary.lightText",
-                    fontSize: ".8rem",
+                    fontSize: ".6rem",
                     mt: "-.3rem",
                   }}
                 >
@@ -145,7 +145,7 @@ const WalletSelector: React.FC<{
                   </Box>
                   <Box>
                     <Box>{i.alias}</Box>
-                    <Box sx={{ fontSize: ".75rem" }}>{i.address}</Box>
+                    <Box sx={{ fontSize: ".6rem" }}>{i.address}</Box>
                   </Box>
                 </Box>
               );

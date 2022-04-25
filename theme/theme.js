@@ -137,7 +137,7 @@ export const DarkTheme = createTheme({
       light: "#00788C",
       main: "rgba(224, 104, 4, 1)",
       // dark: will be calculated from palette.secondary.main,
-      contrastText: "#E5E5E5",
+      contrastText: "#333333",
     },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.

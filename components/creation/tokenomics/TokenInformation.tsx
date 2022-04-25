@@ -20,7 +20,6 @@ const NewToken: React.FC<IData<ITokenomics>> = (props) => {
         }
       />
       <TextField
-        {...{ ...(data.tokenTicker.length === 3 ? null : { error: true }) }}
         value={data.tokenTicker}
         sx={{ width: "25%", mt: "1rem", pr: ".5rem" }}
         label="Token ticker"
