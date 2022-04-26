@@ -14,7 +14,7 @@ export interface ITreasuryInfo {
   percentage: number;
   vesting: boolean;
   initialDistribution: number;
-  emissionStartDate: number;
+  emissionStartDate: Date;
   emissionStartDateUnits: string;
   frequency: string;
   emissionLength: number;
@@ -33,7 +33,7 @@ const Treasury: React.FC<{
     percentage: 0,
     vesting: false,
     initialDistribution: 0,
-    emissionStartDate: 0,
+    emissionStartDate: new Date(),
     emissionStartDateUnits: "weeks",
     frequency: "weekly",
     emissionLength: 0,

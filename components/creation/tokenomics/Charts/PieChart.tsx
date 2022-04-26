@@ -3,17 +3,11 @@ import { ResponsivePie } from '@nivo/pie';
 import * as React from 'react';
 import { ITokenHolder, ITokenomics } from '../../../../lib/creation/Api';
 import { percentage } from '../../../../lib/creation/Utilities';
-
-// [
-//     {
-//       "id": "css",
-//       "label": "css",
-//       "value": 428,
-//       "color": "hsl(24, 70%, 50%)"
-//     }
-//   ]
+import { GlobalContext, IGlobalContext } from "../../../../lib/creation/Context";
+import { LightTheme } from '../../../../theme/theme';
 
 const PieChart: React.FC<ITokenomics> = (props) => {
+    let globalContext = React.useContext<IGlobalContext>(GlobalContext);
     let data = props
     let tokenHolders = data.tokenHolders;
     return <ResponsivePie
@@ -50,7 +44,7 @@ const PieChart: React.FC<ITokenomics> = (props) => {
         ]
     }}
     arcLinkLabelsSkipAngle={10}
-    arcLinkLabelsTextColor="#333333"
+    arcLinkLabelsTextColor={globalContext.api.theme === LightTheme ? '#00868F' : '#9FD2DB'}
     arcLinkLabelsThickness={2}
     arcLinkLabelsColor={{ from: 'color' }}
     arcLabelsSkipAngle={10}

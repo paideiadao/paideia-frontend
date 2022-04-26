@@ -32,7 +32,7 @@ export interface IPrivateRoundInfo {
   tokenHolders: ITokenHolder[];
   vesting: boolean;
   initialDistribution: number;
-  emissionStartDate: number;
+  emissionStartDate: Date;
   emissionStartDateUnits: string;
   frequency: string;
   emissionLength: number;
@@ -58,7 +58,7 @@ const PrivateRound: React.FC<{
     tokenHolders: [],
     vesting: false,
     initialDistribution: 0,
-    emissionStartDate: 0,
+    emissionStartDate: new Date(),
     emissionStartDateUnits: "weeks",
     frequency: "weekly",
     emissionLength: 0,

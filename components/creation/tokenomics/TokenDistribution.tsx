@@ -3,6 +3,7 @@ import * as React from "react";
 import { ITokenomics } from "../../../lib/creation/Api";
 import { IData, IObj } from "../../../lib/utilities";
 import { Header } from "../utilities/HeaderComponents";
+import Emissions from "./Charts/Emissions";
 import PieChart from "./Charts/PieChart";
 
 const TokenDistribution: React.FC<IData<ITokenomics>> = (props) => {
@@ -10,7 +11,7 @@ const TokenDistribution: React.FC<IData<ITokenomics>> = (props) => {
   let chartLookup: IObj<JSX.Element> = {
     'pie':  <PieChart {...props.data}/>,
     'table': <Box>Table Here...</Box>,
-    'emission': <Box>Emission Here...</Box>
+    'emission': <Emissions {...props.data}/>
   }
   return (
     <Box sx={{ mt: "1rem", mb: "1rem" }}>

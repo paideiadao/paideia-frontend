@@ -10,11 +10,14 @@ import {
 } from "@mui/material";
 import * as React from "react";
 import LabeledSwitch from "../../utilities/LabeledSwitch";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 export interface IVestingSchedule {
   vesting: boolean;
   initialDistribution: number;
-  emissionStartDate: number;
+  emissionStartDate: Date;
   emissionStartDateUnits: string;
   frequency: string;
   emissionLength: number;
@@ -29,7 +32,7 @@ const VestingSchedule: React.FC<{
   const [value, setValue] = React.useState<IVestingSchedule>({
     vesting: props.value,
     initialDistribution: 0,
-    emissionStartDate: 0,
+    emissionStartDate: new Date(),
     emissionStartDateUnits: "weeks",
     frequency: "weekly",
     emissionLength: 0,
@@ -71,7 +74,7 @@ const VestingSchedule: React.FC<{
             value={
               value.initialDistribution === 0 ? "" : value.initialDistribution
             }
-            label="Initial Distribution"
+            label="Initial"
             type="number"
             sx={{ width: "18%" }}
             onChange={(e: any) =>
@@ -89,70 +92,7 @@ const VestingSchedule: React.FC<{
               ),
             }}
           />
-          <FormControl
-            sx={{ m: 1, width: "33%" }}
-            variant="outlined"
-            hiddenLabel
-          >
-            <InputLabel
-              htmlFor={`vesting-emission-start-date-${props.id}`}
-              shrink
-            >
-              Emission Start Date
-            </InputLabel>
-            <OutlinedInput
-              notched
-              id={`vesting-emission-start-date-${props.id}`}
-              type="number"
-              value={
-                value.emissionStartDate === 0 ? "" : value.emissionStartDate
-              }
-              onChange={(e: any) =>
-                setValue({
-                  ...value,
-                  emissionStartDate: parseInt(e.target.value),
-                })
-              }
-              label="Emission Start Date"
-              endAdornment={
-                <Box
-                  sx={{
-                    height: "100%",
-                    width: "60%",
-                    backgroundColor: "backgroundColor.main",
-                    color: "primary.text",
-                    lineHeight: "350%",
-                    textAlign: "center",
-                    borderRadius: "0 .3rem .3rem 0",
-                    mr: "-.8rem",
-                    ml: ".5rem",
-                    display: "flex",
-                  }}
-                >
-                  <FormControl fullWidth>
-                    <Select
-                      id={`vesting-emission-start-date-units-${props.id}`}
-                      variant="outlined"
-                      value={value.emissionStartDateUnits}
-                      sx={{ height: "100%", color: "primary.text" }}
-                      onChange={(e: any) =>
-                        setValue({
-                          ...value,
-                          emissionStartDateUnits: e.target.value,
-                        })
-                      }
-                    >
-                      <MenuItem value="minutes">Minutes</MenuItem>
-                      <MenuItem value="hours">Hours</MenuItem>
-                      <MenuItem value="days">Days</MenuItem>
-                      <MenuItem value="weeks">Weeks</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Box>
-              }
-            />
-          </FormControl>
-          <FormControl sx={{ width: "15%" }}>
+          <FormControl sx={{ width: "20%", ml: '.5rem' }}>
             <InputLabel htmlFor={`vesting-frequency-label-${props.id}`} shrink>
               Frequency
             </InputLabel>
@@ -177,8 +117,31 @@ const VestingSchedule: React.FC<{
               <MenuItem value="yearly">Yearly</MenuItem>
             </Select>
           </FormControl>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DatePicker
+            views={["day"]}
+            label="Emission Start Date"
+            value={value.emissionStartDate}
+            InputAdornmentProps={{ position: "start", variant: "standard" }}
+            onChange={(newValue) => {
+              setValue({ ...value, emissionStartDate: newValue });
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                helperText={null}
+                sx={{
+                  width: "30%",
+                  ml: ".5rem",
+                  svg: { color: "primary.main" },
+                }}
+              />
+            )}
+          />
+        </LocalizationProvider>
+          
           <FormControl
-            sx={{ m: 1, width: "31%" }}
+            sx={{ m: 1, width: "40%" }}
             variant="outlined"
             hiddenLabel
           >
@@ -200,11 +163,11 @@ const VestingSchedule: React.FC<{
               endAdornment={
                 <Box
                   sx={{
-                    height: "100%",
-                    width: "60%",
+                    height: "3.3rem",
+                    width: "50%",
                     backgroundColor: "backgroundColor.main",
                     color: "primary.text",
-                    lineHeight: "350%",
+                    lineHeight: "400%",
                     textAlign: "center",
                     borderRadius: "0 .3rem .3rem 0",
                     mr: "-.8rem",
@@ -217,7 +180,7 @@ const VestingSchedule: React.FC<{
                       id={`vesting-emission-length-units-${props.id}`}
                       variant="outlined"
                       value={value.emissionLengthUnits}
-                      sx={{ height: "100%", color: "primary.text" }}
+                      sx={{ height: "120%", color: "primary.text", fontSize: '.9rem' }}
                       onChange={(e: any) =>
                         setValue({
                           ...value,
