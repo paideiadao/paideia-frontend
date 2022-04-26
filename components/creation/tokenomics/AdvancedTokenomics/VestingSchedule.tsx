@@ -112,9 +112,9 @@ const VestingSchedule: React.FC<{
             >
               <MenuItem value="hourly">Hourly</MenuItem>
               <MenuItem value="daily">Daily</MenuItem>
-              <MenuItem value="weekly">Weekly</MenuItem>
-              <MenuItem value="monthly">Monthly</MenuItem>
-              <MenuItem value="yearly">Yearly</MenuItem>
+              <MenuItem value="weekly" disabled={['days'].indexOf(value.emissionLengthUnits) > -1}>Weekly</MenuItem>
+              <MenuItem value="monthly"disabled={['days', 'weeks'].indexOf(value.emissionLengthUnits) > -1}>Monthly</MenuItem>
+              <MenuItem value="yearly" disabled={['days', 'weeks', 'months'].indexOf(value.emissionLengthUnits) > -1}>Yearly</MenuItem>
             </Select>
           </FormControl>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -188,10 +188,11 @@ const VestingSchedule: React.FC<{
                         })
                       }
                     >
-                      <MenuItem value="minutes">Minutes</MenuItem>
-                      <MenuItem value="hours">Hours</MenuItem>
                       <MenuItem value="days">Days</MenuItem>
                       <MenuItem value="weeks">Weeks</MenuItem>
+                      <MenuItem value="months">Months</MenuItem>
+                      <MenuItem value="years">Years</MenuItem>
+
                     </Select>
                   </FormControl>
                 </Box>

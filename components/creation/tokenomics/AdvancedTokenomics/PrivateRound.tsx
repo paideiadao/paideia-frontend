@@ -152,7 +152,7 @@ const PrivateRound: React.FC<{
         <TextField
           value={value.tokenPrice === undefined ? "" : value.tokenPrice}
           type="number"
-          sx={{ width: "32.5%", mr: ".5rem" }}
+          sx={{ width: "32.3%", mr: ".5rem" }}
           onChange={(e: any) => {
             setValue({ ...value, tokenPrice: parseFloat(e.target.value) });
           }}
@@ -179,7 +179,7 @@ const PrivateRound: React.FC<{
                 {...params}
                 helperText={null}
                 sx={{
-                  width: "32.5%",
+                  width: "32.3%",
                   mr: ".5rem",
                   svg: { color: "primary.main" },
                 }}
@@ -198,7 +198,7 @@ const PrivateRound: React.FC<{
               <TextField
                 {...params}
                 helperText={null}
-                sx={{ width: "32.5%", svg: { color: "primary.main" } }}
+                sx={{ width: "32.3%", svg: { color: "primary.main" } }}
               />
             )}
           />
