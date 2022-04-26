@@ -160,7 +160,7 @@ const getCleanEmissionsData = (data: any) => {
         'blue'
     ];
 
-    return data == null ? [] : data.filter((i: any) => i.vesting).map((i: any, c: number) => {
+    let temp = data == null ? [] : data.filter((i: any) => i.vesting).map((i: any, c: number) => {
         return {
             id: i.distributionName,
             color: colorLookup[c],
@@ -168,6 +168,12 @@ const getCleanEmissionsData = (data: any) => {
             data: getCleanEmissionsDateData(i)
         }
     })
+
+    // need to go back through and add records for these charts dating all the way into the future...
+    // grab the largest max date & add records for that row going until that time... 
+    // also need to dynamically change the tick values. 
+
+    return temp
 }
 
 const Emissions: React.FC<ITokenomics> = (props) => {
@@ -175,6 +181,7 @@ const Emissions: React.FC<ITokenomics> = (props) => {
       colors={(d: any) => d.color}
       margin={{ top: 50, right: 140, bottom: 50, left: 50 }}
       data={getCleanEmissionsData(props.distributions)}
+      enableArea
       xScale={{
         type: 'time',
         format: '%Y-%m-%d',
