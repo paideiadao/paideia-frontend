@@ -8,14 +8,10 @@ import * as React from 'react';
 import { ITokenomics } from '../../../../lib/creation/Api';
 import { percentage } from '../../../../lib/creation/Utilities';
 import { IObj } from '../../../../lib/utilities';
+import dateFormat from "dateformat";
 
 const getEmittedTokens = (data: any, timePeriodsTotal: number, timePeriodsRemaining: number, number: number) => {
-    console.log(data)
     let base = data.balance * (data.initialDistribution / 100);
-    let remaining = data.balance - base
-    console.log('remaining', remaining)
-    console.log('base', base)
-
     return timePeriodsTotal === timePeriodsRemaining ? base : (base) + ((data.balance / timePeriodsTotal) * (number)) 
 }
 
@@ -143,24 +139,26 @@ const getCleanEmissionsDateData = (data: any) => {
     }
 
     let length = frequencyConversion[data.frequency](data.emissionLength, data.emissionLengthUnits)
-    console.log(length)
     let init = new Date(data.emissionStartDate);
-    return Array.from(Array(length).keys()).map((i: any, c: any) => {
+    let temp = Array.from(Array(length).keys()).map((i: any, c: any) => {
         let point = frequencyLookup[data.frequency](init, c);
         return {
             x: point,
             y: getEmittedTokens(data, length, length - c, c)
         }
     })
+
+    return temp
 }
 
 const getCleanEmissionsData = (data: any) => {
     let colorLookup = [
         'red',
-        'blue'
+        'blue',
+        'green'
     ];
 
-    let temp = data == null ? [] : data.filter((i: any) => i.vesting).map((i: any, c: number) => {
+    let temp = data == null ? [] : data.filter((i: any) => i.vesting && i.balance > 0 && i.emissionLength > 0).map((i: any, c: number) => {
         return {
             id: i.distributionName,
             color: colorLookup[c],
@@ -172,7 +170,25 @@ const getCleanEmissionsData = (data: any) => {
     // need to go back through and add records for these charts dating all the way into the future...
     // grab the largest max date & add records for that row going until that time... 
     // also need to dynamically change the tick values. 
+    let max = undefined;
+    temp.forEach((j: any) => {
+        let tempDates = j.data.map((z: any) => z.x);
+        max = new Date(Math.max.apply(null, tempDates));
+    })
 
+    temp.forEach((j: any) => {
+        let last = j.data[j.data.length - 1]
+
+
+        if (last.y < max) {
+                j.data.push({
+                    x: max,
+                    y: last.y
+                })
+        }
+    })
+
+    temp = temp.sort((a: any, b: any) => b.data.length - a.data.length);
     return temp
 }
 
@@ -182,20 +198,22 @@ const Emissions: React.FC<ITokenomics> = (props) => {
       margin={{ top: 50, right: 140, bottom: 50, left: 50 }}
       data={getCleanEmissionsData(props.distributions)}
       enableArea
+      enablePoints={false}
       xScale={{
         type: 'time',
         format: '%Y-%m-%d',
-        useUTC: false,
+        useUTC: true,
         precision: 'day'
       }}
       xFormat="time:%Y-%m-%d"
       yScale={{
         type: 'linear',
         stacked: true,
-        max: 'auto'
+        max: props.tokenAmount
       }}
+      curve='monotoneX'
       axisLeft={{
-        legend: 'Percentage of Total Supply',
+        legend: 'Tokens',
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
@@ -213,13 +231,13 @@ const Emissions: React.FC<ITokenomics> = (props) => {
         legendOffset: 36,
         legendPosition: 'middle'
       }}
+      areaOpacity={1}
       pointSize={5}
       pointBorderWidth={1}
       pointBorderColor={{
         from: 'color',
         modifiers: [['darker', 0.3]]
       }}
-      curve="monotoneX"
       useMesh={true}
       enableSlices={false}
       lineWidth={1}
@@ -235,7 +253,7 @@ const Emissions: React.FC<ITokenomics> = (props) => {
             }}
           >
             <Box sx={{ fontSize: '1.1rem' }}>
-              Tip Here
+            {dateFormat(point.point.data.x, 'mmmm dS, yyyy')}
             </Box>
             <Box sx={{ fontSize: '1rem' }}>
                 {point.point.data.y}

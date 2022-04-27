@@ -32,6 +32,7 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
           return (
             <Box
               sx={{ display: "flex", alignItems: "flex-start", height: "5rem" }}
+              key={`${c}-token-holder`}
             >
               <Box
                 sx={{

@@ -59,7 +59,7 @@ const Tokenomics: React.FC = () => {
           sx={{
             position: "sticky",
             backgroundColor: "primary.main",
-            width: "143%",
+            width: "calc(100vw - 15.4rem)",
             ml: "-21.5%",
             mt: "-2rem",
             top: "-2rem",
