@@ -211,6 +211,14 @@ export const DarkTheme = createTheme({
         },
       },
     },
+    MuiTypography: {
+      styleOverrides: {
+        caption: {
+          backgroundColor: 'rgba(255, 255, 255, .9)',
+          borderRadius: '.1rem',
+        }
+      }
+    },
     MuiButton: {
       styleOverrides: {
         root: {
