@@ -181,6 +181,25 @@ export const DarkTheme = createTheme({
         },
       },
     },
+    MuiCalendarPicker: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgba(17, 24, 39, 1)',
+          color: 'white'
+        },
+      }
+    },
+    MuiPickersDay: {
+      styleOverrides: {
+        root: {
+          color: 'white',
+          backgroundColor: 'transparent'
+        },
+        selected: {
+          backgroundColor: '#9FD2DB'
+        }
+      }
+    },
     MuiAlert: {
       styleOverrides: {
         root: {
@@ -201,6 +220,13 @@ export const DarkTheme = createTheme({
           },
         },
       },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          color: 'rgba(255, 255, 255, 0.56)'
+        }
+      }
     },
     MuiPaper: {
       styleOverrides: {

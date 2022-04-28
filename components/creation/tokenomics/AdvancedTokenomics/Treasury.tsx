@@ -19,6 +19,7 @@ export interface ITreasuryInfo {
   frequency: string;
   emissionLength: number;
   emissionLengthUnits: string;
+  id: string;
 }
 
 const Treasury: React.FC<{
@@ -27,17 +28,19 @@ const Treasury: React.FC<{
   c: number;
 }> = (props) => {
   let data = props.data.data;
+  let temp: any = data.distributions[props.c];
   const [value, setValue] = React.useState<ITreasuryInfo>({
-    distributionName: "",
-    balance: 0,
-    percentage: 0,
-    vesting: false,
-    initialDistribution: 0,
-    emissionStartDate: new Date(),
-    emissionStartDateUnits: "weeks",
-    frequency: "weekly",
-    emissionLength: 0,
-    emissionLengthUnits: "weeks",
+    distributionName: data.distributions[props.c] === undefined ? `${props.c + 1}. Treasury` : temp.distributionName,
+    balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
+    percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
+    vesting: data.distributions[props.c] === undefined ? false : temp.vesting,
+    initialDistribution: data.distributions[props.c] === undefined ? 0 : temp.initialDistribution,
+    emissionStartDate: data.distributions[props.c] === undefined ? new Date() : temp.emissionStartDate,
+    emissionStartDateUnits: data.distributions[props.c] === undefined ? 'weeks' : temp.emissionStartDateUnits,
+    frequency: data.distributions[props.c] === undefined ? 'weekly' : temp.frequency,
+    emissionLength: data.distributions[props.c] === undefined ? 0 : temp.emissionLength,
+    emissionLengthUnits: data.distributions[props.c] === undefined ? 'weeks' : temp.emissionLengthUnits,
+    id: 'Treasury'
   });
 
   React.useEffect(() => {

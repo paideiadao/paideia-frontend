@@ -23,12 +23,13 @@ import WalletSelector from "../../governance/WalletSelector";
 import Alert from "@mui/material/Alert";
 import { currencyFormatter } from "../../../utilities/currency";
 import LabeledSwitch from "../../utilities/LabeledSwitch";
+import dateFormat from "dateformat";
+import EditIcon from '@mui/icons-material/Edit';
 
 export interface IAirdropInfo {
   distributionName: string;
   balance: number;
   percentage: number;
-  tokenPrice: number;
   distributionType: string;
   airdropDate: Date;
   whitelistStartDate: Date;
@@ -38,6 +39,7 @@ export interface IAirdropInfo {
   whitelistInstructions: string;
   validatedFields: IValidatedField[];
   whitelistedAddress: ITokenHolder;
+  id: string;
 }
 
 interface IValidatedField {
@@ -54,26 +56,27 @@ const Airdrop: React.FC<{
   let start = new Date();
   let end = new Date();
   end.setDate(end.getDate() + 30);
+  let temp: any = data.distributions[props.c];
   const [value, setValue] = React.useState<IAirdropInfo>({
-    distributionName: "",
-    balance: 0,
-    percentage: 0,
-    tokenPrice: undefined,
-    distributionType: "manual",
-    airdropDate: start,
-    whitelistStartDate: start,
-    whitelistEndDate: end,
-    tokenHolders: [],
-    manualDataValidation: false,
-    whitelistInstructions: "",
-    validatedFields: [],
+    distributionName: data.distributions[props.c] === undefined ? `${props.c + 1}. Airdrop` : temp.distributionName,
+    balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
+    percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
+    distributionType: data.distributions[props.c] === undefined ? 'manual' : temp.distributionType,
+    airdropDate: data.distributions[props.c] === undefined ? start : temp.airdropDate,
+    whitelistStartDate: data.distributions[props.c] === undefined ? start : temp.whitelistStartDate,
+    whitelistEndDate: data.distributions[props.c] === undefined ? end : temp.whitelistEndDate,
+    tokenHolders: data.distributions[props.c] === undefined ? [] : temp.tokenHolders,
+    manualDataValidation: data.distributions[props.c] === undefined ? false : temp.manualDataValidation,
+    whitelistInstructions: data.distributions[props.c] === undefined ? '' : temp.whitelistInstructions,
+    validatedFields: data.distributions[props.c] === undefined ? [] : temp.validatedFields,
     whitelistedAddress: {
-      alias: '',
-      address: '',
-      img: '',
-      balance: 0,
-      percentage: 0
-    }
+      alias: data.distributions[props.c] === undefined ? '' : temp.whitelistedAddress === undefined ? '' : temp.whitelistedAddress.alias,
+      address: data.distributions[props.c] === undefined ? '' : temp.whitelistedAddress === undefined ? '' :  temp.whitelistedAddress.address,
+      img: data.distributions[props.c] === undefined ? '' : temp.whitelistedAddress === undefined ? '' :  temp.whitelistedAddress.img,
+      balance: data.distributions[props.c] === undefined ? 0 : temp.whitelistedAddress === undefined ? '' :  temp.whitelistedAddress.balance,
+      percentage: data.distributions[props.c] === undefined ? 0 : temp.whitelistedAddress === undefined ? '' :  temp.whitelistedAddress.percentage
+    },
+    id: 'Airdrop'
   });
 
   React.useEffect(() => {
@@ -207,7 +210,17 @@ const Airdrop: React.FC<{
         >
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
-              views={["day"]}
+              showToolbar
+              ToolbarComponent={(props) => <Box sx={{pt: '.8rem', pl: '1.2rem', pr: '1.2rem', pb: '.5rem', backgroundColor: 'backgroundColor.main', borderBottom: '1px solid', borderBottomColor: 'divider.main'}}>
+                  <CapsInfo title='Select Date'/>
+                  <Box sx={{color: 'primary.text', display: 'flex', mt: '-.6rem'}}>
+                    {dateFormat(value.airdropDate, 'ddd, mmm d')}
+                    <Box sx={{ml: 'auto'}}>
+                      <EditIcon color='primary'/>
+                    </Box>
+                </Box>
+                
+              </Box>}
               label="Airdrop date"
               value={value.airdropDate}
               InputAdornmentProps={{ position: "start", variant: "standard" }}
@@ -228,7 +241,7 @@ const Airdrop: React.FC<{
         {value.distributionType === "whitelist" && (
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
-              views={["day"]}
+              views={["day", 'month', 'year']}
               label="Sign up start date"
               value={value.whitelistStartDate}
               InputAdornmentProps={{ position: "start", variant: "standard" }}

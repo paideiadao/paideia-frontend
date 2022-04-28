@@ -45,7 +45,7 @@ const AddDistribution: React.FC<{
   close: Function;
   c: number;
 }> = (props) => {
-  const [display, setDisplay] = React.useState<string>(props.data.data.distributions[props.c] === undefined ? undefined : props.data.data.distributions[props.c].distributionName);
+  const [display, setDisplay] = React.useState<string>(props.data.data.distributions[props.c] === undefined ? undefined : props.data.data.distributions[props.c].id);
   const [distributions, setDistributions] = React.useState<any[]>(props.data.data.distributions);
   const distributionTypes = [
     { label: "Treasury" },

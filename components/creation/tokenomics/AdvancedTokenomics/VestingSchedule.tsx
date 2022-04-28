@@ -119,7 +119,7 @@ const VestingSchedule: React.FC<{
           </FormControl>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
-            views={["day"]}
+            views={["day", 'month', 'year']}
             label="Emission Start Date"
             value={value.emissionStartDate}
             InputAdornmentProps={{ position: "start", variant: "standard" }}

@@ -42,15 +42,17 @@ const Staking: React.FC<{
   let start = new Date();
   let end = new Date();
   end.setDate(end.getDate() + 30);
+  let temp: any = data.distributions[props.c];
+
   const [value, setValue] = React.useState<IStakingInfo>({
-    distributionName: "",
-    balance: 0,
-    percentage: 0,
-    emissionType: "weekly",
-    startDate: start,
-    endDate: end,
-    stakingFee: false,
-    witholdPercentage: 0,
+    distributionName: data.distributions[props.c] === undefined ? `${props.c + 1}. Staking` : temp.distributionName,
+    balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
+    percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
+    emissionType: data.distributions[props.c] === undefined ? 'weekly' : temp.emissionType,
+    startDate: data.distributions[props.c] === undefined ? start : temp.startDate,
+    endDate: data.distributions[props.c] === undefined ? end : temp.endDate,
+    stakingFee: data.distributions[props.c] === undefined ? false : temp.stakingFee,
+    witholdPercentage: data.distributions[props.c] === undefined ? 0 : temp.witholdPercentage,
   });
 
   React.useEffect(() => {

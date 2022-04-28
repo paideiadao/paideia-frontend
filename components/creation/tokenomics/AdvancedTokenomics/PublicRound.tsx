@@ -42,6 +42,7 @@ export interface IPublicRoundInfo {
   frequency: string;
   emissionLength: number;
   emissionLengthUnits: string;
+  id: string;
 }
 
 const PublicRound: React.FC<{
@@ -53,26 +54,28 @@ const PublicRound: React.FC<{
   let start = new Date();
   let end = new Date();
   end.setDate(end.getDate() + 30);
+  let temp: any = data.distributions[props.c];
   const [value, setValue] = React.useState<IPublicRoundInfo>({
-    distributionName: "",
-    balance: 0,
-    percentage: 0,
-    tokenPrice: undefined,
-    maxPerWallet: undefined,
-    signUpStartDate: start,
-    signUpEndDate: end,
-    contributionStartDate: start,
-    contributionEndDate: end,
-    waitlistStartDate: start,
-    waitlistEndDate: end,
-    tokenHolders: [],
-    vesting: false,
-    initialDistribution: 0,
-    emissionStartDate: 0,
-    emissionStartDateUnits: "weeks",
-    frequency: "weekly",
-    emissionLength: 0,
-    emissionLengthUnits: "weeks",
+    distributionName: data.distributions[props.c] === undefined ? `${props.c + 1}. Public Round` : temp.distributionName,
+    balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
+    percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
+    tokenPrice: data.distributions[props.c] === undefined ? undefined : temp.tokenPrice,
+    maxPerWallet: data.distributions[props.c] === undefined ? undefined : temp.maxPerWallet,
+    signUpStartDate: data.distributions[props.c] === undefined ? start : temp.signUpStartDate,
+    signUpEndDate: data.distributions[props.c] === undefined ? end : temp.signUpEndDate,
+    contributionStartDate: data.distributions[props.c] === undefined ? start : temp.contributionStartDate,
+    contributionEndDate: data.distributions[props.c] === undefined ? end : temp.contributionEndDate,
+    waitlistStartDate: data.distributions[props.c] === undefined ? start : temp.waitlistStartDate,
+    waitlistEndDate: data.distributions[props.c] === undefined ? end : temp.waitlistEndDate,
+    tokenHolders: data.distributions[props.c] === undefined ? [] : temp.tokenHolders,
+    vesting: data.distributions[props.c] === undefined ? false : temp.vesting,
+    initialDistribution: data.distributions[props.c] === undefined ? 0 : temp.initialDistribution,
+    emissionStartDate: data.distributions[props.c] === undefined ? new Date() : temp.emissionStartDate,
+    emissionStartDateUnits: data.distributions[props.c] === undefined ? 'weeks' : temp.emissionStartDateUnits,
+    frequency: data.distributions[props.c] === undefined ? 'weekly' : temp.frequency,
+    emissionLength: data.distributions[props.c] === undefined ? 0 : temp.emissionLength,
+    emissionLengthUnits: data.distributions[props.c] === undefined ? 'weeks' : temp.emissionLengthUnits,
+    id: 'Public Round',
   });
 
   React.useEffect(() => {

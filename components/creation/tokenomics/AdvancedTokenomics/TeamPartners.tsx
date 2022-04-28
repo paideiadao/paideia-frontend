@@ -18,11 +18,12 @@ export interface ITeamPartnersInfo {
   tokenHolders: ITokenHolder[];
   vesting: boolean;
   initialDistribution: number;
-  emissionStartDate: number;
+  emissionStartDate: Date;
   emissionStartDateUnits: string;
   frequency: string;
   emissionLength: number;
   emissionLengthUnits: string;
+  id: string;
 }
 
 const TeamPartners: React.FC<{
@@ -31,18 +32,20 @@ const TeamPartners: React.FC<{
   c: number;
 }> = (props) => {
   let data = props.data.data;
+  let temp: any = data.distributions[props.c];
   const [value, setValue] = React.useState<ITeamPartnersInfo>({
-    distributionName: "Team & Partners",
-    balance: props.data.data.distributions[props.c].balance,
-    percentage: props.data.distributions[props.c].percentage,
-    tokenHolders: props.data.distributions[props.c].tokenHolders,
-    vesting: props.data.distributions[props.c].vesting,
-    initialDistribution: props.data.distributions[props.c].initialDistribution,
-    emissionStartDate: props.data.distributions[props.c].emissionStartDate,
-    emissionStartDateUnits: props.data.distributions[props.c].emissionStartDateUnits,
-    frequency: props.data.distributions[props.c].frequency,
-    emissionLength: props.data.distributions[props.c].emissionLength,
-    emissionLengthUnits: props.data.distributions[props.c].emissionLengthUnits,
+    distributionName: data.distributions[props.c] === undefined ? `${props.c + 1}. Team & Partners` : temp.distributionName,
+    balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
+    percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
+    tokenHolders: data.distributions[props.c] === undefined ? [] : temp.tokenHolders,
+    vesting: data.distributions[props.c] === undefined ? false : temp.vesting,
+    initialDistribution: data.distributions[props.c] === undefined ? 0 : temp.initialDistribution,
+    emissionStartDate: data.distributions[props.c] === undefined ? new Date() : temp.emissionStartDate,
+    emissionStartDateUnits: data.distributions[props.c] === undefined ? 'weeks' : temp.emissionStartDateUnits,
+    frequency: data.distributions[props.c] === undefined ? 'weekly' : temp.frequency,
+    emissionLength: data.distributions[props.c] === undefined ? 0 : temp.emissionLength,
+    emissionLengthUnits: data.distributions[props.c] === undefined ? 'weeks' : temp.emissionLengthUnits,
+    id: 'Team & Partners',
   });
   const [tokenRemaining, setTokenRemaining] = React.useState<number>(0);
 
@@ -59,8 +62,7 @@ const TeamPartners: React.FC<{
 
   React.useEffect(() => {
     /// add data to global context...
-    let temp = [...data.distributions];
-    temp[props.c] = { ...value };
+    let temp = [...data.distributions];    temp[props.c] = { ...value };
     props.data.setData({
       ...data,
       distributions: temp,

@@ -33,6 +33,7 @@ export interface ILiquidityInfo {
     percentage: number;
     balance: number;
   };
+  id: string
 }
 
 const Liquidity: React.FC<{
@@ -42,18 +43,21 @@ const Liquidity: React.FC<{
 }> = (props) => {
   let data = props.data.data;
   let start = new Date();
+  let temp: any = data.distributions[props.c];
+  
   const [value, setValue] = React.useState<ILiquidityInfo>({
-    distributionName: "",
-    balance: 0,
-    percentage: 0,
-    tokenPrice: 0,
-    tradingPair: `${data.tokenTicker.toLowerCase()}/erg`,
-    dex: "ergodex",
-    liquidityStartDate: start,
+    distributionName: data.distributions[props.c] === undefined ? `${props.c + 1}. Liquidity` : temp.distributionName,
+    balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
+    percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
+    tokenPrice: data.distributions[props.c] === undefined ? 0 : temp.tokenPrice,
+    tradingPair: data.distributions[props.c] === undefined ? `${data.tokenTicker.toLowerCase()}/erg` : temp.tradingPair,
+    dex: data.distributions[props.c] === undefined ? 'ergodex' : temp.dex,
+    liquidityStartDate: data.distributions[props.c] === undefined ? start : temp.liquidityStartDate,
     contingency: {
-      percentage: 0,
-      balance: 0,
+      percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
+      balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
     },
+    id: 'Liquidity'
   });
 
   React.useEffect(() => {
@@ -143,7 +147,7 @@ const Liquidity: React.FC<{
         <TextField
           value={value.tokenPrice === undefined ? "" : value.tokenPrice}
           type="number"
-          sx={{ width: "32.5%", mr: ".5rem" }}
+          sx={{ width: "32%", mr: ".5rem" }}
           onChange={(e: any) => {
             setValue({ ...value, tokenPrice: parseFloat(e.target.value) });
           }}
@@ -156,7 +160,7 @@ const Liquidity: React.FC<{
             ),
           }}
         />
-        <FormControl sx={{ width: "32.5%", mr: ".5rem" }}>
+        <FormControl sx={{ width: "32%", mr: ".5rem" }}>
           <InputLabel htmlFor={`trading-pair-label-${props.c}`} shrink>
             Trading Pair
           </InputLabel>
@@ -179,7 +183,7 @@ const Liquidity: React.FC<{
             </MenuItem>
           </Select>
         </FormControl>
-        <FormControl sx={{ width: "32.5%" }}>
+        <FormControl sx={{ width: "32%" }}>
           <InputLabel htmlFor={`dex-label-${props.c}`} shrink>
             DEX
           </InputLabel>

@@ -10,6 +10,7 @@ import TokenomicSummary from "./TokenomicSummary";
 const AdvancedTokenomics: React.FC<IData<ITokenomics>> = (props) => {
   let globalContext = React.useContext(GlobalContext);
   let data = props.data;
+  let globalData = globalContext.api.data;
   return (
     <Box sx={{ mt: ".5rem" }}>
       <LearnMore title="Set advanced tokenomics" />
@@ -19,9 +20,9 @@ const AdvancedTokenomics: React.FC<IData<ITokenomics>> = (props) => {
         value={data.activateTokenomics}
         onChange={(value) =>
           globalContext.api.setData({
-            ...globalContext.api.data,
+            ...globalData,
             tokenomics: {
-              ...globalContext.api.data.tokenomics,
+              ...data,
               activateTokenomics: value,
             },
           })
