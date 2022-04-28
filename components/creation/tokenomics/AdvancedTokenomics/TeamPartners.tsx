@@ -33,16 +33,16 @@ const TeamPartners: React.FC<{
   let data = props.data.data;
   const [value, setValue] = React.useState<ITeamPartnersInfo>({
     distributionName: "Team & Partners",
-    balance: 0,
-    percentage: 0,
-    tokenHolders: [],
-    vesting: false,
-    initialDistribution: 0,
-    emissionStartDate: 0,
-    emissionStartDateUnits: "weeks",
-    frequency: "weekly",
-    emissionLength: 0,
-    emissionLengthUnits: "weeks",
+    balance: props.data.data.distributions[props.c].balance,
+    percentage: props.data.distributions[props.c].percentage,
+    tokenHolders: props.data.distributions[props.c].tokenHolders,
+    vesting: props.data.distributions[props.c].vesting,
+    initialDistribution: props.data.distributions[props.c].initialDistribution,
+    emissionStartDate: props.data.distributions[props.c].emissionStartDate,
+    emissionStartDateUnits: props.data.distributions[props.c].emissionStartDateUnits,
+    frequency: props.data.distributions[props.c].frequency,
+    emissionLength: props.data.distributions[props.c].emissionLength,
+    emissionLengthUnits: props.data.distributions[props.c].emissionLengthUnits,
   });
   const [tokenRemaining, setTokenRemaining] = React.useState<number>(0);
 

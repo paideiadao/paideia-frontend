@@ -58,7 +58,11 @@ const TokenomicsRow: React.FC<{
 };
 
 const TokenomicSummary: React.FC<IData<ITokenomics>> = (props) => {
-  const [distributions, setDistributions] = React.useState<number[]>([]);
+  // change this here to make the widgets persist...
+  // make use of the global state
+
+  console.log('props.data', props.data)
+  const [distributions, setDistributions] = React.useState<any[]>(props.data.distributions); 
 
   let data = props.data;
   let tokenHolderBalance = data.tokenHolders
@@ -76,6 +80,14 @@ const TokenomicSummary: React.FC<IData<ITokenomics>> = (props) => {
       percentage: percentage(data.tokenRemaining / data.tokenAmount, 2, false),
     },
   ];
+
+  React.useEffect(() => {
+    console.log('distributions', distributions)
+    props.setData({
+      ...data,
+      distributions: distributions,
+    });
+  }, [distributions])
   return (
     <Box
       sx={{
@@ -110,7 +122,7 @@ const TokenomicSummary: React.FC<IData<ITokenomics>> = (props) => {
           variant="text"
           onClick={() => {
             let temp = [...distributions];
-            temp.push(temp.length);
+            temp.push(undefined);
             setDistributions(temp);
           }}
         >

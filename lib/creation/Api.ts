@@ -6,6 +6,7 @@ import { IPublicRoundInfo } from "../../components/creation/tokenomics/AdvancedT
 import { IStakingInfo } from "../../components/creation/tokenomics/AdvancedTokenomics/Staking";
 import { ITeamPartnersInfo } from "../../components/creation/tokenomics/AdvancedTokenomics/TeamPartners";
 import { ITreasuryInfo } from "../../components/creation/tokenomics/AdvancedTokenomics/Treasury";
+import { IVestingSchedule } from "../../components/creation/tokenomics/AdvancedTokenomics/VestingSchedule";
 import { AbstractApi } from "../utilities";
 
 export interface ICreationData {

@@ -9,6 +9,8 @@ import { ITokenomics } from '../../../../lib/creation/Api';
 import { percentage } from '../../../../lib/creation/Utilities';
 import { IObj } from '../../../../lib/utilities';
 import dateFormat from "dateformat";
+import { LightTheme } from '../../../../theme/theme';
+import { GlobalContext, IGlobalContext } from '../../../../lib/creation/Context';
 
 const getEmittedTokens = (data: any, timePeriodsTotal: number, timePeriodsRemaining: number, number: number) => {
     let base = data.balance * (data.initialDistribution / 100);
@@ -155,9 +157,15 @@ const getCleanEmissionsData = (data: any) => {
     let colorLookup = [
         'red',
         'blue',
-        'green'
+        'green',
+        'orange'
     ];
 
+
+    /*
+    All data points need to have the EXACT same length. 
+    Find the max distribution length & make all arrays of that size...
+    */
     let temp = data == null ? [] : data.filter((i: any) => i.vesting && i.balance > 0 && i.emissionLength > 0).map((i: any, c: number) => {
         return {
             id: i.distributionName,
@@ -193,17 +201,22 @@ const getCleanEmissionsData = (data: any) => {
 }
 
 const Emissions: React.FC<ITokenomics> = (props) => {
+    let globalContext = React.useContext<IGlobalContext>(GlobalContext);
+
     return <ResponsiveLine
       colors={(d: any) => d.color}
       margin={{ top: 50, right: 140, bottom: 50, left: 50 }}
-      data={getCleanEmissionsData(props.distributions)}
+      data={[]}
       enableArea
       enablePoints={false}
+      theme={{
+            textColor: globalContext.api.theme === LightTheme ? 'rgba(0, 0, 0, 0.6)' : 'rgba(255, 255, 255, 0.7)',
+      }}
       xScale={{
         type: 'time',
         format: '%Y-%m-%d',
         useUTC: true,
-        precision: 'day'
+        precision: 'day',
       }}
       xFormat="time:%Y-%m-%d"
       yScale={{
@@ -229,7 +242,7 @@ const Emissions: React.FC<ITokenomics> = (props) => {
         tickPadding: 5,
         tickRotation: 0,
         legendOffset: 36,
-        legendPosition: 'middle'
+        legendPosition: 'middle',
       }}
       areaOpacity={1}
       pointSize={5}

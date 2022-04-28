@@ -21,6 +21,7 @@ const renderDisplay = (
     c: number;
   }
 ) => {
+  console.log('props', props)
   switch (display) {
     case "Treasury":
       return <Treasury {...props} />;
@@ -44,7 +45,8 @@ const AddDistribution: React.FC<{
   close: Function;
   c: number;
 }> = (props) => {
-  const [display, setDisplay] = React.useState<string>(undefined);
+  const [display, setDisplay] = React.useState<string>(props.data.data.distributions[props.c] === undefined ? undefined : props.data.data.distributions[props.c].distributionName);
+  const [distributions, setDistributions] = React.useState<any[]>(props.data.data.distributions);
   const distributionTypes = [
     { label: "Treasury" },
     { label: "Team & Partners" },
@@ -71,7 +73,7 @@ const AddDistribution: React.FC<{
         justifyContent: "center",
       }}
     >
-      {display === undefined ? (
+      {display === undefined && distributions[props.c] === undefined ? (
         <>
           <CancelIcon
             sx={{

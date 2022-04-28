@@ -41,12 +41,14 @@ const Tokenomics: React.FC = () => {
         (distributions.length === 0
           ? 0
           : distributions
+              .filter((i: any) => i !== undefined)
               .filter((i: any) => i.hasOwnProperty("contingency"))
               .map((i: ILiquidityInfo) => i.contingency.balance)
               .reduce((sum, current) => sum + current, 0)) -
         (distributions.length === 0
           ? 0
           : distributions
+              .filter((i: any) => i !== undefined)
               .map((i: any) => i.balance)
               .reduce((sum, current) => sum + current, 0)),
     });

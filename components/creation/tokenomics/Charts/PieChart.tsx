@@ -19,7 +19,7 @@ const PieChart: React.FC<ITokenomics> = (props) => {
         id: 'Unassigned Tokens',
         label: 'Unassigned Tokens (Treasury)',
         value: data.tokenRemaining
-    }].concat(data.distributions.map((i: any) => {
+    }].concat(data.distributions.filter((i: any) => i !== undefined).map((i: any) => {
         return {
             id: i.distributionName,
             label: i.distributionName,
@@ -44,7 +44,7 @@ const PieChart: React.FC<ITokenomics> = (props) => {
         ]
     }}
     arcLinkLabelsSkipAngle={10}
-    arcLinkLabelsTextColor={globalContext.api.theme === LightTheme ? '#00868F' : '#9FD2DB'}
+    arcLinkLabelsTextColor={globalContext.api.theme === LightTheme ? 'rgba(0, 0, 0, 0.6)' : 'rgba(255, 255, 255, 0.7)'}
     arcLinkLabelsThickness={2}
     arcLinkLabelsColor={{ from: 'color' }}
     arcLabelsSkipAngle={10}
