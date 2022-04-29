@@ -5,6 +5,9 @@ export const LightTheme = createTheme({
     circle: {
       main: "#00868F",
     },
+    tokenAlert: {
+      main: 'rgba(237, 108, 2, 1)'
+    },
     circleBackground: {
       main: "rgba(0, 134, 143, 0.08)",
     },
@@ -95,6 +98,9 @@ export const DarkTheme = createTheme({
   palette: {
     circle: {
       main: "#9FD2DB",
+    },
+    tokenAlert: {
+      main: 'rgba(255, 167, 38, 1)',
     },
     circleBackground: {
       main: "rgba(159, 210, 219, 0.08)",

@@ -14,6 +14,7 @@ import BalanceInput from "../utilities/BalanceInput";
 const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
   let globalContext = React.useContext(GlobalContext);
   let data = props.data;
+
   return (
     <Box
       sx={{

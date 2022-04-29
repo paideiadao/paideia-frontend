@@ -222,7 +222,7 @@ const Staking: React.FC<{
               setValue({ ...value, witholdPercentage: e.target.value })
             }
             type="number"
-            label="Withold percentage"
+            label="Withold"
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">

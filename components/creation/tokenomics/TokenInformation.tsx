@@ -100,7 +100,7 @@ const TokenInformation: React.FC<IData<ITokenomics>> = (props) => {
   return (
     <Box>
       <Subheader title="Token information" />
-      <ButtonGroup variant="outlined" sx={{ width: "100%" }}>
+      <ButtonGroup variant="outlined" sx={{ width: "100%", mt: '.5rem' }}>
         <Button
           sx={{
             width: "50%",

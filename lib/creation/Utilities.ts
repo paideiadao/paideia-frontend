@@ -20,7 +20,7 @@ export function bytesToSize(bytes) {
 }
 
 export function balanceToPercentage(total: number, balance: number): number {
-  return total === 0 ? 0 : parseFloat(((balance / total) * 100).toFixed(2));
+  return total === 0 ? 0 : parseFloat(((balance / total) * 100).toFixed(6));
 }
 
 export function percentageToBalance(total: number, percentage: number): number {

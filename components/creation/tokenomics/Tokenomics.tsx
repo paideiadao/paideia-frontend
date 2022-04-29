@@ -28,6 +28,14 @@ const Tokenomics: React.FC = () => {
   let tokenHolders = data.tokenHolders;
   let distributions = data.distributions;
 
+  /*
+    Discuss with nico
+    - All drafts popup / page
+    - indicators on top nav bar for which draft you're using
+    - Auto save feature for user
+
+  */
+
   React.useEffect(() => {
     set({
       ...globalContext.api.data.tokenomics,
@@ -60,7 +68,7 @@ const Tokenomics: React.FC = () => {
         <Box
           sx={{
             position: "sticky",
-            backgroundColor: "primary.main",
+            backgroundColor: data.tokenRemaining < 0 ? "tokenAlert.main" : 'primary.main',
             width: "calc(100vw - 15.4rem)",
             ml: "-21.5%",
             mt: "-2rem",
@@ -75,9 +83,9 @@ const Tokenomics: React.FC = () => {
           }}
         >
           <InfoIcon sx={{ mr: ".5rem" }} />
-          You have a balance of {data.tokenRemaining} (
-          {percentage(data.tokenRemaining / data.tokenAmount, 0, true)})
-          unassigned tokens.
+          {data.tokenRemaining > 0 ? `You have a balance of ${data.tokenRemaining} (
+          ${percentage(data.tokenRemaining / data.tokenAmount, 0, true)})
+          unassigned tokens.` : `You are over your balance of assignable tokens +${-data.tokenRemaining} (+${percentage((-data.tokenRemaining) / data.tokenAmount, 0, true)}) tokens`}
         </Box>
       )}
       <Header
