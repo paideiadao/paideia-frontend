@@ -11,6 +11,7 @@ import TokenDistribution from "./TokenDistribution";
 import { ILiquidityInfo } from "./AdvancedTokenomics/Liquidity";
 import InfoIcon from "@mui/icons-material/Info";
 import { percentage } from "../../../lib/creation/Utilities";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const Tokenomics: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
@@ -68,7 +69,12 @@ const Tokenomics: React.FC = () => {
         <Box
           sx={{
             position: "sticky",
-            backgroundColor: data.tokenRemaining < 0 ? "tokenAlert.main" : 'primary.main',
+            backgroundColor:
+              data.tokenRemaining === 0
+                ? "primary.lightSuccess"
+                : data.tokenRemaining < 0
+                ? "tokenAlert.main"
+                : "primary.main",
             width: "calc(100vw - 15.4rem)",
             ml: "-21.5%",
             mt: "-2rem",
@@ -82,10 +88,22 @@ const Tokenomics: React.FC = () => {
             pb: ".2rem",
           }}
         >
-          <InfoIcon sx={{ mr: ".5rem" }} />
-          {data.tokenRemaining > 0 ? `You have a balance of ${data.tokenRemaining} (
+          {data.tokenRemaining === 0 ? (
+            <CheckCircleIcon sx={{ mr: ".5rem" }} />
+          ) : (
+            <InfoIcon sx={{ mr: ".5rem" }} />
+          )}
+          {data.tokenRemaining === 0
+            ? "Tokenomics correctly distributed."
+            : data.tokenRemaining > 0
+            ? `You have a balance of ${data.tokenRemaining} (
           ${percentage(data.tokenRemaining / data.tokenAmount, 0, true)})
-          unassigned tokens.` : `You are over your balance of assignable tokens +${-data.tokenRemaining} (+${percentage((-data.tokenRemaining) / data.tokenAmount, 0, true)}) tokens`}
+          unassigned tokens.`
+            : `You are over your balance of assignable tokens +${-data.tokenRemaining} (+${percentage(
+                -data.tokenRemaining / data.tokenAmount,
+                0,
+                true
+              )}) tokens`}
         </Box>
       )}
       <Header

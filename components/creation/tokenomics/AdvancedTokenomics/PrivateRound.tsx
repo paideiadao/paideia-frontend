@@ -45,28 +45,44 @@ const PrivateRound: React.FC<{
   close: Function;
   c: number;
 }> = (props) => {
-
   let data = props.data.data;
   let temp: any = data.distributions[props.c];
   let start = new Date();
   let end = new Date();
   end.setDate(end.getDate() + 30);
   const [value, setValue] = React.useState<IPrivateRoundInfo>({
-    distributionName: data.distributions[props.c] === undefined ? `${props.c + 1}. Private Round` : temp.distributionName,
+    distributionName:
+      data.distributions[props.c] === undefined
+        ? `${props.c + 1}. Private Round`
+        : temp.distributionName,
     balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
     percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
     tokenPrice: data.distributions[props.c] === undefined ? 0 : temp.tokenPrice,
-    startDate: data.distributions[props.c] === undefined ? start : temp.startDate,
+    startDate:
+      data.distributions[props.c] === undefined ? start : temp.startDate,
     endDate: data.distributions[props.c] === undefined ? end : temp.endDate,
-    tokenHolders: data.distributions[props.c] === undefined ? [] : temp.tokenHolders,
+    tokenHolders:
+      data.distributions[props.c] === undefined ? [] : temp.tokenHolders,
     vesting: data.distributions[props.c] === undefined ? false : temp.vesting,
-    initialDistribution: data.distributions[props.c] === undefined ? 0 : temp.initialDistribution,
-    emissionStartDate: data.distributions[props.c] === undefined ? new Date() : temp.emissionStartDate,
-    emissionStartDateUnits: data.distributions[props.c] === undefined ? 'weeks' : temp.emissionStartDateUnits,
-    frequency: data.distributions[props.c] === undefined ? 'weekly' : temp.frequency,
-    emissionLength: data.distributions[props.c] === undefined ? 0 : temp.emissionLength,
-    emissionLengthUnits: data.distributions[props.c] === undefined ? 'weeks' : temp.emissionLengthUnits,
-    id: 'Private Round'
+    initialDistribution:
+      data.distributions[props.c] === undefined ? 0 : temp.initialDistribution,
+    emissionStartDate:
+      data.distributions[props.c] === undefined
+        ? new Date()
+        : temp.emissionStartDate,
+    emissionStartDateUnits:
+      data.distributions[props.c] === undefined
+        ? "weeks"
+        : temp.emissionStartDateUnits,
+    frequency:
+      data.distributions[props.c] === undefined ? "weekly" : temp.frequency,
+    emissionLength:
+      data.distributions[props.c] === undefined ? 0 : temp.emissionLength,
+    emissionLengthUnits:
+      data.distributions[props.c] === undefined
+        ? "weeks"
+        : temp.emissionLengthUnits,
+    id: "Private Round",
   });
 
   React.useEffect(() => {

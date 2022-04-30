@@ -6,7 +6,7 @@ export const LightTheme = createTheme({
       main: "#00868F",
     },
     tokenAlert: {
-      main: 'rgba(237, 108, 2, 1)'
+      main: "rgba(237, 108, 2, 1)",
     },
     circleBackground: {
       main: "rgba(0, 134, 143, 0.08)",
@@ -24,7 +24,7 @@ export const LightTheme = createTheme({
       text: "rgba(0, 0, 0, 1)",
       lightText: "rgba(0, 0, 0, 0.6)",
       selectedButton: "rgb(0, 134, 143, 0.1)",
-
+      lightSuccess: "green",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
@@ -100,7 +100,7 @@ export const DarkTheme = createTheme({
       main: "#9FD2DB",
     },
     tokenAlert: {
-      main: 'rgba(255, 167, 38, 1)',
+      main: "rgba(255, 167, 38, 1)",
     },
     circleBackground: {
       main: "rgba(159, 210, 219, 0.08)",
@@ -136,6 +136,7 @@ export const DarkTheme = createTheme({
       text: "rgba(255, 255, 255, 1)",
       lightText: "rgba(255, 255, 255, 0.7)",
       selectedButton: "rgba(2, 136, 209, 0.1)",
+      lightSuccess: "#66BB6A",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
@@ -190,21 +191,21 @@ export const DarkTheme = createTheme({
     MuiCalendarPicker: {
       styleOverrides: {
         root: {
-          backgroundColor: 'rgba(17, 24, 39, 1)',
-          color: 'white'
+          backgroundColor: "rgba(17, 24, 39, 1)",
+          color: "white",
         },
-      }
+      },
     },
     MuiPickersDay: {
       styleOverrides: {
         root: {
-          color: 'white',
-          backgroundColor: 'transparent'
+          color: "white",
+          backgroundColor: "transparent",
         },
         selected: {
-          backgroundColor: '#9FD2DB'
-        }
-      }
+          backgroundColor: "#9FD2DB",
+        },
+      },
     },
     MuiAlert: {
       styleOverrides: {
@@ -220,10 +221,10 @@ export const DarkTheme = createTheme({
     MuiTypography: {
       styleOverrides: {
         caption: {
-          backgroundColor: 'rgba(255, 255, 255, .9)',
-          borderRadius: '.1rem',
-        }
-      }
+          backgroundColor: "rgba(255, 255, 255, .9)",
+          borderRadius: ".1rem",
+        },
+      },
     },
     MuiButton: {
       styleOverrides: {
@@ -238,9 +239,9 @@ export const DarkTheme = createTheme({
     MuiIconButton: {
       styleOverrides: {
         root: {
-          color: 'rgba(255, 255, 255, 0.56)'
-        }
-      }
+          color: "rgba(255, 255, 255, 0.56)",
+        },
+      },
     },
     MuiPaper: {
       styleOverrides: {

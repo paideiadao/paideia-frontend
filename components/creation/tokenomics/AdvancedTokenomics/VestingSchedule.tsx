@@ -92,7 +92,7 @@ const VestingSchedule: React.FC<{
               ),
             }}
           />
-          <FormControl sx={{ width: "20%", ml: '.5rem' }}>
+          <FormControl sx={{ width: "20%", ml: ".5rem" }}>
             <InputLabel htmlFor={`vesting-frequency-label-${props.id}`} shrink>
               Frequency
             </InputLabel>
@@ -112,34 +112,55 @@ const VestingSchedule: React.FC<{
             >
               <MenuItem value="hourly">Hourly</MenuItem>
               <MenuItem value="daily">Daily</MenuItem>
-              <MenuItem value="weekly" disabled={['days'].indexOf(value.emissionLengthUnits) > -1}>Weekly</MenuItem>
-              <MenuItem value="monthly"disabled={['days', 'weeks'].indexOf(value.emissionLengthUnits) > -1}>Monthly</MenuItem>
-              <MenuItem value="yearly" disabled={['days', 'weeks', 'months'].indexOf(value.emissionLengthUnits) > -1}>Yearly</MenuItem>
+              <MenuItem
+                value="weekly"
+                disabled={["days"].indexOf(value.emissionLengthUnits) > -1}
+              >
+                Weekly
+              </MenuItem>
+              <MenuItem
+                value="monthly"
+                disabled={
+                  ["days", "weeks"].indexOf(value.emissionLengthUnits) > -1
+                }
+              >
+                Monthly
+              </MenuItem>
+              <MenuItem
+                value="yearly"
+                disabled={
+                  ["days", "weeks", "months"].indexOf(
+                    value.emissionLengthUnits
+                  ) > -1
+                }
+              >
+                Yearly
+              </MenuItem>
             </Select>
           </FormControl>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DatePicker
-            views={["day", 'month', 'year']}
-            label="Emission Start Date"
-            value={value.emissionStartDate}
-            InputAdornmentProps={{ position: "start", variant: "standard" }}
-            onChange={(newValue) => {
-              setValue({ ...value, emissionStartDate: newValue });
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                helperText={null}
-                sx={{
-                  width: "30%",
-                  ml: ".5rem",
-                  svg: { color: "primary.main" },
-                }}
-              />
-            )}
-          />
-        </LocalizationProvider>
-          
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              views={["day", "month", "year"]}
+              label="Emission Start Date"
+              value={value.emissionStartDate}
+              InputAdornmentProps={{ position: "start", variant: "standard" }}
+              onChange={(newValue) => {
+                setValue({ ...value, emissionStartDate: newValue });
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  helperText={null}
+                  sx={{
+                    width: "30%",
+                    ml: ".5rem",
+                    svg: { color: "primary.main" },
+                  }}
+                />
+              )}
+            />
+          </LocalizationProvider>
+
           <FormControl
             sx={{ m: 1, width: "40%" }}
             variant="outlined"
@@ -180,7 +201,11 @@ const VestingSchedule: React.FC<{
                       id={`vesting-emission-length-units-${props.id}`}
                       variant="outlined"
                       value={value.emissionLengthUnits}
-                      sx={{ height: "120%", color: "primary.text", fontSize: '.9rem' }}
+                      sx={{
+                        height: "120%",
+                        color: "primary.text",
+                        fontSize: ".9rem",
+                      }}
                       onChange={(e: any) =>
                         setValue({
                           ...value,
@@ -192,7 +217,6 @@ const VestingSchedule: React.FC<{
                       <MenuItem value="weeks">Weeks</MenuItem>
                       <MenuItem value="months">Months</MenuItem>
                       <MenuItem value="years">Years</MenuItem>
-
                     </Select>
                   </FormControl>
                 </Box>

@@ -20,14 +20,8 @@ const PercentageInput: React.FC<{
         let percentage = parseFloat(e.target.value);
         percentage = isNaN(percentage) ? 0 : percentage;
         let balance = percentageToBalance(props.total, percentage / 100);
-        console.log(percentage, balance, 'here.')
-        if (balance === 0) {
-          return;
-        }
-        if (
-          balance >= props.total
-        ) {
-          balance = props.total;
+        if (balance < 0) {
+          balance = 0;
         }
         temp.percentage = percentage;
         temp.balance = balance;

@@ -30,23 +30,39 @@ const Treasury: React.FC<{
   let data = props.data.data;
   let temp: any = data.distributions[props.c];
   const [value, setValue] = React.useState<ITreasuryInfo>({
-    distributionName: data.distributions[props.c] === undefined ? `${props.c + 1}. Treasury` : temp.distributionName,
+    distributionName:
+      data.distributions[props.c] === undefined
+        ? `${props.c + 1}. Treasury`
+        : temp.distributionName,
     balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
     percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
     vesting: data.distributions[props.c] === undefined ? false : temp.vesting,
-    initialDistribution: data.distributions[props.c] === undefined ? 0 : temp.initialDistribution,
-    emissionStartDate: data.distributions[props.c] === undefined ? new Date() : temp.emissionStartDate,
-    emissionStartDateUnits: data.distributions[props.c] === undefined ? 'weeks' : temp.emissionStartDateUnits,
-    frequency: data.distributions[props.c] === undefined ? 'weekly' : temp.frequency,
-    emissionLength: data.distributions[props.c] === undefined ? 0 : temp.emissionLength,
-    emissionLengthUnits: data.distributions[props.c] === undefined ? 'weeks' : temp.emissionLengthUnits,
-    id: 'Treasury'
+    initialDistribution:
+      data.distributions[props.c] === undefined ? 0 : temp.initialDistribution,
+    emissionStartDate:
+      data.distributions[props.c] === undefined
+        ? new Date()
+        : temp.emissionStartDate,
+    emissionStartDateUnits:
+      data.distributions[props.c] === undefined
+        ? "weeks"
+        : temp.emissionStartDateUnits,
+    frequency:
+      data.distributions[props.c] === undefined ? "weekly" : temp.frequency,
+    emissionLength:
+      data.distributions[props.c] === undefined ? 0 : temp.emissionLength,
+    emissionLengthUnits:
+      data.distributions[props.c] === undefined
+        ? "weeks"
+        : temp.emissionLengthUnits,
+    id: "Treasury",
   });
 
   React.useEffect(() => {
     /// add data to global context...
     let temp = [...data.distributions];
     temp[props.c] = { ...value };
+    console.log("temp", temp);
     props.data.setData({
       ...data,
       distributions: temp,

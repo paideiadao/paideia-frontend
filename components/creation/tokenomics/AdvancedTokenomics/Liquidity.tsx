@@ -33,7 +33,7 @@ export interface ILiquidityInfo {
     percentage: number;
     balance: number;
   };
-  id: string
+  id: string;
 }
 
 const Liquidity: React.FC<{
@@ -44,20 +44,30 @@ const Liquidity: React.FC<{
   let data = props.data.data;
   let start = new Date();
   let temp: any = data.distributions[props.c];
-  
+
   const [value, setValue] = React.useState<ILiquidityInfo>({
-    distributionName: data.distributions[props.c] === undefined ? `${props.c + 1}. Liquidity` : temp.distributionName,
+    distributionName:
+      data.distributions[props.c] === undefined
+        ? `${props.c + 1}. Liquidity`
+        : temp.distributionName,
     balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
     percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
     tokenPrice: data.distributions[props.c] === undefined ? 0 : temp.tokenPrice,
-    tradingPair: data.distributions[props.c] === undefined ? `${data.tokenTicker.toLowerCase()}/erg` : temp.tradingPair,
-    dex: data.distributions[props.c] === undefined ? 'ergodex' : temp.dex,
-    liquidityStartDate: data.distributions[props.c] === undefined ? start : temp.liquidityStartDate,
+    tradingPair:
+      data.distributions[props.c] === undefined
+        ? `${data.tokenTicker.toLowerCase()}/erg`
+        : temp.tradingPair,
+    dex: data.distributions[props.c] === undefined ? "ergodex" : temp.dex,
+    liquidityStartDate:
+      data.distributions[props.c] === undefined
+        ? start
+        : temp.liquidityStartDate,
     contingency: {
-      percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
+      percentage:
+        data.distributions[props.c] === undefined ? 0 : temp.percentage,
       balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
     },
-    id: 'Liquidity'
+    id: "Liquidity",
   });
 
   React.useEffect(() => {

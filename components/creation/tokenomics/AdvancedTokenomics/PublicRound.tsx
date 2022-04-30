@@ -56,26 +56,56 @@ const PublicRound: React.FC<{
   end.setDate(end.getDate() + 30);
   let temp: any = data.distributions[props.c];
   const [value, setValue] = React.useState<IPublicRoundInfo>({
-    distributionName: data.distributions[props.c] === undefined ? `${props.c + 1}. Public Round` : temp.distributionName,
+    distributionName:
+      data.distributions[props.c] === undefined
+        ? `${props.c + 1}. Public Round`
+        : temp.distributionName,
     balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
     percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
-    tokenPrice: data.distributions[props.c] === undefined ? undefined : temp.tokenPrice,
-    maxPerWallet: data.distributions[props.c] === undefined ? undefined : temp.maxPerWallet,
-    signUpStartDate: data.distributions[props.c] === undefined ? start : temp.signUpStartDate,
-    signUpEndDate: data.distributions[props.c] === undefined ? end : temp.signUpEndDate,
-    contributionStartDate: data.distributions[props.c] === undefined ? start : temp.contributionStartDate,
-    contributionEndDate: data.distributions[props.c] === undefined ? end : temp.contributionEndDate,
-    waitlistStartDate: data.distributions[props.c] === undefined ? start : temp.waitlistStartDate,
-    waitlistEndDate: data.distributions[props.c] === undefined ? end : temp.waitlistEndDate,
-    tokenHolders: data.distributions[props.c] === undefined ? [] : temp.tokenHolders,
+    tokenPrice:
+      data.distributions[props.c] === undefined ? undefined : temp.tokenPrice,
+    maxPerWallet:
+      data.distributions[props.c] === undefined ? undefined : temp.maxPerWallet,
+    signUpStartDate:
+      data.distributions[props.c] === undefined ? start : temp.signUpStartDate,
+    signUpEndDate:
+      data.distributions[props.c] === undefined ? end : temp.signUpEndDate,
+    contributionStartDate:
+      data.distributions[props.c] === undefined
+        ? start
+        : temp.contributionStartDate,
+    contributionEndDate:
+      data.distributions[props.c] === undefined
+        ? end
+        : temp.contributionEndDate,
+    waitlistStartDate:
+      data.distributions[props.c] === undefined
+        ? start
+        : temp.waitlistStartDate,
+    waitlistEndDate:
+      data.distributions[props.c] === undefined ? end : temp.waitlistEndDate,
+    tokenHolders:
+      data.distributions[props.c] === undefined ? [] : temp.tokenHolders,
     vesting: data.distributions[props.c] === undefined ? false : temp.vesting,
-    initialDistribution: data.distributions[props.c] === undefined ? 0 : temp.initialDistribution,
-    emissionStartDate: data.distributions[props.c] === undefined ? new Date() : temp.emissionStartDate,
-    emissionStartDateUnits: data.distributions[props.c] === undefined ? 'weeks' : temp.emissionStartDateUnits,
-    frequency: data.distributions[props.c] === undefined ? 'weekly' : temp.frequency,
-    emissionLength: data.distributions[props.c] === undefined ? 0 : temp.emissionLength,
-    emissionLengthUnits: data.distributions[props.c] === undefined ? 'weeks' : temp.emissionLengthUnits,
-    id: 'Public Round',
+    initialDistribution:
+      data.distributions[props.c] === undefined ? 0 : temp.initialDistribution,
+    emissionStartDate:
+      data.distributions[props.c] === undefined
+        ? new Date()
+        : temp.emissionStartDate,
+    emissionStartDateUnits:
+      data.distributions[props.c] === undefined
+        ? "weeks"
+        : temp.emissionStartDateUnits,
+    frequency:
+      data.distributions[props.c] === undefined ? "weekly" : temp.frequency,
+    emissionLength:
+      data.distributions[props.c] === undefined ? 0 : temp.emissionLength,
+    emissionLengthUnits:
+      data.distributions[props.c] === undefined
+        ? "weeks"
+        : temp.emissionLengthUnits,
+    id: "Public Round",
   });
 
   React.useEffect(() => {

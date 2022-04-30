@@ -16,4 +16,3 @@ export interface IData<T> {
 export interface IObj<TValue> {
   [id: string]: TValue;
 }
-

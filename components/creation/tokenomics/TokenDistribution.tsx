@@ -9,10 +9,10 @@ import PieChart from "./Charts/PieChart";
 const TokenDistribution: React.FC<IData<ITokenomics>> = (props) => {
   const [chartView, setChartView] = React.useState<string>("pie");
   let chartLookup: IObj<JSX.Element> = {
-    'pie':  <PieChart {...props.data}/>,
-    'table': <Box>Table Here...</Box>,
-    'emission': <Emissions {...props.data}/>
-  }
+    pie: <PieChart {...props.data} />,
+    table: <Box>Table Here...</Box>,
+    emission: <Emissions {...props.data} />,
+  };
   return (
     <Box sx={{ mt: "1rem", mb: "1rem" }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -55,9 +55,7 @@ const TokenDistribution: React.FC<IData<ITokenomics>> = (props) => {
           </ButtonGroup>
         </Box>
       </Box>
-      <Box sx={{mt: '1rem', height: '25rem'}}>
-          {chartLookup[chartView]}
-      </Box>     
+      <Box sx={{ mt: "1rem", height: "25rem" }}>{chartLookup[chartView]}</Box>
     </Box>
   );
 };

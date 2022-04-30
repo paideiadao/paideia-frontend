@@ -24,7 +24,7 @@ import Alert from "@mui/material/Alert";
 import { currencyFormatter } from "../../../utilities/currency";
 import LabeledSwitch from "../../utilities/LabeledSwitch";
 import dateFormat from "dateformat";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 
 export interface IAirdropInfo {
   distributionName: string;
@@ -43,8 +43,8 @@ export interface IAirdropInfo {
 }
 
 interface IValidatedField {
-  value: string,
-  number: number
+  value: string;
+  number: number;
 }
 
 const Airdrop: React.FC<{
@@ -58,25 +58,69 @@ const Airdrop: React.FC<{
   end.setDate(end.getDate() + 30);
   let temp: any = data.distributions[props.c];
   const [value, setValue] = React.useState<IAirdropInfo>({
-    distributionName: data.distributions[props.c] === undefined ? `${props.c + 1}. Airdrop` : temp.distributionName,
+    distributionName:
+      data.distributions[props.c] === undefined
+        ? `${props.c + 1}. Airdrop`
+        : temp.distributionName,
     balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
     percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
-    distributionType: data.distributions[props.c] === undefined ? 'manual' : temp.distributionType,
-    airdropDate: data.distributions[props.c] === undefined ? start : temp.airdropDate,
-    whitelistStartDate: data.distributions[props.c] === undefined ? start : temp.whitelistStartDate,
-    whitelistEndDate: data.distributions[props.c] === undefined ? end : temp.whitelistEndDate,
-    tokenHolders: data.distributions[props.c] === undefined ? [] : temp.tokenHolders,
-    manualDataValidation: data.distributions[props.c] === undefined ? false : temp.manualDataValidation,
-    whitelistInstructions: data.distributions[props.c] === undefined ? '' : temp.whitelistInstructions,
-    validatedFields: data.distributions[props.c] === undefined ? [] : temp.validatedFields,
+    distributionType:
+      data.distributions[props.c] === undefined
+        ? "manual"
+        : temp.distributionType,
+    airdropDate:
+      data.distributions[props.c] === undefined ? start : temp.airdropDate,
+    whitelistStartDate:
+      data.distributions[props.c] === undefined
+        ? start
+        : temp.whitelistStartDate,
+    whitelistEndDate:
+      data.distributions[props.c] === undefined ? end : temp.whitelistEndDate,
+    tokenHolders:
+      data.distributions[props.c] === undefined ? [] : temp.tokenHolders,
+    manualDataValidation:
+      data.distributions[props.c] === undefined
+        ? false
+        : temp.manualDataValidation,
+    whitelistInstructions:
+      data.distributions[props.c] === undefined
+        ? ""
+        : temp.whitelistInstructions,
+    validatedFields:
+      data.distributions[props.c] === undefined ? [] : temp.validatedFields,
     whitelistedAddress: {
-      alias: data.distributions[props.c] === undefined ? '' : temp.whitelistedAddress === undefined ? '' : temp.whitelistedAddress.alias,
-      address: data.distributions[props.c] === undefined ? '' : temp.whitelistedAddress === undefined ? '' :  temp.whitelistedAddress.address,
-      img: data.distributions[props.c] === undefined ? '' : temp.whitelistedAddress === undefined ? '' :  temp.whitelistedAddress.img,
-      balance: data.distributions[props.c] === undefined ? 0 : temp.whitelistedAddress === undefined ? '' :  temp.whitelistedAddress.balance,
-      percentage: data.distributions[props.c] === undefined ? 0 : temp.whitelistedAddress === undefined ? '' :  temp.whitelistedAddress.percentage
+      alias:
+        data.distributions[props.c] === undefined
+          ? ""
+          : temp.whitelistedAddress === undefined
+          ? ""
+          : temp.whitelistedAddress.alias,
+      address:
+        data.distributions[props.c] === undefined
+          ? ""
+          : temp.whitelistedAddress === undefined
+          ? ""
+          : temp.whitelistedAddress.address,
+      img:
+        data.distributions[props.c] === undefined
+          ? ""
+          : temp.whitelistedAddress === undefined
+          ? ""
+          : temp.whitelistedAddress.img,
+      balance:
+        data.distributions[props.c] === undefined
+          ? 0
+          : temp.whitelistedAddress === undefined
+          ? ""
+          : temp.whitelistedAddress.balance,
+      percentage:
+        data.distributions[props.c] === undefined
+          ? 0
+          : temp.whitelistedAddress === undefined
+          ? ""
+          : temp.whitelistedAddress.percentage,
     },
-    id: 'Airdrop'
+    id: "Airdrop",
   });
 
   React.useEffect(() => {
@@ -211,16 +255,33 @@ const Airdrop: React.FC<{
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
               showToolbar
-              ToolbarComponent={(props) => <Box sx={{pt: '.8rem', pl: '1.2rem', pr: '1.2rem', pb: '.5rem', backgroundColor: 'backgroundColor.main', borderBottom: '1px solid', borderBottomColor: 'divider.main'}}>
-                  <CapsInfo title='Select Date'/>
-                  <Box sx={{color: 'primary.text', display: 'flex', mt: '-.6rem'}}>
-                    {dateFormat(value.airdropDate, 'ddd, mmm d')}
-                    <Box sx={{ml: 'auto'}}>
-                      <EditIcon color='primary'/>
+              ToolbarComponent={(props) => (
+                <Box
+                  sx={{
+                    pt: ".8rem",
+                    pl: "1.2rem",
+                    pr: "1.2rem",
+                    pb: ".5rem",
+                    backgroundColor: "backgroundColor.main",
+                    borderBottom: "1px solid",
+                    borderBottomColor: "divider.main",
+                  }}
+                >
+                  <CapsInfo title="Select Date" />
+                  <Box
+                    sx={{
+                      color: "primary.text",
+                      display: "flex",
+                      mt: "-.6rem",
+                    }}
+                  >
+                    {dateFormat(value.airdropDate, "ddd, mmm d")}
+                    <Box sx={{ ml: "auto" }}>
+                      <EditIcon color="primary" />
                     </Box>
+                  </Box>
                 </Box>
-                
-              </Box>}
+              )}
               label="Airdrop date"
               value={value.airdropDate}
               InputAdornmentProps={{ position: "start", variant: "standard" }}
@@ -241,7 +302,7 @@ const Airdrop: React.FC<{
         {value.distributionType === "whitelist" && (
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
-              views={["day", 'month', 'year']}
+              views={["day", "month", "year"]}
               label="Sign up start date"
               value={value.whitelistStartDate}
               InputAdornmentProps={{ position: "start", variant: "standard" }}
@@ -311,31 +372,43 @@ const Airdrop: React.FC<{
           {value.manualDataValidation === true && (
             <Box sx={{ width: "100%", pb: "1rem" }}>
               <LearnMore title="Fields that will be validated" />
-              <Box sx={{width: '100%'}}>
+              <Box sx={{ width: "100%" }}>
                 {value.validatedFields.map((i: IValidatedField, c: number) => {
-                  return <Box sx={{width: '100%', display: 'flex', alignItems: 'center'}}>
-                    <TextField
-                      label={`Input name (${i.number + 1})`}
-                      value={i.value}
-                      sx={{width: '100%', mt: '.5rem', mb: '.5rem'}}
-                      onChange={(e: any) => {
-                        let temp = [...value.validatedFields]
-                        temp[c].value = e.target.value;
-                        setValue({...value, validatedFields: temp})
+                  return (
+                    <Box
+                      sx={{
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center",
                       }}
-                      InputProps={{
-                        endAdornment: <InputAdornment position='end'>
-                          <IconButton onClick={() => {
-                            let temp = [...value.validatedFields]
-                            temp.splice(c, 1)
-                            setValue({...value, validatedFields: temp})
-                          }}>
-                            <DeleteIcon color='error'/>
-                          </IconButton>
-                        </InputAdornment>
-                      }}
-                    />
-                  </Box>
+                    >
+                      <TextField
+                        label={`Input name (${i.number + 1})`}
+                        value={i.value}
+                        sx={{ width: "100%", mt: ".5rem", mb: ".5rem" }}
+                        onChange={(e: any) => {
+                          let temp = [...value.validatedFields];
+                          temp[c].value = e.target.value;
+                          setValue({ ...value, validatedFields: temp });
+                        }}
+                        InputProps={{
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <IconButton
+                                onClick={() => {
+                                  let temp = [...value.validatedFields];
+                                  temp.splice(c, 1);
+                                  setValue({ ...value, validatedFields: temp });
+                                }}
+                              >
+                                <DeleteIcon color="error" />
+                              </IconButton>
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
+                    </Box>
+                  );
                 })}
               </Box>
               <Box
@@ -343,29 +416,35 @@ const Airdrop: React.FC<{
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  mb: '1rem', mt: '.5rem'
+                  mb: "1rem",
+                  mt: ".5rem",
                 }}
               >
-                <Button variant="text" onClick={() => {
-                  let temp = [...value.validatedFields]
-                  temp.push({
-                    value: '', 
-                    number: temp.length
-                  })
-                  setValue({...value, validatedFields: temp})
-                }}>
+                <Button
+                  variant="text"
+                  onClick={() => {
+                    let temp = [...value.validatedFields];
+                    temp.push({
+                      value: "",
+                      number: temp.length,
+                    });
+                    setValue({ ...value, validatedFields: temp });
+                  }}
+                >
                   Add Input <AddIcon />
                 </Button>
               </Box>
-              <Box sx={{width: '100%'}}>
+              <Box sx={{ width: "100%" }}>
                 <WalletSelector
-                    id="tokenomics"
-                    key='manual-whitelist-airdrop'
-                    data={value.whitelistedAddress}
-                    mt="0"
-                    number={1}
-                    set={(j: any) => setValue({...value, whitelistedAddress: j})}
-                  />
+                  id="tokenomics"
+                  key="manual-whitelist-airdrop"
+                  data={value.whitelistedAddress}
+                  mt="0"
+                  number={1}
+                  set={(j: any) =>
+                    setValue({ ...value, whitelistedAddress: j })
+                  }
+                />
               </Box>
             </Box>
           )}
