@@ -110,14 +110,10 @@ const TokenomicSummary: React.FC<IData<ITokenomics>> = (props) => {
       {distributions.map((i: any, c: number) => (
         <AddDistribution
           data={{ ...props }}
-          close={() => {
+          close={(tc: number) => {
             let temp = [...distributions];
-            temp.splice(c, 1);
+            temp.splice(tc, 1);
             setDistributions(temp);
-            props.setData({
-              ...data,
-              distributions: temp,
-            });
           }}
           c={c}
         />

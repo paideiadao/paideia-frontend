@@ -53,6 +53,8 @@ const AddDistribution: React.FC<{
   const [distributions, setDistributions] = React.useState<any[]>(
     props.data.data.distributions
   );
+
+  const [lol, setLol] = React.useState<boolean>(true);
   const distributionTypes = [
     { label: "Treasury" },
     { label: "Team & Partners" },
@@ -62,6 +64,13 @@ const AddDistribution: React.FC<{
     { label: "Liquidity" },
     { label: "Staking" },
   ];
+
+  React.useEffect(() => {
+    console.log('why', props.data.data.distributions, props.c)
+    
+    // setLol(!lol)
+    //setDisplay(props.data.data.distributions[props.c + 1] === undefined ? undefined : props.data.data.distributions[props.c + 1].id)
+  }, [props.data.data.distributions])
 
   return (
     <Box
@@ -89,7 +98,7 @@ const AddDistribution: React.FC<{
               cursor: "pointer",
             }}
             color="error"
-            onClick={() => props.close()}
+            onClick={() => props.close(props.c)}
           />
           <Box
             sx={{

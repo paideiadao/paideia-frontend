@@ -31,6 +31,7 @@ export interface IStakingInfo {
   endDate: Date;
   stakingFee: boolean;
   witholdPercentage: number;
+  id: string;
 }
 
 const Staking: React.FC<{
@@ -60,6 +61,7 @@ const Staking: React.FC<{
       data.distributions[props.c] === undefined ? false : temp.stakingFee,
     witholdPercentage:
       data.distributions[props.c] === undefined ? 0 : temp.witholdPercentage,
+    id: 'Staking'
   });
 
   React.useEffect(() => {
