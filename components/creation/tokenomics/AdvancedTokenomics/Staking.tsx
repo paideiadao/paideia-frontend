@@ -61,7 +61,7 @@ const Staking: React.FC<{
       data.distributions[props.c] === undefined ? false : temp.stakingFee,
     witholdPercentage:
       data.distributions[props.c] === undefined ? 0 : temp.witholdPercentage,
-    id: 'Staking'
+    id: "Staking",
   });
 
   React.useEffect(() => {

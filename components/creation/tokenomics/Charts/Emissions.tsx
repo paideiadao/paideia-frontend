@@ -270,7 +270,7 @@ let frequencyConversion: IObj<Function> = {
         return 0;
       }
       case "weeks": {
-        return 1 * length;
+        return 1 * length * 30;
       }
       case "months": {
         return 4 * length;
@@ -319,7 +319,7 @@ const getLongestEmission = (data: any) => {
     frequencyConversion[i.frequency](i.emissionLength, i.emissionLengthUnits)
   );
   console.log(temp, "le");
-    temp = temp.sort((a, b) => a - b)
+  temp = temp.sort((a, b) => a - b);
   let max = Math.max(...temp);
 
   return temp[temp.indexOf(max)];
@@ -329,56 +329,107 @@ const getChartData = (data: any) => {
   // let lowestFrequency = getLowestFrequency(data);
   // console.log(lowestFrequency)
   console.log("data", data);
-  let longestEmission = getLongestEmission(data);
-  console.log(longestEmission);
-  let colorLookup = ["red", "blue", "green", "orange", 'brown'];
-    let lastDay = 0;
-  return data.map((i: any, c: number) => {
-    let initial = (i.initialDistribution / 100) * i.balance;
-    let denom = i.frequency === undefined ? i.balance : frequencyConversion[i.frequency](
-      i.emissionLength,
-      i.emissionLengthUnits
-    );
-    return {
-      id: i.distributionName,
-      color: colorLookup[c],
-      label: i.distributionName,
-      data: [...Array.from(Array(longestEmission + 1).keys())].map((j: any, c: number) => {
-        let temp = new Date(i.emissionStartDate);
-        let mod = frequencyConversion[i.frequency](i.emissionLength, i.emissionLengthUnits)
-        console.log(j % Math.floor(mod))
-        if (j % Math.floor(mod) === 0 || mod == longestEmission) {
-            lastDay = j
-        }
-        
-        let conversion = denom === 0 ? 0 : (lastDay % denom) / denom;
-        console.log(conversion);
-        temp.setDate(temp.getDate() + j);
-        if (c === longestEmission) {
-            lastDay = 0
-        }
-        return {
-          x: new Date(temp),
-          y: !i.vesting ? i.balance : 
-            conversion > 1
-              ? i.balance
-              : initial + conversion * (i.balance - initial), //((conversion * (i.balance - initialAmt)) + initialAmt)
-        };
-      }),
-    };
-  });
+  let longestEmission = getLongestEmission(data.filter((i: any) => i.vesting));
+  console.log("longestEmission", longestEmission);
+  let colorLookup = ["red", "blue", "green", "orange", "brown"];
+  let lastDay = 0;
+  let vestingData = data
+    .filter((i: any) => i.vesting)
+    .map((i: any, c: number) => {
+      let initial = (i.initialDistribution / 100) * i.balance;
+      let denom =
+        i.frequency === undefined
+          ? i.balance
+          : frequencyConversion[i.frequency](
+              i.emissionLength,
+              i.emissionLengthUnits
+            );
+      return {
+        id: i.distributionName,
+        color: colorLookup[c],
+        label: i.distributionName,
+        data:
+          longestEmission === undefined
+            ? []
+            : [...Array.from(Array(longestEmission + 1).keys())].map(
+                (j: any, c: number) => {
+                  let temp = new Date(i.emissionStartDate);
+                  let mod = frequencyConversion[i.frequency](
+                    i.emissionLength,
+                    i.emissionLengthUnits
+                  );
+                  if (j % Math.floor(mod) === 0 || mod == longestEmission) {
+                    lastDay = j;
+                  }
+
+                  let conversion =
+                    denom === 0
+                      ? 0
+                      : (lastDay === denom ? lastDay : lastDay % denom) / denom;
+
+                  temp.setDate(temp.getDate() + j);
+                  if (c === longestEmission) {
+                    lastDay = 0;
+                  }
+                  return {
+                    x: new Date(temp),
+                    y: !i.vesting
+                      ? i.balance
+                      : conversion > 1
+                      ? i.balance
+                      : initial + conversion * (i.balance - initial), //((conversion * (i.balance - initialAmt)) + initialAmt)
+                  };
+                }
+              ),
+      };
+    });
+
+  let nonVestingData =
+    data.length === 0
+      ? []
+      : data
+          .filter((i: any) => i.vesting === undefined || !i.vesting)
+          .map((i: any, c: number) => {
+            let longestPeriod = vestingData.length === 0 ? 10 : longestEmission;
+
+            return {
+              id: i.distributionName,
+              color: colorLookup[c + vestingData.length],
+              label: i.distributionName,
+              data: [...Array.from(Array(longestPeriod + 1).keys())].map(
+                (j: any, c: number) => {
+                  let temp = new Date();
+                  temp.setDate(temp.getDate() + j);
+                  return {
+                    x: new Date(temp),
+                    y: i.balance,
+                  };
+                }
+              ),
+            };
+          });
+
+  console.log("nonVestingData", nonVestingData);
+
+  return nonVestingData.concat(vestingData);
 };
 
 const Emissions: React.FC<ITokenomics> = (props) => {
   let globalContext = React.useContext<IGlobalContext>(GlobalContext);
   let data = globalContext.api.data.tokenomics.distributions
     .filter((i: any) => i !== undefined)
-    .sort((a: any, b: any) => a.vesting ? 1 : -1)
-    // sort by longest vesting data in the getChartData function
-  console.log(data);
+    .sort((a: any, b: any) => (a.vesting ? 1 : -1));
+  // sort by longest vesting data in the getChartData function
 
   let chartData = getChartData(data);
   console.log(chartData, " ya digggggg");
+
+  let xScaleNumber =
+    chartData.length === 0
+      ? 1
+      : chartData[0].data.length / 30 < 1
+      ? 1
+      : (chartData[0].data.length / 30).toFixed(0);
   return (
     <ResponsiveLine
       colors={(d: any) => d.color}
@@ -415,7 +466,7 @@ const Emissions: React.FC<ITokenomics> = (props) => {
       }}
       axisBottom={{
         format: "%b %y",
-        tickValues: "every 1 month",
+        tickValues: `every ${xScaleNumber === 0 ? 1 : xScaleNumber} month`,
         legend: "Date",
         tickSize: 5,
         tickPadding: 5,

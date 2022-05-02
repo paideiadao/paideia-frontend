@@ -199,11 +199,9 @@ export const DarkTheme = createTheme({
     MuiPickersDay: {
       styleOverrides: {
         root: {
-          color: "white",
-          backgroundColor: "transparent",
-        },
-        selected: {
-          backgroundColor: "#9FD2DB",
+          "&.Mui-selected": {
+            backgroundColor: "#9FD2DB",
+          },
         },
       },
     },

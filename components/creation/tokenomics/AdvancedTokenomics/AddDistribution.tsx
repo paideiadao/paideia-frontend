@@ -44,17 +44,12 @@ const AddDistribution: React.FC<{
   data: IData<ITokenomics>;
   close: Function;
   c: number;
+  distribution: any;
 }> = (props) => {
-  const [display, setDisplay] = React.useState<string>(
-    props.data.data.distributions[props.c] === undefined
-      ? undefined
-      : props.data.data.distributions[props.c].id
-  );
-  const [distributions, setDistributions] = React.useState<any[]>(
-    props.data.data.distributions
+  const [distribution, setDistribution] = React.useState<any>(
+    props.distribution
   );
 
-  const [lol, setLol] = React.useState<boolean>(true);
   const distributionTypes = [
     { label: "Treasury" },
     { label: "Team & Partners" },
@@ -66,11 +61,8 @@ const AddDistribution: React.FC<{
   ];
 
   React.useEffect(() => {
-    console.log('why', props.data.data.distributions, props.c)
-    
-    // setLol(!lol)
-    //setDisplay(props.data.data.distributions[props.c + 1] === undefined ? undefined : props.data.data.distributions[props.c + 1].id)
-  }, [props.data.data.distributions])
+    setDistribution(props.distribution)
+  }, [props.distribution])
 
   return (
     <Box
@@ -88,7 +80,7 @@ const AddDistribution: React.FC<{
         justifyContent: "center",
       }}
     >
-      {display === undefined && distributions[props.c] === undefined ? (
+      {distribution === undefined ? (
         <>
           <CancelIcon
             sx={{
@@ -133,7 +125,7 @@ const AddDistribution: React.FC<{
                     endAdornment: (
                       <InputAdornment
                         position="end"
-                        onClick={() => setDisplay(i.label)}
+                        onClick={() => setDistribution({...distribution, id: i.label})}
                       >
                         <NavigateNextIcon color="primary" />
                       </InputAdornment>
@@ -145,7 +137,7 @@ const AddDistribution: React.FC<{
           </Box>
         </>
       ) : (
-        renderDisplay(display, props)
+        renderDisplay(distribution.id, props)
       )}
     </Box>
   );
