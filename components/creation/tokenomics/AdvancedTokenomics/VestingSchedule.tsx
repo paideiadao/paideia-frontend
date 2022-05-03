@@ -17,7 +17,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 export interface IVestingSchedule {
   vesting: boolean;
   initialDistribution: number;
-  emissionStartDate: Date;
+  emissionStartDate: number;
   emissionStartDateUnits: string;
   frequency: string;
   emissionLength: number;
@@ -32,7 +32,7 @@ const VestingSchedule: React.FC<{
   const [value, setValue] = React.useState<IVestingSchedule>({
     vesting: props.value,
     initialDistribution: 0,
-    emissionStartDate: new Date(),
+    emissionStartDate: 0,
     emissionStartDateUnits: "weeks",
     frequency: "weekly",
     emissionLength: 0,
@@ -110,7 +110,6 @@ const VestingSchedule: React.FC<{
                 })
               }
             >
-              <MenuItem value="hourly">Hourly</MenuItem>
               <MenuItem value="daily">Daily</MenuItem>
               <MenuItem
                 value="weekly"
@@ -138,28 +137,68 @@ const VestingSchedule: React.FC<{
               </MenuItem>
             </Select>
           </FormControl>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              views={["day", "month", "year"]}
+          <FormControl
+            sx={{ m: 1, width: "33%" }}
+            variant="outlined"
+            hiddenLabel
+          >
+            <InputLabel
+              htmlFor={`vesting-emission-start-date-${props.id}`}
+              shrink
+            >
+              Emission Start Date
+            </InputLabel>
+            <OutlinedInput
+              notched
+              id={`vesting-emission-start-date-${props.id}`}
+              type="number"
+              value={
+                value.emissionStartDate === 0 ? "" : value.emissionStartDate
+              }
+              onChange={(e: any) =>
+                setValue({
+                  ...value,
+                  emissionStartDate: parseInt(e.target.value),
+                })
+              }
               label="Emission Start Date"
-              value={value.emissionStartDate}
-              InputAdornmentProps={{ position: "start", variant: "standard" }}
-              onChange={(newValue) => {
-                setValue({ ...value, emissionStartDate: newValue });
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  helperText={null}
+              endAdornment={
+                <Box
                   sx={{
-                    width: "30%",
+                    height: "100%",
+                    width: "60%",
+                    backgroundColor: "backgroundColor.main",
+                    color: "primary.text",
+                    lineHeight: "350%",
+                    textAlign: "center",
+                    borderRadius: "0 .3rem .3rem 0",
+                    mr: "-.8rem",
                     ml: ".5rem",
-                    svg: { color: "primary.main" },
+                    display: "flex",
                   }}
-                />
-              )}
+                >
+                  <FormControl fullWidth>
+                    <Select
+                      id={`vesting-emission-start-date-units-${props.id}`}
+                      variant="outlined"
+                      value={value.emissionStartDateUnits}
+                      sx={{ height: "100%", color: "primary.text" }}
+                      onChange={(e: any) =>
+                        setValue({
+                          ...value,
+                          emissionStartDateUnits: e.target.value,
+                        })
+                      }
+                    >
+                      <MenuItem value="days">Days</MenuItem>
+                      <MenuItem value="weeks">Weeks</MenuItem>
+                      <MenuItem value="months">Months</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+              }
             />
-          </LocalizationProvider>
+          </FormControl>
 
           <FormControl
             sx={{ m: 1, width: "40%" }}

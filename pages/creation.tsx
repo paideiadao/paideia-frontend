@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import * as React from "react";
 import Nav from "../components/creation/nav/Nav";
 import { ThemeProvider } from "@mui/material/styles";
-import { LightTheme } from "../theme/theme.js";
+import { LightTheme, DarkTheme } from "../theme/theme.js";
 import Button from "@mui/material/Button";
 import BasicInformation from "../components/creation/basic-information/BasicInformation";
 import { GlobalContext } from "../lib/creation/Context";
@@ -75,8 +75,13 @@ export default function Creation(props) {
   ];
 
   React.useEffect(() => {
+    setTheme(localStorage.getItem("theme") === 'dark' ? DarkTheme : LightTheme)
+  }, [])
+
+  React.useEffect(() => {
     let temp = theme === LightTheme ? "light" : "dark";
     document.body.style.background = lookup[temp];
+    localStorage.setItem("theme", temp)
   }, [theme]);
 
   const api = new CreationApi(alert, setAlert, theme, setTheme, data, setData);

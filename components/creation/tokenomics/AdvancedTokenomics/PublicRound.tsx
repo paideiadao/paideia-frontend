@@ -90,9 +90,7 @@ const PublicRound: React.FC<{
     initialDistribution:
       data.distributions[props.c] === undefined ? 0 : temp.initialDistribution,
     emissionStartDate:
-      data.distributions[props.c] === undefined
-        ? new Date()
-        : temp.emissionStartDate,
+      data.distributions[props.c] === undefined ? 0 : temp.emissionStartDate,
     emissionStartDateUnits:
       data.distributions[props.c] === undefined
         ? "weeks"

@@ -14,7 +14,7 @@ export interface ITreasuryInfo {
   percentage: number;
   vesting: boolean;
   initialDistribution: number;
-  emissionStartDate: Date;
+  emissionStartDate: number;
   emissionStartDateUnits: string;
   frequency: string;
   emissionLength: number;
@@ -40,9 +40,7 @@ const Treasury: React.FC<{
     initialDistribution:
       data.distributions[props.c] === undefined ? 0 : temp.initialDistribution,
     emissionStartDate:
-      data.distributions[props.c] === undefined
-        ? new Date()
-        : temp.emissionStartDate,
+      data.distributions[props.c] === undefined ? 0 : temp.emissionStartDate,
     emissionStartDateUnits:
       data.distributions[props.c] === undefined
         ? "weeks"

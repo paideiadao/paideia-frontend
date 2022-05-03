@@ -61,8 +61,8 @@ const AddDistribution: React.FC<{
   ];
 
   React.useEffect(() => {
-    setDistribution(props.distribution)
-  }, [props.distribution])
+    setDistribution(props.distribution);
+  }, [props.distribution]);
 
   return (
     <Box
@@ -90,7 +90,7 @@ const AddDistribution: React.FC<{
               cursor: "pointer",
             }}
             color="error"
-            onClick={() => props.close(props.c)}
+            onClick={() => props.close()}
           />
           <Box
             sx={{
@@ -125,7 +125,9 @@ const AddDistribution: React.FC<{
                     endAdornment: (
                       <InputAdornment
                         position="end"
-                        onClick={() => setDistribution({...distribution, id: i.label})}
+                        onClick={() =>
+                          setDistribution({ ...distribution, id: i.label })
+                        }
                       >
                         <NavigateNextIcon color="primary" />
                       </InputAdornment>
