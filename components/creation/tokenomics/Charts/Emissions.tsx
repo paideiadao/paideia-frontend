@@ -32,11 +32,17 @@ const getEmissionLengthInDays = (length: number, units: string) => {
   }
 };
 
+const frequencyLookup = {
+  'daily': 1,
+  'weekly': 7,
+  'monthly': 30,
+  'yearly': 365
+}
+
 const getLongestEmission = (data: any) => {
   let temp = data.map((i: any) =>
     getEmissionLengthInDays(i.emissionLength, i.emissionLengthUnits)
   );
-  console.log(temp, "le");
   temp = temp.sort((a, b) => a - b);
   let max = Math.max(...temp);
 
@@ -75,7 +81,7 @@ const getDistributedTokens = (
   if (lengthInDays > currDay || bufferDays > currDay) {
     return 0;
   }
-  let temp = getEmissionLengthInDays(1, data.emissionStartDateUnits);
+  let temp = frequencyLookup[data.frequency]
 
   let conversion =
     data.frequency === "daily"
@@ -93,11 +99,9 @@ const getChartData = (data: any) => {
       .filter((i: any) => i.vesting)
       .filter((i: any) => i.emissionStartDate > 0)
   );
-  console.log("longestEmission", longestEmission);
   let highestFrequency = getHighestFrequency(
     data.filter((i: any) => i.vesting)
   );
-  console.log("highestFrequency", highestFrequency);
   let colorLookup = ["red", "blue", "green", "orange", "brown"];
   let frequencyLookup = {
     daily: 1,
@@ -111,17 +115,17 @@ const getChartData = (data: any) => {
       .filter((i: any) => i.vesting)
       .filter((i: any) => i.emissionStartDate > 0)
       .map((i: any) => {
-        console.log("i", i);
         return getEmissionLengthInDays(
           i.emissionStartDate,
           i.emissionStartDateUnits
         );
       })
   );
-  console.log(minDate, longestEmission);
   let vestingData = data
     .filter((i: any) => i.vesting)
     .filter((i: any) => i.emissionStartDate > 0)
+    .filter((i: any) => i.emissionLength > 0)
+    .sort((a: any, b: any) => getEmissionLengthInDays(b.emissionLengthUnits, b.emissionLength) - getEmissionLengthInDays(a.emissionLengthUnits, a.emissionLength))
     .map((i: any, c: number) => {
       let totalDays = getLongestEmission([i]);
       let initialAmt = (i.initialDistribution / 100) * i.balance;
@@ -164,7 +168,8 @@ const getChartData = (data: any) => {
               id: i.distributionName,
               color: colorLookup[c + vestingData.length],
               label: i.distributionName,
-              data: [...Array.from(Array(longestPeriod - 2).keys())].map(
+              data: [...Array.from(Array(longestPeriod + 1).keys())]
+              .filter((z: any) => z % frequencyLookup[highestFrequency] === 0).map(
                 (j: any, c: number) => {
                   let temp = new Date();
                   temp.setDate(temp.getDate() + j);
@@ -186,7 +191,6 @@ const Emissions: React.FC<ITokenomics> = (props) => {
   // sort by longest vesting data in the getChartData function
 
   let chartData = getChartData(data);
-  console.log(chartData, " ya digggggg");
 
   return (
     <ResponsiveLine
@@ -256,7 +260,7 @@ const Emissions: React.FC<ITokenomics> = (props) => {
             <Box sx={{ fontSize: "1.1rem" }}>
               {dateFormat(point.point.data.x, "mmmm dS, yyyy")}
             </Box>
-            <Box sx={{ fontSize: "1rem" }}>{point.point.data.y}</Box>
+            <Box sx={{ fontSize: "1rem" }}>{point.point.data.y.toFixed(2)}</Box>
           </Box>
         );
       }}
