@@ -14,18 +14,18 @@ const Design: React.FC = (props) => {
     {
         id: 2,
         label: "Paideia/Light",
-        colorTop: "#9FD2DB",
+        colorTop: "#23B5CF",
         colorBottom: "#111827",
       },{
         id: 3,
         label: "Purple/Dark",
-        colorTop: "#9FD2DB",
+        colorTop: "#9EA0FF",
         colorBottom: "#111827",
       },{
         id: 4,
         label: "Purple/Light",
-        colorTop: "#9FD2DB",
-        colorBottom: "#111827",
+        colorTop: "#6365EF",
+        colorBottom: "#FFFFFF",
       },{
         id: 5,
         label: "Teal/Dark",
@@ -62,8 +62,10 @@ const Design: React.FC = (props) => {
         {themes.map((i: any) => {
           return (
             <Paper
+             onClick={() => setTheme(i.id)}
               sx={{
                 width: "22%",
+                cursor: 'pointer',
                 m: '.5rem',
                 p: i.id === theme ? '.2rem' : 0,
                 backgroundColor: "transparent",
@@ -78,12 +80,14 @@ const Design: React.FC = (props) => {
                   backgroundColor: "fileInput.outer",
                   border: "1px solid",
                   borderColor: "divider.main",
-                  m: ".01rem",
-                  borderRadius: ".5rem",
+                  m: i.id === theme ? '0rem' : '.2rem',
+                  borderRadius: ".6rem",
                 }}
               >
-                <Box>
-                    Rect here...
+                <Box sx={{backgroundColor: i.colorBottom, width: '100%', height: '5rem', borderTopLeftRadius: '.6rem', borderTopRightRadius: '.6rem'}}>
+                    <Box sx={{width: '100%', height: '100%', backgroundColor: i.colorTop, clipPath: 'polygon(0 0, 100% 0, 0 100%)', borderTopLeftRadius: '.6rem', borderTopRightRadius: '.6rem'}}>
+                        
+                    </Box>
                 </Box>
                 <Box
                   sx={{
@@ -94,6 +98,7 @@ const Design: React.FC = (props) => {
                     pt: "1rem",
                     borderTop: "1px solid",
                     borderTopColor: "divider.main",
+                    fontSize: '.9rem'
                   }}
                 >
                   {i.label}
