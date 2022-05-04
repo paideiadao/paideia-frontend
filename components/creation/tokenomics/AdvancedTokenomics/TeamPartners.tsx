@@ -2,7 +2,6 @@ import { Box, Button, InputAdornment, TextField } from "@mui/material";
 import * as React from "react";
 import { ITokenHolder, ITokenomics } from "../../../../lib/creation/Api";
 import { IData } from "../../../../lib/utilities";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { CapsInfo, Header, LearnMore } from "../../utilities/HeaderComponents";
 import VestingSchedule, { IVestingSchedule } from "./VestingSchedule";
 import BalanceInput from "../../utilities/BalanceInput";
@@ -10,6 +9,7 @@ import PercentageInput from "../../utilities/PercentageInput";
 import WalletSelector from "../../governance/WalletSelector";
 import AddIcon from "@mui/icons-material/Add";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export interface ITeamPartnersInfo {
   distributionName: string;
@@ -41,7 +41,15 @@ const TeamPartners: React.FC<{
     balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
     percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
     tokenHolders:
-      data.distributions[props.c] === undefined ? [] : temp.tokenHolders,
+      data.distributions[props.c] === undefined ? [
+        {
+          alias: "",
+          address: "",
+          img: "",
+          balance: 0,
+          percentage: 0,
+        },
+      ] : temp.tokenHolders,
     vesting: data.distributions[props.c] === undefined ? false : temp.vesting,
     initialDistribution:
       data.distributions[props.c] === undefined ? 0 : temp.initialDistribution,
@@ -160,14 +168,14 @@ const TeamPartners: React.FC<{
         {value.tokenHolders.map((i: ITokenHolder, c: number) => {
           return (
             <Box
-              sx={{ display: "flex", alignItems: "flex-start", height: "5rem" }}
+              sx={{ display: "flex", alignItems: "center", height: "5rem" }}
             >
               <Box
                 sx={{
                   width: "57%",
                   mr: ".5rem",
                   display: "flex",
-                  alignItem: "flex-start",
+                  alignItems: "center",
                 }}
               >
                 <WalletSelector
@@ -176,6 +184,7 @@ const TeamPartners: React.FC<{
                   data={i}
                   mt="0"
                   number={c}
+                  canDelete={value.tokenHolders.length > 0}
                   set={(j: any) => {
                     let temp = [...value.tokenHolders];
                     if (j === undefined) {
@@ -209,13 +218,23 @@ const TeamPartners: React.FC<{
                   setValue({ ...value, tokenHolders: temp });
                 }}
               />
+              {value.tokenHolders.length > 1 && <DeleteIcon
+                  style={{
+                    fill: 'red',
+                    marginLeft: ".4rem",
+                    cursor: "pointer",
+                    width: '3%'
+                  }}
+                  onClick={() => {
+                    let temp = [...value.tokenHolders];
+                    temp.splice(c, 1);
+                    setValue({ ...value, tokenHolders: temp });
+                  }}
+                />}
             </Box>
           );
         })}
-        {data.tokenRemaining > 0 &&
-          value.tokenHolders.map((i: any) => i.balance).indexOf(0) === -1 &&
-          value.tokenHolders.map((i: any) => i.percentage).indexOf(0) ===
-            -1 && (
+        {data.tokenRemaining > 0 && (
             <Box
               sx={{
                 display: "flex",

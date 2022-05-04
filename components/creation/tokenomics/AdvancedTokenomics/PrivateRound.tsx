@@ -60,7 +60,15 @@ const PrivateRound: React.FC<{
       data.distributions[props.c] === undefined ? start : temp.startDate,
     endDate: data.distributions[props.c] === undefined ? end : temp.endDate,
     tokenHolders:
-      data.distributions[props.c] === undefined ? [] : temp.tokenHolders,
+      data.distributions[props.c] === undefined ? [
+        {
+          alias: "",
+          address: "",
+          img: "",
+          balance: 0,
+          percentage: 0,
+        },
+      ] : temp.tokenHolders,
     vesting: data.distributions[props.c] === undefined ? false : temp.vesting,
     initialDistribution:
       data.distributions[props.c] === undefined ? 0 : temp.initialDistribution,

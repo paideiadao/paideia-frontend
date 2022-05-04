@@ -3,7 +3,7 @@ import * as React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
 import { walletStruct } from "../../../lib/creation/Constants";
-import DeleteIcon from "@mui/icons-material/Delete";
+import ClearIcon from '@mui/icons-material/Clear';
 
 const WalletSelector: React.FC<{
   data: {
@@ -15,6 +15,7 @@ const WalletSelector: React.FC<{
   number: number;
   id: string;
   mt?: string;
+  canDelete?: boolean;
 }> = (props) => {
   const [focused, setFocused] = React.useState<boolean>(false);
   const [search, setSearch] = React.useState<string>("");
@@ -36,7 +37,7 @@ const WalletSelector: React.FC<{
         placeholder={
           props.data.alias === "" && "Search by name or wallet address"
         }
-        helperText="Search by name or wallet address"
+        // helperText="Search by name or wallet address"
         onFocus={() => setFocused(true)}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
@@ -78,16 +79,20 @@ const WalletSelector: React.FC<{
           ),
           endAdornment: (
             <InputAdornment position="end">
-              {props.data.alias !== "" && (
-                <DeleteIcon
+              {props.data.alias !== "" && props.canDelete && (
+                <ClearIcon
                   style={{
-                    fill: "red",
                     marginRight: ".4rem",
                     cursor: "pointer",
                   }}
+                  color='primary'
                   onClick={() => {
                     setSearch("");
-                    props.set(undefined);
+                    props.set({
+                      alias: '', 
+                      address: '',
+                      img: ''
+                    });
                   }}
                 />
               )}
