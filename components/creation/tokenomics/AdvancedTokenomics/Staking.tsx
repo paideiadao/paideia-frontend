@@ -21,6 +21,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Alert from "@mui/material/Alert";
 import LabeledSwitch from "../../utilities/LabeledSwitch";
+import AbstractDate from "../../utilities/AbstractDate";
 
 export interface IStakingInfo {
   distributionName: string;
@@ -173,47 +174,19 @@ const Staking: React.FC<{
             <MenuItem value="yearly">Yearly</MenuItem>
           </Select>
         </FormControl>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DatePicker
-            views={["day"]}
-            label="Start date"
+        <AbstractDate
             value={value.startDate}
-            InputAdornmentProps={{ position: "start", variant: "standard" }}
-            onChange={(newValue) => {
-              setValue({ ...value, startDate: newValue });
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                helperText={null}
-                sx={{
-                  width: "32.3%",
-                  mr: ".5rem",
-                  svg: { color: "primary.main" },
-                }}
-              />
-            )}
+            setValue={(newValue: Date) => setValue({ ...value, startDate: newValue })}
+            width='32.3%'
+            label='Start date'
+            mr='.5rem'
           />
-          <DatePicker
-            views={["day"]}
-            label="End date"
+          <AbstractDate
             value={value.endDate}
-            InputAdornmentProps={{ position: "start", variant: "standard" }}
-            onChange={(newValue) => {
-              setValue({ ...value, endDate: newValue });
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                helperText={null}
-                sx={{
-                  width: "32.3%",
-                  svg: { color: "primary.main" },
-                }}
-              />
-            )}
+            setValue={(newValue: Date) => setValue({ ...value, endDate: newValue })}
+            width='32.3%'
+            label='End date'
           />
-        </LocalizationProvider>
       </Box>
       <Box sx={{ width: "100%", pl: "1rem", pb: "1rem", pr: ".6rem" }}>
         <LabeledSwitch

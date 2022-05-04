@@ -13,14 +13,12 @@ import { CapsInfo, Header, LearnMore } from "../../utilities/HeaderComponents";
 import BalanceInput from "../../utilities/BalanceInput";
 import PercentageInput from "../../utilities/PercentageInput";
 import VestingSchedule, { IVestingSchedule } from "./VestingSchedule";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import AddIcon from "@mui/icons-material/Add";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import WalletSelector from "../../governance/WalletSelector";
 import Alert from "@mui/material/Alert";
 import { currencyFormatter } from "../../../utilities/currency";
+import AbstractDate from "../../utilities/AbstractDate";
 
 export interface IPrivateRoundInfo {
   distributionName: string;
@@ -183,44 +181,19 @@ const PrivateRound: React.FC<{
             ),
           }}
         />
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DatePicker
-            views={["day"]}
-            label="Start date"
+        <AbstractDate
             value={value.startDate}
-            InputAdornmentProps={{ position: "start", variant: "standard" }}
-            onChange={(newValue) => {
-              setValue({ ...value, startDate: newValue });
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                helperText={null}
-                sx={{
-                  width: "32.3%",
-                  mr: ".5rem",
-                  svg: { color: "primary.main" },
-                }}
-              />
-            )}
+            setValue={(newValue: Date) => setValue({ ...value, startDate: newValue })}
+            width='32.3%'
+            label='Start date'
+            mr='.5rem'
           />
-          <DatePicker
-            views={["day"]}
-            label="End date"
+          <AbstractDate
             value={value.endDate}
-            InputAdornmentProps={{ position: "start", variant: "standard" }}
-            onChange={(newValue) => {
-              setValue({ ...value, startDate: newValue });
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                helperText={null}
-                sx={{ width: "32.3%", svg: { color: "primary.main" } }}
-              />
-            )}
+            setValue={(newValue: Date) => setValue({ ...value, endDate: newValue })}
+            width='32.3%'
+            label='End date'
           />
-        </LocalizationProvider>
       </Box>
       <Box sx={{ width: "100%", pl: "1rem", mt: "1rem", pr: "1rem" }}>
         <CapsInfo title="Configuration" />

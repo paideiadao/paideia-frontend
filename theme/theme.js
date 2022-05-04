@@ -96,6 +96,7 @@ export const LightTheme = createTheme({
 
 export const DarkTheme = createTheme({
   palette: {
+    mode: "dark",
     circle: {
       main: "#9FD2DB",
     },

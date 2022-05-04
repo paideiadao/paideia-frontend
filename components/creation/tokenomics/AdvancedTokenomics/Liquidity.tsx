@@ -20,6 +20,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Alert from "@mui/material/Alert";
+import AbstractDate from "../../utilities/AbstractDate";
 
 export interface ILiquidityInfo {
   distributionName: string;
@@ -226,28 +227,13 @@ const Liquidity: React.FC<{
           pb: "1rem",
         }}
       >
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DatePicker
-            views={["day"]}
-            label="Start date"
+        <AbstractDate
             value={value.liquidityStartDate}
-            InputAdornmentProps={{ position: "start", variant: "standard" }}
-            onChange={(newValue) => {
-              setValue({ ...value, liquidityStartDate: newValue });
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                helperText={null}
-                sx={{
-                  width: "31.75%",
-                  mr: ".5rem",
-                  svg: { color: "primary.main" },
-                }}
-              />
-            )}
+            setValue={(newValue: Date) => setValue({ ...value, liquidityStartDate: newValue })}
+            width='31.75%'
+            label='Start date'
+            mr='.5rem'
           />
-        </LocalizationProvider>
       </Box>
       <Alert
         severity="warning"

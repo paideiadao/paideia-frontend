@@ -25,7 +25,7 @@ import { currencyFormatter } from "../../../utilities/currency";
 import LabeledSwitch from "../../utilities/LabeledSwitch";
 import dateFormat from "dateformat";
 import EditIcon from "@mui/icons-material/Edit";
-import { StaticDatePicker } from "@mui/x-date-pickers";
+import AbstractDate from "../../utilities/AbstractDate";
 
 export interface IAirdropInfo {
   distributionName: string;
@@ -246,6 +246,23 @@ const Airdrop: React.FC<{
             Create Whitelist Form
           </Button>
         </ButtonGroup>
+        {value.distributionType === "whitelist" && (
+          <>
+            <AbstractDate
+              value={value.whitelistStartDate}
+              setValue={(newValue: Date) => setValue({ ...value, whitelistStartDate: newValue })}
+              width='49%'
+              label='Sign up start date'
+              mr='.5rem'
+            />
+            <AbstractDate
+              value={value.whitelistEndDate}
+              setValue={(newValue: Date) => setValue({ ...value, whitelistEndDate: newValue })}
+              width='49%'
+              label='Sign up end date'
+            />
+          </>
+        )}
         <Box
           sx={{
             width: "100%",
@@ -253,93 +270,15 @@ const Airdrop: React.FC<{
             mb: value.distributionType === "manual" ? 0 : "1rem",
           }}
         >
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              showToolbar
-              ToolbarComponent={(props) => (
-                <Box
-                  sx={{
-                    pt: ".8rem",
-                    pl: "1.2rem",
-                    pr: "1.2rem",
-                    pb: ".5rem",
-                    backgroundColor: "backgroundColor.main",
-                    borderBottom: "1px solid",
-                    borderBottomColor: "divider.main",
-                  }}
-                >
-                  <CapsInfo title="Select Date" />
-                  <Box
-                    sx={{
-                      color: "primary.text",
-                      display: "flex",
-                      mt: "-.6rem",
-                    }}
-                  >
-                    {dateFormat(value.airdropDate, "ddd, mmm d")}
-                    <Box sx={{ ml: "auto" }}>
-                      <EditIcon color="primary" />
-                    </Box>
-                  </Box>
-                </Box>
-              )}
-              label="Airdrop date"
-              value={value.airdropDate}
-              InputAdornmentProps={{ position: "start", variant: "standard" }}
-              onChange={(newValue) => {
-                setValue({ ...value, airdropDate: newValue });
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  helperText={null}
-                  sx={{ width: "49%", svg: { color: "primary.main" } }}
-                />
-              )}
-            />
-          </LocalizationProvider>
+          <AbstractDate
+            value={value.airdropDate}
+            setValue={(newValue: Date) => setValue({ ...value, airdropDate: newValue })}
+            width='49%'
+            label='Airdrop date'
+          />
         </Box>
 
-        {value.distributionType === "whitelist" && (
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              views={["day", "month", "year"]}
-              label="Sign up start date"
-              value={value.whitelistStartDate}
-              InputAdornmentProps={{ position: "start", variant: "standard" }}
-              onChange={(newValue) => {
-                setValue({ ...value, whitelistStartDate: newValue });
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  helperText={null}
-                  sx={{
-                    width: "49%",
-                    mr: ".5rem",
-                    svg: { color: "primary.main" },
-                  }}
-                />
-              )}
-            />
-            <DatePicker
-              views={["day"]}
-              label="Sign up end date"
-              value={value.whitelistEndDate}
-              InputAdornmentProps={{ position: "start", variant: "standard" }}
-              onChange={(newValue) => {
-                setValue({ ...value, whitelistEndDate: newValue });
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  helperText={null}
-                  sx={{ width: "49%", svg: { color: "primary.main" } }}
-                />
-              )}
-            />
-          </LocalizationProvider>
-        )}
+        
         {value.distributionType === "whitelist" && (
           <Box sx={{ width: "99.25%", mt: "1rem" }}>
             <TextField

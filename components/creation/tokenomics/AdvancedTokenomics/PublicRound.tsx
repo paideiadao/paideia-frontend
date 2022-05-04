@@ -21,6 +21,7 @@ import FileUploadIcon from "@mui/icons-material/FileUpload";
 import WalletSelector from "../../governance/WalletSelector";
 import Alert from "@mui/material/Alert";
 import { currencyFormatter } from "../../../utilities/currency";
+import AbstractDate from "../../utilities/AbstractDate";
 
 export interface IPublicRoundInfo {
   distributionName: string;
@@ -225,124 +226,49 @@ const PublicRound: React.FC<{
           />
         </Box>
         <Box sx={{ width: "100%", mt: "1rem", mb: "1rem" }}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              views={["day"]}
-              label="Sign up start date"
-              value={value.signUpStartDate}
-              InputAdornmentProps={{ position: "start", variant: "standard" }}
-              onChange={(newValue) => {
-                setValue({ ...value, signUpStartDate: newValue });
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  helperText={null}
-                  sx={{
-                    width: "49%",
-                    mr: ".5rem",
-                    svg: { color: "primary.main" },
-                  }}
-                />
-              )}
-            />
-            <DatePicker
-              views={["day"]}
-              label="Sign up end date"
-              value={value.signUpEndDate}
-              InputAdornmentProps={{ position: "start", variant: "standard" }}
-              onChange={(newValue) => {
-                setValue({ ...value, signUpEndDate: newValue });
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  helperText={null}
-                  sx={{ width: "49%", svg: { color: "primary.main" } }}
-                />
-              )}
-            />
-          </LocalizationProvider>
+        <AbstractDate
+            value={value.signUpStartDate}
+            setValue={(newValue: Date) => setValue({ ...value, signUpStartDate: newValue })}
+            width='49%'
+            label='Sign up start date'
+            mr='.5rem'
+          />
+          <AbstractDate
+            value={value.signUpEndDate}
+            setValue={(newValue: Date) => setValue({ ...value, signUpEndDate: newValue })}
+            width='49%'
+            label='Sign up end date'
+          />
         </Box>
         <Box sx={{ width: "100%", mt: "1rem", mb: "1rem" }}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              views={["day"]}
-              label="Contribution start date"
-              value={value.contributionStartDate}
-              InputAdornmentProps={{ position: "start", variant: "standard" }}
-              onChange={(newValue) => {
-                setValue({ ...value, contributionStartDate: newValue });
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  helperText={null}
-                  sx={{
-                    width: "49%",
-                    mr: ".5rem",
-                    svg: { color: "primary.main" },
-                  }}
-                />
-              )}
-            />
-            <DatePicker
-              views={["day"]}
-              label="Contribution end date"
-              value={value.contributionEndDate}
-              InputAdornmentProps={{ position: "start", variant: "standard" }}
-              onChange={(newValue) => {
-                setValue({ ...value, contributionEndDate: newValue });
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  helperText={null}
-                  sx={{ width: "49%", svg: { color: "primary.main" } }}
-                />
-              )}
-            />
-          </LocalizationProvider>
+        <AbstractDate
+            value={value.contributionStartDate}
+            setValue={(newValue: Date) => setValue({ ...value, contributionStartDate: newValue })}
+            width='49%'
+            label='Contribution start date'
+            mr='.5rem'
+          />
+          <AbstractDate
+            value={value.contributionEndDate}
+            setValue={(newValue: Date) => setValue({ ...value, contributionEndDate: newValue })}
+            width='49%'
+            label='Contribution end date'
+          />
         </Box>
         <Box sx={{ width: "100%", mt: "1rem", mb: "1rem" }}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              views={["day"]}
-              label="Whitelist start date"
-              value={value.waitlistStartDate}
-              InputAdornmentProps={{ position: "start", variant: "standard" }}
-              onChange={(newValue) => {
-                setValue({ ...value, waitlistStartDate: newValue });
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  helperText={null}
-                  sx={{
-                    width: "49%",
-                    mr: ".5rem",
-                    svg: { color: "primary.main" },
-                  }}
-                />
-              )}
-            />
-            <DatePicker
-              views={["day"]}
-              label="Whitelist end date"
-              value={value.waitlistEndDate}
-              InputAdornmentProps={{ position: "start", variant: "standard" }}
-              onChange={(newValue) => {
-                setValue({ ...value, waitlistEndDate: newValue });
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  helperText={null}
-                  sx={{ width: "49%", svg: { color: "primary.main" } }}
-                />
-              )}
-            />
-          </LocalizationProvider>
+          <AbstractDate
+            value={value.waitlistStartDate}
+            setValue={(newValue: Date) => setValue({ ...value, waitlistStartDate: newValue })}
+            width='49%'
+            label='Whitelist start date'
+            mr='.5rem'
+          />
+          <AbstractDate
+            value={value.waitlistEndDate}
+            setValue={(newValue: Date) => setValue({ ...value, waitlistEndDate: newValue })}
+            width='49%'
+            label='Whitelist end date'
+          />
         </Box>
       </Box>
       <Box sx={{ width: "100%", pl: "1rem", mt: "1rem", pr: "1rem" }}>
@@ -351,14 +277,13 @@ const PublicRound: React.FC<{
         {value.tokenHolders.map((i: ITokenHolder, c: number) => {
           return (
             <Box
-              sx={{ display: "flex", alignItems: "flex-start", height: "5rem" }}
+              sx={{ display: "flex", alignItems: "center", height: "5rem" }}
             >
               <Box
                 sx={{
                   width: "57%",
                   mr: ".5rem",
                   display: "flex",
-                  alignItem: "flex-start",
                 }}
               >
                 <WalletSelector
