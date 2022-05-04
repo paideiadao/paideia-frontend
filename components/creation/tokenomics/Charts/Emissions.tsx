@@ -187,10 +187,13 @@ const getChartData = (data: any) => {
 
 const Emissions: React.FC<ITokenomics> = (props) => {
   let globalContext = React.useContext<IGlobalContext>(GlobalContext);
-  let data = props.distributions.filter((i: any) => i !== undefined);
   // sort by longest vesting data in the getChartData function
 
-  let chartData = getChartData(data);
+  const [chartData, setChartData] = React.useState<any>(getChartData(props.distributions.filter((i: any) => i !== undefined)));
+
+  React.useEffect(() => {
+    setChartData(getChartData(props.distributions.filter((i: any) => i !== undefined)))
+  }, [props.distributions])
 
   return (
     <ResponsiveLine
