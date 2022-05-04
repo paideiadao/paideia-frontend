@@ -154,7 +154,13 @@ export const DarkTheme = createTheme({
     // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
   },
-
+  overrides: {
+    MuiTypography: {
+      caption: {
+        backgroundColor: 'blue'
+      }
+    }
+  },
   components: {
     MuiSelect: {
       styleOverrides: {
@@ -193,6 +199,9 @@ export const DarkTheme = createTheme({
         root: {
           backgroundColor: "rgba(17, 24, 39, 1)",
           color: "white",
+          '&Mui-Typography': {
+            color: 'white'
+          }
         },
       },
     },
@@ -218,10 +227,10 @@ export const DarkTheme = createTheme({
     },
     MuiTypography: {
       styleOverrides: {
-        caption: {
-          backgroundColor: "rgba(255, 255, 255, .9)",
-          borderRadius: ".1rem",
-        },
+        // caption: {
+        //   backgroundColor: "rgba(255, 255, 255, .9)",
+        //   borderRadius: ".1rem",
+        // },
       },
     },
     MuiButton: {
@@ -283,6 +292,16 @@ export const DarkTheme = createTheme({
           },
         },
       },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          color: 'white',
+        },
+        caption: {
+          color: 'white'
+        }
+      }
     },
     MuiStepIcon: {
       styleOverrides: {

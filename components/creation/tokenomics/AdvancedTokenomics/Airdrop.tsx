@@ -25,6 +25,7 @@ import { currencyFormatter } from "../../../utilities/currency";
 import LabeledSwitch from "../../utilities/LabeledSwitch";
 import dateFormat from "dateformat";
 import EditIcon from "@mui/icons-material/Edit";
+import { StaticDatePicker } from "@mui/x-date-pickers";
 
 export interface IAirdropInfo {
   distributionName: string;

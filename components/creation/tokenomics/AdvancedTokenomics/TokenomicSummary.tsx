@@ -61,7 +61,6 @@ const TokenomicSummary: React.FC<IData<ITokenomics>> = (props) => {
   // change this here to make the widgets persist...
   // make use of the global state
 
-  console.log("props.data", props.data);
   const [distributions, setDistributions] = React.useState<any[]>(
     props.data.distributions
   );
@@ -84,7 +83,6 @@ const TokenomicSummary: React.FC<IData<ITokenomics>> = (props) => {
   ];
 
   React.useEffect(() => {
-    console.log("distributions", distributions);
     props.setData({
       ...data,
       distributions: distributions,
@@ -92,7 +90,6 @@ const TokenomicSummary: React.FC<IData<ITokenomics>> = (props) => {
   }, [distributions]);
 
   React.useEffect(() => {
-    console.log("distributions", distributions);
     setDistributions(props.data.distributions);
   }, [props.data.distributions]);
   return (

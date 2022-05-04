@@ -60,7 +60,6 @@ const Treasury: React.FC<{
     /// add data to global context...
     let temp = [...data.distributions];
     temp[props.c] = { ...value };
-    console.log("temp", temp);
     props.data.setData({
       ...data,
       distributions: temp,

@@ -21,7 +21,6 @@ const renderDisplay = (
     c: number;
   }
 ) => {
-  console.log("props", props);
   switch (display) {
     case "Treasury":
       return <Treasury {...props} />;
