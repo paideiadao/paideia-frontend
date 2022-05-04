@@ -250,16 +250,20 @@ const Airdrop: React.FC<{
           <>
             <AbstractDate
               value={value.whitelistStartDate}
-              setValue={(newValue: Date) => setValue({ ...value, whitelistStartDate: newValue })}
-              width='49%'
-              label='Sign up start date'
-              mr='.5rem'
+              setValue={(newValue: Date) =>
+                setValue({ ...value, whitelistStartDate: newValue })
+              }
+              width="49%"
+              label="Sign up start date"
+              mr=".5rem"
             />
             <AbstractDate
               value={value.whitelistEndDate}
-              setValue={(newValue: Date) => setValue({ ...value, whitelistEndDate: newValue })}
-              width='49%'
-              label='Sign up end date'
+              setValue={(newValue: Date) =>
+                setValue({ ...value, whitelistEndDate: newValue })
+              }
+              width="49%"
+              label="Sign up end date"
             />
           </>
         )}
@@ -272,13 +276,14 @@ const Airdrop: React.FC<{
         >
           <AbstractDate
             value={value.airdropDate}
-            setValue={(newValue: Date) => setValue({ ...value, airdropDate: newValue })}
-            width='49%'
-            label='Airdrop date'
+            setValue={(newValue: Date) =>
+              setValue({ ...value, airdropDate: newValue })
+            }
+            width="49%"
+            label="Airdrop date"
           />
         </Box>
 
-        
         {value.distributionType === "whitelist" && (
           <Box sx={{ width: "99.25%", mt: "1rem" }}>
             <TextField

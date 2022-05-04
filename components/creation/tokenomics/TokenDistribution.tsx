@@ -5,12 +5,13 @@ import { IData, IObj } from "../../../lib/utilities";
 import { Header } from "../utilities/HeaderComponents";
 import Emissions from "./Charts/Emissions";
 import PieChart from "./Charts/PieChart";
+import PaideiaTable from "./Charts/Table";
 
 const TokenDistribution: React.FC<IData<ITokenomics>> = (props) => {
   const [chartView, setChartView] = React.useState<string>("pie");
   let chartLookup: IObj<JSX.Element> = {
     pie: <PieChart {...props.data} />,
-    table: <Box>Table Here...</Box>,
+    table: <PaideiaTable {...props.data} />,
     emission: <Emissions {...props.data} />,
   };
   return (

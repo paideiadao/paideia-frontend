@@ -175,18 +175,22 @@ const Staking: React.FC<{
           </Select>
         </FormControl>
         <AbstractDate
-            value={value.startDate}
-            setValue={(newValue: Date) => setValue({ ...value, startDate: newValue })}
-            width='32.3%'
-            label='Start date'
-            mr='.5rem'
-          />
-          <AbstractDate
-            value={value.endDate}
-            setValue={(newValue: Date) => setValue({ ...value, endDate: newValue })}
-            width='32.3%'
-            label='End date'
-          />
+          value={value.startDate}
+          setValue={(newValue: Date) =>
+            setValue({ ...value, startDate: newValue })
+          }
+          width="32.3%"
+          label="Start date"
+          mr=".5rem"
+        />
+        <AbstractDate
+          value={value.endDate}
+          setValue={(newValue: Date) =>
+            setValue({ ...value, endDate: newValue })
+          }
+          width="32.3%"
+          label="End date"
+        />
       </Box>
       <Box sx={{ width: "100%", pl: "1rem", pb: "1rem", pr: ".6rem" }}>
         <LabeledSwitch

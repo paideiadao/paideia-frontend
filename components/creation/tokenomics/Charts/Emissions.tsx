@@ -33,11 +33,11 @@ const getEmissionLengthInDays = (length: number, units: string) => {
 };
 
 const frequencyLookup = {
-  'daily': 1,
-  'weekly': 7,
-  'monthly': 30,
-  'yearly': 365
-}
+  daily: 1,
+  weekly: 7,
+  monthly: 30,
+  yearly: 365,
+};
 
 const getLongestEmission = (data: any) => {
   let temp = data.map((i: any) =>
@@ -81,7 +81,7 @@ const getDistributedTokens = (
   if (lengthInDays > currDay || bufferDays > currDay) {
     return 0;
   }
-  let temp = frequencyLookup[data.frequency]
+  let temp = frequencyLookup[data.frequency];
 
   let conversion =
     data.frequency === "daily"
@@ -125,7 +125,11 @@ const getChartData = (data: any) => {
     .filter((i: any) => i.vesting)
     .filter((i: any) => i.emissionStartDate > 0)
     .filter((i: any) => i.emissionLength > 0)
-    .sort((a: any, b: any) => getEmissionLengthInDays(b.emissionLengthUnits, b.emissionLength) - getEmissionLengthInDays(a.emissionLengthUnits, a.emissionLength))
+    .sort(
+      (a: any, b: any) =>
+        getEmissionLengthInDays(b.emissionLengthUnits, b.emissionLength) -
+        getEmissionLengthInDays(a.emissionLengthUnits, a.emissionLength)
+    )
     .map((i: any, c: number) => {
       let totalDays = getLongestEmission([i]);
       let initialAmt = (i.initialDistribution / 100) * i.balance;
@@ -169,16 +173,15 @@ const getChartData = (data: any) => {
               color: colorLookup[c + vestingData.length],
               label: i.distributionName,
               data: [...Array.from(Array(longestPeriod + 1).keys())]
-              .filter((z: any) => z % frequencyLookup[highestFrequency] === 0).map(
-                (j: any, c: number) => {
+                .filter((z: any) => z % frequencyLookup[highestFrequency] === 0)
+                .map((j: any, c: number) => {
                   let temp = new Date();
                   temp.setDate(temp.getDate() + j);
                   return {
                     x: new Date(temp),
                     y: i.balance,
                   };
-                }
-              ),
+                }),
             };
           });
 
@@ -189,11 +192,15 @@ const Emissions: React.FC<ITokenomics> = (props) => {
   let globalContext = React.useContext<IGlobalContext>(GlobalContext);
   // sort by longest vesting data in the getChartData function
 
-  const [chartData, setChartData] = React.useState<any>(getChartData(props.distributions.filter((i: any) => i !== undefined)));
+  const [chartData, setChartData] = React.useState<any>(
+    getChartData(props.distributions.filter((i: any) => i !== undefined))
+  );
 
   React.useEffect(() => {
-    setChartData(getChartData(props.distributions.filter((i: any) => i !== undefined)))
-  }, [props.distributions])
+    setChartData(
+      getChartData(props.distributions.filter((i: any) => i !== undefined))
+    );
+  }, [props.distributions]);
 
   return (
     <ResponsiveLine

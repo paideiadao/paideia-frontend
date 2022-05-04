@@ -75,13 +75,13 @@ export default function Creation(props) {
   ];
 
   React.useEffect(() => {
-    setTheme(localStorage.getItem("theme") === 'dark' ? DarkTheme : LightTheme)
-  }, [])
+    setTheme(localStorage.getItem("theme") === "dark" ? DarkTheme : LightTheme);
+  }, []);
 
   React.useEffect(() => {
     let temp = theme === LightTheme ? "light" : "dark";
     document.body.style.background = lookup[temp];
-    localStorage.setItem("theme", temp)
+    localStorage.setItem("theme", temp);
   }, [theme]);
 
   const api = new CreationApi(alert, setAlert, theme, setTheme, data, setData);

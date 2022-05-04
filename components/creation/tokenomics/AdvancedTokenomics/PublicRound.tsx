@@ -226,48 +226,60 @@ const PublicRound: React.FC<{
           />
         </Box>
         <Box sx={{ width: "100%", mt: "1rem", mb: "1rem" }}>
-        <AbstractDate
+          <AbstractDate
             value={value.signUpStartDate}
-            setValue={(newValue: Date) => setValue({ ...value, signUpStartDate: newValue })}
-            width='49%'
-            label='Sign up start date'
-            mr='.5rem'
+            setValue={(newValue: Date) =>
+              setValue({ ...value, signUpStartDate: newValue })
+            }
+            width="49%"
+            label="Sign up start date"
+            mr=".5rem"
           />
           <AbstractDate
             value={value.signUpEndDate}
-            setValue={(newValue: Date) => setValue({ ...value, signUpEndDate: newValue })}
-            width='49%'
-            label='Sign up end date'
+            setValue={(newValue: Date) =>
+              setValue({ ...value, signUpEndDate: newValue })
+            }
+            width="49%"
+            label="Sign up end date"
           />
         </Box>
         <Box sx={{ width: "100%", mt: "1rem", mb: "1rem" }}>
-        <AbstractDate
+          <AbstractDate
             value={value.contributionStartDate}
-            setValue={(newValue: Date) => setValue({ ...value, contributionStartDate: newValue })}
-            width='49%'
-            label='Contribution start date'
-            mr='.5rem'
+            setValue={(newValue: Date) =>
+              setValue({ ...value, contributionStartDate: newValue })
+            }
+            width="49%"
+            label="Contribution start date"
+            mr=".5rem"
           />
           <AbstractDate
             value={value.contributionEndDate}
-            setValue={(newValue: Date) => setValue({ ...value, contributionEndDate: newValue })}
-            width='49%'
-            label='Contribution end date'
+            setValue={(newValue: Date) =>
+              setValue({ ...value, contributionEndDate: newValue })
+            }
+            width="49%"
+            label="Contribution end date"
           />
         </Box>
         <Box sx={{ width: "100%", mt: "1rem", mb: "1rem" }}>
           <AbstractDate
             value={value.waitlistStartDate}
-            setValue={(newValue: Date) => setValue({ ...value, waitlistStartDate: newValue })}
-            width='49%'
-            label='Whitelist start date'
-            mr='.5rem'
+            setValue={(newValue: Date) =>
+              setValue({ ...value, waitlistStartDate: newValue })
+            }
+            width="49%"
+            label="Whitelist start date"
+            mr=".5rem"
           />
           <AbstractDate
             value={value.waitlistEndDate}
-            setValue={(newValue: Date) => setValue({ ...value, waitlistEndDate: newValue })}
-            width='49%'
-            label='Whitelist end date'
+            setValue={(newValue: Date) =>
+              setValue({ ...value, waitlistEndDate: newValue })
+            }
+            width="49%"
+            label="Whitelist end date"
           />
         </Box>
       </Box>
@@ -276,9 +288,7 @@ const PublicRound: React.FC<{
         <LearnMore title="Token Holder Addresses" light />
         {value.tokenHolders.map((i: ITokenHolder, c: number) => {
           return (
-            <Box
-              sx={{ display: "flex", alignItems: "center", height: "5rem" }}
-            >
+            <Box sx={{ display: "flex", alignItems: "center", height: "5rem" }}>
               <Box
                 sx={{
                   width: "57%",

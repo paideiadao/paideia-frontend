@@ -228,12 +228,14 @@ const Liquidity: React.FC<{
         }}
       >
         <AbstractDate
-            value={value.liquidityStartDate}
-            setValue={(newValue: Date) => setValue({ ...value, liquidityStartDate: newValue })}
-            width='31.75%'
-            label='Start date'
-            mr='.5rem'
-          />
+          value={value.liquidityStartDate}
+          setValue={(newValue: Date) =>
+            setValue({ ...value, liquidityStartDate: newValue })
+          }
+          width="31.75%"
+          label="Start date"
+          mr=".5rem"
+        />
       </Box>
       <Alert
         severity="warning"

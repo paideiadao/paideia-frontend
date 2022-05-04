@@ -2,6 +2,7 @@ import { createTheme } from "@mui/material/styles";
 
 export const LightTheme = createTheme({
   palette: {
+      mode: 'light',
     circle: {
       main: "#00868F",
     },
@@ -20,9 +21,9 @@ export const LightTheme = createTheme({
     primary: {
       // light: will be calculated from palette.primary.main,
       main: "#00868F",
-      light: "",
       text: "rgba(0, 0, 0, 1)",
       lightText: "rgba(0, 0, 0, 0.6)",
+      light: "rgba(0, 0, 0, 0.6)",
       selectedButton: "rgb(0, 134, 143, 0.1)",
       lightSuccess: "green",
       // dark: will be calculated from palette.primary.main,
@@ -133,7 +134,7 @@ export const DarkTheme = createTheme({
     primary: {
       // light: will be calculated from palette.primary.main,
       main: "#9FD2DB",
-      light: "",
+      light: "rgba(255, 255, 255, 0.7)",
       text: "rgba(255, 255, 255, 1)",
       lightText: "rgba(255, 255, 255, 0.7)",
       selectedButton: "rgba(2, 136, 209, 0.1)",
@@ -158,9 +159,9 @@ export const DarkTheme = createTheme({
   overrides: {
     MuiTypography: {
       caption: {
-        backgroundColor: 'blue'
-      }
-    }
+        backgroundColor: "blue",
+      },
+    },
   },
   components: {
     MuiSelect: {
@@ -200,9 +201,9 @@ export const DarkTheme = createTheme({
         root: {
           backgroundColor: "rgba(17, 24, 39, 1)",
           color: "white",
-          '&Mui-Typography': {
-            color: 'white'
-          }
+          "&Mui-Typography": {
+            color: "white",
+          },
         },
       },
     },
@@ -224,14 +225,6 @@ export const DarkTheme = createTheme({
         MuiAlert: {
           backgroundColor: "rgba(255, 167, 38, .8)",
         },
-      },
-    },
-    MuiTypography: {
-      styleOverrides: {
-        // caption: {
-        //   backgroundColor: "rgba(255, 255, 255, .9)",
-        //   borderRadius: ".1rem",
-        // },
       },
     },
     MuiButton: {
@@ -297,12 +290,12 @@ export const DarkTheme = createTheme({
     MuiTypography: {
       styleOverrides: {
         root: {
-          color: 'white',
+          color: "white",
         },
         caption: {
-          color: 'white'
-        }
-      }
+          color: "white",
+        },
+      },
     },
     MuiStepIcon: {
       styleOverrides: {
