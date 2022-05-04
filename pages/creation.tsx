@@ -12,6 +12,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { checkCompleteness } from "../lib/creation/Utilities";
 import Governance from "../components/creation/governance/Governance";
 import Tokenomics from "../components/creation/tokenomics/Tokenomics";
+import Design from "../components/creation/design/Design";
 
 export default function Creation(props) {
   const [alert, setAlert] = React.useState({ show: false });
@@ -72,6 +73,7 @@ export default function Creation(props) {
     <BasicInformation key={1} />,
     <Governance key={2} />,
     <Tokenomics key={3} />,
+    <Design key={4} />,
   ];
 
   React.useEffect(() => {

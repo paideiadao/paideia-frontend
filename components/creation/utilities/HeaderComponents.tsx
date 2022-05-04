@@ -55,7 +55,7 @@ export const CapsInfo: React.FC<{ title: string }> = (props) => {
 
 export const Subtitle: React.FC<{ subtitle: string }> = (props) => {
   return (
-    <Box sx={{ width: "100%", color: "primary.lightText", fontSize: ".8rem" }}>
+    <Box sx={{ width: "100%", color: "primary.lightText", fontSize: ".9rem" }}>
       {props.subtitle}
     </Box>
   );
@@ -71,8 +71,8 @@ export const Subheader: React.FC<{
     <Box
       sx={{
         color: "primary.text",
-        fontSize: props.small ? ".9rem" : "1rem",
-        fontWeight: props.bold ? 500 : props.small || props.light ? 400 : 450,
+        fontSize: props.small ? ".9rem" : "1.1rem",
+        fontWeight: props.bold ? 500 : props.small || props.light ? 350 : 400,
         display: "flex",
         alignItems: "center",
       }}

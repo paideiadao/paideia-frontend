@@ -78,15 +78,17 @@ const Airdrop: React.FC<{
     whitelistEndDate:
       data.distributions[props.c] === undefined ? end : temp.whitelistEndDate,
     tokenHolders:
-      data.distributions[props.c] === undefined ? [
-        {
-          alias: "",
-          address: "",
-          img: "",
-          balance: 0,
-          percentage: 0,
-        },
-      ] : temp.tokenHolders,
+      data.distributions[props.c] === undefined
+        ? [
+            {
+              alias: "",
+              address: "",
+              img: "",
+              balance: 0,
+              percentage: 0,
+            },
+          ]
+        : temp.tokenHolders,
     manualDataValidation:
       data.distributions[props.c] === undefined
         ? false

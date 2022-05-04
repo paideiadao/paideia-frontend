@@ -1,7 +1,7 @@
 import { ICreationData } from "../../lib/creation/Api";
 
 export function checkCompleteness(_data: ICreationData): boolean {
-  console.log(_data.tokenomics)
+  console.log(_data.tokenomics);
   switch (_data.navStage) {
     case 0: {
       return (
@@ -11,12 +11,10 @@ export function checkCompleteness(_data: ICreationData): boolean {
       );
     }
     case 1: {
-      return false
+      return false;
     }
     case 2: {
-      return (
-        _data.tokenomics.tokenRemaining !== 0
-      )
+      return _data.tokenomics.tokenRemaining !== 0;
     }
   }
 }

@@ -3,7 +3,7 @@ import * as React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
 import { walletStruct } from "../../../lib/creation/Constants";
-import ClearIcon from '@mui/icons-material/Clear';
+import ClearIcon from "@mui/icons-material/Clear";
 
 const WalletSelector: React.FC<{
   data: {
@@ -85,13 +85,13 @@ const WalletSelector: React.FC<{
                     marginRight: ".4rem",
                     cursor: "pointer",
                   }}
-                  color='primary'
+                  color="primary"
                   onClick={() => {
                     setSearch("");
                     props.set({
-                      alias: '', 
-                      address: '',
-                      img: ''
+                      alias: "",
+                      address: "",
+                      img: "",
                     });
                   }}
                 />

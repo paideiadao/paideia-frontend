@@ -86,15 +86,17 @@ const PublicRound: React.FC<{
     waitlistEndDate:
       data.distributions[props.c] === undefined ? end : temp.waitlistEndDate,
     tokenHolders:
-      data.distributions[props.c] === undefined ? [
-        {
-          alias: "",
-          address: "",
-          img: "",
-          balance: 0,
-          percentage: 0,
-        },
-      ] : temp.tokenHolders,
+      data.distributions[props.c] === undefined
+        ? [
+            {
+              alias: "",
+              address: "",
+              img: "",
+              balance: 0,
+              percentage: 0,
+            },
+          ]
+        : temp.tokenHolders,
     vesting: data.distributions[props.c] === undefined ? false : temp.vesting,
     initialDistribution:
       data.distributions[props.c] === undefined ? 0 : temp.initialDistribution,

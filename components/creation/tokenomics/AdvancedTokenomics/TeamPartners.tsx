@@ -41,15 +41,17 @@ const TeamPartners: React.FC<{
     balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
     percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
     tokenHolders:
-      data.distributions[props.c] === undefined ? [
-        {
-          alias: "",
-          address: "",
-          img: "",
-          balance: 0,
-          percentage: 0,
-        },
-      ] : temp.tokenHolders,
+      data.distributions[props.c] === undefined
+        ? [
+            {
+              alias: "",
+              address: "",
+              img: "",
+              balance: 0,
+              percentage: 0,
+            },
+          ]
+        : temp.tokenHolders,
     vesting: data.distributions[props.c] === undefined ? false : temp.vesting,
     initialDistribution:
       data.distributions[props.c] === undefined ? 0 : temp.initialDistribution,
@@ -167,9 +169,7 @@ const TeamPartners: React.FC<{
         <LearnMore title="Token Holder Addresses" light />
         {value.tokenHolders.map((i: ITokenHolder, c: number) => {
           return (
-            <Box
-              sx={{ display: "flex", alignItems: "center", height: "5rem" }}
-            >
+            <Box sx={{ display: "flex", alignItems: "center", height: "5rem" }}>
               <Box
                 sx={{
                   width: "57%",
@@ -218,58 +218,60 @@ const TeamPartners: React.FC<{
                   setValue({ ...value, tokenHolders: temp });
                 }}
               />
-              {value.tokenHolders.length > 1 && <DeleteIcon
+              {value.tokenHolders.length > 1 && (
+                <DeleteIcon
                   style={{
-                    fill: 'red',
+                    fill: "red",
                     marginLeft: ".4rem",
                     cursor: "pointer",
-                    width: '3%'
+                    width: "3%",
                   }}
                   onClick={() => {
                     let temp = [...value.tokenHolders];
                     temp.splice(c, 1);
                     setValue({ ...value, tokenHolders: temp });
                   }}
-                />}
+                />
+              )}
             </Box>
           );
         })}
         {data.tokenRemaining > 0 && (
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                mt: ".8rem",
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              mt: ".8rem",
+            }}
+          >
+            <Button
+              variant="text"
+              sx={{ mr: 2 }}
+              onClick={() => {
+                let temp = [...value.tokenHolders];
+                setValue({
+                  ...value,
+
+                  tokenHolders: temp.concat([
+                    {
+                      alias: "",
+                      address: "",
+                      img: "",
+                      balance: 0,
+                      percentage: 0,
+                    },
+                  ]),
+                });
               }}
             >
-              <Button
-                variant="text"
-                sx={{ mr: 2 }}
-                onClick={() => {
-                  let temp = [...value.tokenHolders];
-                  setValue({
-                    ...value,
-
-                    tokenHolders: temp.concat([
-                      {
-                        alias: "",
-                        address: "",
-                        img: "",
-                        balance: 0,
-                        percentage: 0,
-                      },
-                    ]),
-                  });
-                }}
-              >
-                Add Another <AddIcon />
-              </Button>
-              <Button variant="text">
-                Add from file <FileUploadIcon />
-              </Button>
-            </Box>
-          )}
+              Add Another <AddIcon />
+            </Button>
+            <Button variant="text">
+              Add from file <FileUploadIcon />
+            </Button>
+          </Box>
+        )}
       </Box>
       <VestingSchedule
         set={(data: IVestingSchedule) => setValue({ ...value, ...data })}
