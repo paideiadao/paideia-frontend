@@ -1,6 +1,7 @@
 import { ICreationData } from "../../lib/creation/Api";
 
 export function checkCompleteness(_data: ICreationData): boolean {
+  console.log(_data.tokenomics)
   switch (_data.navStage) {
     case 0: {
       return (
@@ -8,6 +9,14 @@ export function checkCompleteness(_data: ICreationData): boolean {
         _data.basicInformation.daoUrl === "" ||
         _data.basicInformation.shortDescription === ""
       );
+    }
+    case 1: {
+      return false
+    }
+    case 2: {
+      return (
+        _data.tokenomics.tokenRemaining !== 0
+      )
     }
   }
 }
