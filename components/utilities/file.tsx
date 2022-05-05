@@ -8,7 +8,8 @@ const FileInput: React.FC<{file: any, handleImage: Function, id: string, fileUrl
     sx={{
       p: "1rem",
       backgroundColor: "fileInput.outer",
-      border: "1px solid rgba(255, 255, 255, 0.12)",
+      border: "1px solid",
+      borderColor: 'divider.main',
       borderRadius: ".5rem",
     }}
   >
@@ -24,7 +25,7 @@ const FileInput: React.FC<{file: any, handleImage: Function, id: string, fileUrl
       }}
     >
       <Avatar
-        src={props.fileUrl}
+        src={props.file === -1 ? '' : props.fileUrl}
         sx={{
           height: "5rem",
           width: "5rem",

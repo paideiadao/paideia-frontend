@@ -48,7 +48,8 @@ export default function Creation(props) {
       tokenId: "",
       tokenTicker: "",
       tokenAmount: 0,
-      tokenImage: undefined,
+      tokenImage: -1,
+      tokenImageUrl: '',
       tokenRemaining: 0,
       tokenHolders: [
         {

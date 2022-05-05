@@ -64,6 +64,7 @@ export interface ITokenomics {
   tokenTicker: string;
   tokenAmount: number;
   tokenImage: any;
+  tokenImageUrl: string;
   tokenRemaining: number;
   tokenHolders: ITokenHolder[];
   activateTokenomics: boolean;

@@ -7,7 +7,7 @@ import FileInput from "../../utilities/file";
 import { LearnMore } from "../utilities/HeaderComponents";
 
 const TokenSymbol: React.FC<IData<ITokenomics>> = (props) => {
-  const [file, setFileData] = React.useState<any>(undefined);
+  const [url, setUrl] = React.useState<any>(props.data.tokenImage.url);
 
   function handleImage(e: any) {
     let fileInput = e.currentTarget.files;
@@ -15,8 +15,10 @@ const TokenSymbol: React.FC<IData<ITokenomics>> = (props) => {
     if (fileInput && fileInput[0]) {
       if (fileInput.length != 1) return;
       if (fileInput[0].size > 1000000) {
-        setFileData(-1);
-        props.setData({ ...props.data, tokenImage: undefined });
+        props.setData({ ...props.data, tokenImage: {
+          ...props.data.tokenImage,
+          file: -1
+      } });
 
         return;
       }
@@ -24,27 +26,26 @@ const TokenSymbol: React.FC<IData<ITokenomics>> = (props) => {
       var reader = new FileReader();
 
       reader.onload = function (_e: any) {
-        setFileData(_e.target.result);
+        setUrl(_e.target.result);
       };
 
       reader.readAsDataURL(fileInput[0]);
 
-      props.setData({ ...props.data, tokenImage: fileInput[0] });
+      props.setData({ ...props.data, tokenImage: {...props.data.tokenImage, file: fileInput[0]} });
     }
   }
+
+  React.useEffect(() => {
+    props.setData({...props.data, tokenImage: {...props.data.tokenImage, url: url}})
+}, [url])
   return (
     <>
       <LearnMore title="Token symbol" small={true} />
       <FileInput
-        file={file}
+        file={props.data.tokenImage === undefined ? "" : props.data.tokenImage.file}
+        fileUrl={props.data.tokenImage === undefined ? "" : props.data.tokenImage.url}
         handleImage={handleImage}
-        size={
-          props.data.tokenImage === undefined ? 0 : props.data.tokenImage.size
-        }
-        id="token-image-upload"
-        name={
-          props.data.tokenImage === undefined ? "" : props.data.tokenImage.name
-        }
+        id="logo-img-upload"
       />
     </>
   );

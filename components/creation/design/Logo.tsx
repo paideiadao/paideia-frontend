@@ -35,9 +35,13 @@ const Logo: React.FC = () => {
       };
 
       reader.readAsDataURL(fileInput[0]);
-      setData({ ...data, logo: {file: fileInput[0], url: url} });
+      setData({ ...data, logo: {...data.logo, file: fileInput[0]} });
     }
   }
+
+  React.useEffect(() => {
+      setData({...data, logo: {...data.logo, url: url}})
+  }, [url])
 
   return (
     <Box
