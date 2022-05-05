@@ -21,10 +21,13 @@ const Logo: React.FC = () => {
     if (fileInput && fileInput[0]) {
       if (fileInput.length != 1) return;
       if (fileInput[0].size > 1000000) {
-        setData({ ...data, logo: {
+        setData({
+          ...data,
+          logo: {
             ...data.logo,
-            file: -1
-        } });
+            file: -1,
+          },
+        });
 
         return;
       }
@@ -35,13 +38,13 @@ const Logo: React.FC = () => {
       };
 
       reader.readAsDataURL(fileInput[0]);
-      setData({ ...data, logo: {...data.logo, file: fileInput[0]} });
+      setData({ ...data, logo: { ...data.logo, file: fileInput[0] } });
     }
   }
 
   React.useEffect(() => {
-      setData({...data, logo: {...data.logo, url: url}})
-  }, [url])
+    setData({ ...data, logo: { ...data.logo, url: url } });
+  }, [url]);
 
   return (
     <Box

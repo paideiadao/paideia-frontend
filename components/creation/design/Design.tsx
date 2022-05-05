@@ -3,8 +3,12 @@ import * as React from "react";
 import { Header, LearnMore, Subtitle } from "../utilities/HeaderComponents";
 import CheckIcon from "@mui/icons-material/Check";
 import Logo from "./Logo";
+import { GlobalContext } from "../../../lib/creation/Context";
+import Banner from "./Banner";
 
 const Design: React.FC = (props) => {
+  let globalContext = React.useContext(GlobalContext);
+
   const [theme, setTheme] = React.useState<number>(1);
   let themes = [
     {
@@ -56,6 +60,21 @@ const Design: React.FC = (props) => {
       colorBottom: "#FFFFFF",
     },
   ];
+
+  let data = globalContext.api.data.design;
+  let setData = (data: any) => {
+    globalContext.api.setData({
+      ...globalContext.api.data,
+      design: data,
+    });
+  };
+
+  React.useEffect(() => {
+    setData({
+      ...data,
+      theme: theme,
+    });
+  }, [theme]);
   return (
     <Box sx={{ display: "flex", flexDirection: "column", width: "70%" }}>
       <Header
@@ -147,6 +166,7 @@ const Design: React.FC = (props) => {
         })}
       </Box>
       <Logo />
+      <Banner />
     </Box>
   );
 };

@@ -17,11 +17,19 @@ export interface ICreationData {
   design: IDesign;
 }
 
+interface IFile {
+  file: any;
+  url: string;
+}
+
 interface IDesign {
   theme: number;
-  logo: any;
-  banner: any;
-  footer: any;
+  logo: IFile;
+  banner: {
+    show: boolean;
+    data: IFile;
+  };
+  footer: boolean;
 }
 
 interface IBasicInformation {

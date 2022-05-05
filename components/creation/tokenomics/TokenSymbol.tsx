@@ -15,10 +15,13 @@ const TokenSymbol: React.FC<IData<ITokenomics>> = (props) => {
     if (fileInput && fileInput[0]) {
       if (fileInput.length != 1) return;
       if (fileInput[0].size > 1000000) {
-        props.setData({ ...props.data, tokenImage: {
-          ...props.data.tokenImage,
-          file: -1
-      } });
+        props.setData({
+          ...props.data,
+          tokenImage: {
+            ...props.data.tokenImage,
+            file: -1,
+          },
+        });
 
         return;
       }
@@ -31,19 +34,29 @@ const TokenSymbol: React.FC<IData<ITokenomics>> = (props) => {
 
       reader.readAsDataURL(fileInput[0]);
 
-      props.setData({ ...props.data, tokenImage: {...props.data.tokenImage, file: fileInput[0]} });
+      props.setData({
+        ...props.data,
+        tokenImage: { ...props.data.tokenImage, file: fileInput[0] },
+      });
     }
   }
 
   React.useEffect(() => {
-    props.setData({...props.data, tokenImage: {...props.data.tokenImage, url: url}})
-}, [url])
+    props.setData({
+      ...props.data,
+      tokenImage: { ...props.data.tokenImage, url: url },
+    });
+  }, [url]);
   return (
     <>
       <LearnMore title="Token symbol" small={true} />
       <FileInput
-        file={props.data.tokenImage === undefined ? "" : props.data.tokenImage.file}
-        fileUrl={props.data.tokenImage === undefined ? "" : props.data.tokenImage.url}
+        file={
+          props.data.tokenImage === undefined ? "" : props.data.tokenImage.file
+        }
+        fileUrl={
+          props.data.tokenImage === undefined ? "" : props.data.tokenImage.url
+        }
         handleImage={handleImage}
         id="logo-img-upload"
       />

@@ -49,7 +49,7 @@ export default function Creation(props) {
       tokenTicker: "",
       tokenAmount: 0,
       tokenImage: -1,
-      tokenImageUrl: '',
+      tokenImageUrl: "",
       tokenRemaining: 0,
       tokenHolders: [
         {
@@ -65,13 +65,16 @@ export default function Creation(props) {
     },
     design: {
       logo: {
-        url: -1,
-        file: undefined
+        url: "",
+        file: undefined,
       },
       theme: 1,
-      banner: undefined,
-      footer: undefined
-    }
+      banner: {
+        show: false,
+        data: { url: "", file: undefined },
+      },
+      footer: undefined,
+    },
   });
 
   let lookup = {
