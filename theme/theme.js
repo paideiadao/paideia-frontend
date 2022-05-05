@@ -157,6 +157,15 @@ export const DarkTheme = createTheme({
     tonalOffset: 0.2,
   },
   overrides: {
+    MuiButton: {
+      styleOverrides: {
+        button: {
+          disabled: {
+            backgroundColor: "blue",
+          },
+        },
+      },
+    },
     MuiTypography: {
       caption: {
         backgroundColor: "blue",
