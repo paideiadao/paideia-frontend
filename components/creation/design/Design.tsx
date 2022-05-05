@@ -2,6 +2,7 @@ import { Avatar, Box, Fab, Paper } from "@mui/material";
 import * as React from "react";
 import { Header, LearnMore, Subtitle } from "../utilities/HeaderComponents";
 import CheckIcon from "@mui/icons-material/Check";
+import Logo from "./Logo";
 
 const Design: React.FC = (props) => {
   const [theme, setTheme] = React.useState<number>(1);
@@ -104,9 +105,14 @@ const Design: React.FC = (props) => {
                 >
                   {i.id === theme && (
                     <Box sx={{ position: "absolute", bottom: 5, right: 5 }}>
-                      <Avatar sx={{backgroundColor: 'fileInput.outer', border: '1px solid', borderColor: "#42A5F5"}}>
-                        <CheckIcon color='primary'/>
-
+                      <Avatar
+                        sx={{
+                          backgroundColor: "fileInput.outer",
+                          border: "1px solid",
+                          borderColor: "#42A5F5",
+                        }}
+                      >
+                        <CheckIcon color="primary" />
                       </Avatar>
                     </Box>
                   )}
@@ -140,6 +146,7 @@ const Design: React.FC = (props) => {
           );
         })}
       </Box>
+      <Logo />
     </Box>
   );
 };

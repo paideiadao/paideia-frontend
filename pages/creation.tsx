@@ -62,6 +62,15 @@ export default function Creation(props) {
       activateTokenomics: false,
       distributions: [],
     },
+    design: {
+      logo: {
+        url: -1,
+        file: undefined
+      },
+      theme: 1,
+      banner: undefined,
+      footer: undefined
+    }
   });
 
   let lookup = {

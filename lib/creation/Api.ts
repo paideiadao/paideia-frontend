@@ -14,6 +14,14 @@ export interface ICreationData {
   basicInformation: IBasicInformation;
   governance: IGovernance;
   tokenomics: ITokenomics;
+  design: IDesign;
+}
+
+interface IDesign {
+  theme: number;
+  logo: any;
+  banner: any;
+  footer: any;
 }
 
 interface IBasicInformation {
