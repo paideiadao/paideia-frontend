@@ -72,7 +72,7 @@ const WalletSelector: React.FC<{
                     mt: "-.3rem",
                   }}
                 >
-                  {props.data.address}
+                  {props.data.address !== undefined && `${props.data.address.slice(0, 18)}......${props.data.address.substr(props.data.address.length - 18)}`}
                 </Box>
               </Box>
             </InputAdornment>
@@ -132,10 +132,10 @@ const WalletSelector: React.FC<{
                     zIndex: 100,
                     p: 1,
                     backgroundColor: "backgroundColor.main",
-                    color: "primary.text",
+                    color: "primary.lightText",
                     ":hover": {
                       backgroundColor: "darkHover.main",
-                      color: "darkHover.text",
+                      color: "primary.lightText",
                     },
                   }}
                   key={`${i.address}-wallet-card`}
@@ -150,7 +150,7 @@ const WalletSelector: React.FC<{
                   </Box>
                   <Box>
                     <Box>{i.alias}</Box>
-                    <Box sx={{ fontSize: ".6rem" }}>{i.address}</Box>
+                    <Box sx={{ fontSize: ".6rem" }}>{i.address.slice(0, 18)}......{i.address.substr(i.address.length - 18)}</Box>
                   </Box>
                 </Box>
               );

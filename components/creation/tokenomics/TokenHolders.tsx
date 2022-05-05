@@ -10,6 +10,7 @@ import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { percentage } from "../../../lib/creation/Utilities";
 import PercentageInput from "../utilities/PercentageInput";
 import BalanceInput from "../utilities/BalanceInput";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
   let globalContext = React.useContext(GlobalContext);
@@ -32,20 +33,21 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
         {data.tokenHolders.map((i: any, c: number) => {
           return (
             <Box
-              sx={{ display: "flex", alignItems: "flex-start", height: "5rem" }}
+              sx={{ display: "flex", alignItems: "center", height: "5rem" }}
               key={`${c}-token-holder`}
             >
               <Box
                 sx={{
-                  width: "57%",
+                  width: "50%",
                   mr: ".5rem",
                   display: "flex",
-                  alignItem: "flex-start",
+                  alignItems: "center",
                 }}
               >
                 <WalletSelector
                   id="tokenomics"
                   key={c + "tokenomics"}
+                  canDelete={data.tokenHolders.length > 0}
                   data={i}
                   mt="0"
                   number={c}
@@ -82,13 +84,26 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                   props.setData({ ...props.data, tokenHolders: temp });
                 }}
               />
+              {data.tokenHolders.length > 1 && (
+                <DeleteIcon
+                  style={{
+                    fill: "red",
+                    marginLeft: ".4rem",
+                    cursor: "pointer",
+                    width: "3%",
+                  }}
+                  onClick={() => {
+                    let temp = [...data.tokenHolders];
+                    temp.splice(c, 1);
+                    props.setData({ ...data, tokenHolders: temp });
+                  }}
+                />
+              )}
             </Box>
           );
         })}
       </Box>
-      {data.tokenRemaining > 0 &&
-        data.tokenHolders.map((i: any) => i.balance).indexOf(0) === -1 &&
-        data.tokenHolders.map((i: any) => i.percentage).indexOf(0) === -1 && (
+      {data.tokenRemaining > 0 && (
           <Box
             sx={{
               display: "flex",
