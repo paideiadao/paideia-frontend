@@ -7,6 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import VestingSchedule, { IVestingSchedule } from "./VestingSchedule";
 import BalanceInput from "../../utilities/BalanceInput";
 import PercentageInput from "../../utilities/PercentageInput";
+import useDidMountEffect from "../../../utilities/hooks";
 
 export interface ITreasuryInfo {
   distributionName: string;
@@ -66,6 +67,12 @@ const Treasury: React.FC<{
     });
   }, [value]);
 
+  useDidMountEffect(() => {
+    setValue({
+      ...value,
+      balance: props.data.data.distributions[props.c].balance
+    })
+  }, [props.data.data.distributions])
   return (
     <>
       <DeleteIcon

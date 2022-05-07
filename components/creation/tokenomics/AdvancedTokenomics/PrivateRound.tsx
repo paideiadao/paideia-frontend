@@ -19,6 +19,7 @@ import WalletSelector from "../../governance/WalletSelector";
 import Alert from "@mui/material/Alert";
 import { currencyFormatter } from "../../../utilities/currency";
 import AbstractDate from "../../utilities/AbstractDate";
+import useDidMountEffect from '../../../utilities/hooks'
 
 export interface IPrivateRoundInfo {
   distributionName: string;
@@ -100,6 +101,13 @@ const PrivateRound: React.FC<{
       distributions: temp,
     });
   }, [value]);
+
+  useDidMountEffect(() => {
+    setValue({
+      ...value,
+      balance: props.data.data.distributions[props.c].balance
+    })
+  }, [props.data.data.distributions])
 
   return (
     <>

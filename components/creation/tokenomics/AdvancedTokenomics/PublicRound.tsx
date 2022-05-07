@@ -13,15 +13,13 @@ import { CapsInfo, Header, LearnMore } from "../../utilities/HeaderComponents";
 import BalanceInput from "../../utilities/BalanceInput";
 import PercentageInput from "../../utilities/PercentageInput";
 import VestingSchedule, { IVestingSchedule } from "./VestingSchedule";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import AddIcon from "@mui/icons-material/Add";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import WalletSelector from "../../governance/WalletSelector";
 import Alert from "@mui/material/Alert";
 import { currencyFormatter } from "../../../utilities/currency";
 import AbstractDate from "../../utilities/AbstractDate";
+import useDidMountEffect from "../../../utilities/hooks";
 
 export interface IPublicRoundInfo {
   distributionName: string;
@@ -126,6 +124,13 @@ const PublicRound: React.FC<{
       distributions: temp,
     });
   }, [value]);
+
+  useDidMountEffect(() => {
+    setValue({
+      ...value,
+      balance: props.data.data.distributions[props.c].balance
+    })
+  }, [props.data.data.distributions])
 
   return (
     <>

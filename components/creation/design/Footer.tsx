@@ -132,10 +132,9 @@ const Footer: React.FC = () => {
 const SocialRow: React.FC<{ data: ISocialLink; set: Function; c: number, delete: Function }> = (
   props
 ) => {
-  console.log();
   return (
-    <Box sx={{ mt: "1rem", mb: "1rem", display: 'flex', alignItems: 'center' }}>
-      <FormControl sx={{ width: "35%", ml: ".5rem", mr: '.5rem' }}>
+    <Box sx={{ mt: "1rem", mb: "1rem", display: 'flex', alignItems: 'center', width: '100%' }}>
+      <FormControl sx={{ width: "35%", mr: '.5rem' }}>
         <InputLabel htmlFor={`social-link-label-${props.c}`}>
           Social network
         </InputLabel>

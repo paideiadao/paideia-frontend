@@ -16,12 +16,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { CapsInfo, Header } from "../../utilities/HeaderComponents";
 import BalanceInput from "../../utilities/BalanceInput";
 import PercentageInput from "../../utilities/PercentageInput";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Alert from "@mui/material/Alert";
 import LabeledSwitch from "../../utilities/LabeledSwitch";
 import AbstractDate from "../../utilities/AbstractDate";
+import useDidMountEffect from "../../../utilities/hooks";
 
 export interface IStakingInfo {
   distributionName: string;
@@ -74,6 +72,13 @@ const Staking: React.FC<{
       distributions: temp,
     });
   }, [value]);
+
+  useDidMountEffect(() => {
+    setValue({
+      ...value,
+      balance: props.data.data.distributions[props.c].balance
+    })
+  }, [props.data.data.distributions])
 
   return (
     <>

@@ -10,7 +10,7 @@ import AdvancedTokenomics from "./AdvancedTokenomics/AdvancedTokenomics";
 import TokenDistribution from "./TokenDistribution";
 import { ILiquidityInfo } from "./AdvancedTokenomics/Liquidity";
 import InfoIcon from "@mui/icons-material/Info";
-import { percentage } from "../../../lib/creation/Utilities";
+import { percentage, percentageToBalance } from "../../../lib/creation/Utilities";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const Tokenomics: React.FC = () => {
@@ -62,6 +62,25 @@ const Tokenomics: React.FC = () => {
               .reduce((sum, current) => sum + current, 0)),
     });
   }, [tokenHolders, tokenAmount, distributions]);
+
+
+  React.useEffect(() => {
+    set({
+      ...globalContext.api.data.tokenomics,
+      tokenHolders: globalContext.api.data.tokenomics.tokenHolders.map((i: ITokenHolder) => {
+        return {
+          ...i,
+          balance: percentageToBalance(tokenAmount, i.percentage / 100)
+        }
+      }),
+      distributions: globalContext.api.data.tokenomics.distributions.map((i: any) => {
+        return {
+          ...i,
+          balance: percentageToBalance(tokenAmount, i.percentage / 100)
+        }
+      })
+    })
+  }, [tokenAmount])
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", width: "70%" }}>

@@ -10,6 +10,7 @@ import WalletSelector from "../../governance/WalletSelector";
 import AddIcon from "@mui/icons-material/Add";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import DeleteIcon from "@mui/icons-material/Delete";
+import useDidMountEffect from "../../../utilities/hooks";
 
 export interface ITeamPartnersInfo {
   distributionName: string;
@@ -83,6 +84,13 @@ const TeamPartners: React.FC<{
               .reduce((sum, current) => sum + current, 0))
     );
   }, [value.balance, value.tokenHolders]);
+
+  useDidMountEffect(() => {
+    setValue({
+      ...value,
+      balance: props.data.data.distributions[props.c].balance
+    })
+  }, [props.data.data.distributions])
 
   React.useEffect(() => {
     /// add data to global context...

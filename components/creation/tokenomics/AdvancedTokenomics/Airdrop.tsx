@@ -13,10 +13,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { CapsInfo, Header, LearnMore } from "../../utilities/HeaderComponents";
 import BalanceInput from "../../utilities/BalanceInput";
 import PercentageInput from "../../utilities/PercentageInput";
-import VestingSchedule, { IVestingSchedule } from "./VestingSchedule";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import useDidMountEffect from "../../../utilities/hooks";
 import AddIcon from "@mui/icons-material/Add";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import WalletSelector from "../../governance/WalletSelector";
@@ -143,6 +140,13 @@ const Airdrop: React.FC<{
       distributions: temp,
     });
   }, [value]);
+
+  useDidMountEffect(() => {
+    setValue({
+      ...value,
+      balance: props.data.data.distributions[props.c].balance
+    })
+  }, [props.data.data.distributions])
 
   return (
     <>

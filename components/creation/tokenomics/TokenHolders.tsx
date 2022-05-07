@@ -16,6 +16,10 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
   let globalContext = React.useContext(GlobalContext);
   let data = props.data;
 
+  React.useEffect(() => {
+    
+  }, [props.data.tokenAmount])
+
   return (
     <Box
       sx={{

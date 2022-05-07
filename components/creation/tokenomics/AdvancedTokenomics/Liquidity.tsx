@@ -21,6 +21,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Alert from "@mui/material/Alert";
 import AbstractDate from "../../utilities/AbstractDate";
+import useDidMountEffect from "../../../utilities/hooks";
 
 export interface ILiquidityInfo {
   distributionName: string;
@@ -80,6 +81,13 @@ const Liquidity: React.FC<{
       distributions: temp,
     });
   }, [value]);
+
+  useDidMountEffect(() => {
+    setValue({
+      ...value,
+      balance: props.data.data.distributions[props.c].balance
+    })
+  }, [props.data.data.distributions])
 
   return (
     <>
