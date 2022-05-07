@@ -1,18 +1,12 @@
 import { Avatar, Box, Button } from "@mui/material";
 import * as React from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { GlobalContext } from "../../../lib/creation/Context";
-import EditIcon from "@mui/icons-material/Edit";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CircleIcon from "@mui/icons-material/Circle";
 import PersonIcon from "@mui/icons-material/Person";
 import BasicInformation from "./BasicInformation";
 import Governance from "./Governance";
 import Tokenomics from "./Tokenomics";
+import Design from "./Design";
 
 export const Value: React.FC<{
   labelWidth: string;
@@ -26,8 +20,9 @@ export const Value: React.FC<{
         width: "100%",
         display: "flex",
         alignItems: "flex-start",
-        mt: ".5rem",
-        mb: ".5rem",
+        mt: "1rem",
+        mb: "1rem",
+        height: "100%",
       }}
     >
       <Box sx={{ width: props.labelWidth, color: "primary.lightText" }}>
@@ -76,11 +71,13 @@ export const ActiveInactive: React.FC<{ value: boolean }> = (props) => {
         display: "flex",
         alignItems: "center",
         color: props.value ? "primary.lightSuccess" : "red",
-        fontSize: ".8rem",
+        fontSize: ".9rem",
+        fontWeight: 550,
       }}
     >
       <CircleIcon
-        color={props.value ? "success" : "error"}
+        // @ts-ignore
+        color={props.value ? "success" : "red"}
         sx={{ fontSize: ".9rem", mr: ".5rem" }}
       />
       {props.value ? "Active" : "Inactive"}
@@ -137,6 +134,7 @@ const ReviewDrawer: React.FC = () => {
       />
       <Governance expanded={expanded} handleChange={handleChange} data={data} />
       <Tokenomics expanded={expanded} handleChange={handleChange} data={data} />
+      <Design expanded={expanded} handleChange={handleChange} data={data} />
     </Box>
   );
 };

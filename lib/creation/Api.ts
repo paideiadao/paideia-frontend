@@ -22,7 +22,7 @@ export interface ICreationData {
   design: IDesign;
 }
 
-interface IFile {
+export interface IFile {
   file: any;
   url: string;
 }

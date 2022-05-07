@@ -58,7 +58,7 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
               mb: ".5rem",
               p: ".5rem",
               display: "flex",
-              alignItems: 'center'
+              alignItems: "center",
             }}
           >
             <Box>
@@ -71,7 +71,7 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
             </Box>
             <Box sx={{ ml: "auto", textAlign: "right" }}>
               <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
-                {i.balance+ ' '}
+                {i.balance + " "}
                 {i.tokenTicker}
               </Box>
               <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>
@@ -105,7 +105,7 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
             </Box>
             <Box sx={{ ml: "auto", textAlign: "right" }}>
               <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
-                {i.balance + ' '}
+                {i.balance + " "}
                 {props.data.tokenTicker}
               </Box>
               <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>

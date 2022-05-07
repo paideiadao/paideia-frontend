@@ -7,60 +7,61 @@ import { GlobalContext } from "../../../lib/creation/Context";
 import Banner from "./Banner";
 import Footer from "./Footer";
 
+export const themes = [
+  {
+    id: 1,
+    label: "Paideia/Dark",
+    colorTop: "#9FD2DB",
+    colorBottom: "#111827",
+  },
+  {
+    id: 2,
+    label: "Paideia/Light",
+    colorTop: "#23B5CF",
+    colorBottom: "#FFFFFF",
+  },
+  {
+    id: 3,
+    label: "Purple/Dark",
+    colorTop: "#9EA0FF",
+    colorBottom: "#111827",
+  },
+  {
+    id: 4,
+    label: "Purple/Light",
+    colorTop: "#6365EF",
+    colorBottom: "#FFFFFF",
+  },
+  {
+    id: 5,
+    label: "Teal/Dark",
+    colorTop: "#82C1FF",
+    colorBottom: "#111827",
+  },
+  {
+    id: 6,
+    label: "Teal/Light",
+    colorTop: "#1976D2",
+    colorBottom: "#FFFFFF",
+  },
+  {
+    id: 7,
+    label: "Pink/Dark",
+    colorTop: "#EA79BD",
+    colorBottom: "#111827",
+  },
+  {
+    id: 8,
+    label: "Pink/Light",
+    colorTop: "#C22985",
+    colorBottom: "#FFFFFF",
+  },
+];
+
 const Design: React.FC = (props) => {
   let globalContext = React.useContext(GlobalContext);
 
   const [theme, setTheme] = React.useState<number>(1);
-  let themes = [
-    {
-      id: 1,
-      label: "Paideia/Dark",
-      colorTop: "#9FD2DB",
-      colorBottom: "#111827",
-    },
-    {
-      id: 2,
-      label: "Paideia/Light",
-      colorTop: "#23B5CF",
-      colorBottom: "#FFFFFF",
-    },
-    {
-      id: 3,
-      label: "Purple/Dark",
-      colorTop: "#9EA0FF",
-      colorBottom: "#111827",
-    },
-    {
-      id: 4,
-      label: "Purple/Light",
-      colorTop: "#6365EF",
-      colorBottom: "#FFFFFF",
-    },
-    {
-      id: 5,
-      label: "Teal/Dark",
-      colorTop: "#82C1FF",
-      colorBottom: "#111827",
-    },
-    {
-      id: 6,
-      label: "Teal/Light",
-      colorTop: "#1976D2",
-      colorBottom: "#FFFFFF",
-    },
-    {
-      id: 7,
-      label: "Pink/Dark",
-      colorTop: "#EA79BD",
-      colorBottom: "#111827",
-    },
-    {
-      id: 8,
-      label: "Pink/Light",
-      colorTop: "#C22985",
-      colorBottom: "#FFFFFF",
-    },
-  ];
 
   let data = globalContext.api.data.design;
   let setData = (data: any) => {
