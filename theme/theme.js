@@ -156,6 +156,20 @@ export const DarkTheme = createTheme({
     // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
   },
+  addButton: {
+    margin: 0,
+    top: "auto",
+    right: 20,
+    bottom: 20,
+    left: "auto",
+    position: "fixed",
+    color: "primary",
+    zIndex: 20,
+    backgroundColor: "red",
+    "&:hover": {
+      backgroundColor: "yellow",
+    },
+  },
   overrides: {
     MuiButton: {
       styleOverrides: {

@@ -104,6 +104,7 @@ const Design: React.FC = (props) => {
               }}
             >
               <Paper
+                elevation={0}
                 sx={{
                   backgroundColor: "fileInput.outer",
                   border: "1px solid",

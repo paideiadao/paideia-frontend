@@ -72,7 +72,13 @@ const WalletSelector: React.FC<{
                     mt: "-.3rem",
                   }}
                 >
-                  {props.data.address !== undefined && `${props.data.address.slice(0, 18)}......${props.data.address.substr(props.data.address.length - 18)}`}
+                  {props.data.address !== undefined &&
+                    `${props.data.address.slice(
+                      0,
+                      18
+                    )}......${props.data.address.substr(
+                      props.data.address.length - 18
+                    )}`}
                 </Box>
               </Box>
             </InputAdornment>
@@ -150,7 +156,10 @@ const WalletSelector: React.FC<{
                   </Box>
                   <Box>
                     <Box>{i.alias}</Box>
-                    <Box sx={{ fontSize: ".6rem" }}>{i.address.slice(0, 18)}......{i.address.substr(i.address.length - 18)}</Box>
+                    <Box sx={{ fontSize: ".6rem" }}>
+                      {i.address.slice(0, 18)}......
+                      {i.address.substr(i.address.length - 18)}
+                    </Box>
                   </Box>
                 </Box>
               );

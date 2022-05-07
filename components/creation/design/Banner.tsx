@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 import { GlobalContext } from "../../../lib/creation/Context";
-import FileInput from "../../utilities/file";
+import FileBanner from "../../utilities/FileBanner";
 import { Subheader, Subtitle } from "../utilities/HeaderComponents";
 import LabeledSwitch from "../utilities/LabeledSwitch";
 
@@ -16,37 +16,58 @@ const Banner: React.FC = () => {
     });
   };
 
-//   const [url, setUrl] = React.useState<any>(data.logo.url);
+  const [url, setUrl] = React.useState<any>(data.banner.data.url);
 
-//   function handleImage(e: any) {
-//     let fileInput = e.currentTarget.files;
-//     if (fileInput && fileInput[0]) {
-//       if (fileInput.length != 1) return;
-//       if (fileInput[0].size > 1000000) {
-//         setData({
-//           ...data,
-//           logo: {
-//             ...data.logo,
-//             file: -1,
-//           },
-//         });
+  function handleImage(e: any) {
+    let fileInput = e.currentTarget.files;
+    if (fileInput && fileInput[0]) {
+      if (fileInput.length != 1) return;
+      if (fileInput[0].size > 1000000) {
+        setData({
+          ...data,
+          banner: {
+            ...data.banner,
+            data: {
+              ...data.banner.data,
+              file: -1,
+            },
+          },
+        });
 
-//         return;
-//       }
+        return;
+      }
 
-//       var reader = new FileReader();
-//       reader.onload = function (_e: any) {
-//         setUrl(_e.target.result);
-//       };
+      var reader = new FileReader();
+      reader.onload = function (_e: any) {
+        setUrl(_e.target.result);
+      };
 
-//       reader.readAsDataURL(fileInput[0]);
-//       setData({ ...data, logo: { ...data.logo, file: fileInput[0] } });
-//     }
-//   }
+      reader.readAsDataURL(fileInput[0]);
+      setData({
+        ...data,
+        banner: {
+          ...data.banner,
+          data: {
+            ...data.banner.data,
+            file: fileInput[0],
+          },
+        },
+      });
+    }
+  }
 
-//   React.useEffect(() => {
-//     setData({ ...data, logo: { ...data.logo, url: url } });
-//   }, [url]);
+  React.useEffect(() => {
+    setData({
+      ...data,
+      banner: {
+        ...data.banner,
+        data: {
+          ...data.banner.data,
+          url: url,
+        },
+      },
+    });
+  }, [url]);
   return (
     <Box
       sx={{
@@ -76,14 +97,14 @@ const Banner: React.FC = () => {
           })
         }
       />
-      {
-         data.banner.show && <FileInput
-         file={data.banner.data === undefined ? "" : data.banner.data.file}
-         fileUrl={data.banner.data === undefined ? "" : data.banner.data.url}
-         handleImage={() => null}
-         id="logo-img-upload"
-       /> 
-      }
+      {data.banner.show && (
+        <FileBanner
+          file={data.banner.data === undefined ? "" : data.banner.data.file}
+          fileUrl={data.banner.data === undefined ? "" : data.banner.data.url}
+          handleImage={handleImage}
+          id="banner-img-upload"
+        />
+      )}
     </Box>
   );
 };

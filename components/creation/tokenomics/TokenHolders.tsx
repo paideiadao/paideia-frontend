@@ -104,43 +104,43 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
         })}
       </Box>
       {data.tokenRemaining > 0 && (
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              mt: ".8rem",
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            mt: ".8rem",
+          }}
+        >
+          <Button
+            variant="text"
+            sx={{ mr: 2 }}
+            onClick={() => {
+              let temp = [...data.tokenHolders];
+              globalContext.api.setData({
+                ...globalContext.api.data,
+                tokenomics: {
+                  ...data,
+                  tokenHolders: temp.concat([
+                    {
+                      alias: "",
+                      address: "",
+                      img: "",
+                      balance: 0,
+                      percentage: 0,
+                    },
+                  ]),
+                },
+              });
             }}
           >
-            <Button
-              variant="text"
-              sx={{ mr: 2 }}
-              onClick={() => {
-                let temp = [...data.tokenHolders];
-                globalContext.api.setData({
-                  ...globalContext.api.data,
-                  tokenomics: {
-                    ...data,
-                    tokenHolders: temp.concat([
-                      {
-                        alias: "",
-                        address: "",
-                        img: "",
-                        balance: 0,
-                        percentage: 0,
-                      },
-                    ]),
-                  },
-                });
-              }}
-            >
-              Add Another <AddIcon />
-            </Button>
-            <Button variant="text">
-              Add from file <FileUploadIcon />
-            </Button>
-          </Box>
-        )}
+            Add Another <AddIcon />
+          </Button>
+          <Button variant="text">
+            Add from file <FileUploadIcon />
+          </Button>
+        </Box>
+      )}
 
       {data.tokenAmount > 0 && (
         <Box sx={{ width: "100%", mt: 2 }}>
