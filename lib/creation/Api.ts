@@ -9,6 +9,11 @@ import { ITreasuryInfo } from "../../components/creation/tokenomics/AdvancedToke
 import { IVestingSchedule } from "../../components/creation/tokenomics/AdvancedTokenomics/VestingSchedule";
 import { AbstractApi } from "../utilities";
 
+export interface ISocialLink {
+  socialNetwork: string;
+  address: string;
+}
+
 export interface ICreationData {
   navStage: number;
   basicInformation: IBasicInformation;
@@ -29,7 +34,11 @@ interface IDesign {
     show: boolean;
     data: IFile;
   };
-  footer: boolean;
+  footer: {
+    show: boolean;
+    mainText: string;
+    links: ISocialLink[];
+  };
 }
 
 interface IBasicInformation {

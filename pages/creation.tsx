@@ -73,7 +73,11 @@ export default function Creation(props) {
         show: false,
         data: { url: "", file: undefined },
       },
-      footer: undefined,
+      footer: {
+        show: false,
+        mainText: "",
+        links: [],
+      },
     },
   });
 

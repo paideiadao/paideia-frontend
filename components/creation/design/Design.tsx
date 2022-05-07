@@ -5,6 +5,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import Logo from "./Logo";
 import { GlobalContext } from "../../../lib/creation/Context";
 import Banner from "./Banner";
+import Footer from "./Footer";
 
 const Design: React.FC = (props) => {
   let globalContext = React.useContext(GlobalContext);
@@ -168,6 +169,7 @@ const Design: React.FC = (props) => {
       </Box>
       <Logo />
       <Banner />
+      <Footer />
     </Box>
   );
 };

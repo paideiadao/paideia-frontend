@@ -50,60 +50,59 @@ const FileBanner: React.FC<{
         {props.fileUrl !== "" &&
         props.fileUrl !== undefined &&
         props.file !== undefined ? (
-            <>
-                      <Box sx={{ width: "100%" }}>
-            <Image
-              src={props.fileUrl}
-              alt="Picture of the author"
-              style={{
-                borderTopLeftRadius: ".2rem",
-                borderTopRightRadius: ".3rem",
-              }}
-              width="1200rem"
-              height="410rem"
-            />
-            <Box
-              sx={{
-                height: "3rem",
-                pl: "1rem",
-                pr: "1rem",
-                display: "flex",
-                width: "100%",
-              }}
-            >
-              <Box sx={{ mt: ".2rem" }}>
-                {props.file.name}
-                <Box sx={{ color: "primary.lightText", fontSize: ".9rem" }}>
-                  {props.file === undefined || props.file === -1
-                    ? "File Max size 1Mb. Dimensions 48px by 48px."
-                    : bytesToSize(props.file.size)}
+          <>
+            <Box sx={{ width: "100%" }}>
+              <Image
+                src={props.fileUrl}
+                alt="Picture of the author"
+                style={{
+                  borderTopLeftRadius: ".2rem",
+                  borderTopRightRadius: ".3rem",
+                }}
+                width="1200rem"
+                height="410rem"
+              />
+              <Box
+                sx={{
+                  height: "3rem",
+                  pl: "1rem",
+                  pr: "1rem",
+                  display: "flex",
+                  width: "100%",
+                }}
+              >
+                <Box sx={{ mt: ".2rem" }}>
+                  {props.file.name}
+                  <Box sx={{ color: "primary.lightText", fontSize: ".9rem" }}>
+                    {props.file === undefined || props.file === -1
+                      ? "File Max size 1Mb. Dimensions 48px by 48px."
+                      : bytesToSize(props.file.size)}
+                  </Box>
+                </Box>
+
+                <Box sx={{ ml: "auto" }}>
+                  <Button
+                    variant="contained"
+                    sx={{ mt: ".5rem" }}
+                    size="medium"
+                    onClick={() => {
+                      const fileInput = document.getElementById(props.id);
+                      fileInput.click();
+                    }}
+                  >
+                    Replace
+                  </Button>
                 </Box>
               </Box>
-
-              <Box sx={{ ml: "auto" }}>
-                <Button
-                  variant="contained"
-                  sx={{ mt: ".5rem" }}
-                  size="medium"
-                  onClick={() => {
-                    const fileInput = document.getElementById(props.id);
-                    fileInput.click();
-                  }}
-                >
-                  Replace
-                </Button>
-              </Box>
             </Box>
-          </Box>
-          <input
-                type="file"
-                id={props.id}
-                accept="image/*"
-                style={{ display: "none" }}
-                onChange={(e) => props.handleImage(e)}
-              />
-            </>
-
+            <input
+              type="file"
+              id={props.id}
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={(e) => props.handleImage(e)}
+            />
+          </>
         ) : (
           <>
             <Box>
