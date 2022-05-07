@@ -49,36 +49,38 @@ const ThemeIndicator: React.FC<{ theme: any }> = (props) => {
 
 const BannerPreview: React.FC<{ data: IFile }> = (props) => {
   console.log(props);
-  return (props.data.file != null && 
-    <Box sx={{ width: "100%" }}>
-      <Image
-        src={props.data.url}
-        alt="Picture of the author"
-        style={{
-          borderRadius: ".2rem",
-        }}
-        width="1200rem"
-        height="410rem"
-      />
-      <Box
-        sx={{
-          height: "3rem",
-          pl: "0rem",
-          pr: "1rem",
-          display: "flex",
-          width: "100%",
-        }}
-      >
-        <Box sx={{ mt: ".2rem" }}>
-          {props.data.file.name}
-          <Box sx={{ color: "primary.lightText", fontSize: ".9rem" }}>
-            {props.data.file === undefined || props.data.file === -1
-              ? "File Max size 1Mb. Dimensions 48px by 48px."
-              : bytesToSize(props.data.file.size)}
+  return (
+    props.data.file != null && (
+      <Box sx={{ width: "100%" }}>
+        <Image
+          src={props.data.url}
+          alt="Picture of the author"
+          style={{
+            borderRadius: ".2rem",
+          }}
+          width="1200rem"
+          height="410rem"
+        />
+        <Box
+          sx={{
+            height: "3rem",
+            pl: "0rem",
+            pr: "1rem",
+            display: "flex",
+            width: "100%",
+          }}
+        >
+          <Box sx={{ mt: ".2rem" }}>
+            {props.data.file.name}
+            <Box sx={{ color: "primary.lightText", fontSize: ".9rem" }}>
+              {props.data.file === undefined || props.data.file === -1
+                ? "File Max size 1Mb. Dimensions 48px by 48px."
+                : bytesToSize(props.data.file.size)}
+            </Box>
           </Box>
         </Box>
       </Box>
-    </Box>
+    )
   );
 };
 
@@ -106,38 +108,38 @@ export const ShowHide: React.FC<{ value: boolean }> = (props) => {
 export const SocialLinksPreview: React.FC<{ links: ISocialLink[] }> = (
   props
 ) => {
-    const getIcon = (network: string) => {
-        let fontSize = {fontSize: '2rem'}
-        switch (network) {
-            case "reddit": {
-              return <RedditIcon sx={fontSize}/>;
-            }
-            case "youtube": {
-              return <YouTubeIcon  sx={fontSize}/>;
-            }
-            case "telegram": {
-              return <TelegramIcon sx={fontSize} />;
-            }
-            case "twitter": {
-              return <TwitterIcon  sx={fontSize}/>;
-            }
-            case "discord": {
-              return <TelegramIcon sx={fontSize} />;
-            }
-            case "medium": {
-              return <TelegramIcon sx={fontSize} />;
-            }
-            case "github": {
-              return <GitHubIcon  sx={fontSize}/>;
-            }
-            case "facebook": {
-              return <FacebookIcon sx={fontSize} />;
-            }
-            case "instagram": {
-              return <InstagramIcon sx={fontSize} />;
-            }
-          }
+  const getIcon = (network: string) => {
+    let fontSize = { fontSize: "2rem" };
+    switch (network) {
+      case "reddit": {
+        return <RedditIcon sx={fontSize} />;
+      }
+      case "youtube": {
+        return <YouTubeIcon sx={fontSize} />;
+      }
+      case "telegram": {
+        return <TelegramIcon sx={fontSize} />;
+      }
+      case "twitter": {
+        return <TwitterIcon sx={fontSize} />;
+      }
+      case "discord": {
+        return <TelegramIcon sx={fontSize} />;
+      }
+      case "medium": {
+        return <TelegramIcon sx={fontSize} />;
+      }
+      case "github": {
+        return <GitHubIcon sx={fontSize} />;
+      }
+      case "facebook": {
+        return <FacebookIcon sx={fontSize} />;
+      }
+      case "instagram": {
+        return <InstagramIcon sx={fontSize} />;
+      }
     }
+  };
   return (
     <Box sx={{ width: "75%" }}>
       {props.links.map((i: ISocialLink, c: number) => {
@@ -150,7 +152,7 @@ export const SocialLinksPreview: React.FC<{ links: ISocialLink[] }> = (
               borderColor: "divider.main",
               mb: ".5rem",
               p: ".5rem",
-              pl: '0',
+              pl: "0",
               display: "flex",
               alignItems: "center",
             }}
@@ -166,9 +168,11 @@ export const SocialLinksPreview: React.FC<{ links: ISocialLink[] }> = (
               {getIcon(i.socialNetwork)}
             </Box>
             <Box>
-              <Box sx={{fontSize: '.9rem'}}>{i.address}</Box>
-              <Box sx={{fontSize: '.8rem', color: 'primary.lightText'}}>{i.socialNetwork.charAt(0).toUpperCase() +
-              i.socialNetwork.slice(1)}</Box>
+              <Box sx={{ fontSize: ".9rem" }}>{i.address}</Box>
+              <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>
+                {i.socialNetwork.charAt(0).toUpperCase() +
+                  i.socialNetwork.slice(1)}
+              </Box>
             </Box>
           </Box>
         );

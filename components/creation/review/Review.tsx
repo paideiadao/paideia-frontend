@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Alert, Box, Button, AlertTitle } from "@mui/material";
 import * as React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { GlobalContext } from "../../../lib/creation/Context";
@@ -35,6 +35,22 @@ const Review: React.FC = () => {
         subtitle="Check once more that your DAO configuration is correct. Remember, you can always publish it as a draft and review it later on."
       />
       <ReviewDrawer />
+      <Box sx={{width: '100%', mt: '1rem', display: 'flex', alignItems: 'center'}}>
+          <Button sx={{width: "49%", mr: '.5rem'}} variant='outlined'>
+              Publish as a draft
+          </Button>
+          <Button sx={{width: "49%", ml: '.5rem'}} variant='contained'>
+              Publish DAO
+          </Button>
+      </Box>
+      <Box sx={{mt: '1rem'}}>
+        <Alert severity="warning" color="warning" sx={{ fontSize: ".8rem" }}>
+            <AlertTitle sx={{ fontSize: ".9rem" }}>
+                Draft publishing
+            </AlertTitle>
+            Publishing as a draft allows you to see the DAO configuation before committing to it. You will be able to change any configuration (except name and URL). When you publish as a draft the users you whitelisted won't be notified and nothing will happen until you are ready to do the FINAL publish.
+            </Alert>
+      </Box>
     </Box>
   );
 };
