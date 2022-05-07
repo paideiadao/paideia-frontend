@@ -115,6 +115,13 @@ const ReviewDrawer: React.FC = () => {
   let data = globalContext.api.data;
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
+  const setNavStage = (stage: number) => {
+    globalContext.api.setData({
+      ...globalContext.api.data,
+      navStage: stage
+    })
+  }
+
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
@@ -128,13 +135,14 @@ const ReviewDrawer: React.FC = () => {
       }}
     >
       <BasicInformation
+        edit={setNavStage}
         expanded={expanded}
         handleChange={handleChange}
         data={data}
       />
-      <Governance expanded={expanded} handleChange={handleChange} data={data} />
-      <Tokenomics expanded={expanded} handleChange={handleChange} data={data} />
-      <Design expanded={expanded} handleChange={handleChange} data={data} />
+      <Governance edit={setNavStage} expanded={expanded} handleChange={handleChange} data={data} />
+      <Tokenomics edit={setNavStage} expanded={expanded} handleChange={handleChange} data={data} />
+      <Design edit={setNavStage} expanded={expanded} handleChange={handleChange} data={data} />
     </Box>
   );
 };

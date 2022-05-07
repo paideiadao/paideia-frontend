@@ -13,7 +13,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import EditIcon from "@mui/icons-material/Edit";
 import { bytesToSize, percentage } from "../../../lib/creation/Utilities";
 import { ITokenHolder, ITokenomics } from "../../../lib/creation/Api";
-import { data } from "jquery";
 
 const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
   let tokenHolderBalance = props.data.tokenHolders
@@ -81,40 +80,41 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
           </Box>
         );
       })}
-      {props.data.distributions.map((i: any, c: number) => {
-        return (
-          <Box
-            key={`distribution-id-${c + 2}`}
-            sx={{
-              borderRadius: ".2rem",
-              border: ".1rem solid",
-              borderColor: "divider.main",
-              mb: ".5rem",
-              p: ".5rem",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <Box>
-              <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
-                {i.distributionName}
+      {props.data.activateTokenomics &&
+        props.data.distributions.map((i: any, c: number) => {
+          return (
+            <Box
+              key={`distribution-id-${c + 2}`}
+              sx={{
+                borderRadius: ".2rem",
+                border: ".1rem solid",
+                borderColor: "divider.main",
+                mb: ".5rem",
+                p: ".5rem",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Box>
+                <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
+                  {i.distributionName}
+                </Box>
+                <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>
+                  {i.id}
+                </Box>
               </Box>
-              <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>
-                {i.id}
+              <Box sx={{ ml: "auto", textAlign: "right" }}>
+                <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
+                  {i.balance + " "}
+                  {props.data.tokenTicker}
+                </Box>
+                <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>
+                  {i.percentage}%
+                </Box>
               </Box>
             </Box>
-            <Box sx={{ ml: "auto", textAlign: "right" }}>
-              <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
-                {i.balance + " "}
-                {props.data.tokenTicker}
-              </Box>
-              <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>
-                {i.percentage}%
-              </Box>
-            </Box>
-          </Box>
-        );
-      })}
+          );
+        })}
     </Box>
   );
 };
@@ -123,6 +123,7 @@ const Tokenomics: React.FC<{
   data: any;
   expanded: string | boolean;
   handleChange: Function;
+  edit: Function
 }> = (props) => {
   let data = props.data;
   return (
@@ -201,7 +202,7 @@ const Tokenomics: React.FC<{
             mt: ".5rem",
           }}
         >
-          <Button>
+          <Button onClick={() => props.edit(2)}>
             Edit Section
             <EditIcon sx={{ ml: ".5rem" }} />
           </Button>

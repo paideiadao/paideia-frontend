@@ -11,6 +11,7 @@ const BasicInformation: React.FC<{
   data: any;
   expanded: string | boolean;
   handleChange: Function;
+  edit: Function;
 }> = (props) => {
   let data = props.data;
   return (
@@ -57,7 +58,7 @@ const BasicInformation: React.FC<{
             mt: ".5rem",
           }}
         >
-          <Button>
+          <Button onClick={() => props.edit(0)}>
             Edit Section
             <EditIcon sx={{ ml: ".5rem" }} />
           </Button>

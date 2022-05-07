@@ -11,6 +11,7 @@ const Governance: React.FC<{
   data: any;
   expanded: string | boolean;
   handleChange: Function;
+  edit: Function
 }> = (props) => {
   let data = props.data;
   return (
@@ -40,36 +41,36 @@ const Governance: React.FC<{
               <ActiveInactive value={data.governance.optimisticGovernance} />
             }
           />
-          {
-            data.governance.optimisticGovernance && <>
-             <Value
-            labelWidth="35%"
-            title="White listed members"
-            component={<WalletListing data={data.governance.whitelist} />}
-          />
-          <Value
-            labelWidth="35%"
-            title="Collateral amount"
-            value={data.governance.amount}
-          />
-          <Value
-            labelWidth="35%"
-            title="Collateral currency"
-            value={data.governance.currency}
-          />
-          <Value
-            labelWidth="35%"
-            title="Challenge time"
-            value={
-              data.governance.timeToChallenge +
-              " " +
-              data.governance.timeToChallengeUnits.charAt(0).toUpperCase() +
-              data.governance.timeToChallengeUnits.slice(1)
-            }
-          />
+          {data.governance.optimisticGovernance && (
+            <>
+              <Value
+                labelWidth="35%"
+                title="White listed members"
+                component={<WalletListing data={data.governance.whitelist} />}
+              />
+              <Value
+                labelWidth="35%"
+                title="Collateral amount"
+                value={data.governance.amount}
+              />
+              <Value
+                labelWidth="35%"
+                title="Collateral currency"
+                value={data.governance.currency}
+              />
+              <Value
+                labelWidth="35%"
+                title="Challenge time"
+                value={
+                  data.governance.timeToChallenge +
+                  " " +
+                  data.governance.timeToChallengeUnits.charAt(0).toUpperCase() +
+                  data.governance.timeToChallengeUnits.slice(1)
+                }
+              />
             </>
-          }
-         
+          )}
+
           <Value
             labelWidth="35%"
             title="Quadratic voting"
@@ -80,12 +81,12 @@ const Governance: React.FC<{
           <Value
             labelWidth="35%"
             title="Support"
-            value={data.governance.supportNeeded + '%'}
+            value={data.governance.supportNeeded + "%"}
           />
           <Value
             labelWidth="35%"
             title="Quorum"
-            value={data.governance.quorum + '%'}
+            value={data.governance.quorum + "%"}
           />
           <Value
             labelWidth="35%"
@@ -106,7 +107,7 @@ const Governance: React.FC<{
             mt: ".5rem",
           }}
         >
-          <Button>
+          <Button onClick={() => props.edit(1)}>
             Edit Section
             <EditIcon sx={{ ml: ".5rem" }} />
           </Button>

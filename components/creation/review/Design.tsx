@@ -185,6 +185,7 @@ const Design: React.FC<{
   data: any;
   expanded: string | boolean;
   handleChange: Function;
+  edit: Function
 }> = (props) => {
   let data = props.data;
   return (
@@ -234,26 +235,34 @@ const Design: React.FC<{
             title="Banner"
             component={<ShowHide value={data.design.banner.show} />}
           />
-          <Value
-            labelWidth="35%"
-            title="Banner media"
-            component={<BannerPreview data={data.design.banner.data} />}
-          />
+          {data.design.banner.show && (
+            <Value
+              labelWidth="35%"
+              title="Banner media"
+              component={<BannerPreview data={data.design.banner.data} />}
+            />
+          )}
           <Value
             labelWidth="26%"
             title="Footer"
             component={<ShowHide value={data.design.footer.show} />}
           />
-          <Value
-            labelWidth="26%"
-            title="Footer main text"
-            value={data.design.footer.mainText}
-          />
-          <Value
-            labelWidth="26%"
-            title="Footer social links"
-            component={<SocialLinksPreview links={data.design.footer.links} />}
-          />
+          {data.design.footer.show && (
+            <>
+              <Value
+                labelWidth="26%"
+                title="Footer main text"
+                value={data.design.footer.mainText}
+              />
+              {data.design.footer.links.length > 0 && <Value
+                labelWidth="26%"
+                title="Footer social links"
+                component={
+                  <SocialLinksPreview links={data.design.footer.links} />
+                }
+              />}
+            </>
+          )}
         </Box>
         <Box
           sx={{
@@ -263,7 +272,7 @@ const Design: React.FC<{
             mt: ".5rem",
           }}
         >
-          <Button>
+          <Button onClick={() => props.edit(3)}>
             Edit Section
             <EditIcon sx={{ ml: ".5rem" }} />
           </Button>

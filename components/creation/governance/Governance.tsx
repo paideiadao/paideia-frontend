@@ -129,8 +129,22 @@ const Governance: React.FC = () => {
             >
               {data.whitelist.map((i: any, c: number) => {
                 return (
-                  <Box sx={{display: 'flex', alignItems: 'center', width: '100%', mt: '.5rem', mb: '.5rem'}}>
-                    <Box sx={{width: '90%', display: 'flex', alignItems: 'center'}}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      width: "100%",
+                      mt: ".5rem",
+                      mb: ".5rem",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: "90%",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
                       <WalletSelector
                         id="governance"
                         data={i}
@@ -154,7 +168,13 @@ const Governance: React.FC = () => {
                         }}
                       />
                     </Box>
-                    <Box sx={{width: '10%', display: 'flex', alignItems: 'center'}}>
+                    <Box
+                      sx={{
+                        width: "10%",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
                       {data.whitelist.length > 1 && (
                         <DeleteIcon
                           style={{
@@ -588,7 +608,8 @@ const Governance: React.FC = () => {
                 ...globalContext.api.data,
                 governance: {
                   ...data,
-                  voteDuration: e.target.value,
+                  voteDuration:
+                    e.target.value === "" ? 0 : parseInt(e.target.value),
                 },
               })
             }

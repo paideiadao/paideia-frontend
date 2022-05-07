@@ -1,4 +1,5 @@
-import { ICreationData } from "../../lib/creation/Api";
+import { data } from "jquery";
+import { ICreationData, ITokenHolder } from "../../lib/creation/Api";
 
 export function checkCompleteness(_data: ICreationData): boolean {
   switch (_data.navStage) {
@@ -20,7 +21,37 @@ export function checkCompleteness(_data: ICreationData): boolean {
       );
     }
     case 2: {
-      return _data.tokenomics.tokenRemaining !== 0;
+      return (
+        _data.tokenomics.tokenRemaining <= 0 ||
+        _data.tokenomics.tokenAmount === 0 ||
+        _data.tokenomics.tokenHolders.filter((i: ITokenHolder) => {
+          return i.alias !== "" && i.balance !== 0;
+        }).length === 0 ||
+        _data.tokenomics.tokenTicker === "" ||
+        _data.tokenomics.tokenName === "" ||
+        _data.tokenomics.tokenImage == -1 || 
+        (
+          _data.tokenomics.distributions.filter((i: any) => i!== undefined).filter((i: any) => {
+          return i.balance === 0
+          }).length !== 0 ||
+          _data.tokenomics.distributions.filter((i: any) => i!== undefined).filter((i: any) => {
+            return i.hasOwnProperty('tokenHolders')
+            }).filter((i: any) => {
+              return i.tokenHolders.filter((i: any) => i.alias === '' || i.balance === 0).length > 0
+            }).length !== 0 
+        )
+      );
+    }
+    case 3: {
+      return (
+        _data.design.logo.file === undefined ||
+        (
+          _data.design.banner.show === true ? _data.design.banner.data.file === undefined : false
+        ) ||
+        (
+          _data.design.footer.show === true ? _data.design.footer.mainText === '' : false
+        )
+      )
     }
   }
 }
