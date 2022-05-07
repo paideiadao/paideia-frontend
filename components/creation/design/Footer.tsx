@@ -20,7 +20,7 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import RedditIcon from "@mui/icons-material/Reddit";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Footer: React.FC = () => {
   let globalContext = React.useContext(GlobalContext);
@@ -82,26 +82,26 @@ const Footer: React.FC = () => {
                 data={i}
                 key={`social-link-${c}`}
                 set={(m: any) => {
-                    let temp = [...data.footer.links];
-                    temp[c] = m
-                    setData({
-                        ...data,
-                        footer: {
-                            ...data.footer,
-                            links: temp
-                        }
-                    })
+                  let temp = [...data.footer.links];
+                  temp[c] = m;
+                  setData({
+                    ...data,
+                    footer: {
+                      ...data.footer,
+                      links: temp,
+                    },
+                  });
                 }}
                 delete={(m: any) => {
-                    let temp = [...data.footer.links];
-                    temp.splice(c, 1);
-                    setData({
-                        ...data,
-                        footer: {
-                            ...data.footer,
-                            links: temp
-                        }
-                    })
+                  let temp = [...data.footer.links];
+                  temp.splice(c, 1);
+                  setData({
+                    ...data,
+                    footer: {
+                      ...data.footer,
+                      links: temp,
+                    },
+                  });
                 }}
               />
             ))}
@@ -129,12 +129,23 @@ const Footer: React.FC = () => {
   );
 };
 
-const SocialRow: React.FC<{ data: ISocialLink; set: Function; c: number, delete: Function }> = (
-  props
-) => {
+const SocialRow: React.FC<{
+  data: ISocialLink;
+  set: Function;
+  c: number;
+  delete: Function;
+}> = (props) => {
   return (
-    <Box sx={{ mt: "1rem", mb: "1rem", display: 'flex', alignItems: 'center', width: '100%' }}>
-      <FormControl sx={{ width: "35%", mr: '.5rem' }}>
+    <Box
+      sx={{
+        mt: "1rem",
+        mb: "1rem",
+        display: "flex",
+        alignItems: "center",
+        width: "100%",
+      }}
+    >
+      <FormControl sx={{ width: "35%", mr: ".5rem" }}>
         <InputLabel htmlFor={`social-link-label-${props.c}`}>
           Social network
         </InputLabel>
@@ -145,38 +156,40 @@ const SocialRow: React.FC<{ data: ISocialLink; set: Function; c: number, delete:
           label="Social network"
           value={props.data.socialNetwork}
           renderValue={(value: string) => {
-              switch(value) {
-                  case 'reddit': {
-                      return <Reddit/>
-                  }
-                  case 'youtube': {
-                    return <Youtube/>
-                }
-                case 'telegram': {
-                    return <Telegram/>
-                }
-                case 'twitter': {
-                    return <Twitter/>
-                }
-                case 'discord': {
-                    return <Discord/>
-                }
-                case 'medium': {
-                    return <Medium/>
-                }
-                case 'github': {
-                    return <Github/>
-                }
-                case 'facebook': {
-                    return <Facebook/>
-                }
-                case 'instagram': {
-                    return <Instagram/>
-                }
+            switch (value) {
+              case "reddit": {
+                return <Reddit />;
               }
+              case "youtube": {
+                return <Youtube />;
+              }
+              case "telegram": {
+                return <Telegram />;
+              }
+              case "twitter": {
+                return <Twitter />;
+              }
+              case "discord": {
+                return <Discord />;
+              }
+              case "medium": {
+                return <Medium />;
+              }
+              case "github": {
+                return <Github />;
+              }
+              case "facebook": {
+                return <Facebook />;
+              }
+              case "instagram": {
+                return <Instagram />;
+              }
+            }
           }}
           sx={{ height: "100%", color: "primary.text" }}
-          onChange={(e: any) => props.set({...props.data, socialNetwork: e.target.value})}
+          onChange={(e: any) =>
+            props.set({ ...props.data, socialNetwork: e.target.value })
+          }
         >
           <MenuItem value="reddit">
             <Reddit />
@@ -208,22 +221,26 @@ const SocialRow: React.FC<{ data: ISocialLink; set: Function; c: number, delete:
         </Select>
       </FormControl>
       <TextField
-        label='Address'
-        sx={{width: '50%'}}
+        label="Address"
+        sx={{ width: "50%" }}
         value={props.data.address}
-        onChange={(e: any) => props.set({...props.data, address: e.target.value})}
+        onChange={(e: any) =>
+          props.set({ ...props.data, address: e.target.value })
+        }
       />
-      <Box sx={{width: '13%', display: 'flex', justifyContent: 'center'}}>
-          <DeleteIcon style={{fill: 'red', cursor: 'pointer'}} onClick={() => props.delete()}/>
+      <Box sx={{ width: "13%", display: "flex", justifyContent: "center" }}>
+        <DeleteIcon
+          style={{ fill: "red", cursor: "pointer" }}
+          onClick={() => props.delete()}
+        />
       </Box>
-
     </Box>
   );
 };
 
 const Reddit: React.FC = () => {
   return (
-    <Box sx={{display: 'flex', alignItems: 'center'}}>
+    <Box sx={{ display: "flex", alignItems: "center" }}>
       <RedditIcon sx={{ mr: ".5rem" }} />
       Reddit
     </Box>
@@ -232,7 +249,7 @@ const Reddit: React.FC = () => {
 
 const Twitter: React.FC = () => {
   return (
-    <Box sx={{display: 'flex', alignItems: 'center'}}>
+    <Box sx={{ display: "flex", alignItems: "center" }}>
       <TwitterIcon sx={{ mr: ".5rem" }} />
       Twitter
     </Box>
@@ -241,7 +258,7 @@ const Twitter: React.FC = () => {
 
 const Youtube: React.FC = () => {
   return (
-    <Box sx={{display: 'flex', alignItems: 'center'}}>
+    <Box sx={{ display: "flex", alignItems: "center" }}>
       <YouTubeIcon sx={{ mr: ".5rem" }} />
       Youtube
     </Box>
@@ -250,7 +267,7 @@ const Youtube: React.FC = () => {
 
 const Telegram: React.FC = () => {
   return (
-    <Box sx={{display: 'flex', alignItems: 'center'}}>
+    <Box sx={{ display: "flex", alignItems: "center" }}>
       <TelegramIcon sx={{ mr: ".5rem" }} />
       Telegram
     </Box>
@@ -259,7 +276,7 @@ const Telegram: React.FC = () => {
 
 const Discord: React.FC = () => {
   return (
-    <Box sx={{display: 'flex', alignItems: 'center'}}>
+    <Box sx={{ display: "flex", alignItems: "center" }}>
       <TelegramIcon sx={{ mr: ".5rem" }} />
       Discord
     </Box>
@@ -268,7 +285,7 @@ const Discord: React.FC = () => {
 
 const Medium: React.FC = () => {
   return (
-    <Box sx={{display: 'flex', alignItems: 'center'}}>
+    <Box sx={{ display: "flex", alignItems: "center" }}>
       <TelegramIcon sx={{ mr: ".5rem" }} />
       Telegram
     </Box>
@@ -277,7 +294,7 @@ const Medium: React.FC = () => {
 
 const Github: React.FC = () => {
   return (
-    <Box sx={{display: 'flex', alignItems: 'center'}}>
+    <Box sx={{ display: "flex", alignItems: "center" }}>
       <GitHubIcon sx={{ mr: ".5rem" }} />
       GitHub
     </Box>
@@ -286,7 +303,7 @@ const Github: React.FC = () => {
 
 const Facebook: React.FC = () => {
   return (
-    <Box sx={{display: 'flex', alignItems: 'center'}}>
+    <Box sx={{ display: "flex", alignItems: "center" }}>
       <FacebookIcon sx={{ mr: ".5rem" }} />
       Facebook
     </Box>
@@ -295,7 +312,7 @@ const Facebook: React.FC = () => {
 
 const Instagram: React.FC = () => {
   return (
-    <Box sx={{display: 'flex', alignItems: 'center'}}>
+    <Box sx={{ display: "flex", alignItems: "center" }}>
       <InstagramIcon sx={{ mr: ".5rem" }} />
       Instagram
     </Box>

@@ -10,7 +10,6 @@ const FileBanner: React.FC<{
   fileUrl: string;
   banner?: boolean;
 }> = (props) => {
-  console.log(props);
   return (
     <Paper
       elevation={0}

@@ -22,6 +22,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import Alert from "@mui/material/Alert";
 import AbstractDate from "../../utilities/AbstractDate";
 import useDidMountEffect from "../../../utilities/hooks";
+import DistributionName from "../../utilities/DistributionName";
 
 export interface ILiquidityInfo {
   distributionName: string;
@@ -50,7 +51,7 @@ const Liquidity: React.FC<{
   const [value, setValue] = React.useState<ILiquidityInfo>({
     distributionName:
       data.distributions[props.c] === undefined
-        ? `${props.c + 1}. Liquidity`
+        ? `Liquidity`
         : temp.distributionName,
     balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
     percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
@@ -85,9 +86,9 @@ const Liquidity: React.FC<{
   useDidMountEffect(() => {
     setValue({
       ...value,
-      balance: props.data.data.distributions[props.c].balance
-    })
-  }, [props.data.data.distributions])
+      balance: props.data.data.distributions[props.c].balance,
+    });
+  }, [props.data.data.distributions]);
 
   return (
     <>
@@ -137,13 +138,12 @@ const Liquidity: React.FC<{
             mb: ".5rem",
           }}
         >
-          <TextField
+          <DistributionName
+            c={props.c}
             value={value.distributionName}
-            sx={{ width: "50%", mr: ".5rem" }}
-            onChange={(e: any) => {
-              setValue({ ...value, distributionName: e.target.value });
+            set={(e: any) => {
+              setValue({ ...value, distributionName: e });
             }}
-            label="Distribution Name"
           />
           <BalanceInput
             total={data.tokenAmount}

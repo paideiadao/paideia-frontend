@@ -19,7 +19,8 @@ import WalletSelector from "../../governance/WalletSelector";
 import Alert from "@mui/material/Alert";
 import { currencyFormatter } from "../../../utilities/currency";
 import AbstractDate from "../../utilities/AbstractDate";
-import useDidMountEffect from '../../../utilities/hooks'
+import useDidMountEffect from "../../../utilities/hooks";
+import DistributionName from "../../utilities/DistributionName";
 
 export interface IPrivateRoundInfo {
   distributionName: string;
@@ -52,7 +53,7 @@ const PrivateRound: React.FC<{
   const [value, setValue] = React.useState<IPrivateRoundInfo>({
     distributionName:
       data.distributions[props.c] === undefined
-        ? `${props.c + 1}. Private Round`
+        ? `Private Round`
         : temp.distributionName,
     balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
     percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
@@ -105,9 +106,9 @@ const PrivateRound: React.FC<{
   useDidMountEffect(() => {
     setValue({
       ...value,
-      balance: props.data.data.distributions[props.c].balance
-    })
-  }, [props.data.data.distributions])
+      balance: props.data.data.distributions[props.c].balance,
+    });
+  }, [props.data.data.distributions]);
 
   return (
     <>
@@ -157,13 +158,12 @@ const PrivateRound: React.FC<{
             mb: ".5rem",
           }}
         >
-          <TextField
+          <DistributionName
+            c={props.c}
             value={value.distributionName}
-            sx={{ width: "50%", mr: ".5rem" }}
-            onChange={(e: any) => {
-              setValue({ ...value, distributionName: e.target.value });
+            set={(e: any) => {
+              setValue({ ...value, distributionName: e });
             }}
-            label="Distribution Name"
           />
           <BalanceInput
             total={data.tokenAmount}

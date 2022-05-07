@@ -10,7 +10,6 @@ import { ITokenomics } from "../../../../lib/creation/Api";
 import { Box } from "@mui/material";
 
 const PaideiaTable: React.FC<ITokenomics> = (props) => {
-  console.log("here", props);
   return <Box>Table HEre...</Box>;
 };
 

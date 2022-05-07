@@ -1,7 +1,6 @@
 import { ICreationData } from "../../lib/creation/Api";
 
 export function checkCompleteness(_data: ICreationData): boolean {
-  console.log(_data.tokenomics);
   switch (_data.navStage) {
     case 0: {
       return (

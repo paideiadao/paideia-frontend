@@ -13,6 +13,7 @@ import { checkCompleteness } from "../lib/creation/Utilities";
 import Governance from "../components/creation/governance/Governance";
 import Tokenomics from "../components/creation/tokenomics/Tokenomics";
 import Design from "../components/creation/design/Design";
+import Review from "../components/creation/review/Review";
 
 export default function Creation(props) {
   const [alert, setAlert] = React.useState({ show: false });
@@ -44,6 +45,7 @@ export default function Creation(props) {
       supportNeeded: 50,
     },
     tokenomics: {
+      type: "",
       tokenName: "",
       tokenId: "",
       tokenTicker: "",
@@ -91,6 +93,7 @@ export default function Creation(props) {
     <Governance key={2} />,
     <Tokenomics key={3} />,
     <Design key={4} />,
+    <Review key={5} />,
   ];
 
   React.useEffect(() => {
@@ -141,26 +144,32 @@ export default function Creation(props) {
               mt: "1.5rem",
             }}
           >
-            {data.navStage > 0 && (
-              <Button
-                variant="outlined"
-                color="primary"
-                onClick={() =>
-                  setData({ ...data, navStage: data.navStage - 1 })
-                }
-                sx={{ mr: 1 }}
-              >
-                <ArrowBackIcon sx={{ mr: 1 }} /> Back
-              </Button>
+            {data.navStage < 4 && (
+              <>
+                {data.navStage > 0 && (
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={() =>
+                      setData({ ...data, navStage: data.navStage - 1 })
+                    }
+                    sx={{ mr: 1 }}
+                  >
+                    <ArrowBackIcon sx={{ mr: 1 }} /> Back
+                  </Button>
+                )}
+                <Button
+                  variant="contained"
+                  disabled={checkCompleteness(data)}
+                  color="primary"
+                  onClick={() =>
+                    setData({ ...data, navStage: data.navStage + 1 })
+                  }
+                >
+                  Next <ArrowForwardIcon sx={{ ml: 1 }} />
+                </Button>
+              </>
             )}
-            <Button
-              variant="contained"
-              disabled={checkCompleteness(data)}
-              color="primary"
-              onClick={() => setData({ ...data, navStage: data.navStage + 1 })}
-            >
-              Next <ArrowForwardIcon sx={{ ml: 1 }} />
-            </Button>
           </Box>
         </Box>
       </GlobalContext.Provider>

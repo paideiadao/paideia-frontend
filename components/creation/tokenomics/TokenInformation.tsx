@@ -1,6 +1,7 @@
 import { Box, Button, ButtonGroup, TextField } from "@mui/material";
 import * as React from "react";
 import { ICreationData, ITokenomics } from "../../../lib/creation/Api";
+import { GlobalContext } from "../../../lib/creation/Context";
 import { IData } from "../../../lib/utilities";
 import { Header, LearnMore, Subheader } from "../utilities/HeaderComponents";
 
@@ -97,6 +98,18 @@ const ExistingToken: React.FC<IData<ITokenomics>> = (props) => {
 
 const TokenInformation: React.FC<IData<ITokenomics>> = (props) => {
   const [tokenType, setTokenType] = React.useState<string>("create");
+  const globalContext = React.useContext(GlobalContext);
+
+  React.useEffect(() => {
+    globalContext.api.setData({
+      ...globalContext.api.data,
+      tokenomics: {
+        ...globalContext.api.data.tokenomics,
+        type: tokenType,
+      },
+    });
+  }, [tokenType]);
+
   return (
     <Box>
       <Subheader title="Token information" />

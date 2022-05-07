@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Box, Divider } from "@mui/material";
-import CheckIcon from "@mui/icons-material/Check";
 import Avatar from "@mui/material/Avatar";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";

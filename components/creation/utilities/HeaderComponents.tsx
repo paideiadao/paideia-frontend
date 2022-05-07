@@ -6,11 +6,17 @@ export const Header: React.FC<{
   title: string;
   subtitle?: string;
   small?: boolean;
+  large?: boolean;
 }> = (props) => {
   return props.subtitle === undefined ? (
     <Box
       sx={{
-        fontSize: props.small === undefined ? "1.1rem" : "1rem",
+        fontSize:
+          props.large === true
+            ? "1.3rem"
+            : props.small === undefined
+            ? "1.1rem"
+            : "1rem",
         color: "primary.text",
       }}
     >
@@ -26,7 +32,12 @@ export const Header: React.FC<{
     >
       <Box
         sx={{
-          fontSize: props.small === undefined ? "1.1rem" : "1rem",
+          fontSize:
+            props.large === true
+              ? "1.3rem"
+              : props.small === undefined
+              ? "1.1rem"
+              : "1rem",
           color: "primary.text",
         }}
       >

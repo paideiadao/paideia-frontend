@@ -75,6 +75,7 @@ export interface ITokenHolder {
 }
 
 export interface ITokenomics {
+  type: string;
   tokenName: string;
   tokenId: string;
   // check restrictions...

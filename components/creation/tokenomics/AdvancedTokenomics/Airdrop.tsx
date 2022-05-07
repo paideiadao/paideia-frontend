@@ -23,6 +23,7 @@ import LabeledSwitch from "../../utilities/LabeledSwitch";
 import dateFormat from "dateformat";
 import EditIcon from "@mui/icons-material/Edit";
 import AbstractDate from "../../utilities/AbstractDate";
+import DistributionName from "../../utilities/DistributionName";
 
 export interface IAirdropInfo {
   distributionName: string;
@@ -58,7 +59,7 @@ const Airdrop: React.FC<{
   const [value, setValue] = React.useState<IAirdropInfo>({
     distributionName:
       data.distributions[props.c] === undefined
-        ? `${props.c + 1}. Airdrop`
+        ? `Airdrop`
         : temp.distributionName,
     balance: data.distributions[props.c] === undefined ? 0 : temp.balance,
     percentage: data.distributions[props.c] === undefined ? 0 : temp.percentage,
@@ -144,9 +145,9 @@ const Airdrop: React.FC<{
   useDidMountEffect(() => {
     setValue({
       ...value,
-      balance: props.data.data.distributions[props.c].balance
-    })
-  }, [props.data.data.distributions])
+      balance: props.data.data.distributions[props.c].balance,
+    });
+  }, [props.data.data.distributions]);
 
   return (
     <>
@@ -196,13 +197,12 @@ const Airdrop: React.FC<{
             mb: ".5rem",
           }}
         >
-          <TextField
+          <DistributionName
+            c={props.c}
             value={value.distributionName}
-            sx={{ width: "50%", mr: ".5rem" }}
-            onChange={(e: any) => {
-              setValue({ ...value, distributionName: e.target.value });
+            set={(e: any) => {
+              setValue({ ...value, distributionName: e });
             }}
-            label="Distribution Name"
           />
           <BalanceInput
             total={data.tokenAmount}
