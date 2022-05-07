@@ -15,6 +15,7 @@ const Governance: React.FC<{
   let data = props.data;
   return (
     <Accordion
+      elevation={0}
       disableGutters
       expanded={props.expanded === "governance"}
       onChange={props.handleChange("governance")}
@@ -39,7 +40,9 @@ const Governance: React.FC<{
               <ActiveInactive value={data.governance.optimisticGovernance} />
             }
           />
-          <Value
+          {
+            data.governance.optimisticGovernance && <>
+             <Value
             labelWidth="35%"
             title="White listed members"
             component={<WalletListing data={data.governance.whitelist} />}
@@ -64,6 +67,9 @@ const Governance: React.FC<{
               data.governance.timeToChallengeUnits.slice(1)
             }
           />
+            </>
+          }
+         
           <Value
             labelWidth="35%"
             title="Quadratic voting"
@@ -74,12 +80,12 @@ const Governance: React.FC<{
           <Value
             labelWidth="35%"
             title="Support"
-            value={data.governance.support}
+            value={data.governance.supportNeeded + '%'}
           />
           <Value
             labelWidth="35%"
             title="Quorum"
-            value={data.governance.quorum}
+            value={data.governance.quorum + '%'}
           />
           <Value
             labelWidth="35%"

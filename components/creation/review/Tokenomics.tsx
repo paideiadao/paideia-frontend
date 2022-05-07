@@ -127,6 +127,7 @@ const Tokenomics: React.FC<{
   let data = props.data;
   return (
     <Accordion
+      elevation={0}
       disableGutters
       sx={{
         backgroundColor: "fileInput.outer",

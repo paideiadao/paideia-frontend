@@ -10,7 +10,14 @@ export function checkCompleteness(_data: ICreationData): boolean {
       );
     }
     case 1: {
-      return false;
+      return (
+        (_data.governance.optimisticGovernance
+          ? _data.governance.timeToChallenge === 0 ||
+            _data.governance.amount === "" ||
+            _data.governance.amount === 0 ||
+            _data.governance.currency === ""
+          : false) || _data.governance.voteDuration === 0
+      );
     }
     case 2: {
       return _data.tokenomics.tokenRemaining !== 0;

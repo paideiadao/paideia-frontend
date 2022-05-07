@@ -189,13 +189,12 @@ const Design: React.FC<{
   let data = props.data;
   return (
     <Accordion
+      elevation={0}
       disableGutters
       expanded={props.expanded === "design"}
       onChange={props.handleChange("design")}
       sx={{
         backgroundColor: "fileInput.outer",
-        borderBottom: "1px solid",
-        borderBottomColor: "divider.main",
       }}
     >
       <AccordionSummary expandIcon={<ExpandMoreIcon />} id="design-header">

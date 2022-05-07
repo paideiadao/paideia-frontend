@@ -15,6 +15,7 @@ const BasicInformation: React.FC<{
   let data = props.data;
   return (
     <Accordion
+      elevation={0}
       disableGutters
       expanded={props.expanded === "basic"}
       onChange={props.handleChange("basic")}

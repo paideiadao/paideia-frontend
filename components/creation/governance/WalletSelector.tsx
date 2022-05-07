@@ -24,7 +24,7 @@ const WalletSelector: React.FC<{
     <Box
       sx={{
         width: "100%",
-        mt: props.mt ? props.mt : "1rem",
+        mt: props.mt ? props.mt : "0",
         position: "relative",
       }}
       key={props.number + props.id + "-textfield"}

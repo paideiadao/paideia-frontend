@@ -124,7 +124,7 @@ const ReviewDrawer: React.FC = () => {
       sx={{
         border: "1px solid",
         borderColor: "divider.main",
-        borderRadius: ".5rem",
+        borderRadius: ".3rem",
       }}
     >
       <BasicInformation

@@ -19,6 +19,7 @@ import WalletSelector from "./WalletSelector";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Governance: React.FC = () => {
   const globalContext = React.useContext(GlobalContext);
@@ -128,27 +129,55 @@ const Governance: React.FC = () => {
             >
               {data.whitelist.map((i: any, c: number) => {
                 return (
-                  <WalletSelector
-                    id="governance"
-                    data={i}
-                    number={c}
-                    set={(j: any) => {
-                      let temp = [...data.whitelist];
+                  <Box sx={{display: 'flex', alignItems: 'center', width: '100%', mt: '.5rem', mb: '.5rem'}}>
+                    <Box sx={{width: '90%', display: 'flex', alignItems: 'center'}}>
+                      <WalletSelector
+                        id="governance"
+                        data={i}
+                        number={c}
+                        canDelete={data.whitelist.length > 0}
+                        set={(j: any) => {
+                          let temp = [...data.whitelist];
 
-                      if (j === undefined) {
-                        temp.splice(c, 1);
-                      } else {
-                        temp[c] = j;
-                      }
-                      globalContext.api.setData({
-                        ...globalContext.api.data,
-                        governance: {
-                          ...data,
-                          whitelist: temp,
-                        },
-                      });
-                    }}
-                  />
+                          if (j === undefined) {
+                            temp.splice(c, 1);
+                          } else {
+                            temp[c] = j;
+                          }
+                          globalContext.api.setData({
+                            ...globalContext.api.data,
+                            governance: {
+                              ...data,
+                              whitelist: temp,
+                            },
+                          });
+                        }}
+                      />
+                    </Box>
+                    <Box sx={{width: '10%', display: 'flex', alignItems: 'center'}}>
+                      {data.whitelist.length > 1 && (
+                        <DeleteIcon
+                          style={{
+                            fill: "red",
+                            marginLeft: ".4rem",
+                            cursor: "pointer",
+                            width: "3rem",
+                          }}
+                          onClick={() => {
+                            let temp = [...data.whitelist];
+                            temp.splice(c, 1);
+                            globalContext.api.setData({
+                              ...globalContext.api.data,
+                              governance: {
+                                ...data,
+                                whitelist: temp,
+                              },
+                            });
+                          }}
+                        />
+                      )}
+                    </Box>
+                  </Box>
                 );
               })}
             </Box>
