@@ -99,7 +99,15 @@ const Review: React.FC = () => {
               <Button sx={{ mr: "1rem" }} onClick={() => setPublish(false)}>
                 Cancel
               </Button>
-              <Button onClick={() => console.log("publish dao here.")}>
+              <Button
+                onClick={() =>
+                  globalContext.api.setData({
+                    ...data,
+                    isDraft: 1,
+                    isPublished: 1,
+                  })
+                }
+              >
                 Publish DAO
               </Button>
             </Box>
@@ -134,7 +142,15 @@ const Review: React.FC = () => {
               <Button sx={{ mr: "1rem" }} onClick={() => setDraft(false)}>
                 Cancel
               </Button>
-              <Button onClick={() => console.log("publish dao draft here.")}>
+              <Button
+                onClick={() =>
+                  globalContext.api.setData({
+                    ...data,
+                    isDraft: 0,
+                    isPublished: 1,
+                  })
+                }
+              >
                 Publish DAO AS A DRAFT
               </Button>
             </Box>

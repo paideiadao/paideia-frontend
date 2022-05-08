@@ -185,7 +185,7 @@ const Design: React.FC<{
   data: any;
   expanded: string | boolean;
   handleChange: Function;
-  edit: Function
+  edit: Function;
 }> = (props) => {
   let data = props.data;
   return (
@@ -254,13 +254,15 @@ const Design: React.FC<{
                 title="Footer main text"
                 value={data.design.footer.mainText}
               />
-              {data.design.footer.links.length > 0 && <Value
-                labelWidth="26%"
-                title="Footer social links"
-                component={
-                  <SocialLinksPreview links={data.design.footer.links} />
-                }
-              />}
+              {data.design.footer.links.length > 0 && (
+                <Value
+                  labelWidth="26%"
+                  title="Footer social links"
+                  component={
+                    <SocialLinksPreview links={data.design.footer.links} />
+                  }
+                />
+              )}
             </>
           )}
         </Box>

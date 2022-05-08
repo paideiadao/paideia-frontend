@@ -20,6 +20,8 @@ export interface ICreationData {
   governance: IGovernance;
   tokenomics: ITokenomics;
   design: IDesign;
+  isDraft: number;
+  isPublished: number;
 }
 
 export interface IFile {

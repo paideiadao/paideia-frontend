@@ -118,9 +118,9 @@ const ReviewDrawer: React.FC = () => {
   const setNavStage = (stage: number) => {
     globalContext.api.setData({
       ...globalContext.api.data,
-      navStage: stage
-    })
-  }
+      navStage: stage,
+    });
+  };
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -140,9 +140,24 @@ const ReviewDrawer: React.FC = () => {
         handleChange={handleChange}
         data={data}
       />
-      <Governance edit={setNavStage} expanded={expanded} handleChange={handleChange} data={data} />
-      <Tokenomics edit={setNavStage} expanded={expanded} handleChange={handleChange} data={data} />
-      <Design edit={setNavStage} expanded={expanded} handleChange={handleChange} data={data} />
+      <Governance
+        edit={setNavStage}
+        expanded={expanded}
+        handleChange={handleChange}
+        data={data}
+      />
+      <Tokenomics
+        edit={setNavStage}
+        expanded={expanded}
+        handleChange={handleChange}
+        data={data}
+      />
+      <Design
+        edit={setNavStage}
+        expanded={expanded}
+        handleChange={handleChange}
+        data={data}
+      />
     </Box>
   );
 };

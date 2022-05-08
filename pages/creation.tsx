@@ -14,6 +14,7 @@ import Governance from "../components/creation/governance/Governance";
 import Tokenomics from "../components/creation/tokenomics/Tokenomics";
 import Design from "../components/creation/design/Design";
 import Review from "../components/creation/review/Review";
+import CreationLoading from "../components/creation/loading/CreationLoading";
 
 export default function Creation(props) {
   const [alert, setAlert] = React.useState({ show: false });
@@ -81,6 +82,8 @@ export default function Creation(props) {
         links: [],
       },
     },
+    isDraft: 0,
+    isPublished: 0,
   });
 
   let lookup = {
@@ -111,67 +114,73 @@ export default function Creation(props) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalContext.Provider value={{ api }}>
-        <Nav value={data.navStage} theme={theme} setTheme={setTheme} />
-        <Box
-          sx={{
-            position: "fixed",
-            ml: "15rem",
-            top: "3.5rem",
-            width: "calc(100% - 15rem)",
-            pt: "2rem",
-            display: "flex",
-            flexDirection: "column",
-            height: "calc(100% - 3.5rem)",
-            pb: "2rem",
-            overflowY: "scroll",
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            {content[data.navStage]}
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "100%",
-              mt: "1.5rem",
-            }}
-          >
-            {data.navStage < 4 && (
-              <>
-                {data.navStage > 0 && (
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    onClick={() =>
-                      setData({ ...data, navStage: data.navStage - 1 })
-                    }
-                    sx={{ mr: 1 }}
-                  >
-                    <ArrowBackIcon sx={{ mr: 1 }} /> Back
-                  </Button>
+        {data.isPublished === 1 ? (
+          <CreationLoading theme={theme}/>
+        ) : (
+          <>
+            <Nav value={data.navStage} theme={theme} setTheme={setTheme} />
+            <Box
+              sx={{
+                position: "fixed",
+                ml: "15rem",
+                top: "3.5rem",
+                width: "calc(100% - 15rem)",
+                pt: "2rem",
+                display: "flex",
+                flexDirection: "column",
+                height: "calc(100% - 3.5rem)",
+                pb: "2rem",
+                overflowY: "scroll",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {content[data.navStage]}
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "100%",
+                  mt: "1.5rem",
+                }}
+              >
+                {data.navStage < 4 && (
+                  <>
+                    {data.navStage > 0 && (
+                      <Button
+                        variant="outlined"
+                        color="primary"
+                        onClick={() =>
+                          setData({ ...data, navStage: data.navStage - 1 })
+                        }
+                        sx={{ mr: 1 }}
+                      >
+                        <ArrowBackIcon sx={{ mr: 1 }} /> Back
+                      </Button>
+                    )}
+                    <Button
+                      variant="contained"
+                      disabled={checkCompleteness(data)}
+                      color="primary"
+                      onClick={() =>
+                        setData({ ...data, navStage: data.navStage + 1 })
+                      }
+                    >
+                      Next <ArrowForwardIcon sx={{ ml: 1 }} />
+                    </Button>
+                  </>
                 )}
-                <Button
-                  variant="contained"
-                  disabled={checkCompleteness(data)}
-                  color="primary"
-                  onClick={() =>
-                    setData({ ...data, navStage: data.navStage + 1 })
-                  }
-                >
-                  Next <ArrowForwardIcon sx={{ ml: 1 }} />
-                </Button>
-              </>
-            )}
-          </Box>
-        </Box>
+              </Box>
+            </Box>
+          </>
+        )}
       </GlobalContext.Provider>
     </ThemeProvider>
   );

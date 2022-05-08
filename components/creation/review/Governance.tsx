@@ -11,7 +11,7 @@ const Governance: React.FC<{
   data: any;
   expanded: string | boolean;
   handleChange: Function;
-  edit: Function
+  edit: Function;
 }> = (props) => {
   let data = props.data;
   return (
