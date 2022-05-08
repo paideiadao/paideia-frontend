@@ -118,7 +118,8 @@ const ReviewDrawer: React.FC = () => {
   const setNavStage = (stage: number) => {
     globalContext.api.setData({
       ...globalContext.api.data,
-      navStage: stage,
+      review: stage,
+      navStage: stage
     });
   };
 

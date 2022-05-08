@@ -22,6 +22,7 @@ export interface ICreationData {
   design: IDesign;
   isDraft: number;
   isPublished: number;
+  review: number;
 }
 
 export interface IFile {

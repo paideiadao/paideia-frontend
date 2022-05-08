@@ -84,6 +84,7 @@ export default function Creation(props) {
     },
     isDraft: 0,
     isPublished: 0,
+    review: undefined
   });
 
   let lookup = {
@@ -118,7 +119,7 @@ export default function Creation(props) {
           <CreationLoading theme={theme}/>
         ) : (
           <>
-            <Nav value={data.navStage} theme={theme} setTheme={setTheme} />
+            <Nav value={data.review === undefined ? data.navStage : 4} theme={theme} setTheme={setTheme} />
             <Box
               sx={{
                 position: "fixed",
@@ -175,6 +176,18 @@ export default function Creation(props) {
                     >
                       Next <ArrowForwardIcon sx={{ ml: 1 }} />
                     </Button>
+                    {data.review !== undefined && (
+                      <Button
+                        variant="outlined"
+                        color="primary"
+                        onClick={() =>
+                          setData({ ...data, navStage: 4 })
+                        }
+                        sx={{ ml: 1 }}
+                      >
+                        Review
+                      </Button>
+                    )}
                   </>
                 )}
               </Box>
