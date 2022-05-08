@@ -6,11 +6,14 @@ import { IData } from "../../../lib/utilities";
 import WalletSelector from "../governance/WalletSelector";
 import { LearnMore } from "../utilities/HeaderComponents";
 import AddIcon from "@mui/icons-material/Add";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
-import { percentage } from "../../../lib/creation/Utilities";
+import {
+  percentage,
+  percentageToBalance,
+} from "../../../lib/creation/Utilities";
 import PercentageInput from "../utilities/PercentageInput";
 import BalanceInput from "../utilities/BalanceInput";
 import DeleteIcon from "@mui/icons-material/Delete";
+import CsvLoader from "../../utilities/CsvLoader";
 
 const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
   let globalContext = React.useContext(GlobalContext);
@@ -105,6 +108,7 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
           );
         })}
       </Box>
+
       {data.tokenRemaining > 0 && (
         <Box
           sx={{
@@ -138,9 +142,30 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
           >
             Add Another <AddIcon />
           </Button>
-          <Button variant="text">
-            Add from file <FileUploadIcon />
-          </Button>
+          <CsvLoader
+            id="tokenomics-loader"
+            handleFile={(imported: any) => {
+              imported = imported.map((i: any, c: number) => {
+                return {
+                  ...i,
+                  balance: percentageToBalance(
+                    data.tokenAmount,
+                    i.percentage / 100
+                  ),
+                  alias: `Wallet ${c}`,
+                  img: "",
+                };
+              });
+              let temp = [data.tokenHolders];
+              globalContext.api.setData({
+                ...globalContext.api.data,
+                tokenomics: {
+                  ...data,
+                  tokenHolders: temp.concat(imported),
+                },
+              });
+            }}
+          />
         </Box>
       )}
 

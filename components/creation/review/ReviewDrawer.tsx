@@ -119,7 +119,7 @@ const ReviewDrawer: React.FC = () => {
     globalContext.api.setData({
       ...globalContext.api.data,
       review: stage,
-      navStage: stage
+      navStage: stage,
     });
   };
 

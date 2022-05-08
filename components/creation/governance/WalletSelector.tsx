@@ -4,6 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
 import { walletStruct } from "../../../lib/creation/Constants";
 import ClearIcon from "@mui/icons-material/Clear";
+import PersonIcon from "@mui/icons-material/Person";
 
 const WalletSelector: React.FC<{
   data: {
@@ -61,7 +62,7 @@ const WalletSelector: React.FC<{
                   height: "2rem",
                 }}
               >
-                {props.data.img}
+                {props.data.img === '' || props.data.img === undefined ? <PersonIcon color="primary" /> : props.data.img}
               </Avatar>
               <Box sx={{ color: "primary.text", fontSize: ".9rem" }}>
                 <Box>{props.data.alias}</Box>

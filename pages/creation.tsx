@@ -84,7 +84,7 @@ export default function Creation(props) {
     },
     isDraft: 0,
     isPublished: 0,
-    review: undefined
+    review: undefined,
   });
 
   let lookup = {
@@ -116,10 +116,14 @@ export default function Creation(props) {
     <ThemeProvider theme={theme}>
       <GlobalContext.Provider value={{ api }}>
         {data.isPublished === 1 ? (
-          <CreationLoading theme={theme}/>
+          <CreationLoading theme={theme} />
         ) : (
           <>
-            <Nav value={data.review === undefined ? data.navStage : 4} theme={theme} setTheme={setTheme} />
+            <Nav
+              value={data.review === undefined ? data.navStage : 4}
+              theme={theme}
+              setTheme={setTheme}
+            />
             <Box
               sx={{
                 position: "fixed",
@@ -180,9 +184,7 @@ export default function Creation(props) {
                       <Button
                         variant="outlined"
                         color="primary"
-                        onClick={() =>
-                          setData({ ...data, navStage: 4 })
-                        }
+                        onClick={() => setData({ ...data, navStage: 4 })}
                         sx={{ ml: 1 }}
                       >
                         Review
