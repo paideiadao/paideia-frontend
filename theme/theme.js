@@ -101,6 +101,9 @@ export const DarkTheme = createTheme({
     circle: {
       main: "#9FD2DB",
     },
+    linkHover: {
+      main: "rgba(159, 210, 219, 0.16)",
+    },
     tokenAlert: {
       main: "rgba(255, 167, 38, 1)",
     },
