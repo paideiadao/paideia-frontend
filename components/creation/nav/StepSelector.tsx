@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Box, Divider } from "@mui/material";
-import CheckIcon from "@mui/icons-material/Check";
 import Avatar from "@mui/material/Avatar";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -15,7 +14,7 @@ export default function StepSelector(props) {
       label: "Pick your name and url",
     },
     {
-      title: "Goveranance",
+      title: "Governance",
       label: "Manage how voting will work",
     },
     {
@@ -46,12 +45,12 @@ export default function StepSelector(props) {
         orientation="vertical"
         connector={
           <Box
-            sx={{ display: "flex", height: "1rem", justifyContent: "center" }}
+            sx={{ display: "flex", height: ".75rem", justifyContent: "center" }}
           >
             <Divider
               orientation="vertical"
               flexItem
-              style={{ background: "rgba(0, 0, 0, .125)" }}
+              style={{ background: "divider.main" }}
             />
           </Box>
         }
@@ -59,9 +58,17 @@ export default function StepSelector(props) {
         {steps.map((i: any, c: number) => (
           <Step key={i.title} sx={{ width: "100%", textAlign: "center" }}>
             <StepLabel classes={{ alternativeLabel: "", labelContainer: "" }}>
-              {i.title}
+              <Box sx={{ fontWeight: 440, fontSize: ".7rem" }}>{i.title}</Box>
               {c === props.value && (
-                <Box sx={{ fontSize: ".7rem", fontWeight: 300 }}>{i.label}</Box>
+                <Box
+                  sx={{
+                    fontSize: ".6rem",
+                    fontWeight: 300,
+                    color: "primary.lightText",
+                  }}
+                >
+                  {i.label}
+                </Box>
               )}
             </StepLabel>
           </Step>
