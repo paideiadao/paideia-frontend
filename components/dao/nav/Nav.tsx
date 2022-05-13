@@ -11,13 +11,13 @@ const Nav: React.FC = (props) => {
         backgroundColor: "backgroundColor.main",
         borderRight: "1px solid",
         borderRightColor: "divider.main",
-        color: 'primary.text',
-        borderBottom: '1px solid', 
-        borderBottomColor: 'divider.main'
+        color: "primary.text",
+        borderBottom: "1px solid",
+        borderBottomColor: "divider.main",
       }}
     >
       <DaoBio />
-      <Contents/>
+      <Contents />
     </Box>
   );
 };

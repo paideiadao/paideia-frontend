@@ -18,7 +18,7 @@ const DaoBio: React.FC = () => {
         borderBottom: "1px solid",
         borderBottomColor: "divider.main",
         flexDirection: "column",
-        p: "1rem",
+        p: ".75rem",
         pt: "0rem",
       }}
     >
@@ -30,14 +30,16 @@ const DaoBio: React.FC = () => {
       <Box
         sx={{
           width: "100%",
-          p: ".6rem",
+          p: ".4rem",
+          pt: ".2rem",
+          pb: ".2rem",
           backgroundColor: "rgba(255, 255, 255, 0.08)",
           borderRadius: ".3rem",
           display: "flex",
           alignItems: "center",
           border: "1px solid",
           borderColor: "divider.main",
-          cursor: 'pointer'
+          cursor: "pointer",
         }}
       >
         <Box>
