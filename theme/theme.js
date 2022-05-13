@@ -197,6 +197,13 @@ export const DarkTheme = createTheme({
         },
       },
     },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        expandedIconWrapper: {
+          backgroundColor: "blue",
+        },
+      },
+    },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
