@@ -16,6 +16,11 @@ import Design from "../components/creation/design/Design";
 import Review from "../components/creation/review/Review";
 import CreationLoading from "../components/creation/loading/CreationLoading";
 
+export let colorLookup = {
+  light: "#FFFFFF",
+  dark: "#0E1420",
+};
+
 export default function Creation(props) {
   const [alert, setAlert] = React.useState({ show: false });
   const [theme, setTheme] = React.useState(LightTheme);
@@ -87,11 +92,6 @@ export default function Creation(props) {
     review: undefined,
   });
 
-  let lookup = {
-    light: "#FFFFFF",
-    dark: "#0E1420",
-  };
-
   let content = [
     <BasicInformation key={1} />,
     <Governance key={2} />,
@@ -106,7 +106,7 @@ export default function Creation(props) {
 
   React.useEffect(() => {
     let temp = theme === LightTheme ? "light" : "dark";
-    document.body.style.background = lookup[temp];
+    document.body.style.background = colorLookup[temp];
     localStorage.setItem("theme", temp);
   }, [theme]);
 

@@ -62,7 +62,11 @@ const WalletSelector: React.FC<{
                   height: "2rem",
                 }}
               >
-                {props.data.img === '' || props.data.img === undefined ? <PersonIcon color="primary" /> : props.data.img}
+                {props.data.img === "" || props.data.img === undefined ? (
+                  <PersonIcon color="primary" />
+                ) : (
+                  props.data.img
+                )}
               </Avatar>
               <Box sx={{ color: "primary.text", fontSize: ".9rem" }}>
                 <Box>{props.data.alias}</Box>

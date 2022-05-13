@@ -4,13 +4,42 @@ import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import { Box } from "@mui/system";
+import DaoTemplate from "../components/dao/DaoTemplate";
+import { ThemeProvider } from "@mui/material/styles";
+import { DarkTheme, LightTheme } from "../theme/theme";
+import React from "react";
+import { AppApi } from "../lib/AppApi";
+import { GlobalContext } from "../lib/AppContext";
+import { colorLookup } from "./creation";
 
 export default function Home(props) {
+  const [theme, setTheme] = React.useState(LightTheme);
+  const [alert, setAlert] = React.useState({ show: false });
+
+  React.useEffect(() => {
+    setTheme(localStorage.getItem("theme") === "dark" ? DarkTheme : LightTheme);
+  }, []);
+
+  React.useEffect(() => {
+    let temp = theme === LightTheme ? "light" : "dark";
+    document.body.style.background = colorLookup[temp];
+    localStorage.setItem("theme", temp);
+  }, [theme]);
+  // add 404 routing here...
+
+  const api = new AppApi(alert, setAlert, theme, setTheme, props.wildcard);
+
   switch (props.wildcard) {
     case "home":
       return <Box>Paideia Home Here....</Box>;
     default:
-      return <Box>{props.wildcard} DAO here</Box>;
+      return (
+        <ThemeProvider theme={theme}>
+          <GlobalContext.Provider value={{ api }}>
+            <DaoTemplate subdomain={props.wildcard} />
+          </GlobalContext.Provider>
+        </ThemeProvider>
+      );
   }
 }
 
@@ -22,6 +51,8 @@ export async function getServerSideProps(context) {
   let wildcard = context.req.headers.host.split(".")[0];
   let all_ids = ["spreadly", "ergopad"];
   console.log("wildcard", wildcard);
+
+  // add in logic for checking for other pages that are paideia specific
 
   wildcard =
     all_ids.indexOf(wildcard) > -1
