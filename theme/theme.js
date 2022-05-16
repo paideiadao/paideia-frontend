@@ -6,6 +6,9 @@ export const LightTheme = createTheme({
     circle: {
       main: "#00868F",
     },
+    linkHover: {
+      main: "rgba(159, 210, 219, 0.5)",
+    },
     tokenAlert: {
       main: "rgba(237, 108, 2, 1)",
     },

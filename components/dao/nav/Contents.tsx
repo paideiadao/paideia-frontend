@@ -13,13 +13,17 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import GridViewIcon from "@mui/icons-material/GridView";
+import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
+import FaceIcon from '@mui/icons-material/Face';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const BasicLink: React.FC<{
   icon: JSX.Element;
   title: string;
   selected: boolean;
   set: Function;
-  m?: string
+  m?: string;
+  ml?: string;
 }> = (props) => {
   return (
     <Box sx={{ width: "100%", mt: props.m === undefined ? ".5rem" : props.m, mb: props.m === undefined ? ".5rem" : props.m }}>
@@ -30,6 +34,9 @@ const BasicLink: React.FC<{
           fontSize: ".8rem",
           cursor: "pointer",
           color: props.selected ? "primary.main" : "primary.text",
+          ":hover": {
+          backgroundColor: "linkHover.main"
+          }
         }}
         onClick={() => props.set(props.title)}
       >
@@ -55,6 +62,7 @@ const BasicLink: React.FC<{
             pl: ".5rem",
             width: "100%",
             alignItems: "center",
+            backgroundColor: props.selected ? 'linkHover.main' : 'transparent'
           }}
         >
           <Box
@@ -64,6 +72,7 @@ const BasicLink: React.FC<{
               alignItems: "center",
               justifyContent: "center",
               mr: ".5rem",
+              ml: props.ml === undefined ? 0 : props.ml,
               color: props.selected ? "primary.main" : "inherit",
             }}
           >
@@ -236,9 +245,9 @@ const Contents: React.FC = () => {
                       mr: "auto",
                       width: ".2rem",
                       height: "2rem",
-                      backgroundColor: 'backgroundColor.main',
+                      backgroundColor: selected === i.label && subSelected === undefined ? "backgroundColor.main" : "transparent",
                       ":hover ": {
-                        backgroundColor: "backgroundColor.main",
+                        backgroundColor: "linkHover.main",
                       },
                     }}
                   >
@@ -287,13 +296,34 @@ const Contents: React.FC = () => {
                 </Box>
               </Box>
             </AccordionSummary>
-            <AccordionDetails sx={{ opacity: 1, color: "primary.text", pl: 0 }}>
+            <AccordionDetails sx={{ opacity: 1, color: "primary.text", pl: 0, pr: 0}}>
               <BasicLink
                 icon={<GridViewIcon sx={{ opacity: ".8" }} />}
                 title={"All"}
                 selected={"All" === subSelected}
                 set={setSubWrapper}
-                m={0}
+                ml='.5rem'
+              />
+              <BasicLink
+                icon={<FavoriteIcon sx={{ opacity: ".8" }} />}
+                title={"Following"}
+                selected={"Following" === subSelected}
+                set={setSubWrapper}
+                ml='.5rem'
+              />
+              <BasicLink
+                icon={<FaceIcon sx={{ opacity: ".8" }} />}
+                title={"Mine"}
+                selected={"Mine" === subSelected}
+                set={setSubWrapper}
+                ml='.5rem'
+              />
+              <BasicLink
+                icon={<AccessTimeFilledIcon sx={{ opacity: ".8" }} />}
+                title={"Past"}
+                selected={"Past" === subSelected}
+                set={setSubWrapper}
+                ml='.5rem'
               />
             </AccordionDetails>
           </Accordion>
