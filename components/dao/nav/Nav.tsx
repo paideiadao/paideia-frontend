@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import * as React from "react";
 import Contents from "./Contents";
 import DaoBio from "./DaoBio";
+import Footer from "./Footer";
 
 const Nav: React.FC = (props) => {
   return (
@@ -18,6 +19,7 @@ const Nav: React.FC = (props) => {
     >
       <DaoBio />
       <Contents />
+      <Footer />
     </Box>
   );
 };
