@@ -13,8 +13,6 @@ const Footer: React.FC = () => {
         mt: ".5rem",
         pt: ".5rem",
         width: "100%",
-        borderTop: "1px solid",
-        borderTopColor: "divider.main",
         mb: "0rem",
       }}
     >

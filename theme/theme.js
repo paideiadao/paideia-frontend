@@ -7,7 +7,7 @@ export const LightTheme = createTheme({
       main: "#00868F",
     },
     linkHover: {
-      main: "rgba(159, 210, 219, 0.5)",
+      main: "#EBF5F6",
     },
     tokenAlert: {
       main: "rgba(237, 108, 2, 1)",
