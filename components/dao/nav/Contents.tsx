@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Badge, Box } from "@mui/material";
 import * as React from "react";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
@@ -33,6 +33,7 @@ const BasicLink: React.FC<{
   set: Function;
   m?: string;
   ml?: string;
+  notifications?: number
 }> = (props) => {
   return (
     <Box
@@ -93,7 +94,11 @@ const BasicLink: React.FC<{
           >
             {props.icon}
           </Box>
-          <Box>{props.title}</Box>
+          <Box sx={{width: '73.5%'}}>{props.title}</Box>
+          {props.notifications > 0 && <Box sx={{width: '10%'}}>
+          <Badge color="primary" badgeContent={props.notifications} sx={{pt: '.1rem'}} max={10}>
+          </Badge>
+          </Box>}
         </Box>
       </Box>
     </Box>
@@ -337,7 +342,7 @@ const Contents: React.FC = () => {
     },
     { icon: <DiamondIcon sx={{ opacity: ".8" }} />, label: "Staking" },
     { icon: <GroupsIcon sx={{ opacity: ".8" }} />, label: "Members" },
-    { icon: <MovingIcon sx={{ opacity: ".8" }} />, label: "Activity" },
+    { icon: <MovingIcon sx={{ opacity: ".8" }} />, label: "Activity", notifications: 3 },
     {
       icon: <SettingsIcon sx={{ opacity: ".8" }} />,
       label: "Settings",
@@ -390,6 +395,7 @@ const Contents: React.FC = () => {
             title={i.label}
             selected={i.label === selected}
             set={setWrapper}
+            notifications={i.notifications}
           />
         )
       )}
