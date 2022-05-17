@@ -39,7 +39,7 @@ export const LightTheme = createTheme({
       contrastText: "#E5E5E5",
     },
     fileInput: {
-      main: "rgb(0, 134, 143, 0.1)",
+      main: "#F5F5F5",
       outer: "white",
       border: "rgba(255, 255, 255, 1)",
     },

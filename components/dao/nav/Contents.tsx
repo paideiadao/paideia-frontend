@@ -57,7 +57,7 @@ const BasicLink: React.FC<{
       >
         <Box
           sx={{
-            backgroundColor: props.selected ? "red" : "transparent",
+            backgroundColor: props.selected ? "secondary.main" : "transparent",
             height: "2rem",
             width: ".15rem",
             borderTopRightRadius: ".5rem",
@@ -196,7 +196,7 @@ const DropdownLink: React.FC<{
                 sx={{
                   backgroundColor:
                     props.selected && props.subSelected === undefined
-                      ? "red"
+                      ? "secondary.main"
                       : "transparent",
                   height: "2rem",
                   width: ".15rem",

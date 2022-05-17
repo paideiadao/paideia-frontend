@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import * as React from "react";
 import { GlobalContext, IGlobalContext } from "../../../lib/AppContext";
-import spreadly from "../../../public/dao/bio-image/spreadly.png";
+import PaideiaLogo from "../../../public/dao/bio-image/paideia-logo.png";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -70,7 +70,7 @@ const DaoBio: React.FC = () => {
       }}
     >
       <Avatar sx={{ width: "4rem", height: "4rem", mt: ".5rem", mb: ".5rem" }}>
-        <img src={spreadly.src} />
+        <img src={PaideiaLogo.src} />
       </Avatar>
       <Box
         sx={{
@@ -78,13 +78,14 @@ const DaoBio: React.FC = () => {
           p: ".4rem",
           pt: ".2rem",
           pb: ".2rem",
-          backgroundColor: "rgba(255, 255, 255, 0.08)",
+          backgroundColor: "fileInput.main",
           borderRadius: ".3rem",
           display: "flex",
           alignItems: "center",
           border: "1px solid",
           borderColor: "divider.main",
           cursor: "pointer",
+
         }}
         onClick={() => setDropdown(true)}
       >
@@ -164,6 +165,8 @@ const DaoSelect: React.FC<{ set: Function; name: string; url: string }> = (
         borderBottomColor: "divider.main",
         width: "100%",
         cursor: "pointer",
+        backgroundColor: "fileInput.main",
+
       }}
       onClick={() =>
         props.set({
