@@ -378,7 +378,7 @@ const Contents: React.FC = () => {
     },
   ];
   return (
-    <Box sx={{ width: "100%", mb: "1rem" }}>
+    <Box sx={{ width: "100%", mb: "1rem", height: '20.75rem', overflowY: 'auto', overflowX: 'hidden' }}>
       {categories.map((i: any) =>
         ["Proposals", "Financials", "Settings"].indexOf(i.label) > -1 ? (
           <DropdownLink

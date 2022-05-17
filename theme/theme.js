@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles";
+import darkScrollbar from '@mui/material/darkScrollbar';
 
 export const LightTheme = createTheme({
   palette: {
@@ -95,7 +96,13 @@ export const LightTheme = createTheme({
         completed: {},
       },
     },
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: null,
+      },
+    },
   },
+  
 });
 
 export const DarkTheme = createTheme({
@@ -353,6 +360,11 @@ export const DarkTheme = createTheme({
         },
         active: {},
         completed: {},
+      },
+    },
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: darkScrollbar(),
       },
     },
   },

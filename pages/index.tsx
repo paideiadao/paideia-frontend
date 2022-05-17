@@ -11,6 +11,7 @@ import React from "react";
 import { AppApi } from "../lib/AppApi";
 import { GlobalContext } from "../lib/AppContext";
 import { colorLookup } from "./creation";
+import CssBaseline from '@mui/material/CssBaseline';
 
 export default function Home(props) {
   const [theme, setTheme] = React.useState(LightTheme);
@@ -36,6 +37,7 @@ export default function Home(props) {
       return (
         <ThemeProvider theme={theme}>
           <GlobalContext.Provider value={{ api }}>
+            <CssBaseline />
             <DaoTemplate subdomain={props.wildcard} />
           </GlobalContext.Provider>
         </ThemeProvider>
