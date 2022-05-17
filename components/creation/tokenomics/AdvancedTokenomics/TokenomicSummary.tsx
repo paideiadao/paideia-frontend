@@ -71,11 +71,6 @@ const TokenomicSummary: React.FC<IData<ITokenomics>> = (props) => {
     .reduce((sum, current) => sum + current, 0);
   let tokenomics = [
     {
-      title: "Token holders",
-      balance: tokenHolderBalance,
-      percentage: percentage(tokenHolderBalance / data.tokenAmount, 2, false),
-    },
-    {
       title: "Unassigned tokens (Treasury)",
       balance: data.tokenRemaining,
       percentage: percentage(data.tokenRemaining / data.tokenAmount, 2, false),

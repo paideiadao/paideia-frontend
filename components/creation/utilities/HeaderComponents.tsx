@@ -48,13 +48,15 @@ export const Header: React.FC<{
   );
 };
 
-export const CapsInfo: React.FC<{ title: string }> = (props) => {
+export const CapsInfo: React.FC<{ title: string; small?: boolean }> = (
+  props
+) => {
   return (
     <Box
       sx={{
         width: "100%",
         color: "primary.text",
-        fontSize: ".8rem",
+        fontSize: props.small === undefined ? ".8rem" : ".7rem",
         fontWeight: 400,
         mb: "1rem",
       }}

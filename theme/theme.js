@@ -22,6 +22,9 @@ export const LightTheme = createTheme({
     darkHover: {
       main: "rgba(255, 255, 255, 0.08)",
     },
+    backgroundColor: {
+      main: '#FFFFFF'
+    },
     primary: {
       // light: will be calculated from palette.primary.main,
       main: "#00868F",

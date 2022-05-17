@@ -51,7 +51,7 @@ export default function Creation(props) {
       supportNeeded: 50,
     },
     tokenomics: {
-      type: "",
+      type: "create",
       tokenName: "",
       tokenId: "",
       tokenTicker: "",
@@ -147,13 +147,33 @@ export default function Creation(props) {
               >
                 {content[data.navStage]}
               </Box>
+              {data.review !== undefined && data.navStage !== 4 && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    width: "100%",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    mt: "1rem",
+                  }}
+                >
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => setData({ ...data, navStage: 4 })}
+                    sx={{ ml: 1 }}
+                  >
+                    Back to Review
+                  </Button>
+                </Box>
+              )}
               <Box
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   width: "100%",
-                  mt: "1.5rem",
+                  mt: ".5rem",
                 }}
               >
                 {data.navStage < 4 && (
@@ -180,16 +200,6 @@ export default function Creation(props) {
                     >
                       Next <ArrowForwardIcon sx={{ ml: 1 }} />
                     </Button>
-                    {data.review !== undefined && (
-                      <Button
-                        variant="outlined"
-                        color="primary"
-                        onClick={() => setData({ ...data, navStage: 4 })}
-                        sx={{ ml: 1 }}
-                      >
-                        Review
-                      </Button>
-                    )}
                   </>
                 )}
               </Box>

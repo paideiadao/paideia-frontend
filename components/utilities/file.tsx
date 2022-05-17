@@ -1,5 +1,6 @@
 import { Avatar, Box, Button, Paper } from "@mui/material";
 import { bytesToSize } from "../../lib/creation/Utilities";
+import ImagePlaceholder from "../../public/images/image-placeholder.png";
 
 const FileInput: React.FC<{
   file: any;
@@ -40,7 +41,7 @@ const FileInput: React.FC<{
             mr: "1rem",
           }}
         >
-          SP
+          <img src={ImagePlaceholder.src} />
         </Avatar>
         <Box>
           <input
