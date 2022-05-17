@@ -33,7 +33,7 @@ const BasicLink: React.FC<{
   set: Function;
   m?: string;
   ml?: string;
-  notifications?: number
+  notifications?: number;
 }> = (props) => {
   return (
     <Box
@@ -94,11 +94,17 @@ const BasicLink: React.FC<{
           >
             {props.icon}
           </Box>
-          <Box sx={{width: '73.5%'}}>{props.title}</Box>
-          {props.notifications > 0 && <Box sx={{width: '10%'}}>
-          <Badge color="primary" badgeContent={props.notifications} sx={{pt: '.1rem'}} max={10}>
-          </Badge>
-          </Box>}
+          <Box sx={{ width: "73.5%" }}>{props.title}</Box>
+          {props.notifications > 0 && (
+            <Box sx={{ width: "10%" }}>
+              <Badge
+                color="primary"
+                badgeContent={props.notifications}
+                sx={{ pt: ".1rem" }}
+                max={10}
+              ></Badge>
+            </Box>
+          )}
         </Box>
       </Box>
     </Box>
@@ -342,7 +348,11 @@ const Contents: React.FC = () => {
     },
     { icon: <DiamondIcon sx={{ opacity: ".8" }} />, label: "Staking" },
     { icon: <GroupsIcon sx={{ opacity: ".8" }} />, label: "Members" },
-    { icon: <MovingIcon sx={{ opacity: ".8" }} />, label: "Activity", notifications: 3 },
+    {
+      icon: <MovingIcon sx={{ opacity: ".8" }} />,
+      label: "Activity",
+      notifications: 3,
+    },
     {
       icon: <SettingsIcon sx={{ opacity: ".8" }} />,
       label: "Settings",
@@ -378,7 +388,15 @@ const Contents: React.FC = () => {
     },
   ];
   return (
-    <Box sx={{ width: "100%", mb: "1rem", height: '20.75rem', overflowY: 'auto', overflowX: 'hidden' }}>
+    <Box
+      sx={{
+        width: "100%",
+        mb: "1rem",
+        height: "20.75rem",
+        overflowY: "auto",
+        overflowX: "hidden",
+      }}
+    >
       {categories.map((i: any) =>
         ["Proposals", "Financials", "Settings"].indexOf(i.label) > -1 ? (
           <DropdownLink

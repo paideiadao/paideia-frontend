@@ -11,7 +11,7 @@ import React from "react";
 import { AppApi } from "../lib/AppApi";
 import { GlobalContext } from "../lib/AppContext";
 import { colorLookup } from "./creation";
-import CssBaseline from '@mui/material/CssBaseline';
+import CssBaseline from "@mui/material/CssBaseline";
 
 export default function Home(props) {
   const [theme, setTheme] = React.useState(LightTheme);

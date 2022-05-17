@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import darkScrollbar from '@mui/material/darkScrollbar';
+import darkScrollbar from "@mui/material/darkScrollbar";
 
 export const LightTheme = createTheme({
   palette: {
@@ -102,7 +102,6 @@ export const LightTheme = createTheme({
       },
     },
   },
-  
 });
 
 export const DarkTheme = createTheme({

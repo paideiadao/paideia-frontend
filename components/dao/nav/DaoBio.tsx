@@ -85,7 +85,6 @@ const DaoBio: React.FC = () => {
           border: "1px solid",
           borderColor: "divider.main",
           cursor: "pointer",
-
         }}
         onClick={() => setDropdown(true)}
       >
@@ -166,7 +165,6 @@ const DaoSelect: React.FC<{ set: Function; name: string; url: string }> = (
         width: "100%",
         cursor: "pointer",
         backgroundColor: "fileInput.main",
-
       }}
       onClick={() =>
         props.set({

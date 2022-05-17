@@ -6,7 +6,7 @@ import { GlobalContext, IGlobalContext } from "../../../lib/AppContext";
 import { DarkTheme } from "../../../theme/theme";
 
 const Footer: React.FC = () => {
-    const globalContext = React.useContext<IGlobalContext>(GlobalContext);
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   return (
     <Box
       sx={{
@@ -16,8 +16,13 @@ const Footer: React.FC = () => {
         mb: "0rem",
       }}
     >
-      <img src={    globalContext.api.theme === DarkTheme ? DarkFooter.src : LightFooter.src
-} />
+      <img
+        src={
+          globalContext.api.theme === DarkTheme
+            ? DarkFooter.src
+            : LightFooter.src
+        }
+      />
     </Box>
   );
 };
