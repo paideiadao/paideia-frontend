@@ -5,6 +5,7 @@ import { Header } from "../../creation/utilities/HeaderComponents";
 import FinancialSummary from "./FinancialSummary";
 import About from "./widgets/About";
 import TokenStats from "./widgets/TokenStats";
+import ActiveProposals from "./ActiveProposals";
 
 const Dashboard: React.FC = () => {
   return (
@@ -28,6 +29,7 @@ const Dashboard: React.FC = () => {
         <Box sx={{ width: "70%", p: "1rem", pt: 0 }}>
           <Header title="Welcome to Paideia" />
           <FinancialSummary />
+          <ActiveProposals />
         </Box>
         <Box
           sx={{

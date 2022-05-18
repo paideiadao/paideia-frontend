@@ -11,7 +11,7 @@ const PerformanceWidget: React.FC<{ value: number }> = (props) => {
       sx={{
         display: "flex",
         alignItems: "center",
-        backgroundColor: "primary.lightSuccess",
+        backgroundColor: props.value <= 0 ? "red" : "primary.lightSuccess",
         borderRadius: ".3rem",
         fontSize: ".7rem",
         color: "backgroundColor.main",
@@ -123,7 +123,7 @@ const FinancialSummary: React.FC = () => {
           (In 8 currencies)
         </Box>
         <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
-          <PerformanceWidget value={0.78} />
+          <PerformanceWidget value={-0.07} />
           <TimeWidget amount={24} unit={"h"} />
         </Box>
       </Paper>
