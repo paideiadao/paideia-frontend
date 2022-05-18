@@ -12,8 +12,10 @@ const Footer: React.FC = () => {
       sx={{
         mt: ".5rem",
         pt: ".5rem",
-        width: "100%",
+        width: "15rem",
         mb: "0rem",
+        position: 'absolute',
+        bottom: '0'
       }}
     >
       <img

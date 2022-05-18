@@ -2,6 +2,7 @@ import { Box, Button } from "@mui/material";
 import * as React from "react";
 import { Subheader } from "../../creation/utilities/HeaderComponents";
 import dateFormat from "dateformat";
+import CircleIcon from '@mui/icons-material/Circle';
 
 let temp = new Date();
 temp.setDate(temp.getDate() + 30);
@@ -105,9 +106,9 @@ const CurrentDistributions: React.FC = () => {
                 {i.amount} {i.ticker}
             </Box>
             <Box
-              sx={{ width: "20%", display: "flex", justifyContent: "center" }}
+              sx={{ width: "20%", pl: '.5rem', display: "flex", alignItems: "center", color: i.status === 'Active' ? 'primary.lightSuccess' : 'tokenAlert.main' }}
             >
-                {i.status}
+                <CircleIcon sx={{fontSize: '1rem', mr: '.3rem'}}/> {i.status}
             </Box>
             <Box
               sx={{ width: "15%", display: "flex", justifyContent: "center", borderLeft: '1px solid', borderLeftColor: 'divider.main' }}

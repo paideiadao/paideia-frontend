@@ -128,7 +128,7 @@ const Dashboard: React.FC = () => {
             flexDirection: "column",
             justifyContent: "center",
             position: "sticky",
-            top: "5rem",
+            top: ".2rem",
           }}
         >
           <About />
