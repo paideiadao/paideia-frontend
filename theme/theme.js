@@ -62,9 +62,9 @@ export const LightTheme = createTheme({
     MuiChip: {
       styleOverrides: {
         icon: {
-          color: "#FFFFFF"
-        }
-      }
+          color: "#FFFFFF",
+        },
+      },
     },
     MuiCircularProgress: {
       styleOverrides: {},
@@ -202,9 +202,9 @@ export const DarkTheme = createTheme({
     MuiChip: {
       styleOverrides: {
         icon: {
-          color: "rgba(17, 24, 39, 1)"
-        }
-      }
+          color: "rgba(17, 24, 39, 1)",
+        },
+      },
     },
     MuiSelect: {
       styleOverrides: {

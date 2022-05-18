@@ -11,6 +11,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import DeleteIcon from "@mui/icons-material/Delete";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
+import { percentage } from "../../../lib/creation/Utilities";
+
 export interface IProposalCard {
   proposalName: string;
   status: string;
@@ -21,7 +23,63 @@ export interface IProposalCard {
   category: string;
   widget: any;
   c: number;
+  yes: number;
+  no: number;
+  comments: number;
+  users: number;
+  date: Date;
 }
+
+const VoteWidget: React.FC<{
+  yes: number;
+  no: number;
+}> = (props) => {
+  return (
+    <Box sx={{ width: "100%", mt: "-.1rem" }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          width: "100%",
+          color: "primary.lightSuccess",
+        }}
+      >
+        {percentage(props.yes / (props.yes + props.no), 0)} YES
+        <Box sx={{ ml: "auto", color: "red" }}>
+          {percentage(props.no / (props.yes + props.no), 0)} NO
+        </Box>
+      </Box>
+      <Box sx={{ width: "100%", height: ".4rem", display: "flex" }}>
+        <Box
+          sx={{
+            width: percentage(props.yes / (props.yes + props.no)),
+            backgroundColor: "green",
+            height: ".2rem",
+          }}
+        ></Box>
+        <Box
+          sx={{
+            width: percentage(props.no / (props.yes + props.no)),
+            backgroundColor: "red",
+            height: ".2rem",
+          }}
+        ></Box>
+      </Box>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          color: "primary.lightText",
+          fontSize: ".8rem",
+        }}
+      >
+        {props.yes} votes
+        <Box sx={{ ml: "auto" }}>{props.no} votes</Box>
+      </Box>
+    </Box>
+  );
+};
 
 const ProposalStatus: React.FC<{ status: string }> = (props) => {
   const getStatusColor = () => {
@@ -206,7 +264,75 @@ const CardContent: React.FC<{ category: string; widget: any }> = (props) => {
   );
 };
 
+const CountdownWidget: React.FC<{ date: Date }> = (props) => {
+  const [time, setTime] = React.useState<string>("");
+  React.useEffect(() => {
+    var x = setInterval(function () {
+      let temp = new Date(props.date);
+      temp.setDate(temp.getDate() + 30);
+      var countDownDate = temp.getTime();
+      // Get today's date and time
+      var now = new Date().getTime();
+
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display the result in the element with id="demo"
+      setTime(days + " days " + hours + " hours " + minutes + " minutes");
+
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        setTime("EXPIRED");
+      }
+    }, 1000);
+  }, []);
+  return (
+    <Box sx={{ width: "100%", fontSize: ".9rem" }}>
+      {time}
+      <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>
+        Until proposal passes
+      </Box>
+    </Box>
+  );
+};
+
 const ProposalCard: React.FC<IProposalCard> = (props) => {
+  const getFooter = () => {
+    switch (props.status) {
+      case "Challenged": {
+        return <VoteWidget yes={props.yes} no={props.no} />;
+      }
+      // passed color??
+      case "Passed": {
+        return "primary.lightSuccess";
+      }
+      case "Active": {
+        return <VoteWidget yes={props.yes} no={props.no} />;
+      }
+      case "Discussion": {
+        return (
+          <Box sx={{ width: "100%" }}>
+            Join the Conversation
+            <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>
+              {props.comments} comments from {props.users} users
+            </Box>
+          </Box>
+        );
+      }
+      case "Unchallenged": {
+        return <CountdownWidget date={props.date} />;
+      }
+    }
+  };
   // use a local state to make it dynamic...
   return (
     <Box sx={{ pr: "1rem" }} id={`proposal-active-${props.c}`}>
@@ -264,7 +390,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
             </Box>
             <CardContent category={props.category} widget={props.widget} />
           </Box>
-          <Box sx={{ p: ".5rem" }}>Footer Here...</Box>
+          <Box sx={{ p: ".5rem", height: "4rem" }}>{getFooter()}</Box>
         </Box>
       </Badge>
     </Box>
