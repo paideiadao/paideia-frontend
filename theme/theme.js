@@ -172,7 +172,7 @@ export const DarkTheme = createTheme({
     },
     secondary: {
       light: "#00788C",
-      main: "rgba(224, 104, 4, 1)",
+      main: "#FFCF7E",
       // dark: will be calculated from palette.secondary.main,
       contrastText: "#333333",
     },
