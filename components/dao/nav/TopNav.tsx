@@ -1,4 +1,4 @@
-import { Avatar, Badge, Box } from "@mui/material";
+import { Avatar, Badge, Box, IconButton } from "@mui/material";
 import * as React from "react";
 import { GlobalContext, IGlobalContext } from "../../../lib/AppContext";
 import { DarkTheme, LightTheme } from "../../../theme/theme";
@@ -45,7 +45,9 @@ const TopNav: React.FC = () => {
             alignItems: "center",
           }}
         >
+            <IconButton color="primary">
           <Badge badgeContent={1} color="primary">
+
             <NotificationsIcon
               sx={{
                 fontSize: "1.1rem",
@@ -53,6 +55,8 @@ const TopNav: React.FC = () => {
               }}
             />
           </Badge>
+            </IconButton>
+
         </Box>
         <Box sx={{ ml: "1rem", display: "flex", alignItems: "center" }}>
           <Avatar sx={{ mr: ".5rem" }}>
