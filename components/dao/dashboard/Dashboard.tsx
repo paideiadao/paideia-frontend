@@ -94,7 +94,7 @@ const Dashboard: React.FC = () => {
                 width: "13rem",
                 fontSize: "1rem",
                 color: "white",
-                right: ".7rem",
+                left: "65%",
                 top: 0,
               }}
             >

@@ -69,18 +69,18 @@ const proposals = [
 const ActiveProposal: React.FC = () => {
   const [slide, setSlide] = React.useState<number>(1);
   const incrementSlide = () =>
-    slide + 3 > proposals.length
+    slide + 4 > proposals.length
       ? setSlide(proposals.length)
-      : setSlide(slide + 3);
+      : setSlide(slide + 4);
   const decrementSlide = () =>
-    slide - 3 < 0 ? setSlide(0) : setSlide(slide - 3);
+    slide - 4 < 0 ? setSlide(0) : setSlide(slide - 4);
 
   React.useEffect(() => {
     console.log(slide);
     let element = document.getElementById(
       `proposal-active-${slide === 0 ? slide : slide - 1}`
     );
-    element.scrollIntoView();
+    element.scrollIntoView(false);
   }, [slide]);
 
   return (
