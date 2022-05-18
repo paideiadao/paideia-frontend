@@ -7,6 +7,9 @@ export const LightTheme = createTheme({
     circle: {
       main: "#00868F",
     },
+    favoriteBackground: {
+      main: "#FEE8E7",
+    },
     linkHover: {
       main: "#EBF5F6",
     },
@@ -56,6 +59,13 @@ export const LightTheme = createTheme({
     tonalOffset: 0.2,
   },
   components: {
+    MuiChip: {
+      styleOverrides: {
+        icon: {
+          color: "#FFFFFF"
+        }
+      }
+    },
     MuiCircularProgress: {
       styleOverrides: {},
     },
@@ -118,6 +128,9 @@ export const DarkTheme = createTheme({
     },
     tokenAlert: {
       main: "rgba(255, 167, 38, 1)",
+    },
+    favoriteBackground: {
+      main: "#FEE8E7",
     },
     circleBackground: {
       main: "rgba(159, 210, 219, 0.08)",
@@ -185,23 +198,14 @@ export const DarkTheme = createTheme({
       backgroundColor: "yellow",
     },
   },
-  overrides: {
-    MuiButton: {
-      styleOverrides: {
-        button: {
-          disabled: {
-            backgroundColor: "blue",
-          },
-        },
-      },
-    },
-    MuiTypography: {
-      caption: {
-        backgroundColor: "blue",
-      },
-    },
-  },
   components: {
+    MuiChip: {
+      styleOverrides: {
+        icon: {
+          color: "rgba(17, 24, 39, 1)"
+        }
+      }
+    },
     MuiSelect: {
       styleOverrides: {
         icon: {

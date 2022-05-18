@@ -406,7 +406,7 @@ const Contents: React.FC = () => {
             icon={i.icon}
             selected={i.label === selected}
             links={i.links}
-            key={'nav-contents-key-' + c}
+            key={"nav-contents-key-" + c}
           />
         ) : (
           <BasicLink
@@ -415,7 +415,7 @@ const Contents: React.FC = () => {
             selected={i.label === selected}
             set={setWrapper}
             notifications={i.notifications}
-            key={'nav-contents-key-' + c}
+            key={"nav-contents-key-" + c}
           />
         )
       )}
