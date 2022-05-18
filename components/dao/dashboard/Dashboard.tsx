@@ -12,6 +12,7 @@ import LightbulbCircleIcon from "@mui/icons-material/LightbulbCircle";
 import ReadingBackground from "../../../public/dao/reading/reading-background.png";
 import NewspaperFilled from "../../../public/icons/newspaper-filled.png";
 import CurrentDistributions from "./CurrentDistributions";
+import LatestActivity from "./LatestActivity";
 
 const Dashboard: React.FC = () => {
   return (
@@ -119,6 +120,7 @@ const Dashboard: React.FC = () => {
             <FinancialSummary />
             <ActiveProposals />
             <CurrentDistributions />
+            <LatestActivity />
           </Box>
         </Box>
         <Box

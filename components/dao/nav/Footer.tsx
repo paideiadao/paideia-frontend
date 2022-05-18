@@ -14,8 +14,8 @@ const Footer: React.FC = () => {
         pt: ".5rem",
         width: "15rem",
         mb: "0rem",
-        position: 'absolute',
-        bottom: '0'
+        position: "absolute",
+        bottom: "0",
       }}
     >
       <img

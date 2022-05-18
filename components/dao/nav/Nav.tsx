@@ -14,7 +14,7 @@ const Nav: React.FC = (props) => {
         borderRightColor: "divider.main",
         color: "primary.text",
         borderBottom: "1px solid",
-        height: '100vh',
+        height: "100vh",
         borderBottomColor: "divider.main",
       }}
     >

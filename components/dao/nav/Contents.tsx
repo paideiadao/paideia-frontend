@@ -10,7 +10,6 @@ import BalanceIcon from "@mui/icons-material/Balance";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import GridViewIcon from "@mui/icons-material/GridView";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
