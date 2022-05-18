@@ -24,7 +24,7 @@ const Dashboard: React.FC = () => {
           borderBottomColor: "divider.main",
         }}
       >
-        <img src={PaideiaBanner.src} />
+        <img src={PaideiaBanner.src} style={{width: '100%'}} />
       </Box>
       <Box
         sx={{
@@ -35,32 +35,33 @@ const Dashboard: React.FC = () => {
       >
         <Box sx={{ width: "70%", p: "1rem", pt: 0, position: "relative" }}>
           <>
-            <img
-              src={AnnouncementBackground.src}
-              style={{
-                width: "60%",
-                marginBottom: ".5rem",
-                position: "absolute",
-                height: "12rem",
-              }}
-            ></img>
+            
             <Box
               sx={{
                 position: "absolute",
                 height: "12rem",
                 display: "flex",
                 flexDirection: "column",
-                pt: "2rem",
+                pt: "3rem",
                 pl: "1rem",
                 width: "13rem",
                 fontSize: "1rem",
                 color: "white",
+                backgroundImage: AnnouncementBackground.src
               }}
             >
+              <img
+                src={AnnouncementBackground.src}
+                style={{
+                  width: "60%",
+                  marginBottom: ".5rem",
+                  position: "absolute",
+                }}
+              ></img>
               <Box>
                 <LightbulbCircleIcon sx={{ fontSize: "2rem" }} />
               </Box>
-              <Box sx={{ mt: "1rem" }}>
+              <Box sx={{ mt: "7rem" }}>
                 This is a very important Paideia announcement
               </Box>
               <Button
@@ -80,7 +81,7 @@ const Dashboard: React.FC = () => {
                 top: 0,
                 marginTop: "1rem",
                 paddingRight: "1rem",
-                height: "11rem",
+                height: "18rem",
               }}
             ></img>
             <Box
@@ -89,7 +90,7 @@ const Dashboard: React.FC = () => {
                 height: "12rem",
                 display: "flex",
                 flexDirection: "column",
-                pt: "2rem",
+                pt: "3rem",
                 pl: "1rem",
                 width: "13rem",
                 fontSize: "1rem",
@@ -102,7 +103,7 @@ const Dashboard: React.FC = () => {
                 src={NewspaperFilled.src}
                 style={{ width: "2rem", height: "2rem" }}
               />
-              <Box sx={{ mt: "1.3rem" }}>
+              <Box sx={{ mt: "7.3rem" }}>
                 This is a very important Paideia announcement
               </Box>
               <Button
@@ -115,7 +116,7 @@ const Dashboard: React.FC = () => {
             </Box>
           </>
 
-          <Box sx={{ mt: "13rem" }}>
+          <Box sx={{ mt: "21rem" }}>
             <Header title="Welcome to Paideia" />
             <FinancialSummary />
             <ActiveProposals />
