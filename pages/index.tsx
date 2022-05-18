@@ -35,12 +35,10 @@ export default function Home(props) {
       return <Box>Paideia Home Here....</Box>;
     default:
       return (
-        <ThemeProvider theme={theme}>
-          <GlobalContext.Provider value={{ api }}>
-            <CssBaseline />
-            <DaoTemplate subdomain={props.wildcard} />
-          </GlobalContext.Provider>
-        </ThemeProvider>
+        <GlobalContext.Provider value={{ api }}>
+          <CssBaseline />
+          <DaoTemplate subdomain={props.wildcard} />
+        </GlobalContext.Provider>
       );
   }
 }
