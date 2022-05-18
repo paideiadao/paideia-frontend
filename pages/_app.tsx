@@ -4,7 +4,7 @@ import { GetServerSideProps } from "next";
 import * as React from 'react';
 import { DarkTheme, LightTheme } from "../theme/theme";
 import { ThemeProvider } from "@mui/material/styles";
-import { ThemeContext } from "./ThemeContext";
+import { ThemeContext } from "../lib/ThemeContext";
 
 
 export let colorLookup = {
