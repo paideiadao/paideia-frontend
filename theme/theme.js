@@ -23,7 +23,7 @@ export const LightTheme = createTheme({
       main: "rgba(255, 255, 255, 0.08)",
     },
     backgroundColor: {
-      main: '#FFFFFF'
+      main: "#FFFFFF",
     },
     primary: {
       // light: will be calculated from palette.primary.main,

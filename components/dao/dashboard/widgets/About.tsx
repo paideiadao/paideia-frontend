@@ -11,9 +11,10 @@ const About: React.FC = () => {
         backgroundColor: "fileInput.outer",
         border: "1px solid",
         borderColor: "divider.main",
-        m: "1rem",
         p: ".5rem",
         mt: ".5rem",
+        mr: "1rem",
+        mb: ".5rem",
       }}
     >
       <CapsInfo title="About Paideia" small />

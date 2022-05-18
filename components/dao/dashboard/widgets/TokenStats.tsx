@@ -11,12 +11,13 @@ const TokenStats: React.FC = () => {
         backgroundColor: "fileInput.outer",
         border: "1px solid",
         borderColor: "divider.main",
-        m: "1rem",
         p: ".5rem",
         mt: 0,
         pl: 0,
         pr: 0,
         pb: 0,
+        mr: "1rem",
+        mb: "1rem",
       }}
     >
       <Box sx={{ pl: ".5rem" }}>

@@ -25,13 +25,13 @@ const Dashboard: React.FC = () => {
           alignItems: "flex-start",
         }}
       >
-        <Box sx={{ width: "65%", p: ".5rem", pt: 0 }}>
+        <Box sx={{ width: "70%", p: "1rem", pt: 0 }}>
           <Header title="Welcome to Paideia" />
           <FinancialSummary />
         </Box>
         <Box
           sx={{
-            width: "35%",
+            width: "30%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
