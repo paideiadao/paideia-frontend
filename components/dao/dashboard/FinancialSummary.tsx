@@ -129,7 +129,7 @@ const FinancialSummary: React.FC = () => {
       </Paper>
       <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
         {assets.map((i: any, c: number) => {
-          return <AssetCard {...i} c={c} />;
+          return <AssetCard {...i} c={c}  key={'asset-card-key-' + c}/>;
         })}
       </Box>
     </Box>
