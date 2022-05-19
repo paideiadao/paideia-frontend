@@ -12,12 +12,6 @@ import Dao from './dao/[id]'
 import Layout from "../components/Layout";
 import Creation from "./creation";
 
-export let colorLookup = {
-  light: "#FFFFFF",
-  dark: "#0E1420",
-};
-
-
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
   const [alert, setAlert] = React.useState({ show: false });
@@ -28,24 +22,29 @@ export default function App({ Component, pageProps }: AppProps) {
 
   React.useEffect(() => {
     let temp = theme === LightTheme ? "light" : "dark";
-    document.body.style.background = colorLookup[temp];
     localStorage.setItem("theme", temp);
   }, [theme]);
 
   const api = new AppApi(alert, setAlert, theme, setTheme);
 
-
   return (
-    <ThemeProvider theme={theme}>
-      <ThemeContext.Provider value={{ theme, setTheme }}>
+    Component === Dao || Component === Creation ? (
+      <ThemeProvider theme={theme}>
+        <ThemeContext.Provider value={{ theme, setTheme }}>
+          <CssBaseline />
+          <GlobalContext.Provider value={{ api }}>
+            <Component {...pageProps} />
+          </GlobalContext.Provider>
+        </ThemeContext.Provider>
+      </ThemeProvider>
+    ):(
+      <ThemeProvider theme={DarkTheme}>
         <CssBaseline />
-        <GlobalContext.Provider value={{ api }}>
-          {Component === Dao || Component === Creation ? <Component {...pageProps} /> : <Layout>
-            <Component {...pageProps}/>  
-          </Layout>}
-        </GlobalContext.Provider>
-      </ThemeContext.Provider>
-    </ThemeProvider>
+        <Layout>
+          <Component {...pageProps}/>  
+        </Layout>
+      </ThemeProvider>
+    )
   )
 }
 

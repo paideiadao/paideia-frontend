@@ -1,10 +1,8 @@
 import Head from "next/head";
-import Image from "next/image";
-import styles from "./layout.module.css";
-import utilStyles from "../styles/utils.module.css";
-import Link from "next/link";
 import Header from "@components/layout/Header";
 import Footer from "@components/layout/Footer"
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
 
 export const siteTitle = "Paideia";
 
@@ -17,15 +15,23 @@ export default function Layout({
 }) {
   return (
     <>
+    
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <title>Paideia | DAO Toolkit</title>
       </Head>
-      <main>
-        <Header />
-        {children}
-        <Footer />
-      </main>
+        <Box sx={{
+          display: 'flex',
+          alignContent: 'space-between',
+          flexDirection: 'column',
+          minHeight: '100vh',
+        }}>
+          <Header />
+          <Container sx={{ flexGrow: 1 }}>
+            {children}
+          </Container>
+          <Footer />
+        </Box>
     </>
   )
 }
