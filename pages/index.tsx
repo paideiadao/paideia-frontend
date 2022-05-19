@@ -1,17 +1,17 @@
 import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
+import Layout from "@components/Layout";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import { Box } from "@mui/system";
 import DaoTemplate from "../components/dao/DaoTemplate";
-import { ThemeProvider } from "@mui/material/styles";
 import { DarkTheme, LightTheme } from "../theme/theme";
 import React from "react";
 import { AppApi } from "../lib/AppApi";
 import { GlobalContext } from "../lib/AppContext";
 import { colorLookup } from "./creation";
 import CssBaseline from "@mui/material/CssBaseline";
+import Section from '@components/layout/Section'
 
 export default function Home(props) {
   const [theme, setTheme] = React.useState(LightTheme);
@@ -28,19 +28,7 @@ export default function Home(props) {
   }, [theme]);
   // add 404 routing here...
 
-  const api = new AppApi(alert, setAlert, theme, setTheme, props.wildcard);
-
-  switch (props.wildcard) {
-    case "home":
-      return <Box>Paideia Home Here....</Box>;
-    default:
-      return (
-        <GlobalContext.Provider value={{ api }}>
-          <CssBaseline />
-          <DaoTemplate subdomain={props.wildcard} />
-        </GlobalContext.Provider>
-      );
-  }
+  return 'Index here...';
 }
 
 export async function getServerSideProps(context) {
