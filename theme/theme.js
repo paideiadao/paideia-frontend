@@ -3,7 +3,6 @@ import darkScrollbar from "@mui/material/darkScrollbar";
 
 export const LightTheme = createTheme({
   palette: {
-    mode: "light",
     circle: {
       main: "#00868F",
     },
@@ -31,17 +30,18 @@ export const LightTheme = createTheme({
     primary: {
       // light: will be calculated from palette.primary.main,
       main: "#00868F",
-      text: "rgba(0, 0, 0, 1)",
-      lightText: "rgba(0, 0, 0, 0.6)",
-      light: "rgba(0, 0, 0, 0.6)",
+      light: "#50B6BF",
+      dark: "#005962",
+      contrast: "#FFFFFF",
       selectedButton: "rgb(0, 134, 143, 0.1)",
       lightSuccess: "green",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
     secondary: {
-      light: "#00788C",
-      main: "rgba(224, 104, 4, 1)",
+      main: "#FF8219",
+      light: "#FFB333",
+      dark: "#E06804",
       // dark: will be calculated from palette.secondary.main,
       contrastText: "#E5E5E5",
     },
@@ -120,6 +120,10 @@ export const LightTheme = createTheme({
 export const DarkTheme = createTheme({
   palette: {
     mode: "dark",
+    background: {
+      default: '#0E1421',
+      paper: '#0E1421',
+    },
     circle: {
       main: "#9FD2DB",
     },
@@ -163,8 +167,6 @@ export const DarkTheme = createTheme({
       // light: will be calculated from palette.primary.main,
       main: "#9FD2DB",
       light: "rgba(255, 255, 255, 0.7)",
-      text: "rgba(255, 255, 255, 1)",
-      lightText: "rgba(255, 255, 255, 0.7)",
       selectedButton: "rgba(2, 136, 209, 0.1)",
       lightSuccess: "#66BB6A",
       // dark: will be calculated from palette.primary.main,

@@ -106,7 +106,6 @@ export default function Creation(props) {
 
   React.useEffect(() => {
     let temp = theme === LightTheme ? "light" : "dark";
-    document.body.style.background = colorLookup[temp];
     localStorage.setItem("theme", temp);
   }, [theme]);
 
