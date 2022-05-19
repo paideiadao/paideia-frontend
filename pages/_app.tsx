@@ -26,14 +26,13 @@ export default function App({ Component, pageProps }: AppProps) {
     localStorage.setItem("theme", temp);
   }, [theme]);
 
-  return <ThemeProvider theme={theme}>
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      <Component {...pageProps} />;
-      
-    </ThemeContext.Provider>
-  </ThemeProvider>
-   
-  
+  return (
+    <ThemeProvider theme={theme}>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+          <Component {...pageProps} />
+      </ThemeContext.Provider>
+    </ThemeProvider>
+  )
 }
 
 export async function getServerSideProps(context) {
