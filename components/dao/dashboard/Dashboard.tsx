@@ -92,7 +92,7 @@ const Dashboard: React.FC = () => {
                 src={ReadingBackground.src}
                 style={{
                   width: "100%",
-                  height: '100%',
+                  height: '98%',
                   marginBottom: ".5rem",
                   position: "absolute",
                   right: 0,
@@ -106,7 +106,7 @@ const Dashboard: React.FC = () => {
                   src={NewspaperFilled.src}
                   style={{ width: "2rem", height: "2rem" }}
                 />
-                <Box sx={{ mt: "4.8rem" }}>
+                <Box sx={{ mt: "5.3rem" }}>
                   This is a very important Paideia announcement
                 </Box>
                 <Button
