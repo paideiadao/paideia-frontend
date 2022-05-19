@@ -28,28 +28,7 @@ export default function Home(props) {
   }, [theme]);
   // add 404 routing here...
 
-  const api = new AppApi(alert, setAlert, theme, setTheme, props.wildcard);
-
-  switch (props.wildcard) {
-    case "home":
-      return (
-        <GlobalContext.Provider value={{ api }}>
-          <CssBaseline />
-            <Layout>
-              <Section>
-                Hello World!
-              </Section>
-            </Layout>
-        </GlobalContext.Provider>
-      )
-    default:
-      return (
-        <GlobalContext.Provider value={{ api }}>
-          <CssBaseline />
-          <DaoTemplate subdomain={props.wildcard} />
-        </GlobalContext.Provider>
-      );
-  }
+  return 'Index here...';
 }
 
 export async function getServerSideProps(context) {

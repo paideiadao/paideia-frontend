@@ -2,21 +2,18 @@ import Layout from "../../components/Layout";
 import Head from "next/head";
 import utilStyles from "../../styles/utils.module.css";
 import { GetStaticProps, GetStaticPaths } from "next";
+import DaoTemplate from "@components/dao/DaoTemplate";
 
 // move dao to a wildcard subdomain
 export default function Dao({ daoData }) {
-  return (
-    <Layout>
-      <Head>
-        <title>{"{name}"} DAO</title>
-      </Head>
-      {"{name}"} DAO here
-    </Layout>
-  );
+  return <>
+   <DaoTemplate subdomain='skeep'/>
+  </>
+     
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = [{ params: { id: "1" } }];
+  const paths = [{ params: { id: "spreadly" } }];
   return {
     paths,
     fallback: false,
