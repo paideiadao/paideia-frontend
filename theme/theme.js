@@ -121,8 +121,8 @@ export const DarkTheme = createTheme({
   palette: {
     mode: "dark",
     background: {
-      default: '#0E1421',
-      paper: '#0E1421',
+      default: "#0E1421",
+      paper: "#0E1421",
     },
     circle: {
       main: "#9FD2DB",

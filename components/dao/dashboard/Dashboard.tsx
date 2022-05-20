@@ -24,7 +24,7 @@ const Dashboard: React.FC = () => {
           borderBottomColor: "divider.main",
         }}
       >
-        <img src={PaideiaBanner.src} />
+        <img src={PaideiaBanner.src} style={{ width: "100%" }} />
       </Box>
       <Box
         sx={{
@@ -35,87 +35,98 @@ const Dashboard: React.FC = () => {
       >
         <Box sx={{ width: "70%", p: "1rem", pt: 0, position: "relative" }}>
           <>
-            <img
-              src={AnnouncementBackground.src}
-              style={{
-                width: "60%",
-                marginBottom: ".5rem",
-                position: "absolute",
-                height: "12rem",
-              }}
-            ></img>
             <Box
               sx={{
                 position: "absolute",
-                height: "12rem",
                 display: "flex",
                 flexDirection: "column",
-                pt: "2rem",
-                pl: "1rem",
-                width: "13rem",
                 fontSize: "1rem",
                 color: "white",
+                width: "61%",
+                backgroundImage: AnnouncementBackground.src,
               }}
             >
-              <Box>
-                <LightbulbCircleIcon sx={{ fontSize: "2rem" }} />
-              </Box>
-              <Box sx={{ mt: "1rem" }}>
-                This is a very important Paideia announcement
-              </Box>
-              <Button
-                variant="contained"
-                sx={{ width: "70%", fontSize: ".8rem", mt: ".5rem" }}
+              <img
+                src={AnnouncementBackground.src}
+                style={{
+                  width: "100%",
+                  marginBottom: ".5rem",
+                  position: "absolute",
+                  height: "100%",
+                  zIndex: 10,
+                }}
+              ></img>
+              <Box
+                sx={{
+                  zIndex: 12,
+                  pt: "2rem",
+                  pl: "1rem",
+                  width: "50%",
+                  pb: "1rem",
+                }}
               >
-                Read More <ArrowForwardIcon sx={{ ml: ".3rem" }} />
-              </Button>
+                <Box>
+                  <LightbulbCircleIcon sx={{ fontSize: "2rem" }} />
+                </Box>
+                <Box sx={{ mt: "5rem" }}>
+                  This is a very important Paideia announcement
+                </Box>
+                <Button
+                  variant="contained"
+                  sx={{ width: "70%", fontSize: ".8rem", mt: ".5rem" }}
+                >
+                  Read More <ArrowForwardIcon sx={{ ml: ".3rem" }} />
+                </Button>
+              </Box>
             </Box>
-            <img
-              src={ReadingBackground.src}
-              style={{
-                width: "35%",
-                marginBottom: ".5rem",
-                position: "absolute",
-                right: 0,
-                top: 0,
-                marginTop: "1rem",
-                paddingRight: "1rem",
-                height: "11rem",
-              }}
-            ></img>
+
             <Box
               sx={{
                 position: "absolute",
-                height: "12rem",
                 display: "flex",
                 flexDirection: "column",
-                pt: "2rem",
                 pl: "1rem",
-                width: "13rem",
+                width: "33%",
                 fontSize: "1rem",
                 color: "white",
                 left: "65%",
                 top: 0,
+                justifyContent: "center",
               }}
             >
               <img
-                src={NewspaperFilled.src}
-                style={{ width: "2rem", height: "2rem" }}
-              />
-              <Box sx={{ mt: "1.3rem" }}>
-                This is a very important Paideia announcement
+                src={ReadingBackground.src}
+                style={{
+                  width: "100%",
+                  height: "98%",
+                  marginBottom: ".5rem",
+                  position: "absolute",
+                  right: 0,
+                  top: 0,
+                  marginTop: "1.5rem",
+                  zIndex: 10,
+                }}
+              ></img>
+              <Box sx={{ zIndex: 12, pt: "2rem", width: "100%" }}>
+                <img
+                  src={NewspaperFilled.src}
+                  style={{ width: "2rem", height: "2rem" }}
+                />
+                <Box sx={{ mt: "5.3rem" }}>
+                  This is a very important Paideia announcement
+                </Box>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  sx={{ width: "80%", fontSize: ".8rem", mt: ".5rem" }}
+                >
+                  Visit Medium <ArrowForwardIcon sx={{ ml: ".3rem" }} />
+                </Button>
               </Box>
-              <Button
-                variant="contained"
-                color="secondary"
-                sx={{ width: "80%", fontSize: ".8rem", mt: ".5rem" }}
-              >
-                Visit Medium <ArrowForwardIcon sx={{ ml: ".3rem" }} />
-              </Button>
             </Box>
           </>
 
-          <Box sx={{ mt: "13rem" }}>
+          <Box sx={{ mt: "17rem" }}>
             <Header title="Welcome to Paideia" />
             <FinancialSummary />
             <ActiveProposals />

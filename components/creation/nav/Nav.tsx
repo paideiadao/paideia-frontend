@@ -9,7 +9,7 @@ import { DarkTheme, LightTheme } from "@theme/theme.js";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Save from "@mui/icons-material/Save";
-import DarkSwitch from '@components/utilities/DarkSwitch'
+import DarkSwitch from "@components/utilities/DarkSwitch";
 
 export default function Nav(props) {
   const [logo, setLogo] = React.useState(
