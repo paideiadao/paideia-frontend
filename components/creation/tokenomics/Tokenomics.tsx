@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box } from "@mui/material";
+import { Box, Button, ButtonGroup } from "@mui/material";
 import { GlobalContext, IGlobalContext } from "../../../lib/creation/Context";
 import { Header, Subheader } from "../utilities/HeaderComponents";
 import TokenInformation from "./TokenInformation";
@@ -31,7 +31,7 @@ const Tokenomics: React.FC = () => {
   let tokenAmount = data.tokenAmount;
   let tokenHolders = data.tokenHolders;
   let distributions = data.distributions;
-
+  let activateTokenomics = data.activateTokenomics;
   /*
     Discuss with nico
     - All drafts popup / page
@@ -45,46 +45,50 @@ const Tokenomics: React.FC = () => {
       ...globalContext.api.data.tokenomics,
       tokenRemaining:
         tokenAmount -
-        (tokenHolders.length === 0
+        (activateTokenomics
+          ? 0
+          : tokenHolders.length === 0
           ? 0
           : tokenHolders
               .map((i: ITokenHolder) => i.balance)
               .reduce((sum, current) => sum + current, 0)) -
-        (distributions.length === 0
+        (distributions.length === 0 || !activateTokenomics
           ? 0
           : distributions
               .filter((i: any) => i !== undefined)
               .filter((i: any) => i.hasOwnProperty("contingency"))
               .map((i: ILiquidityInfo) => i.contingency.balance)
               .reduce((sum, current) => sum + current, 0)) -
-        (distributions.length === 0
+        (distributions.length === 0 || !activateTokenomics
           ? 0
           : distributions
               .filter((i: any) => i !== undefined)
               .map((i: any) => i.balance)
               .reduce((sum, current) => sum + current, 0)),
     });
-  }, [tokenHolders, tokenAmount, distributions]);
+  }, [tokenHolders, tokenAmount, distributions, activateTokenomics]);
 
   React.useEffect(() => {
     set({
       ...globalContext.api.data.tokenomics,
-      tokenHolders: globalContext.api.data.tokenomics.tokenHolders.map(
-        (i: ITokenHolder) => {
-          return {
-            ...i,
-            balance: percentageToBalance(tokenAmount, i.percentage / 100),
-          };
-        }
-      ),
-      distributions: globalContext.api.data.tokenomics.distributions.map(
-        (i: any) => {
-          return {
-            ...i,
-            balance: percentageToBalance(tokenAmount, i.percentage / 100),
-          };
-        }
-      ),
+      tokenHolders: activateTokenomics
+        ? globalContext.api.data.tokenomics.tokenHolders
+        : globalContext.api.data.tokenomics.tokenHolders.map(
+            (i: ITokenHolder) => {
+              return {
+                ...i,
+                balance: percentageToBalance(tokenAmount, i.percentage / 100),
+              };
+            }
+          ),
+      distributions: !activateTokenomics
+        ? globalContext.api.data.tokenomics.distributions
+        : globalContext.api.data.tokenomics.distributions.map((i: any) => {
+            return {
+              ...i,
+              balance: percentageToBalance(tokenAmount, i.percentage / 100),
+            };
+          }),
     });
   }, [tokenAmount]);
 
@@ -151,18 +155,63 @@ const Tokenomics: React.FC = () => {
           setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
         />
       </Box>
-      <TokenHolders
-        data={data}
-        setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
-      />
-      <AdvancedTokenomics
-        data={data}
-        setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
-      />
-      <TokenDistribution
-        data={data}
-        setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
-      />
+      <Box sx={{ mt: "1rem" }}>
+        <Subheader title="Token information" />
+        <ButtonGroup variant="outlined" sx={{ width: "100%", mt: ".5rem" }}>
+          <Button
+            sx={{
+              width: "50%",
+              fontSize: ".8rem",
+              backgroundColor: !activateTokenomics
+                ? "primary.selectedButton"
+                : "",
+            }}
+            onClick={() =>
+              set({
+                ...data,
+                activateTokenomics: false,
+              })
+            }
+          >
+            Token Holders
+          </Button>
+          <Button
+            sx={{
+              width: "50%",
+              fontSize: ".8rem",
+              backgroundColor: activateTokenomics
+                ? "primary.selectedButton"
+                : "",
+            }}
+            onClick={() =>
+              set({
+                ...data,
+                activateTokenomics: true,
+              })
+            }
+          >
+            Advanced
+          </Button>
+        </ButtonGroup>
+      </Box>
+
+      {!activateTokenomics ? (
+        <TokenHolders
+          data={data}
+          setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
+        />
+      ) : (
+        <>
+          <AdvancedTokenomics
+            data={data}
+            setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
+          />
+          <TokenDistribution
+            data={data}
+            setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
+          />
+        </>
+      )}
     </Box>
   );
 };

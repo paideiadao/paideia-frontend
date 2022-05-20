@@ -1,10 +1,16 @@
 import { createTheme } from "@mui/material/styles";
+import darkScrollbar from "@mui/material/darkScrollbar";
 
 export const LightTheme = createTheme({
   palette: {
-    mode: "light",
     circle: {
       main: "#00868F",
+    },
+    favoriteBackground: {
+      main: "#FEE8E7",
+    },
+    linkHover: {
+      main: "#EBF5F6",
     },
     tokenAlert: {
       main: "rgba(237, 108, 2, 1)",
@@ -18,25 +24,29 @@ export const LightTheme = createTheme({
     darkHover: {
       main: "rgba(255, 255, 255, 0.08)",
     },
+    backgroundColor: {
+      main: "#FFFFFF",
+    },
     primary: {
       // light: will be calculated from palette.primary.main,
       main: "#00868F",
-      text: "rgba(0, 0, 0, 1)",
-      lightText: "rgba(0, 0, 0, 0.6)",
-      light: "rgba(0, 0, 0, 0.6)",
+      light: "#50B6BF",
+      dark: "#005962",
+      contrast: "#FFFFFF",
       selectedButton: "rgb(0, 134, 143, 0.1)",
       lightSuccess: "green",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
     secondary: {
-      light: "#00788C",
-      main: "rgba(224, 104, 4, 1)",
+      main: "#FF8219",
+      light: "#FFB333",
+      dark: "#E06804",
       // dark: will be calculated from palette.secondary.main,
       contrastText: "#E5E5E5",
     },
     fileInput: {
-      main: "rgb(0, 134, 143, 0.1)",
+      main: "#F5F5F5",
       outer: "white",
       border: "rgba(255, 255, 255, 1)",
     },
@@ -49,6 +59,13 @@ export const LightTheme = createTheme({
     tonalOffset: 0.2,
   },
   components: {
+    MuiChip: {
+      styleOverrides: {
+        icon: {
+          color: "#FFFFFF",
+        },
+      },
+    },
     MuiCircularProgress: {
       styleOverrides: {},
     },
@@ -92,17 +109,32 @@ export const LightTheme = createTheme({
         completed: {},
       },
     },
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: null,
+      },
+    },
   },
 });
 
 export const DarkTheme = createTheme({
   palette: {
     mode: "dark",
+    background: {
+      default: "#0E1421",
+      paper: "#0E1421",
+    },
     circle: {
       main: "#9FD2DB",
     },
+    linkHover: {
+      main: "rgba(159, 210, 219, 0.16)",
+    },
     tokenAlert: {
       main: "rgba(255, 167, 38, 1)",
+    },
+    favoriteBackground: {
+      main: "#FEE8E7",
     },
     circleBackground: {
       main: "rgba(159, 210, 219, 0.08)",
@@ -135,8 +167,6 @@ export const DarkTheme = createTheme({
       // light: will be calculated from palette.primary.main,
       main: "#9FD2DB",
       light: "rgba(255, 255, 255, 0.7)",
-      text: "rgba(255, 255, 255, 1)",
-      lightText: "rgba(255, 255, 255, 0.7)",
       selectedButton: "rgba(2, 136, 209, 0.1)",
       lightSuccess: "#66BB6A",
       // dark: will be calculated from palette.primary.main,
@@ -144,7 +174,7 @@ export const DarkTheme = createTheme({
     },
     secondary: {
       light: "#00788C",
-      main: "rgba(224, 104, 4, 1)",
+      main: "#FFCF7E",
       // dark: will be calculated from palette.secondary.main,
       contrastText: "#333333",
     },
@@ -170,27 +200,25 @@ export const DarkTheme = createTheme({
       backgroundColor: "yellow",
     },
   },
-  overrides: {
-    MuiButton: {
+  components: {
+    MuiChip: {
       styleOverrides: {
-        button: {
-          disabled: {
-            backgroundColor: "blue",
-          },
+        icon: {
+          color: "rgba(17, 24, 39, 1)",
         },
       },
     },
-    MuiTypography: {
-      caption: {
-        backgroundColor: "blue",
-      },
-    },
-  },
-  components: {
     MuiSelect: {
       styleOverrides: {
         icon: {
           color: "rgba(255, 255, 255, 0.7)",
+        },
+      },
+    },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        expandedIconWrapper: {
+          backgroundColor: "blue",
         },
       },
     },
@@ -340,6 +368,11 @@ export const DarkTheme = createTheme({
         },
         active: {},
         completed: {},
+      },
+    },
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: darkScrollbar(),
       },
     },
   },

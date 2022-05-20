@@ -20,17 +20,19 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
     .reduce((sum, current) => sum + current, 0);
 
   let tokenomics = [
-    {
-      title: "Token holders",
-      subtitle: `${props.data.tokenHolders.length} holders`,
-      balance: tokenHolderBalance,
-      tokenTicker: props.data.tokenTicker,
-      percentage: percentage(
-        tokenHolderBalance / props.data.tokenAmount,
-        2,
-        false
-      ),
-    },
+    !props.data.activateTokenomics
+      ? {
+          title: "Token holders",
+          subtitle: `${props.data.tokenHolders.length} holders`,
+          balance: tokenHolderBalance,
+          tokenTicker: props.data.tokenTicker,
+          percentage: percentage(
+            tokenHolderBalance / props.data.tokenAmount,
+            2,
+            false
+          ),
+        }
+      : undefined,
     {
       title: "Unassigned tokens",
       subtitle: `Treasury`,
@@ -46,40 +48,42 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
 
   return (
     <Box sx={{ width: "65%" }}>
-      {tokenomics.map((i: any, c: number) => {
-        return (
-          <Box
-            key={`distribution-id-${c}`}
-            sx={{
-              borderRadius: ".2rem",
-              border: ".1rem solid",
-              borderColor: "divider.main",
-              mb: ".5rem",
-              p: ".5rem",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <Box>
-              <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
-                {i.title}
+      {tokenomics
+        .filter((i: any) => i !== undefined)
+        .map((i: any, c: number) => {
+          return (
+            <Box
+              key={`distribution-id-${c}`}
+              sx={{
+                borderRadius: ".2rem",
+                border: ".1rem solid",
+                borderColor: "divider.main",
+                mb: ".5rem",
+                p: ".5rem",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Box>
+                <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
+                  {i.title}
+                </Box>
+                <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>
+                  {i.subtitle}
+                </Box>
               </Box>
-              <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>
-                {i.subtitle}
+              <Box sx={{ ml: "auto", textAlign: "right" }}>
+                <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
+                  {i.balance + " "}
+                  {i.tokenTicker}
+                </Box>
+                <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>
+                  {i.percentage}%
+                </Box>
               </Box>
             </Box>
-            <Box sx={{ ml: "auto", textAlign: "right" }}>
-              <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
-                {i.balance + " "}
-                {i.tokenTicker}
-              </Box>
-              <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>
-                {i.percentage}%
-              </Box>
-            </Box>
-          </Box>
-        );
-      })}
+          );
+        })}
       {props.data.activateTokenomics &&
         props.data.distributions.map((i: any, c: number) => {
           return (
@@ -152,7 +156,7 @@ const Tokenomics: React.FC<{
             value={
               data.tokenomics.type === "create"
                 ? "Create a new token"
-                : "Us an existing one"
+                : "Use an existing one"
             }
           />
           <Value
@@ -183,11 +187,13 @@ const Tokenomics: React.FC<{
               )
             }
           />
-          <Value
-            labelWidth="35%"
-            title="Token holder addresses"
-            component={<WalletListing data={data.tokenomics.tokenHolders} />}
-          />
+          {!data.tokenomics.activateTokenomics && (
+            <Value
+              labelWidth="35%"
+              title="Token holder addresses"
+              component={<WalletListing data={data.tokenomics.tokenHolders} />}
+            />
+          )}
           <Value
             labelWidth="35%"
             title="Tokenomics"

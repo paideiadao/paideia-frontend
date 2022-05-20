@@ -51,7 +51,7 @@ export default function Creation(props) {
       supportNeeded: 50,
     },
     tokenomics: {
-      type: "",
+      type: "create",
       tokenName: "",
       tokenId: "",
       tokenTicker: "",
@@ -106,97 +106,104 @@ export default function Creation(props) {
 
   React.useEffect(() => {
     let temp = theme === LightTheme ? "light" : "dark";
-    document.body.style.background = colorLookup[temp];
     localStorage.setItem("theme", temp);
   }, [theme]);
 
   const api = new CreationApi(alert, setAlert, theme, setTheme, data, setData);
 
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalContext.Provider value={{ api }}>
-        {data.isPublished === 1 ? (
-          <CreationLoading theme={theme} />
-        ) : (
-          <>
-            <Nav
-              value={data.review === undefined ? data.navStage : 4}
-              theme={theme}
-              setTheme={setTheme}
-            />
+    <GlobalContext.Provider value={{ api }}>
+      {data.isPublished === 1 ? (
+        <CreationLoading theme={theme} />
+      ) : (
+        <>
+          <Nav
+            value={data.review === undefined ? data.navStage : 4}
+            theme={theme}
+            setTheme={setTheme}
+          />
+          <Box
+            sx={{
+              position: "fixed",
+              ml: "15rem",
+              top: "3.5rem",
+              width: "calc(100% - 15rem)",
+              pt: "2rem",
+              display: "flex",
+              flexDirection: "column",
+              height: "calc(100% - 3.5rem)",
+              pb: "2rem",
+              overflowY: "scroll",
+            }}
+          >
             <Box
               sx={{
-                position: "fixed",
-                ml: "15rem",
-                top: "3.5rem",
-                width: "calc(100% - 15rem)",
-                pt: "2rem",
                 display: "flex",
-                flexDirection: "column",
-                height: "calc(100% - 3.5rem)",
-                pb: "2rem",
-                overflowY: "scroll",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
+              {content[data.navStage]}
+            </Box>
+            {data.review !== undefined && data.navStage !== 4 && (
               <Box
                 sx={{
                   display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                {content[data.navStage]}
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
                   width: "100%",
-                  mt: "1.5rem",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  mt: "1rem",
                 }}
               >
-                {data.navStage < 4 && (
-                  <>
-                    {data.navStage > 0 && (
-                      <Button
-                        variant="outlined"
-                        color="primary"
-                        onClick={() =>
-                          setData({ ...data, navStage: data.navStage - 1 })
-                        }
-                        sx={{ mr: 1 }}
-                      >
-                        <ArrowBackIcon sx={{ mr: 1 }} /> Back
-                      </Button>
-                    )}
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => setData({ ...data, navStage: 4 })}
+                  sx={{ ml: 1 }}
+                >
+                  Back to Review
+                </Button>
+              </Box>
+            )}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                mt: ".5rem",
+              }}
+            >
+              {data.navStage < 4 && (
+                <>
+                  {data.navStage > 0 && (
                     <Button
-                      variant="contained"
-                      disabled={checkCompleteness(data)}
+                      variant="outlined"
                       color="primary"
                       onClick={() =>
-                        setData({ ...data, navStage: data.navStage + 1 })
+                        setData({ ...data, navStage: data.navStage - 1 })
                       }
+                      sx={{ mr: 1 }}
                     >
-                      Next <ArrowForwardIcon sx={{ ml: 1 }} />
+                      <ArrowBackIcon sx={{ mr: 1 }} /> Back
                     </Button>
-                    {data.review !== undefined && (
-                      <Button
-                        variant="outlined"
-                        color="primary"
-                        onClick={() => setData({ ...data, navStage: 4 })}
-                        sx={{ ml: 1 }}
-                      >
-                        Review
-                      </Button>
-                    )}
-                  </>
-                )}
-              </Box>
+                  )}
+                  <Button
+                    variant="contained"
+                    disabled={checkCompleteness(data)}
+                    color="primary"
+                    onClick={() =>
+                      setData({ ...data, navStage: data.navStage + 1 })
+                    }
+                  >
+                    Next <ArrowForwardIcon sx={{ ml: 1 }} />
+                  </Button>
+                </>
+              )}
             </Box>
-          </>
-        )}
-      </GlobalContext.Provider>
-    </ThemeProvider>
+          </Box>
+        </>
+      )}
+    </GlobalContext.Provider>
   );
 }

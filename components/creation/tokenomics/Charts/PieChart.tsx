@@ -17,13 +17,6 @@ const PieChart: React.FC<ITokenomics> = (props) => {
     <ResponsivePie
       data={[
         {
-          id: "Token Holders",
-          label: "Token Holders",
-          value: tokenHolders
-            .map((i: ITokenHolder) => i.balance)
-            .reduce((sum, current) => sum + current, 0),
-        },
-        {
           id: "Unassigned Tokens",
           label: "Unassigned Tokens (Treasury)",
           value: data.tokenRemaining,

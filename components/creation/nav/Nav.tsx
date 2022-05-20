@@ -3,12 +3,13 @@ import * as React from "react";
 import { Box, Divider } from "@mui/material";
 import StepSelector from "./StepSelector";
 import Help from "./Help";
-import DarkLogo from "../../../public/logos/dark_logo.svg";
-import LightLogo from "../../../public/logos/light_logo.svg";
-import { DarkTheme, LightTheme } from "../../../theme/theme.js";
+import DarkLogo from "@public/logos/dark_logo.svg";
+import LightLogo from "@public/logos/light_logo.svg";
+import { DarkTheme, LightTheme } from "@theme/theme.js";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Save from "@mui/icons-material/Save";
+import DarkSwitch from "@components/utilities/DarkSwitch";
 
 export default function Nav(props) {
   const [logo, setLogo] = React.useState(
@@ -71,16 +72,7 @@ export default function Nav(props) {
             <img src={logo.src} />
           </Box>
           <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
-            <Box
-              onClick={() =>
-                props.theme === DarkTheme
-                  ? props.setTheme(LightTheme)
-                  : props.setTheme(DarkTheme)
-              }
-              sx={{ color: "primary.text" }}
-            >
-              Toggle Theme
-            </Box>
+            <DarkSwitch />
             <Button variant="outlined" color="error">
               Cancel <DeleteIcon sx={{ ml: 1 }} />
             </Button>
