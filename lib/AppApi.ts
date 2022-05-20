@@ -8,7 +8,7 @@ export class AppApi extends AbstractApi {
     _alert: any,
     _setAlert: Function,
     _theme: Theme,
-    _setTheme: Function,
+    _setTheme: Function
   ) {
     super(_alert, _setAlert);
     this.theme = _theme;

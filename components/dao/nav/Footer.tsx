@@ -20,9 +20,7 @@ const Footer: React.FC = () => {
     >
       <img
         src={
-          globalContext.theme === DarkTheme
-            ? DarkFooter.src
-            : LightFooter.src
+          globalContext.theme === DarkTheme ? DarkFooter.src : LightFooter.src
         }
       />
     </Box>

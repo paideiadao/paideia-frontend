@@ -21,9 +21,15 @@
       "@theme/*": ["theme/*"],
       "@lib/*": ["lib/*"],
       "@public/*": ["public/*"],
-      "@pages/*": ["pages/*"],
+      "@pages/*": ["pages/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "theme/theme.ts", "pages/_document.jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "theme/theme.ts",
+    "pages/_document.jsx"
+  ],
   "exclude": ["node_modules"]
 }

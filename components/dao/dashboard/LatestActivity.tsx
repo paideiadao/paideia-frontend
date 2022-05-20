@@ -74,20 +74,19 @@ const LatestActivity: React.FC = () => {
                 sx={{ mr: ".5rem", width: "2rem", height: "2rem" }}
               ></Avatar>
               <Box>
-              {i.name + " "}
-              <Box
-                sx={{
-                  display: "inline",
-                  color: "primary.lightText",
-                  ml: ".1rem",
-                  mr: ".1rem",
-                }}
-              >
-                {i.action}
+                {i.name + " "}
+                <Box
+                  sx={{
+                    display: "inline",
+                    color: "primary.lightText",
+                    ml: ".1rem",
+                    mr: ".1rem",
+                  }}
+                >
+                  {i.action}
+                </Box>
+                {" " + i.proposalname}
               </Box>
-              {" " + i.proposalname}
-              </Box>
-              
             </Box>
 
             <Box

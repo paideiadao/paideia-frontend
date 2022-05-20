@@ -1,10 +1,10 @@
-import { Avatar, Badge, Box } from "@mui/material";
+import { Avatar, Badge, Box, IconButton } from "@mui/material";
 import * as React from "react";
 import { GlobalContext, IGlobalContext } from "../../../lib/AppContext";
 import { DarkTheme, LightTheme } from "@theme/theme";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Musk from "../../../public/profile/musk.png";
-import DarkSwitch from "../../utilities/DarkSwitch"
+import DarkSwitch from "../../utilities/DarkSwitch";
 
 const TopNav: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
@@ -17,7 +17,7 @@ const TopNav: React.FC = () => {
         borderBottomColor: "divider.main",
         display: "flex",
         backgroundColor: "backgroundColor.main",
-        zIndex: 100
+        zIndex: 100,
       }}
     >
       <Box
@@ -39,14 +39,16 @@ const TopNav: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <Badge badgeContent={1} color="primary">
-            <NotificationsIcon
-              sx={{
-                fontSize: "1.1rem",
-                opacity: globalContext.api.theme === DarkTheme ? "1" : ".5",
-              }}
-            />
-          </Badge>
+          <IconButton>
+            <Badge badgeContent={1} color="primary">
+              <NotificationsIcon
+                sx={{
+                  fontSize: "1.1rem",
+                  opacity: globalContext.api.theme === DarkTheme ? "1" : ".5",
+                }}
+              />
+            </Badge>
+          </IconButton>
         </Box>
         <Box sx={{ ml: "1rem", display: "flex", alignItems: "center" }}>
           <Avatar sx={{ mr: ".5rem" }}>

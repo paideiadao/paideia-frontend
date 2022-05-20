@@ -1,14 +1,14 @@
 import "../styles/global.css";
 import { AppProps } from "next/app";
 import { GetServerSideProps } from "next";
-import * as React from 'react';
+import * as React from "react";
 import { DarkTheme, LightTheme } from "../theme/theme";
 import { ThemeProvider } from "@mui/material/styles";
 import { ThemeContext } from "../lib/ThemeContext";
 import { AppApi } from "../lib/AppApi";
 import { GlobalContext } from "../lib/AppContext";
 import CssBaseline from "@mui/material/CssBaseline";
-import Dao from './dao/[id]'
+import Dao from "./dao/[id]";
 import Layout from "../components/Layout";
 import Creation from "./creation";
 
@@ -27,25 +27,23 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const api = new AppApi(alert, setAlert, theme, setTheme);
 
-  return (
-    Component === Dao || Component === Creation ? (
-      <ThemeProvider theme={theme}>
-        <ThemeContext.Provider value={{ theme, setTheme }}>
-          <CssBaseline />
-          <GlobalContext.Provider value={{ api }}>
-            <Component {...pageProps} />
-          </GlobalContext.Provider>
-        </ThemeContext.Provider>
-      </ThemeProvider>
-    ):(
-      <ThemeProvider theme={DarkTheme}>
+  return Component === Dao || Component === Creation ? (
+    <ThemeProvider theme={theme}>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
         <CssBaseline />
-        <Layout>
-          <Component {...pageProps}/>  
-        </Layout>
-      </ThemeProvider>
-    )
-  )
+        <GlobalContext.Provider value={{ api }}>
+          <Component {...pageProps} />
+        </GlobalContext.Provider>
+      </ThemeContext.Provider>
+    </ThemeProvider>
+  ) : (
+    <ThemeProvider theme={DarkTheme}>
+      <CssBaseline />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ThemeProvider>
+  );
 }
 
 export async function getServerSideProps(context) {
