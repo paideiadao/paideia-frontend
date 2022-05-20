@@ -13,8 +13,10 @@ import ReadingBackground from "../../../public/dao/reading/reading-background.pn
 import NewspaperFilled from "../../../public/icons/newspaper-filled.png";
 import CurrentDistributions from "./CurrentDistributions";
 import LatestActivity from "./LatestActivity";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 
 const Dashboard: React.FC = () => {
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   return (
     <Box sx={{ width: "100%" }}>
       <Box

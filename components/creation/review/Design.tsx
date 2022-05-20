@@ -48,7 +48,6 @@ const ThemeIndicator: React.FC<{ theme: any }> = (props) => {
 };
 
 const BannerPreview: React.FC<{ data: IFile }> = (props) => {
-  console.log(props);
   return (
     props.data.file != null && (
       <Box sx={{ width: "100%" }}>
