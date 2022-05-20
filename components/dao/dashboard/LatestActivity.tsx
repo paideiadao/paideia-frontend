@@ -58,9 +58,10 @@ const LatestActivity: React.FC = () => {
           View Activity Log
         </Button>
       </Box>
-      {activities.map((i: any) => {
+      {activities.map((i: any, c: number) => {
         return (
           <Box
+            key={`activities-key-${c}`}
             sx={{
               width: "100%",
               pt: "1rem",

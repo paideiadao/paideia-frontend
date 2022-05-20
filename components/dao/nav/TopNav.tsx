@@ -5,6 +5,7 @@ import { DarkTheme, LightTheme } from "@theme/theme";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Musk from "../../../public/profile/musk.png";
 import DarkSwitch from "../../utilities/DarkSwitch";
+import Link from 'next/link'
 
 const TopNav: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
@@ -39,7 +40,8 @@ const TopNav: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <IconButton href={`${globalContext.api.daoId}/notifications`}>
+           <Link href={`/dao/${globalContext.api.daoId}/notifications`}>
+           <IconButton>
             <Badge badgeContent={1} color="primary">
               <NotificationsIcon
                 sx={{
@@ -49,7 +51,11 @@ const TopNav: React.FC = () => {
               />
             </Badge>
           </IconButton>
+           </Link>
+          
         </Box>
+        <Link href={`/dao/${globalContext.api.daoId}/profile`}>
+        
         <Box sx={{ ml: "1rem", display: "flex", alignItems: "center" }}>
           <Avatar sx={{ mr: ".5rem" }}>
             <img src={Musk.src} />
@@ -67,6 +73,8 @@ const TopNav: React.FC = () => {
             </Box>
           </Box>
         </Box>
+        </Link>
+
       </Box>
     </Box>
   );

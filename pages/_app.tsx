@@ -11,10 +11,17 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Dao from "./dao/[id]";
 import Layout from "../components/Layout";
 import Creation from "./creation";
+import Notifications from "./dao/[id]/notifications";
+import DaoTemplate from "@components/dao/DaoTemplate";
+import Dashboard from "../components/dao/dashboard/dashboard";
+import Profile from "./dao/[id]/profile";
+import { useRouter } from 'next/router'
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
   const [alert, setAlert] = React.useState({ show: false });
+  const router = useRouter()
+  const [daoId, setDaoId] = React.useState<any>(router.query.id);
 
   React.useEffect(() => {
     setTheme(localStorage.getItem("theme") === "dark" ? DarkTheme : LightTheme);
@@ -25,14 +32,24 @@ export default function App({ Component, pageProps }: AppProps) {
     localStorage.setItem("theme", temp);
   }, [theme]);
 
-  const api = new AppApi(alert, setAlert, theme, setTheme, undefined);
-
-  return Component === Dao || Component === Creation ? (
+  console.log(router)
+  const api = new AppApi(alert, setAlert, theme, setTheme, daoId, setDaoId);
+  return Component === Creation ||
+    Component === Dao ||
+    Component === Notifications ||
+    Component === Profile ||
+    Component === Dashboard ? (
     <ThemeProvider theme={theme}>
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <CssBaseline />
         <GlobalContext.Provider value={{ api }}>
-          <Component {...pageProps} />
+          {Component !== Creation ? (
+            <DaoTemplate subdomain="">
+              <Component {...pageProps} />
+            </DaoTemplate>
+          ) : (
+            <Component {...pageProps} />
+          )}
         </GlobalContext.Provider>
       </ThemeContext.Provider>
     </ThemeProvider>
@@ -52,6 +69,9 @@ export async function getServerSideProps(context) {
   // {dao_name}.paideia.im
   let wildcard = context.req.headers.host.split(".")[0];
   let all_ids = ["spreadly", "ergopad"];
+
+  console.log(context.req.headers.host)
+
 
   wildcard =
     all_ids.indexOf(wildcard) > -1

@@ -5,14 +5,14 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import DaoTemplate from "@components/dao/DaoTemplate";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import React from "react";
+import Dashboard from "@components/dao/dashboard/dashboard";
 
 // move dao to a wildcard subdomain
 export default function Dao({ daoData }) {
   let globalContext = React.useContext<IGlobalContext>(GlobalContext);
-  globalContext.api.daoId = daoData.daoId
   return (
     <>
-      <DaoTemplate subdomain="skeep" />
+      <Dashboard/>
     </>
   );
 }
@@ -29,9 +29,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const daoData = {
-    daoId: params.id
+    daoId: params.id,
   };
-  console.log('aparms', params)
   return {
     props: {
       daoData,

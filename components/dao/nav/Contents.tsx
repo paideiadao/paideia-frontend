@@ -24,6 +24,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import PersonIcon from "@mui/icons-material/Person";
 import EditNotificationsIcon from "@mui/icons-material/EditNotifications";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
+import Link from 'next/link'
 
 const BasicLink: React.FC<{
   icon: JSX.Element;
@@ -34,7 +36,28 @@ const BasicLink: React.FC<{
   ml?: string;
   notifications?: number;
 }> = (props) => {
-  return (
+  let globalContext = React.useContext<IGlobalContext>(GlobalContext);
+  let linkLookup = {
+    'Dashboard': `/dao/${globalContext.api.daoId}`,
+    'All': `/dao/${globalContext.api.daoId}/proposals/all`,
+    'Following': `/dao/${globalContext.api.daoId}/proposals/following`,
+    'Mine': `/dao/${globalContext.api.daoId}/proposals/mine`,
+    'Past': `/dao/${globalContext.api.daoId}/proposals/past`,
+    'Treasury': `/dao/${globalContext.api.daoId}/financials/treasury`,
+    'Tokenomics': `/dao/${globalContext.api.daoId}/financials/tokenomics`,
+    'Recurring': `/dao/${globalContext.api.daoId}/financials/recurring`,
+    'Token': `/dao/${globalContext.api.daoId}/financials/token`,
+    'Distributions': `/dao/${globalContext.api.daoId}/distributions`,
+    'Staking': `/dao/${globalContext.api.daoId}/staking`,
+    'Members': `/dao/${globalContext.api.daoId}/members`,
+    'Activity': `/dao/${globalContext.api.daoId}/activity`,
+    'Edit profile': `/dao/${globalContext.api.daoId}/edit-profile`,
+    'Notifications': `/dao/${globalContext.api.daoId}/notifications`,
+    'Wallet': `/dao/${globalContext.api.daoId}/wallet`,
+
+    'DAO Config': `/dao/${globalContext.api.daoId}/dao-config`
+  }
+  return <Link href={linkLookup[props.title]}>
     <Box
       sx={{
         width: "100%",
@@ -107,7 +130,7 @@ const BasicLink: React.FC<{
         </Box>
       </Box>
     </Box>
-  );
+    </Link>
 };
 
 const DropdownLink: React.FC<{

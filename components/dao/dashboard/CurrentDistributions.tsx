@@ -47,9 +47,10 @@ const CurrentDistributions: React.FC = () => {
         <Subheader title="Current Distributions" small bold />
         <Button sx={{ ml: "auto", fontSize: ".8rem" }}>View all</Button>
       </Box>
-      {distributions.map((i: any) => {
+      {distributions.map((i: any, c: number) => {
         return (
           <Box
+          key={`distributions-key-${c}`}
             sx={{
               width: "100%",
               backgroundColor: "fileInput.outer",
