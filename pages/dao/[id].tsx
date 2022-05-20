@@ -5,7 +5,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import DaoTemplate from "@components/dao/DaoTemplate";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import React from "react";
-import Dashboard from "@components/dao/dashboard/dashboard";
+import Dashboard from "@components/dao/dashboard/Dashboard";
 
 // move dao to a wildcard subdomain
 export default function Dao({ daoData }) {

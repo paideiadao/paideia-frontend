@@ -9,11 +9,11 @@ import { AppApi } from "../lib/AppApi";
 import { GlobalContext } from "../lib/AppContext";
 import CssBaseline from "@mui/material/CssBaseline";
 import Dao from "./dao/[id]";
-import Layout from "../components/Layout";
+import Layout from "@components/Layout";
 import Creation from "./creation";
 import Notifications from "./dao/[id]/notifications";
 import DaoTemplate from "@components/dao/DaoTemplate";
-import Dashboard from "../components/dao/dashboard/dashboard";
+import Dashboard from "@components/dao/dashboard/Dashboard";
 import Profile from "./dao/[id]/profile";
 import { useRouter } from 'next/router'
 
