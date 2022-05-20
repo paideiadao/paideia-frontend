@@ -39,7 +39,7 @@ const TopNav: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <IconButton>
+          <IconButton href={`${globalContext.api.daoId}/notifications`}>
             <Badge badgeContent={1} color="primary">
               <NotificationsIcon
                 sx={{

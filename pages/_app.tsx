@@ -25,7 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
     localStorage.setItem("theme", temp);
   }, [theme]);
 
-  const api = new AppApi(alert, setAlert, theme, setTheme);
+  const api = new AppApi(alert, setAlert, theme, setTheme, undefined);
 
   return Component === Dao || Component === Creation ? (
     <ThemeProvider theme={theme}>
