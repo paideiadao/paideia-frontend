@@ -9,6 +9,7 @@ import AppsIcon from "@mui/icons-material/Apps";
 import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
 import ImagePlaceholder from "../../../public/images/image-placeholder.png";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import CircleIcon from '@mui/icons-material/Circle';
 
 let temp = new Date(), temp1 = new Date(), temp2 = new Date(), temp3 = new Date(), temp4 = new Date();
 // should display hours
@@ -143,10 +144,11 @@ const Notifications: React.FC<{ params: any }> = (props) => {
                   display: "flex",
                   alignItems: "center",
                   p: "1rem",
-                  backgroundColor: "fileInput.outer",
+                  backgroundColor: i.isread === 0 ? 'fileInput.main' : "fileInput.outer",
                   borderRadius: ".3rem",
                   border: "1px solid",
                   borderColor: "divider.main",
+                  cursor: 'pointer'
                 }}
               >
 
@@ -164,6 +166,9 @@ const Notifications: React.FC<{ params: any }> = (props) => {
                       <AccessTimeIcon sx={{fontSize: '1rem', mr: '.2rem'}}/> {getNotificationCountdown(i.date)} ago
                     </Box>
                 </Box>
+                {i.isread === 0 && <Box sx={{ml: 'auto'}}>
+                    <CircleIcon color='primary' sx={{fontSize: '1rem'}}/>
+                  </Box>}
 
               </Box>
             );
