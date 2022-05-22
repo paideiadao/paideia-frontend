@@ -4,7 +4,7 @@ import { Subheader } from "../../creation/utilities/HeaderComponents";
 import dateFormat from "dateformat";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 
-const activities = [
+export const activities = [
   {
     date: new Date(),
     img: "T",

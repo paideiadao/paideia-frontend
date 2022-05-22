@@ -35,7 +35,7 @@ const TokenStats: React.FC = () => {
           }}
         >
           Ticker
-          <Box sx={{ fontSize: "1.2rem", color: "primary.text" }}>PTK</Box>
+          <Box sx={{ fontSize: "1.2rem", color: "text.main" }}>PTK</Box>
         </Box>
         <Box
           sx={{
@@ -46,7 +46,7 @@ const TokenStats: React.FC = () => {
           }}
         >
           Price
-          <Box sx={{ fontSize: "1.2rem", color: "primary.text" }}>$0.1342</Box>
+          <Box sx={{ fontSize: "1.2rem", color: "text.main" }}>$0.1342</Box>
         </Box>
       </Box>
       <Box
@@ -69,7 +69,7 @@ const TokenStats: React.FC = () => {
           }}
         >
           Market cap
-          <Box sx={{ fontSize: "1rem", color: "primary.text" }}>
+          <Box sx={{ fontSize: "1rem", color: "text.main" }}>
             $10,467,400
           </Box>
         </Box>
@@ -82,7 +82,7 @@ const TokenStats: React.FC = () => {
           }}
         >
           Tokens
-          <Box sx={{ fontSize: "1rem", color: "primary.text" }}>78,000,000</Box>
+          <Box sx={{ fontSize: "1rem", color: "text.main" }}>78,000,000</Box>
         </Box>
       </Box>
       <Box

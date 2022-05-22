@@ -4,7 +4,7 @@ import Musk from "../../../public/profile/musk-full.png";
 import InfoIcon from "@mui/icons-material/Info";
 import EditIcon from "@mui/icons-material/Edit";
 
-const Header: React.FC = () => {
+const ProfileHeader: React.FC = () => {
   return (
     <Box
       sx={{
@@ -23,7 +23,7 @@ const Header: React.FC = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            width: "70%",
+            width: "65%",
           }}
         >
           <Box sx={{ fontSize: "1.1rem" }}>Alone Musk</Box>
@@ -73,4 +73,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default ProfileHeader;

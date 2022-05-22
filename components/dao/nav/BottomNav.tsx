@@ -17,7 +17,7 @@ const BottomNav: React.FC = () => {
       }}
     >
       <Box sx={{ fontSize: ".9rem" }}>Visit our website at dao.paidiea.im.</Box>
-      <Box sx={{ ml: "auto" }}>
+      <Box sx={{ ml: "auto", display: 'flex', alignItems: 'center' }}>
         <TwitterIcon color="primary" sx={{ mr: ".5rem" }} />
         <RedditIcon color="primary" />
       </Box>

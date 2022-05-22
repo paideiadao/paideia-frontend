@@ -9,12 +9,14 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import Header from "@components/dao/profile/Header";
+import ProfileHeader from "@components/dao/profile/Header";
 import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
 import PaideiaTokenSymbol from "../../../public/images/paideia-token-symbol.png";
 import StarIcon from "@mui/icons-material/Star";
 import RedditIcon from "@mui/icons-material/Reddit";
 import TelegramIcon from "@mui/icons-material/Telegram";
+import Proposals from "@components/dao/profile/Proposals";
+import Activity from "@components/dao/profile/Activity";
 
 const Profile: React.FC<{ params: any }> = (props) => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
@@ -33,7 +35,7 @@ const Profile: React.FC<{ params: any }> = (props) => {
             Back
           </Button>
         </Link>
-        <Header />
+        <ProfileHeader />
         <Box>
           <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: "divider.main" }}>
@@ -43,10 +45,10 @@ const Profile: React.FC<{ params: any }> = (props) => {
               </TabList>
             </Box>
             <TabPanel value="1" sx={{ pl: 0, pr: 0 }}>
-              Propsoals | 5
+              <Proposals/>
             </TabPanel>
             <TabPanel value="2" sx={{ pl: 0, pr: 0 }}>
-              Activity
+              <Activity/>
             </TabPanel>
           </TabContext>
         </Box>
@@ -174,6 +176,7 @@ const UserSocial: React.FC<{ icon: JSX.Element; label: string }> = (props) => {
         color: "primary.main",
         mt: ".25rem",
         mb: ".25rem",
+        fontSize: '1rem'
       }}
     >
       {props.icon}

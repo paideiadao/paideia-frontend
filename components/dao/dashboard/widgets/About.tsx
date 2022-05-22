@@ -30,7 +30,7 @@ const About: React.FC = () => {
           }}
         >
           Members
-          <Box sx={{ fontSize: "1.2rem", color: "primary.text" }}>5,130</Box>
+          <Box sx={{ fontSize: "1.2rem", color: "text.main" }}>5,130</Box>
         </Box>
         <Box
           sx={{
@@ -41,7 +41,7 @@ const About: React.FC = () => {
           }}
         >
           Proposals
-          <Box sx={{ fontSize: "1.2rem", color: "primary.text" }}>125</Box>
+          <Box sx={{ fontSize: "1.2rem", color: "text.main" }}>125</Box>
         </Box>
       </Box>
       <Box sx={{ width: "100%", fontSize: ".9rem", mt: ".5rem" }}>

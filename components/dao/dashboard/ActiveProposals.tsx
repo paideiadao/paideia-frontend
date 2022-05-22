@@ -5,7 +5,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ProposalCard from "../proposals/ProposalCard";
 
-const proposals = [
+export const proposals = [
   {
     proposalName: "ProposalName 1",
     status: "Challenged",

@@ -109,7 +109,7 @@ const CurrentDistributions: React.FC = () => {
                 alignItems: "center",
                 color:
                   i.status === "Active"
-                    ? "text.lightSuccess"
+                    ? "primary.lightSuccess"
                     : "tokenAlert.main",
               }}
             >
