@@ -48,9 +48,11 @@ export const Header: React.FC<{
   );
 };
 
-export const CapsInfo: React.FC<{ title: string; small?: boolean }> = (
-  props
-) => {
+export const CapsInfo: React.FC<{
+  title: string;
+  small?: boolean;
+  mb?: string;
+}> = (props) => {
   return (
     <Box
       sx={{
@@ -58,7 +60,7 @@ export const CapsInfo: React.FC<{ title: string; small?: boolean }> = (
         color: "text.main",
         fontSize: props.small === undefined ? ".8rem" : ".7rem",
         fontWeight: 400,
-        mb: "1rem",
+        mb: props.mb === undefined ? "1rem" : props.mb,
       }}
     >
       {props.title.toUpperCase()}

@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Chip } from "@mui/material";
+import { Avatar, Box, Button, Chip, Modal } from "@mui/material";
 import * as React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
@@ -8,17 +8,22 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import AppsIcon from "@mui/icons-material/Apps";
 import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
 import ImagePlaceholder from "../../../public/images/image-placeholder.png";
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import CircleIcon from '@mui/icons-material/Circle';
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import CircleIcon from "@mui/icons-material/Circle";
+import { modalBackground } from "@components/utilities/modalBackground";
 
-let temp = new Date(), temp1 = new Date(), temp2 = new Date(), temp3 = new Date(), temp4 = new Date();
+let temp = new Date(),
+  temp1 = new Date(),
+  temp2 = new Date(),
+  temp3 = new Date(),
+  temp4 = new Date();
 // should display hours
-temp1.setTime(temp.getTime() - (6 * 60 * 60 * 1000));
+temp1.setTime(temp.getTime() - 6 * 60 * 60 * 1000);
 // should display days
 temp2.setDate(temp.getDate() - 5);
 // should display months
-temp3.setDate(temp.getDate() -100);
-temp4.setTime(temp.getTime() - (.5 * 60 * 60 * 1000));
+temp3.setDate(temp.getDate() - 100);
+temp4.setTime(temp.getTime() - 0.5 * 60 * 60 * 1000);
 
 const newNotifications = [
   {
@@ -27,7 +32,7 @@ const newNotifications = [
     action: "action description for",
     proposalname: "<Proposal name>",
     date: temp4, // less than 1 hour, show minutes. less than 1 day, show hours. less than 1 month show days. less than 1 year, show years.
-    isread: 1
+    isread: 1,
   },
   {
     img: ImagePlaceholder.src,
@@ -35,7 +40,7 @@ const newNotifications = [
     action: "action description for",
     proposalname: "<Proposal name>",
     date: temp1, // less than 1 hour, show minutes. less than 1 day, show hours. less than 1 month show days. less than 1 year, show years.
-    isread: 0
+    isread: 0,
   },
   {
     img: ImagePlaceholder.src,
@@ -43,7 +48,7 @@ const newNotifications = [
     action: "action description for",
     proposalname: "<Proposal name>",
     date: temp2, // less than 1 hour, show minutes. less than 1 day, show hours. less than 1 month show days. less than 1 year, show years.
-    isread: 0
+    isread: 0,
   },
   {
     img: ImagePlaceholder.src,
@@ -51,30 +56,80 @@ const newNotifications = [
     action: "action description for",
     proposalname: "<Proposal name>",
     date: temp3, // less than 1 hour, show minutes. less than 1 day, show hours. less than 1 month show days. less than 1 year, show years.
-    isread: 1
+    isread: 1,
   },
-  
+];
+
+const oldNotifications = [
+  {
+    img: ImagePlaceholder.src,
+    username: "<User name>",
+    action: "action description for",
+    proposalname: "<Proposal name>",
+    date: temp4, // less than 1 hour, show minutes. less than 1 day, show hours. less than 1 month show days. less than 1 year, show years.
+    isread: 1,
+  },
+  {
+    img: ImagePlaceholder.src,
+    username: "<User name>",
+    action: "action description for",
+    proposalname: "<Proposal name>",
+    date: temp1, // less than 1 hour, show minutes. less than 1 day, show hours. less than 1 month show days. less than 1 year, show years.
+    isread: 0,
+  },
+  {
+    img: ImagePlaceholder.src,
+    username: "<User name>",
+    action: "action description for",
+    proposalname: "<Proposal name>",
+    date: temp2, // less than 1 hour, show minutes. less than 1 day, show hours. less than 1 month show days. less than 1 year, show years.
+    isread: 0,
+  },
+  {
+    img: ImagePlaceholder.src,
+    username: "<User name>",
+    action: "action description for",
+    proposalname: "<Proposal name>",
+    date: temp3, // less than 1 hour, show minutes. less than 1 day, show hours. less than 1 month show days. less than 1 year, show years.
+    isread: 1,
+  },
 ];
 
 const getNotificationCountdown = (date: Date) => {
-  let _temp = new Date()
-  console.log(date, _temp)
+  let _temp = new Date();
+  console.log(date, _temp);
   let hours = Math.abs(_temp.getTime() - date.getTime()) / 36e5;
-  console.log(hours)
+  console.log(hours);
   if (hours < 1) {
-    return (hours * 60).toFixed(0)  + ' minute' + ((hours * 60).toFixed(0) === '1' ? '' : 's')
+    return (
+      (hours * 60).toFixed(0) +
+      " minute" +
+      ((hours * 60).toFixed(0) === "1" ? "" : "s")
+    );
   } else if (hours <= 24) {
-    return (hours).toFixed(0)  + ' hour' + ((hours).toFixed(0) === '1' ? '' : 's')
-  } else if (hours <= (24 * 30)) {
-    return (hours / 24).toFixed(0)  + ' day' + ((hours / 24).toFixed(0) === '1' ? '' : 's')
+    return hours.toFixed(0) + " hour" + (hours.toFixed(0) === "1" ? "" : "s");
+  } else if (hours <= 24 * 30) {
+    return (
+      (hours / 24).toFixed(0) +
+      " day" +
+      ((hours / 24).toFixed(0) === "1" ? "" : "s")
+    );
   } else {
-    return (hours / (24 * 30)).toFixed(0)  + ' month' + ((hours / (24 / 30)).toFixed(0) === '1' ? '' : 's')
+    return (
+      (hours / (24 * 30)).toFixed(0) +
+      " month" +
+      ((hours / (24 / 30)).toFixed(0) === "1" ? "" : "s")
+    );
   }
-}
+};
 
 const Notifications: React.FC<{ params: any }> = (props) => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [view, setView] = React.useState<string>("All");
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <Box
       sx={{
@@ -103,7 +158,7 @@ const Notifications: React.FC<{ params: any }> = (props) => {
           }}
         >
           Notifications (4 new)
-          <Button sx={{ ml: "auto" }} variant="contained">
+          <Button sx={{ ml: "auto" }} variant="contained" onClick={handleOpen}>
             Notification Settings{" "}
             <SettingsIcon sx={{ ml: ".5rem", mr: "0rem" }} />
           </Button>
@@ -136,48 +191,114 @@ const Notifications: React.FC<{ params: any }> = (props) => {
         >
           <CapsInfo title="New" />
           {newNotifications.map((i: any, c: number) => {
-            return (
-              <Box
-                sx={{
-                  mt: '.75rem', mb: '.75rem',
-                  width: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  p: "1rem",
-                  backgroundColor: i.isread === 0 ? 'fileInput.main' : "fileInput.outer",
-                  borderRadius: ".3rem",
-                  border: "1px solid",
-                  borderColor: "divider.main",
-                  cursor: 'pointer'
-                }}
-              >
-
-                <Avatar src={i.img} sx={{width: '4rem', height: '4rem'}}>
-                </Avatar>
-                <Box sx={{width: '70%', ml: '1rem', fontSize: '.9rem'}}>
-                    <Box>
-                      {i.username + ' '}
-                      <Box sx={{display: 'inline', color: 'text.light'}}>
-                      {i.action}
-                      </Box>
-                      {' ' + i.proposalname}
-                    </Box>
-                    <Box sx={{fontSize: '.7rem', color: 'text.light', display: 'flex', alignItems: 'center'}}>
-                      <AccessTimeIcon sx={{fontSize: '1rem', mr: '.2rem'}}/> {getNotificationCountdown(i.date)} ago
-                    </Box>
-                </Box>
-                {i.isread === 0 && <Box sx={{ml: 'auto'}}>
-                    <CircleIcon color='primary' sx={{fontSize: '1rem'}}/>
-                  </Box>}
-
-              </Box>
-            );
+            return <Notification i={i} />;
           })}
         </Box>
-        <Box sx={{ mt: "1rem" }}>
+        <Box
+          sx={{
+            mt: "1rem",
+            pb: "1rem",
+          }}
+        >
           <CapsInfo title="Old" />
+          {oldNotifications.map((i: any, c: number) => {
+            return <Notification i={i} />;
+          })}
         </Box>
       </Box>
+      <Modal open={open} onClose={handleClose}>
+        <Box sx={{ ...modalBackground, p: 0, width: "30rem" }}>
+          <Box
+            sx={{
+              backgroundColor: "fileInput.main",
+              p: ".5rem",
+              pl: "1rem",
+              display: "flex",
+              alignItems: "center",
+              width: "100%",
+              borderTopLeftRadius: ".2rem",
+              borderTopRightRadius: ".2rem",
+              borderBottom: "1px solid",
+              borderBottomColor: "divider.main",
+            }}
+          >
+            <CapsInfo title="Configuration" mb={"0"} />
+            <Button sx={{ ml: "auto", width: "15rem" }} size="small">
+              Mark all as read
+            </Button>
+          </Box>
+
+          <Box sx={{ height: "25rem", overflowY: "scroll" }}>
+            {oldNotifications
+              .concat(newNotifications)
+              .map((i: any, c: number) => {
+                return <Notification i={i} m={"0"} />;
+              })}
+          </Box>
+          <Box
+            sx={{
+              backgroundColor: "fileInput.main",
+              p: ".5rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+              borderBottomLeftRadius: ".2rem",
+              borderBottomRightRadius: ".2rem",
+              borderBottom: "1px solid",
+              borderBottomColor: "divider.main",
+            }}
+          >
+            <Button size="small">View all</Button>
+          </Box>
+        </Box>
+      </Modal>
+    </Box>
+  );
+};
+
+const Notification: React.FC<{ i: any; m?: string }> = (props) => {
+  let i = props.i;
+  return (
+    <Box
+      sx={{
+        mt: props.m === undefined ? ".75rem" : props.m,
+        mb: props.m === undefined ? ".75rem" : props.m,
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        p: "1rem",
+        backgroundColor: i.isread === 0 ? "fileInput.read" : "fileInput.outer",
+        borderRadius: props.m === undefined ? ".3rem" : "0rem",
+        border: "1px solid",
+        borderColor: "divider.main",
+        cursor: "pointer",
+      }}
+    >
+      <Avatar src={i.img} sx={{ width: "4rem", height: "4rem" }}></Avatar>
+      <Box sx={{ width: "70%", ml: "1rem", fontSize: ".9rem" }}>
+        <Box>
+          {i.username + " "}
+          <Box sx={{ display: "inline", color: "text.light" }}>{i.action}</Box>
+          {" " + i.proposalname}
+        </Box>
+        <Box
+          sx={{
+            fontSize: ".7rem",
+            color: "text.light",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <AccessTimeIcon sx={{ fontSize: "1rem", mr: ".2rem" }} />{" "}
+          {getNotificationCountdown(i.date)} ago
+        </Box>
+      </Box>
+      {i.isread === 0 && (
+        <Box sx={{ ml: "auto" }}>
+          <CircleIcon color="primary" sx={{ fontSize: "1rem" }} />
+        </Box>
+      )}
     </Box>
   );
 };
