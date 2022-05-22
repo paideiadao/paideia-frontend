@@ -69,9 +69,7 @@ const TokenStats: React.FC = () => {
           }}
         >
           Market cap
-          <Box sx={{ fontSize: "1rem", color: "text.main" }}>
-            $10,467,400
-          </Box>
+          <Box sx={{ fontSize: "1rem", color: "text.main" }}>$10,467,400</Box>
         </Box>
         <Box
           sx={{

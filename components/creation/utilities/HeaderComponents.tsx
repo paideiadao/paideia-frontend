@@ -55,7 +55,7 @@ export const CapsInfo: React.FC<{ title: string; small?: boolean }> = (
     <Box
       sx={{
         width: "100%",
-        color: "primary.text",
+        color: "text.main",
         fontSize: props.small === undefined ? ".8rem" : ".7rem",
         fontWeight: 400,
         mb: "1rem",

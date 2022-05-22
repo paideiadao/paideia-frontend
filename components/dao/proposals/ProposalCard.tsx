@@ -335,7 +335,10 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
   };
   // use a local state to make it dynamic...
   return (
-    <Box sx={{ pr: "1rem", pt: '.5rem', pb: '.5rem' }} id={`proposal-active-${props.c}`}>
+    <Box
+      sx={{ pr: "1rem", pt: ".5rem", pb: ".5rem" }}
+      id={`proposal-active-${props.c}`}
+    >
       <Badge
         badgeContent={
           <Box
@@ -367,7 +370,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
             border: "1px solid",
             borderColor: "divider.main",
             borderRadius: ".3rem",
-            width: '14.3rem'
+            width: "14.3rem",
           }}
         >
           <Box

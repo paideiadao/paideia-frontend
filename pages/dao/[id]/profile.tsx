@@ -45,10 +45,10 @@ const Profile: React.FC<{ params: any }> = (props) => {
               </TabList>
             </Box>
             <TabPanel value="1" sx={{ pl: 0, pr: 0 }}>
-              <Proposals/>
+              <Proposals />
             </TabPanel>
             <TabPanel value="2" sx={{ pl: 0, pr: 0 }}>
-              <Activity/>
+              <Activity />
             </TabPanel>
           </TabContext>
         </Box>
@@ -176,7 +176,7 @@ const UserSocial: React.FC<{ icon: JSX.Element; label: string }> = (props) => {
         color: "primary.main",
         mt: ".25rem",
         mb: ".25rem",
-        fontSize: '1rem'
+        fontSize: "1rem",
       }}
     >
       {props.icon}
