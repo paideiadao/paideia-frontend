@@ -60,7 +60,7 @@ const Header: React.FC = () => {
             display: "flex",
             height: "100%",
             alignItems: "center",
-            ml: "1rem",
+            ml: "auto",
           }}
         >
           <Button variant="contained">
