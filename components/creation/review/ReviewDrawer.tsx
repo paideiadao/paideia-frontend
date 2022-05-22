@@ -25,7 +25,7 @@ export const Value: React.FC<{
         height: "100%",
       }}
     >
-      <Box sx={{ width: props.labelWidth, color: "primary.lightText" }}>
+      <Box sx={{ width: props.labelWidth, color: "text.light" }}>
         {props.title}
       </Box>
       {props.component === undefined ? (
@@ -54,7 +54,7 @@ export const WalletListing: React.FC<{ data: any }> = (props) => {
           </Avatar>
           <Box sx={{ ml: ".5rem" }}>
             <Box sx={{ fontSize: ".9rem" }}>{i.alias}</Box>
-            <Box sx={{ fontSize: ".7rem", color: "primary.lightText" }}>
+            <Box sx={{ fontSize: ".7rem", color: "text.light" }}>
               {i.address}
             </Box>
           </Box>
@@ -70,7 +70,7 @@ export const ActiveInactive: React.FC<{ value: boolean }> = (props) => {
       sx={{
         display: "flex",
         alignItems: "center",
-        color: props.value ? "primary.lightSuccess" : "red",
+        color: props.value ? "text.lightSuccess" : "red",
         fontSize: ".9rem",
         fontWeight: 550,
       }}
@@ -102,7 +102,7 @@ export const ImageWrapper: React.FC<{
       <Avatar src={props.img}></Avatar>
       <Box sx={{ ml: ".5rem" }}>
         <Box sx={{ fontSize: ".9rem" }}>{props.name}</Box>
-        <Box sx={{ fontSize: ".7rem", color: "primary.lightText" }}>
+        <Box sx={{ fontSize: ".7rem", color: "text.light" }}>
           {props.size}
         </Box>
       </Box>

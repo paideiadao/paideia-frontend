@@ -41,7 +41,7 @@ const VoteWidget: React.FC<{
           display: "flex",
           alignItems: "center",
           width: "100%",
-          color: "primary.lightSuccess",
+          color: "text.lightSuccess",
         }}
       >
         {percentage(props.yes / (props.yes + props.no), 0)} YES
@@ -70,7 +70,7 @@ const VoteWidget: React.FC<{
           width: "100%",
           display: "flex",
           alignItems: "center",
-          color: "primary.lightText",
+          color: "text.light",
           fontSize: ".8rem",
         }}
       >
@@ -89,16 +89,16 @@ const ProposalStatus: React.FC<{ status: string }> = (props) => {
       }
       // passed color??
       case "Passed": {
-        return "primary.lightSuccess";
+        return "text.lightSuccess";
       }
       case "Active": {
-        return "primary.lightSuccess";
+        return "text.lightSuccess";
       }
       case "Discussion": {
         return "primary.main";
       }
       case "Unchallenged": {
-        return "primary.lightSuccess";
+        return "text.lightSuccess";
       }
     }
   };
@@ -154,10 +154,10 @@ const LikesDislikes: React.FC<{
               ml: ".5rem",
               mr: ".3rem",
               fontSize: "1rem",
-              color: "primary.lightSuccess",
+              color: "text.lightSuccess",
             }}
           />
-          <Box sx={{ color: "primary.lightSuccess" }}>{props.likes}</Box>
+          <Box sx={{ color: "text.lightSuccess" }}>{props.likes}</Box>
         </>
       )}
     </Box>
@@ -298,7 +298,7 @@ const CountdownWidget: React.FC<{ date: Date }> = (props) => {
   return (
     <Box sx={{ width: "100%", fontSize: ".9rem" }}>
       {time}
-      <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>
+      <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
         Until proposal passes
       </Box>
     </Box>
@@ -313,7 +313,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
       }
       // passed color??
       case "Passed": {
-        return "primary.lightSuccess";
+        return "text.lightSuccess";
       }
       case "Active": {
         return <VoteWidget yes={props.yes} no={props.no} />;
@@ -322,7 +322,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
         return (
           <Box sx={{ width: "100%" }}>
             Join the Conversation
-            <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>
+            <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
               {props.comments} comments from {props.users} users
             </Box>
           </Box>
@@ -341,7 +341,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
           <Box
             sx={{
               backgroundColor: "favoriteBackground.main",
-              color: "primary.lightText",
+              color: "text.light",
               p: ".2rem",
               borderRadius: "50%",
               width: "1.5rem",

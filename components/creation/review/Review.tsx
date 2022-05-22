@@ -10,7 +10,6 @@ const Review: React.FC = () => {
   const globalContext = React.useContext(GlobalContext);
   let data = globalContext.api.data;
   const [publish, setPublish] = React.useState<boolean>(false);
-  const [draft, setDraft] = React.useState<boolean>(false);
   return (
     <Box
       sx={{
@@ -49,7 +48,7 @@ const Review: React.FC = () => {
         <Button
           sx={{ width: "49%", mr: ".5rem" }}
           variant="outlined"
-          onClick={() => setDraft(true)}
+          onClick={() => globalContext.api.setData({...data, draftModal: true})}
         >
           Publish as a draft
         </Button>
@@ -103,55 +102,12 @@ const Review: React.FC = () => {
                 onClick={() =>
                   globalContext.api.setData({
                     ...data,
-                    isDraft: 1,
-                    isPublished: 1,
-                  })
-                }
-              >
-                Publish DAO
-              </Button>
-            </Box>
-          </Box>
-        </Box>
-      </Modal>
-      <Modal
-        open={draft}
-        onClose={() => setDraft(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={{ ...modalBackground, width: "35rem" }}>
-          <Box sx={{ fontSize: "1.1rem", fontWeight: 450 }}>
-            You are about to publish your DAO as a draft
-          </Box>
-          <Box sx={{ mt: "1rem", fontSize: ".9rem" }}>
-            Please keep in mind that if you continue you won't be able to change
-            either your DAO's name or it's URL. The rest of the properties can
-            be changed though. Also, your tokens won't be minted or distributed
-            until you publish the final version.
-          </Box>
-          <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              mt: "1rem",
-            }}
-          >
-            <Box sx={{ ml: "auto" }}>
-              <Button sx={{ mr: "1rem" }} onClick={() => setDraft(false)}>
-                Cancel
-              </Button>
-              <Button
-                onClick={() =>
-                  globalContext.api.setData({
-                    ...data,
                     isDraft: 0,
                     isPublished: 1,
                   })
                 }
               >
-                Publish DAO AS A DRAFT
+                Publish DAO
               </Button>
             </Box>
           </Box>

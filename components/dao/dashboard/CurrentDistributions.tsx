@@ -73,7 +73,7 @@ const CurrentDistributions: React.FC = () => {
               sx={{ width: "30%", display: "flex", flexDirection: "column" }}
             >
               {i.name}
-              <Box sx={{ fontSize: ".7rem", color: "primary.lightText" }}>
+              <Box sx={{ fontSize: ".7rem", color: "text.light" }}>
                 {dateFormat(i.start, "mmm d, yyyy")} /{" "}
                 {dateFormat(i.end, "mmm d, yyyy")}
               </Box>
@@ -109,7 +109,7 @@ const CurrentDistributions: React.FC = () => {
                 alignItems: "center",
                 color:
                   i.status === "Active"
-                    ? "primary.lightSuccess"
+                    ? "text.lightSuccess"
                     : "tokenAlert.main",
               }}
             >

@@ -9,6 +9,10 @@ export const LightTheme = createTheme({
     favoriteBackground: {
       main: "#FEE8E7",
     },
+    text: {
+      main: 'black',
+      light: '#666666'
+    }, 
     linkHover: {
       main: "#EBF5F6",
     },
@@ -124,6 +128,10 @@ export const DarkTheme = createTheme({
       default: "#0E1421",
       paper: "#0E1421",
     },
+    text: {
+      main: 'white',
+      light: '#B8BABE'
+    }, 
     circle: {
       main: "#9FD2DB",
     },

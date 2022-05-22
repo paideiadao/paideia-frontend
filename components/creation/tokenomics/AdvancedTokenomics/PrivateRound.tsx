@@ -194,7 +194,7 @@ const PrivateRound: React.FC<{
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <Box sx={{ color: "primary.lightText" }}>USD</Box>
+                <Box sx={{ color: "text.light" }}>USD</Box>
               </InputAdornment>
             ),
           }}

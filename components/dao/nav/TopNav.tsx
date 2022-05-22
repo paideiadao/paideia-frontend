@@ -3,7 +3,7 @@ import * as React from "react";
 import { GlobalContext, IGlobalContext } from "../../../lib/AppContext";
 import { DarkTheme, LightTheme } from "@theme/theme";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import Musk from "../../../public/profile/musk.png";
+import Musk from "../../../public/profile/musk-full.png";
 import DarkSwitch from "../../utilities/DarkSwitch";
 import Link from 'next/link'
 
@@ -68,7 +68,7 @@ const TopNav: React.FC = () => {
             }}
           >
             <Box sx={{ fontSize: ".9rem" }}>Alone Musk</Box>
-            <Box sx={{ color: "primary.lightText", fontSize: ".7rem" }}>
+            <Box sx={{ color: "text.light", fontSize: ".7rem" }}>
               Lvl 7 | Philosopher
             </Box>
           </Box>

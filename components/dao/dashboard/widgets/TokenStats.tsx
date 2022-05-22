@@ -29,7 +29,7 @@ const TokenStats: React.FC = () => {
             width: "50%",
             textAlign: "center",
             fontSize: ".7rem",
-            color: "primary.lightText",
+            color: "text.light",
             borderRight: "1px solid",
             borderColor: "divider.main",
           }}
@@ -42,7 +42,7 @@ const TokenStats: React.FC = () => {
             width: "50%",
             textAlign: "center",
             fontSize: ".7rem",
-            color: "primary.lightText",
+            color: "text.light",
           }}
         >
           Price
@@ -63,7 +63,7 @@ const TokenStats: React.FC = () => {
             width: "50%",
             textAlign: "center",
             fontSize: ".7rem",
-            color: "primary.lightText",
+            color: "text.light",
             borderRight: "1px solid",
             borderColor: "divider.main",
           }}
@@ -78,7 +78,7 @@ const TokenStats: React.FC = () => {
             width: "50%",
             textAlign: "center",
             fontSize: ".7rem",
-            color: "primary.lightText",
+            color: "text.light",
           }}
         >
           Tokens

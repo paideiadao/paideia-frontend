@@ -11,7 +11,7 @@ const PerformanceWidget: React.FC<{ value: number }> = (props) => {
       sx={{
         display: "flex",
         alignItems: "center",
-        backgroundColor: props.value <= 0 ? "red" : "primary.lightSuccess",
+        backgroundColor: props.value <= 0 ? "red" : "text.lightSuccess",
         borderRadius: ".3rem",
         fontSize: ".7rem",
         color: "backgroundColor.main",
@@ -37,7 +37,7 @@ const TimeWidget: React.FC<{ amount: number; unit: string }> = (props) => {
         backgroundColor: "fileInput.main",
         borderRadius: ".3rem",
         fontSize: ".7rem",
-        color: "primary.lightText",
+        color: "text.light",
         p: ".2rem",
         ml: ".5rem",
         border: "1px solid",
@@ -75,7 +75,7 @@ const AssetCard: React.FC<IAssetCard> = (props) => {
       <Box>
         {props.amount} {props.ticker}
       </Box>
-      <Box sx={{ fontSize: ".7rem", color: "primary.lightText" }}>
+      <Box sx={{ fontSize: ".7rem", color: "text.light" }}>
         {percentage(props.percentage, 0)} ({props.total})
       </Box>
     </Box>
@@ -117,7 +117,7 @@ const FinancialSummary: React.FC = () => {
             display: "inline",
             ml: ".3rem",
             fontSize: ".8rem",
-            color: "primary.lightText",
+            color: "text.light",
           }}
         >
           (In 8 currencies)
