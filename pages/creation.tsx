@@ -91,7 +91,7 @@ export default function Creation(props) {
     isDraft: 0,
     isPublished: 0,
     review: undefined,
-    draftModal: false
+    draftModal: false,
   });
 
   let content = [
@@ -208,7 +208,7 @@ export default function Creation(props) {
       )}
       <Modal
         open={data.draftModal}
-        onClose={() => setData({...data, draftModal: false})}
+        onClose={() => setData({ ...data, draftModal: false })}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -231,7 +231,10 @@ export default function Creation(props) {
             }}
           >
             <Box sx={{ ml: "auto" }}>
-              <Button sx={{ mr: "1rem" }} onClick={() => setData({...data, draftModal: false})}>
+              <Button
+                sx={{ mr: "1rem" }}
+                onClick={() => setData({ ...data, draftModal: false })}
+              >
                 Cancel
               </Button>
               <Button
@@ -240,7 +243,7 @@ export default function Creation(props) {
                     ...data,
                     isDraft: 1,
                     isPublished: 1,
-                    draftModal: false
+                    draftModal: false,
                   })
                 }
               >

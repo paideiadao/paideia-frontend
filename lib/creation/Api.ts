@@ -23,7 +23,7 @@ export interface ICreationData {
   isDraft: number;
   isPublished: number;
   review: number;
-  draftModal: boolean
+  draftModal: boolean;
 }
 
 export interface IFile {

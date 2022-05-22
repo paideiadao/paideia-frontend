@@ -50,7 +50,7 @@ const CurrentDistributions: React.FC = () => {
       {distributions.map((i: any, c: number) => {
         return (
           <Box
-          key={`distributions-key-${c}`}
+            key={`distributions-key-${c}`}
             sx={{
               width: "100%",
               backgroundColor: "fileInput.outer",

@@ -15,12 +15,12 @@ import Notifications from "./dao/[id]/notifications";
 import DaoTemplate from "@components/dao/DaoTemplate";
 import Dashboard from "@components/dao/dashboard/Dashboard";
 import Profile from "./dao/[id]/profile";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
   const [alert, setAlert] = React.useState({ show: false });
-  const router = useRouter()
+  const router = useRouter();
   const [daoId, setDaoId] = React.useState<any>(router.query.id);
 
   React.useEffect(() => {
@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
     localStorage.setItem("theme", temp);
   }, [theme]);
 
-  console.log(router)
+  console.log(router);
   const api = new AppApi(alert, setAlert, theme, setTheme, daoId, setDaoId);
   return Component === Creation ||
     Component === Dao ||
@@ -70,8 +70,7 @@ export async function getServerSideProps(context) {
   let wildcard = context.req.headers.host.split(".")[0];
   let all_ids = ["spreadly", "ergopad"];
 
-  console.log(context.req.headers.host)
-
+  console.log(context.req.headers.host);
 
   wildcard =
     all_ids.indexOf(wildcard) > -1

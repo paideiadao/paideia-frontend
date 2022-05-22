@@ -5,7 +5,7 @@ import { DarkTheme, LightTheme } from "@theme/theme";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Musk from "../../../public/profile/musk-full.png";
 import DarkSwitch from "../../utilities/DarkSwitch";
-import Link from 'next/link'
+import Link from "next/link";
 
 const TopNav: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
@@ -40,41 +40,38 @@ const TopNav: React.FC = () => {
             alignItems: "center",
           }}
         >
-           <Link href={`/dao/${globalContext.api.daoId}/notifications`}>
-           <IconButton>
-            <Badge badgeContent={1} color="primary">
-              <NotificationsIcon
-                sx={{
-                  fontSize: "1.1rem",
-                  opacity: globalContext.api.theme === DarkTheme ? "1" : ".5",
-                }}
-              />
-            </Badge>
-          </IconButton>
-           </Link>
-          
+          <Link href={`/dao/${globalContext.api.daoId}/notifications`}>
+            <IconButton>
+              <Badge badgeContent={1} color="primary">
+                <NotificationsIcon
+                  sx={{
+                    fontSize: "1.1rem",
+                    opacity: globalContext.api.theme === DarkTheme ? "1" : ".5",
+                  }}
+                />
+              </Badge>
+            </IconButton>
+          </Link>
         </Box>
         <Link href={`/dao/${globalContext.api.daoId}/profile`}>
-        
-        <Box sx={{ ml: "1rem", display: "flex", alignItems: "center" }}>
-          <Avatar sx={{ mr: ".5rem" }}>
-            <img src={Musk.src} />
-          </Avatar>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}
-          >
-            <Box sx={{ fontSize: ".9rem" }}>Alone Musk</Box>
-            <Box sx={{ color: "text.light", fontSize: ".7rem" }}>
-              Lvl 7 | Philosopher
+          <Box sx={{ ml: "1rem", display: "flex", alignItems: "center" }}>
+            <Avatar sx={{ mr: ".5rem" }}>
+              <img src={Musk.src} />
+            </Avatar>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
+              <Box sx={{ fontSize: ".9rem" }}>Alone Musk</Box>
+              <Box sx={{ color: "text.light", fontSize: ".7rem" }}>
+                Lvl 7 | Philosopher
+              </Box>
             </Box>
           </Box>
-        </Box>
         </Link>
-
       </Box>
     </Box>
   );

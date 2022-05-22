@@ -102,9 +102,7 @@ export const ImageWrapper: React.FC<{
       <Avatar src={props.img}></Avatar>
       <Box sx={{ ml: ".5rem" }}>
         <Box sx={{ fontSize: ".9rem" }}>{props.name}</Box>
-        <Box sx={{ fontSize: ".7rem", color: "text.light" }}>
-          {props.size}
-        </Box>
+        <Box sx={{ fontSize: ".7rem", color: "text.light" }}>{props.size}</Box>
       </Box>
     </Box>
   );

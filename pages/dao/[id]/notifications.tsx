@@ -3,7 +3,7 @@ import * as React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 
-const Notifications: React.FC<{params: any}> = (props) => {
+const Notifications: React.FC<{ params: any }> = (props) => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   return <Box>Notifications here.... {props.params.id}</Box>;
 };
@@ -19,7 +19,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const daoData = {params};
+  const daoData = { params };
   return {
     props: {
       params,

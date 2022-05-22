@@ -17,7 +17,7 @@ export default function Nav(props) {
   let globalContext = React.useContext(ThemeContext);
   let global = React.useContext(GlobalContext);
 
-  let theme = globalContext.theme
+  let theme = globalContext.theme;
   const [logo, setLogo] = React.useState(
     theme === DarkTheme ? LightLogo : DarkLogo
   );
@@ -82,14 +82,19 @@ export default function Nav(props) {
             <Button variant="outlined" color="error">
               Cancel <DeleteIcon sx={{ ml: 1 }} />
             </Button>
-            <Button variant="outlined" color="primary" sx={{ ml: 2 }} onClick={() => global.api.setData({...global.api.data, draftModal: true})}>
+            <Button
+              variant="outlined"
+              color="primary"
+              sx={{ ml: 2 }}
+              onClick={() =>
+                global.api.setData({ ...global.api.data, draftModal: true })
+              }
+            >
               Save as Draft <Save sx={{ ml: 1 }} />
             </Button>
           </Box>
         </Box>
-        
       </Box>
-      
     </>
   );
 }

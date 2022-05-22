@@ -48,7 +48,9 @@ const Review: React.FC = () => {
         <Button
           sx={{ width: "49%", mr: ".5rem" }}
           variant="outlined"
-          onClick={() => globalContext.api.setData({...data, draftModal: true})}
+          onClick={() =>
+            globalContext.api.setData({ ...data, draftModal: true })
+          }
         >
           Publish as a draft
         </Button>

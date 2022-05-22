@@ -6,15 +6,14 @@ import LightLogo from "../../../public/logos/light_logo.svg";
 import { DarkTheme, LightTheme } from "../../../theme/theme.js";
 
 const CreationLoading: React.FC<{ theme: any }> = (props) => {
-
   let themeContext = React.useContext(ThemeContext);
   const [logo, setLogo] = React.useState(
     themeContext.theme === DarkTheme ? LightLogo : DarkLogo
   );
 
   React.useEffect(() => {
-    setLogo(themeContext.theme === DarkTheme ? LightLogo : DarkLogo)
-  }, [themeContext.theme])
+    setLogo(themeContext.theme === DarkTheme ? LightLogo : DarkLogo);
+  }, [themeContext.theme]);
 
   return (
     <>
