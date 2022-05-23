@@ -16,6 +16,7 @@ import DaoTemplate from "@components/dao/DaoTemplate";
 import Dashboard from "@components/dao/dashboard/Dashboard";
 import Profile from "./dao/[id]/profile";
 import { useRouter } from "next/router";
+import Edit from "./dao/[id]/profile/edit";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
@@ -38,7 +39,8 @@ export default function App({ Component, pageProps }: AppProps) {
     Component === Dao ||
     Component === Notifications ||
     Component === Profile ||
-    Component === Dashboard ? (
+    Component === Dashboard ||
+    Component === Edit ? (
     <ThemeProvider theme={theme}>
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <CssBaseline />

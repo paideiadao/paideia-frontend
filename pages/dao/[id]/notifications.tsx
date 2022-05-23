@@ -25,7 +25,7 @@ temp2.setDate(temp.getDate() - 5);
 temp3.setDate(temp.getDate() - 100);
 temp4.setTime(temp.getTime() - 0.5 * 60 * 60 * 1000);
 
-const newNotifications = [
+export const newNotifications = [
   {
     img: ImagePlaceholder.src,
     username: "<User name>",
@@ -60,7 +60,7 @@ const newNotifications = [
   },
 ];
 
-const oldNotifications = [
+export const oldNotifications = [
   {
     img: ImagePlaceholder.src,
     username: "<User name>",
@@ -97,9 +97,7 @@ const oldNotifications = [
 
 const getNotificationCountdown = (date: Date) => {
   let _temp = new Date();
-  console.log(date, _temp);
   let hours = Math.abs(_temp.getTime() - date.getTime()) / 36e5;
-  console.log(hours);
   if (hours < 1) {
     return (
       (hours * 60).toFixed(0) +
@@ -126,9 +124,6 @@ const getNotificationCountdown = (date: Date) => {
 const Notifications: React.FC<{ params: any }> = (props) => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [view, setView] = React.useState<string>("All");
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   return (
     <Box
@@ -158,10 +153,12 @@ const Notifications: React.FC<{ params: any }> = (props) => {
           }}
         >
           Notifications (4 new)
-          <Button sx={{ ml: "auto" }} variant="contained" onClick={handleOpen}>
-            Notification Settings{" "}
-            <SettingsIcon sx={{ ml: ".5rem", mr: "0rem" }} />
-          </Button>
+          <Link href={`/dao/${globalContext.api.daoId}/notifications/edit`}>
+            <Button sx={{ ml: "auto" }} variant="contained">
+              Notification Settings{" "}
+              <SettingsIcon sx={{ ml: ".5rem", mr: "0rem" }} />
+            </Button>
+          </Link>
         </Box>
         <Box sx={{ mt: ".5rem" }}>
           <Chip
@@ -206,58 +203,11 @@ const Notifications: React.FC<{ params: any }> = (props) => {
           })}
         </Box>
       </Box>
-      <Modal open={open} onClose={handleClose}>
-        <Box sx={{ ...modalBackground, p: 0, width: "30rem" }}>
-          <Box
-            sx={{
-              backgroundColor: "fileInput.main",
-              p: ".5rem",
-              pl: "1rem",
-              display: "flex",
-              alignItems: "center",
-              width: "100%",
-              borderTopLeftRadius: ".2rem",
-              borderTopRightRadius: ".2rem",
-              borderBottom: "1px solid",
-              borderBottomColor: "divider.main",
-            }}
-          >
-            <CapsInfo title="Configuration" mb={"0"} />
-            <Button sx={{ ml: "auto", width: "15rem" }} size="small">
-              Mark all as read
-            </Button>
-          </Box>
-
-          <Box sx={{ height: "25rem", overflowY: "scroll" }}>
-            {oldNotifications
-              .concat(newNotifications)
-              .map((i: any, c: number) => {
-                return <Notification i={i} m={"0"} />;
-              })}
-          </Box>
-          <Box
-            sx={{
-              backgroundColor: "fileInput.main",
-              p: ".5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "100%",
-              borderBottomLeftRadius: ".2rem",
-              borderBottomRightRadius: ".2rem",
-              borderBottom: "1px solid",
-              borderBottomColor: "divider.main",
-            }}
-          >
-            <Button size="small">View all</Button>
-          </Box>
-        </Box>
-      </Modal>
     </Box>
   );
 };
 
-const Notification: React.FC<{ i: any; m?: string }> = (props) => {
+export const Notification: React.FC<{ i: any; m?: string }> = (props) => {
   let i = props.i;
   return (
     <Box

@@ -76,7 +76,6 @@ const ActiveProposal: React.FC = () => {
     slide - 4 < 0 ? setSlide(0) : setSlide(slide - 4);
 
   React.useEffect(() => {
-    console.log(slide);
     let element = document.getElementById(
       `proposal-active-${slide === 0 ? slide : slide - 1}`
     );

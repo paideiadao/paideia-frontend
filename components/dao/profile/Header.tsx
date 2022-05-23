@@ -3,8 +3,11 @@ import * as React from "react";
 import Musk from "../../../public/profile/musk-full.png";
 import InfoIcon from "@mui/icons-material/Info";
 import EditIcon from "@mui/icons-material/Edit";
+import Link from "next/link";
+import { GlobalContext } from "@lib/AppContext";
 
 const ProfileHeader: React.FC = () => {
+  let globalContext = React.useContext(GlobalContext);
   return (
     <Box
       sx={{
@@ -63,10 +66,12 @@ const ProfileHeader: React.FC = () => {
             ml: "auto",
           }}
         >
-          <Button variant="contained">
-            <EditIcon sx={{ mr: ".5rem", ml: "-.25rem" }} />
-            Edit Profile
-          </Button>
+          <Link href={`/dao/${globalContext.api.daoId}/profile/edit`}>
+            <Button variant="contained">
+              <EditIcon sx={{ mr: ".5rem", ml: "-.25rem" }} />
+              Edit Profile
+            </Button>
+          </Link>
         </Box>
       </Box>
     </Box>
