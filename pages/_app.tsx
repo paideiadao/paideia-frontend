@@ -1,6 +1,6 @@
 import "../styles/global.css";
 import { AppProps } from "next/app";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import * as React from "react";
 import { DarkTheme, LightTheme } from "../theme/theme";
 import { ThemeProvider } from "@mui/material/styles";
@@ -17,6 +17,10 @@ import Dashboard from "@components/dao/dashboard/Dashboard";
 import Profile from "./dao/[id]/profile";
 import { useRouter } from "next/router";
 import Edit from "./dao/[id]/profile/edit";
+import All from "./dao/[id]/proposals/all";
+import Following from "./dao/[id]/proposals/following";
+import Mine from "./dao/[id]/proposals/mine";
+import Past from "./dao/[id]/proposals/past";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
@@ -40,7 +44,11 @@ export default function App({ Component, pageProps }: AppProps) {
     Component === Notifications ||
     Component === Profile ||
     Component === Dashboard ||
-    Component === Edit ? (
+    Component === Edit ||
+    Component === All ||
+    Component === Following ||
+    Component === Mine ||
+    Component === Past ? (
     <ThemeProvider theme={theme}>
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <CssBaseline />
@@ -64,6 +72,23 @@ export default function App({ Component, pageProps }: AppProps) {
     </ThemeProvider>
   );
 }
+
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const paths = [{ params: { id: "spreadly" } }, { params: { id: "ergopad" } }];
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
+
+// export const getStaticProps: GetStaticProps = async ({ params }) => {
+//   const daoData = { params };
+//   return {
+//     props: {
+//       params,
+//     },
+//   };
+// };
 
 export async function getServerSideProps(context) {
   // possibilities

@@ -51,8 +51,8 @@ const BasicLink: React.FC<{
     Staking: `/dao/${globalContext.api.daoId}/staking`,
     Members: `/dao/${globalContext.api.daoId}/members`,
     Activity: `/dao/${globalContext.api.daoId}/activity`,
-    "Edit profile": `/dao/${globalContext.api.daoId}/edit-profile`,
-    Notifications: `/dao/${globalContext.api.daoId}/notifications`,
+    "Edit profile": `/dao/${globalContext.api.daoId}/profile/edit`,
+    Notifications: `/dao/${globalContext.api.daoId}/notifications/edit`,
     Wallet: `/dao/${globalContext.api.daoId}/wallet`,
 
     "DAO Config": `/dao/${globalContext.api.daoId}/dao-config`,
