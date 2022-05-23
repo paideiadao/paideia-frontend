@@ -87,8 +87,9 @@ const TopNav: React.FC = () => {
             ...modalBackground,
             p: 0,
             width: "30rem",
-            left: "80%",
+            right: "-12rem",
             top: "19rem",
+            left: "",
           }}
         >
           <Box
