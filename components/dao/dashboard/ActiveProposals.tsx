@@ -5,8 +5,9 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ProposalCard from "../proposals/ProposalCard";
 
-const proposals = [
+export const proposals = [
   {
+    id: 1,
     proposalName: "ProposalName 1",
     status: "Challenged",
     likes: 158,
@@ -19,6 +20,7 @@ const proposals = [
     no: 92,
   },
   {
+    id: 2,
     proposalName: "ProposalName 2",
     status: "Active",
     likes: 158,
@@ -31,6 +33,7 @@ const proposals = [
     no: 92,
   },
   {
+    id: 3,
     proposalName: "ProposalName 3",
     status: "Discussion",
     likes: 158,
@@ -43,6 +46,7 @@ const proposals = [
     users: 27,
   },
   {
+    id: 4,
     proposalName: "ProposalName 4",
     status: "Unchallenged",
     likes: 158,
@@ -54,6 +58,7 @@ const proposals = [
     date: new Date(),
   },
   {
+    id: 5,
     proposalName: "ProposalName 5",
     status: "Unchallenged",
     likes: 158,
@@ -76,11 +81,10 @@ const ActiveProposal: React.FC = () => {
     slide - 4 < 0 ? setSlide(0) : setSlide(slide - 4);
 
   React.useEffect(() => {
-    console.log(slide);
     let element = document.getElementById(
       `proposal-active-${slide === 0 ? slide : slide - 1}`
     );
-    element.scrollIntoView(false);
+    element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
   }, [slide]);
 
   return (
@@ -121,10 +125,16 @@ const ActiveProposal: React.FC = () => {
           mt: ".5rem",
           overflowX: "hidden",
           pt: ".75rem",
+          width: "100%",
         }}
       >
         {proposals.map((i: any, c: number) => (
-          <ProposalCard {...i} c={c} key={"proposal-card-key-" + c} />
+          <ProposalCard
+            {...i}
+            c={c}
+            key={"proposal-card-key-" + c}
+            width="33%"
+          />
         ))}
       </Box>
     </>

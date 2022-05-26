@@ -218,7 +218,7 @@ const PublicRound: React.FC<{
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <Box sx={{ color: "primary.lightText" }}>SigUSD</Box>
+                  <Box sx={{ color: "text.light" }}>SigUSD</Box>
                 </InputAdornment>
               ),
             }}
@@ -234,7 +234,7 @@ const PublicRound: React.FC<{
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <Box sx={{ color: "primary.lightText" }}>USD</Box>
+                  <Box sx={{ color: "text.light" }}>USD</Box>
                 </InputAdornment>
               ),
             }}

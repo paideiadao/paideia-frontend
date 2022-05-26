@@ -1,3 +1,4 @@
+import { ThemeContext } from "@lib/ThemeContext";
 import { Box, CircularProgress } from "@mui/material";
 import * as React from "react";
 import DarkLogo from "../../../public/logos/dark_logo.svg";
@@ -5,9 +6,14 @@ import LightLogo from "../../../public/logos/light_logo.svg";
 import { DarkTheme, LightTheme } from "../../../theme/theme.js";
 
 const CreationLoading: React.FC<{ theme: any }> = (props) => {
+  let themeContext = React.useContext(ThemeContext);
   const [logo, setLogo] = React.useState(
-    props.theme === DarkTheme ? LightLogo : DarkLogo
+    themeContext.theme === DarkTheme ? LightLogo : DarkLogo
   );
+
+  React.useEffect(() => {
+    setLogo(themeContext.theme === DarkTheme ? LightLogo : DarkLogo);
+  }, [themeContext.theme]);
 
   return (
     <>
@@ -49,7 +55,7 @@ const CreationLoading: React.FC<{ theme: any }> = (props) => {
             textAlign: "center",
             fontSize: "1rem",
             mt: ".2rem",
-            color: "primary.lightText",
+            color: "text.light",
           }}
         >
           Setting your DAOs governance structure, minting the token, making it

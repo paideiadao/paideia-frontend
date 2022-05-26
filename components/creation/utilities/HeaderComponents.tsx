@@ -48,17 +48,19 @@ export const Header: React.FC<{
   );
 };
 
-export const CapsInfo: React.FC<{ title: string; small?: boolean }> = (
-  props
-) => {
+export const CapsInfo: React.FC<{
+  title: string;
+  small?: boolean;
+  mb?: string;
+}> = (props) => {
   return (
     <Box
       sx={{
         width: "100%",
-        color: "primary.text",
+        color: "text.main",
         fontSize: props.small === undefined ? ".8rem" : ".7rem",
         fontWeight: 400,
-        mb: "1rem",
+        mb: props.mb === undefined ? "1rem" : props.mb,
       }}
     >
       {props.title.toUpperCase()}
@@ -68,7 +70,7 @@ export const CapsInfo: React.FC<{ title: string; small?: boolean }> = (
 
 export const Subtitle: React.FC<{ subtitle: string }> = (props) => {
   return (
-    <Box sx={{ width: "100%", color: "primary.lightText", fontSize: ".9rem" }}>
+    <Box sx={{ width: "100%", color: "text.light", fontSize: ".9rem" }}>
       {props.subtitle}
     </Box>
   );

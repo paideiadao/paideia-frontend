@@ -71,7 +71,7 @@ const FileInput: React.FC<{
               </Box>
             )}
           </Box>
-          <Box sx={{ color: "primary.lightText" }}>
+          <Box sx={{ color: "text.light" }}>
             {props.file === undefined || props.file === -1
               ? "File Max size 1Mb. Dimensions 48px by 48px."
               : bytesToSize(props.file.size)}

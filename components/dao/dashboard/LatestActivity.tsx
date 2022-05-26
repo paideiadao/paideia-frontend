@@ -4,7 +4,7 @@ import { Subheader } from "../../creation/utilities/HeaderComponents";
 import dateFormat from "dateformat";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 
-const activities = [
+export const activities = [
   {
     date: new Date(),
     img: "T",
@@ -79,7 +79,7 @@ const LatestActivity: React.FC = () => {
                 <Box
                   sx={{
                     display: "inline",
-                    color: "primary.lightText",
+                    color: "text.light",
                     ml: ".1rem",
                     mr: ".1rem",
                   }}
@@ -93,7 +93,7 @@ const LatestActivity: React.FC = () => {
             <Box
               sx={{
                 ml: "auto",
-                color: "primary.lightText",
+                color: "text.light",
                 display: "flex",
                 alignItems: "center",
               }}

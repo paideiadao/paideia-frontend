@@ -7,6 +7,6 @@ export const modalBackground = {
   bgcolor: "fileInput.outer",
   boxShadow: 24,
   p: "1rem",
-  borderRadius: ".4rem",
+  borderRadius: ".3rem",
   color: "primary.text",
 };

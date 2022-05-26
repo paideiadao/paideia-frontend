@@ -90,9 +90,7 @@ const DaoBio: React.FC = () => {
       >
         <Box>
           <Box sx={{ fontSize: ".7rem" }}>{dao.name}</Box>
-          <Box sx={{ fontSize: ".6rem", color: "primary.lightText" }}>
-            {dao.url}
-          </Box>
+          <Box sx={{ fontSize: ".6rem", color: "text.light" }}>{dao.url}</Box>
         </Box>
         <Box
           sx={{
@@ -174,9 +172,7 @@ const DaoSelect: React.FC<{ set: Function; name: string; url: string }> = (
       }
     >
       <Box sx={{ fontSize: ".7rem" }}>{props.name}</Box>
-      <Box sx={{ fontSize: ".6rem", color: "primary.lightText" }}>
-        {props.url}
-      </Box>
+      <Box sx={{ fontSize: ".6rem", color: "text.light" }}>{props.url}</Box>
     </Box>
   );
 };
