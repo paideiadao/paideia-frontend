@@ -154,10 +154,10 @@ const LikesDislikes: React.FC<{
               ml: ".5rem",
               mr: ".3rem",
               fontSize: "1rem",
-              color: "text.lightSuccess",
+              color: "primary.lightSuccess",
             }}
           />
-          <Box sx={{ color: "text.lightSuccess" }}>{props.likes}</Box>
+          <Box sx={{ color: "primary.lightSuccess" }}>{props.likes}</Box>
         </>
       )}
     </Box>
@@ -336,7 +336,8 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
   // use a local state to make it dynamic...
   return (
     <Box
-      sx={{ pr: "1rem", pt: ".5rem", pb: ".5rem" }}
+      sx={{ pr: "1rem", pt: ".5rem", pb: ".5rem",
+      width: '25%' }}
       id={`proposal-active-${props.c}`}
     >
       <Badge
@@ -363,6 +364,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
             )}
           </Box>
         }
+        sx={{width: '100%'}}
       >
         <Box
           sx={{
@@ -370,7 +372,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
             border: "1px solid",
             borderColor: "divider.main",
             borderRadius: ".3rem",
-            width: "14.3rem",
+            width: "100%",
           }}
         >
           <Box

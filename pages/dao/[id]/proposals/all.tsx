@@ -10,6 +10,8 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import AppsIcon from "@mui/icons-material/Apps";
 import StarIcon from "@mui/icons-material/Star";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import ProposalCard from "@components/dao/proposals/ProposalCard";
+import { proposals } from "@components/dao/dashboard/ActiveProposals";
 interface IFilters {
   search: string;
   proposalStatus: string;
@@ -172,6 +174,12 @@ const All: React.FC = () => {
           </Button>
         ))}
       </Box>
+      <Box sx={{width: '100%', flexWrap: 'wrap', display: 'flex', mt: '1rem'}}>
+        {proposals.concat(proposals).concat(proposals).map((i: any, c: number) => (
+            <ProposalCard {...i} c={c} key={"proposal-card-key-" + c} />
+          ))}
+      </Box>
+      
     </Box>
   );
 };
