@@ -12,6 +12,7 @@ import StarIcon from "@mui/icons-material/Star";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import ProposalCard from "@components/dao/proposals/ProposalCard";
 import { proposals } from "@components/dao/dashboard/ActiveProposals";
+import Chip from "@components/utilities/Chip";
 interface IFilters {
   search: string;
   proposalStatus: string;
@@ -135,51 +136,46 @@ const All: React.FC = () => {
       </Box>
       <Box sx={{ display: "flex", alignItems: "center", mt: ".75rem" }}>
         {categories.map((i: any, c: number) => (
-          <Button
-            size="small"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              fontSize: ".5rem",
-              borderRadius: "5rem",
-              ml: ".5rem",
-              fontWeight: 500,
-              pl: ".4rem",
-              pr: ".4rem",
-              minWidth: '1rem'
-            }}
-            onClick={() => {
+          <Chip
+            {...i}
+            set={() => {
               let temp = [...filters.categories];
               let index = temp.indexOf(i.label);
               if (index > -1) {
                 temp.splice(index, 1);
               } else {
-                temp.push(i.label)
+                temp.push(i.label);
               }
 
               setFilters({
                 ...filters,
-                categories: temp
-              })
+                categories: temp,
+              });
             }}
-            key={`filter-chip-key-${c}`}
+            c={c}
             variant={
               filters.categories.indexOf(i.label) > -1
                 ? "contained"
                 : "outlined"
             }
-          >
-            {i.icon}
-            {i.label}
-          </Button>
+          />
         ))}
       </Box>
-      <Box sx={{width: '100%', flexWrap: 'wrap', display: 'flex', mt: '1rem'}}>
-        {proposals.concat(proposals).concat(proposals).map((i: any, c: number) => (
-            <ProposalCard {...i} c={c} key={"proposal-card-key-" + c} width='25%' />
+      <Box
+        sx={{ width: "100%", flexWrap: "wrap", display: "flex", mt: "1rem" }}
+      >
+        {proposals
+          .concat(proposals)
+          .concat(proposals)
+          .map((i: any, c: number) => (
+            <ProposalCard
+              {...i}
+              c={c}
+              key={"proposal-card-key-" + c}
+              width="25%"
+            />
           ))}
       </Box>
-      
     </Box>
   );
 };

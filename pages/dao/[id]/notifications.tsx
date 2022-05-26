@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Chip, Modal } from "@mui/material";
+import { Avatar, Box, Button, Modal } from "@mui/material";
 import * as React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
@@ -11,6 +11,7 @@ import ImagePlaceholder from "../../../public/images/image-placeholder.png";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CircleIcon from "@mui/icons-material/Circle";
 import { modalBackground } from "@components/utilities/modalBackground";
+import Chip from "@components/utilities/Chip";
 
 let temp = new Date(),
   temp1 = new Date(),
@@ -160,22 +161,24 @@ const Notifications: React.FC<{ params: any }> = (props) => {
             </Button>
           </Link>
         </Box>
-        <Box sx={{ mt: ".5rem" }}>
+        <Box sx={{ mt: ".5rem", display: "flex", alignItems: "center" }}>
           <Chip
             label="All"
             icon={<AppsIcon />}
-            sx={{ cursor: "pointer" }}
-            color={view === "All" ? "primary" : undefined}
-            onClick={() => setView("All")}
-            variant={view === "All" ? "filled" : "outlined"}
+            set={() => {
+              setView("All");
+            }}
+            c={1}
+            variant={view === "All" ? "contained" : "outlined"}
           />
           <Chip
             label="Unread"
-            icon={<AppsIcon sx={{ fill: "white" }} />}
-            sx={{ ml: ".5rem", cursor: "pointer" }}
-            color={view === "Unread" ? "primary" : undefined}
-            onClick={() => setView("Unread")}
-            variant={view === "Unread" ? "filled" : "outlined"}
+            icon={<AppsIcon />}
+            set={() => {
+              setView("Unread");
+            }}
+            c={1}
+            variant={view === "Unread" ? "contained" : "outlined"}
           />
         </Box>
         <Box

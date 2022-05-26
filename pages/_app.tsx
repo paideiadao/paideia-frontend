@@ -22,6 +22,8 @@ import Following from "./dao/[id]/proposals/following";
 import Mine from "./dao/[id]/proposals/mine";
 import Past from "./dao/[id]/proposals/past";
 import EditNotifications from "./dao/[id]/notifications/edit";
+import Proposal from "./dao/[id]/proposal/[proposal_id]";
+import Discussion from "./dao/[id]/discussion/[discussion_id]";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
@@ -50,6 +52,8 @@ export default function App({ Component, pageProps }: AppProps) {
     Component === Following ||
     Component === Mine ||
     Component === EditNotifications ||
+    Component === Proposal ||
+    Component === Discussion ||
     Component === Past ? (
     <ThemeProvider theme={theme}>
       <ThemeContext.Provider value={{ theme, setTheme }}>
