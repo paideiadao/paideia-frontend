@@ -84,7 +84,7 @@ const ActiveProposal: React.FC = () => {
     let element = document.getElementById(
       `proposal-active-${slide === 0 ? slide : slide - 1}`
     );
-    element.scrollIntoView(false);
+    element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
   }, [slide]);
 
   return (
