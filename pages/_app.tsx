@@ -24,6 +24,10 @@ import Past from "./dao/[id]/proposals/past";
 import EditNotifications from "./dao/[id]/notifications/edit";
 import Proposal from "./dao/[id]/proposal/[proposal_id]";
 import Discussion from "./dao/[id]/discussion/[discussion_id]";
+import Create from "./dao/[id]/create";
+import Vote from "./dao/[id]/proposal/[proposal_id]/vote";
+import CastVote from "./dao/[id]/proposal/[proposal_id]/cast-vote";
+import Member from "./dao/[id]/member/[member_id]";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
@@ -40,7 +44,6 @@ export default function App({ Component, pageProps }: AppProps) {
     localStorage.setItem("theme", temp);
   }, [theme]);
 
-  console.log(router);
   const api = new AppApi(alert, setAlert, theme, setTheme, daoId, setDaoId);
   return Component === Creation ||
     Component === Dao ||
@@ -54,6 +57,10 @@ export default function App({ Component, pageProps }: AppProps) {
     Component === EditNotifications ||
     Component === Proposal ||
     Component === Discussion ||
+    Component === Create ||
+    Component === Vote ||
+    Component === CastVote ||
+    Component === Member ||
     Component === Past ? (
     <ThemeProvider theme={theme}>
       <ThemeContext.Provider value={{ theme, setTheme }}>

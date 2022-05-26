@@ -355,7 +355,11 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
 
   // use a local state to make it dynamic...
   return (
-    <Link href={`/dao/${id}/proposal/${props.id}`}>
+    <Link
+      href={`/dao/${id}/${
+        props.status === "Discussion" ? "discussion" : "proposal"
+      }/${props.id}`}
+    >
       <Box
         sx={{
           pr: "1rem",

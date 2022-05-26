@@ -9,7 +9,12 @@ const Proposals: React.FC = () => {
     <Box sx={{ display: "flex", width: "100%", flexWrap: "wrap" }}>
       <CapsInfo title={`This user made ${proposals.length} proposals`} />
       {proposals.map((i: any, c: number) => (
-        <ProposalCard {...i} c={c} key={"proposal-card-key-profile-" + c} />
+        <ProposalCard
+          {...i}
+          c={c}
+          key={"proposal-card-key-profile-" + c}
+          width="33%"
+        />
       ))}
     </Box>
   );

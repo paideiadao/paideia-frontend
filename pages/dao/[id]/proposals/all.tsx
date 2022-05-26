@@ -13,6 +13,8 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import ProposalCard from "@components/dao/proposals/ProposalCard";
 import { proposals } from "@components/dao/dashboard/ActiveProposals";
 import Chip from "@components/utilities/Chip";
+import Link from "next/link";
+import { useRouter } from "next/router";
 interface IFilters {
   search: string;
   proposalStatus: string;
@@ -48,6 +50,9 @@ const All: React.FC = () => {
     categories: ["All"],
   });
 
+  const router = useRouter();
+  const { id } = router.query;
+
   return (
     <Box sx={{ width: "100%", p: "1.5rem" }}>
       <Box
@@ -59,9 +64,11 @@ const All: React.FC = () => {
         }}
       >
         <Header large title="All proposals" />
-        <Button variant="contained" sx={{ ml: "auto" }}>
-          Create New <AddIcon sx={{ ml: ".5rem" }} />
-        </Button>
+        <Link href={`/dao/${id}/create`}>
+          <Button variant="contained" sx={{ ml: "auto" }}>
+            Create New <AddIcon sx={{ ml: ".5rem" }} />
+          </Button>
+        </Link>
       </Box>
       <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
         <Paper
