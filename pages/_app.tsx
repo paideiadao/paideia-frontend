@@ -57,10 +57,10 @@ export default function App({ Component, pageProps }: AppProps) {
     Component === EditNotifications ||
     Component === Proposal ||
     Component === Discussion ||
-    Component === Create ||
-    Component === Vote ||
-    Component === CastVote ||
-    Component === Member ||
+    Component === Create || 
+    Component === Vote || 
+    Component === CastVote || 
+    Component === Member || 
     Component === Past ? (
     <ThemeProvider theme={theme}>
       <ThemeContext.Provider value={{ theme, setTheme }}>

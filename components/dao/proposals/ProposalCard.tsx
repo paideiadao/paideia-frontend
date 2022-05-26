@@ -403,6 +403,9 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
               borderColor: "divider.main",
               borderRadius: ".3rem",
               width: "100%",
+              ":hover": {
+                borderColor: 'primary.main'
+              },
             }}
           >
             <Box

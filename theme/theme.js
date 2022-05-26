@@ -380,10 +380,10 @@ export const DarkTheme = createTheme({
         completed: {},
       },
     },
-    MuiCssBaseline: {
-      styleOverrides: {
-        body: darkScrollbar(),
-      },
-    },
+    // MuiCssBaseline: {
+    //   styleOverrides: {
+    //     body: darkScrollbar(),
+    //   },
+    // },
   },
 });
