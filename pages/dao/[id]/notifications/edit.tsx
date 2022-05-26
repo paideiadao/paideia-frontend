@@ -40,11 +40,12 @@ const EditNotifications: React.FC<{params: any}> = (props) => {
 
     return <Box sx={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', pt: '1.5rem', pb: '1.5rem'}}>
         <Box sx={{width: '70%'}}>
-            <Header title="Notification settings" />
+            <Header title="Notification settings" large/>
             <LabeledSwitch
                 title='Notify me through email'
                 value={value.showEmail}
                 onChange={() => setValue({...value, showEmail: !value.showEmail})}
+                small
             />
             {value.showEmail && <TextField
                 value={value.emailAddress}
@@ -55,6 +56,7 @@ const EditNotifications: React.FC<{params: any}> = (props) => {
             <LabeledSwitch
                 title='Notify me through phone'
                 value={value.showPhone}
+                small
                 onChange={() => setValue({...value, showPhone: !value.showPhone})}
             />
             {value.showPhone && <TextField
@@ -63,10 +65,10 @@ const EditNotifications: React.FC<{params: any}> = (props) => {
                 sx={{width: '100%'}}
                 onChange={(e: any) => setValue({...value, phoneNumber: e.target.value})}
             />}
-            <Box sx={{width: '100%', mt: '1.5rem'}}>
+            <Box sx={{width: '100%', mt: '1.5rem', fontSize: '.9rem'}}>
                 Notify me when
-                <FormGroup>
-                    {notifications.map((i: any) => <FormControlLabel control={<Checkbox checked={value[i.value]}/>} label={i.label} sx={{mt: '.25rem', mb: '.25rem', fontSize: '.8rem'}} onClick={() => setValue({...value, [i.value]: !value[i.value]})}/>)}
+                <FormGroup >
+                    {notifications.map((i: any) => <FormControlLabel disableTypography onClick={() => setValue({...value, [i.value]: !value[i.value]})} control={<Checkbox checked={value[i.value]}/>} label={i.label} sx={{mt: '.25rem', mb: '.25rem'}}/>)}
                 </FormGroup>
             </Box>
             <Box
@@ -82,7 +84,7 @@ const EditNotifications: React.FC<{params: any}> = (props) => {
             Cancel
           </Button>
           <Button variant="contained" sx={{ width: "49%" }}>
-            Save Changess
+            Save Changes
           </Button>
         </Box>
         </Box>

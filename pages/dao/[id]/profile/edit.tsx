@@ -88,8 +88,8 @@ const Edit: React.FC<{ params: any }> = (props) => {
         width: "100%",
         justifyContent: "center",
         display: "flex",
-        pb: "1rem",
-        pt: "1rem",
+        pb: "1.5rem",
+        pt: "1.5rem",
       }}
     >
       <Box sx={{ width: "70%" }}>
@@ -165,7 +165,7 @@ const Edit: React.FC<{ params: any }> = (props) => {
             Cancel
           </Button>
           <Button variant="contained" sx={{ width: "49%" }}>
-            Save Changess
+            Save Changes
           </Button>
         </Box>
       </Box>

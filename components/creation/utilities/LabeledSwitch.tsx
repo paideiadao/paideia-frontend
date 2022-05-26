@@ -13,7 +13,7 @@ const LabeledSwitch: React.FC<{
     <Box sx={{ display: "flex", alignItems: "center", mt: "1rem", mb: "1rem" }}>
       <Box>
         {props.subtitle === undefined ? (
-          <Subheader title={props.title} />
+          <Subheader title={props.title} small={props.small}/>
         ) : (
           <Header
             title={props.title}
