@@ -120,10 +120,11 @@ const ActiveProposal: React.FC = () => {
           mt: ".5rem",
           overflowX: "hidden",
           pt: ".75rem",
+          width: '100%'
         }}
       >
         {proposals.map((i: any, c: number) => (
-          <ProposalCard {...i} c={c} key={"proposal-card-key-" + c} />
+          <ProposalCard {...i} c={c} key={"proposal-card-key-" + c} width='33%'/>
         ))}
       </Box>
     </>

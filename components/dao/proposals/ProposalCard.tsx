@@ -28,6 +28,7 @@ export interface IProposalCard {
   comments: number;
   users: number;
   date: Date;
+  width: string;
 }
 
 const VoteWidget: React.FC<{
@@ -337,7 +338,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
   return (
     <Box
       sx={{ pr: "1rem", pt: ".5rem", pb: ".5rem",
-      width: '25%' }}
+      minWidth: props.width }}
       id={`proposal-active-${props.c}`}
     >
       <Badge
