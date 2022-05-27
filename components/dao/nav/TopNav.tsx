@@ -13,12 +13,15 @@ import {
   oldNotifications,
   Notification,
 } from "@pages/dao/[id]/notifications";
+import { useRouter } from "next/router";
 
 const TopNav: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const router = useRouter();
+  const {id} = router.query
   return (
     <Box
       sx={{
@@ -61,7 +64,7 @@ const TopNav: React.FC = () => {
             </Badge>
           </IconButton>
         </Box>
-        <Link href={`/dao/${globalContext.api.daoId}/profile`}>
+        <Link href={`/dao/${id}/profile`}>
           <Box sx={{ ml: "1rem", display: "flex", alignItems: "center" }}>
             <Avatar sx={{ mr: ".5rem" }}>
               <img src={Musk.src} />
@@ -140,7 +143,7 @@ const TopNav: React.FC = () => {
             }}
             onClick={handleClose}
           >
-            <Link href={`/dao/${globalContext.api.daoId}/notifications`}>
+            <Link href={`/dao/${id}/notifications`}>
               <Button size="small">View all</Button>
             </Link>
           </Box>
