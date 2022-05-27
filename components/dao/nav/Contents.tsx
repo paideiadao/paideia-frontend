@@ -26,6 +26,7 @@ import EditNotificationsIcon from "@mui/icons-material/EditNotifications";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const BasicLink: React.FC<{
   icon: JSX.Element;
@@ -36,26 +37,27 @@ const BasicLink: React.FC<{
   ml?: string;
   notifications?: number;
 }> = (props) => {
-  let globalContext = React.useContext<IGlobalContext>(GlobalContext);
+  const router = useRouter()
+  const { id } = router.query
   let linkLookup = {
-    Dashboard: `/dao/${globalContext.api.daoId}`,
-    All: `/dao/${globalContext.api.daoId}/proposals/all`,
-    Following: `/dao/${globalContext.api.daoId}/proposals/following`,
-    Mine: `/dao/${globalContext.api.daoId}/proposals/mine`,
-    Past: `/dao/${globalContext.api.daoId}/proposals/past`,
-    Treasury: `/dao/${globalContext.api.daoId}/financials/treasury`,
-    Tokenomics: `/dao/${globalContext.api.daoId}/financials/tokenomics`,
-    Recurring: `/dao/${globalContext.api.daoId}/financials/recurring`,
-    Token: `/dao/${globalContext.api.daoId}/financials/token`,
-    Distributions: `/dao/${globalContext.api.daoId}/distributions`,
-    Staking: `/dao/${globalContext.api.daoId}/staking`,
-    Members: `/dao/${globalContext.api.daoId}/members`,
-    Activity: `/dao/${globalContext.api.daoId}/activity`,
-    "Edit profile": `/dao/${globalContext.api.daoId}/profile/edit`,
-    Notifications: `/dao/${globalContext.api.daoId}/notifications/edit`,
-    Wallet: `/dao/${globalContext.api.daoId}/wallet`,
+    Dashboard: `/dao/${id}`,
+    All: `/dao/${id}/proposals/all`,
+    Following: `/dao/${id}/proposals/following`,
+    Mine: `/dao/${id}/proposals/mine`,
+    Past: `/dao/${id}/proposals/past`,
+    Treasury: `/dao/${id}/financials/treasury`,
+    Tokenomics: `/dao/${id}/financials/tokenomics`,
+    Recurring: `/dao/${id}/financials/recurring`,
+    Token: `/dao/${id}/financials/token`,
+    Distributions: `/dao/${id}/distributions`,
+    Staking: `/dao/${id}/staking`,
+    Members: `/dao/${id}/members`,
+    Activity: `/dao/${id}/activity`,
+    "Edit profile": `/dao/${id}/profile/edit`,
+    Notifications: `/dao/${id}/notifications/edit`,
+    Wallet: `/dao/${id}/wallet`,
 
-    "DAO Config": `/dao/${globalContext.api.daoId}/dao-config`,
+    "DAO Config": `/dao/${id}/dao-config`,
   };
   return (
     <Link href={linkLookup[props.title]}>
