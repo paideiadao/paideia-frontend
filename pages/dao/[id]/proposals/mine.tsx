@@ -1,8 +1,11 @@
-import { Box } from "@mui/material";
 import * as React from "react";
+import { proposals } from "@components/dao/dashboard/ActiveProposals";
+import PropsosalListing from "@components/dao/proposals/ProposalListing";
 
 const Mine: React.FC = () => {
-  return <Box>Mine proposals here...</Box>;
+  return (
+    <PropsosalListing title='My proposals' proposals={[proposals[1]]}/>
+  );
 };
 
 export default Mine;

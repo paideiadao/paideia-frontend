@@ -5,6 +5,9 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ProposalCard from "../proposals/ProposalCard";
 
+let temp = new Date() 
+temp.setDate(temp.getDate() - 30)
+
 export const proposals = [
   {
     id: 1,
@@ -41,7 +44,7 @@ export const proposals = [
     userSide: 1,
     favorited: true,
     category: "Category 2",
-    widget: new Date(),
+    widget: temp,
     comments: 115,
     users: 27,
   },

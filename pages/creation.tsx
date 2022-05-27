@@ -96,8 +96,8 @@ export default function Creation(props) {
 
   let content = [
     <BasicInformation key={1} />,
-    <Governance key={2} />,
-    <Tokenomics key={3} />,
+    <Tokenomics key={2} />,
+    <Governance key={3} />,
     <Design key={4} />,
     <Review key={5} />,
   ];

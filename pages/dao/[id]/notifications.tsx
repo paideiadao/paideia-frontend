@@ -13,6 +13,9 @@ import CircleIcon from "@mui/icons-material/Circle";
 import { modalBackground } from "@components/utilities/modalBackground";
 import Chip from "@components/utilities/Chip";
 import MarkunreadIcon from '@mui/icons-material/Markunread';
+import dateFormat from "dateformat";
+
+
 let temp = new Date(),
   temp1 = new Date(),
   temp2 = new Date(),
@@ -103,22 +106,18 @@ const getNotificationCountdown = (date: Date) => {
     return (
       (hours * 60).toFixed(0) +
       " minute" +
-      ((hours * 60).toFixed(0) === "1" ? "" : "s")
+      ((hours * 60).toFixed(0) === "1" ? "" : "s") + ' ago'
     );
   } else if (hours <= 24) {
-    return hours.toFixed(0) + " hour" + (hours.toFixed(0) === "1" ? "" : "s");
-  } else if (hours <= 24 * 30) {
+    return hours.toFixed(0) + " hour" + (hours.toFixed(0) === "1" ? "" : "s") + ' ago';
+  } else if (hours <= 24 * 7) {
     return (
       (hours / 24).toFixed(0) +
       " day" +
-      ((hours / 24).toFixed(0) === "1" ? "" : "s")
+      ((hours / 24).toFixed(0) === "1" ? "" : "s") + ' ago'
     );
   } else {
-    return (
-      (hours / (24 * 30)).toFixed(0) +
-      " month" +
-      ((hours / (24 / 30)).toFixed(0) === "1" ? "" : "s")
-    );
+    return dateFormat(date, "mmmm dS, yyyy");
   }
 };
 
@@ -164,7 +163,7 @@ const Notifications: React.FC<{ params: any }> = (props) => {
         <Box sx={{ mt: ".5rem", display: "flex", alignItems: "center" }}>
           <Chip
             label="All"
-            icon={<AppsIcon />}
+            icon={<AppsIcon sx={{fontSize: '1rem', mr: '.3rem'}}/>}
             set={() => {
               setView("All");
             }}
@@ -173,7 +172,7 @@ const Notifications: React.FC<{ params: any }> = (props) => {
           />
           <Chip
             label="Unread"
-            icon={<MarkunreadIcon />}
+            icon={<MarkunreadIcon sx={{fontSize: '1rem', mr: '.3rem'}}/>}
             set={() => {
               setView("Unread");
             }}
@@ -244,7 +243,7 @@ export const Notification: React.FC<{ i: any; m?: string }> = (props) => {
           }}
         >
           <AccessTimeIcon sx={{ fontSize: "1rem", mr: ".2rem" }} />{" "}
-          {getNotificationCountdown(i.date)} ago
+          {getNotificationCountdown(i.date)}
         </Box>
       </Box>
       {i.isread === 0 && (

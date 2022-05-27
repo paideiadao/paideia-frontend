@@ -420,7 +420,7 @@ const Contents: React.FC = () => {
       sx={{
         width: "100%",
         mb: "1rem",
-        height: "55%",
+        height: "70%",
         overflowY: "auto",
         overflowX: "hidden",
       }}

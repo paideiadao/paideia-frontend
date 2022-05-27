@@ -13,13 +13,14 @@ export default function StepSelector(props) {
       title: "Basic Information",
       label: "Pick your name and url",
     },
-    {
-      title: "Governance",
-      label: "Manage how voting will work",
-    },
+    
     {
       title: "Tokenomics",
       label: "Mint and configure your token",
+    },
+    {
+      title: "Governance",
+      label: "Manage how voting will work",
     },
     {
       title: "Design",

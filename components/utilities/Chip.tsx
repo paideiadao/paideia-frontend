@@ -23,7 +23,7 @@ const Chip: React.FC<{
         minWidth: "1rem",
       }}
       onClick={props.set}
-      key={`filter-chip-key-${props.c}`}
+      key={`filter-chip-${props.label}-key-${props.c}`}
       // @ts-ignore
       variant={props.variant}
     >
