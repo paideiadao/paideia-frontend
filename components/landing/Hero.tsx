@@ -62,10 +62,11 @@ export default function Hero() {
               color: 'rgba(0,0,0,0.0)',
               lineHeight: 0.5,
               textTransform: 'uppercase',
-              fontFamily: '"Viga" !important'
+              fontFamily: '"Viga" !important',
+              strokeWidth: '2px',
+              strokeColor: '#fff'
             }}
             className="outlineText"
-            
           >
             &gt;&gt;Create
           </Typography>
@@ -175,7 +176,7 @@ export default function Hero() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container spacing={3} sx={{ mb: 6, mt: { xs: 6, md: 0 } }}>
+      <Grid container spacing={3} sx={{ mb: '120px', mt: { xs: 6, md: 0 } }}>
         <Grid item>
           <Grid container spacing={2}>
             <Grid item >
