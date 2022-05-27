@@ -36,7 +36,7 @@ export default function Perks() {
             overflow: 'hidden',
             zIndex: '-1',
             ml: '-24px',
-            display: { xs: 'none', md: 'block' },
+            display: { xs: 'none', sm: 'block' },
           }}
         >
           <Image
@@ -58,7 +58,7 @@ export default function Perks() {
             overflow: 'hidden',
             zIndex: '-1',
             ml: '-24px',
-            display: { xs: 'block', md: 'none' },
+            display: { xs: 'block', sm: 'none' },
           }}
         >
           <Image
