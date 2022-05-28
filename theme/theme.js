@@ -47,7 +47,7 @@ export const LightTheme = createTheme({
       light: "#FFB333",
       dark: "#E06804",
       // dark: will be calculated from palette.secondary.main,
-      contrastText: "#E5E5E5",
+      contrastText: "#FFFFFF",
     },
     fileInput: {
       main: "#F5F5F5",
@@ -67,7 +67,7 @@ export const LightTheme = createTheme({
     MuiChip: {
       styleOverrides: {
         icon: {
-          color: "#FFFFFF",
+          color: "inherit",
         },
       },
     },
@@ -176,17 +176,19 @@ export const DarkTheme = createTheme({
     primary: {
       // light: will be calculated from palette.primary.main,
       main: "#9FD2DB",
-      light: "rgba(255, 255, 255, 0.7)",
+      light: "#D1FFFF",
+      dark: "#6FA1A9",
       selectedButton: "rgba(2, 136, 209, 0.1)",
       lightSuccess: "#66BB6A",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
     secondary: {
-      light: "#00788C",
-      main: "#FFCF7E",
+      light: "#FFCF7E",
+      main: "#FC9E4F",
+      dark: "ED7E21",
       // dark: will be calculated from palette.secondary.main,
-      contrastText: "#333333",
+      contrastText: "#000000",
     },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
@@ -214,7 +216,7 @@ export const DarkTheme = createTheme({
     MuiChip: {
       styleOverrides: {
         icon: {
-          color: "rgba(17, 24, 39, 1)",
+          color: "inherit",
         },
       },
     },

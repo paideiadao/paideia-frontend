@@ -39,7 +39,7 @@ export default function Perks() {
         >
         </Box>
       </Container>
-      <Container sx={{ flexGrow: 1, px: '24px' }}>
+      <Container sx={{ flexGrow: 1, px: '24px', position: 'relative' }}>
       <Box
         sx={{
           position: 'absolute',
@@ -61,7 +61,7 @@ export default function Perks() {
           quality={100}
         />
       </Box>
-        <Grid container sx={{ py: '120px' }}>
+        <Grid container sx={{ pt: '60px', pb: '120px' }}>
           <Grid item md={5}>
             <Grid container spacing={3}>
               <Grid item>
@@ -93,7 +93,7 @@ export default function Perks() {
                   </Grid>
                   <Grid item zeroMinWidth>
                     <Typography component="p" sx={paragraphStyle}>
-                      Separated they live in Bookmarks right at the coast of the famous Semantics, large language ocean Separated they live in Bookmarks right.Separated they live in Bookmarks .
+                      Separated they live in Bookmarks right at the coast of the famous Semantics, large language ocean Separated they live in Bookmarks right.Separated they live in Bookmarks.
                     </Typography>
                   </Grid>
                 </Grid>
