@@ -72,13 +72,14 @@ export default function Featured() {
       </Grid>
       <GlassBox>
         <Grid container>
-          <Grid item md={6}>
+          <Grid item md={6} sx={{ p: '60px' }}>
             <Grid
               container
               direction="column"
               alignItems="flex-start"
               justifyContent="center"
-              sx={{ maxWidth: '402px', height: '100%', mx: 'auto' }}
+              rowSpacing={2}
+              sx={{ height: '100%', mx: 'auto' }}
             >
               <Grid item>
                 <Chip
@@ -86,19 +87,36 @@ export default function Featured() {
                   label="Sponsored"
                   sx={{
                     color: DarkTheme.palette.secondary.main,
-                    background: '#fff'
+                    background: '#fff',
                   }}
                 />
               </Grid>
               <Grid item>
-                <Typography sx={titleStyle}>
-                  Hello
+                <Typography sx={{ ...titleStyle, mb: '0px' }}>
+                  Ergopad
                 </Typography>
               </Grid>
               <Grid item>
-                <Typography>
-                  Is it me you're looking for
+                <Typography sx={{ fontSize: '14px' }}>
+                  Launchpad for the Ergo blockchain
                 </Typography>
+              </Grid>
+              <Grid item>
+                <Typography sx={{ ...secondaryTitleStyle, lineHeight: '23px', textTransform: 'none', }}>
+                  We are a token launch platform for Ergo giving you an opportunity to get in on the ground floor with Ergo token IDOs.
+                </Typography>
+              </Grid>
+              <Grid item sx={{width: '100%'}}>
+                <Grid
+                  container
+                >
+                  <Grid item xs={6}>
+                    Hello
+                  </Grid>
+                  <Grid item xs={6}>
+                    Hello
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
