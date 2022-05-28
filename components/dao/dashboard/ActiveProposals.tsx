@@ -4,6 +4,7 @@ import { Subheader } from "../../creation/utilities/HeaderComponents";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ProposalCard from "../proposals/ProposalCard";
+import useDidMountEffect from "@components/utilities/hooks";
 
 let temp = new Date() 
 temp.setDate(temp.getDate() - 30)
@@ -83,7 +84,7 @@ const ActiveProposal: React.FC = () => {
   const decrementSlide = () =>
     slide - 4 < 0 ? setSlide(0) : setSlide(slide - 4);
 
-  React.useEffect(() => {
+  useDidMountEffect(() => {
     let element = document.getElementById(
       `proposal-active-${slide === 0 ? slide : slide - 1}`
     );
