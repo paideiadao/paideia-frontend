@@ -2,7 +2,11 @@ import CreateHeader from "@components/dao/proposal/Header";
 import { Box } from "@mui/material";
 import * as React from "react";
 
-export interface IProposal {}
+export interface IProposal {
+  id: number;
+  name: string;
+  img: string;
+}
 
 const CreateProposal: React.FC = () => {
   return (

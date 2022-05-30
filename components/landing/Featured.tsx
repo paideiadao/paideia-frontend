@@ -60,7 +60,7 @@ const seconaryFeaturedDaos = [
     subtitle: 'P2P Lending Platform',
     body: 'A person-to-person (P2P) lending platform with easy to use tools to borrow and lend money',
     members: 2400,
-    link: '/'
+    link: "/",
   },
   {
     title: 'Azorus',
@@ -76,7 +76,7 @@ const seconaryFeaturedDaos = [
     members: 440,
     link: '/'
   },
-]
+];
 
 export default function Featured() {
   return (
@@ -110,7 +110,7 @@ export default function Featured() {
       <Grid container sx={{ mt: { xs: '120px', md: '0' } }}>
         <Grid item md={6}>
           <SectionTitle title="Sponsored DAOs" marginBottom="24px" />
-          <Typography sx={{ ...titleStyle, mb: '64px' }}>
+          <Typography sx={{ ...titleStyle, mb: "64px" }}>
             Don&apos;t miss out on these projects
           </Typography>
         </Grid>
@@ -164,7 +164,7 @@ export default function Featured() {
                   {featuredDao.body}
                 </Typography>
               </Grid>
-              <Grid item sx={{ width: '100%' }}>
+              <Grid item sx={{ width: "100%" }}>
                 <Grid container>
                   <Grid item xs={6}>
                     <Typography sx={sponsoredSecondary}>
@@ -267,7 +267,6 @@ export default function Featured() {
       <Grid container sx={{ pb: '100px' }} spacing={3}>
         <Grid item md={6}>
           <Grid container wrap="nowrap" spacing={2}>
-
             <Grid item>
               <Box
                 sx={{
@@ -286,13 +285,11 @@ export default function Featured() {
               </Typography>
             </Grid>
           </Grid>
-
         </Grid>
         <Grid item md={6}>
           <Button variant="contained" sx={{}}>
             All Projects
           </Button>
-
         </Grid>
       </Grid>
     </Container>

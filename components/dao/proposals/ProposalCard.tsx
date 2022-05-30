@@ -76,7 +76,7 @@ const VoteWidget: React.FC<{
           display: "flex",
           alignItems: "center",
           color: "text.light",
-          fontSize: ".8rem",
+          fontSize: "1rem",
         }}
       >
         {props.yes} votes
@@ -123,48 +123,104 @@ const ProposalStatus: React.FC<{ status: string }> = (props) => {
   );
 };
 
-// userSide, undefined for no vote, 0 for dislike, 1 for like
-const LikesDislikes: React.FC<{
+interface ILikesDislikes {
   likes: number;
   dislikes: number;
   userSide: number;
-}> = (props) => {
+}
+
+// userSide, undefined for no vote, 0 for dislike, 1 for like
+export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
   // use a prop setter function to set user state to liked or disliked & make an api call here.
+  const [value, setValue] = React.useState<ILikesDislikes>({
+    ...props,
+  });
+
   return (
-    <Box sx={{ display: "flex", alignItems: "center", fontSize: ".8rem" }}>
-      {props.userSide === undefined ? (
+    <Box sx={{ display: "flex", alignItems: "center", fontSize: "1rem" }}>
+      {value.userSide === undefined ? (
         <>
-          <ThumbDownOffAltIcon sx={{ mr: ".3rem", fontSize: ".8rem" }} />
-          {props.dislikes}
-          <ThumbUpOffAltIcon
-            sx={{ ml: ".5rem", mr: ".3rem", fontSize: ".8rem" }}
+          <ThumbDownOffAltIcon
+            sx={{ mr: ".3rem", fontSize: "1rem", cursor: "pointer" }}
+            onClick={() =>
+              setValue({
+                ...value,
+                userSide: 0,
+                dislikes: value.dislikes + 1,
+              })
+            }
           />
-          {props.likes}
+          {value.dislikes}
+          <ThumbUpOffAltIcon
+            sx={{
+              ml: ".5rem",
+              mr: ".3rem",
+              fontSize: "1rem",
+              cursor: "pointer",
+            }}
+            onClick={() =>
+              setValue({
+                ...value,
+                userSide: 1,
+                likes: value.likes + 1,
+              })
+            }
+          />
+          {value.likes}
         </>
-      ) : props.userSide === 0 ? (
+      ) : value.userSide === 0 ? (
         <>
           <ThumbDownIcon
-            sx={{ mr: ".3rem", fontSize: ".8rem", color: "red" }}
+            sx={{
+              mr: ".3rem",
+              fontSize: "1rem",
+              cursor: "pointer",
+              color: "red",
+            }}
           />
-          <span style={{ color: "red" }}>{props.dislikes}</span>
+          <span style={{ color: "red" }}>{value.dislikes}</span>
           <ThumbUpOffAltIcon
-            sx={{ ml: ".5rem", mr: ".3rem", fontSize: ".8rem" }}
+            sx={{
+              ml: ".5rem",
+              mr: ".3rem",
+              fontSize: "1rem",
+              cursor: "pointer",
+            }}
+            onClick={() =>
+              setValue({
+                ...value,
+                userSide: 1,
+                likes: value.likes + 1,
+                dislikes: value.dislikes - 1,
+              })
+            }
           />
-          {props.likes}
+          {value.likes}
         </>
       ) : (
         <>
-          <ThumbDownOffAltIcon sx={{ mr: ".3rem", fontSize: ".8rem" }} />
-          {props.dislikes}
+          <ThumbDownOffAltIcon
+            sx={{ mr: ".3rem", fontSize: "1rem", cursor: "pointer" }}
+            onClick={() =>
+              setValue({
+                ...value,
+                userSide: 0,
+                dislikes: value.dislikes + 1,
+                likes: value.likes - 1,
+              })
+            }
+          />
+          {value.dislikes}
           <ThumbUpIcon
             sx={{
               ml: ".5rem",
               mr: ".3rem",
               fontSize: "1rem",
               color: "primary.lightSuccess",
+              cursor: "pointer",
             }}
           />
-          <Box sx={{ color: "primary.lightSuccess" }}>{props.likes}</Box>
+          <Box sx={{ color: "primary.lightSuccess" }}>{value.likes}</Box>
         </>
       )}
     </Box>
@@ -306,7 +362,7 @@ const CountdownWidget: React.FC<{ date: Date }> = (props) => {
     <Box
       sx={{
         width: "100%",
-        fontSize: ".8rem",
+        fontSize: "1rem",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -417,7 +473,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
             >
               <Box sx={{ cursor: "pointer" }}>{props.proposalName}</Box>
             </Link>
-            <Box sx={{ display: "flex", fontSize: ".8rem" }}>
+            <Box sx={{ display: "flex", fontSize: "1rem" }}>
               <ProposalStatus status={props.status} />
               <Box sx={{ ml: "auto" }}>
                 <LikesDislikes

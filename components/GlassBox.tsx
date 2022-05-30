@@ -14,10 +14,11 @@ const Featured: FC<BoxProps> = ({ children, styles }) => {
         backdropFilter: 'blur(5px)',
         //borderRadius: '20px',
         // border: '1px solid rgba(224, 104, 4, 0.6)',
-        border: '1px solid',
-        borderImageSlice: '1',
-        borderWidth: '1px',
-        borderImageSource: 'linear-gradient(140deg, rgba(224, 104, 4, 0) 34.23%, rgba(224, 104, 4, 0.5) 72.7%)',
+        border: "1px solid",
+        borderImageSlice: "1",
+        borderWidth: "1px",
+        borderImageSource:
+          "linear-gradient(140deg, rgba(224, 104, 4, 0) 34.23%, rgba(224, 104, 4, 0.5) 72.7%)",
       }}
     >
       {children}

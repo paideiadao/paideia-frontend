@@ -6,8 +6,6 @@ import { Box } from "@mui/material";
 import { ResponsiveLine } from "@nivo/line";
 import * as React from "react";
 import { ITokenomics } from "../../../../lib/creation/Api";
-import { percentage } from "../../../../lib/creation/Utilities";
-import { IObj } from "../../../../lib/utilities";
 import dateFormat from "dateformat";
 import { LightTheme } from "../../../../theme/theme";
 import {
