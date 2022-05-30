@@ -69,7 +69,7 @@ export default function Hero() {
               color: "rgba(0,0,0,0.0)",
               lineHeight: 0.5,
               textTransform: "uppercase",
-              fontFamily: '"Viga" !important',
+              fontFamily: '"Viga", sans-serif',
               strokeWidth: "2px",
               strokeColor: "#fff",
             }}
@@ -83,7 +83,7 @@ export default function Hero() {
               fontWeight: { xs: "500", md: "700" },
               color: "rgba(0,0,0,0.0)",
               textTransform: "uppercase",
-              fontFamily: '"Viga" !important',
+              fontFamily: '"Viga", sans-serif',
             }}
             className="outlineText"
           >
@@ -95,7 +95,7 @@ export default function Hero() {
                 fontWeight: { xs: "500", md: "700" },
                 color: DarkTheme.palette.text.primary,
                 textTransform: "uppercase",
-                fontFamily: '"Viga" !important',
+                fontFamily: '"Viga", sans-serif',
               }}
             >
               DAO

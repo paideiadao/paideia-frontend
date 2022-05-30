@@ -9,7 +9,7 @@ const perkTitleStyle = {
   lineHeight: "133%",
   color: DarkTheme.palette.text.primary,
   textTransform: "uppercase",
-  fontFamily: '"Space Grotesk" !important',
+  fontFamily: '"Space Grotesk", sans-serif',
   mt: "2px",
   mb: "16px",
 };
@@ -81,7 +81,7 @@ export default function Perks() {
           <Grid item md={7}>
             <Typography
               sx={{
-                fontFamily: '"Space Grotesk"',
+                fontFamily: '"Space Grotesk", sans-serif',
                 fontWeight: "400",
                 fontSize: { xs: "24px", md: "33px" },
                 lineHeight: { xs: "24px", md: "36px" },
@@ -107,7 +107,7 @@ export default function Perks() {
               <Grid item md={6}>
                 <Typography
                   sx={{
-                    fontFamily: '"Inter"',
+                    fontFamily: '"Inter", sans-serif',
                     fontSize: "10px",
                     fontWeight: "400",
                     lineHeight: "12px",
@@ -124,7 +124,7 @@ export default function Perks() {
               <Grid item md={6} sx={{ textAlign: "right" }}>
                 <Typography
                   sx={{
-                    fontFamily: '"Inter"',
+                    fontFamily: '"Inter", sans-serif',
                     fontSize: "12px",
                     fontWeight: "400",
                     lineHeight: "16px",

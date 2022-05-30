@@ -20,7 +20,7 @@ const titleStyle = {
   mb: "24px",
   color: DarkTheme.palette.text.primary,
   textTransform: "uppercase",
-  fontFamily: '"Viga" !important',
+  fontFamily: '"Viga", sans-serif',
 };
 
 const secondaryTitleStyle = {
@@ -28,12 +28,12 @@ const secondaryTitleStyle = {
   fontWeight: "700",
   color: DarkTheme.palette.text.primary,
   textTransform: "uppercase",
-  fontFamily: '"Space Grotesk" !important',
+  fontFamily: '"Space Grotesk", sans-serif',
 };
 
 const sponsoredSecondary = {
   fontSize: "34px",
-  fontFamily: '"Viga"',
+  fontFamily: '"Viga", sans-serif',
   lineHeight: '41px'
 }
 
@@ -156,7 +156,7 @@ export default function Featured() {
                     <Typography
                       sx={{
                         fontSize: '14px',
-                        fontFamily: '"Space Grotesk"',
+                        fontFamily: '"Space Grotesk", sans-serif',
                         textTransform: 'uppercase'
                       }}
                     >
@@ -170,7 +170,7 @@ export default function Featured() {
                     <Typography
                       sx={{
                         fontSize: '14px',
-                        fontFamily: '"Space Grotesk"',
+                        fontFamily: '"Space Grotesk", sans-serif',
                         textTransform: 'uppercase'
                       }}
                     >
@@ -201,79 +201,65 @@ export default function Featured() {
           </Grid>
         </Grid>
       </GlassBox>
-
-      <Grid container alignItems="stretch" spacing={4} sx={{ mt: '16px', mb: '72px' }}>
-        {seconaryFeaturedDaos.map((dao, i) => (
-          <Grid
-            key={i}
-            item md={4}
-          >
+        <Grid container alignItems="stretch" columnSpacing={5} sx={{ pt: '60px', pb: '72px', }}>
+          {seconaryFeaturedDaos.map((dao, i) => (
             <Grid
-              container
-              direction="column"
-              alignItems="flex-start"
-              justifyContent="flex-start"
-              rowSpacing={2}
-              sx={{
-                background: 'linear-gradient(130.4deg, rgba(0, 0, 0, 0.4) 14.89%, rgba(0, 0, 0, 0.1) 87.67%)',
-                backdropFilter: 'blur(5px)',
-                //borderRadius: '20px',
-                // p: '20px',
-                // border: '1px solid rgba(224, 104, 4, 0.6)',
-                border: '1px solid',
-                borderImageSlice: '1',
-                borderWidth: '1px',
-                borderImageSource: 'linear-gradient(140deg, rgba(224, 104, 4, 0) 34.23%, rgba(224, 104, 4, 0.5) 72.7%)',
-                height: '100%'
-              }}
+              key={i}
+              item
+              xs={12}
+              md={4}
             >
-              <Grid item>
-                <Chip
-                  icon={<StarIcon color="secondary" />}
-                  label="Sponsored"
-                  sx={{
-                    color: DarkTheme.palette.secondary.main,
-                    background: '#fff',
-                    fontSize: '16px'
-                  }}
-                />
-              </Grid>
-              <Grid item>
-                <Typography sx={{ ...titleStyle, mb: '0px' }}>
-                  {dao.title}
-                </Typography>
-                <Typography sx={{ fontSize: '14px' }}>
-                  {dao.subtitle}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography sx={{ ...secondaryTitleStyle, lineHeight: '23px', textTransform: 'none', }}>
-                  {dao.body}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography sx={sponsoredSecondary}>
-                  {dao.members}
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: '14px',
-                    fontFamily: '"Space Grotesk"',
-                    textTransform: 'uppercase'
-                  }}
-                >
-                  DAO Members
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Button>
-                  Learn More
-                </Button>
-              </Grid>
+              <Box
+                sx={{
+                  background: 'linear-gradient(130.4deg, rgba(0, 0, 0, 0.4) 14.89%, rgba(0, 0, 0, 0.1) 87.67%)',
+                  backdropFilter: 'blur(5px)',
+                  border: '1px solid',
+                  borderImageSlice: '1',
+                  borderWidth: '1px',
+                  borderImageSource: 'linear-gradient(140deg, rgba(224, 104, 4, 0) 34.23%, rgba(224, 104, 4, 0.5) 72.7%)',
+                  height: '100%',
+                  p: '16px'
+                }}
+              >
+                  <Chip
+                    icon={<StarIcon color="secondary" />}
+                    label="Sponsored"
+                    sx={{
+                      color: DarkTheme.palette.secondary.main,
+                      background: '#fff',
+                      fontSize: '16px',
+                      mb: '16px',
+                    }}
+                  />
+                  <Typography sx={{ ...titleStyle, mb: '0px' }}>
+                    {dao.title}
+                  </Typography>
+                  <Typography sx={{ fontSize: '14px', mb: '16px', }}>
+                    {dao.subtitle}
+                  </Typography>
+                  <Typography sx={{ ...secondaryTitleStyle, lineHeight: '23px', textTransform: 'none', mb: '16px' }}>
+                    {dao.body}
+                  </Typography>
+                  <Typography sx={{...sponsoredSecondary}}>
+                    {dao.members}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: '14px',
+                      fontFamily: '"Space Grotesk", sans-serif',
+                      textTransform: 'uppercase', 
+                      mb: '16px'
+                    }}
+                  >
+                    DAO Members
+                  </Typography>
+                  <Button>
+                    Learn More
+                  </Button>
+              </Box>
             </Grid>
-          </Grid>
-        ))}
-      </Grid>
+          ))}
+        </Grid>
       <Grid container sx={{ pb: '100px' }} spacing={3}>
         <Grid item md={6}>
           <Grid container wrap="nowrap" spacing={2}>
