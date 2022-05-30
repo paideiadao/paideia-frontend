@@ -11,9 +11,10 @@ export default function Home() {
         <Hero />
         <WhitepaperQuote />
         <Perks />
+        <Examples />
         <Stats />
         <Featured />
-        <Examples />
+        
     </>
   )
 }
