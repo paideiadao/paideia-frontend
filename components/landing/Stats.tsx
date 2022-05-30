@@ -18,7 +18,7 @@ const titleStyle = {
   mb: "24px",
   color: DarkTheme.palette.text.primary,
   textTransform: "uppercase",
-  fontFamily: '"Viga" !important',
+  fontFamily: '"Viga", sans-serif',
 };
 
 const secondaryTitleStyle = {
@@ -26,7 +26,7 @@ const secondaryTitleStyle = {
   fontWeight: "700",
   color: DarkTheme.palette.text.primary,
   textTransform: "uppercase",
-  fontFamily: '"Space Grotesk" !important',
+  fontFamily: '"Space Grotesk", sans-serif',
 };
 
 const paragraphStyle = {
@@ -155,7 +155,7 @@ export default function Stats() {
                 </Grid>
                 <Typography
                   sx={{
-                    fontFamily: '"Viga"',
+                    fontFamily: '"Viga", sans-serif',
                     fontSize: "100px",
                     lineHeight: "100px",
                   }}
@@ -193,7 +193,7 @@ export default function Stats() {
                   <Grid item xs="auto">
                     <Typography
                       sx={{
-                        fontFamily: '"Inter"',
+                        fontFamily: '"Inter", sans-serif',
                         fontSize: "16px",
                         textTransform: "uppercase",
                       }}
@@ -221,7 +221,7 @@ export default function Stats() {
                 <Typography
                   component="p"
                   sx={{
-                    fontFamily: '"Viga"',
+                    fontFamily: '"Viga", sans-serif',
                     fontSize: "56px",
                     lineHeight: "120%",
                     letterSpacing: "-0.5px",
