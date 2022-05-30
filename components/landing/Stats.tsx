@@ -65,7 +65,8 @@ export default function Stats() {
       sx={{
         flexGrow: 1,
         px: "24px",
-        pt: "240px",
+        pt: { xs: '0', md: '240px' },
+        mt: { xs: '120px', md: '-60px' },
         minHeight: "2200px",
         position: "relative",
       }}
