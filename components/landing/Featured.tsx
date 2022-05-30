@@ -156,15 +156,9 @@ export default function Featured() {
                     <Typography sx={sponsoredSecondary}>602</Typography>
                     <Typography
                       sx={{
-<<<<<<< HEAD
-                        fontSize: "14px",
-                        fontFamily: '"Space Grotesk"',
-                        textTransform: "uppercase",
-=======
                         fontSize: '14px',
                         fontFamily: '"Space Grotesk", sans-serif',
                         textTransform: 'uppercase'
->>>>>>> f55e63d14190196737c8d3da77b8cffcf17dbee8
                       }}
                     >
                       DAO Members
@@ -174,15 +168,9 @@ export default function Featured() {
                     <Typography sx={sponsoredSecondary}>$3.1M</Typography>
                     <Typography
                       sx={{
-<<<<<<< HEAD
-                        fontSize: "14px",
-                        fontFamily: '"Space Grotesk"',
-                        textTransform: "uppercase",
-=======
                         fontSize: '14px',
                         fontFamily: '"Space Grotesk", sans-serif',
                         textTransform: 'uppercase'
->>>>>>> f55e63d14190196737c8d3da77b8cffcf17dbee8
                       }}
                     >
                       Treasury Value
@@ -217,88 +205,6 @@ export default function Featured() {
           </Grid>
         </Grid>
       </GlassBox>
-<<<<<<< HEAD
-
-      <Grid
-        container
-        alignItems="stretch"
-        spacing={4}
-        sx={{ mt: "16px", mb: "72px" }}
-      >
-        {seconaryFeaturedDaos.map((dao, i) => (
-          <Grid key={i} item md={4}>
-            <Grid
-              container
-              direction="column"
-              alignItems="flex-start"
-              justifyContent="flex-start"
-              rowSpacing={2}
-              sx={{
-                background:
-                  "linear-gradient(130.4deg, rgba(0, 0, 0, 0.4) 14.89%, rgba(0, 0, 0, 0.1) 87.67%)",
-                backdropFilter: "blur(5px)",
-                //borderRadius: '20px',
-                // p: '20px',
-                // border: '1px solid rgba(224, 104, 4, 0.6)',
-                border: "1px solid",
-                borderImageSlice: "1",
-                borderWidth: "1px",
-                borderImageSource:
-                  "linear-gradient(140deg, rgba(224, 104, 4, 0) 34.23%, rgba(224, 104, 4, 0.5) 72.7%)",
-                height: "100%",
-              }}
-            >
-              <Grid item>
-                <Chip
-                  icon={<StarIcon color="secondary" />}
-                  label="Sponsored"
-                  sx={{
-                    color: DarkTheme.palette.secondary.main,
-                    background: "#fff",
-                    fontSize: "16px",
-                  }}
-                />
-              </Grid>
-              <Grid item>
-                <Typography sx={{ ...titleStyle, mb: "0px" }}>
-                  {dao.title}
-                </Typography>
-                <Typography sx={{ fontSize: "14px" }}>
-                  {dao.subtitle}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography
-                  sx={{
-                    ...secondaryTitleStyle,
-                    lineHeight: "23px",
-                    textTransform: "none",
-                  }}
-                >
-                  {dao.body}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography sx={sponsoredSecondary}>{dao.members}</Typography>
-                <Typography
-                  sx={{
-                    fontSize: "14px",
-                    fontFamily: '"Space Grotesk"',
-                    textTransform: "uppercase",
-                  }}
-                >
-                  DAO Members
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Button>Learn More</Button>
-              </Grid>
-            </Grid>
-          </Grid>
-        ))}
-      </Grid>
-      <Grid container sx={{ pb: "100px" }} spacing={3}>
-=======
         <Grid container alignItems="stretch" columnSpacing={5} sx={{ pt: '60px', pb: '72px', }}>
           {seconaryFeaturedDaos.map((dao, i) => (
             <Grid
@@ -359,7 +265,6 @@ export default function Featured() {
           ))}
         </Grid>
       <Grid container sx={{ pb: '100px' }} spacing={3}>
->>>>>>> f55e63d14190196737c8d3da77b8cffcf17dbee8
         <Grid item md={6}>
           <Grid container wrap="nowrap" spacing={2}>
             <Grid item>
