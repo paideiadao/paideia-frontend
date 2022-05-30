@@ -24,11 +24,11 @@ const titleStyle = {
   mb: "24px",
   color: DarkTheme.palette.text.primary,
   textTransform: "uppercase",
-  fontFamily: '"Viga" !important',
+  fontFamily: '"Viga", sans-serif',
 };
 
 const paragraphStyle = {
-  fontFamily: '"Space Grotesk"',
+  fontFamily: '"Space Grotesk", sans-serif',
   fontWeight: "400",
   fontSize: "20px",
   lineHeight: "24px",

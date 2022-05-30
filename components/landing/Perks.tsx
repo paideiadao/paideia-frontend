@@ -10,7 +10,7 @@ const perkTitleStyle = {
   lineHeight: "133%",
   color: DarkTheme.palette.text.primary,
   textTransform: "uppercase",
-  fontFamily: '"Space Grotesk" !important',
+  fontFamily: '"Space Grotesk", sans-serif',
   mt: "2px",
   mb: "16px",
 };
@@ -78,7 +78,7 @@ export default function Perks() {
                     lineHeight: "116.7%",
                     color: DarkTheme.palette.text.primary,
                     textTransform: "uppercase",
-                    fontFamily: '"Viga" !important',
+                    fontFamily: '"Viga", sans-serif',
                   }}
                 >
                   Why create your DAO on Paideia?&lt;
