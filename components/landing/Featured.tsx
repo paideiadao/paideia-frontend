@@ -34,8 +34,8 @@ const secondaryTitleStyle = {
 const sponsoredSecondary = {
   fontSize: "34px",
   fontFamily: '"Viga"',
-  lineHeight: '41px'
-}
+  lineHeight: "41px",
+};
 
 const paragraphStyle = {
   fontWeight: "400",
@@ -46,27 +46,27 @@ const paragraphStyle = {
 
 const seconaryFeaturedDaos = [
   {
-    title: 'Ergopad',
-    subtitle: 'Launchpad for the Ergo blockchain',
-    body: 'We are a token launch platform for Ergo giving you an opportunity to get in on the ground floor with Ergo token IDOs.',
+    title: "Ergopad",
+    subtitle: "Launchpad for the Ergo blockchain",
+    body: "We are a token launch platform for Ergo giving you an opportunity to get in on the ground floor with Ergo token IDOs.",
     members: 2400,
-    link: '/'
+    link: "/",
   },
   {
-    title: 'Azorus',
-    subtitle: 'Data Analysis dApp',
-    body: '',
+    title: "Azorus",
+    subtitle: "Data Analysis dApp",
+    body: "",
     members: 320,
-    link: ''
+    link: "",
   },
   {
-    title: '',
-    subtitle: '',
-    body: '',
+    title: "",
+    subtitle: "",
+    body: "",
     members: 320,
-    link: ''
+    link: "",
   },
-]
+];
 
 export default function Featured() {
   return (
@@ -100,24 +100,22 @@ export default function Featured() {
       <Grid container>
         <Grid item md={6}>
           <SectionTitle title="Sponsored DAOs" marginBottom="24px" />
-          <Typography sx={{ ...titleStyle, mb: '64px' }}>
+          <Typography sx={{ ...titleStyle, mb: "64px" }}>
             Don&apos;t miss out on these projects
           </Typography>
         </Grid>
         <Grid item md={6}></Grid>
       </Grid>
       <GlassBox>
-        <Grid container sx={{ height: { xs: '0', sm: '594px' } }}>
-          <Grid item xs={12} md={6} sx={{ px: { xs: '0', sm: '60px' } }}>
+        <Grid container sx={{ height: { xs: "0", sm: "594px" } }}>
+          <Grid item xs={12} md={6} sx={{ px: { xs: "0", sm: "60px" } }}>
             <Grid
               container
               direction="column"
               alignItems="flex-start"
               justifyContent="center"
-
               rowSpacing={2}
-              sx={{ height: { md: '100%' }, mx: 'auto', }}
-
+              sx={{ height: { md: "100%" }, mx: "auto" }}
             >
               <Grid item>
                 <Chip
@@ -126,52 +124,53 @@ export default function Featured() {
                   sx={{
                     color: DarkTheme.palette.secondary.main,
 
-                    background: '#fff',
-                    fontSize: '16px'
-
+                    background: "#fff",
+                    fontSize: "16px",
                   }}
                 />
               </Grid>
               <Grid item>
-
-                <Typography sx={{ ...titleStyle, mb: '0px' }}>
+                <Typography sx={{ ...titleStyle, mb: "0px" }}>
                   Ergopad
                 </Typography>
-                <Typography sx={{ fontSize: '14px' }}>
+                <Typography sx={{ fontSize: "14px" }}>
                   Launchpad for the Ergo blockchain
                 </Typography>
               </Grid>
               <Grid item>
-                <Typography sx={{ ...secondaryTitleStyle, lineHeight: '23px', textTransform: 'none', }}>
-                  We are a token launch platform for Ergo giving you an opportunity to get in on the ground floor with Ergo token IDOs.
+                <Typography
+                  sx={{
+                    ...secondaryTitleStyle,
+                    lineHeight: "23px",
+                    textTransform: "none",
+                  }}
+                >
+                  We are a token launch platform for Ergo giving you an
+                  opportunity to get in on the ground floor with Ergo token
+                  IDOs.
                 </Typography>
-
               </Grid>
-              <Grid item sx={{ width: '100%' }}>
+              <Grid item sx={{ width: "100%" }}>
                 <Grid container>
                   <Grid item xs={6}>
-                    <Typography sx={sponsoredSecondary}>
-                      602
-                    </Typography>
+                    <Typography sx={sponsoredSecondary}>602</Typography>
                     <Typography
                       sx={{
-                        fontSize: '14px',
+                        fontSize: "14px",
                         fontFamily: '"Space Grotesk"',
-                        textTransform: 'uppercase'
+                        textTransform: "uppercase",
                       }}
                     >
                       DAO Members
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography sx={sponsoredSecondary}>
-                      $3.1M
-                    </Typography>
+                    <Typography sx={sponsoredSecondary}>$3.1M</Typography>
                     <Typography
                       sx={{
-                        fontSize: '14px',
+                        fontSize: "14px",
                         fontFamily: '"Space Grotesk"',
-                        textTransform: 'uppercase'
+                        textTransform: "uppercase",
                       }}
                     >
                       Treasury Value
@@ -180,34 +179,41 @@ export default function Featured() {
                 </Grid>
               </Grid>
               <Grid item>
-                <Button>
-                  Learn More
-                </Button>
+                <Button>Learn More</Button>
               </Grid>
             </Grid>
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <Box sx={{
-              // borderRadius: '0 20px 20px 0',
-              overflow: 'hidden',
-              position: 'relative',
-              display: 'block',
-              height: '100%'
-            }}>
-              <Image src="/featured/featured.png" objectFit="cover" layout="fill" width={709} height={594} />
-
+            <Box
+              sx={{
+                // borderRadius: '0 20px 20px 0',
+                overflow: "hidden",
+                position: "relative",
+                display: "block",
+                height: "100%",
+              }}
+            >
+              <Image
+                src="/featured/featured.png"
+                objectFit="cover"
+                layout="fill"
+                width={709}
+                height={594}
+              />
             </Box>
           </Grid>
         </Grid>
       </GlassBox>
 
-      <Grid container alignItems="stretch" spacing={4} sx={{ mt: '16px', mb: '72px' }}>
+      <Grid
+        container
+        alignItems="stretch"
+        spacing={4}
+        sx={{ mt: "16px", mb: "72px" }}
+      >
         {seconaryFeaturedDaos.map((dao, i) => (
-          <Grid
-            key={i}
-            item md={4}
-          >
+          <Grid key={i} item md={4}>
             <Grid
               container
               direction="column"
@@ -215,16 +221,18 @@ export default function Featured() {
               justifyContent="flex-start"
               rowSpacing={2}
               sx={{
-                background: 'linear-gradient(130.4deg, rgba(0, 0, 0, 0.4) 14.89%, rgba(0, 0, 0, 0.1) 87.67%)',
-                backdropFilter: 'blur(5px)',
+                background:
+                  "linear-gradient(130.4deg, rgba(0, 0, 0, 0.4) 14.89%, rgba(0, 0, 0, 0.1) 87.67%)",
+                backdropFilter: "blur(5px)",
                 //borderRadius: '20px',
                 // p: '20px',
                 // border: '1px solid rgba(224, 104, 4, 0.6)',
-                border: '1px solid',
-                borderImageSlice: '1',
-                borderWidth: '1px',
-                borderImageSource: 'linear-gradient(140deg, rgba(224, 104, 4, 0) 34.23%, rgba(224, 104, 4, 0.5) 72.7%)',
-                height: '100%'
+                border: "1px solid",
+                borderImageSlice: "1",
+                borderWidth: "1px",
+                borderImageSource:
+                  "linear-gradient(140deg, rgba(224, 104, 4, 0) 34.23%, rgba(224, 104, 4, 0.5) 72.7%)",
+                height: "100%",
               }}
             >
               <Grid item>
@@ -233,51 +241,52 @@ export default function Featured() {
                   label="Sponsored"
                   sx={{
                     color: DarkTheme.palette.secondary.main,
-                    background: '#fff',
-                    fontSize: '16px'
+                    background: "#fff",
+                    fontSize: "16px",
                   }}
                 />
               </Grid>
               <Grid item>
-                <Typography sx={{ ...titleStyle, mb: '0px' }}>
+                <Typography sx={{ ...titleStyle, mb: "0px" }}>
                   {dao.title}
                 </Typography>
-                <Typography sx={{ fontSize: '14px' }}>
+                <Typography sx={{ fontSize: "14px" }}>
                   {dao.subtitle}
                 </Typography>
               </Grid>
               <Grid item>
-                <Typography sx={{ ...secondaryTitleStyle, lineHeight: '23px', textTransform: 'none', }}>
+                <Typography
+                  sx={{
+                    ...secondaryTitleStyle,
+                    lineHeight: "23px",
+                    textTransform: "none",
+                  }}
+                >
                   {dao.body}
                 </Typography>
               </Grid>
               <Grid item>
-                <Typography sx={sponsoredSecondary}>
-                  {dao.members}
-                </Typography>
+                <Typography sx={sponsoredSecondary}>{dao.members}</Typography>
                 <Typography
                   sx={{
-                    fontSize: '14px',
+                    fontSize: "14px",
                     fontFamily: '"Space Grotesk"',
-                    textTransform: 'uppercase'
+                    textTransform: "uppercase",
                   }}
                 >
                   DAO Members
                 </Typography>
               </Grid>
               <Grid item>
-                <Button>
-                  Learn More
-                </Button>
+                <Button>Learn More</Button>
               </Grid>
             </Grid>
           </Grid>
         ))}
       </Grid>
-      <Grid container sx={{ pb: '100px' }} spacing={3}>
+      <Grid container sx={{ pb: "100px" }} spacing={3}>
         <Grid item md={6}>
           <Grid container wrap="nowrap" spacing={2}>
-
             <Grid item>
               <Box
                 sx={{
@@ -296,13 +305,11 @@ export default function Featured() {
               </Typography>
             </Grid>
           </Grid>
-
         </Grid>
         <Grid item md={6}>
           <Button variant="contained" sx={{}}>
             All Projects
           </Button>
-
         </Grid>
       </Grid>
     </Container>

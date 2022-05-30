@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import * as React from "react";
 
 const Chip: React.FC<{
-  set: Function;
+  set?: Function;
   c: number;
   variant: string;
   icon: JSX.Element;
@@ -14,7 +14,7 @@ const Chip: React.FC<{
       sx={{
         display: "flex",
         alignItems: "center",
-        fontSize: ".5rem",
+        fontSize: ".6rem",
         borderRadius: "5rem",
         ml: ".5rem",
         fontWeight: 500,

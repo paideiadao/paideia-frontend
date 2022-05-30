@@ -14,15 +14,23 @@ import DiscussionPlaceholder from "@public/dao/discussion-banner-placeholder.png
 import Reference from "@components/dao/discussion/Reference";
 import Content from "@components/dao/discussion/Content";
 import { modalBackground } from "@components/utilities/modalBackground";
-import LoadingButton from '@mui/lab/LoadingButton';
-import PublishIcon from '@mui/icons-material/Publish';
+import LoadingButton from "@mui/lab/LoadingButton";
+import PublishIcon from "@mui/icons-material/Publish";
 
 export interface IDiscussion {
   name: string;
   category: string;
-  image: IFile;
+  image?: IFile;
   references: IProposal[];
   content: string;
+  date?: Date;
+  likes?: number;
+  dislikes?: number;
+  followed?: boolean;
+  tags?: any[];
+  userSide?: number;
+  comments?: any[];
+  attachments?: any[];
 }
 
 const CreateDiscussion: React.FC = () => {
@@ -43,7 +51,6 @@ const CreateDiscussion: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
   const api = new DiscussionApi(alert, setAlert, value, setValue);
-  
 
   return (
     <DiscussionContext.Provider value={{ api }}>
@@ -107,16 +114,28 @@ const CreateDiscussion: React.FC = () => {
           >
             <GeneralInformation />
             <DiscussionImage />
-            <Reference/>
-            <Content/>
-            <Box sx={{display: 'flex', alignItems: 'center', width: '100%', mt: '1rem', mb: '.5rem'}}>
-              <Button variant='outlined' sx={{width: '50%', mr: '1rem'}}>
+            <Reference />
+            <Content />
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                width: "100%",
+                mt: "1rem",
+                mb: ".5rem",
+              }}
+            >
+              <Button variant="outlined" sx={{ width: "50%", mr: "1rem" }}>
                 Cancel
               </Button>
-              <Button variant='contained' sx={{width: '50%'}} onClick={() => {
-                console.log(value, 'call api here...')
-                setPublish(true)
-              }}>
+              <Button
+                variant="contained"
+                sx={{ width: "50%" }}
+                onClick={() => {
+                  console.log(value, "call api here...");
+                  setPublish(true);
+                }}
+              >
                 Publish
               </Button>
             </Box>
@@ -134,7 +153,8 @@ const CreateDiscussion: React.FC = () => {
             You are about to publish a discussion
           </Box>
           <Box sx={{ mt: "1rem", fontSize: ".9rem" }}>
-            Once published, a discussion can't be edited or deleted. However, a discussion can be upgraded to a proposal at any time.
+            Once published, a discussion can't be edited or deleted. However, a
+            discussion can be upgraded to a proposal at any time.
           </Box>
           <Box
             sx={{
@@ -145,14 +165,13 @@ const CreateDiscussion: React.FC = () => {
             }}
           >
             <Box sx={{ ml: "auto" }}>
-              {!loading && <Button
-                sx={{ mr: "1rem" }}
-                onClick={() => setPublish(false)}
-              >
-                Cancel
-              </Button>}
+              {!loading && (
+                <Button sx={{ mr: "1rem" }} onClick={() => setPublish(false)}>
+                  Cancel
+                </Button>
+              )}
               <LoadingButton
-                onClick={() => loading ? null : setLoading(true)}
+                onClick={() => (loading ? null : setLoading(true))}
                 startIcon={<PublishIcon />}
                 loading={loading}
                 loadingPosition="start"

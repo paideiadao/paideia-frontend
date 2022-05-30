@@ -3,9 +3,9 @@ import { Box } from "@mui/material";
 import * as React from "react";
 
 export interface IProposal {
-  id: number,
-  name: string,
-  img: string
+  id: number;
+  name: string;
+  img: string;
 }
 
 const CreateProposal: React.FC = () => {
