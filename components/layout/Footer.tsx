@@ -5,11 +5,11 @@ import { DarkTheme, LightTheme } from "@theme/theme";
 import Paideia from "@components/svgs/Paideia";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import TelegramIcon from '@components/svgs/TelegramIcon'
-import YoutubeIcon from '@components/svgs/YoutubeIcon'
-import MediumIcon from '@components/svgs/MediumIcon'
-import TwitterIcon from '@components/svgs/TwitterIcon'
-import DiscordIcon from '@components/svgs/DiscordIcon'
+import TelegramIcon from "@components/svgs/TelegramIcon";
+import YoutubeIcon from "@components/svgs/YoutubeIcon";
+import MediumIcon from "@components/svgs/MediumIcon";
+import TwitterIcon from "@components/svgs/TwitterIcon";
+import DiscordIcon from "@components/svgs/DiscordIcon";
 
 const titleFont = {
   fontFamily: ['"Space Grotesk"', "sans-serif"].join(","),
@@ -34,7 +34,7 @@ const iconLinkStyles = {
   "&:hover": {
     color: DarkTheme.palette.primary.main,
   },
-}
+};
 
 const listItemStyles = {
   pb: "6px",
@@ -121,7 +121,7 @@ const fourthPages = [
 export default function Footer() {
   const linkList = (list: any[]) => {
     return list.map((page, i) => (
-      <Typography key={page.name + i + 'links'} sx={listItemStyles}>
+      <Typography key={page.name + i + "links"} sx={listItemStyles}>
         <Link
           href={page.link}
           sx={linkStyles}
@@ -135,12 +135,14 @@ export default function Footer() {
   };
 
   return (
-    <Box sx={{
-      background: LightTheme.palette.primary.dark,
-      backgroundImage: `url(/footer-bg.png)`,
-      overflow: 'hidden'
-    }}>
-      <Container sx={{ px: '24px' }}>
+    <Box
+      sx={{
+        background: LightTheme.palette.primary.dark,
+        backgroundImage: `url(/footer-bg.png)`,
+        overflow: "hidden",
+      }}
+    >
+      <Container sx={{ px: "24px" }}>
         <Grid
           container
           spacing={{ xs: 3, md: 1 }}
@@ -149,7 +151,7 @@ export default function Footer() {
           }}
         >
           <Grid item xs={12} md={2} sx={{ mt: 4, mb: 2 }}>
-            <Paideia sx={{ fontSize: { xs: "4rem", md: "6rem" } }}/>
+            <Paideia sx={{ fontSize: { xs: "4rem", md: "6rem" } }} />
           </Grid>
           <Grid item xs={6} md={2}>
             <Typography sx={titleFont}>Paideia</Typography>
@@ -169,7 +171,11 @@ export default function Footer() {
           </Grid>
           <Grid item xs={12} md={2}>
             <Typography sx={titleFont}>Community</Typography>
-            <Grid container spacing={{ xs: 3, md: 1 }} sx={{ justifyContent: { xs: 'flex-start', md: 'space-evenly' } }} >
+            <Grid
+              container
+              spacing={{ xs: 3, md: 1 }}
+              sx={{ justifyContent: { xs: "flex-start", md: "space-evenly" } }}
+            >
               <Grid item>
                 <Link
                   href="/"
@@ -233,8 +239,8 @@ export default function Footer() {
             <Typography sx={{ fontSize: "0.75rem" }}>
               <Link href="/" sx={linkStyles}>
                 Terms
-              </Link>
-              {' '}·{' '}
+              </Link>{" "}
+              ·{" "}
               <Link href="/" sx={linkStyles}>
                 Privacy Policy
               </Link>

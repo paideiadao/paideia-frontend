@@ -13,7 +13,12 @@ const AdvancedTokenomics: React.FC<IData<ITokenomics>> = (props) => {
   let globalData = globalContext.api.data;
   return (
     <Box sx={{ mt: ".5rem" }}>
-      <LearnMore title="Set advanced tokenomics" />
+      <LearnMore
+        title="Set advanced tokenomics"
+        tooltipTitle="Title Here"
+        tooltipText="Content here."
+        tooltipLink="/here"
+      />
       <Subtitle subtitle="Here you can create public & private sales, airdrops, stacking pools, provide liquidity, distribute and divide your treasury into different pockets, and set aside tokens for team & partners." />
       {data.activateTokenomics && (
         <>

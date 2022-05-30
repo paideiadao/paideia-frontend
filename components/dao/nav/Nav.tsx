@@ -16,6 +16,7 @@ const Nav: React.FC = (props) => {
         borderBottom: "1px solid",
         height: "100vh",
         borderBottomColor: "divider.main",
+        position: "relative",
       }}
     >
       <DaoBio />

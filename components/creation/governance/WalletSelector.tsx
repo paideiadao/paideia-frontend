@@ -72,7 +72,7 @@ const WalletSelector: React.FC<{
                 <Box>{props.data.alias}</Box>
                 <Box
                   sx={{
-                    color: "primary.lightText",
+                    color: "text.light",
                     fontSize: ".6rem",
                     mt: "-.3rem",
                   }}
@@ -143,10 +143,10 @@ const WalletSelector: React.FC<{
                     zIndex: 100,
                     p: 1,
                     backgroundColor: "backgroundColor.main",
-                    color: "primary.lightText",
+                    color: "text.light",
                     ":hover": {
                       backgroundColor: "darkHover.main",
-                      color: "primary.lightText",
+                      color: "text.light",
                     },
                   }}
                   key={`${i.address}-wallet-card`}
