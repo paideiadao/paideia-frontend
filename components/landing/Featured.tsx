@@ -240,14 +240,15 @@ export default function Featured() {
                   <Typography sx={{ ...secondaryTitleStyle, lineHeight: '23px', textTransform: 'none', mb: '16px' }}>
                     {dao.body}
                   </Typography>
-                  <Typography sx={{...sponsoredSecondary, mb: '16px'}}>
+                  <Typography sx={{...sponsoredSecondary}}>
                     {dao.members}
                   </Typography>
                   <Typography
                     sx={{
                       fontSize: '14px',
                       fontFamily: '"Space Grotesk", sans-serif',
-                      textTransform: 'uppercase'
+                      textTransform: 'uppercase', 
+                      mb: '16px'
                     }}
                   >
                     DAO Members
