@@ -4,12 +4,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "npx prettier --write ."
+    "lint": "npx prettier --write .",
+    "export": "next build && next export"
   },
   "dependencies": {
     "@date-io/date-fns": "^2.13.1",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
+    "@material-ui/core": "^4.12.4",
     "@mui/icons-material": "^5.5.1",
     "@mui/material": "^5.5.3",
     "@mui/x-date-pickers": "^5.0.0-alpha.1",

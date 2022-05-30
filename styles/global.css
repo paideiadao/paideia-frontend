@@ -8,6 +8,11 @@ body {
   font-size: 18px;
 }
 
+body {
+  overflow-x: hidden;
+  background-image: url(/main-bg.png);
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   padding: 0px;
@@ -46,3 +51,8 @@ img {
   max-width: 100%;
   display: block;
 }
+
+.outlineText {
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #FFFFFF;
+  }
