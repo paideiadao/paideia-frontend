@@ -20,7 +20,7 @@ export function checkCompleteness(_data: ICreationData): boolean {
           : false) || _data.governance.voteDuration === 0
       );
     }
-    case 3: {
+    case 1: {
       return (
         _data.tokenomics.tokenRemaining <= 0 ||
         _data.tokenomics.tokenAmount === 0 ||

@@ -84,7 +84,7 @@ const Design: React.FC = (props) => {
         subtitle="Choose the perfect theme for your DAO. Add a logo, upload a banner, and create your own personalized footer."
       />
       <Box sx={{ width: "100%", mb: "1rem" }}>
-        <LearnMore title="Theme" />
+        <LearnMore title="Theme" tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
         <Subtitle subtitle="In order to best match your DAO design you can select between four different theme colors and choose if you want a light or dark theme." />
       </Box>
       <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center" }}>

@@ -3,6 +3,7 @@ import * as React from "react";
 import InfoIcon from "@mui/icons-material/Info";
 import Tooltip from '@mui/material/Tooltip';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Link from "next/link";
 
 export const Header: React.FC<{
   title: string;
@@ -89,7 +90,7 @@ export const Subheader: React.FC<{
       sx={{
         color: "primary.text",
         fontSize: props.small ? ".9rem" : "1.1rem",
-        fontWeight: props.bold ? 500 : props.small || props.light ? 350 : 400,
+        fontWeight: props.bold ? 500 : 400,
         display: "flex",
         alignItems: "center",
       }}
@@ -99,10 +100,19 @@ export const Subheader: React.FC<{
   );
 };
 
+export interface ITooltipSteps {
+  id: number,
+  text: string
+}
+
 export const LearnMore: React.FC<{
   title: string;
   small?: boolean;
   light?: boolean;
+  tooltipTitle: string,
+  tooltipText: string,
+  toolTipSteps?: ITooltipSteps[],
+  tooltipLink?: string;
 }> = (props) => {
   const [open, setOpen] = React.useState(false);
 
@@ -131,12 +141,11 @@ export const LearnMore: React.FC<{
                   tooltip: {
                     sx: {
                       bgcolor: 'fileInput.main',
-                      width: '40rem',
-                      border: '1px solid',
-                      borderColor: 'divider.main',
+                      maxWidth: '40rem',
                       '& .MuiTooltip-arrow': {
                         color: 'fileInput.main',
-                        width: '7rem'
+                        width: '7rem',
+                        fontSize: '1.5rem'
                       },
                     },
                   },
@@ -146,13 +155,19 @@ export const LearnMore: React.FC<{
                 disableFocusListener
                 disableHoverListener
                 disableTouchListener
-                title={<Box sx={{p: 0, m: 0, color: 'text.main'}}>
-                  Info message Title
-                  <Box sx={{width: '100%', mt: '1rem', display: 'flex', mb: '.2rem'}}>
-                    <Button size='small'>
-                      Learn More
-                    </Button>
-                    <Button size='small' variant='contained' sx={{ml: 'auto'}}>
+                title={<Box sx={{p: '.5rem', m: 0, color: 'text.main', width: '25rem', fontSize: '1rem', fontWeight: 400}}>
+                    {props.tooltipTitle}
+                  <Box sx={{fontSize: '.9rem', color: 'text.light', width: '100%'}}>
+                    {props.tooltipText}
+                  </Box>
+                  <Box sx={{width: '100%', mt: '.1rem', display: 'flex'}}>
+                    <Link href={props.tooltipLink}>
+                      <Button size='small'>
+                        Learn More
+                      </Button>
+                    </Link>
+                   
+                    <Button size='small' variant='contained' sx={{ml: 'auto'}} onClick={handleTooltipClose}>
                       Got it
                     </Button>
                   </Box>

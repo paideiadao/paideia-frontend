@@ -49,7 +49,7 @@ const TokenSymbol: React.FC<IData<ITokenomics>> = (props) => {
   }, [url]);
   return (
     <>
-      <LearnMore title="Token symbol" small={true} />
+      <LearnMore title="Token symbol" small={true} tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
       <FileInput
         file={
           props.data.tokenImage === undefined ? "" : props.data.tokenImage.file
