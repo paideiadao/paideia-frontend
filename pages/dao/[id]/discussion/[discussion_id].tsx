@@ -178,6 +178,9 @@ const Discussion: React.FC = () => {
             />
           </Box>
         </Box>
+        <Box sx={{width: '35%'}}>
+            
+        </Box>
       </Box>
     </Box>
   );
