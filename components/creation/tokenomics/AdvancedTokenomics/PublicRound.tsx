@@ -218,7 +218,7 @@ const PublicRound: React.FC<{
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <Box sx={{ color: "primary.lightText" }}>SigUSD</Box>
+                  <Box sx={{ color: "text.light" }}>SigUSD</Box>
                 </InputAdornment>
               ),
             }}
@@ -234,7 +234,7 @@ const PublicRound: React.FC<{
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <Box sx={{ color: "primary.lightText" }}>USD</Box>
+                  <Box sx={{ color: "text.light" }}>USD</Box>
                 </InputAdornment>
               ),
             }}
@@ -300,7 +300,7 @@ const PublicRound: React.FC<{
       </Box>
       <Box sx={{ width: "100%", pl: "1rem", mt: "1rem", pr: "1rem" }}>
         <CapsInfo title="Configuration" />
-        <LearnMore title="Token Holder Addresses" light />
+        <LearnMore title="Token Holder Addresses" light tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
         {value.tokenHolders.map((i: ITokenHolder, c: number) => {
           return (
             <Box sx={{ display: "flex", alignItems: "center", height: "5rem" }}>

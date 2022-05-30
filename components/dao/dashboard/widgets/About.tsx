@@ -24,30 +24,30 @@ const About: React.FC = () => {
             width: "50%",
             textAlign: "center",
             fontSize: ".7rem",
-            color: "primary.lightText",
+            color: "text.light",
             borderRight: "1px solid",
             borderColor: "divider.main",
           }}
         >
           Members
-          <Box sx={{ fontSize: "1.2rem", color: "primary.text" }}>5,130</Box>
+          <Box sx={{ fontSize: "1.2rem", color: "text.main" }}>5,130</Box>
         </Box>
         <Box
           sx={{
             width: "50%",
             textAlign: "center",
             fontSize: ".7rem",
-            color: "primary.lightText",
+            color: "text.light",
           }}
         >
           Proposals
-          <Box sx={{ fontSize: "1.2rem", color: "primary.text" }}>125</Box>
+          <Box sx={{ fontSize: "1.2rem", color: "text.main" }}>125</Box>
         </Box>
       </Box>
       <Box sx={{ width: "100%", fontSize: ".9rem", mt: ".5rem" }}>
         Short bio here...
       </Box>
-      <Box sx={{ fontSize: ".7rem", color: "primary.lightText", mt: ".5rem" }}>
+      <Box sx={{ fontSize: ".7rem", color: "text.light", mt: ".5rem" }}>
         Active since 23 March 2021
       </Box>
     </Paper>

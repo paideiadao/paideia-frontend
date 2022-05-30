@@ -10,15 +10,21 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Save from "@mui/icons-material/Save";
 import DarkSwitch from "@components/utilities/DarkSwitch";
+import { GlobalContext } from "@lib/creation/Context";
+import { ThemeContext } from "@lib/ThemeContext";
 
 export default function Nav(props) {
+  let globalContext = React.useContext(ThemeContext);
+  let global = React.useContext(GlobalContext);
+
+  let theme = globalContext.theme;
   const [logo, setLogo] = React.useState(
-    props.theme === DarkTheme ? LightLogo : DarkLogo
+    theme === DarkTheme ? LightLogo : DarkLogo
   );
 
   React.useEffect(() => {
-    setLogo(props.theme === DarkTheme ? LightLogo : DarkLogo);
-  }, [props.theme]);
+    setLogo(theme === DarkTheme ? LightLogo : DarkLogo);
+  }, [theme]);
 
   return (
     <>
@@ -76,7 +82,14 @@ export default function Nav(props) {
             <Button variant="outlined" color="error">
               Cancel <DeleteIcon sx={{ ml: 1 }} />
             </Button>
-            <Button variant="outlined" color="primary" sx={{ ml: 2 }}>
+            <Button
+              variant="outlined"
+              color="primary"
+              sx={{ ml: 2 }}
+              onClick={() =>
+                global.api.setData({ ...global.api.data, draftModal: true })
+              }
+            >
               Save as Draft <Save sx={{ ml: 1 }} />
             </Button>
           </Box>

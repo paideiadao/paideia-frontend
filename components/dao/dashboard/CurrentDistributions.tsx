@@ -50,7 +50,7 @@ const CurrentDistributions: React.FC = () => {
       {distributions.map((i: any, c: number) => {
         return (
           <Box
-          key={`distributions-key-${c}`}
+            key={`distributions-key-${c}`}
             sx={{
               width: "100%",
               backgroundColor: "fileInput.outer",
@@ -64,8 +64,7 @@ const CurrentDistributions: React.FC = () => {
               p: "1rem",
               fontSize: ".8rem",
               ":hover": {
-                boxShadow: `0 0px 10px`,
-                boxShadowColor: "primary.text",
+                borderColor: 'primary.main'
               },
             }}
           >
@@ -73,7 +72,7 @@ const CurrentDistributions: React.FC = () => {
               sx={{ width: "30%", display: "flex", flexDirection: "column" }}
             >
               {i.name}
-              <Box sx={{ fontSize: ".7rem", color: "primary.lightText" }}>
+              <Box sx={{ fontSize: ".7rem", color: "text.light" }}>
                 {dateFormat(i.start, "mmm d, yyyy")} /{" "}
                 {dateFormat(i.end, "mmm d, yyyy")}
               </Box>

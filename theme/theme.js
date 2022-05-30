@@ -9,6 +9,10 @@ export const LightTheme = createTheme({
     favoriteBackground: {
       main: "#FEE8E7",
     },
+    text: {
+      main: "black",
+      light: "#666666",
+    },
     linkHover: {
       main: "#EBF5F6",
     },
@@ -49,6 +53,7 @@ export const LightTheme = createTheme({
       main: "#F5F5F5",
       outer: "white",
       border: "rgba(255, 255, 255, 1)",
+      read: "#F0F5F6",
     },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
@@ -124,6 +129,10 @@ export const DarkTheme = createTheme({
       default: '#0E1421',
       paper: '#0E1421',
     },
+    text: {
+      main: "white",
+      light: "#B8BABE",
+    },
     circle: {
       main: "#9FD2DB",
     },
@@ -156,6 +165,7 @@ export const DarkTheme = createTheme({
       main: "rgba(45, 51, 64, 1)",
       outer: "rgba(17, 24, 39, 1)",
       border: "rgba(255, 255, 255, 0.12)",
+      read: "#1C2735",
     },
     backgroundColor: {
       main: "rgba(17, 24, 39, 1)",
@@ -372,10 +382,10 @@ export const DarkTheme = createTheme({
         completed: {},
       },
     },
-    MuiCssBaseline: {
-      styleOverrides: {
-        body: darkScrollbar(),
-      },
-    },
+    // MuiCssBaseline: {
+    //   styleOverrides: {
+    //     body: darkScrollbar(),
+    //   },
+    // },
   },
 });

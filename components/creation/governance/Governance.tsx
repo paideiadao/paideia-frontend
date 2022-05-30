@@ -20,6 +20,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { LearnMore } from "../utilities/HeaderComponents";
 
 const Governance: React.FC = () => {
   const globalContext = React.useContext(GlobalContext);
@@ -36,9 +37,7 @@ const Governance: React.FC = () => {
     >
       <Box sx={{ textAlign: "left", width: "100%", fontSize: "1.2rem" }}>
         Governance and voting configuration
-        <Box
-          sx={{ width: "100%", color: "primary.lightText", fontSize: ".8rem" }}
-        >
+        <Box sx={{ width: "100%", color: "text.light", fontSize: ".8rem" }}>
           You can use the default settings or dive more in deep configure your
           voting system as you wish. You can enable and configure features such
           as "Optimistic governance" or "Quadratic voting" and edit the support
@@ -52,23 +51,12 @@ const Governance: React.FC = () => {
           fontSize: "1.1rem",
           mt: ".8rem",
           pb: "1rem",
-          mb: "1rem",
           borderBottom: "1px solid",
           borderBottomColor: "divider.main",
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Box>Optimistic governance</Box>
-          <Box sx={{ ml: "auto" }}>
-            <Button variant="text">
-              Learn More{" "}
-              <InfoIcon style={{ fill: "primary.main", marginLeft: ".4rem" }} />
-            </Button>
-          </Box>
-        </Box>
-        <Box
-          sx={{ width: "100%", color: "primary.lightText", fontSize: ".8rem" }}
-        >
+        <LearnMore title="Optimistic governance" tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
+        <Box sx={{ width: "100%", color: "text.light", fontSize: ".8rem" }}>
           If active only whitelisted members will be able to create proposals.
           If proposals are not challenged, they will be approved.
         </Box>
@@ -99,26 +87,9 @@ const Governance: React.FC = () => {
         </Box>
         {data.optimisticGovernance && (
           <>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                width: "100%",
-                mt: ".4rem",
-              }}
-            >
-              <Box sx={{ fontSize: ".9rem", fontWeight: 410 }}>
-                White listed members
-              </Box>
-              <Box sx={{ ml: "auto" }}>
-                <Button variant="text">
-                  Learn More{" "}
-                  <InfoIcon
-                    style={{ fill: "primary.main", marginLeft: ".4rem" }}
-                  />
-                </Button>
-              </Box>
-            </Box>
+            
+        <LearnMore title="White listed members" tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
+
             <Box
               sx={{
                 display: "flex",
@@ -231,24 +202,9 @@ const Governance: React.FC = () => {
                 Add from file <FileUploadIcon />
               </Button>
             </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                width: "100%",
-                mt: ".4rem",
-              }}
-            >
-              <Box sx={{ fontSize: ".9rem", fontWeight: 410 }}>Collateral</Box>
-              <Box sx={{ ml: "auto" }}>
-                <Button variant="text">
-                  Learn More{" "}
-                  <InfoIcon
-                    style={{ fill: "primary.main", marginLeft: ".4rem" }}
-                  />
-                </Button>
-              </Box>
-            </Box>
+        <LearnMore small title="Collateral" tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
+
+
             <Box
               sx={{
                 width: "100%",
@@ -298,26 +254,8 @@ const Governance: React.FC = () => {
                 </FormControl>
               </Box>
             </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                width: "100%",
-                mt: ".8rem",
-              }}
-            >
-              <Box sx={{ fontSize: ".9rem", fontWeight: 410 }}>
-                Time to challenge a proposal
-              </Box>
-              <Box sx={{ ml: "auto" }}>
-                <Button variant="text">
-                  Learn More{" "}
-                  <InfoIcon
-                    style={{ fill: "primary.main", marginLeft: ".4rem" }}
-                  />
-                </Button>
-              </Box>
-            </Box>
+            <LearnMore small title="Time to challenge a proposal" tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
+
             <Box
               sx={{
                 display: "flex",
@@ -403,18 +341,9 @@ const Governance: React.FC = () => {
           borderBottomColor: "divider.main",
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Box>Quadratic voting</Box>
-          <Box sx={{ ml: "auto" }}>
-            <Button variant="text">
-              Learn More{" "}
-              <InfoIcon style={{ fill: "primary.main", marginLeft: ".4rem" }} />
-            </Button>
-          </Box>
-        </Box>
-        <Box
-          sx={{ width: "100%", color: "primary.lightText", fontSize: ".8rem" }}
-        >
+                    <LearnMore title="Quadratic voting" tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
+
+        <Box sx={{ width: "100%", color: "text.light", fontSize: ".8rem" }}>
           If active, voting power will not be determined only by the stakeholder
           investment, avoiding whales having too much influence over decisions
         </Box>
@@ -453,23 +382,8 @@ const Governance: React.FC = () => {
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Box>Configure voting system</Box>
         </Box>
-        <Box
-          sx={{
-            fontSize: ".9rem",
-            fontWeight: 410,
-            display: "flex",
-            alignItems: "center",
-            mt: 2,
-          }}
-        >
-          <Box>Support needed on single choice voting</Box>
-          <Box sx={{ ml: "auto" }}>
-            <Button variant="text">
-              Learn More{" "}
-              <InfoIcon style={{ fill: "primary.main", marginLeft: ".4rem" }} />
-            </Button>
-          </Box>
-        </Box>
+        <LearnMore small title="Support needed on single choice voting" tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
+
         <Box
           sx={{ display: "flex", alignItem: "center", mt: ".4rem", pl: "1rem" }}
         >
@@ -527,23 +441,8 @@ const Governance: React.FC = () => {
             approved. Can't be set to less than 51%
           </Alert>
         </Box>
-        <Box
-          sx={{
-            fontSize: ".9rem",
-            fontWeight: 410,
-            display: "flex",
-            alignItems: "center",
-            mt: 2,
-          }}
-        >
-          <Box>Quorum</Box>
-          <Box sx={{ ml: "auto" }}>
-            <Button variant="text">
-              Learn More{" "}
-              <InfoIcon style={{ fill: "primary.main", marginLeft: ".4rem" }} />
-            </Button>
-          </Box>
-        </Box>
+        <LearnMore small title="Quorum" tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
+
         <Box
           sx={{ display: "flex", alignItem: "center", mt: ".4rem", pl: "1rem" }}
         >

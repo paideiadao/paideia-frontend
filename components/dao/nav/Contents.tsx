@@ -25,7 +25,8 @@ import PersonIcon from "@mui/icons-material/Person";
 import EditNotificationsIcon from "@mui/icons-material/EditNotifications";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
-import Link from 'next/link'
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const BasicLink: React.FC<{
   icon: JSX.Element;
@@ -36,101 +37,108 @@ const BasicLink: React.FC<{
   ml?: string;
   notifications?: number;
 }> = (props) => {
-  let globalContext = React.useContext<IGlobalContext>(GlobalContext);
+  const router = useRouter()
+  const { id } = router.query
   let linkLookup = {
-    'Dashboard': `/dao/${globalContext.api.daoId}`,
-    'All': `/dao/${globalContext.api.daoId}/proposals/all`,
-    'Following': `/dao/${globalContext.api.daoId}/proposals/following`,
-    'Mine': `/dao/${globalContext.api.daoId}/proposals/mine`,
-    'Past': `/dao/${globalContext.api.daoId}/proposals/past`,
-    'Treasury': `/dao/${globalContext.api.daoId}/financials/treasury`,
-    'Tokenomics': `/dao/${globalContext.api.daoId}/financials/tokenomics`,
-    'Recurring': `/dao/${globalContext.api.daoId}/financials/recurring`,
-    'Token': `/dao/${globalContext.api.daoId}/financials/token`,
-    'Distributions': `/dao/${globalContext.api.daoId}/distributions`,
-    'Staking': `/dao/${globalContext.api.daoId}/staking`,
-    'Members': `/dao/${globalContext.api.daoId}/members`,
-    'Activity': `/dao/${globalContext.api.daoId}/activity`,
-    'Edit profile': `/dao/${globalContext.api.daoId}/edit-profile`,
-    'Notifications': `/dao/${globalContext.api.daoId}/notifications`,
-    'Wallet': `/dao/${globalContext.api.daoId}/wallet`,
+    Dashboard: `/dao/${id}`,
+    All: `/dao/${id}/proposals/all`,
+    Following: `/dao/${id}/proposals/following`,
+    Mine: `/dao/${id}/proposals/mine`,
+    Past: `/dao/${id}/proposals/past`,
+    Treasury: `/dao/${id}/financials/treasury`,
+    Tokenomics: `/dao/${id}/financials/tokenomics`,
+    Recurring: `/dao/${id}/financials/recurring`,
+    Token: `/dao/${id}/financials/token`,
+    Distributions: `/dao/${id}/distributions`,
+    Staking: `/dao/${id}/staking`,
+    Members: `/dao/${id}/members`,
+    Activity: `/dao/${id}/activity`,
+    "Edit profile": `/dao/${id}/profile/edit`,
+    Notifications: `/dao/${id}/notifications/edit`,
+    Wallet: `/dao/${id}/wallet`,
 
-    'DAO Config': `/dao/${globalContext.api.daoId}/dao-config`
-  }
-  return <Link href={linkLookup[props.title]}>
-    <Box
-      sx={{
-        width: "100%",
-        mt: props.m === undefined ? ".25rem" : props.m,
-        mb: props.m === undefined ? ".25rem" : props.m,
-      }}
-    >
+    "DAO Config": `/dao/${id}/dao-config`,
+  };
+  return (
+    <Link href={linkLookup[props.title]}>
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          fontSize: ".7rem",
-          cursor: "pointer",
-          color: props.selected ? "primary.main" : "primary.text",
-          ":hover": {
-            backgroundColor: "linkHover.main",
-          },
+          width: "100%",
+          mt: props.m === undefined ? ".25rem" : props.m,
+          mb: props.m === undefined ? ".25rem" : props.m,
         }}
-        onClick={() => props.set(props.title)}
       >
         <Box
           sx={{
-            backgroundColor: props.selected ? "secondary.main" : "transparent",
-            height: "2rem",
-            width: ".15rem",
-            borderTopRightRadius: ".5rem",
-            borderBottomRightRadius: ".5rem",
-            mr: "auto",
-          }}
-        ></Box>
-        <Box
-          sx={{
             display: "flex",
-            pt: ".25rem",
-            pb: ".25rem",
-            ml: ".5rem",
-            mr: "auto",
-            borderTopLeftRadius: ".3rem",
-            borderBottomLeftRadius: ".3rem",
-            pl: ".5rem",
-            width: "100%",
             alignItems: "center",
-            backgroundColor: props.selected ? "linkHover.main" : "transparent",
+            fontSize: ".7rem",
+            cursor: "pointer",
+            color: props.selected ? "primary.main" : "primary.text",
+            ":hover": {
+              backgroundColor: "linkHover.main",
+            },
           }}
+          onClick={() => props.set(props.title)}
         >
           <Box
             sx={{
-              width: "10%",
+              backgroundColor: props.selected
+                ? "secondary.main"
+                : "transparent",
+              height: "2rem",
+              width: ".15rem",
+              borderTopRightRadius: ".5rem",
+              borderBottomRightRadius: ".5rem",
+              mr: "auto",
+            }}
+          ></Box>
+          <Box
+            sx={{
               display: "flex",
+              pt: ".25rem",
+              pb: ".25rem",
+              ml: ".5rem",
+              mr: "auto",
+              borderTopLeftRadius: ".3rem",
+              borderBottomLeftRadius: ".3rem",
+              pl: ".5rem",
+              width: "100%",
               alignItems: "center",
-              justifyContent: "center",
-              mr: ".5rem",
-              ml: props.ml === undefined ? 0 : props.ml,
-              color: props.selected ? "primary.main" : "inherit",
+              backgroundColor: props.selected
+                ? "linkHover.main"
+                : "transparent",
             }}
           >
-            {props.icon}
-          </Box>
-          <Box sx={{ width: "73.5%" }}>{props.title}</Box>
-          {props.notifications > 0 && (
-            <Box sx={{ width: "10%" }}>
-              <Badge
-                color="primary"
-                badgeContent={props.notifications}
-                sx={{ pt: ".1rem" }}
-                max={10}
-              ></Badge>
+            <Box
+              sx={{
+                width: "10%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                mr: ".5rem",
+                ml: props.ml === undefined ? 0 : props.ml,
+                color: props.selected ? "primary.main" : "inherit",
+              }}
+            >
+              {props.icon}
             </Box>
-          )}
+            <Box sx={{ width: "73.5%" }}>{props.title}</Box>
+            {props.notifications > 0 && (
+              <Box sx={{ width: "10%" }}>
+                <Badge
+                  color="primary"
+                  badgeContent={props.notifications}
+                  sx={{ pt: ".1rem" }}
+                  max={10}
+                ></Badge>
+              </Box>
+            )}
+          </Box>
         </Box>
       </Box>
-    </Box>
     </Link>
+  );
 };
 
 const DropdownLink: React.FC<{
@@ -414,7 +422,7 @@ const Contents: React.FC = () => {
       sx={{
         width: "100%",
         mb: "1rem",
-        height: "55%",
+        height: "70%",
         overflowY: "auto",
         overflowX: "hidden",
       }}

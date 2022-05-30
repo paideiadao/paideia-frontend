@@ -330,7 +330,7 @@ const Airdrop: React.FC<{
           />
           {value.manualDataValidation === true && (
             <Box sx={{ width: "100%", pb: "1rem" }}>
-              <LearnMore title="Fields that will be validated" />
+              <LearnMore title="Fields that will be validated" tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
               <Box sx={{ width: "100%" }}>
                 {value.validatedFields.map((i: IValidatedField, c: number) => {
                   return (
@@ -411,7 +411,7 @@ const Airdrop: React.FC<{
       ) : (
         <Box sx={{ width: "100%", p: "1rem" }}>
           <CapsInfo title="Configuration" />
-          <LearnMore title="Recepient wallet address" light />
+          <LearnMore title="Recepient wallet address" light tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
           {value.tokenHolders.map((i: ITokenHolder, c: number) => {
             return (
               <Box
