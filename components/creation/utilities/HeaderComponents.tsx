@@ -1,6 +1,8 @@
 import { Box, Button } from "@mui/material";
 import * as React from "react";
 import InfoIcon from "@mui/icons-material/Info";
+import Tooltip from '@mui/material/Tooltip';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 
 export const Header: React.FC<{
   title: string;
@@ -102,17 +104,70 @@ export const LearnMore: React.FC<{
   small?: boolean;
   light?: boolean;
 }> = (props) => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpen(true);
+  };
   return (
-    <Box
-      sx={{ display: "flex", alignItems: "center", mt: "1rem", mb: ".5rem" }}
-    >
-      <Subheader title={props.title} small={props.small} light={props.light} />
-      <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
-        <Button variant="text">
-          Learn More{" "}
-          <InfoIcon style={{ fill: "primary.main", marginLeft: ".4rem" }} />
-        </Button>
+    <>
+      <Box
+        sx={{ display: "flex", alignItems: "center", mt: "1rem", mb: ".5rem", position: 'relative' }}
+      >
+        <Subheader title={props.title} small={props.small} light={props.light} />
+        <ClickAwayListener onClickAway={handleTooltipClose}>
+            <Box sx={{ml: 'auto'}}>
+              <Tooltip
+                PopperProps={{
+                  disablePortal: true,
+                }}
+                placement='top-end'
+                arrow
+                componentsProps={{
+                  tooltip: {
+                    sx: {
+                      bgcolor: 'fileInput.main',
+                      width: '40rem',
+                      border: '1px solid',
+                      borderColor: 'divider.main',
+                      '& .MuiTooltip-arrow': {
+                        color: 'fileInput.main',
+                        width: '7rem'
+                      },
+                    },
+                  },
+                }}
+                onClose={handleTooltipClose}
+                open={open}
+                disableFocusListener
+                disableHoverListener
+                disableTouchListener
+                title={<Box sx={{p: 0, m: 0, color: 'text.main'}}>
+                  Info message Title
+                  <Box sx={{width: '100%', mt: '1rem', display: 'flex', mb: '.2rem'}}>
+                    <Button size='small'>
+                      Learn More
+                    </Button>
+                    <Button size='small' variant='contained' sx={{ml: 'auto'}}>
+                      Got it
+                    </Button>
+                  </Box>
+                </Box>}
+              >
+                <Button onClick={handleTooltipOpen}>Learn More{" "}
+                <InfoIcon style={{ fill: "primary.main", marginLeft: ".4rem" }} /></Button>
+              </Tooltip>
+            </Box>
+          </ClickAwayListener>
       </Box>
-    </Box>
+      {open && <Box sx={{position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 100, backgroundColor: 'black', opacity: '.8'}}>
+        
+      </Box>}
+    </>
+    
   );
 };

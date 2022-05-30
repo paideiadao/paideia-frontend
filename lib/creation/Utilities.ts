@@ -10,7 +10,7 @@ export function checkCompleteness(_data: ICreationData): boolean {
         _data.basicInformation.shortDescription === ""
       );
     }
-    case 1: {
+    case 2: {
       return (
         (_data.governance.optimisticGovernance
           ? _data.governance.timeToChallenge === 0 ||
@@ -20,7 +20,7 @@ export function checkCompleteness(_data: ICreationData): boolean {
           : false) || _data.governance.voteDuration === 0
       );
     }
-    case 2: {
+    case 3: {
       return (
         _data.tokenomics.tokenRemaining <= 0 ||
         _data.tokenomics.tokenAmount === 0 ||
