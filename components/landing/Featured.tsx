@@ -5,52 +5,59 @@ import {
   Button,
   Container,
   Divider,
-  Chip
-} from "@mui/material"
-import Image from "next/image"
-import { DarkTheme, LightTheme } from "@theme/theme"
-import SectionTitle from '@components/SectionTitle'
-import GlassBox from '@components/GlassBox'
-import StarIcon from '@mui/icons-material/Star';
+  Chip,
+} from "@mui/material";
+import Image from "next/image";
+import { DarkTheme, LightTheme } from "@theme/theme";
+import SectionTitle from "@components/SectionTitle";
+import GlassBox from "@components/GlassBox";
+import StarIcon from "@mui/icons-material/Star";
 
 const titleStyle = {
   fontSize: "48px",
   fontWeight: "400",
-  lineHeight: '116.7%',
-  mb: '24px',
+  lineHeight: "116.7%",
+  mb: "24px",
   color: DarkTheme.palette.text.primary,
-  textTransform: 'uppercase',
+  textTransform: "uppercase",
   fontFamily: '"Viga" !important',
-}
+};
 
 const secondaryTitleStyle = {
   fontSize: "20px",
   fontWeight: "700",
   color: DarkTheme.palette.text.primary,
-  textTransform: 'uppercase',
+  textTransform: "uppercase",
   fontFamily: '"Space Grotesk" !important',
-}
+};
 
 const paragraphStyle = {
-  fontWeight: '400',
-  fontSize: '16px',
-  lineHeight: '24px',
-  letterSpacing: '0.15px',
-}
+  fontWeight: "400",
+  fontSize: "16px",
+  lineHeight: "24px",
+  letterSpacing: "0.15px",
+};
 
 export default function Featured() {
   return (
-    <Container sx={{ flexGrow: 1, px: '24px', minHeight: '1200px', position: 'relative' }}>
+    <Container
+      sx={{
+        flexGrow: 1,
+        px: "24px",
+        minHeight: "1200px",
+        position: "relative",
+      }}
+    >
       <Box
         sx={{
-          position: 'absolute',
-          top: '-300px',
-          left: { xs: '80%', md: '70%' },
-          width: '2160px',
-          transform: 'translate(-50%, -60px)',
-          overflow: 'visible',
-          zIndex: '-8',
-          ml: '-24px',
+          position: "absolute",
+          top: "-300px",
+          left: { xs: "80%", md: "70%" },
+          width: "2160px",
+          transform: "translate(-50%, -60px)",
+          overflow: "visible",
+          zIndex: "-8",
+          ml: "-24px",
         }}
       >
         <Image
@@ -67,8 +74,7 @@ export default function Featured() {
             Don&apos;t miss out on these projects
           </Typography>
         </Grid>
-        <Grid item md={6}>
-        </Grid>
+        <Grid item md={6}></Grid>
       </Grid>
       <GlassBox>
         <Grid container>
@@ -78,7 +84,7 @@ export default function Featured() {
               direction="column"
               alignItems="flex-start"
               justifyContent="center"
-              sx={{ maxWidth: '402px', height: '100%', mx: 'auto' }}
+              sx={{ maxWidth: "402px", height: "100%", mx: "auto" }}
             >
               <Grid item>
                 <Chip
@@ -86,46 +92,53 @@ export default function Featured() {
                   label="Sponsored"
                   sx={{
                     color: DarkTheme.palette.secondary.main,
-                    background: '#fff'
+                    background: "#fff",
                   }}
                 />
               </Grid>
               <Grid item>
-                <Typography sx={titleStyle}>
-                  Hello
-                </Typography>
+                <Typography sx={titleStyle}>Hello</Typography>
               </Grid>
               <Grid item>
-                <Typography>
-                  Is it me you're looking for
-                </Typography>
+                <Typography>Is it me you're looking for</Typography>
               </Grid>
             </Grid>
           </Grid>
           <Grid item md={6}>
-            <Box sx={{
-              borderRadius: '0 20px 20px 0',
-              overflow: 'hidden'
-            }}>
-              <Image src="/featured/featured.png" layout="responsive" width={709} height={594} />
+            <Box
+              sx={{
+                borderRadius: "0 20px 20px 0",
+                overflow: "hidden",
+              }}
+            >
+              <Image
+                src="/featured/featured.png"
+                layout="responsive"
+                width={709}
+                height={594}
+              />
             </Box>
           </Grid>
         </Grid>
       </GlassBox>
-      <Grid container sx={{ py: '100px' }} spacing={10}>
+      <Grid container sx={{ py: "100px" }} spacing={10}>
         <Grid item md={3}>
-          <Grid container wrap="nowrap" spacing={2} sx={{ mb: '60px' }}>
+          <Grid container wrap="nowrap" spacing={2} sx={{ mb: "60px" }}>
             <Grid item>
-              <Box sx={{
-                width: '8px',
-                height: '100%',
-                background: 'linear-gradient(161.68deg, #6FA1A9 19.58%, #ED7E21 84.97%)'
-              }}>
-              </Box>
+              <Box
+                sx={{
+                  width: "8px",
+                  height: "100%",
+                  background:
+                    "linear-gradient(161.68deg, #6FA1A9 19.58%, #ED7E21 84.97%)",
+                }}
+              ></Box>
             </Grid>
             <Grid item zeroMinWidth>
               <Typography component="p" sx={paragraphStyle}>
-                If you want to learn more about some of the best projects in our platform, you can click here to see all. Find something you like!
+                If you want to learn more about some of the best projects in our
+                platform, you can click here to see all. Find something you
+                like!
               </Typography>
             </Grid>
           </Grid>
@@ -134,25 +147,17 @@ export default function Featured() {
               All Projects
             </Button>
           </Box>
-
-
         </Grid>
         <Grid item md={3}>
-          <GlassBox>
-            Azorus
-          </GlassBox>
+          <GlassBox>Azorus</GlassBox>
         </Grid>
         <Grid item md={3}>
-          <GlassBox>
-            Ergopad
-          </GlassBox>
+          <GlassBox>Ergopad</GlassBox>
         </Grid>
         <Grid item md={3}>
-          <GlassBox>
-            Paideia
-          </GlassBox>
+          <GlassBox>Paideia</GlassBox>
         </Grid>
       </Grid>
     </Container>
-  )
+  );
 }

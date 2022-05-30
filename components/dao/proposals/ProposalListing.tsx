@@ -10,7 +10,9 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import AppsIcon from "@mui/icons-material/Apps";
 import StarIcon from "@mui/icons-material/Star";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import ProposalCard, { IProposalCard } from "@components/dao/proposals/ProposalCard";
+import ProposalCard, {
+  IProposalCard,
+} from "@components/dao/proposals/ProposalCard";
 import Chip from "@components/utilities/Chip";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -43,8 +45,8 @@ const categories = [
 ];
 
 interface IProposalListing {
-    proposals: any;
-    title: string;
+  proposals: any;
+  title: string;
 }
 
 const ProposalListing: React.FC<IProposalListing> = (props) => {
@@ -165,7 +167,7 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
               });
             }}
             c={c}
-            key={'proposal-filter-chip-key-' + c}
+            key={"proposal-filter-chip-key-" + c}
             variant={
               filters.categories.indexOf(i.label) > -1
                 ? "contained"
@@ -177,11 +179,28 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
       <Box
         sx={{ width: "100%", flexWrap: "wrap", display: "flex", mt: "1rem" }}
       >
-        {props.proposals.sort((a, b) => filters.sortBy === '' ? true : filters.sortBy === 'Most Recent' ? new Date(a.date).getTime() - new Date(b.date).getTime() : true)
+        {props.proposals
+          .sort((a, b) =>
+            filters.sortBy === ""
+              ? true
+              : filters.sortBy === "Most Recent"
+              ? new Date(a.date).getTime() - new Date(b.date).getTime()
+              : true
+          )
           .filter((i: any) => {
-            return (filters.proposalStatus === '' || filters.proposalStatus === 'All' ? true : (i.status === filters.proposalStatus))
-              && (filters.search === '' ? true : i.proposalName.toLowerCase().includes(filters.search.toLowerCase()))
-              && (filters.categories.indexOf('All') > -1 ? true : filters.categories.indexOf(i.category) > -1)
+            return (
+              (filters.proposalStatus === "" || filters.proposalStatus === "All"
+                ? true
+                : i.status === filters.proposalStatus) &&
+              (filters.search === ""
+                ? true
+                : i.proposalName
+                    .toLowerCase()
+                    .includes(filters.search.toLowerCase())) &&
+              (filters.categories.indexOf("All") > -1
+                ? true
+                : filters.categories.indexOf(i.category) > -1)
+            );
           })
           .map((i: any, c: number) => (
             <ProposalCard

@@ -24,9 +24,9 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          <Box sx={{ overflowX: 'hidden', position: 'relative' }}>
-          <Main />
-          <NextScript />
+          <Box sx={{ overflowX: "hidden", position: "relative" }}>
+            <Main />
+            <NextScript />
           </Box>
         </body>
       </Html>

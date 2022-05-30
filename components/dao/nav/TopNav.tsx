@@ -21,7 +21,7 @@ const TopNav: React.FC = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const router = useRouter();
-  const {id} = router.query
+  const { id } = router.query;
   return (
     <Box
       sx={{
