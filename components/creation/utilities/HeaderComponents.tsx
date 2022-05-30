@@ -161,10 +161,14 @@ export const LearnMore: React.FC<{
                     {props.tooltipText}
                   </Box>
                   <Box sx={{width: '100%', mt: '.1rem', display: 'flex'}}>
-                    <Link href={props.tooltipLink}>
-                      <Button size='small'>
+                    <Link href={props.tooltipLink} passHref>
+                    <a target="_blank" style={{textDecoration: 'none'}}>
+                    <Button size='small'>
                         Learn More
                       </Button>
+
+                    </a>
+                      
                     </Link>
                    
                     <Button size='small' variant='contained' sx={{ml: 'auto'}} onClick={handleTooltipClose}>
