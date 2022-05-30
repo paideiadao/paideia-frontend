@@ -11,6 +11,8 @@ import DiscussionApi from "@components/dao/discussion/DiscussionApi";
 import DiscussionContext from "@components/dao/discussion/DiscussionContext";
 import DiscussionImage from "@components/dao/discussion/DiscussionImage";
 import DiscussionPlaceholder from "@public/dao/discussion-banner-placeholder.png";
+import Reference from "@components/dao/discussion/Reference";
+import Content from "@components/dao/discussion/Content";
 
 export interface IDiscussion {
   name: string;
@@ -98,6 +100,16 @@ const CreateDiscussion: React.FC = () => {
           >
             <GeneralInformation />
             <DiscussionImage />
+            <Reference/>
+            <Content/>
+            <Box sx={{display: 'flex', alignItems: 'center', width: '100%', mt: '1rem', mb: '.5rem'}}>
+              <Button variant='outlined' sx={{width: '50%', mr: '1rem'}}>
+                Cancel
+              </Button>
+              <Button variant='contained' sx={{width: '50%'}} onClick={() => console.log(value, 'call api here...')}>
+                Publish
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Box>
