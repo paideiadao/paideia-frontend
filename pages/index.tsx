@@ -8,12 +8,15 @@ import Featured from "@components/landing/Featured";
 export default function Home() {
   return (
     <>
-      <Hero />
-      <WhitepaperQuote />
-      <Perks />
-      <Stats />
-      <Featured />
-      <Examples />
+
+        <Hero />
+        <WhitepaperQuote />
+        <Perks />
+        <Examples />
+        <Stats />
+        <Featured />
+        
+
     </>
   );
 }
