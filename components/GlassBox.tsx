@@ -2,18 +2,17 @@ import React, { FC } from "react";
 import Box from "@mui/material/Box";
 
 interface BoxProps {
-  padding?: string
+  styles?: Object
 }
 
-const Featured: FC<BoxProps> = ({ children, padding }) => {
-  const setPadding = padding ? padding : '0px'
+const Featured: FC<BoxProps> = ({ children, styles }) => {
   return (
     <Box
       sx={{
+        ...styles,
         background: 'linear-gradient(130.4deg, rgba(0, 0, 0, 0.4) 14.89%, rgba(0, 0, 0, 0.1) 87.67%)',
         backdropFilter: 'blur(5px)',
         //borderRadius: '20px',
-        p: setPadding,
         // border: '1px solid rgba(224, 104, 4, 0.6)',
         border: '1px solid',
         borderImageSlice: '1',
