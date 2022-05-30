@@ -64,7 +64,7 @@ const CurrentDistributions: React.FC = () => {
               p: "1rem",
               fontSize: ".8rem",
               ":hover": {
-                borderColor: 'primary.main'
+                borderColor: "primary.main",
               },
             }}
           >

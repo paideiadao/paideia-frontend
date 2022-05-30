@@ -1,9 +1,9 @@
 import { Avatar, Box, Button, Paper } from "@mui/material";
-import { bytesToSize } from "../../lib/creation/Utilities";
 import ImageIcon from "@mui/icons-material/Image";
 import Image from "next/image";
+import { bytesToSize } from "@lib/creation/Utilities";
 
-const FileBanner: React.FC<{
+const DiscussionBanner: React.FC<{
   file: any;
   handleImage: Function;
   id: string;
@@ -31,12 +31,7 @@ const FileBanner: React.FC<{
           justifyContent: "center",
           flexDirection: "column",
           alignItems: "center",
-          pt:
-            props.fileUrl !== "" &&
-            props.fileUrl !== undefined &&
-            props.file !== undefined
-              ? 0
-              : "1rem",
+          pt: 0,
           pb: "1rem",
         }}
       >
@@ -68,7 +63,7 @@ const FileBanner: React.FC<{
                   {props.file.name}
                   <Box sx={{ color: "text.light", fontSize: ".9rem" }}>
                     {props.file === undefined || props.file === -1
-                      ? "File Max size 1Mb. Dimensions 720px by 350px."
+                      ? "File Max size 1Mb. Dimensions 48px by 48px."
                       : bytesToSize(props.file.size)}
                   </Box>
                 </Box>
@@ -97,72 +92,62 @@ const FileBanner: React.FC<{
             />
           </>
         ) : (
-          <>
-            <Box>
-              <ImageIcon style={{ fontSize: "3rem" }} color="primary" />
-            </Box>
-            <Box>
-              <input
-                type="file"
-                id={props.id}
-                accept="image/*"
-                style={{ display: "none" }}
-                onChange={(e) => props.handleImage(e)}
-              />
-              <Box
-                sx={{
-                  color: "primary.text",
-                  fontSize: "1rem",
-                  textAlign: "center",
-                }}
-              >
-                {props.file === undefined || props.file === -1
-                  ? "Drop your image here or "
-                  : props.file.name}
-                {(props.file === undefined || props.file === -1) && (
-                  <Box
-                    sx={{
-                      color: "primary.main",
-                      display: "inline",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => {
-                      const fileInput = document.getElementById(props.id);
-                      fileInput.click();
-                    }}
-                  >
-                    browse
-                  </Box>
-                )}
-              </Box>
-              <Box sx={{ color: "text.light", textAlign: "center" }}>
-                {props.file === undefined || props.file === -1
-                  ? "File Max size 1Mb. Dimensions 1200px by 400px."
-                  : bytesToSize(props.file.size)}
-              </Box>
-              {props.file === -1 && (
-                <Box sx={{ color: "red", fontWeight: 500 }}>
-                  File size too large.
-                </Box>
-              )}
-              {props.file !== undefined && props.file !== -1 && (
-                <Button
-                  variant="contained"
-                  sx={{ mt: ".5rem" }}
+          <Box sx={{ width: "100%" }}>
+            <Image
+              src={props.fileUrl}
+              alt="Banner for the discussion"
+              style={{
+                borderTopLeftRadius: ".2rem",
+                borderTopRightRadius: ".3rem",
+              }}
+              width="1200rem"
+              height="410rem"
+            />
+
+            <input
+              type="file"
+              id={props.id}
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={(e) => props.handleImage(e)}
+            />
+            <Box
+              sx={{
+                color: "primary.text",
+                fontSize: "1rem",
+                textAlign: "center",
+                mt: ".5rem",
+              }}
+            >
+              {props.file === undefined || props.file === -1
+                ? "To replace, drop your image here or "
+                : props.file.name}
+              {(props.file === undefined || props.file === -1) && (
+                <Box
+                  sx={{
+                    color: "primary.main",
+                    display: "inline",
+                    cursor: "pointer",
+                  }}
                   onClick={() => {
                     const fileInput = document.getElementById(props.id);
                     fileInput.click();
                   }}
                 >
-                  Replace
-                </Button>
+                  browse
+                </Box>
               )}
             </Box>
-          </>
+            <Box sx={{ color: "text.light", textAlign: "center" }}>
+              {props.file === undefined || props.file === -1
+                ? "File Max size 1Mb. Dimensions 1200px by 400px."
+                : bytesToSize(props.file.size)}
+            </Box>
+          </Box>
         )}
       </Paper>
     </Paper>
   );
 };
 
-export default FileBanner;
+export default DiscussionBanner;

@@ -21,7 +21,6 @@ body {
 /* Track */
 ::-webkit-scrollbar-track {
   border-radius: 0.3rem;
-
 }
 
 /* Handle */
@@ -29,7 +28,7 @@ body {
   background: gray;
   border-radius: 0.3rem;
   border: 1px solid;
-  border-color: black
+  border-color: black;
 }
 
 /* Handle on hover */
@@ -56,5 +55,5 @@ img {
 
 .outlineText {
   -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: #FFFFFF;
-  }
+  -webkit-text-stroke-color: #ffffff;
+}

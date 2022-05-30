@@ -4,9 +4,10 @@ import PropsosalListing from "@components/dao/proposals/ProposalListing";
 
 const All: React.FC = () => {
   return (
-    <PropsosalListing title='All proposals' proposals={proposals
-      .concat(proposals)
-      .concat(proposals)}/>
+    <PropsosalListing
+      title="All proposals"
+      proposals={proposals.concat(proposals).concat(proposals)}
+    />
   );
 };
 

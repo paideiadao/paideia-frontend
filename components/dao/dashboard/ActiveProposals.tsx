@@ -6,8 +6,8 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ProposalCard from "../proposals/ProposalCard";
 import useDidMountEffect from "@components/utilities/hooks";
 
-let temp = new Date() 
-temp.setDate(temp.getDate() - 30)
+let temp = new Date();
+temp.setDate(temp.getDate() - 30);
 
 export const proposals = [
   {
@@ -88,7 +88,11 @@ const ActiveProposal: React.FC = () => {
     let element = document.getElementById(
       `proposal-active-${slide === 0 ? slide : slide - 1}`
     );
-    element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "start",
+    });
   }, [slide]);
 
   return (
@@ -137,7 +141,7 @@ const ActiveProposal: React.FC = () => {
             {...i}
             c={c}
             key={"proposal-card-key-" + c}
-            width="33%"
+            width="34.5%"
           />
         ))}
       </Box>

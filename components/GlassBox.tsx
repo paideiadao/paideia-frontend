@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import Box from '@mui/material/Box'
+import React, { FC } from "react";
+import Box from "@mui/material/Box";
 
 interface BoxProps {
   padding?: string
@@ -23,7 +23,7 @@ const Featured: FC<BoxProps> = ({ children, padding }) => {
     >
       {children}
     </Box>
-  )
-}
+  );
+};
 
-export default Featured
+export default Featured;

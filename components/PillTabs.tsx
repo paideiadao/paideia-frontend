@@ -1,11 +1,11 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
-import { styled } from '@mui/material/styles';
+import * as React from "react";
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
 import { DarkTheme, LightTheme } from "@theme/theme";
 
 const StyledTabs = styled((props: any) => (
@@ -14,37 +14,36 @@ const StyledTabs = styled((props: any) => (
     TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
   />
 ))({
-  '& .MuiTabs-indicator': {
-    display: 'none',
+  "& .MuiTabs-indicator": {
+    display: "none",
   },
-  '& .MuiTabs-indicatorSpan': {
-    display: 'none'
+  "& .MuiTabs-indicatorSpan": {
+    display: "none",
   },
 });
 
 const StyledTab = styled((props: any) => <Tab {...props} variant="outlined" />)(
   ({ theme }) => ({
-    position: 'relative',
-    textTransform: 'uppercase',
-    fontSize: '13px',
-    minHeight: '24px',
-    height: '24px',
-    borderRadius: '16px',
-    marginRight: '12px',
+    position: "relative",
+    textTransform: "uppercase",
+    fontSize: "13px",
+    minHeight: "24px",
+    height: "24px",
+    borderRadius: "16px",
+    marginRight: "12px",
     color: DarkTheme.palette.primary.dark,
     border: `1px solid ${DarkTheme.palette.primary.dark}`,
-    '&.Mui-selected': {
+    "&.Mui-selected": {
       color: DarkTheme.palette.primary.contrastText,
       backgroundColor: DarkTheme.palette.primary.main,
     },
-    '&.Mui-focusVisible': {
-      backgroundColor: '#ccc',
+    "&.Mui-focusVisible": {
+      backgroundColor: "#ccc",
     },
-  }),
+  })
 );
 
 function TabPanel(props: any) {
-
   const { children, value, index, ...other } = props;
 
   return (
@@ -88,15 +87,9 @@ export default function PillTabs({ tabs }) {
       </Box>
       {tabs.map(({ title, content, link }, i: number) => (
         <TabPanel value={value} index={i} key={i}>
-          <Typography>
-          {title}
-          </Typography>
-          <Typography>
-          {content}
-          </Typography>
-          <Button href={link}>
-            Learn More
-          </Button>
+          <Typography>{title}</Typography>
+          <Typography>{content}</Typography>
+          <Button href={link}>Learn More</Button>
         </TabPanel>
       ))}
     </Box>

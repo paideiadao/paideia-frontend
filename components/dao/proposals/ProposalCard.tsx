@@ -355,84 +355,84 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
 
   // use a local state to make it dynamic...
   return (
-    <Link
-      href={`/dao/${id}/${
-        props.status === "Discussion" ? "discussion" : "proposal"
-      }/${props.id}`}
+    <Box
+      sx={{
+        pr: "1rem",
+        pt: ".5rem",
+        pb: ".5rem",
+        minWidth: props.width,
+        maxWidth: props.width,
+      }}
+      id={`proposal-active-${props.c}`}
     >
-      <Box
-        sx={{
-          pr: "1rem",
-          pt: ".5rem",
-          pb: ".5rem",
-          minWidth: props.width,
-          maxWidth: props.width,
-        }}
-        id={`proposal-active-${props.c}`}
+      <Badge
+        badgeContent={
+          <Box
+            sx={{
+              backgroundColor: "favoriteBackground.main",
+              color: "text.light",
+              p: ".2rem",
+              borderRadius: "50%",
+              width: "1.5rem",
+              height: "1.5rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+            }}
+            onClick={() => console.log("favorite api call here.")}
+          >
+            {props.favorited ? (
+              <FavoriteIcon sx={{ fontSize: "1rem", fill: "red" }} />
+            ) : (
+              <FavoriteBorderIcon sx={{ fontSize: "1rem", fill: "red" }} />
+            )}
+          </Box>
+        }
+        sx={{ width: "100%" }}
       >
-        <Badge
-          badgeContent={
-            <Box
-              sx={{
-                backgroundColor: "favoriteBackground.main",
-                color: "text.light",
-                p: ".2rem",
-                borderRadius: "50%",
-                width: "1.5rem",
-                height: "1.5rem",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-              onClick={() => console.log("favorite api call here.")}
-            >
-              {props.favorited ? (
-                <FavoriteIcon sx={{ fontSize: "1rem", fill: "red" }} />
-              ) : (
-                <FavoriteBorderIcon sx={{ fontSize: "1rem", fill: "red" }} />
-              )}
-            </Box>
-          }
-          sx={{ width: "100%" }}
+        <Box
+          sx={{
+            backgroundColor: "fileInput.outer",
+            border: "1px solid",
+            borderColor: "divider.main",
+            borderRadius: ".3rem",
+            width: "100%",
+            ":hover": {
+              borderColor: "primary.main",
+            },
+          }}
         >
           <Box
             sx={{
-              backgroundColor: "fileInput.outer",
-              border: "1px solid",
-              borderColor: "divider.main",
-              borderRadius: ".3rem",
-              width: "100%",
-              ":hover": {
-                borderColor: 'primary.main'
-              },
+              borderBottom: "1px solid",
+              borderBottomColor: "divider.main",
+              p: ".5rem",
             }}
           >
-            <Box
-              sx={{
-                borderBottom: "1px solid",
-                borderBottomColor: "divider.main",
-                p: ".5rem",
-              }}
+            <Link
+              href={`/dao/${id}/${
+                props.status === "Discussion" ? "discussion" : "proposal"
+              }/${props.id}`}
             >
-              <Subheader title={props.proposalName} small />
-              <Box sx={{ display: "flex", fontSize: ".8rem" }}>
-                <ProposalStatus status={props.status} />
-                <Box sx={{ ml: "auto" }}>
-                  <LikesDislikes
-                    likes={props.likes}
-                    dislikes={props.dislikes}
-                    userSide={props.userSide}
-                  />
-                </Box>
+              <Box sx={{ cursor: "pointer" }}>{props.proposalName}</Box>
+            </Link>
+            <Box sx={{ display: "flex", fontSize: ".8rem" }}>
+              <ProposalStatus status={props.status} />
+              <Box sx={{ ml: "auto" }}>
+                <LikesDislikes
+                  likes={props.likes}
+                  dislikes={props.dislikes}
+                  userSide={props.userSide}
+                />
               </Box>
-              <CardContent category={props.category} widget={props.widget} />
             </Box>
-            <Box sx={{ p: ".5rem", height: "4rem" }}>{getFooter()}</Box>
+            <CardContent category={props.category} widget={props.widget} />
           </Box>
-        </Badge>
-      </Box>
-    </Link>
+          <Box sx={{ p: ".5rem", height: "4rem" }}>{getFooter()}</Box>
+        </Box>
+      </Badge>
+    </Box>
   );
 };
 

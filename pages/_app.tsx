@@ -28,6 +28,8 @@ import Create from "./dao/[id]/create";
 import Vote from "./dao/[id]/proposal/[proposal_id]/vote";
 import CastVote from "./dao/[id]/proposal/[proposal_id]/cast-vote";
 import Member from "./dao/[id]/member/[member_id]";
+import CreateProposal from "./dao/[id]/proposal/create";
+import CreateDiscussion from "./dao/[id]/discussion/create";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
@@ -57,10 +59,12 @@ export default function App({ Component, pageProps }: AppProps) {
     Component === EditNotifications ||
     Component === Proposal ||
     Component === Discussion ||
-    Component === Create || 
-    Component === Vote || 
-    Component === CastVote || 
-    Component === Member || 
+    Component === Create ||
+    Component === Vote ||
+    Component === CastVote ||
+    Component === Member ||
+    Component === CreateProposal ||
+    Component === CreateDiscussion ||
     Component === Past ? (
     <ThemeProvider theme={theme}>
       <ThemeContext.Provider value={{ theme, setTheme }}>

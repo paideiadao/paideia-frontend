@@ -4,9 +4,13 @@ import PropsosalListing from "@components/dao/proposals/ProposalListing";
 
 const Following: React.FC = () => {
   return (
-    <PropsosalListing title='Following proposals' proposals={proposals
-      .concat(proposals)
-      .concat(proposals).filter((i: any) => i.favorited)}/>
+    <PropsosalListing
+      title="Following proposals"
+      proposals={proposals
+        .concat(proposals)
+        .concat(proposals)
+        .filter((i: any) => i.favorited)}
+    />
   );
 };
 

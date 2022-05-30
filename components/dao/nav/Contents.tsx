@@ -37,8 +37,8 @@ const BasicLink: React.FC<{
   ml?: string;
   notifications?: number;
 }> = (props) => {
-  const router = useRouter()
-  const { id } = router.query
+  const router = useRouter();
+  const { id } = router.query;
   let linkLookup = {
     Dashboard: `/dao/${id}`,
     All: `/dao/${id}/proposals/all`,
