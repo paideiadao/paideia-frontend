@@ -12,7 +12,7 @@ export default function Dao({ daoData }) {
   let globalContext = React.useContext<IGlobalContext>(GlobalContext);
   return (
     <>
-      <Dashboard/>
+      <Dashboard />
     </>
   );
 }

@@ -2,11 +2,14 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { DarkTheme, LightTheme } from "@theme/theme";
-import PaideiaLarge from "@components/svgs/PaideiaLarge";
+import Paideia from "@components/svgs/Paideia";
 import Typography from "@mui/material/Typography";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
 import Link from "@mui/material/Link";
+import TelegramIcon from "@components/svgs/TelegramIcon";
+import YoutubeIcon from "@components/svgs/YoutubeIcon";
+import MediumIcon from "@components/svgs/MediumIcon";
+import TwitterIcon from "@components/svgs/TwitterIcon";
+import DiscordIcon from "@components/svgs/DiscordIcon";
 
 const titleFont = {
   fontFamily: ['"Space Grotesk"', "sans-serif"].join(","),
@@ -18,10 +21,18 @@ const titleFont = {
 };
 
 const linkStyles = {
-  color: DarkTheme.palette.text.secondary,
+  color: DarkTheme.palette.text.primary,
   textDecoration: "none",
   "&:hover": {
     textDecoration: "underline",
+    color: DarkTheme.palette.primary.main,
+  },
+};
+
+const iconLinkStyles = {
+  color: DarkTheme.palette.text.primary,
+  "&:hover": {
+    color: DarkTheme.palette.primary.main,
   },
 };
 
@@ -65,10 +76,52 @@ const secondPages = [
   },
 ];
 
+const thirdPages = [
+  {
+    name: "Some",
+    link: "/",
+  },
+  {
+    name: "Filler",
+    link: "/",
+  },
+  {
+    name: "Links",
+    link: "/",
+  },
+  {
+    name: "Another",
+    link: "/",
+  },
+];
+
+const fourthPages = [
+  {
+    name: "Some",
+    link: "/",
+  },
+  {
+    name: "Filler",
+    link: "/",
+  },
+  {
+    name: "Links",
+    link: "/",
+  },
+  {
+    name: "And",
+    link: "/",
+  },
+  {
+    name: "Another",
+    link: "/",
+  },
+];
+
 export default function Footer() {
   const linkList = (list: any[]) => {
-    return list.map((page) => (
-      <Typography sx={listItemStyles}>
+    return list.map((page, i) => (
+      <Typography key={page.name + i + "links"} sx={listItemStyles}>
         <Link
           href={page.link}
           sx={linkStyles}
@@ -82,16 +135,23 @@ export default function Footer() {
   };
 
   return (
-    <Box sx={{ background: LightTheme.palette.primary.dark }}>
-      <Container>
+    <Box
+      sx={{
+        background: LightTheme.palette.primary.dark,
+        backgroundImage: `url(/footer-bg.png)`,
+        overflow: "hidden",
+      }}
+    >
+      <Container sx={{ px: "24px" }}>
         <Grid
           container
+          spacing={{ xs: 3, md: 1 }}
           sx={{
-            py: 8,
+            py: { xs: 2, md: 8 },
           }}
         >
-          <Grid item xs={12} md={2}>
-            <PaideiaLarge />
+          <Grid item xs={12} md={2} sx={{ mt: 4, mb: 2 }}>
+            <Paideia sx={{ fontSize: { xs: "4rem", md: "6rem" } }} />
           </Grid>
           <Grid item xs={6} md={2}>
             <Typography sx={titleFont}>Paideia</Typography>
@@ -103,23 +163,87 @@ export default function Footer() {
           </Grid>
           <Grid item xs={6} md={2}>
             <Typography sx={titleFont}>Third</Typography>
+            {linkList(thirdPages)}
           </Grid>
           <Grid item xs={6} md={2}>
             <Typography sx={titleFont}>Fourth</Typography>
+            {linkList(fourthPages)}
           </Grid>
           <Grid item xs={12} md={2}>
             <Typography sx={titleFont}>Community</Typography>
+            <Grid
+              container
+              spacing={{ xs: 3, md: 1 }}
+              sx={{ justifyContent: { xs: "flex-start", md: "space-evenly" } }}
+            >
+              <Grid item>
+                <Link
+                  href="/"
+                  target="_blank"
+                  sx={iconLinkStyles}
+                  rel="noreferrer"
+                >
+                  <TelegramIcon fontSize="small" />
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link
+                  href="/"
+                  target="_blank"
+                  sx={iconLinkStyles}
+                  rel="noreferrer"
+                >
+                  <DiscordIcon fontSize="small" />
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link
+                  href="/"
+                  target="_blank"
+                  sx={iconLinkStyles}
+                  rel="noreferrer"
+                >
+                  <TwitterIcon fontSize="small" />
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link
+                  href="/"
+                  target="_blank"
+                  sx={iconLinkStyles}
+                  rel="noreferrer"
+                >
+                  <MediumIcon fontSize="small" />
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link
+                  href="/"
+                  target="_blank"
+                  sx={iconLinkStyles}
+                  rel="noreferrer"
+                >
+                  <YoutubeIcon fontSize="small" />
+                </Link>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
         <Grid container justifyContent="space-between" sx={{ py: 2 }}>
           <Grid item>
             <Typography sx={{ fontSize: "0.75rem" }}>
-              &copy; 2022 PAIDEIA. ALL RIGHTS RESERVED.
+              &copy; 2022 Paideia. All rights reserved.
             </Typography>
           </Grid>
           <Grid item>
             <Typography sx={{ fontSize: "0.75rem" }}>
-              Terms · Privacy Policy
+              <Link href="/" sx={linkStyles}>
+                Terms
+              </Link>{" "}
+              ·{" "}
+              <Link href="/" sx={linkStyles}>
+                Privacy Policy
+              </Link>
             </Typography>
           </Grid>
         </Grid>

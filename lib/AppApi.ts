@@ -5,7 +5,7 @@ export class AppApi extends AbstractApi {
   theme: Theme;
   setTheme: Function;
   daoId: string;
-  setDaoId: Function
+  setDaoId: Function;
   constructor(
     _alert: any,
     _setAlert: Function,

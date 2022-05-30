@@ -1,6 +1,9 @@
 import { Box, Button } from "@mui/material";
 import * as React from "react";
 import InfoIcon from "@mui/icons-material/Info";
+import Tooltip from "@mui/material/Tooltip";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Link from "next/link";
 
 export const Header: React.FC<{
   title: string;
@@ -39,6 +42,7 @@ export const Header: React.FC<{
               ? "1.1rem"
               : "1rem",
           color: "primary.text",
+          mb: ".5rem",
         }}
       >
         {props.title}
@@ -48,17 +52,19 @@ export const Header: React.FC<{
   );
 };
 
-export const CapsInfo: React.FC<{ title: string; small?: boolean }> = (
-  props
-) => {
+export const CapsInfo: React.FC<{
+  title: string;
+  small?: boolean;
+  mb?: string;
+}> = (props) => {
   return (
     <Box
       sx={{
         width: "100%",
-        color: "primary.text",
+        color: "text.main",
         fontSize: props.small === undefined ? ".8rem" : ".7rem",
         fontWeight: 400,
-        mb: "1rem",
+        mb: props.mb === undefined ? "1rem" : props.mb,
       }}
     >
       {props.title.toUpperCase()}
@@ -68,7 +74,7 @@ export const CapsInfo: React.FC<{ title: string; small?: boolean }> = (
 
 export const Subtitle: React.FC<{ subtitle: string }> = (props) => {
   return (
-    <Box sx={{ width: "100%", color: "primary.lightText", fontSize: ".9rem" }}>
+    <Box sx={{ width: "100%", color: "text.light", fontSize: ".9rem" }}>
       {props.subtitle}
     </Box>
   );
@@ -85,7 +91,7 @@ export const Subheader: React.FC<{
       sx={{
         color: "primary.text",
         fontSize: props.small ? ".9rem" : "1.1rem",
-        fontWeight: props.bold ? 500 : props.small || props.light ? 350 : 400,
+        fontWeight: props.bold ? 500 : 400,
         display: "flex",
         alignItems: "center",
       }}
@@ -95,22 +101,135 @@ export const Subheader: React.FC<{
   );
 };
 
+export interface ITooltipSteps {
+  id: number;
+  text: string;
+}
+
 export const LearnMore: React.FC<{
   title: string;
   small?: boolean;
   light?: boolean;
+  tooltipTitle: string;
+  tooltipText: string;
+  toolTipSteps?: ITooltipSteps[];
+  tooltipLink?: string;
 }> = (props) => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpen(true);
+  };
   return (
-    <Box
-      sx={{ display: "flex", alignItems: "center", mt: "1rem", mb: ".5rem" }}
-    >
-      <Subheader title={props.title} small={props.small} light={props.light} />
-      <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
-        <Button variant="text">
-          Learn More{" "}
-          <InfoIcon style={{ fill: "primary.main", marginLeft: ".4rem" }} />
-        </Button>
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          mt: "1rem",
+          mb: ".5rem",
+          position: "relative",
+        }}
+      >
+        <Subheader
+          title={props.title}
+          small={props.small}
+          light={props.light}
+        />
+        <ClickAwayListener onClickAway={handleTooltipClose}>
+          <Box sx={{ ml: "auto" }}>
+            <Tooltip
+              PopperProps={{
+                disablePortal: true,
+              }}
+              placement="top-end"
+              arrow
+              componentsProps={{
+                tooltip: {
+                  sx: {
+                    bgcolor: "fileInput.main",
+                    maxWidth: "40rem",
+                    "& .MuiTooltip-arrow": {
+                      color: "fileInput.main",
+                      width: "7rem",
+                      fontSize: "1.5rem",
+                    },
+                  },
+                },
+              }}
+              onClose={handleTooltipClose}
+              open={open}
+              disableFocusListener
+              disableHoverListener
+              disableTouchListener
+              title={
+                <Box
+                  sx={{
+                    p: ".5rem",
+                    m: 0,
+                    color: "text.main",
+                    width: "25rem",
+                    fontSize: "1rem",
+                    fontWeight: 400,
+                  }}
+                >
+                  {props.tooltipTitle}
+                  <Box
+                    sx={{
+                      fontSize: ".9rem",
+                      color: "text.light",
+                      width: "100%",
+                    }}
+                  >
+                    {props.tooltipText}
+                  </Box>
+                  <Box sx={{ width: "100%", mt: ".1rem", display: "flex" }}>
+                    <Link href={props.tooltipLink} passHref>
+                      <a target="_blank" style={{ textDecoration: "none" }}>
+                        <Button size="small">Learn More</Button>
+                      </a>
+                    </Link>
+
+                    <Button
+                      size="small"
+                      variant="contained"
+                      sx={{ ml: "auto" }}
+                      onClick={handleTooltipClose}
+                    >
+                      Got it
+                    </Button>
+                  </Box>
+                </Box>
+              }
+            >
+              <Button onClick={handleTooltipOpen}>
+                Learn More{" "}
+                <InfoIcon
+                  style={{ fill: "primary.main", marginLeft: ".4rem" }}
+                />
+              </Button>
+            </Tooltip>
+          </Box>
+        </ClickAwayListener>
       </Box>
-    </Box>
+      {open && (
+        <Box
+          sx={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            zIndex: 100,
+            backgroundColor: "black",
+            opacity: ".8",
+          }}
+        ></Box>
+      )}
+    </>
   );
 };

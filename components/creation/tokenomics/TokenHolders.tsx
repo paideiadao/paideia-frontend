@@ -29,7 +29,12 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
         pb: "1rem",
       }}
     >
-      <LearnMore title="Token Holders" />
+      <LearnMore
+        title="Token Holders"
+        tooltipTitle="Title Here"
+        tooltipText="Content here."
+        tooltipLink="/here"
+      />
       <Box
         sx={{
           width: "100%",

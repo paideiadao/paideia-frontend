@@ -10,9 +10,9 @@ const TablerMenu = () => {
       <path
         d="M6.6665 26.6668H33.3332M6.6665 13.3335H33.3332H6.6665Z"
         stroke="white"
-        stroke-width="3.33333"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3.33333"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

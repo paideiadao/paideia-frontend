@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Modal } from "@mui/material";
 import * as React from "react";
 import Nav from "../components/creation/nav/Nav";
 import { ThemeProvider } from "@mui/material/styles";
@@ -15,6 +15,7 @@ import Tokenomics from "../components/creation/tokenomics/Tokenomics";
 import Design from "../components/creation/design/Design";
 import Review from "../components/creation/review/Review";
 import CreationLoading from "../components/creation/loading/CreationLoading";
+import { modalBackground } from "@components/utilities/modalBackground";
 
 export let colorLookup = {
   light: "#FFFFFF",
@@ -90,12 +91,13 @@ export default function Creation(props) {
     isDraft: 0,
     isPublished: 0,
     review: undefined,
+    draftModal: false,
   });
 
   let content = [
     <BasicInformation key={1} />,
-    <Governance key={2} />,
-    <Tokenomics key={3} />,
+    <Tokenomics key={2} />,
+    <Governance key={3} />,
     <Design key={4} />,
     <Review key={5} />,
   ];
@@ -204,6 +206,53 @@ export default function Creation(props) {
           </Box>
         </>
       )}
+      <Modal
+        open={data.draftModal}
+        onClose={() => setData({ ...data, draftModal: false })}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={{ ...modalBackground, width: "35rem" }}>
+          <Box sx={{ fontSize: "1.1rem", fontWeight: 450 }}>
+            You are about to publish your DAO as a draft
+          </Box>
+          <Box sx={{ mt: "1rem", fontSize: ".9rem" }}>
+            Please keep in mind that if you continue you won't be able to change
+            either your DAO's name or it's URL. The rest of the properties can
+            be changed though. Also, your tokens won't be minted or distributed
+            until you publish the final version.
+          </Box>
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              mt: "1rem",
+            }}
+          >
+            <Box sx={{ ml: "auto" }}>
+              <Button
+                sx={{ mr: "1rem" }}
+                onClick={() => setData({ ...data, draftModal: false })}
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={() =>
+                  setData({
+                    ...data,
+                    isDraft: 1,
+                    isPublished: 1,
+                    draftModal: false,
+                  })
+                }
+              >
+                Publish DAO AS A DRAFT
+              </Button>
+            </Box>
+          </Box>
+        </Box>
+      </Modal>
     </GlobalContext.Provider>
   );
 }

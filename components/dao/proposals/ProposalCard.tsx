@@ -12,8 +12,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { percentage } from "../../../lib/creation/Utilities";
+import Link from "next/link";
+import { GlobalContext } from "@lib/AppContext";
+import { useRouter } from "next/router";
 
 export interface IProposalCard {
+  id: number;
   proposalName: string;
   status: string;
   userSide: number;
@@ -28,6 +32,7 @@ export interface IProposalCard {
   comments: number;
   users: number;
   date: Date;
+  width: string;
 }
 
 const VoteWidget: React.FC<{
@@ -70,7 +75,7 @@ const VoteWidget: React.FC<{
           width: "100%",
           display: "flex",
           alignItems: "center",
-          color: "primary.lightText",
+          color: "text.light",
           fontSize: ".8rem",
         }}
       >
@@ -109,7 +114,7 @@ const ProposalStatus: React.FC<{ status: string }> = (props) => {
         display: "flex",
         alignItems: "center",
         color: getStatusColor(),
-        fontSize: ".8rem",
+        fontSize: ".7rem",
       }}
     >
       <CircleIcon sx={{ fontSize: "1rem", mr: ".3rem" }} />
@@ -129,25 +134,27 @@ const LikesDislikes: React.FC<{
     <Box sx={{ display: "flex", alignItems: "center", fontSize: ".8rem" }}>
       {props.userSide === undefined ? (
         <>
-          <ThumbDownOffAltIcon sx={{ mr: ".3rem", fontSize: "1rem" }} />
+          <ThumbDownOffAltIcon sx={{ mr: ".3rem", fontSize: ".8rem" }} />
           {props.dislikes}
           <ThumbUpOffAltIcon
-            sx={{ ml: ".5rem", mr: ".3rem", fontSize: "1rem" }}
+            sx={{ ml: ".5rem", mr: ".3rem", fontSize: ".8rem" }}
           />
           {props.likes}
         </>
       ) : props.userSide === 0 ? (
         <>
-          <ThumbDownIcon sx={{ mr: ".3rem", fontSize: "1rem", color: "red" }} />
+          <ThumbDownIcon
+            sx={{ mr: ".3rem", fontSize: ".8rem", color: "red" }}
+          />
           <span style={{ color: "red" }}>{props.dislikes}</span>
           <ThumbUpOffAltIcon
-            sx={{ ml: ".5rem", mr: ".3rem", fontSize: "1rem" }}
+            sx={{ ml: ".5rem", mr: ".3rem", fontSize: ".8rem" }}
           />
           {props.likes}
         </>
       ) : (
         <>
-          <ThumbDownOffAltIcon sx={{ mr: ".3rem", fontSize: "1rem" }} />
+          <ThumbDownOffAltIcon sx={{ mr: ".3rem", fontSize: ".8rem" }} />
           {props.dislikes}
           <ThumbUpIcon
             sx={{
@@ -296,9 +303,18 @@ const CountdownWidget: React.FC<{ date: Date }> = (props) => {
     }, 1000);
   }, []);
   return (
-    <Box sx={{ width: "100%", fontSize: ".9rem" }}>
+    <Box
+      sx={{
+        width: "100%",
+        fontSize: ".8rem",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        height: "100%",
+      }}
+    >
       {time}
-      <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>
+      <Box sx={{ fontSize: ".7rem", color: "text.light" }}>
         Until proposal passes
       </Box>
     </Box>
@@ -313,7 +329,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
       }
       // passed color??
       case "Passed": {
-        return "primary.lightSuccess";
+        return "text.lightSuccess";
       }
       case "Active": {
         return <VoteWidget yes={props.yes} no={props.no} />;
@@ -322,7 +338,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
         return (
           <Box sx={{ width: "100%" }}>
             Join the Conversation
-            <Box sx={{ fontSize: ".8rem", color: "primary.lightText" }}>
+            <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
               {props.comments} comments from {props.users} users
             </Box>
           </Box>
@@ -333,15 +349,28 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
       }
     }
   };
+  let globalContext = React.useContext(GlobalContext);
+  const router = useRouter();
+  const { id } = router.query;
+
   // use a local state to make it dynamic...
   return (
-    <Box sx={{ pr: "1rem" }} id={`proposal-active-${props.c}`}>
+    <Box
+      sx={{
+        pr: "1rem",
+        pt: ".5rem",
+        pb: ".5rem",
+        minWidth: props.width,
+        maxWidth: props.width,
+      }}
+      id={`proposal-active-${props.c}`}
+    >
       <Badge
         badgeContent={
           <Box
             sx={{
               backgroundColor: "favoriteBackground.main",
-              color: "primary.lightText",
+              color: "text.light",
               p: ".2rem",
               borderRadius: "50%",
               width: "1.5rem",
@@ -360,6 +389,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
             )}
           </Box>
         }
+        sx={{ width: "100%" }}
       >
         <Box
           sx={{
@@ -367,7 +397,10 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
             border: "1px solid",
             borderColor: "divider.main",
             borderRadius: ".3rem",
-            width: "14rem",
+            width: "100%",
+            ":hover": {
+              borderColor: "primary.main",
+            },
           }}
         >
           <Box
@@ -377,7 +410,13 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
               p: ".5rem",
             }}
           >
-            <Subheader title={props.proposalName} small />
+            <Link
+              href={`/dao/${id}/${
+                props.status === "Discussion" ? "discussion" : "proposal"
+              }/${props.id}`}
+            >
+              <Box sx={{ cursor: "pointer" }}>{props.proposalName}</Box>
+            </Link>
             <Box sx={{ display: "flex", fontSize: ".8rem" }}>
               <ProposalStatus status={props.status} />
               <Box sx={{ ml: "auto" }}>

@@ -1,37 +1,13 @@
-const Paideia = () => {
+import SvgIcon from "@mui/material/SvgIcon";
+
+const Paideia = (props) => {
   return (
-    <svg
-      width="29"
-      height="42"
-      viewBox="0 0 29 42"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect width="6.18284" height="27.9572" rx="0.5" fill="white" />
-      <rect
-        x="22.0421"
-        y="13.71"
-        width="6.18284"
-        height="27.9572"
-        rx="0.5"
-        fill="white"
-      />
-      <rect
-        x="11.0226"
-        width="6.18284"
-        height="16.9356"
-        rx="0.5"
-        fill="white"
-      />
-      <rect
-        x="11.0226"
-        y="24.729"
-        width="6.18284"
-        height="16.9356"
-        rx="0.5"
-        fill="white"
-      />
-    </svg>
+    <SvgIcon {...props}>
+      <rect width="3.56138" height="16.1036" rx="0.5" />
+      <rect x="12.6965" y="7.89648" width="3.56138" height="16.1036" rx="0.5" />
+      <rect x="6.34839" width="3.56138" height="9.75509" rx="0.5" />
+      <rect x="6.34839" y="14.2446" width="3.56138" height="9.75509" rx="0.5" />
+    </SvgIcon>
   );
 };
 

@@ -129,7 +129,7 @@ const Footer: React.FC = () => {
   );
 };
 
-const SocialRow: React.FC<{
+export const SocialRow: React.FC<{
   data: ISocialLink;
   set: Function;
   c: number;
