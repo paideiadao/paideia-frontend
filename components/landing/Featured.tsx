@@ -128,7 +128,7 @@ export default function Featured() {
               maskImage: { xs: 'linear-gradient(black 0%, transparent 100%)', md: 'none' },
               mb: { xs: '-100px', md: '0' },
             }}>
-              <Image src="/featured/featured.png" layout="fill" width={575} height={594} objectFit="cover" />
+              <Image src="/featured/featured.png" layout="fill" objectFit="cover" />
             </Box>
           </Grid>
           <Grid item xs={12} md={6} sx={{ px: { xs: '0', md: '36px' }, zIndex: '1' }}>
