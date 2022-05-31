@@ -10,6 +10,7 @@ import YoutubeIcon from "@components/svgs/YoutubeIcon";
 import MediumIcon from "@components/svgs/MediumIcon";
 import TwitterIcon from "@components/svgs/TwitterIcon";
 import DiscordIcon from "@components/svgs/DiscordIcon";
+import SocialGrid from "@components/SocialGrid";
 
 const titleFont = {
   fontFamily: ['"Space Grotesk"', "sans-serif"].join(","),
@@ -174,58 +175,9 @@ export default function Footer() {
             <Grid
               container
               spacing={{ xs: 3, md: 1 }}
-              sx={{ justifyContent: { xs: "flex-start", md: "space-evenly" } }}
+              sx={{ justifyContent: { xs: "flex-start", md: "space-evenly" }, fontSize: '24px' }}
             >
-              <Grid item>
-                <Link
-                  href="/"
-                  target="_blank"
-                  sx={iconLinkStyles}
-                  rel="noreferrer"
-                >
-                  <TelegramIcon fontSize="small" />
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link
-                  href="/"
-                  target="_blank"
-                  sx={iconLinkStyles}
-                  rel="noreferrer"
-                >
-                  <DiscordIcon fontSize="small" />
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link
-                  href="/"
-                  target="_blank"
-                  sx={iconLinkStyles}
-                  rel="noreferrer"
-                >
-                  <TwitterIcon fontSize="small" />
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link
-                  href="/"
-                  target="_blank"
-                  sx={iconLinkStyles}
-                  rel="noreferrer"
-                >
-                  <MediumIcon fontSize="small" />
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link
-                  href="/"
-                  target="_blank"
-                  sx={iconLinkStyles}
-                  rel="noreferrer"
-                >
-                  <YoutubeIcon fontSize="small" />
-                </Link>
-              </Grid>
+              <SocialGrid />
             </Grid>
           </Grid>
         </Grid>
