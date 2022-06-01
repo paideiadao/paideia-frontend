@@ -16,6 +16,11 @@ import CircleIcon from "@mui/icons-material/Circle";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import dateFormat from "dateformat";
 import { LikesDislikes } from "@components/dao/proposals/ProposalCard";
+import { Overview, State } from "@components/dao/discussion/Widgets";
+import Tab from "@mui/material/Tab";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
 
 const Discussion: React.FC = () => {
   const themeContext = React.useContext(ThemeContext);
@@ -37,9 +42,15 @@ const Discussion: React.FC = () => {
     date: new Date(),
   });
 
-  return (
-    <Box sx={{ p: "1.5rem", width: "100%", display: "flex" }}>
-      <Box sx={{ width: "65%" }}>
+  const [tab, setTab] = React.useState("1");
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setTab(newValue);
+  };
+
+  return <>
+  <Box sx={{ p: "1.5rem", width: "100%", display: "flex" }}>
+      <Box sx={{ width: "70%" }}>
         <Box
           sx={{
             width: "100%",
@@ -178,12 +189,33 @@ const Discussion: React.FC = () => {
             />
           </Box>
         </Box>
-        <Box sx={{width: '35%'}}>
-            
-        </Box>
+        <TabContext value={tab}>
+            <Box sx={{ borderBottom: 1, borderColor: "divider.main" }}>
+              <TabList onChange={handleChange}>
+                <Tab label="Discussion Info" value="1" />
+                <Tab label="Comments | 7" value="2" />
+                <Tab label="Referenced | 1" value="3" />
+              </TabList>
+            </Box>
+            <TabPanel value="1" sx={{ pl: 0, pr: 0 }}>
+              Discussion Info Here...
+            </TabPanel>
+            <TabPanel value="2" sx={{ pl: 0, pr: 0 }}>
+              Comments Here...
+            </TabPanel>
+            <TabPanel value="3" sx={{ pl: 0, pr: 0 }}>
+              Referenced Here...
+            </TabPanel>
+          </TabContext>
       </Box>
+      <Box sx={{width: '30%', display: 'flex', flexDirection: 'column', alignItems: 'center', ml: '1.5rem'}}>
+            <Overview/>
+            <State/>
+        </Box>
     </Box>
-  );
+   
+  </>
+    
 };
 
 export default Discussion;

@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import * as React from "react";
 
 const Chip: React.FC<{
@@ -12,8 +12,8 @@ const Chip: React.FC<{
     <Button
       size="small"
       sx={{
-        display: "flex",
         alignItems: "center",
+        display: "flex",
         fontSize: ".6rem",
         borderRadius: "5rem",
         ml: ".5rem",
@@ -28,7 +28,9 @@ const Chip: React.FC<{
       variant={props.variant}
     >
       {props.icon}
-      {props.label}
+      <Box sx={{display: 'flex', alignItems: 'center', mt: '.1rem'}}>
+        {props.label}
+      </Box>
     </Button>
   );
 };
