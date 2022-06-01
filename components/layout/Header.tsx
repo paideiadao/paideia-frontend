@@ -1,16 +1,13 @@
-import * as React from "react";
-import { cloneElement } from "react";
+import * as React from 'react';
+import PropTypes from 'prop-types';
 import AppBar from "@mui/material/AppBar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
 import Paideia from "@components/svgs/Paideia";
-import TablerMenu from "@components/svgs/TablerMenu";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { DarkTheme, LightTheme } from "@theme/theme";
 import Link from "@mui/material/Link";
@@ -18,6 +15,10 @@ import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Divider from "@mui/material/Divider";
 import SocialGrid from "@components/SocialGrid";
+import Fab from '@mui/material/Fab';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Zoom from '@mui/material/Zoom';
+import Toolbar from '@mui/material/Toolbar';
 
 const pages = [
   {
@@ -46,26 +47,81 @@ const pages = [
   },
 ];
 
-export default function Header() {
+
+
+function ScrollTop(props) {
+  const { children } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 100,
+  });
+
+  const handleClick = (event) => {
+    const anchor = (event.target.ownerDocument || document).querySelector(
+      '#back-to-top-anchor',
+    );
+
+    if (anchor) {
+      anchor.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
+  };
+
+  return (
+    <Zoom in={trigger}>
+      <Box
+        onClick={handleClick}
+        role="presentation"
+        sx={{ position: 'fixed', bottom: 16, right: 16, zIndex: '10' }}
+      >
+        {children}
+      </Box>
+    </Zoom>
+  );
+}
+
+ScrollTop.propTypes = {
+  children: PropTypes.element.isRequired,
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window: PropTypes.func,
+};
+
+
+export default function Header(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false)
+
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+  });
 
   return (
     <>
       <AppBar
         position="fixed"
         color="transparent"
-        elevation={0}
-        enableColorOnDark
-        sx={{ zIndex: "10" }}
+        elevation={trigger && !navbarOpen ? 4 : 0}
+        sx={{ 
+          zIndex: '30',
+          backdropFilter: `${trigger ? 'blur(25px)' : ''}`
+        }}
       >
         <Container sx={{ px: "24px" }}>
           <Grid
             container
             justifyContent="space-between"
             alignItems="center"
-            sx={{ minHeight: "80px" }}
+            sx={{ minHeight: "70px" }}
           >
-            <Grid item alignItems="center">
+            <Grid item alignItems="center" sx={{ height: { xs: "32px", md: "40px" }, width: { xs: "32px", md: "40px" }}}>
               <Link href="/">
                 <Paideia
                   sx={{
@@ -127,7 +183,7 @@ export default function Header() {
                   </IconButton>
                   <Box
                     sx={{
-                      zIndex: '20',
+                      zIndex: '21',
                       position: 'relative',
                       width: '40px',
                       height: '40px',
@@ -171,14 +227,16 @@ export default function Header() {
           </Grid>
         </Container>
       </AppBar>
-      <Fade in={navbarOpen}>
+      <Toolbar id="back-to-top-anchor" />
+      <Fade in={navbarOpen} style={{ transitionDuration: '400ms' }}>
         <Box
           sx={{
             height: '100vh',
             width: '100vw',
             position: 'fixed',
-            zIndex: '9',
-            background: 'rgba(155, 155, 155, 0.1)',
+            top: '0px',
+            zIndex: '25',
+            background: 'rgba(0, 0, 0, 0.1)',
             backdropFilter: 'blur(55px)',
             p: '24px',
           }}
@@ -190,7 +248,6 @@ export default function Header() {
             alignItems="flex-start"
             spacing={3}
             height="100%"
-
           >
             <Grid item>
               <Grid
@@ -254,6 +311,11 @@ export default function Header() {
           </Grid>
         </Box>
       </Fade>
+      <ScrollTop {...props}>
+        <Fab color="secondary" size="small" aria-label="scroll back to top">
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </ScrollTop>
     </>
   );
 }
