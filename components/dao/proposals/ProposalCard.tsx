@@ -1,4 +1,4 @@
-import { Box, Badge, Chip, Avatar } from "@mui/material";
+import { Box, Badge, Chip, Avatar, IconButton } from "@mui/material";
 import * as React from "react";
 import { Subheader } from "../../creation/utilities/HeaderComponents";
 import CircleIcon from "@mui/icons-material/Circle";
@@ -392,6 +392,7 @@ const CountdownWidget: React.FC<{ date: Date }> = (props) => {
 };
 
 const ProposalCard: React.FC<IProposalCard> = (props) => {
+  const [favorited, setFavorited] = React.useState<boolean>(props.favorited)
   const getFooter = () => {
     switch (props.status) {
       case "Challenged": {
@@ -437,7 +438,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
     >
       <Badge
         badgeContent={
-          <Box
+          <IconButton
             sx={{
               backgroundColor: "favoriteBackground.main",
               color: "text.light",
@@ -450,14 +451,16 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
               justifyContent: "center",
               cursor: "pointer",
             }}
-            onClick={() => console.log("favorite api call here.")}
+            onClick={() => {
+              setFavorited(!favorited)
+            }}
           >
-            {props.favorited ? (
+            {favorited ? (
               <FavoriteIcon sx={{ fontSize: "1rem", fill: "red" }} />
             ) : (
               <FavoriteBorderIcon sx={{ fontSize: "1rem", fill: "red" }} />
             )}
-          </Box>
+          </IconButton>
         }
         sx={{ width: "100%" }}
       >
