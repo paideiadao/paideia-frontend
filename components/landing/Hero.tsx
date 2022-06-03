@@ -7,6 +7,7 @@ import YoutubeIcon from "@components/svgs/YoutubeIcon";
 import MediumIcon from "@components/svgs/MediumIcon";
 import TwitterIcon from "@components/svgs/TwitterIcon";
 import DiscordIcon from "@components/svgs/DiscordIcon";
+import SocialGrid from "@components/SocialGrid";
 
 const iconLinkStyles = {
   color: DarkTheme.palette.text.primary,
@@ -50,7 +51,7 @@ export default function Hero() {
         sx={{
           height: { xs: "100vh", md: "1000px" },
           minHeight: "600px",
-          mt: "-65px",
+          // mt: "-65px",
           maxHeight: { xs: "1000px", md: "1200px" },
           flexDirection: { xs: "column", md: "row" },
           justifyContent: { xs: "flex-end", md: "space-between" },
@@ -133,58 +134,9 @@ export default function Hero() {
             container
             spacing={{ xs: 4, md: 0.5 }}
             direction={{ xs: "row", md: "column" }}
-            sx={{ pt: 3, pb: { xs: 3, md: 0 } }}
+            sx={{ pt: 3, pb: { xs: 3, md: 0 }, fontSize: { xs: "24px", md: "16px" } }}
           >
-            <Grid item>
-              <Link
-                href="/"
-                target="_blank"
-                sx={iconLinkStyles}
-                rel="noreferrer"
-              >
-                <TelegramIcon fontSize="inherit" />
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link
-                href="/"
-                target="_blank"
-                sx={iconLinkStyles}
-                rel="noreferrer"
-              >
-                <DiscordIcon fontSize="inherit" />
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link
-                href="/"
-                target="_blank"
-                sx={iconLinkStyles}
-                rel="noreferrer"
-              >
-                <TwitterIcon fontSize="inherit" />
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link
-                href="/"
-                target="_blank"
-                sx={iconLinkStyles}
-                rel="noreferrer"
-              >
-                <MediumIcon fontSize="inherit" />
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link
-                href="/"
-                target="_blank"
-                sx={iconLinkStyles}
-                rel="noreferrer"
-              >
-                <YoutubeIcon fontSize="inherit" />
-              </Link>
-            </Grid>
+            <SocialGrid />
           </Grid>
         </Grid>
       </Grid>
