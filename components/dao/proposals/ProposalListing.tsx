@@ -148,7 +148,7 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
           </Select>
         </FormControl>
       </Box>
-      <Box sx={{ display: "flex", alignItems: "center", pt: '.75rem' }}>
+      <Box sx={{ display: "flex", alignItems: "center", pt: ".75rem" }}>
         {categories.map((i: any, c: number) => (
           <Chip
             {...i}

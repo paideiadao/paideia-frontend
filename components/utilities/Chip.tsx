@@ -28,7 +28,7 @@ const Chip: React.FC<{
       variant={props.variant}
     >
       {props.icon}
-      <Box sx={{display: 'flex', alignItems: 'center', mt: '.1rem'}}>
+      <Box sx={{ display: "flex", alignItems: "center", mt: ".1rem" }}>
         {props.label}
       </Box>
     </Button>

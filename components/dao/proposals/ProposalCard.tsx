@@ -86,7 +86,7 @@ const VoteWidget: React.FC<{
   );
 };
 
-const ProposalStatus: React.FC<{ status: string }> = (props) => {
+export const ProposalStatus: React.FC<{ status: string }> = (props) => {
   const getStatusColor = () => {
     switch (props.status) {
       case "Challenged": {
@@ -104,6 +104,9 @@ const ProposalStatus: React.FC<{ status: string }> = (props) => {
       }
       case "Unchallenged": {
         return "primary.lightSuccess";
+      }
+      case "Failed": {
+        return "red";
       }
     }
   };
@@ -140,17 +143,6 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
     <Box sx={{ display: "flex", alignItems: "center", fontSize: "1rem" }}>
       {value.userSide === undefined ? (
         <>
-          <ThumbDownOffAltIcon
-            sx={{ mr: ".3rem", fontSize: "1rem", cursor: "pointer" }}
-            onClick={() =>
-              setValue({
-                ...value,
-                userSide: 0,
-                dislikes: value.dislikes + 1,
-              })
-            }
-          />
-          {value.dislikes}
           <ThumbUpOffAltIcon
             sx={{
               ml: ".5rem",
@@ -167,18 +159,25 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
             }
           />
           {value.likes}
-        </>
-      ) : value.userSide === 0 ? (
-        <>
-          <ThumbDownIcon
+          <ThumbDownOffAltIcon
             sx={{
               mr: ".3rem",
               fontSize: "1rem",
               cursor: "pointer",
-              color: "red",
+              ml: ".5rem",
             }}
+            onClick={() =>
+              setValue({
+                ...value,
+                userSide: 0,
+                dislikes: value.dislikes + 1,
+              })
+            }
           />
-          <span style={{ color: "red" }}>{value.dislikes}</span>
+          {value.dislikes}
+        </>
+      ) : value.userSide === 0 ? (
+        <>
           <ThumbUpOffAltIcon
             sx={{
               ml: ".5rem",
@@ -196,21 +195,19 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
             }
           />
           {value.likes}
+          <ThumbDownIcon
+            sx={{
+              mr: ".3rem",
+              ml: ".5rem",
+              fontSize: "1rem",
+              cursor: "pointer",
+              color: "red",
+            }}
+          />
+          <span style={{ color: "red" }}>{value.dislikes}</span>
         </>
       ) : (
         <>
-          <ThumbDownOffAltIcon
-            sx={{ mr: ".3rem", fontSize: "1rem", cursor: "pointer" }}
-            onClick={() =>
-              setValue({
-                ...value,
-                userSide: 0,
-                dislikes: value.dislikes + 1,
-                likes: value.likes - 1,
-              })
-            }
-          />
-          {value.dislikes}
           <ThumbUpIcon
             sx={{
               ml: ".5rem",
@@ -221,6 +218,23 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
             }}
           />
           <Box sx={{ color: "primary.lightSuccess" }}>{value.likes}</Box>
+          <ThumbDownOffAltIcon
+            sx={{
+              mr: ".3rem",
+              fontSize: "1rem",
+              cursor: "pointer",
+              ml: ".5rem",
+            }}
+            onClick={() =>
+              setValue({
+                ...value,
+                userSide: 0,
+                dislikes: value.dislikes + 1,
+                likes: value.likes - 1,
+              })
+            }
+          />
+          {value.dislikes}
         </>
       )}
     </Box>

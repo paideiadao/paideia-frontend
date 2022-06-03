@@ -19,9 +19,9 @@ import { LightTheme } from "@theme/theme";
 
 const Dashboard: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
-  const themeContext = React.useContext<IThemeContext>(ThemeContext)
+  const themeContext = React.useContext<IThemeContext>(ThemeContext);
   return (
-    <Box sx={{ width: "100%" }}>  
+    <Box sx={{ width: "100%" }}>
       <Box
         sx={{
           mb: ".5rem",
@@ -38,8 +38,8 @@ const Dashboard: React.FC = () => {
           alignItems: "flex-start",
         }}
       >
-        <Box sx={{ width: "70%", p: "1rem", pt: 0}}>
-          <Box sx={{width: '100', display: 'flex', alignItems: 'center'}}>
+        <Box sx={{ width: "70%", p: "1rem", pt: 0 }}>
+          <Box sx={{ width: "100", display: "flex", alignItems: "center" }}>
             <Box
               sx={{
                 position: "relative",
@@ -48,10 +48,10 @@ const Dashboard: React.FC = () => {
                 fontSize: "1rem",
                 color: "white",
                 backgroundImage: `url(${AnnouncementBackground.src})`,
-                backgroundSize: '100% 100%', 
-                width: '60%',
-                height: '13.5rem',
-                mr: '1rem'
+                backgroundSize: "100% 100%",
+                width: "60%",
+                height: "13.5rem",
+                mr: "1rem",
               }}
             >
               <Box
@@ -62,22 +62,35 @@ const Dashboard: React.FC = () => {
                   pb: "1rem",
                 }}
               >
-                <Box sx={{position: "absolute", top: '2rem', left: '1rem'}}>
+                <Box sx={{ position: "absolute", top: "2rem", left: "1rem" }}>
                   <LightbulbCircleIcon sx={{ fontSize: "2rem" }} />
                 </Box>
-                <Box sx={{position: 'absolute', bottom: '1rem', width: '55%', color: themeContext.theme === LightTheme ? "white" : 'black'}}>
-                <Box sx={{ mt: "4rem" }}>
-                  This is a very important Paideia announcement
-                </Box>
-                <Button
-                size='small'
-                  variant="contained"
-                  sx={{fontSize: ".8rem", mt: ".5rem", color: themeContext.theme === LightTheme ? "black" : 'white', backgroundColor: 'primary.light'  }}
+                <Box
+                  sx={{
+                    position: "absolute",
+                    bottom: "1rem",
+                    width: "55%",
+                    color:
+                      themeContext.theme === LightTheme ? "white" : "black",
+                  }}
                 >
-                  Read More <ArrowForwardIcon sx={{ ml: ".3rem" }} />
-                </Button>
+                  <Box sx={{ mt: "4rem" }}>
+                    This is a very important Paideia announcement
+                  </Box>
+                  <Button
+                    size="small"
+                    variant="contained"
+                    sx={{
+                      fontSize: ".8rem",
+                      mt: ".5rem",
+                      color:
+                        themeContext.theme === LightTheme ? "black" : "white",
+                      backgroundColor: "primary.light",
+                    }}
+                  >
+                    Read More <ArrowForwardIcon sx={{ ml: ".3rem" }} />
+                  </Button>
                 </Box>
-               
               </Box>
             </Box>
             <Box
@@ -90,10 +103,10 @@ const Dashboard: React.FC = () => {
                 color: "white",
                 justifyContent: "flex-start",
                 backgroundImage: `url(${ReadingBackground.src})`,
-                backgroundSize: '100% 100%',
-                height: '12.5rem',
-                mt: '1.3rem',
-                position: 'relative',
+                backgroundSize: "100% 100%",
+                height: "12.5rem",
+                mt: "1.3rem",
+                position: "relative",
               }}
             >
               <Box
@@ -102,34 +115,46 @@ const Dashboard: React.FC = () => {
                   pl: "1rem",
                   width: "100%",
                   pb: "1rem",
-                  pr: '1rem'
+                  pr: "1rem",
                 }}
               >
-                <Box sx={{position: "absolute", top: '1rem', left: '1rem'}}>
+                <Box sx={{ position: "absolute", top: "1rem", left: "1rem" }}>
                   <img
                     src={NewspaperFilled.src}
                     style={{ width: "2rem", height: "2rem" }}
                   />
                 </Box>
-                <Box sx={{position: 'absolute', bottom: '1rem', width: '90%', left: '1rem', color: themeContext.theme === LightTheme ? "white" : 'black'}}>
+                <Box
+                  sx={{
+                    position: "absolute",
+                    bottom: "1rem",
+                    width: "90%",
+                    left: "1rem",
+                    color:
+                      themeContext.theme === LightTheme ? "white" : "black",
+                  }}
+                >
                   <Box sx={{ mt: "3rem" }}>
                     This is a very important Paideia announcement
                   </Box>
                   <Button
                     variant="contained"
                     color="secondary"
-                    sx={{ fontSize: ".8rem", mt: ".5rem", color: themeContext.theme === LightTheme ? "black" : 'white' }}
+                    sx={{
+                      fontSize: ".8rem",
+                      mt: ".5rem",
+                      color:
+                        themeContext.theme === LightTheme ? "black" : "white",
+                    }}
                   >
                     Visit Medium <ArrowForwardIcon sx={{ ml: ".3rem" }} />
                   </Button>
                 </Box>
-
-               
               </Box>
             </Box>
           </Box>
 
-          <Box sx={{mt: '.5rem'}}>
+          <Box sx={{ mt: ".5rem" }}>
             <Header title="Welcome to Paideia" />
             <FinancialSummary />
             <ActiveProposals />
