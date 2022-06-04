@@ -1,3 +1,5 @@
+import React from "react";
+
 export class AbstractApi {
   alert: any;
   setAlert: Function;
