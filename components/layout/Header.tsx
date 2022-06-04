@@ -19,6 +19,7 @@ import Fab from "@mui/material/Fab";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Zoom from "@mui/material/Zoom";
 import Toolbar from "@mui/material/Toolbar";
+import ConnectWallet from "@components/wallet/ConnectWallet";
 
 const pages = [
   {
@@ -175,9 +176,7 @@ export default function Header(props) {
                   </Grid>
                 </Grid>
                 <Grid item sx={{ display: { xs: "none", md: "flex" } }}>
-                  <Button variant="contained" size="small">
-                    Connect Wallet
-                  </Button>
+                  <ConnectWallet/>
                 </Grid>
                 <Grid item sx={{ display: { xs: "flex", md: "none" } }}>
                   <IconButton>
