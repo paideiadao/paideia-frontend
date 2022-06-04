@@ -1,6 +1,6 @@
 import { Box, Modal } from "@mui/material";
 import * as React from "react";
-import Nav from "../components/creation/nav/Nav";
+import Nav from "@components/creation/nav/SideNav";
 import { ThemeProvider } from "@mui/material/styles";
 import { LightTheme, DarkTheme } from "../theme/theme.js";
 import Button from "@mui/material/Button";

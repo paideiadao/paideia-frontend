@@ -3,7 +3,7 @@ import * as React from "react";
 import { GlobalContext, IGlobalContext } from "../../lib/AppContext";
 import { DarkTheme, LightTheme } from "../../theme/theme";
 import BottomNav from "./nav/BottomNav";
-import Nav from "./nav/Nav";
+import Nav from "./nav/SideNav";
 import TopNav from "./nav/TopNav";
 
 const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {

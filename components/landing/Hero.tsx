@@ -134,7 +134,11 @@ export default function Hero() {
             container
             spacing={{ xs: 4, md: 0.5 }}
             direction={{ xs: "row", md: "column" }}
-            sx={{ pt: 3, pb: { xs: 3, md: 0 }, fontSize: { xs: "24px", md: "16px" } }}
+            sx={{
+              pt: 3,
+              pb: { xs: 3, md: 0 },
+              fontSize: { xs: "24px", md: "16px" },
+            }}
           >
             <SocialGrid />
           </Grid>

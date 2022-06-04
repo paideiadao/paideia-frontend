@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Box from "@mui/material/Box";
 
 interface BoxProps {
-  styles?: Object
+  styles?: Object;
 }
 
 const Featured: FC<BoxProps> = ({ children, styles }) => {
@@ -10,8 +10,9 @@ const Featured: FC<BoxProps> = ({ children, styles }) => {
     <Box
       sx={{
         ...styles,
-        background: 'linear-gradient(130.4deg, rgba(0, 0, 0, 0.4) 14.89%, rgba(0, 0, 0, 0.1) 87.67%)',
-        backdropFilter: 'blur(5px)',
+        background:
+          "linear-gradient(130.4deg, rgba(0, 0, 0, 0.4) 14.89%, rgba(0, 0, 0, 0.1) 87.67%)",
+        backdropFilter: "blur(5px)",
         //borderRadius: '20px',
         // border: '1px solid rgba(224, 104, 4, 0.6)',
         border: "1px solid",

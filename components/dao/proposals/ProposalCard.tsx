@@ -392,7 +392,7 @@ const CountdownWidget: React.FC<{ date: Date }> = (props) => {
 };
 
 const ProposalCard: React.FC<IProposalCard> = (props) => {
-  const [favorited, setFavorited] = React.useState<boolean>(props.favorited)
+  const [favorited, setFavorited] = React.useState<boolean>(props.favorited);
   const getFooter = () => {
     switch (props.status) {
       case "Challenged": {
@@ -452,7 +452,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
               cursor: "pointer",
             }}
             onClick={() => {
-              setFavorited(!favorited)
+              setFavorited(!favorited);
             }}
           >
             {favorited ? (

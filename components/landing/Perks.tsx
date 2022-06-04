@@ -110,8 +110,19 @@ export default function Perks() {
           </Grid>
           <Grid item md={7}></Grid>
         </Grid>
-        <Grid container rowSpacing={12} columnSpacing={{ xs: '0', sm: 12, md: '0' }} sx={{ mb: "60px" }}>
-          <Grid item xs={1} sm={1} md={4} sx={{ display: {xs: 'none', md: 'flex' }}}></Grid>
+        <Grid
+          container
+          rowSpacing={12}
+          columnSpacing={{ xs: "0", sm: 12, md: "0" }}
+          sx={{ mb: "60px" }}
+        >
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={4}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
           <Grid item xs={12} sm={6} md={3}>
             <Image src="/TokenIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Tokenomics</Typography>
@@ -120,7 +131,13 @@ export default function Perks() {
               styles that are logically connected with one another.
             </Typography>
           </Grid>
-          <Grid item xs={1} sm={1} md={1} sx={{ display: {xs: 'none', md: 'flex' }}}></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={1}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
           <Grid item xs={12} sm={6} md={3}>
             <Image src="/CubeIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Tokenomics</Typography>
@@ -129,8 +146,20 @@ export default function Perks() {
               styles that are logically connected with one another.
             </Typography>
           </Grid>
-          <Grid item xs={1} sm={1} md={1} sx={{ display: {xs: 'none', md: 'flex' }}}></Grid>
-          <Grid item xs={1} sm={1} md={4} sx={{ display: {xs: 'none', md: 'flex' }}}></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={1}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={4}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
           <Grid item xs={12} sm={6} md={3}>
             <Image src="/PyramidIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Tokenomics</Typography>
@@ -139,7 +168,13 @@ export default function Perks() {
               styles that are logically connected with one another.
             </Typography>
           </Grid>
-          <Grid item xs={1} sm={1} md={1} sx={{ display: {xs: 'none', md: 'flex' }}}></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={1}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
           <Grid item xs={12} sm={6} md={3}>
             <Image src="/StackIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Tokenomics</Typography>
@@ -148,16 +183,46 @@ export default function Perks() {
               styles that are logically connected with one another.
             </Typography>
           </Grid>
-          <Grid item xs={1} sm={1} md={1} sx={{ display: {xs: 'none', md: 'flex' }}}></Grid>
-          <Grid item xs={1} sm={1} md={4} sx={{ display: {xs: 'none', md: 'flex' }}}></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={1}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={4}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
           <Grid item xs={12} sm={12} md={3}>
             <Button variant="outlined" endIcon={<ArrowForwardIcon />}>
               Learn More
             </Button>
           </Grid>
-          <Grid item xs={1} sm={1} md={1} sx={{ display: {xs: 'none', md: 'flex' }}}></Grid>
-          <Grid item xs={1} sm={1} md={3} sx={{ display: {xs: 'none', md: 'flex' }}}></Grid>
-          <Grid item xs={1} sm={1} md={1} sx={{ display: {xs: 'none', md: 'flex' }}}></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={1}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={3}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={1}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
         </Grid>
       </Container>
       <Box height="100px"></Box>

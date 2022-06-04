@@ -14,7 +14,8 @@ import DaoTemplate from "@components/dao/DaoTemplate";
 
 import { useRouter } from "next/router";
 import { isDao } from "@lib/Router";
-
+import { WalletProvider } from "@components/wallet/WalletContext";
+import { AddWalletProvider } from "@components/wallet/AddWalletContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
@@ -32,28 +33,34 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [theme]);
 
   const api = new AppApi(alert, setAlert, theme, setTheme, daoId, setDaoId);
-  return isDao(Component) ? (
-    <ThemeProvider theme={theme}>
-      <ThemeContext.Provider value={{ theme, setTheme }}>
-        <CssBaseline />
-        <GlobalContext.Provider value={{ api }}>
-          {Component !== Creation ? (
-            <DaoTemplate subdomain="">
+  return (
+    <AddWalletProvider>
+      <WalletProvider>
+        {isDao(Component) ? (
+          <ThemeProvider theme={theme}>
+            <ThemeContext.Provider value={{ theme, setTheme }}>
+              <CssBaseline />
+              <GlobalContext.Provider value={{ api }}>
+                {Component !== Creation ? (
+                  <DaoTemplate subdomain="">
+                    <Component {...pageProps} />
+                  </DaoTemplate>
+                ) : (
+                  <Component {...pageProps} />
+                )}
+              </GlobalContext.Provider>
+            </ThemeContext.Provider>
+          </ThemeProvider>
+        ) : (
+          <ThemeProvider theme={DarkTheme}>
+            <CssBaseline />
+            <Layout>
               <Component {...pageProps} />
-            </DaoTemplate>
-          ) : (
-            <Component {...pageProps} />
-          )}
-        </GlobalContext.Provider>
-      </ThemeContext.Provider>
-    </ThemeProvider>
-  ) : (
-    <ThemeProvider theme={DarkTheme}>
-      <CssBaseline />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ThemeProvider>
+            </Layout>
+          </ThemeProvider>
+        )}
+      </WalletProvider>
+    </AddWalletProvider>
   );
 }
 

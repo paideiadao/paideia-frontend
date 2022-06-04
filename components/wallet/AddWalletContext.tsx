@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from "react";
 
 // The Context
 const AddWalletContext = createContext(undefined);
@@ -27,7 +27,7 @@ const AddWalletConsumer = ({ children }) => {
       {(context) => {
         if (context === undefined) {
           throw new Error(
-            'AddWalletConsumer must be used within AddWalletProvider'
+            "AddWalletConsumer must be used within AddWalletProvider"
           );
         }
         return children(context);
@@ -40,7 +40,7 @@ const AddWalletConsumer = ({ children }) => {
 const useAddWallet = () => {
   const context = useContext(AddWalletContext);
   if (context === undefined)
-    throw new Error('useAddWallet must be used within AddWalletProvider');
+    throw new Error("useAddWallet must be used within AddWalletProvider");
   return context;
 };
 

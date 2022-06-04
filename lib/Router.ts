@@ -20,7 +20,8 @@ import Creation from "@pages/creation";
 import Wallet from "@pages/dao/[id]/wallet";
 
 export const isDao = (Component: any) => {
-    return Component === Creation ||
+  return (
+    Component === Creation ||
     Component === Dao ||
     Component === Notifications ||
     Component === Profile ||
@@ -40,4 +41,5 @@ export const isDao = (Component: any) => {
     Component === CreateDiscussion ||
     Component === Past ||
     Component === Wallet
-  }
+  );
+};

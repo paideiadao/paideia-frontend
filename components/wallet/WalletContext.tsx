@@ -1,11 +1,11 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from "react";
 
 // The Context
 const WalletContext = createContext(undefined);
 
 // Template Provider
 const WalletProvider = ({ children }) => {
-  const [wallet, setWallet] = useState(''); // primary address
+  const [wallet, setWallet] = useState(""); // primary address
   const [dAppWallet, setDAppWallet] = useState({
     connected: false,
     addresses: [],
@@ -30,7 +30,7 @@ const WalletConsumer = ({ children }) => {
     <WalletContext.Consumer>
       {(context) => {
         if (context === undefined) {
-          throw new Error('WalletConsumer must be used within WalletProvider');
+          throw new Error("WalletConsumer must be used within WalletProvider");
         }
         return children(context);
       }}
@@ -42,7 +42,7 @@ const WalletConsumer = ({ children }) => {
 const useWallet = () => {
   const context = useContext(WalletContext);
   if (context === undefined)
-    throw new Error('useWallet must be used within WalletProvider');
+    throw new Error("useWallet must be used within WalletProvider");
   return context;
 };
 

@@ -175,7 +175,10 @@ export default function Footer() {
             <Grid
               container
               spacing={{ xs: 3, md: 1 }}
-              sx={{ justifyContent: { xs: "flex-start", md: "space-evenly" }, fontSize: '24px' }}
+              sx={{
+                justifyContent: { xs: "flex-start", md: "space-evenly" },
+                fontSize: "24px",
+              }}
             >
               <SocialGrid />
             </Grid>
