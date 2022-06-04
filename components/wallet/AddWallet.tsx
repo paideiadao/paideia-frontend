@@ -240,9 +240,9 @@ export const AddWallet: React.FC = () => {
                 py: "0.6rem",
                 px: "1.6rem",
                 textTransform: "none",
-                backgroundColor: "blue",
+                backgroundColor: "primary.main",
                 "&:hover": {
-                  backgroundColor: "red",
+                  backgroundColor: "secondary.main",
                   boxShadow: "none",
                 },
                 "&:active": {
@@ -269,7 +269,7 @@ export const AddWallet: React.FC = () => {
                   <strong>Change Address</strong>
                 </AccordionSummary>
                 <AccordionDetails>
-                  SLEEP
+                  List wallets here...
                   {/* <PaginatedTable
                       rows={dAppAddressTableData}
                       onClick={(index) =>
