@@ -16,6 +16,8 @@ import Chip from "@components/utilities/Chip";
 import AppsIcon from "@mui/icons-material/Apps";
 import StarIcon from "@mui/icons-material/Star";
 import Activity, { IActivity } from "@components/dao/activity/Activity";
+import Musk from "@public/profile/musk-full.png";
+import PaideiaLogo from "@public/dao/bio-image/paideia-logo.png";
 
 const categories = [
   { icon: <AppsIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />, label: "All" },
@@ -37,8 +39,24 @@ const categories = [
   },
 ];
 
+let temp = new Date();
+temp.setDate(temp.getDate() - 4);
+
 const activities: IActivity[] = [
-  { img: "", name: "", action: "", value: "", date: new Date() },
+  { img: Musk.src, name: "Alone Musk", action: "staked", value: "15,000 PTK", date: temp, category: 'Staking' },
+  { img: PaideiaLogo.src, name: "3 ERG ($9.07)", action: "were transferred to", value: "0xaEF7B95f32597E6d70e4aaa2A7b30bE51a9F893b", date: new Date(), category: 'Transactions' },
+  { img: Musk.src, name: "Alone Musk", action: "created the proposal", value: "<proposal name>", date: new Date(), category: 'Proposals' },
+  { img: PaideiaLogo.src, name: "10 ERG ($30.21)", action: "were transferred to", value: "0xaEF7B95f32597E6d70e4aaa2A7b30bE51a9F893b", date: temp, category: 'Transactions' },
+  { img: PaideiaLogo.src, name: "3 ERG ($9.07)", action: "were transferred to", value: "0xaEF7B95f32597E6d70e4aaa2A7b30bE51a9F893b", date: new Date(), category: 'Transactions' },
+  { img: Musk.src, name: "Alone Musk", action: "created the proposal", value: "<proposal name>", date: temp, category: 'Proposals' },
+  { img: Musk.src, name: "Alone Musk", action: "earned", value: "297 PTK", date: new Date(), category: 'Staking', secondary: 'tokens from staking' },
+  { img: Musk.src, name: "Alone Musk", action: "voted on the proposal", value: "<proposal name>", date: temp, category: 'Proposals' },
+  { img: Musk.src, name: "Alone Musk", action: "earned", value: "301 PTK", date: new Date(), category: 'Staking', secondary: 'tokens from staking' },
+  { img: Musk.src, name: "Alone Musk", action: "withdrew", value: "5,000 PTK", date: temp, category: 'Staking' },
+  { img: Musk.src, name: "Alone Musk", action: "made a comment on the proposal", value: "<proposal name>", date: new Date(), category: 'Comments' },
+  { img: PaideiaLogo.src, name: "10 ERG ($30.21)", action: "were transferred to", value: "0xaEF7B95f32597E6d70e4aaa2A7b30bE51a9F893b", date: new Date(), category: 'Transactions' },
+  { img: Musk.src, name: "Alone Musk", action: "earned", value: "575 PTK", date: temp, category: 'Staking', secondary: 'tokens from staking' },
+  { img: Musk.src, name: "Alone Musk", action: "added an addendum", value: "<addendum name>", date: new Date(), category: 'Staking', secondary: 'to the proposal', secondaryValue: '<proposal name>' },
 ];
 
 const Activities: React.FC = () => {
@@ -146,8 +164,10 @@ const Activities: React.FC = () => {
           />
         ))}
       </Box>
-      {activities.map((i: any, c: number) => {
-        return <Activity i={i} c={c} />;
+      {activities.filter((i: any) => {
+        return filters.categories.indexOf("All") > -1 ? true : filters.categories.indexOf(i.category) > -1
+      }).sort((a, b) => filters.sortBy === '' ? 1 : filters.sortBy === 'Most Recent' ? b.date.getTime() - a.date.getTime() : 1).map((i: any, c: number) => {
+        return <Activity i={i} c={c}/>;
       })}
     </Layout>
   );

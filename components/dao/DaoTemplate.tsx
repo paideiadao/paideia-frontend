@@ -25,9 +25,11 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
           zIndex: 1000,
         }}
       >
-        {props.children}
-        <BottomNav />
+          {props.children}
+          <BottomNav />
+        
       </Box>
+      
     </Box>
   );
 };
