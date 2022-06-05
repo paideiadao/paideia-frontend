@@ -141,7 +141,7 @@ const DaoBio: React.FC = () => {
             </IconButton>
           </Box>
           {daos.map((d: any, c: number) => (
-            <DaoSelect {...d} set={setDaoWrapper} key={`dao-select-key-${c}`}/>
+            <DaoSelect {...d} set={setDaoWrapper} key={`dao-select-key-${c}`} />
           ))}
         </Box>
       )}

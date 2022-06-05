@@ -176,7 +176,7 @@ export default function Header(props) {
                   </Grid>
                 </Grid>
                 <Grid item sx={{ display: { xs: "none", md: "flex" } }}>
-                  <ConnectWallet/>
+                  <ConnectWallet />
                 </Grid>
                 <Grid item sx={{ display: { xs: "flex", md: "none" } }}>
                   <IconButton>

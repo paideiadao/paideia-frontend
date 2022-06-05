@@ -62,7 +62,7 @@ export const CapsInfo: React.FC<{
       sx={{
         width: "100%",
         color: "text.main",
-        opacity: '.8',
+        opacity: ".8",
         fontSize: props.small === undefined ? ".8rem" : ".7rem",
         fontWeight: 400,
         mb: props.mb === undefined ? "1rem" : props.mb,

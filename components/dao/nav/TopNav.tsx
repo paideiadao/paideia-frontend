@@ -46,7 +46,7 @@ const TopNav: React.FC = () => {
         }}
       >
         <DarkSwitch />
-        <ConnectWallet/>
+        <ConnectWallet />
         <Box
           sx={{
             ml: ".5rem",
