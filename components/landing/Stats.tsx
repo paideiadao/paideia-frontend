@@ -108,7 +108,7 @@ export default function Stats() {
       </Box>
       <Grid container>
         <Grid item md={4}>
-          <SectionTitle title="Paideia statistics" marginBottom="24px" />
+          <SectionTitle title="Statistics" marginBottom="24px" />
           <Typography sx={titleStyle}>Some Numbers to Look At &lt;</Typography>
         </Grid>
         <Grid item md={3}></Grid>

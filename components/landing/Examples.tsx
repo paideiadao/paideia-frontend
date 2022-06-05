@@ -59,12 +59,27 @@ const tabs = [
     link: "/",
     image: "/examples/gaming-world2.png",
   },
+  {
+    label: "Music DAOs",
+    title: "Want to collaborate with other musicians? ",
+    content: "Do it with Paideia",
+    link: "/",
+    image: "/examples/gaming-world2.png",
+  },
+  {
+    label: "Art Media",
+    title: "Teams of artists can combine forces",
+    content:
+      "You can share your NFT proceeds by using a DAO to distribute and control raised funds",
+    link: "/",
+    image: "/examples/gaming-world.png",
+  },
 ];
 
 const StyledTabs = styled((props: any) => (
   <Tabs
     {...props}
-    TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+  // TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
   />
 ))({
   "& .MuiTabs-indicator": {
@@ -85,6 +100,7 @@ const StyledTab = styled((props: any) => <Tab {...props} variant="outlined" />)(
     borderRadius: "16px",
     marginRight: "12px",
     color: DarkTheme.palette.primary.dark,
+    background: DarkTheme.palette.background.default,
     border: `1px solid ${DarkTheme.palette.primary.dark}`,
     "&.Mui-selected": {
       color: DarkTheme.palette.primary.contrastText,
@@ -134,36 +150,33 @@ export default function Examples() {
     <>
       {!sizeMd
         ? tabs.map(({ image }, i: number) => {
-            return (
-              <TabPanel
-                value={value}
-                index={i}
-                key={i}
-                sx={{ position: "relative", mt: "100px" }}
+          return (
+            <TabPanel
+              value={value}
+              index={i}
+              key={i}
+              sx={{ position: "relative", mt: "100px" }}
+            >
+              <Box
+                sx={{
+                  position: { xs: "relative", md: "absolute" },
+                  height: "100%",
+                  zIndex: "-3",
+                  top: "0",
+                  right: "0",
+                  maskImage: 'linear-gradient(black 0%, transparent 70%)',
+                }}
               >
-
-                <Box
-                  sx={{
-                    position: { xs: "relative", md: "absolute" },
-                    height: "100%",
-                    zIndex: "-3",
-                    top: "0",
-                    right: "0",
-                    maskImage: 'linear-gradient(black 0%, transparent 70%)',
-                  }}
-                >
-                  {sizeMd ? null : (
-                    <Image
-                      src={image}
-                      layout="responsive"
-                      width={585}
-                      height={800}
-                    />
-                  )}
-                </Box>
-              </TabPanel>
-            );
-          })
+                <Image
+                  src={image}
+                  layout="responsive"
+                  width={585}
+                  height={800}
+                />
+              </Box>
+            </TabPanel>
+          );
+        })
         : null}
 
       <Container
@@ -196,7 +209,7 @@ export default function Examples() {
           >
             {tabs.map(({ image }, i: number) => {
               const height = sizeLg ? 976 : 800;
-              const width = sizeLg ? 713 : 585;
+              const width = sizeLg ? 720 : 585;
               return (
                 <TabPanel value={value} index={i} key={i}>
                   <Box
@@ -223,13 +236,27 @@ export default function Examples() {
           </Grid>
           <Grid item xs={12} md={6} sx={{ minHeight: "600px" }}>
             <Box sx={{ position: "relative" }}>
-              <SectionTitle title="How to use your DAO" marginBottom="64px" />
+              <SectionTitle title="Examples" marginBottom="64px" />
               <Box sx={{ width: "100%", maxWidth: "500px" }}>
                 <Box>
                   <StyledTabs
                     value={value}
                     onChange={handleChange}
                     aria-label="DAO Samples"
+                    sx={{
+                      ml: { xs: '-24px', md: '-62px' },
+                      zIndex: '5',
+                      width: { xs: '100vw', md: 'calc(100% + 62px)' },
+                      minHeight: '0',
+                      mb: '24px',
+                      '.MuiTabScrollButton-root': {
+                        boxShadow: '0 0 12px 8px black',
+                        zIndex: '3',
+                      }
+                    }}
+                    variant="scrollable"
+                    scrollButtons
+                    allowScrollButtonsMobile
                   >
                     {tabs.map(({ label }, i: number) => (
                       <StyledTab label={label} key={i} />
