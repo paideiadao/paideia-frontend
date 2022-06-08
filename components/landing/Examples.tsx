@@ -38,42 +38,41 @@ const paragraphStyle = {
 
 const tabs = [
   {
-    label: "Gaming",
-    title: "Using paideia in the gaming world",
-    content: `ErgoGames.io took root in the idea that the Ergo Blockchain has tremendous potential to become a leading layer-1 solution, and that blockchain-based games will play an integral role in the network's growth.`,
+    label: "Developers",
+    title: "Blockchain Development Teams",
+    content: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development. ",
     link: "/",
     image: "/examples/gaming-world2.png",
   },
   {
-    label: "Art Media",
-    title: "Teams of artists can combine forces",
-    content:
-      "You can share your NFT proceeds by using a DAO to distribute and control raised funds",
+    label: "Charities",
+    title: "Charitable Organizations",
+    content: "If you'd like to distribute the governance behind a charity, and operate in the most transparent way possible, a DAO on Paideia may be the answer. ",
     link: "/",
     image: "/examples/gaming-world.png",
   },
   {
-    label: "Music DAOs",
-    title: "Want to collaborate with other musicians? ",
-    content: "Do it with Paideia",
-    link: "/",
-    image: "/examples/gaming-world2.png",
-  },
-  {
-    label: "Music DAOs",
-    title: "Want to collaborate with other musicians? ",
-    content: "Do it with Paideia",
-    link: "/",
-    image: "/examples/gaming-world2.png",
-  },
-  {
-    label: "Art Media",
-    title: "Teams of artists can combine forces",
-    content:
-      "You can share your NFT proceeds by using a DAO to distribute and control raised funds",
+    label: "Investors",
+    title: "Venture Capitalist Groups",
+    content: "Using a DAO, groups of people can pool their funds and manage each members' stake in the overall investment. Eliminate the need to trust a specific individual with control of the funds. ",
     link: "/",
     image: "/examples/gaming-world.png",
   },
+  {
+    label: "Startups",
+    title: "Entrepreneurial partnerships",
+    content: "You and your co-founders can receive a large investment in a trustless way with DAO management software like Paideia. Vote on each person's salary, and make sure funds are put to work in a fair and equitable way. ",
+    link: "/",
+    image: "/examples/gaming-world2.png",
+  },
+  {
+    label: "P2E Gaming Guilds",
+    title: "Gaming Together as a Team",
+    content: "P2E gaming guilds can split their earnings by sending them to a DAO treasury",
+    link: "/",
+    image: "/examples/gaming-world2.png",
+  },
+
 ];
 
 const StyledTabs = styled((props: any) => (

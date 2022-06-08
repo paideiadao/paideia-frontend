@@ -38,24 +38,24 @@ const paragraphStyle = {
 
 const statList = [
   {
-    title: "Projects started",
-    value: "25122",
-    subTitle: "DAOs initiated on Paideia",
+    title: "DAOs initiated on Paideia",
+    value: "0",
+    subTitle: "Organizations",
   },
   {
-    title: "Hello",
-    value: "3150",
-    subTitle: "Is it me youre looking for",
+    title: "Participants in DAOs",
+    value: "0",
+    subTitle: "Unique wallets",
   },
   {
-    title: "I can see it in your eyes",
-    value: "213000",
-    subTitle: "I can see it in your smile",
+    title: "TVL on Paideia",
+    value: "$0",
+    subTitle: "SigUSD Locked",
   },
   {
-    title: "Youre all I ever wanted",
-    value: "15M",
-    subTitle: "And my arms are open wide",
+    title: "Paideia Token Price",
+    value: "$0.0169",
+    subTitle: "SigUSD",
   },
 ];
 
@@ -234,8 +234,8 @@ export default function Stats() {
                 </Typography>
               </Grid>
             </Grid>
-            <Button variant="contained" sx={{}}>
-              Create your DAO
+            <Button disabled variant="contained" sx={{}}>
+              Coming Soon
             </Button>
           </Box>
         </Grid>

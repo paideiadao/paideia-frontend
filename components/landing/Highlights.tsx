@@ -14,6 +14,7 @@ import { DarkTheme, LightTheme } from "@theme/theme";
 import SectionTitle from "@components/SectionTitle";
 import Carousel from 'react-material-ui-carousel'
 import { useTheme } from "@mui/material/styles";
+import AcUnitIcon from '@mui/icons-material/AcUnit';
 
 const titleStyle = {
   fontSize: "48px",
@@ -93,10 +94,31 @@ function Example(props: any) {
 
   return (
     <Carousel
-      autoPlay={false}
+      autoPlay={true}
       animation="slide"
       height={useMediaQuery(theme.breakpoints.up("md")) ? '558px' : undefined}
       navButtonsAlwaysVisible={useMediaQuery(theme.breakpoints.up("md")) ? true : false}
+      navButtonsProps={{
+        style: {
+          backgroundColor: LightTheme.palette.primary.main,
+          // borderRadius: 0
+        }
+      }}
+      navButtonsWrapperProps={{   // Move the buttons to the bottom. Unsetting top here to override default style.
+        style: {
+
+        }
+    }} 
+      indicatorIconButtonProps={{
+        style: {
+
+        }
+      }}
+      activeIndicatorIconButtonProps={{
+        style: {
+          // color: '#fff',
+        }
+      }}
       sx={{
         zIndex: '2',
         maxWidth: 'xl',
@@ -155,9 +177,9 @@ function Item(props: any) {
         </Grid>
         <Grid item md={6}>
           <Box maxWidth="520px">
-          <Content />
+            <Content />
           </Box>
-          
+
         </Grid>
       </Grid>
     )

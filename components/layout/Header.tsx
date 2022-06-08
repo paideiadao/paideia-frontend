@@ -24,26 +24,32 @@ const pages = [
   {
     name: "Home",
     link: "/",
+    disabled: false
   },
   {
     name: "About",
     link: "about",
+    disabled: true
   },
   {
     name: "Education",
     link: "education",
+    disabled: true
   },
   {
     name: "Documentation",
-    link: "documentation",
+    link: "https://docs.paideia.im",
+    disabled: false
   },
   {
     name: "Blog",
     link: "blog",
+    disabled: true
   },
   {
     name: "Dashboard",
     link: "dashboard",
+    disabled: true
   },
 ];
 
@@ -99,7 +105,7 @@ export default function Header(props) {
         position="fixed"
         color="transparent"
         elevation={trigger && !navbarOpen ? 4 : 0}
-        sx={{ 
+        sx={{
           zIndex: '30',
           backdropFilter: `${trigger ? 'blur(25px)' : ''}`
         }}
@@ -111,7 +117,7 @@ export default function Header(props) {
             alignItems="center"
             sx={{ minHeight: "70px" }}
           >
-            <Grid item alignItems="center" sx={{ height: { xs: "32px", md: "40px" }, width: { xs: "32px", md: "40px" }}}>
+            <Grid item alignItems="center" sx={{ height: { xs: "32px", md: "40px" }, width: { xs: "32px", md: "40px" } }}>
               <Link href="/">
                 <Paideia
                   sx={{
@@ -143,25 +149,37 @@ export default function Header(props) {
                     }}
                   >
                     {pages.map((page, i) => (
-                      <Grid key={page.name.toLowerCase() + i + "page"} item>
-                        <Link
-                          href={page.link}
-                          underline="hover"
-                          sx={{
-                            color: "#fff",
-                            "&:hover": {
-                              color: LightTheme.palette.secondary.main,
-                            },
-                          }}
-                        >
-                          {page.name}
-                        </Link>
+                      <Grid key={i} item>
+                        {page.disabled ? (
+                          <Typography sx={{
+                            fontFamily: ['"Space Grotesk"', "sans-serif"].join(","),
+                            fontWeight: "Bold",
+                            textTransform: "uppercase",
+                            fontSize: "13px", 
+                            color: '#777'
+                          }}>
+                            {page.name}
+                          </Typography>
+                        ) : (
+                          <Link
+                            href={page.link}
+                            underline="hover"
+                            sx={{
+                              color: "#fff",
+                              "&:hover": {
+                                color: LightTheme.palette.secondary.main,
+                              },
+                            }}
+                          >
+                            {page.name}
+                          </Link>
+                        )}
                       </Grid>
                     ))}
                   </Grid>
                 </Grid>
                 <Grid item sx={{ display: { xs: "none", md: "flex" } }}>
-                  <Button variant="contained" size="small">
+                  <Button disabled variant="contained" size="small">
                     Connect Wallet
                   </Button>
                 </Grid>
@@ -254,19 +272,30 @@ export default function Header(props) {
                 }}
               >
                 {pages.map((page, i) => (
-                  <Grid key={page.name.toLowerCase() + i + "page"} item>
-                    <Link
-                      href={page.link}
-                      underline="hover"
-                      sx={{
-                        color: "#fff",
-                        "&:hover": {
-                          color: LightTheme.palette.secondary.main,
-                        },
-                      }}
-                    >
-                      {page.name}
-                    </Link>
+                  <Grid key={i} item>
+                    {page.disabled ? (
+                      <Typography sx={{
+                        fontFamily: ['"Space Grotesk"', "sans-serif"].join(","),
+                        fontWeight: "Bold",
+                        textTransform: "uppercase",
+                        fontSize: "20px", color: '#777'
+                      }}>
+                        {page.name}
+                      </Typography>
+                    ) : (
+                      <Link
+                        href={page.link}
+                        underline="hover"
+                        sx={{
+                          color: "#fff",
+                          "&:hover": {
+                            color: LightTheme.palette.secondary.main,
+                          },
+                        }}
+                      >
+                        {page.name}
+                      </Link>
+                    )}
                   </Grid>
                 ))}
               </Grid>
@@ -280,23 +309,23 @@ export default function Header(props) {
               <Divider />
             </Grid>
             <Grid item>
-            <Typography
-            sx={{
-              fontSize: "14px",
-              pb: "14px",
-              textTransform: "uppercase",
-            }}
-          >
-            Follow our socials
-          </Typography>
-          <Grid
-            container
-            spacing={4}
-            direction="row"
-            sx={{ fontSize: '24px' }}
-          >
-            <SocialGrid />
-          </Grid>
+              <Typography
+                sx={{
+                  fontSize: "14px",
+                  pb: "14px",
+                  textTransform: "uppercase",
+                }}
+              >
+                Follow our socials
+              </Typography>
+              <Grid
+                container
+                spacing={4}
+                direction="row"
+                sx={{ fontSize: '24px' }}
+              >
+                <SocialGrid />
+              </Grid>
             </Grid>
           </Grid>
         </Box>

@@ -89,8 +89,8 @@ export default function Hero() {
               DAO
             </Typography>
           </Typography>
-          <Button variant="contained" sx={{}}>
-            Get Started Now
+          <Button variant="contained" disabled >
+            Coming Soon
           </Button>
         </Grid>
         <Grid item>
@@ -142,10 +142,10 @@ export default function Hero() {
             </Grid>
             <Grid item>
               <Typography sx={{ textTransform: "uppercase", fontSize: "12px" }}>
-                Investors
+                Strategic
               </Typography>
               <Typography sx={{ textTransform: "uppercase", fontSize: "12px" }}>
-                &amp; Partners
+                Partners
               </Typography>
             </Grid>
           </Grid>
@@ -157,12 +157,13 @@ export default function Hero() {
             spacing={2}
             sx={{ color: "#777" }}
           >
-            <Grid item>LogoWideLogo</Grid>
-            <Grid item>LogoWideLogo</Grid>
-            <Grid item>LogoWideLogo</Grid>
-            <Grid item>LogoWideLogo</Grid>
-            <Grid item>LogoWideLogo</Grid>
-            <Grid item>LogoWideLogo</Grid>
+            <Grid item>Ergo Foundation</Grid>
+            <Grid item>ErgoDEX</Grid>
+            <Grid item>Azorus</Grid>
+            <Grid item>AnetaBTC</Grid>
+            <Grid item>Ergo-Lend</Grid>
+            <Grid item>ErgoGames.io</Grid>
+            <Grid item>Swamp Audio</Grid>
           </Grid>
         </Grid>
       </Grid>

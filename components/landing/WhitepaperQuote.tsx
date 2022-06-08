@@ -133,11 +133,13 @@ export default function Perks() {
                     mb: "12px",
                   }}
                 >
-                  Page 9. Paideia Whitepaper
+                  Paideia Whitepaper
                 </Typography>
                 <Button
                   endIcon={<ArrowForwardIosIcon />}
                   sx={{ color: "#FC9E4F" }}
+                  href="https://docs.paideia.im"
+                  target="_blank"
                 >
                   Read More
                 </Button>

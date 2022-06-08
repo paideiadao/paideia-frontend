@@ -19,7 +19,7 @@ export default function SocialGrid() {
     <>
       <Grid item>
         <Link
-          href="/"
+          href="https://t.me/paideiaDAO"
           target="_blank"
           sx={iconLinkStyles}
           rel="noreferrer"
@@ -29,7 +29,7 @@ export default function SocialGrid() {
       </Grid>
       <Grid item>
         <Link
-          href="/"
+          href="https://discord.gg/J3KDrtCFEn"
           target="_blank"
           sx={iconLinkStyles}
           rel="noreferrer"
@@ -39,7 +39,7 @@ export default function SocialGrid() {
       </Grid>
       <Grid item>
         <Link
-          href="/"
+          href="https://twitter.com/PaideiaDAO"
           target="_blank"
           sx={iconLinkStyles}
           rel="noreferrer"
@@ -49,23 +49,23 @@ export default function SocialGrid() {
       </Grid>
       <Grid item>
         <Link
-          href="/"
-          target="_blank"
-          sx={iconLinkStyles}
-          rel="noreferrer"
-        >
-          <MediumIcon fontSize="inherit" />
-        </Link>
-      </Grid>
-      <Grid item>
-        <Link
-          href="/"
+          href="https://www.youtube.com/channel/UC4SUgJTznlIg6masMVX1hXA"
           target="_blank"
           sx={iconLinkStyles}
           rel="noreferrer"
         >
           <YoutubeIcon fontSize="inherit" />
         </Link>
+      </Grid>
+      <Grid item>
+        {/* <Link
+          href="/"
+          target="_blank"
+          sx={iconLinkStyles}
+          rel="noreferrer"
+        > */}
+          <MediumIcon sx={{ color: '#aaa' }} fontSize="inherit" />
+       {/*  </Link> */}
       </Grid>
     </>
   )
