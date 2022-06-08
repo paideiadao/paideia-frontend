@@ -7,15 +7,15 @@ const BottomNav: React.FC = () => {
   return (
     <Box
       sx={{
-        width: "calc(100% - 15.5rem)",
+        width: "calc(100%)",
         backgroundColor: "backgroundColor.main",
         borderTop: "1px solid",
         borderTopColor: "divider.main",
         p: ".5rem",
         display: "flex",
         alignItems: "center",
-        position: "fixed",
-        bottom: 0,
+        mb: 0,
+        pb: 0,
       }}
     >
       <Box sx={{ fontSize: ".9rem" }}>Visit our website at dao.paidiea.im.</Box>
