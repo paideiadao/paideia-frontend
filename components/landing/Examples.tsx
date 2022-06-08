@@ -38,33 +38,47 @@ const paragraphStyle = {
 
 const tabs = [
   {
-    label: "Gaming",
-    title: "Using paideia in the gaming world",
-    content: `ErgoGames.io took root in the idea that the Ergo Blockchain has tremendous potential to become a leading layer-1 solution, and that blockchain-based games will play an integral role in the network's growth.`,
+    label: "Developers",
+    title: "Blockchain Development Teams",
+    content: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development. ",
     link: "/",
     image: "/examples/gaming-world2.png",
   },
   {
-    label: "Art Media",
-    title: "Teams of artists can combine forces",
-    content:
-      "You can share your NFT proceeds by using a DAO to distribute and control raised funds",
+    label: "Charities",
+    title: "Charitable Organizations",
+    content: "If you'd like to distribute the governance behind a charity, and operate in the most transparent way possible, a DAO on Paideia may be the answer. ",
     link: "/",
     image: "/examples/gaming-world.png",
   },
   {
-    label: "Music DAOs",
-    title: "Want to collaborate with other musicians? ",
-    content: "Do it with Paideia",
+    label: "Investors",
+    title: "Venture Capitalist Groups",
+    content: "Using a DAO, groups of people can pool their funds and manage each members' stake in the overall investment. Eliminate the need to trust a specific individual with control of the funds. ",
+    link: "/",
+    image: "/examples/gaming-world.png",
+  },
+  {
+    label: "Startups",
+    title: "Entrepreneurial partnerships",
+    content: "You and your co-founders can receive a large investment in a trustless way with DAO management software like Paideia. Vote on each person's salary, and make sure funds are put to work in a fair and equitable way. ",
     link: "/",
     image: "/examples/gaming-world2.png",
   },
+  {
+    label: "P2E Gaming Guilds",
+    title: "Gaming Together as a Team",
+    content: "P2E gaming guilds can split their earnings by sending them to a DAO treasury",
+    link: "/",
+    image: "/examples/gaming-world2.png",
+  },
+
 ];
 
 const StyledTabs = styled((props: any) => (
   <Tabs
     {...props}
-    TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+  // TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
   />
 ))({
   "& .MuiTabs-indicator": {
@@ -85,6 +99,7 @@ const StyledTab = styled((props: any) => <Tab {...props} variant="outlined" />)(
     borderRadius: "16px",
     marginRight: "12px",
     color: DarkTheme.palette.primary.dark,
+    background: DarkTheme.palette.background.default,
     border: `1px solid ${DarkTheme.palette.primary.dark}`,
     "&.Mui-selected": {
       color: DarkTheme.palette.primary.contrastText,
@@ -134,36 +149,33 @@ export default function Examples() {
     <>
       {!sizeMd
         ? tabs.map(({ image }, i: number) => {
-            return (
-              <TabPanel
-                value={value}
-                index={i}
-                key={i}
-                sx={{ position: "relative", mt: "100px" }}
+          return (
+            <TabPanel
+              value={value}
+              index={i}
+              key={i}
+              sx={{ position: "relative", mt: "100px" }}
+            >
+              <Box
+                sx={{
+                  position: { xs: "relative", md: "absolute" },
+                  height: "100%",
+                  zIndex: "-3",
+                  top: "0",
+                  right: "0",
+                  maskImage: 'linear-gradient(black 0%, transparent 70%)',
+                }}
               >
-
-                <Box
-                  sx={{
-                    position: { xs: "relative", md: "absolute" },
-                    height: "100%",
-                    zIndex: "-3",
-                    top: "0",
-                    right: "0",
-                    maskImage: 'linear-gradient(black 0%, transparent 70%)',
-                  }}
-                >
-                  {sizeMd ? null : (
-                    <Image
-                      src={image}
-                      layout="responsive"
-                      width={585}
-                      height={800}
-                    />
-                  )}
-                </Box>
-              </TabPanel>
-            );
-          })
+                <Image
+                  src={image}
+                  layout="responsive"
+                  width={585}
+                  height={800}
+                />
+              </Box>
+            </TabPanel>
+          );
+        })
         : null}
 
       <Container
@@ -196,7 +208,7 @@ export default function Examples() {
           >
             {tabs.map(({ image }, i: number) => {
               const height = sizeLg ? 976 : 800;
-              const width = sizeLg ? 713 : 585;
+              const width = sizeLg ? 720 : 585;
               return (
                 <TabPanel value={value} index={i} key={i}>
                   <Box
@@ -223,13 +235,27 @@ export default function Examples() {
           </Grid>
           <Grid item xs={12} md={6} sx={{ minHeight: "600px" }}>
             <Box sx={{ position: "relative" }}>
-              <SectionTitle title="How to use your DAO" marginBottom="64px" />
+              <SectionTitle title="Examples" marginBottom="64px" />
               <Box sx={{ width: "100%", maxWidth: "500px" }}>
                 <Box>
                   <StyledTabs
                     value={value}
                     onChange={handleChange}
                     aria-label="DAO Samples"
+                    sx={{
+                      ml: { xs: '-24px', md: '-62px' },
+                      zIndex: '5',
+                      width: { xs: '100vw', md: 'calc(100% + 62px)' },
+                      minHeight: '0',
+                      mb: '24px',
+                      '.MuiTabScrollButton-root': {
+                        boxShadow: '0 0 12px 8px black',
+                        zIndex: '3',
+                      }
+                    }}
+                    variant="scrollable"
+                    scrollButtons
+                    allowScrollButtonsMobile
                   >
                     {tabs.map(({ label }, i: number) => (
                       <StyledTab label={label} key={i} />
