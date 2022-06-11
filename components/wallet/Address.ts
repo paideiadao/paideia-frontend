@@ -96,6 +96,7 @@ export class Address {
 
   constructor(address: string) {
     this.address = address;
+    // @ts-ignore
     this.addrBytes = bs58.decode(this.address);
   }
 
