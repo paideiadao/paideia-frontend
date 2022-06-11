@@ -18,29 +18,54 @@ export default function SocialGrid() {
   return (
     <>
       <Grid item>
-        <Link href="/" target="_blank" sx={iconLinkStyles} rel="noreferrer">
+        <Link
+          href="https://t.me/paideiaDAO"
+          target="_blank"
+          sx={iconLinkStyles}
+          rel="noreferrer"
+        >
           <TelegramIcon fontSize="inherit" />
         </Link>
       </Grid>
       <Grid item>
-        <Link href="/" target="_blank" sx={iconLinkStyles} rel="noreferrer">
+        <Link
+          href="https://discord.gg/J3KDrtCFEn"
+          target="_blank"
+          sx={iconLinkStyles}
+          rel="noreferrer"
+        >
           <DiscordIcon fontSize="inherit" />
         </Link>
       </Grid>
       <Grid item>
-        <Link href="/" target="_blank" sx={iconLinkStyles} rel="noreferrer">
+        <Link
+          href="https://twitter.com/PaideiaDAO"
+          target="_blank"
+          sx={iconLinkStyles}
+          rel="noreferrer"
+        >
           <TwitterIcon fontSize="inherit" />
         </Link>
       </Grid>
       <Grid item>
-        <Link href="/" target="_blank" sx={iconLinkStyles} rel="noreferrer">
-          <MediumIcon fontSize="inherit" />
+        <Link
+          href="https://www.youtube.com/channel/UC4SUgJTznlIg6masMVX1hXA"
+          target="_blank"
+          sx={iconLinkStyles}
+          rel="noreferrer"
+        >
+          <YoutubeIcon fontSize="inherit" />
         </Link>
       </Grid>
       <Grid item>
-        <Link href="/" target="_blank" sx={iconLinkStyles} rel="noreferrer">
-          <YoutubeIcon fontSize="inherit" />
-        </Link>
+        {/* <Link
+          href="/"
+          target="_blank"
+          sx={iconLinkStyles}
+          rel="noreferrer"
+        > */}
+          <MediumIcon sx={{ color: '#aaa' }} fontSize="inherit" />
+       {/*  </Link> */}
       </Grid>
     </>
   );

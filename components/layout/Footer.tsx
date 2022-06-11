@@ -49,74 +49,36 @@ const firstPages = [
   },
   {
     name: "About",
-    link: "about",
+    link: "/",
   },
   {
-    name: "Education",
-    link: "education",
+    name: "Blog",
+    link: "/",
+    external: true,
   },
+
 ];
 
 const secondPages = [
   {
     name: "Documentation",
-    link: "documentation",
+    link: "https://docs.paideia.im",
   },
   {
-    name: "Blog",
-    link: "blog",
-    external: true,
-  },
-  {
-    name: "Dashboard",
-    link: "dashboard",
-  },
-  {
-    name: "More Link",
-    link: "more",
+    name: "Education",
+    link: "/",
   },
 ];
 
 const thirdPages = [
   {
-    name: "Some",
-    link: "/",
-  },
-  {
-    name: "Filler",
-    link: "/",
-  },
-  {
-    name: "Links",
-    link: "/",
-  },
-  {
-    name: "Another",
+    name: "Dashboard",
     link: "/",
   },
 ];
 
 const fourthPages = [
-  {
-    name: "Some",
-    link: "/",
-  },
-  {
-    name: "Filler",
-    link: "/",
-  },
-  {
-    name: "Links",
-    link: "/",
-  },
-  {
-    name: "And",
-    link: "/",
-  },
-  {
-    name: "Another",
-    link: "/",
-  },
+
 ];
 
 export default function Footer() {
@@ -163,11 +125,11 @@ export default function Footer() {
             {linkList(secondPages)}
           </Grid>
           <Grid item xs={6} md={2}>
-            <Typography sx={titleFont}>Third</Typography>
+            <Typography sx={titleFont}>Manage</Typography>
             {linkList(thirdPages)}
           </Grid>
           <Grid item xs={6} md={2}>
-            <Typography sx={titleFont}>Fourth</Typography>
+            <Typography sx={titleFont}></Typography>
             {linkList(fourthPages)}
           </Grid>
           <Grid item xs={12} md={2}>

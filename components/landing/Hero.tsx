@@ -2,24 +2,11 @@ import { Typography, Grid, Box, Button, Link, Container } from "@mui/material";
 import Image from "next/image";
 import { DarkTheme } from "@theme/theme";
 import SectionTitle from "@components/SectionTitle";
-import TelegramIcon from "@components/svgs/TelegramIcon";
-import YoutubeIcon from "@components/svgs/YoutubeIcon";
-import MediumIcon from "@components/svgs/MediumIcon";
-import TwitterIcon from "@components/svgs/TwitterIcon";
-import DiscordIcon from "@components/svgs/DiscordIcon";
 import SocialGrid from "@components/SocialGrid";
-
-const iconLinkStyles = {
-  color: DarkTheme.palette.text.primary,
-  fontSize: { xs: "24px", md: "16px" },
-  "&:hover": {
-    color: DarkTheme.palette.primary.main,
-  },
-};
 
 export default function Hero() {
   return (
-    <Container sx={{ flexGrow: 1, px: "24px" }}>
+    <Container sx={{ flexGrow: 1, px: "24px", mt: '-56px' }}>
       <Box
         sx={{
           position: "absolute",
@@ -102,8 +89,8 @@ export default function Hero() {
               DAO
             </Typography>
           </Typography>
-          <Button variant="contained" sx={{}}>
-            Get Started Now
+          <Button variant="contained" disabled >
+            Coming Soon
           </Button>
         </Grid>
         <Grid item>
@@ -159,10 +146,10 @@ export default function Hero() {
             </Grid>
             <Grid item>
               <Typography sx={{ textTransform: "uppercase", fontSize: "12px" }}>
-                Investors
+                Strategic
               </Typography>
               <Typography sx={{ textTransform: "uppercase", fontSize: "12px" }}>
-                &amp; Partners
+                Partners
               </Typography>
             </Grid>
           </Grid>
@@ -174,12 +161,13 @@ export default function Hero() {
             spacing={2}
             sx={{ color: "#777" }}
           >
-            <Grid item>LogoWideLogo</Grid>
-            <Grid item>LogoWideLogo</Grid>
-            <Grid item>LogoWideLogo</Grid>
-            <Grid item>LogoWideLogo</Grid>
-            <Grid item>LogoWideLogo</Grid>
-            <Grid item>LogoWideLogo</Grid>
+            <Grid item>Ergo Foundation</Grid>
+            <Grid item>ErgoDEX</Grid>
+            <Grid item>Azorus</Grid>
+            <Grid item>AnetaBTC</Grid>
+            <Grid item>Ergo-Lend</Grid>
+            <Grid item>ErgoGames.io</Grid>
+            <Grid item>Swamp Audio</Grid>
           </Grid>
         </Grid>
       </Grid>
