@@ -282,11 +282,15 @@ export const DarkTheme = createTheme({
     MuiAlert: {
       styleOverrides: {
         root: {
-          backgroundColor: "#191207",
-          color: "#FFE2B7",
+          warning: {
+            backgroundColor: "#191207",
+            color: "#FFE2B7",
+          },
         },
         MuiAlert: {
-          backgroundColor: "rgba(255, 167, 38, .8)",
+          warning: {
+            backgroundColor: "rgba(255, 167, 38, .8)",
+          },
         },
       },
     },

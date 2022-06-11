@@ -35,10 +35,12 @@ const TextEditor: React.FC<{
         fontsize_formats:
           "8pt 9pt 10pt 10.5pt 11pt 12pt 14pt 18pt 24pt 30pt 36pt 48pt 60pt 72pt 96pt",
       }}
-      onChange={(e: any) => props.onChange(e.target.getContent())}
+      onEditorChange={(e: any) => props.onChange(e.target.getContent())}
       disabled={props.readOnly}
     />
   );
 };
 
 export default TextEditor;
+
+// modals and links !!!!!

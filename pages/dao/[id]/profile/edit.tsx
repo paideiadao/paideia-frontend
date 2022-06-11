@@ -16,32 +16,32 @@ import AddIcon from "@mui/icons-material/Add";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import { IFile, ISocialLink } from "@lib/creation/Api";
 import { SocialRow } from "@components/creation/design/Footer";
+import Status from "@components/utilities/Status";
 
 const ProfileEditImage: React.FC = () => {
-  
   const [file, setFile] = React.useState<IFile>({
     file: -1,
-    url: Musk.src
-  })
+    url: Musk.src,
+  });
 
   function handleImage(e: any) {
     let fileInput = e.currentTarget.files;
     if (fileInput && fileInput[0]) {
       if (fileInput.length != 1) return;
       if (fileInput[0].size > 1000000) {
-        setFile({...file, file: -1})
+        setFile({ ...file, file: -1 });
         return;
       }
 
       var reader = new FileReader();
       reader.onload = function (_e: any) {
-        setFile({...file, url: _e.target.result});
+        setFile({ ...file, url: _e.target.result });
       };
 
       reader.readAsDataURL(fileInput[0]);
       setFile({
-            ...file,
-            file: fileInput[0],
+        ...file,
+        file: fileInput[0],
       });
     }
   }
@@ -73,10 +73,12 @@ const ProfileEditImage: React.FC = () => {
               border: "1px solid",
               borderColor: "divider.main",
             }}
-            onClick={() => setFile({
-              file: -1,
-              url: ''
-            })}
+            onClick={() =>
+              setFile({
+                file: -1,
+                url: "",
+              })
+            }
           >
             <DeleteIcon color="error" sx={{ fontSize: "1.2rem" }} />
           </IconButton>
@@ -86,16 +88,19 @@ const ProfileEditImage: React.FC = () => {
       </Badge>
       <Box sx={{ ml: "1.5rem", width: "65%" }}>
         <input
-            type="file"
-            id='replace-profile-image'
-            accept="image/*"
-            style={{ display: "none" }}
-            onChange={(e) => handleImage(e)}
-          />
-        <Button variant="outlined" onClick={() => {
-const fileInput = document.getElementById('replace-profile-image');
-fileInput.click();
-        }}>
+          type="file"
+          id="replace-profile-image"
+          accept="image/*"
+          style={{ display: "none" }}
+          onChange={(e) => handleImage(e)}
+        />
+        <Button
+          variant="outlined"
+          onClick={() => {
+            const fileInput = document.getElementById("replace-profile-image");
+            fileInput.click();
+          }}
+        >
           Replace Image
           <SwapVertIcon sx={{ ml: ".3rem" }} />
         </Button>
@@ -113,6 +118,7 @@ const Edit: React.FC<{ params: any }> = (props) => {
     username: string;
     shortBio: string;
     socialLinks: ISocialLink[];
+    alert: string;
   }>({
     username: "",
     shortBio: "",
@@ -122,7 +128,17 @@ const Edit: React.FC<{ params: any }> = (props) => {
         address: "",
       },
     ],
+    alert: undefined,
   });
+
+  React.useEffect(() => {
+    if (value.alert === "success") {
+      setTimeout(() => setValue({ ...value, alert: undefined }), 3000);
+    } else if (value.alert === "info") {
+      setTimeout(() => setValue({ ...value, alert: "success" }), 3000);
+    }
+  }, [value.alert]);
+
   return (
     <Box
       sx={{
@@ -205,11 +221,20 @@ const Edit: React.FC<{ params: any }> = (props) => {
           <Button variant="outlined" sx={{ width: "49%", mr: ".5rem" }}>
             Cancel
           </Button>
-          <Button variant="contained" sx={{ width: "49%" }}>
+          <Button
+            variant="contained"
+            sx={{ width: "49%" }}
+            onClick={() => setValue({ ...value, alert: "info" })}
+          >
             Save Changes
           </Button>
         </Box>
       </Box>
+      <Status
+        value={value.alert}
+        current="profile settings."
+        action="updated"
+      />
     </Box>
   );
 };

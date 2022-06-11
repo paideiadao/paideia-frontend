@@ -17,7 +17,7 @@ const BottomNav: React.FC = () => {
         mb: 0,
         pb: 0,
         pt: 0,
-        height: '3.5rem',
+        height: "3.5rem",
       }}
     >
       <Box sx={{ fontSize: ".9rem" }}>Visit our website at dao.paidiea.im.</Box>

@@ -27,7 +27,10 @@ const Activity: React.FC<{ i: IActivity; c: number }> = (props) => {
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", width: "80%" }}>
-        <Avatar sx={{ mr: ".5rem", width: "2rem", height: "2rem" }} src={props.i.img}></Avatar>
+        <Avatar
+          sx={{ mr: ".5rem", width: "2rem", height: "2rem" }}
+          src={props.i.img}
+        ></Avatar>
         <Box>
           {props.i.name + " "}
           <Box
@@ -41,16 +44,18 @@ const Activity: React.FC<{ i: IActivity; c: number }> = (props) => {
             {props.i.action}
           </Box>
           {" " + props.i.value}
-          {props.i.secondary !== undefined && <Box
-            sx={{
-              display: "inline",
-              color: "text.light",
-              ml: ".1rem",
-              mr: ".1rem",
-            }}
-          >
-            {" " + props.i.secondary}
-          </Box>}
+          {props.i.secondary !== undefined && (
+            <Box
+              sx={{
+                display: "inline",
+                color: "text.light",
+                ml: ".1rem",
+                mr: ".1rem",
+              }}
+            >
+              {" " + props.i.secondary}
+            </Box>
+          )}
           {props.i.secondaryValue !== undefined && " " + props.i.secondaryValue}
         </Box>
       </Box>

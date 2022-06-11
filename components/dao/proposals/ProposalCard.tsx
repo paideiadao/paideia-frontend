@@ -1,6 +1,5 @@
 import { Box, Badge, Chip, Avatar, IconButton } from "@mui/material";
 import * as React from "react";
-import { Subheader } from "../../creation/utilities/HeaderComponents";
 import CircleIcon from "@mui/icons-material/Circle";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";

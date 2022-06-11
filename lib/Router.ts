@@ -19,6 +19,7 @@ import Dao from "@pages/dao/[id]";
 import Creation from "@pages/creation";
 import Wallet from "@pages/dao/[id]/wallet";
 import Activity from "@pages/dao/[id]/activity";
+import Members from "@pages/dao/[id]/members";
 
 export const isDao = (Component: any) => {
   return (
@@ -42,6 +43,7 @@ export const isDao = (Component: any) => {
     Component === CreateDiscussion ||
     Component === Past ||
     Component === Wallet ||
-    Component === Activity
+    Component === Activity ||
+    Component === Members
   );
 };

@@ -24,6 +24,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import DiscussionInfo from "@components/dao/discussion/DiscussionInfo";
 import Comments from "@components/dao/discussion/Comments";
 import DiscussionReferences from "@components/dao/discussion/DiscussionReferences";
+import { paths, props } from "@lib/DiscussionPaths";
 
 const Discussion: React.FC = () => {
   const themeContext = React.useContext(ThemeContext);
@@ -242,40 +243,5 @@ const Discussion: React.FC = () => {
 export default Discussion;
 
 // clean up paths...
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  // query db for proposals here...
-  const discussions = [
-    {
-      id: "spreadly",
-      discussion_id: "1",
-    },
-    {
-      id: "spreadly",
-      discussion_id: "2",
-    },
-  ];
-
-  return {
-    paths: discussions.map((discussion) => {
-      return {
-        params: {
-          id: discussion.id,
-          discussion_id: discussion.discussion_id,
-        },
-      };
-    }),
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const daoData = {
-    daoId: params.id,
-  };
-  return {
-    props: {
-      daoData,
-    },
-  };
-};
+export const getStaticPaths = paths;
+export const getStaticProps = props;

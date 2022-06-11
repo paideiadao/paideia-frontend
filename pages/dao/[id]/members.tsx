@@ -2,167 +2,174 @@ import { Header } from "@components/creation/utilities/HeaderComponents";
 import Layout from "@components/dao/Layout";
 import {
   Box,
-  FormControl,
-  InputBase,
-  InputLabel,
-  MenuItem,
   Paper,
+  InputBase,
+  FormControl,
+  InputLabel,
   Select,
+  MenuItem,
   SelectChangeEvent,
 } from "@mui/material";
 import * as React from "react";
 import SearchIcon from "@mui/icons-material/Search";
+import Slider from "@mui/material/Slider";
 import Chip from "@components/utilities/Chip";
 import AppsIcon from "@mui/icons-material/Apps";
 import StarIcon from "@mui/icons-material/Star";
-import Activity, { IActivity } from "@components/dao/activity/Activity";
+import MemberCard, { IMemberCard } from "@components/dao/members/MemberCard";
 import Musk from "@public/profile/musk-full.png";
-import PaideiaLogo from "@public/dao/bio-image/paideia-logo.png";
+
+const marks = [
+  {
+    value: 1,
+    label: "Level 1",
+  },
+  {
+    value: 2,
+    label: "",
+  },
+  {
+    value: 3,
+    label: "",
+  },
+  {
+    value: 4,
+    label: "",
+  },
+  {
+    value: 5,
+    label: "",
+  },
+  {
+    value: 6,
+    label: "",
+  },
+  {
+    value: 7,
+    label: "",
+  },
+  {
+    value: 8,
+    label: "",
+  },
+  {
+    value: 9,
+    label: "",
+  },
+  {
+    value: 10,
+    label: "Level 10",
+  },
+];
+
+const members = [
+  {
+    width: "25%",
+    favorited: true,
+    id: "1",
+    name: "Alone Musk",
+    level: 7,
+    followers: 107,
+    created: 13,
+    approved: 7,
+    img: Musk.src,
+  },
+  {
+    width: "25%",
+    favorited: true,
+    id: "1",
+    name: "Alone Musk",
+    level: 7,
+    followers: 107,
+    created: 13,
+    approved: 7,
+    img: Musk.src,
+  },
+  {
+    width: "25%",
+    favorited: true,
+    id: "1",
+    name: "Alone Musk",
+    level: 7,
+    followers: 107,
+    created: 13,
+    approved: 7,
+    img: Musk.src,
+  },
+  {
+    width: "25%",
+    favorited: true,
+    id: "1",
+    name: "Alone Musk",
+    level: 7,
+    followers: 107,
+    created: 13,
+    approved: 7,
+    img: Musk.src,
+  },
+  {
+    width: "25%",
+    favorited: true,
+    id: "1",
+    name: "Alone Musk",
+    level: 7,
+    followers: 107,
+    created: 13,
+    approved: 7,
+    img: Musk.src,
+  },
+  {
+    width: "25%",
+    favorited: true,
+    id: "1",
+    name: "Alone Musk",
+    level: 7,
+    followers: 107,
+    created: 13,
+    approved: 7,
+    img: Musk.src,
+  },
+  {
+    width: "25%",
+    favorited: true,
+    id: "1",
+    name: "Alone Musk",
+    level: 7,
+    followers: 107,
+    created: 13,
+    approved: 7,
+    img: Musk.src,
+  },
+  {
+    width: "25%",
+    favorited: true,
+    id: "1",
+    name: "Alone Musk",
+    level: 7,
+    followers: 107,
+    created: 13,
+    approved: 7,
+    img: Musk.src,
+  },
+];
 
 const categories = [
   { icon: <AppsIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />, label: "All" },
   {
     icon: <StarIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />,
-    label: "Comments",
+    label: "Proposal creator",
   },
   {
     icon: <StarIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />,
-    label: "Proposals",
+    label: "Yes person",
   },
   {
     icon: <StarIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />,
-    label: "Transactions",
-  },
-  {
-    icon: <StarIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />,
-    label: "Staking",
+    label: "Communication Starter",
   },
 ];
 
-let temp = new Date();
-temp.setDate(temp.getDate() - 4);
-
-const activities: IActivity[] = [
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "staked",
-    value: "15,000 PTK",
-    date: temp,
-    category: "Staking",
-  },
-  {
-    img: PaideiaLogo.src,
-    name: "3 ERG ($9.07)",
-    action: "were transferred to",
-    value: "0xaEF7B95f32597E6d70e4aaa2A7b30bE51a9F893b",
-    date: new Date(),
-    category: "Transactions",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "created the proposal",
-    value: "<proposal name>",
-    date: new Date(),
-    category: "Proposals",
-  },
-  {
-    img: PaideiaLogo.src,
-    name: "10 ERG ($30.21)",
-    action: "were transferred to",
-    value: "0xaEF7B95f32597E6d70e4aaa2A7b30bE51a9F893b",
-    date: temp,
-    category: "Transactions",
-  },
-  {
-    img: PaideiaLogo.src,
-    name: "3 ERG ($9.07)",
-    action: "were transferred to",
-    value: "0xaEF7B95f32597E6d70e4aaa2A7b30bE51a9F893b",
-    date: new Date(),
-    category: "Transactions",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "created the proposal",
-    value: "<proposal name>",
-    date: temp,
-    category: "Proposals",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "earned",
-    value: "297 PTK",
-    date: new Date(),
-    category: "Staking",
-    secondary: "tokens from staking",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "voted on the proposal",
-    value: "<proposal name>",
-    date: temp,
-    category: "Proposals",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "earned",
-    value: "301 PTK",
-    date: new Date(),
-    category: "Staking",
-    secondary: "tokens from staking",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "withdrew",
-    value: "5,000 PTK",
-    date: temp,
-    category: "Staking",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "made a comment on the proposal",
-    value: "<proposal name>",
-    date: new Date(),
-    category: "Comments",
-  },
-  {
-    img: PaideiaLogo.src,
-    name: "10 ERG ($30.21)",
-    action: "were transferred to",
-    value: "0xaEF7B95f32597E6d70e4aaa2A7b30bE51a9F893b",
-    date: new Date(),
-    category: "Transactions",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "earned",
-    value: "575 PTK",
-    date: temp,
-    category: "Staking",
-    secondary: "tokens from staking",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "added an addendum",
-    value: "<addendum name>",
-    date: new Date(),
-    category: "Staking",
-    secondary: "to the proposal",
-    secondaryValue: "<proposal name>",
-  },
-];
-
-const Activities: React.FC = () => {
+const Members: React.FC = () => {
   const [filters, setFilters] = React.useState<{
     sortBy: string;
     search: string;
@@ -172,15 +179,21 @@ const Activities: React.FC = () => {
     sortBy: "",
     categories: ["All"],
   });
+  const [value, setValue] = React.useState<number[]>([1, 10]);
+
+  const handleChange = (event: Event, newValue: number | number[]) => {
+    setValue(newValue as number[]);
+  };
+
   return (
-    <Layout width="95%">
-      <Header title="Activity log" large />
+    <Layout width="92.5%">
+      <Header large title="DAO members" />
       <Box
         sx={{
+          mt: "1rem",
+          width: "100%",
           display: "flex",
           alignItems: "center",
-          width: "100%",
-          mt: "1rem",
         }}
       >
         <Paper
@@ -196,7 +209,7 @@ const Activities: React.FC = () => {
             ":hover": {
               borderColor: "primary.main",
             },
-            width: "75%",
+            width: "50%",
           }}
         >
           <Box
@@ -216,7 +229,7 @@ const Activities: React.FC = () => {
               color: "text.main",
               width: "100%",
             }}
-            placeholder="Search by keyword or user"
+            placeholder="Search member"
             value={filters.search}
             // @ts-ignore
             onChange={(event: any) =>
@@ -224,6 +237,18 @@ const Activities: React.FC = () => {
             }
           />
         </Paper>
+        <Box sx={{ width: "25%", ml: "2rem", mr: "2rem" }}>
+          <Slider
+            step={1}
+            value={value}
+            valueLabelDisplay="auto"
+            marks={marks}
+            min={1}
+            max={10}
+            onChange={handleChange}
+          />
+        </Box>
+
         <FormControl sx={{ width: "25%", ml: "1rem" }}>
           <InputLabel id="sort-by-select-label">Sort by</InputLabel>
           <Select
@@ -239,14 +264,14 @@ const Activities: React.FC = () => {
           </Select>
         </FormControl>
       </Box>
-      <Box sx={{ display: "flex", mt: ".5rem" }}>
+      <Box sx={{ display: "flex", mt: "1rem" }}>
         {categories.map((i: any, c: number) => (
           <Chip
             {...i}
             set={() => {
               let temp = [...filters.categories];
-              let allIndex = temp.indexOf("All");
               let index = temp.indexOf(i.label);
+              let allIndex = temp.indexOf("All");
               if (index > -1) {
                 temp.splice(index, 1);
               } else {
@@ -275,24 +300,14 @@ const Activities: React.FC = () => {
           />
         ))}
       </Box>
-      {activities
-        .filter((i: any) => {
-          return filters.categories.indexOf("All") > -1
-            ? true
-            : filters.categories.indexOf(i.category) > -1;
-        })
-        .sort((a, b) =>
-          filters.sortBy === ""
-            ? 1
-            : filters.sortBy === "Most Recent"
-            ? b.date.getTime() - a.date.getTime()
-            : 1
-        )
-        .map((i: any, c: number) => {
-          return <Activity i={i} c={c} />;
-        })}
+      <Box
+        sx={{ display: "flex", width: "100%", flexWrap: "wrap", mt: "1.5rem" }}
+      >
+        {members.map((i: IMemberCard) => (
+          <MemberCard {...i} width="25%" />
+        ))}
+      </Box>
     </Layout>
   );
 };
-
-export default Activities;
+export default Members;
