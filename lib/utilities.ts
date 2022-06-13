@@ -1,4 +1,10 @@
+import { data } from "jquery";
 import React from "react";
+
+const statusLookup: IObj<number> = {
+  GET: 200,
+  POST: 201,
+};
 
 export class AbstractApi {
   alert: any;
@@ -9,71 +15,63 @@ export class AbstractApi {
     this.setAlert = _setAlert;
   }
 
-  get<T>(url: string): Promise<T> {
-    return this.request(url, 'GET').then((res: Response) => {
-      if (res.status !== 200) {
-        return undefined
-      } else {
-        return res.json().then((data) => {
-          return data
-        })
-    }
-    }, (err) => this.setAlert({
+  error = (err) =>
+    this.setAlert({
       show: true,
       content: err.toString(),
-      header: 'Error'
-    }))
+      header: "Error",
+    });
+
+  get<T>(url: string): Promise<T> {
+    return this.request(url, "GET").then((data: T) => data, this.error);
   }
 
   post<T>(url: string, body: any): Promise<T> {
-    return this.request(url, 'POST', body).then((res: Response) => {
-      if (res.status !== 201) {
-        return undefined
-      } else {
-        return res.json().then((data) => {
-          return data
-        })
-    }
-    }, (err) => this.setAlert({
-      show: true,
-      content: err.toString(),
-      header: 'Error'
-    }))
+    return this.request(url, "POST", body).then((data: T) => data, this.error);
   }
 
   _request(url: string, method: string, body?: any): Promise<Response> {
     return fetch(url, {
       method: method,
-      credentials: 'include',
+      credentials: "include",
       body: body,
       headers: {
-        'Content-type': 'application/json',
-        Accept: 'application/json, text/plain, */*',
-        'X-CSRFToken': 'token here...'
-      }
+        "Content-type": "application/json",
+        Accept: "application/json, text/plain, */*",
+        "X-CSRFToken": "token here...",
+      },
     });
   }
 
   request(url: string, method: string, body?: any) {
-      return new Promise((resolve, reject) => {
-          try {
-              if (body !== undefined) {
-                  this._request(url, method, ...body).then((res) => {
-                      resolve(res);
-                  });
-              }
-              else {
-                  this._request(url, method).then((res) => {
-                      resolve(res);
-                  });
-              }
-          }
-          catch (err) {
-              reject(err);
-          }
-      });
+    return new Promise((resolve, reject) => {
+      try {
+        if (body !== undefined) {
+          this._request(url, method, ...body).then((res) => {
+            if (res.status !== statusLookup[method]) {
+              return resolve(undefined);
+            } else {
+              return res.json().then((data) => {
+                resolve(data);
+              });
+            }
+          });
+        } else {
+          this._request(url, method).then((res) => {
+            if (res.status !== statusLookup[method]) {
+              return resolve(undefined);
+            } else {
+              return res.json().then((data) => {
+                resolve(data);
+              });
+            }
+          });
+        }
+      } catch (err) {
+        reject(err);
+      }
+    });
   }
-
 }
 
 export interface IData<T> {
