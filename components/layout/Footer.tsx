@@ -56,7 +56,6 @@ const firstPages = [
     link: "/",
     external: true,
   },
-
 ];
 
 const secondPages = [
@@ -77,9 +76,7 @@ const thirdPages = [
   },
 ];
 
-const fourthPages = [
-
-];
+const fourthPages = [];
 
 export default function Footer() {
   const linkList = (list: any[]) => {

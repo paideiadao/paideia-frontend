@@ -40,45 +40,49 @@ const tabs = [
   {
     label: "Developers",
     title: "Blockchain Development Teams",
-    content: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development. ",
+    content:
+      "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development. ",
     link: "/",
     image: "/examples/gaming-world2.png",
   },
   {
     label: "Charities",
     title: "Charitable Organizations",
-    content: "If you'd like to distribute the governance behind a charity, and operate in the most transparent way possible, a DAO on Paideia may be the answer. ",
+    content:
+      "If you'd like to distribute the governance behind a charity, and operate in the most transparent way possible, a DAO on Paideia may be the answer. ",
     link: "/",
     image: "/examples/gaming-world.png",
   },
   {
     label: "Investors",
     title: "Venture Capitalist Groups",
-    content: "Using a DAO, groups of people can pool their funds and manage each members' stake in the overall investment. Eliminate the need to trust a specific individual with control of the funds. ",
+    content:
+      "Using a DAO, groups of people can pool their funds and manage each members' stake in the overall investment. Eliminate the need to trust a specific individual with control of the funds. ",
     link: "/",
     image: "/examples/gaming-world.png",
   },
   {
     label: "Startups",
     title: "Entrepreneurial partnerships",
-    content: "You and your co-founders can receive a large investment in a trustless way with DAO management software like Paideia. Vote on each person's salary, and make sure funds are put to work in a fair and equitable way. ",
+    content:
+      "You and your co-founders can receive a large investment in a trustless way with DAO management software like Paideia. Vote on each person's salary, and make sure funds are put to work in a fair and equitable way. ",
     link: "/",
     image: "/examples/gaming-world2.png",
   },
   {
     label: "P2E Gaming Guilds",
     title: "Gaming Together as a Team",
-    content: "P2E gaming guilds can split their earnings by sending them to a DAO treasury",
+    content:
+      "P2E gaming guilds can split their earnings by sending them to a DAO treasury",
     link: "/",
     image: "/examples/gaming-world2.png",
   },
-
 ];
 
 const StyledTabs = styled((props: any) => (
   <Tabs
     {...props}
-  // TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+    // TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
   />
 ))({
   "& .MuiTabs-indicator": {
@@ -149,13 +153,13 @@ export default function Examples() {
     <>
       {!sizeMd
         ? tabs.map(({ image }, i: number) => {
-          return (
-            <TabPanel
-              value={value}
-              index={i}
-              key={i}
-              sx={{ position: "relative", mt: "100px" }}
-            >
+            return (
+              <TabPanel
+                value={value}
+                index={i}
+                key={i}
+                sx={{ position: "relative", mt: "100px" }}
+              >
                 <Box
                   sx={{
                     position: { xs: "relative", md: "absolute" },
@@ -245,15 +249,15 @@ export default function Examples() {
                     onChange={handleChange}
                     aria-label="DAO Samples"
                     sx={{
-                      ml: { xs: '-24px', md: '-62px' },
-                      zIndex: '5',
-                      width: { xs: '100vw', md: 'calc(100% + 62px)' },
-                      minHeight: '0',
-                      mb: '24px',
-                      '.MuiTabScrollButton-root': {
-                        boxShadow: '0 0 12px 8px black',
-                        zIndex: '3',
-                      }
+                      ml: { xs: "-24px", md: "-62px" },
+                      zIndex: "5",
+                      width: { xs: "100vw", md: "calc(100% + 62px)" },
+                      minHeight: "0",
+                      mb: "24px",
+                      ".MuiTabScrollButton-root": {
+                        boxShadow: "0 0 12px 8px black",
+                        zIndex: "3",
+                      },
                     }}
                     variant="scrollable"
                     scrollButtons

@@ -16,10 +16,17 @@ import { useRouter } from "next/router";
 import { isDao } from "@lib/Router";
 import { WalletProvider } from "@components/wallet/WalletContext";
 import { AddWalletProvider } from "@components/wallet/AddWalletContext";
+import { Box, Modal } from "@mui/material";
+import { modalBackground } from "@components/utilities/modalBackground";
+import { IAlert } from "@lib/utilities";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
-  const [alert, setAlert] = React.useState({ show: false });
+  const [alert, setAlert] = React.useState<IAlert>({
+    show: true,
+    header: "Alert",
+    content: "Content Here...",
+  });
   const router = useRouter();
   const [daoId, setDaoId] = React.useState<any>(router.query.id);
 
@@ -47,6 +54,33 @@ export default function App({ Component, pageProps }: AppProps) {
                   </DaoTemplate>
                 ) : (
                   <Component {...pageProps} />
+                )}
+                {alert.show && (
+                  <Modal
+                    open={alert.show}
+                    onClose={() => setAlert({ show: false })}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box sx={{ ...modalBackground, width: "35rem" }}>
+                      <Box sx={{ fontSize: "1.1rem", fontWeight: 450 }}>
+                        {alert.header}
+                      </Box>
+                      <Box sx={{ mt: "1rem", fontSize: ".9rem" }}>
+                        {alert.content}
+                      </Box>
+                      <Box
+                        sx={{
+                          width: "100%",
+                          display: "flex",
+                          alignItems: "center",
+                          mt: "1rem",
+                        }}
+                      >
+                        <Box sx={{ ml: "auto" }}></Box>
+                      </Box>
+                    </Box>
+                  </Modal>
                 )}
               </GlobalContext.Provider>
             </ThemeContext.Provider>

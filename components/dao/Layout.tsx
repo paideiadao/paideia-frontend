@@ -10,7 +10,7 @@ const Layout: React.FC<{ width?: string }> = (props) => {
         justifyContent: "center",
         pt: "1.5rem",
         pb: "1.5rem",
-        height: 'calc(100vh - 7.5rem)'
+        height: "calc(100vh - 7.5rem)",
       }}
     >
       <Box sx={{ width: props.width === undefined ? "70%" : props.width }}>

@@ -6,7 +6,7 @@ import SocialGrid from "@components/SocialGrid";
 
 export default function Hero() {
   return (
-    <Container sx={{ flexGrow: 1, px: "24px", mt: '-56px' }}>
+    <Container sx={{ flexGrow: 1, px: "24px", mt: "-56px" }}>
       <Box
         sx={{
           position: "absolute",
@@ -89,7 +89,7 @@ export default function Hero() {
               DAO
             </Typography>
           </Typography>
-          <Button variant="contained" disabled >
+          <Button variant="contained" disabled>
             Coming Soon
           </Button>
         </Grid>
