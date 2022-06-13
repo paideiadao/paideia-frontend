@@ -25,11 +25,27 @@ export class AbstractApi {
     }))
   }
 
-  _request(url: string, method: string, params?: any): Promise<Response> {
+  post<T>(url: string, body: any): Promise<T> {
+    return this.request(url, 'POST', body).then((res: Response) => {
+      if (res.status !== 201) {
+        return undefined
+      } else {
+        return res.json().then((data) => {
+          return data
+        })
+    }
+    }, (err) => this.setAlert({
+      show: true,
+      content: err.toString(),
+      header: 'Error'
+    }))
+  }
+
+  _request(url: string, method: string, body?: any): Promise<Response> {
     return fetch(url, {
       method: method,
       credentials: 'include',
-      body: params,
+      body: body,
       headers: {
         'Content-type': 'application/json',
         Accept: 'application/json, text/plain, */*',
@@ -38,11 +54,11 @@ export class AbstractApi {
     });
   }
 
-  request(url: string, method: string, params?: any) {
+  request(url: string, method: string, body?: any) {
       return new Promise((resolve, reject) => {
           try {
-              if (params !== undefined) {
-                  this._request(url, method, ...params).then((res) => {
+              if (body !== undefined) {
+                  this._request(url, method, ...body).then((res) => {
                       resolve(res);
                   });
               }
