@@ -17,6 +17,7 @@ import SwapVertIcon from "@mui/icons-material/SwapVert";
 import { IFile, ISocialLink } from "@lib/creation/Api";
 import { SocialRow } from "@components/creation/design/Footer";
 import Status from "@components/utilities/Status";
+import Layout from "@components/dao/Layout";
 
 const ProfileEditImage: React.FC = () => {
   const [file, setFile] = React.useState<IFile>({
@@ -140,16 +141,7 @@ const Edit: React.FC<{ params: any }> = (props) => {
   }, [value.alert]);
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        justifyContent: "center",
-        display: "flex",
-        pb: "1.5rem",
-        pt: "1.5rem",
-      }}
-    >
-      <Box sx={{ width: "70%" }}>
+    <Layout>
         <Header title="Edit profile" />
         <ProfileEditImage />
         <TextField
@@ -229,13 +221,12 @@ const Edit: React.FC<{ params: any }> = (props) => {
             Save Changes
           </Button>
         </Box>
-      </Box>
       <Status
         value={value.alert}
         current="profile settings."
         action="updated"
       />
-    </Box>
+    </Layout>
   );
 };
 

@@ -219,7 +219,7 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
               {...i}
               c={c}
               key={"proposal-card-key-" + c + i.id}
-              width="25%"
+              width={{sm: "33%", md: '33%', lg: '25%'}}
             />
           ))}
       </Box>
