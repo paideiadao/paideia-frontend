@@ -4,6 +4,9 @@ import React from "react";
 const statusLookup: IObj<number> = {
   GET: 200,
   POST: 201,
+  PATCH: 200,
+  PUT: 200,
+  DELETE: 204
 };
 
 export class AbstractApi {
@@ -28,6 +31,18 @@ export class AbstractApi {
 
   post<T>(url: string, body: any): Promise<T> {
     return this.request(url, "POST", body).then((data: T) => data, this.error);
+  }
+
+  patch<T>(url: string): Promise<T> {
+    return this.request(url, "PATCH").then((data: T) => data, this.error);
+  }
+
+  put<T>(url: string, body: any): Promise<T> {
+    return this.request(url, "PUT", body).then((data: T) => data, this.error);
+  }
+
+  delete<T>(url: string, body: any): Promise<T> {
+    return this.request(url, "DELETE", body).then((data: T) => data, this.error);
   }
 
   _request(url: string, method: string, body?: any): Promise<Response> {

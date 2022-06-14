@@ -21,4 +21,6 @@ export class AppApi extends AbstractApi {
     this.daoId = _daoId;
     this.setDaoId = _setDaoId;
   }
+
+  ///
 }

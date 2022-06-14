@@ -23,9 +23,7 @@ import { IAlert } from "@lib/utilities";
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
   const [alert, setAlert] = React.useState<IAlert>({
-    show: true,
-    header: "Alert",
-    content: "Content Here...",
+    show: false
   });
   const router = useRouter();
   const [daoId, setDaoId] = React.useState<any>(router.query.id);
@@ -59,8 +57,6 @@ export default function App({ Component, pageProps }: AppProps) {
                   <Modal
                     open={alert.show}
                     onClose={() => setAlert({ show: false })}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
                   >
                     <Box sx={{ ...modalBackground, width: "35rem" }}>
                       <Box sx={{ fontSize: "1.1rem", fontWeight: 450 }}>
