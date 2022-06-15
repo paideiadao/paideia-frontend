@@ -31,7 +31,7 @@ export interface IProposalCard {
   comments: number;
   users: number;
   date: Date;
-  width: string;
+  width: any;
 }
 
 const VoteWidget: React.FC<{

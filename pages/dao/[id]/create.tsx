@@ -1,12 +1,8 @@
 import * as React from "react";
 import { paths, props } from "@lib/DaoPaths";
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {
-  Header,
-  LearnMore,
-} from "@components/creation/utilities/HeaderComponents";
 import BalanceIcon from "@mui/icons-material/Balance";
 import ChatIcon from "@mui/icons-material/Chat";
 import CreateHeader from "@components/dao/proposal/Header";

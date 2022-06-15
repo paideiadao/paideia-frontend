@@ -1,6 +1,5 @@
-import { Avatar, Box, Button, Modal } from "@mui/material";
+import { Avatar, Box, Button } from "@mui/material";
 import * as React from "react";
-import { GetStaticProps, GetStaticPaths } from "next";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
@@ -10,11 +9,13 @@ import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
 import ImagePlaceholder from "../../../public/images/image-placeholder.png";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CircleIcon from "@mui/icons-material/Circle";
-import { modalBackground } from "@components/utilities/modalBackground";
 import Chip from "@components/utilities/Chip";
 import MarkunreadIcon from "@mui/icons-material/Markunread";
 import dateFormat from "dateformat";
+import { paths, props } from "@lib/DaoPaths";
 
+export const getStaticPaths = paths;
+export const getStaticProps = props;
 let temp = new Date(),
   temp1 = new Date(),
   temp2 = new Date(),
@@ -259,25 +260,6 @@ export const Notification: React.FC<{ i: any; m?: string }> = (props) => {
       )}
     </Box>
   );
-};
-
-// routing for the dao urls should be dynamic... the routing for the dao pages is contained here.
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = [{ params: { id: "spreadly" } }, { params: { id: "ergopad" } }];
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const daoData = { params };
-  return {
-    props: {
-      params,
-    },
-  };
 };
 
 export default Notifications;

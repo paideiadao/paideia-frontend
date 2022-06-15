@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 export interface IMemberCard {
-  width: string;
+  width: any;
   favorited: boolean;
   id: string;
   name: string;
@@ -102,41 +102,48 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
             >
               <Box
                 sx={{
-                  fontSize: ".8rem",
+                  fontSize: ".7rem",
                   color: "text.light",
                   textAlign: "center",
                   pr: "1rem",
+                  
+
+                  borderRight: '1px solid',
+                  borderRightColor: 'divider.main'
                 }}
               >
                 Followers
-                <Box sx={{ color: "text.main", fontSize: "1.4rem" }}>
+                <Box sx={{ color: "text.main", fontSize: "1.2rem" }}>
                   {props.followers}
                 </Box>
               </Box>
               <Box
                 sx={{
-                  fontSize: ".8rem",
+                  fontSize: ".7rem",
                   pl: "1rem",
                   color: "text.light",
                   textAlign: "center",
                   pr: "1rem",
+
+                  borderRight: '1px solid',
+                  borderRightColor: 'divider.main'
                 }}
               >
                 Created
-                <Box sx={{ color: "text.main", fontSize: "1.4rem" }}>
+                <Box sx={{ color: "text.main", fontSize: "1.2rem" }}>
                   {props.created}
                 </Box>
               </Box>
               <Box
                 sx={{
-                  fontSize: ".8rem",
+                  fontSize: ".7rem",
                   pl: "1rem",
                   color: "text.light",
                   textAlign: "center",
                 }}
               >
                 Approved
-                <Box sx={{ color: "text.main", fontSize: "1.4rem" }}>
+                <Box sx={{ color: "text.main", fontSize: "1.2rem" }}>
                   {props.approved}
                 </Box>
               </Box>
