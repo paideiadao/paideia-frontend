@@ -14,7 +14,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-import { IFile, ISocialLink } from "@lib/creation/Api";
+import { IFile, ISocialLink } from "@lib/creation/CreationApi";
 import { SocialRow } from "@components/creation/design/Footer";
 import Status from "@components/utilities/Status";
 import Layout from "@components/dao/Layout";

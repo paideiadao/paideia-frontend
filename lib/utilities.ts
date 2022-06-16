@@ -1,5 +1,6 @@
 import { data } from "jquery";
 import React from "react";
+import axios from 'axios';
 
 const statusLookup: IObj<number> = {
   GET: 200,
@@ -18,6 +19,10 @@ export class AbstractApi {
     this.setAlert = _setAlert;
   }
 
+  async signup(username: string, password: string) {
+    return await this.post('localhost:8000/api/signup', {username, password})
+  }
+
   error = (err) =>
     this.setAlert({
       show: true,
@@ -25,65 +30,82 @@ export class AbstractApi {
       header: "Error",
     });
 
-  get<T>(url: string): Promise<T> {
-    return this.request(url, "GET").then((data: T) => data, this.error);
+    async get<T>(url: string): Promise<T> {
+      return await this.request(url, "GET").then((data: T) => data, this.error);
+    }
+
+  async post<T>(url: string, body: any): Promise<T> {
+    console.log('here...')
+    return await this.request(url, "POST", body).then((data: T) => data, this.error);
   }
 
-  post<T>(url: string, body: any): Promise<T> {
-    return this.request(url, "POST", body).then((data: T) => data, this.error);
+  async patch<T>(url: string): Promise<T> {
+    return await this.request(url, "PATCH").then((data: T) => data, this.error);
   }
 
-  patch<T>(url: string): Promise<T> {
-    return this.request(url, "PATCH").then((data: T) => data, this.error);
+  async put<T>(url: string, body: any): Promise<T> {
+    return await this.request(url, "PUT", body).then((data: T) => data, this.error);
   }
 
-  put<T>(url: string, body: any): Promise<T> {
-    return this.request(url, "PUT", body).then((data: T) => data, this.error);
+  async delete<T>(url: string, body: any): Promise<T> {
+    return await this.request(url, "DELETE", body).then((data: T) => data, this.error);
   }
 
-  delete<T>(url: string, body: any): Promise<T> {
-    return this.request(url, "DELETE", body).then((data: T) => data, this.error);
+  async _request(url: string, method: string, body?: any, type?: any): Promise<Response> {
+    console.log('request here...')
+    const methods = {
+      'POST': axios.post,
+      'GET': axios.get,
+      'PATCH': axios.patch,
+      'DELETE': axios.delete,
+      'PUT': axios.put
+    }
+      const defaultOptions = {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem(
+            'jwt_token_login_422'
+          )}`,
+          // 'Content-Type': props.type,
+        },
+      };
+      const formData = new FormData();
+      for (let key in body) {
+        formData.append(key, body[key]);
+      }
+
+      return await methods[method](
+        url,
+        formData,
+        defaultOptions
+      );
   }
 
-  _request(url: string, method: string, body?: any): Promise<Response> {
-    return fetch(url, {
-      method: method,
-      credentials: "include",
-      body: body,
-      headers: {
-        "Content-type": "application/json",
-        Accept: "application/json, text/plain, */*",
-        "X-CSRFToken": "token here...",
-      },
-    });
-  }
-
-  request(url: string, method: string, body?: any) {
-    return new Promise((resolve, reject) => {
+  async request(url: string, method: string, body?: any) {
+    return await new Promise(async (resolve, reject) => {
       try {
         if (body !== undefined) {
-          this._request(url, method, ...body).then((res) => {
+          return await this._request(url, method, ...body).then((res) => {
             if (res.status !== statusLookup[method]) {
               return resolve(undefined);
             } else {
               return res.json().then((data) => {
-                resolve(data);
+                return resolve(data);
               });
             }
           });
         } else {
-          this._request(url, method).then((res) => {
+          return await this._request(url, method).then((res) => {
             if (res.status !== statusLookup[method]) {
               return resolve(undefined);
             } else {
               return res.json().then((data) => {
-                resolve(data);
+                return resolve(data);
               });
             }
           });
         }
       } catch (err) {
-        reject(err);
+        return reject(err);
       }
     });
   }

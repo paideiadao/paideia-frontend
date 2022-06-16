@@ -31,6 +31,15 @@ const Review: React.FC = () => {
           Back
         </Button>
       </Box>
+      <Button
+          onClick={() =>
+            globalContext.api.createDao()
+          }
+          size="small"
+        >
+          <ArrowBackIcon sx={{ mr: ".5rem", fontSize: "1rem" }} />
+          Test
+        </Button>
       <Header
         title="Review"
         large={true}

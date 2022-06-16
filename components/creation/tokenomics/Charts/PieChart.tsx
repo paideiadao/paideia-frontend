@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { ResponsivePie } from "@nivo/pie";
 import * as React from "react";
-import { ITokenHolder, ITokenomics } from "../../../../lib/creation/Api";
+import { ITokenHolder, ITokenomics } from "../../../../lib/creation/CreationApi";
 import { percentage } from "../../../../lib/creation/Utilities";
 import {
   GlobalContext,

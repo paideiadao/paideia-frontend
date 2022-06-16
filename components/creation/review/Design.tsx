@@ -9,7 +9,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { bytesToSize } from "../../../lib/creation/Utilities";
 import { themes } from "../design/Design";
 import CircleIcon from "@mui/icons-material/Circle";
-import { IFile, ISocialLink } from "../../../lib/creation/Api";
+import { IFile, ISocialLink } from "../../../lib/creation/CreationApi";
 import Image from "next/image";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import InstagramIcon from "@mui/icons-material/Instagram";

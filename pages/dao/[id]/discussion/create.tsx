@@ -4,7 +4,7 @@ import * as React from "react";
 import ChatIcon from "@mui/icons-material/Chat";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { IFile } from "@lib/creation/Api";
+import { IFile } from "@lib/creation/CreationApi";
 import { IProposal } from "../proposal/create";
 import GeneralInformation from "@components/dao/discussion/GeneralInformation";
 import DiscussionApi from "@components/dao/discussion/DiscussionApi";

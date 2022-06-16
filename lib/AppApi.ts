@@ -1,6 +1,6 @@
 import { AbstractApi } from "./utilities";
 import { Theme } from "@mui/material";
-import { CreationApi } from "./creation/Api";
+import { CreationApi } from "./creation/CreationApi";
 
 export class AppApi extends AbstractApi {
   theme: Theme;

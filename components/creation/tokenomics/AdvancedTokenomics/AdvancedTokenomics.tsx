@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import * as React from "react";
-import { ITokenomics } from "../../../../lib/creation/Api";
+import { ITokenomics } from "../../../../lib/creation/CreationApi";
 import { GlobalContext } from "../../../../lib/creation/Context";
 import { IData } from "../../../../lib/utilities";
 import { LearnMore, Subtitle } from "../../utilities/HeaderComponents";
