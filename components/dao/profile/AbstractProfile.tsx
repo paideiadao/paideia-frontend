@@ -51,7 +51,7 @@ const UserSocial: React.FC<{ icon: JSX.Element; label: string }> = (props) => {
   };
 
 
-const AbstractProfile: React.FC<{edit?: boolean, favorited?: boolean}> = (props) => {
+const AbstractProfile: React.FC<{edit?: boolean, followed?: boolean}> = (props) => {
     const globalContext = React.useContext<IGlobalContext>(GlobalContext);
     const [value, setValue] = React.useState("1");
   
@@ -69,7 +69,7 @@ const AbstractProfile: React.FC<{edit?: boolean, favorited?: boolean}> = (props)
               Back
             </Button>
           </Link>
-          <ProfileHeader edit={props.edit} favorited={props.favorited}/>
+          <ProfileHeader edit={props.edit} followed={props.followed}/>
           <Box>
             <TabContext value={value}>
               <Box sx={{ borderBottom: 1, borderColor: "divider.main" }}>
