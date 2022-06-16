@@ -113,7 +113,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
                 }}
               >
                 Followers
-                <Box sx={{ color: "text.main", fontSize: "1.2rem" }}>
+                <Box sx={{ color: "text.main", fontSize: "1.1rem" }}>
                   {props.followers}
                 </Box>
               </Box>
@@ -130,7 +130,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
                 }}
               >
                 Created
-                <Box sx={{ color: "text.main", fontSize: "1.2rem" }}>
+                <Box sx={{ color: "text.main", fontSize: "1.1rem" }}>
                   {props.created}
                 </Box>
               </Box>
@@ -143,7 +143,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
                 }}
               >
                 Approved
-                <Box sx={{ color: "text.main", fontSize: "1.2rem" }}>
+                <Box sx={{ color: "text.main", fontSize: "1.1rem" }}>
                   {props.approved}
                 </Box>
               </Box>

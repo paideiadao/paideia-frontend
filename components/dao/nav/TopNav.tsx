@@ -26,7 +26,7 @@ const TopNav: React.FC = () => {
   return (
     <Box
       sx={{
-        width: "calc(100% - 15rem)",
+        width: "calc(100% - 11rem)",
         p: ".5rem",
         borderBottom: "1px solid",
         borderBottomColor: "divider.main",

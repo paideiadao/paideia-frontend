@@ -51,7 +51,7 @@ const UserSocial: React.FC<{ icon: JSX.Element; label: string }> = (props) => {
   };
 
 
-const AbstractProfile: React.FC<{edit?: boolean}> = (props) => {
+const AbstractProfile: React.FC<{edit?: boolean, favorited?: boolean}> = (props) => {
     const globalContext = React.useContext<IGlobalContext>(GlobalContext);
     const [value, setValue] = React.useState("1");
   
@@ -63,13 +63,13 @@ const AbstractProfile: React.FC<{edit?: boolean}> = (props) => {
     return <Layout width='100%'>
         <Box sx={{ display: "flex", alignItems: "flex-start", width: "100%" }}>
         <Box sx={{ width: "70%", p: "1rem" }}>
-          <Link href={`/dao/${id}`}>
+          <Link href={props.edit ? `/dao/${id}` : `/dao/${id}/members`}>
             <Button variant="outlined">
               <ArrowBackIcon sx={{ ml: "-.5rem", mr: ".5rem" }} color="primary" />
               Back
             </Button>
           </Link>
-          <ProfileHeader />
+          <ProfileHeader edit={props.edit} favorited={props.favorited}/>
           <Box>
             <TabContext value={value}>
               <Box sx={{ borderBottom: 1, borderColor: "divider.main" }}>
@@ -91,7 +91,7 @@ const AbstractProfile: React.FC<{edit?: boolean}> = (props) => {
           <Box
             sx={{
               backgroundColor: "fileInput.outer",
-              m: "1rem",
+              m: ".5rem",
               borderRadius: ".3rem",
               border: "1px solid",
               borderColor: "divider.main",
@@ -109,21 +109,21 @@ const AbstractProfile: React.FC<{edit?: boolean}> = (props) => {
               >
                 <Box
                   sx={{
-                    fontSize: ".8rem",
+                    fontSize: ".7rem",
                     color: "text.light",
                     textAlign: "center",
                     borderRight: "1px solid",
                     borderRightColor: "divider.main",
-                    pr: "1rem",
+                    pr: ".75rem",
                   }}
                 >
                   Followers
-                  <Box sx={{ color: "text.main", fontSize: "1.4rem" }}>107</Box>
+                  <Box sx={{ color: "text.main", fontSize: "1.1rem" }}>107</Box>
                 </Box>
                 <Box
                   sx={{
-                    fontSize: ".8rem",
-                    pl: "1rem",
+                    fontSize: ".7rem",
+                    pl: ".75rem",
                     color: "text.light",
                     textAlign: "center",
                     borderRight: "1px solid",
@@ -132,21 +132,21 @@ const AbstractProfile: React.FC<{edit?: boolean}> = (props) => {
                   }}
                 >
                   Created
-                  <Box sx={{ color: "text.main", fontSize: "1.4rem" }}>13</Box>
+                  <Box sx={{ color: "text.main", fontSize: "1.1rem" }}>13</Box>
                 </Box>
                 <Box
                   sx={{
-                    fontSize: ".8rem",
-                    pl: "1rem",
+                    fontSize: ".7rem",
+                    pl: ".75rem",
                     color: "text.light",
                     textAlign: "center",
                   }}
                 >
                   Approved
-                  <Box sx={{ color: "text.main", fontSize: "1.4rem" }}>7</Box>
+                  <Box sx={{ color: "text.main", fontSize: "1.1rem" }}>7</Box>
                 </Box>
               </Box>
-              <Box>Short description here...</Box>
+              <Box sx={{fontSize: '.9rem'}}>Short description here...</Box>
               <Box
                 sx={{
                   display: "flex",
