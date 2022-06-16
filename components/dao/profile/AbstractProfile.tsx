@@ -21,55 +21,60 @@ import { useRouter } from "next/router";
 import Layout from "../Layout";
 
 const UserSocial: React.FC<{ icon: JSX.Element; label: string }> = (props) => {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          width: "100%",
-          color: "primary.main",
-          mt: ".25rem",
-          mb: ".25rem",
-          fontSize: "1rem",
-        }}
-      >
-        {props.icon}
-        {props.label}
-      </Box>
-    );
-  };
-  
-  const UserAttr: React.FC<{ label: string }> = (props) => {
-    return (
-      <Chip
-        label={props.label}
-        color="primary"
-        variant="outlined"
-        sx={{ m: ".2rem" }}
-      />
-    );
-  };
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        width: "100%",
+        color: "primary.main",
+        mt: ".25rem",
+        mb: ".25rem",
+        fontSize: "1rem",
+      }}
+    >
+      {props.icon}
+      {props.label}
+    </Box>
+  );
+};
 
+const UserAttr: React.FC<{ label: string }> = (props) => {
+  return (
+    <Chip
+      label={props.label}
+      color="primary"
+      variant="outlined"
+      sx={{ m: ".2rem" }}
+    />
+  );
+};
 
-const AbstractProfile: React.FC<{edit?: boolean, followed?: boolean}> = (props) => {
-    const globalContext = React.useContext<IGlobalContext>(GlobalContext);
-    const [value, setValue] = React.useState("1");
-  
-    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-      setValue(newValue);
-    };
-    const router = useRouter();
-    const {id} = router.query;
-    return <Layout width='100%'>
-        <Box sx={{ display: "flex", alignItems: "flex-start", width: "100%" }}>
+const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
+  props
+) => {
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
+  const [value, setValue] = React.useState("1");
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
+  const router = useRouter();
+  const { id } = router.query;
+  return (
+    <Layout width="100%">
+      <Box sx={{ display: "flex", alignItems: "flex-start", width: "100%" }}>
         <Box sx={{ width: "70%", p: "1rem" }}>
           <Link href={props.edit ? `/dao/${id}` : `/dao/${id}/members`}>
             <Button variant="outlined">
-              <ArrowBackIcon sx={{ ml: "-.5rem", mr: ".5rem" }} color="primary" />
+              <ArrowBackIcon
+                sx={{ ml: "-.5rem", mr: ".5rem" }}
+                color="primary"
+              />
               Back
             </Button>
           </Link>
-          <ProfileHeader edit={props.edit} followed={props.followed}/>
+          <ProfileHeader edit={props.edit} followed={props.followed} />
           <Box>
             <TabContext value={value}>
               <Box sx={{ borderBottom: 1, borderColor: "divider.main" }}>
@@ -146,7 +151,7 @@ const AbstractProfile: React.FC<{edit?: boolean, followed?: boolean}> = (props) 
                   <Box sx={{ color: "text.main", fontSize: "1.1rem" }}>7</Box>
                 </Box>
               </Box>
-              <Box sx={{fontSize: '.9rem'}}>Short description here...</Box>
+              <Box sx={{ fontSize: ".9rem" }}>Short description here...</Box>
               <Box
                 sx={{
                   display: "flex",
@@ -198,6 +203,7 @@ const AbstractProfile: React.FC<{edit?: boolean, followed?: boolean}> = (props) 
         </Box>
       </Box>
     </Layout>
-}
+  );
+};
 
 export default AbstractProfile;

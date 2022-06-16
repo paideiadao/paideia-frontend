@@ -106,10 +106,9 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
                   color: "text.light",
                   textAlign: "center",
                   pr: "1rem",
-                  
 
-                  borderRight: '1px solid',
-                  borderRightColor: 'divider.main'
+                  borderRight: "1px solid",
+                  borderRightColor: "divider.main",
                 }}
               >
                 Followers
@@ -125,8 +124,8 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
                   textAlign: "center",
                   pr: "1rem",
 
-                  borderRight: '1px solid',
-                  borderRightColor: 'divider.main'
+                  borderRight: "1px solid",
+                  borderRightColor: "divider.main",
                 }}
               >
                 Created

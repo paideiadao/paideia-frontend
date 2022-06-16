@@ -16,4 +16,3 @@ export default function Dao({ daoData }) {
 // routing for the dao urls should be dynamic... the routing for the dao pages is contained here.
 export const getStaticPaths = paths;
 export const getStaticProps = props;
-

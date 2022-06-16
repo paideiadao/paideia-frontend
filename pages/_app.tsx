@@ -23,7 +23,7 @@ import { IAlert } from "@lib/utilities";
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
   const [alert, setAlert] = React.useState<IAlert>({
-    show: false
+    show: false,
   });
   const router = useRouter();
   const [daoId, setDaoId] = React.useState<any>(router.query.id);

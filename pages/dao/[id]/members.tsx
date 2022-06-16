@@ -307,7 +307,10 @@ const Members: React.FC = () => {
         sx={{ display: "flex", width: "100%", flexWrap: "wrap", mt: "1.5rem" }}
       >
         {members.map((i: IMemberCard) => (
-          <MemberCard {...i} width={{sm: "50%", md: '33%', lg: '33%', xl: "25%"}} />
+          <MemberCard
+            {...i}
+            width={{ sm: "50%", md: "33%", lg: "33%", xl: "25%" }}
+          />
         ))}
       </Box>
     </Layout>

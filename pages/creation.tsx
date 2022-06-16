@@ -16,6 +16,7 @@ import Design from "../components/creation/design/Design";
 import Review from "../components/creation/review/Review";
 import CreationLoading from "../components/creation/loading/CreationLoading";
 import { modalBackground } from "@components/utilities/modalBackground";
+import Status from "@components/utilities/Status";
 
 export let colorLookup = {
   light: "#FFFFFF",
@@ -23,7 +24,12 @@ export let colorLookup = {
 };
 
 export default function Creation(props) {
-  const [alert, setAlert] = React.useState({ show: false });
+  const [alert, setAlert] = React.useState({
+    show: false,
+    value: "",
+    current: "",
+    action: "",
+  });
   const [theme, setTheme] = React.useState(LightTheme);
   const [data, setData] = React.useState<ICreationData>({
     navStage: 0,
@@ -111,8 +117,17 @@ export default function Creation(props) {
     localStorage.setItem("theme", temp);
   }, [theme]);
 
-  const api = new CreationApi(alert, setAlert, theme, setTheme, data, setData);
+  React.useEffect(() => {
+    if (["success", "info"].indexOf(alert.value) > -1) {
+      setTimeout(
+        () => setAlert({ show: false, value: "", current: "", action: "" }),
+        3000
+      );
+    }
+  }, [alert]);
 
+  const api = new CreationApi(alert, setAlert, theme, setTheme, data, setData);
+  console.log(alert);
   return (
     <GlobalContext.Provider value={{ api }}>
       {data.isPublished === 1 ? (
@@ -165,7 +180,7 @@ export default function Creation(props) {
                 >
                   Back to Review
                 </Button>
-            </Box>
+              </Box>
             )}
             <Box
               sx={{
@@ -253,6 +268,13 @@ export default function Creation(props) {
           </Box>
         </Box>
       </Modal>
+      {alert.show && (
+        <Status
+          value={alert.value}
+          current={alert.current}
+          action={alert.action}
+        />
+      )}
     </GlobalContext.Provider>
   );
 }

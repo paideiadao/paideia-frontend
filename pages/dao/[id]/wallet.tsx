@@ -21,7 +21,6 @@ import { paths, props } from "@lib/DaoPaths";
 export const getStaticPaths = paths;
 export const getStaticProps = props;
 
-
 const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
   const { wallet, dAppWallet } = useWallet();
   const { setAddWalletOpen } = useAddWallet();

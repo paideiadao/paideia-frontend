@@ -123,9 +123,7 @@ export class CreationApi extends AbstractApi {
   }
 
   async createDao() {
-    let res = await this.post('localhost:8000/api/dao/', this.data);
+    let res = await this.post("localhost:8000/api/dao/", this.data);
     return res;
   }
-
-  
 }

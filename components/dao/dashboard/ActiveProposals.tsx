@@ -148,7 +148,7 @@ const ActiveProposal: React.FC = () => {
             {...i}
             c={c}
             key={"proposal-card-key-" + c}
-            width={{sm: "50%", md: '45%', lg: '33%'}}
+            width={{ sm: "50%", md: "45%", lg: "33%" }}
           />
         ))}
       </Box>

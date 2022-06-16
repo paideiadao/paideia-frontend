@@ -142,90 +142,85 @@ const Edit: React.FC<{ params: any }> = (props) => {
 
   return (
     <Layout>
-        <Header title="Edit profile" />
-        <ProfileEditImage />
-        <TextField
-          value={value.username}
-          label="User name"
-          sx={{ width: "100%", mt: ".5rem" }}
-          onChange={(e) => setValue({ ...value, username: e.target.value })}
-        />
-        <TextField
-          value={value.shortBio}
-          label="Short bio"
-          sx={{ width: "100%", mt: "1rem" }}
-          minRows={2}
-          onChange={(e) => setValue({ ...value, shortBio: e.target.value })}
-          multiline
-          FormHelperTextProps={{ sx: { textAlign: "right" } }}
-          helperText={`${value.shortBio.length}/250`}
-        />
-        <Header title="Social Links" small />
-        <Box sx={{ mt: ".5rem" }}>
-          {value.socialLinks.map((i: ISocialLink, c: number) => (
-            <SocialRow
-              c={c}
-              data={i}
-              key={`social-link-${c}`}
-              set={(m: any) => {
-                let temp = [...value.socialLinks];
-                temp[c] = m;
-                setValue({
-                  ...value,
-                  socialLinks: temp,
-                });
-              }}
-              delete={(m: any) => {
-                let temp = [...value.socialLinks];
-                temp.splice(c, 1);
-                setValue({
-                  ...value,
-                  socialLinks: temp,
-                });
-              }}
-            />
-          ))}
-        </Box>
-        <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
-          <Button
-            onClick={() => {
+      <Header title="Edit profile" />
+      <ProfileEditImage />
+      <TextField
+        value={value.username}
+        label="User name"
+        sx={{ width: "100%", mt: ".5rem" }}
+        onChange={(e) => setValue({ ...value, username: e.target.value })}
+      />
+      <TextField
+        value={value.shortBio}
+        label="Short bio"
+        sx={{ width: "100%", mt: "1rem" }}
+        minRows={2}
+        onChange={(e) => setValue({ ...value, shortBio: e.target.value })}
+        multiline
+        FormHelperTextProps={{ sx: { textAlign: "right" } }}
+        helperText={`${value.shortBio.length}/250`}
+      />
+      <Header title="Social Links" small />
+      <Box sx={{ mt: ".5rem" }}>
+        {value.socialLinks.map((i: ISocialLink, c: number) => (
+          <SocialRow
+            c={c}
+            data={i}
+            key={`social-link-${c}`}
+            set={(m: any) => {
               let temp = [...value.socialLinks];
-              temp.push({
-                socialNetwork: "",
-                address: "",
+              temp[c] = m;
+              setValue({
+                ...value,
+                socialLinks: temp,
               });
-              setValue({ ...value, socialLinks: temp });
             }}
-          >
-            <AddIcon sx={{ mr: ".5rem" }} />
-            Add {value.socialLinks.length > 0 ? "Another" : ""}
-          </Button>
-        </Box>
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            mt: "1rem",
+            delete={(m: any) => {
+              let temp = [...value.socialLinks];
+              temp.splice(c, 1);
+              setValue({
+                ...value,
+                socialLinks: temp,
+              });
+            }}
+          />
+        ))}
+      </Box>
+      <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <Button
+          onClick={() => {
+            let temp = [...value.socialLinks];
+            temp.push({
+              socialNetwork: "",
+              address: "",
+            });
+            setValue({ ...value, socialLinks: temp });
           }}
         >
-          <Button variant="outlined" sx={{ width: "49%", mr: ".5rem" }}>
-            Cancel
-          </Button>
-          <Button
-            variant="contained"
-            sx={{ width: "49%" }}
-            onClick={() => setValue({ ...value, alert: "info" })}
-          >
-            Save Changes
-          </Button>
-        </Box>
-      <Status
-        value={value.alert}
-        current="profile settings."
-        action="updated"
-      />
+          <AddIcon sx={{ mr: ".5rem" }} />
+          Add {value.socialLinks.length > 0 ? "Another" : ""}
+        </Button>
+      </Box>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          mt: "1rem",
+        }}
+      >
+        <Button variant="outlined" sx={{ width: "49%", mr: ".5rem" }}>
+          Cancel
+        </Button>
+        <Button
+          variant="contained"
+          sx={{ width: "49%" }}
+          onClick={() => setValue({ ...value, alert: "info" })}
+        >
+          Save Changes
+        </Button>
+      </Box>
     </Layout>
   );
 };
