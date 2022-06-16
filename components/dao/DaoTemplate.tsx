@@ -14,10 +14,10 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
       <TopNav />
       <Box
         sx={{
-          width: "calc(100% - 11rem)",
+          width: "calc(100% - 13rem)",
           position: "fixed",
           top: "3.63rem",
-          left: "11rem",
+          left: "13rem",
           pt: "0rem",
           pb: ".5rem",
           overflowY: "scroll",

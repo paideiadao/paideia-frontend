@@ -67,7 +67,7 @@ const ProfileHeader: React.FC<{edit?: boolean, followed?: boolean}> = (props) =>
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            width: "65%",
+            width: "72%",
           }}
         >
           <Box sx={{ fontSize: "1.1rem" }}>Alone Musk</Box>
