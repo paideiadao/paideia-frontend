@@ -58,8 +58,8 @@ export default function Hero() {
               lineHeight: 0.5,
               textTransform: "uppercase",
               fontFamily: '"Viga", sans-serif',
-              strokeWidth: "2px",
-              strokeColor: "#fff",
+              // strokeWidth: "2px",
+              // strokeColor: "#fff",
             }}
             className="outlineText"
           >
