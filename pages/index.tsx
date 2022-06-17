@@ -12,10 +12,10 @@ export default function Home() {
         <Hero />
         <WhitepaperQuote />
         <Perks />
-        {/* <Examples /> */}
-        {/* <Highlights /> */}
+        <Examples />
+        <Highlights />
         <Stats />
-        {/* <Featured /> */}
+        <Featured />
     </>
   );
 }

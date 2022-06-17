@@ -72,7 +72,6 @@ const tabs = [
     link: "/",
     image: "/examples/gaming-world2.png",
   },
-
 ];
 
 const StyledTabs = styled((props: any) => (

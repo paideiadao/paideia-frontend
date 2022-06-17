@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from "@mui/material/AppBar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Grid from "@mui/material/Grid";
@@ -53,15 +52,15 @@ const pages = [
   },
 ];
 
-function ScrollTop(props: any) {
+function ScrollTop(props: { children: React.ReactNode }) {
   const { children } = props;
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 100,
   });
 
-  const handleClick = (event) => {
-    const anchor = (event.target.ownerDocument || document).querySelector(
+  const handleClick = () => {
+    const anchor = (document).querySelector(
       '#back-to-top-anchor',
     );
 
@@ -85,11 +84,6 @@ function ScrollTop(props: any) {
     </Zoom>
   );
 }
-
-ScrollTop.propTypes = {
-  children: PropTypes.element.isRequired,
-};
-
 
 export default function Header(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false)
