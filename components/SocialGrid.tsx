@@ -8,7 +8,7 @@ import { DarkTheme } from "@theme/theme";
 
 const iconLinkStyles = {
   color: DarkTheme.palette.text.primary,
-  fontSize: 'inherit',
+  fontSize: "inherit",
   "&:hover": {
     color: DarkTheme.palette.primary.main,
   },
@@ -68,5 +68,5 @@ export default function SocialGrid() {
        {/*  </Link> */}
       </Grid>
     </>
-  )
+  );
 }

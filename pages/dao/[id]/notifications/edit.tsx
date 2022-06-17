@@ -1,4 +1,4 @@
-import { Box, TextField, Button } from "@mui/material";
+import { Box, TextField, Button, Modal } from "@mui/material";
 import * as React from "react";
 import { Header } from "@components/creation/utilities/HeaderComponents";
 import LabeledSwitch from "@components/creation/utilities/LabeledSwitch";
@@ -6,6 +6,9 @@ import { IObj } from "@lib/utilities";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import Alert from "@mui/material/Alert";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import Status from "@components/utilities/Status";
 
 const notifications = [
   {
@@ -49,7 +52,16 @@ const EditNotifications: React.FC<{ params: any }> = (props) => {
     commentReply: false,
     followingNewProposal: true,
     terminationProposal: false,
+    alert: undefined,
   });
+
+  React.useEffect(() => {
+    if (value.alert === "success") {
+      setTimeout(() => setValue({ ...value, alert: undefined }), 3000);
+    } else if (value.alert === "info") {
+      setTimeout(() => setValue({ ...value, alert: "success" }), 3000);
+    }
+  }, [value.alert]);
 
   return (
     <Box
@@ -124,11 +136,20 @@ const EditNotifications: React.FC<{ params: any }> = (props) => {
           <Button variant="outlined" sx={{ width: "49%", mr: ".5rem" }}>
             Cancel
           </Button>
-          <Button variant="contained" sx={{ width: "49%" }}>
+          <Button
+            variant="contained"
+            sx={{ width: "49%" }}
+            onClick={() => setValue({ ...value, alert: "info" })}
+          >
             Save Changes
           </Button>
         </Box>
       </Box>
+      <Status
+        value={value.alert}
+        current="notification settings."
+        action="updated"
+      />
     </Box>
   );
 };

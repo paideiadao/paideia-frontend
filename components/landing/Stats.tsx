@@ -65,8 +65,8 @@ export default function Stats() {
       sx={{
         flexGrow: 1,
         px: "24px",
-        pt: { xs: '0', md: '240px' },
-        mt: { xs: '120px', md: '-60px' },
+        pt: { xs: "0", md: "240px" },
+        mt: { xs: "120px", md: "-60px" },
         minHeight: "2200px",
         position: "relative",
       }}
@@ -74,7 +74,7 @@ export default function Stats() {
       <Box
         sx={{
           position: "absolute",
-          top: {xs: '-160px', sm: '-400px', md: "-160px"},
+          top: { xs: "-160px", sm: "-400px", md: "-160px" },
           left: { sm: "27%", md: "42%" },
           width: "2160px",
           transform: "translate(-50%, -60px)",
@@ -223,7 +223,7 @@ export default function Stats() {
                   component="p"
                   sx={{
                     fontFamily: '"Viga", sans-serif',
-                    fontSize: { xs: '48px', md: "56px" },
+                    fontSize: { xs: "48px", md: "56px" },
                     lineHeight: "120%",
                     letterSpacing: "-0.5px",
                     textTransform: "uppercase",

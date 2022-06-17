@@ -14,10 +14,11 @@ import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Divider from "@mui/material/Divider";
 import SocialGrid from "@components/SocialGrid";
-import Fab from '@mui/material/Fab';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Zoom from '@mui/material/Zoom';
-import Toolbar from '@mui/material/Toolbar';
+import Fab from "@mui/material/Fab";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import Zoom from "@mui/material/Zoom";
+import Toolbar from "@mui/material/Toolbar";
+// import ConnectWallet from "@components/wallet/ConnectWallet";
 
 const pages = [
   {
@@ -59,6 +60,7 @@ function ScrollTop(props: { children: React.ReactNode }) {
     threshold: 100,
   });
 
+
   const handleClick = () => {
     const anchor = (document).querySelector(
       '#back-to-top-anchor',
@@ -66,8 +68,8 @@ function ScrollTop(props: { children: React.ReactNode }) {
 
     if (anchor) {
       anchor.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
+        behavior: "smooth",
+        block: "center",
       });
     }
   };
@@ -77,7 +79,7 @@ function ScrollTop(props: { children: React.ReactNode }) {
       <Box
         onClick={handleClick}
         role="presentation"
-        sx={{ position: 'fixed', bottom: 16, right: 16, zIndex: '10' }}
+        sx={{ position: "fixed", bottom: 16, right: 16, zIndex: "10" }}
       >
         {children}
       </Box>
@@ -86,7 +88,7 @@ function ScrollTop(props: { children: React.ReactNode }) {
 }
 
 export default function Header(props) {
-  const [navbarOpen, setNavbarOpen] = React.useState(false)
+  const [navbarOpen, setNavbarOpen] = React.useState(false);
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -185,42 +187,50 @@ export default function Header(props) {
                   </IconButton>
                   <Box
                     sx={{
-                      zIndex: '21',
-                      position: 'relative',
-                      width: '40px',
-                      height: '40px',
-                      color: '#fff',
+                      zIndex: "21",
+                      position: "relative",
+                      width: "40px",
+                      height: "40px",
+                      color: "#fff",
                       // focus: 'outline-none',
                     }}
                     onClick={() => setNavbarOpen(!navbarOpen)}
                   >
-                    <Box sx={{
-                      position: 'absolute',
-                      width: '20px',
-                      transform: 'translate(-50%, -50%)',
-                      left: '50%',
-                      top: '50%'
-                    }}>
-                      <Box sx={{
-                        position: 'absolute',
-                        height: '3px',
-                        width: '28px',
-                        borderRadius: '2px',
-                        background: '#fff',
-                        transition: 'transform 100ms ease-in-out',
-                        transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"}`
-                      }}>
-                      </Box>
-                      <Box sx={{
-                        position: 'absolute',
-                        height: '3px',
-                        width: '28px',
-                        borderRadius: '2px',
-                        background: '#fff',
-                        transition: 'transform 100ms ease-in-out',
-                        transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"}`
-                      }}>
-                      </Box>
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        width: "20px",
+                        transform: "translate(-50%, -50%)",
+                        left: "50%",
+                        top: "50%",
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          height: "3px",
+                          width: "28px",
+                          borderRadius: "2px",
+                          background: "#fff",
+                          transition: "transform 100ms ease-in-out",
+                          transform: `${
+                            navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                          }`,
+                        }}
+                      ></Box>
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          height: "3px",
+                          width: "28px",
+                          borderRadius: "2px",
+                          background: "#fff",
+                          transition: "transform 100ms ease-in-out",
+                          transform: `${
+                            navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                          }`,
+                        }}
+                      ></Box>
                     </Box>
                   </Box>
                 </Grid>
@@ -230,17 +240,17 @@ export default function Header(props) {
         </Container>
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
-      <Fade in={navbarOpen} style={{ transitionDuration: '400ms' }}>
+      <Fade in={navbarOpen} style={{ transitionDuration: "400ms" }}>
         <Box
           sx={{
-            height: '100vh',
-            width: '100vw',
-            position: 'fixed',
-            top: '0px',
-            zIndex: '25',
-            background: 'rgba(0, 0, 0, 0.1)',
-            backdropFilter: 'blur(55px)',
-            p: '24px',
+            height: "100vh",
+            width: "100vw",
+            position: "fixed",
+            top: "0px",
+            zIndex: "25",
+            background: "rgba(0, 0, 0, 0.1)",
+            backdropFilter: "blur(55px)",
+            p: "24px",
           }}
         >
           <Grid
@@ -294,12 +304,12 @@ export default function Header(props) {
                 ))}
               </Grid>
             </Grid>
-            <Grid item sx={{ width: '100%' }}>
-              <Button variant="contained" sx={{ width: '100%' }}>
+            <Grid item sx={{ width: "100%" }}>
+              <Button variant="contained" sx={{ width: "100%" }}>
                 Create your DAO
               </Button>
             </Grid>
-            <Grid item sx={{ width: '100%' }}>
+            <Grid item sx={{ width: "100%" }}>
               <Divider />
             </Grid>
             <Grid item>

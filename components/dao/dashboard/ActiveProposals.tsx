@@ -5,6 +5,8 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ProposalCard from "../proposals/ProposalCard";
 import useDidMountEffect from "@components/utilities/hooks";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 let temp = new Date();
 temp.setDate(temp.getDate() - 30);
@@ -95,6 +97,9 @@ const ActiveProposal: React.FC = () => {
     });
   }, [slide]);
 
+  const router = useRouter();
+  const { id } = router.query;
+
   return (
     <>
       <Box
@@ -107,7 +112,9 @@ const ActiveProposal: React.FC = () => {
       >
         <Subheader title="Active proposals" small bold />
         <Box sx={{ ml: "auto" }}>
-          <Button sx={{ fontSize: ".8rem" }}>View All</Button>
+          <Link href={id + "/proposals/all"}>
+            <Button sx={{ fontSize: ".8rem" }}>View All</Button>
+          </Link>
           <IconButton
             size="small"
             disabled={slide <= 1}

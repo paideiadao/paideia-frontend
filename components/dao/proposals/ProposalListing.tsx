@@ -148,17 +148,29 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
           </Select>
         </FormControl>
       </Box>
-      <Box sx={{ display: "flex", alignItems: "center", mt: ".75rem" }}>
+      <Box sx={{ display: "flex", alignItems: "center", pt: ".75rem" }}>
         {categories.map((i: any, c: number) => (
           <Chip
             {...i}
             set={() => {
               let temp = [...filters.categories];
+              let allIndex = temp.indexOf("All");
               let index = temp.indexOf(i.label);
               if (index > -1) {
                 temp.splice(index, 1);
               } else {
-                temp.push(i.label);
+                if (i.label === "All") {
+                  temp = ["All"];
+                } else {
+                  if (i.label === "All") {
+                    temp = ["All"];
+                  } else if (i.label !== "All" && allIndex > -1) {
+                    temp.splice(allIndex, 1);
+                    temp.push(i.label);
+                  } else {
+                    temp.push(i.label);
+                  }
+                }
               }
 
               setFilters({

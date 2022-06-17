@@ -108,8 +108,19 @@ export default function Perks() {
           </Grid>
           <Grid item md={7}></Grid>
         </Grid>
-        <Grid container rowSpacing={12} columnSpacing={{ xs: '0', sm: 12, md: '0' }} sx={{ mb: "60px" }}>
-          <Grid item xs={1} sm={1} md={4} sx={{ display: { xs: 'none', md: 'flex' } }}></Grid>
+        <Grid
+          container
+          rowSpacing={12}
+          columnSpacing={{ xs: "0", sm: 12, md: "0" }}
+          sx={{ mb: "60px" }}
+        >
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={4}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
           <Grid item xs={12} sm={6} md={3}>
             <Image src="/StackIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Simple to Use</Typography>
@@ -117,7 +128,13 @@ export default function Perks() {
               The Paideia UX/UI was designed with ease-of-use in mind, removing the complexity so you can focus on what matters: participating in DAOs.
             </Typography>
           </Grid>
-          <Grid item xs={1} sm={1} md={1} sx={{ display: { xs: 'none', md: 'flex' } }}></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={1}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
           <Grid item xs={12} sm={6} md={3}>
             <Image src="/CubeIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Secure</Typography>
@@ -125,8 +142,20 @@ export default function Perks() {
               Smart contracts written in Ergoscript maintain secure, predictable voting structures, which ensures your treasury is spent according to fair voting.
             </Typography>
           </Grid>
-          <Grid item xs={1} sm={1} md={1} sx={{ display: { xs: 'none', md: 'flex' } }}></Grid>
-          <Grid item xs={1} sm={1} md={4} sx={{ display: { xs: 'none', md: 'flex' } }}></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={1}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={4}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
           <Grid item xs={12} sm={6} md={3}>
             <Image src="/PyramidIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Flexible</Typography>
@@ -134,7 +163,13 @@ export default function Perks() {
               Not all DAOs have the same needs. Paideia offers various governance structures and voting mechanisms, so you can get organized in the most productive way possible.
             </Typography>
           </Grid>
-          <Grid item xs={1} sm={1} md={1} sx={{ display: { xs: 'none', md: 'flex' } }}></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={1}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
           <Grid item xs={12} sm={6} md={3}>
             <Image src="/TokenIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Inexpensive</Typography>
@@ -142,16 +177,46 @@ export default function Perks() {
               Paideia is built on Ergo, so transaction fees are miniscule, and the platform fees will always remain low. You&apos;ll never pay hundreds in gas fees here.
             </Typography>
           </Grid>
-          <Grid item xs={1} sm={1} md={1} sx={{ display: { xs: 'none', md: 'flex' } }}></Grid>
-          <Grid item xs={1} sm={1} md={4} sx={{ display: { xs: 'none', md: 'flex' } }}></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={1}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={4}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
           <Grid item xs={12} sm={12} md={3}>
             <Button variant="outlined" endIcon={<ArrowForwardIcon />}>
               Learn More
             </Button>
           </Grid>
-          <Grid item xs={1} sm={1} md={1} sx={{ display: { xs: 'none', md: 'flex' } }}></Grid>
-          <Grid item xs={1} sm={1} md={3} sx={{ display: { xs: 'none', md: 'flex' } }}></Grid>
-          <Grid item xs={1} sm={1} md={1} sx={{ display: { xs: 'none', md: 'flex' } }}></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={1}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={3}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
+          <Grid
+            item
+            xs={1}
+            sm={1}
+            md={1}
+            sx={{ display: { xs: "none", md: "flex" } }}
+          ></Grid>
         </Grid>
       </Container>
       <Box height="100px"></Box>

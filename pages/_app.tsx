@@ -8,28 +8,14 @@ import { ThemeContext } from "../lib/ThemeContext";
 import { AppApi } from "../lib/AppApi";
 import { GlobalContext } from "../lib/AppContext";
 import CssBaseline from "@mui/material/CssBaseline";
-import Dao from "./dao/[id]";
 import Layout from "@components/Layout";
 import Creation from "./creation";
-import Notifications from "./dao/[id]/notifications";
 import DaoTemplate from "@components/dao/DaoTemplate";
-import Dashboard from "@components/dao/dashboard/Dashboard";
-import Profile from "./dao/[id]/profile";
+
 import { useRouter } from "next/router";
-import Edit from "./dao/[id]/profile/edit";
-import All from "./dao/[id]/proposals/all";
-import Following from "./dao/[id]/proposals/following";
-import Mine from "./dao/[id]/proposals/mine";
-import Past from "./dao/[id]/proposals/past";
-import EditNotifications from "./dao/[id]/notifications/edit";
-import Proposal from "./dao/[id]/proposal/[proposal_id]";
-import Discussion from "./dao/[id]/discussion/[discussion_id]";
-import Create from "./dao/[id]/create";
-import Vote from "./dao/[id]/proposal/[proposal_id]/vote";
-import CastVote from "./dao/[id]/proposal/[proposal_id]/cast-vote";
-import Member from "./dao/[id]/member/[member_id]";
-import CreateProposal from "./dao/[id]/proposal/create";
-import CreateDiscussion from "./dao/[id]/discussion/create";
+import { isDao } from "@lib/Router";
+import { WalletProvider } from "@components/wallet/WalletContext";
+import { AddWalletProvider } from "@components/wallet/AddWalletContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
@@ -47,46 +33,34 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [theme]);
 
   const api = new AppApi(alert, setAlert, theme, setTheme, daoId, setDaoId);
-  return Component === Creation ||
-    Component === Dao ||
-    Component === Notifications ||
-    Component === Profile ||
-    Component === Dashboard ||
-    Component === Edit ||
-    Component === All ||
-    Component === Following ||
-    Component === Mine ||
-    Component === EditNotifications ||
-    Component === Proposal ||
-    Component === Discussion ||
-    Component === Create ||
-    Component === Vote ||
-    Component === CastVote ||
-    Component === Member ||
-    Component === CreateProposal ||
-    Component === CreateDiscussion ||
-    Component === Past ? (
-    <ThemeProvider theme={theme}>
-      <ThemeContext.Provider value={{ theme, setTheme }}>
-        <CssBaseline />
-        <GlobalContext.Provider value={{ api }}>
-          {Component !== Creation ? (
-            <DaoTemplate subdomain="">
+  return (
+    <AddWalletProvider>
+      <WalletProvider>
+        {isDao(Component) ? (
+          <ThemeProvider theme={theme}>
+            <ThemeContext.Provider value={{ theme, setTheme }}>
+              <CssBaseline />
+              <GlobalContext.Provider value={{ api }}>
+                {Component !== Creation ? (
+                  <DaoTemplate subdomain="">
+                    <Component {...pageProps} />
+                  </DaoTemplate>
+                ) : (
+                  <Component {...pageProps} />
+                )}
+              </GlobalContext.Provider>
+            </ThemeContext.Provider>
+          </ThemeProvider>
+        ) : (
+          <ThemeProvider theme={DarkTheme}>
+            <CssBaseline />
+            <Layout>
               <Component {...pageProps} />
-            </DaoTemplate>
-          ) : (
-            <Component {...pageProps} />
-          )}
-        </GlobalContext.Provider>
-      </ThemeContext.Provider>
-    </ThemeProvider>
-  ) : (
-    <ThemeProvider theme={DarkTheme}>
-      <CssBaseline />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ThemeProvider>
+            </Layout>
+          </ThemeProvider>
+        )}
+      </WalletProvider>
+    </AddWalletProvider>
   );
 }
 

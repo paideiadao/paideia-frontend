@@ -155,26 +155,28 @@ export default function Examples() {
               key={i}
               sx={{ position: "relative", mt: "100px" }}
             >
-              <Box
-                sx={{
-                  position: { xs: "relative", md: "absolute" },
-                  height: "100%",
-                  zIndex: "-3",
-                  top: "0",
-                  right: "0",
-                  maskImage: 'linear-gradient(black 0%, transparent 70%)',
-                }}
-              >
-                <Image
-                  src={image}
-                  layout="responsive"
-                  width={585}
-                  height={800}
-                />
-              </Box>
-            </TabPanel>
-          );
-        })
+                <Box
+                  sx={{
+                    position: { xs: "relative", md: "absolute" },
+                    height: "100%",
+                    zIndex: "-3",
+                    top: "0",
+                    right: "0",
+                    maskImage: "linear-gradient(black 0%, transparent 70%)",
+                  }}
+                >
+                  {sizeMd ? null : (
+                    <Image
+                      src={image}
+                      layout="responsive"
+                      width={585}
+                      height={800}
+                    />
+                  )}
+                </Box>
+              </TabPanel>
+            );
+          })
         : null}
 
       <Container
@@ -265,7 +267,9 @@ export default function Examples() {
                   <TabPanel value={value} index={i} key={i}>
                     <Typography sx={titleStyle}>{title}</Typography>
                     <Typography sx={paragraphStyle}>{content}</Typography>
-                    <Button href={link} endIcon={<ArrowForwardIcon />}>Learn More</Button>
+                    <Button href={link} endIcon={<ArrowForwardIcon />}>
+                      Learn More
+                    </Button>
                   </TabPanel>
                 ))}
               </Box>

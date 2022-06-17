@@ -1,8 +1,7 @@
 import { Box, Button, Avatar } from "@mui/material";
 import * as React from "react";
 import { Subheader } from "../../creation/utilities/HeaderComponents";
-import dateFormat from "dateformat";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import Activity from "../activity/Activity";
 
 export const activities = [
   {
@@ -10,35 +9,35 @@ export const activities = [
     img: "T",
     name: "Username",
     action: "created the proposal",
-    proposalname: "proposal name",
+    value: "proposal name",
   },
   {
     date: new Date(),
     img: "T",
     name: "Username",
     action: "made a comment on the proposal",
-    proposalname: "proposal name",
+    value: "proposal name",
   },
   {
     date: new Date(),
     img: "T",
     name: "Username",
     action: "voted on the proposal",
-    proposalname: "proposal name",
+    value: "proposal name",
   },
   {
     date: new Date(),
     img: "T",
     name: "Username",
     action: "created the proposal",
-    proposalname: "proposal name",
+    value: "proposal name",
   },
   {
     date: new Date(),
     img: "T",
     name: "Username",
     action: "created the proposal",
-    proposalname: "proposal name",
+    value: "proposal name",
   },
 ];
 
@@ -59,50 +58,7 @@ const LatestActivity: React.FC = () => {
         </Button>
       </Box>
       {activities.map((i: any, c: number) => {
-        return (
-          <Box
-            key={`activities-key-${c}`}
-            sx={{
-              width: "100%",
-              pt: "1rem",
-              display: "flex",
-              alignItems: "center",
-              fontSize: ".8rem",
-            }}
-          >
-            <Box sx={{ display: "flex", alignItems: "center", width: "40%" }}>
-              <Avatar
-                sx={{ mr: ".5rem", width: "2rem", height: "2rem" }}
-              ></Avatar>
-              <Box>
-                {i.name + " "}
-                <Box
-                  sx={{
-                    display: "inline",
-                    color: "text.light",
-                    ml: ".1rem",
-                    mr: ".1rem",
-                  }}
-                >
-                  {i.action}
-                </Box>
-                {" " + i.proposalname}
-              </Box>
-            </Box>
-
-            <Box
-              sx={{
-                ml: "auto",
-                color: "text.light",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <CalendarTodayIcon sx={{ mr: ".5rem" }} />
-              {dateFormat(i.date, "mmm dd, yyyy: h:MM")}
-            </Box>
-          </Box>
-        );
+        return <Activity i={i} c={c} />;
       })}
     </Box>
   );
