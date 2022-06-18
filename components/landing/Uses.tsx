@@ -41,9 +41,8 @@ export default function Uses() {
         <CardSlider>
           <Card>
             <CardContent>
-            Hello
+              Hello
             </CardContent>
-            
           </Card>
         </CardSlider>
     </Container>
