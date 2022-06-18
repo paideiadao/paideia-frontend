@@ -57,3 +57,7 @@ img {
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: #ffffff;
 }
+
+.slick-arrow {
+  display: none !important;
+}

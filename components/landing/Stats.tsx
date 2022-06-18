@@ -108,7 +108,9 @@ export default function Stats() {
       </Box>
       <Grid container>
         <Grid item md={4}>
-          <SectionTitle title="Statistics" marginBottom="24px" />
+          <SectionTitle marginBottom="24px">
+            Statistics
+          </SectionTitle>
           <Typography sx={titleStyle}>Some Numbers to Look At &lt;</Typography>
         </Grid>
         <Grid item md={3}></Grid>
@@ -207,7 +209,9 @@ export default function Stats() {
             ))}
           </Grid>
           <Box>
-            <SectionTitle title="How to begin" marginBottom="24px" />
+            <SectionTitle marginBottom="24px">
+              How to begin
+            </SectionTitle>
             <Grid container wrap="nowrap" spacing={2} sx={{ mb: "24px" }}>
               <Grid item>
                 <Box

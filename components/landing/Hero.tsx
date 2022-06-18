@@ -46,10 +46,9 @@ export default function Hero() {
         }}
       >
         <Grid item>
-          <SectionTitle
-            title="A Web3 DAO Management Software Suite"
-            marginBottom="80px"
-          />
+          <SectionTitle marginBottom="80px">
+            A Web3 DAO Management Software Suite
+          </SectionTitle>
           <Typography
             sx={{
               fontSize: { xs: "3.5rem", md: "5rem" },

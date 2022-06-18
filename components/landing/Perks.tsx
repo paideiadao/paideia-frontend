@@ -68,7 +68,9 @@ export default function Perks() {
           <Grid item md={5}>
             <Grid container spacing={3}>
               <Grid item>
-                <SectionTitle title="Perks" marginBottom="16px" />
+                <SectionTitle>
+                  Perks
+                </SectionTitle>
               </Grid>
               <Grid item>
                 <Typography
