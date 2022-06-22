@@ -20,6 +20,9 @@ import Creation from "@pages/creation";
 import Wallet from "@pages/dao/[id]/wallet";
 import Activity from "@pages/dao/[id]/activity";
 import Members from "@pages/dao/[id]/members";
+import Staking from "@pages/dao/[id]/staking";
+import ManageStake from "@pages/dao/[id]/staking/manage";
+import Distributions from "@pages/dao/[id]/distributions";
 
 export const isDao = (Component: any) => {
   return (
@@ -44,6 +47,9 @@ export const isDao = (Component: any) => {
     Component === Past ||
     Component === Wallet ||
     Component === Activity ||
-    Component === Members
+    Component === Members ||
+    Component === Staking ||
+    Component === ManageStake ||
+    Component === Distributions
   );
 };

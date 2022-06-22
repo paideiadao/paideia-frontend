@@ -33,11 +33,10 @@ export class AbstractApi {
     );
 
     if (res !== false) {
-      console.log(res)
-      console.log('token', res.data.access_token)
-      localStorage.setItem('jwt_token_login', res.data.access_token)
+      console.log(res);
+      console.log("token", res.data.access_token);
+      localStorage.setItem("jwt_token_login", res.data.access_token);
     }
-    
   }
 
   error = (err: any): boolean => {
@@ -140,8 +139,8 @@ export class AbstractApi {
     };
     const defaultOptions = {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem("jwt_token_login")}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Bearer ${localStorage.getItem("jwt_token_login")}`,
+        "Content-Type": "application/x-www-form-urlencoded",
       },
     };
     // only for auth... everything else can be passed throught he body
@@ -151,15 +150,19 @@ export class AbstractApi {
     //   formData.append(k, v);
     // }
 
-    console.log(body)
+    console.log(body);
     let params = new URLSearchParams();
     for (const [k, v] of Object.entries(body)) {
       params.append(k, JSON.stringify(v));
     }
 
-    console.log(body)
+    console.log(body);
 
-    return await methods[method]('http://localhost:8000/api' + url, params, defaultOptions);
+    return await methods[method](
+      "http://localhost:8000/api" + url,
+      params,
+      defaultOptions
+    );
   }
 
   async request(url: string, method: string, body?: any) {
@@ -170,7 +173,7 @@ export class AbstractApi {
             if (res.status !== statusLookup[method]) {
               resolve("error");
             } else {
-              console.log(res)
+              console.log(res);
               resolve(res);
             }
           });

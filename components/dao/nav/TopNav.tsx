@@ -32,7 +32,7 @@ const TopNav: React.FC = () => {
         borderBottomColor: "divider.main",
         display: "flex",
         backgroundColor: "backgroundColor.main",
-        zIndex: 100,
+        zIndex: 1001200,
       }}
     >
       <Box

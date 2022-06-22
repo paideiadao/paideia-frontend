@@ -113,8 +113,7 @@ const Review: React.FC = () => {
                   //   isPublished: 1,
                   // })
                   globalContext.api.createDao();
-                }
-                }
+                }}
               >
                 Publish DAO
               </Button>

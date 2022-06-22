@@ -46,7 +46,7 @@ const categories = [
 let temp = new Date();
 temp.setDate(temp.getDate() - 4);
 
-const activities: IActivity[] = [
+export const activities: IActivity[] = [
   {
     img: Musk.src,
     name: "Alone Musk",
@@ -160,7 +160,7 @@ const activities: IActivity[] = [
     action: "added an addendum",
     value: "<addendum name>",
     date: new Date(),
-    category: "Staking",
+    category: "Proposals",
     secondary: "to the proposal",
     secondaryValue: "<proposal name>",
   },

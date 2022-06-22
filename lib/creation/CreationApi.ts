@@ -51,6 +51,13 @@ interface IBasicInformation {
   shortDescription: string;
 }
 
+export interface IWallet {
+  alias: string;
+  address: string;
+  img: string;
+
+}
+
 interface IGovernance {
   optimisticGovernance: boolean;
   quadraticVoting: boolean;
@@ -122,20 +129,19 @@ export class CreationApi extends AbstractApi {
     this.setData = _setData;
   }
 
-
   // to do... get authorization token working (store in local storage & post using header)
   // format data to properly match the endpoint
   // view in sql
   // create data checking for the dao paths
   async createDao(): Promise<any> {
-    const data = this.cleanData(this.data)
+    const data = this.cleanData(this.data);
     let res = await this.post("/dao", data);
     return res;
   }
 
   cleanData(data: ICreationData): any {
     return {
-      dao_name: data.basicInformation.daoName
-    }
+      dao_name: data.basicInformation.daoName,
+    };
   }
 }
