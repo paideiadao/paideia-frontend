@@ -70,14 +70,14 @@ export const ActiveInactive: React.FC<{ value: boolean }> = (props) => {
       sx={{
         display: "flex",
         alignItems: "center",
-        color: props.value ? "text.lightSuccess" : "red",
+        color: props.value ? "text.lightSuccess" : "error.main",
         fontSize: ".9rem",
         fontWeight: 550,
       }}
     >
       <CircleIcon
         // @ts-ignore
-        color={props.value ? "success" : "red"}
+        color={props.value ? "success" : "error.main"}
         sx={{ fontSize: ".9rem", mr: ".5rem" }}
       />
       {props.value ? "Active" : "Inactive"}

@@ -140,7 +140,7 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
             <Button
               onClick={() => setValue({ ...value, followed: !value.followed })}
               sx={{
-                color: value.followed ? "red" : "text.light",
+                color: value.followed ? "error.main" : "text.light",
                 borderColor: value.followed ? "red" : "text.light",
                 fontSize: { xs: ".5rem", s: ".8rem", md: ".8rem" },
                 ":hover": {

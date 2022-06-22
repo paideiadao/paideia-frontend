@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Box, Button, InputAdornment, TextField } from '@mui/material';
+import { Box, Button, InputAdornment, TextField, Modal } from '@mui/material';
 import { CapsInfo, Subtitle } from '@components/creation/utilities/HeaderComponents';
 import WalletSelector from '@components/creation/governance/WalletSelector';
 import { useWallet } from '@components/wallet/WalletContext';
 import { IWallet } from '@lib/creation/CreationApi';
+import { modalBackground } from "@components/utilities/modalBackground";
 
 const StakingForm: React.FC = () => {
     const { wallet } = useWallet();
@@ -15,6 +16,9 @@ const StakingForm: React.FC = () => {
     console.log(wallet, holder)
     const ticker = 'DTK'
     const [value, setValue] = React.useState<number>(100)
+    const [stake, setStake] = React.useState<boolean>(false)
+    const openStake = () => setStake(true);
+    const closeStake = () => setStake(false);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue((parseFloat(event.target.value)));
@@ -56,11 +60,22 @@ const StakingForm: React.FC = () => {
             <Button variant='outlined' sx={{width: '50%', mr: '1rem'}}>
                 Cancel
             </Button>
-            <Button variant='contained' sx={{width: '50%'}}>
+            <Button variant='contained' sx={{width: '50%'}} onClick={openStake}>
                 Stake
             </Button>
         </Box>
-        
+        <Modal open={stake} onClose={closeStake}>
+            <Box
+            sx={{
+                ...modalBackground,
+                backgroundColor: "fileInput.main",
+                width: "30rem",
+                pb: ".5rem",
+            }}
+            >
+            Stake Confirm Here...
+            </Box>
+        </Modal>
     </Box>
 }
 

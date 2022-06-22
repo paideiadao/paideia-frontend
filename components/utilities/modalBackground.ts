@@ -9,4 +9,5 @@ export const modalBackground = {
   p: "1rem",
   borderRadius: ".3rem",
   color: "primary.text",
+  zIndex: 10000
 };

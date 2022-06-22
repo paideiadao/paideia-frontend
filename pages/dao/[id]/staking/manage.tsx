@@ -1,5 +1,5 @@
 import Layout from '@components/dao/Layout';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Modal } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as React from 'react';
@@ -28,8 +28,8 @@ const TokenBanner: React.FC<ITokenBanner> = (props) => {
 
 const ManageStake: React.FC = () => {
     const tabStyle = {pl: 0, pr: 0}
-    const [value, setValue] = React.useState('Stake Tokens');
-
+    const [value, setValue] = React.useState<string>('Stake Tokens');
+    
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
@@ -55,13 +55,14 @@ const ManageStake: React.FC = () => {
           </TabList>
         </Box>
         <TabPanel value="Stake Tokens" sx={tabStyle}>
-            <StakingForm/>
+            <StakingForm />
         </TabPanel>
         <TabPanel value="Withdraw Tokens" sx={tabStyle}>
             <WithdrawForm/>
         </TabPanel>
       </TabContext>
-
+      
+      
     </Layout >
 }
 
