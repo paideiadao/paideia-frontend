@@ -23,6 +23,9 @@ import Members from "@pages/dao/[id]/members";
 import Staking from "@pages/dao/[id]/staking";
 import ManageStake from "@pages/dao/[id]/staking/manage";
 import Distributions from "@pages/dao/[id]/distributions";
+import CreateDistribution from "@pages/dao/[id]/distributions/create";
+import Distribution from "@pages/dao/[id]/distribution/[distribution_id]";
+import RedeemDistribution from "@pages/dao/[id]/distribution/redeem/[distribution_id]";
 
 export const isDao = (Component: any) => {
   return (
@@ -50,6 +53,9 @@ export const isDao = (Component: any) => {
     Component === Members ||
     Component === Staking ||
     Component === ManageStake ||
-    Component === Distributions
+    Component === Distributions || 
+    Component === CreateDistribution ||
+    Component === Distribution ||
+    Component === RedeemDistribution
   );
 };

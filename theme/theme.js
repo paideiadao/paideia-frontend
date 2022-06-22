@@ -6,6 +6,9 @@ export const LightTheme = createTheme({
     circle: {
       main: "#00868F",
     },
+    error: {
+      main: '#F44336'
+    },
     favoriteBackground: {
       main: "#FEE8E7",
     },
@@ -128,6 +131,9 @@ export const DarkTheme = createTheme({
     background: {
       default: "#0E1421",
       paper: "#0E1421",
+    },
+    error: {
+      main: '#F44336'
     },
     text: {
       main: "white",

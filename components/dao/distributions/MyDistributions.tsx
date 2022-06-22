@@ -2,6 +2,8 @@ import { Subheader } from '@components/creation/utilities/HeaderComponents';
 import { Box, Button } from '@mui/material';
 import * as React from 'react';
 import dateFormat from "dateformat";
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const temp = new Date()
 temp.setTime(temp.getTime() + 40);
@@ -40,6 +42,8 @@ interface IMyDistributionCard {
 }
 
 const MyDistributionCard: React.FC<IMyDistributionCard> = (props) => {
+    const router = useRouter();
+    const {id} = router.query
     const ticker = 'DTK'
     return <Box sx={{width: '100%', mt: '.5rem', mb: '.5rem', p: '.5rem', display: 'flex', alignItems: 'center', backgroundColor: 'fileInput.outer', border: '1px solid', borderColor: 'divider.main', borderRadius: '.3rem'}}>
         <Box sx={{width: '26%'}}>
@@ -75,9 +79,12 @@ const MyDistributionCard: React.FC<IMyDistributionCard> = (props) => {
             </Box>
         </Box>
         <Box sx={{width: '8%', display: 'flex'}}>
+            <Link href={`/dao/${id}/distribution/redeem/${props.id}`}>
             <Button variant='text' sx={{ml: 'auto'}}>
                 Redeem
             </Button>
+            </Link>
+            
         </Box>
     </Box>
 } 
