@@ -122,8 +122,20 @@ export class CreationApi extends AbstractApi {
     this.setData = _setData;
   }
 
-  async createDao() {
-    let res = await this.post("localhost:8000/api/dao/", this.data);
+
+  // to do... get authorization token working (store in local storage & post using header)
+  // format data to properly match the endpoint
+  // view in sql
+  // create data checking for the dao paths
+  async createDao(): Promise<any> {
+    const data = this.cleanData(this.data)
+    let res = await this.post("/dao", data);
     return res;
+  }
+
+  cleanData(data: ICreationData): any {
+    return {
+      dao_name: data.basicInformation.daoName
+    }
   }
 }

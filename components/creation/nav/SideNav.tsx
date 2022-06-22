@@ -91,10 +91,9 @@ export default function Nav(props) {
               variant="contained"
               color="primary"
               onClick={() =>
-                global.api.login({
-                  username: "asdf",
-                  password: "test",
-                })
+                global.api.login(
+                  "a;654654", "skeep"
+                )
               }
               // onClick={() => global.api.signup('test', 'test')}
               sx={{ mr: 1 }}

@@ -1,10 +1,8 @@
-import { data } from "jquery";
-import React from "react";
 import axios from "axios";
 
 const statusLookup: IObj<number> = {
   GET: 200,
-  POST: 201,
+  POST: 200,
   PATCH: 200,
   PUT: 200,
   DELETE: 204,
@@ -15,26 +13,31 @@ export class AbstractApi {
   setAlert: Function;
 
   constructor(_alert: any, _setAlert: Function) {
-    console.log(_setAlert);
     this.alert = _alert;
     this.setAlert = _setAlert;
   }
 
   async signup(username: string, password: string) {
     return await this.post(
-      "http://localhost:8000/api/auth/signup",
+      "/auth/signup",
       { username, password },
       "added user."
     );
   }
 
   async login(username: string, password: string) {
-    const token = await this.post(
-      "http://localhost:8000/api/auth/token",
+    const res: any = await this.post(
+      "/auth/token",
       { username, password },
       "logged in."
     );
-    // set sessions / cookies here
+
+    if (res !== false) {
+      console.log(res)
+      console.log('token', res.data.access_token)
+      localStorage.setItem('jwt_token_login', res.data.access_token)
+    }
+    
   }
 
   error = (err: any): boolean => {
@@ -72,7 +75,7 @@ export class AbstractApi {
   async post<T>(
     url: string,
     body: any,
-    action: string,
+    action: string = undefined,
     current: string = ""
   ): Promise<T | boolean> {
     console.log("here...");
@@ -137,19 +140,26 @@ export class AbstractApi {
     };
     const defaultOptions = {
       headers: {
-        Authorization: `Bearer ${sessionStorage.getItem(
-          "jwt_token_login_422"
-        )}`,
-        // 'Content-Type': props.type,
+        'Authorization': `Bearer ${localStorage.getItem("jwt_token_login")}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
     };
-    const formData = new FormData();
-    console.log(body);
+    // only for auth... everything else can be passed throught he body
+    // const formData = new FormData();
+    // console.log(body);
+    // for (const [k, v] of Object.entries(body)) {
+    //   formData.append(k, v);
+    // }
+
+    console.log(body)
+    let params = new URLSearchParams();
     for (const [k, v] of Object.entries(body)) {
-      formData.append(k, v);
+      params.append(k, JSON.stringify(v));
     }
 
-    return await methods[method](url, formData, defaultOptions);
+    console.log(body)
+
+    return await methods[method]('http://localhost:8000/api' + url, params, defaultOptions);
   }
 
   async request(url: string, method: string, body?: any) {
@@ -160,7 +170,8 @@ export class AbstractApi {
             if (res.status !== statusLookup[method]) {
               resolve("error");
             } else {
-              return await res.json().then((data) => resolve(data));
+              console.log(res)
+              resolve(res);
             }
           });
         } else {
@@ -168,7 +179,7 @@ export class AbstractApi {
             if (res.status !== statusLookup[method]) {
               resolve(undefined);
             } else {
-              return await res.json().then((data) => resolve(data));
+              resolve(res);
             }
           });
         }

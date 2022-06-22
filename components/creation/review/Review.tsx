@@ -86,6 +86,7 @@ const Review: React.FC = () => {
           <Box sx={{ fontSize: "1.1rem", fontWeight: 450 }}>
             You are about to publish the final version of your DAO
           </Box>
+
           <Box sx={{ mt: "1rem", fontSize: ".9rem" }}>
             Once you publish the DAO any configuration change would have to be
             done through the proposal system. Also, keep in mind that tokens
@@ -105,12 +106,14 @@ const Review: React.FC = () => {
                 Cancel
               </Button>
               <Button
-                onClick={() =>
-                  globalContext.api.setData({
-                    ...data,
-                    isDraft: 0,
-                    isPublished: 1,
-                  })
+                onClick={() => {
+                  // globalContext.api.setData({
+                  //   ...data,
+                  //   isDraft: 0,
+                  //   isPublished: 1,
+                  // })
+                  globalContext.api.createDao();
+                }
                 }
               >
                 Publish DAO
