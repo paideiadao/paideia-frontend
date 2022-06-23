@@ -3,30 +3,33 @@ import { Button, Container, Box } from "@mui/material";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const SETTINGS = {
-  navBarTravelling: false,
-  navBarDirection: "",
-  navBarTravelDistance: 150
+interface SliderProps {
+  buttonTop?: boolean;
+  uniqueId: string;
+  addMargin?: number;
 }
 
-const CardSlider: FC = ({ children }) => {
+const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin }) => {
   const [marginLeftCalc, setMarginLeftCalc] = useState({ mx: '0px' })
+  const [marginLeftNum, setMarginLeftNum] = useState(0)
   const [scrollPosition, setScrollPosition] = useState(0)
   const [leftDisabled, setLeftDisabled] = useState(false)
   const [rightDisabled, setRightDisabled] = useState(false)
+  const [slideDistance, setSlideDistance] = useState(460)
 
   const handleScroll = () => {
-    const scroll = document.getElementById("pnProductNav").scrollLeft
+    const scroll = document.getElementById(uniqueId + "pnProductNav").scrollLeft
     setScrollPosition(scroll)
   };
 
   const determineOverflow = (content: any, container: any) => {
     const containerMetrics = container.getBoundingClientRect();
-    const containerMetricsRight = Math.floor(containerMetrics.right);
-    const containerMetricsLeft = Math.floor(containerMetrics.left);
+    const containerMetricsRight = Math.floor(containerMetrics.right) - marginLeftNum;
+    const containerMetricsLeft = Math.floor(containerMetrics.left) + marginLeftNum;
     const contentMetrics = content.getBoundingClientRect();
     const contentMetricsRight = Math.floor(contentMetrics.right);
     const contentMetricsLeft = Math.floor(contentMetrics.left);
+
     if (containerMetricsLeft > contentMetricsLeft && containerMetricsRight < contentMetricsRight) {
       setLeftDisabled(false)
       setRightDisabled(false)
@@ -41,13 +44,16 @@ const CardSlider: FC = ({ children }) => {
   }
 
   const marginFunction = () => {
-    const pnArrowContainer = document.getElementById("pnArrowContainer");
-    const margin = (pnArrowContainer.getBoundingClientRect().left + 24).toString() + 'px'
+    const pnArrowContainer = document.getElementById(uniqueId + "pnArrowContainer");
+    const margin = (pnArrowContainer.getBoundingClientRect().left + (addMargin ? addMargin : 0)).toString() + 'px'
     setMarginLeftCalc({ ...marginLeftCalc, mx: margin })
+    setMarginLeftNum(pnArrowContainer.getBoundingClientRect().left + (addMargin ? addMargin : 0))
+    const containerWidth = document.getElementById("setWidth").offsetWidth
+    setSlideDistance(containerWidth)
   }
 
   useEffect(() => {
-    const pnProductNav = document.getElementById("pnProductNav");
+    const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
     pnProductNav.addEventListener("scroll", handleScroll);
     return () => {
       pnProductNav.removeEventListener("scroll", handleScroll);
@@ -55,8 +61,8 @@ const CardSlider: FC = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    const pnProductNav = document.getElementById("pnProductNav");
-    const pnProductNavContents = document.getElementById("pnProductNavContents");
+    const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
+    const pnProductNavContents = document.getElementById(uniqueId + "pnProductNavContents");
     determineOverflow(pnProductNavContents, pnProductNav)
   }, [scrollPosition]);
 
@@ -84,27 +90,20 @@ const CardSlider: FC = ({ children }) => {
   posRef.current = pos
 
   const mouseMoveHandler = (e: any) => {
-    const pnProductNav = document.getElementById("pnProductNav");
+    const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
     pnProductNav.scrollLeft = posRef.current.left - (e.clientX - posRef.current.x);
-    console.log(posRef)
-  console.log(scrollPosition)
   }
 
   const mouseUpHandler = (e: any) => {
-    const pnProductNav = document.getElementById("pnProductNav");
+    const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
     pnProductNav.style.cursor = 'grab';
     pnProductNav.style.userSelect = 'none';
-    setPos({
-      ...pos,
-      left: scrollRef.current,
-      x: e.clientX,
-    })
     document.removeEventListener('mousemove', mouseMoveHandler);
     document.removeEventListener('mouseup', mouseUpHandler);
   }
 
   const handleMouseDown = (e: any) => {
-    const pnProductNav = document.getElementById("pnProductNav");
+    const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
     pnProductNav.style.cursor = 'grabbing';
     pnProductNav.style.userSelect = 'none';
 
@@ -118,10 +117,39 @@ const CardSlider: FC = ({ children }) => {
     document.addEventListener('mousemove', mouseMoveHandler);
     document.addEventListener('mouseup', mouseUpHandler);
   }
-  
+
+  const clickLeft = () => {
+    const pnProductNav = document.getElementById(uniqueId + "pnProductNav")
+    pnProductNav.scrollTo({ left: (scrollPosition - slideDistance), behavior: 'smooth' });
+    console.log(slideDistance)
+  }
+
+  const clickRight = () => {
+    const pnProductNav = document.getElementById(uniqueId + "pnProductNav")
+    pnProductNav.scrollTo({ left: (scrollPosition + slideDistance), behavior: 'smooth' });
+  }
+
+  const ButtonBox = () => {
+    return (
+      <Container id={uniqueId + "pnArrowContainer"} maxWidth="lg" sx={{ my: '32px' }}>
+        <Box sx={buttonTop ? { display: 'flex', justifyContent: 'flex-end'} : null }>
+          <Button onClick={clickLeft} disabled={leftDisabled}>
+            <ArrowBackIosIcon />
+          </Button>
+          <Button onClick={clickRight} disabled={rightDisabled}>
+            <ArrowForwardIosIcon />
+          </Button>
+        </Box>
+      </Container>
+    )
+  }
 
   return (
     <>
+    <Container maxWidth="lg" id="setWidth"></Container>
+      {buttonTop ? (
+        <ButtonBox />
+      ) : null}
       <Box sx={{
         /* Make this scrollable when needed */
         overflowX: 'auto',
@@ -139,21 +167,16 @@ const CardSlider: FC = ({ children }) => {
           display: 'none'
         },
       }}
-        id="pnProductNav"
+        id={uniqueId + "pnProductNav"}
         onMouseDown={(e) => handleMouseDown(e)}
       >
-        <Box id="pnProductNavContents" display="flex" sx={{ width: 'min-content', gap: '24px', ...marginLeftCalc }}>
+        <Box id={uniqueId + "pnProductNavContents"} display="flex" sx={{ width: 'min-content', gap: '24px', ...marginLeftCalc }}>
           {children}
         </Box>
       </Box>
-      <Container id="pnArrowContainer" maxWidth="lg" sx={{ mt: '24px' }}>
-        <Button onClick={() => null} disabled={leftDisabled}>
-          <ArrowBackIosIcon />
-        </Button>
-        <Button onClick={() => null} disabled={rightDisabled}>
-          <ArrowForwardIosIcon />
-        </Button>
-      </Container>
+      {buttonTop ? null : (
+        <ButtonBox />
+      )}
     </>
   )
 }

@@ -30,6 +30,10 @@ const MyCard: FC<MyCardProps> = ({ image, title, body }) => {
       maxWidth: 'calc(100vw - 48px)',
       display: 'inline-flex',
       whiteSpace: 'normal',
+      px: '20px',
+      py: '32px',
+      borderRadius: '10px',
+      border: '1px solid rgba(255, 255, 255, 0.2)'
     }}>
       <CardContent>
         <Image src={image} width={35} height={35} />
@@ -116,7 +120,7 @@ export default function Uses() {
           <Grid item md={7}></Grid>
         </Grid>
       </Container>
-      <CardSlider>
+      <CardSlider uniqueId="uses" addMargin={24}>
         {
           theCards.map(({ title, body, image }, i: number) => {
             return <MyCard key={i} title={title} body={body} image={image} />

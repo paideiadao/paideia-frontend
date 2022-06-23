@@ -18,11 +18,12 @@ const blockquoteStyle = {
 
 interface BlockquoteProps {
   small?: boolean;
+  sx?: object;
 }
 
-const Blockquote: FC<BlockquoteProps> = ({ small, children }) => {
+const Blockquote: FC<BlockquoteProps> = ({ small, sx, children }) => {
   return (
-    <Grid container wrap="nowrap" spacing={2}>
+    <Grid container wrap="nowrap" spacing={2} sx={sx}>
       <Grid item>
         <Box
           sx={{

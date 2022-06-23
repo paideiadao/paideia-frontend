@@ -29,7 +29,7 @@ const pages = [
   {
     name: "About",
     link: "about",
-    disabled: true
+    disabled: false
   },
   {
     name: "Education",

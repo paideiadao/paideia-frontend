@@ -12,8 +12,8 @@ export default function Home() {
         <Hero />
         <WhitepaperQuote />
         <Perks />
-        <Uses />
-        <Highlights />
+        <Uses /> 
+        {/* <Highlights /> */}
         <Stats />
         <Featured />
     </>

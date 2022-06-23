@@ -55,10 +55,9 @@ export default function PageHeader({ bgUrl, sectionTitle, titleLineOne, titleLin
         <Grid item xs={0} sm={1} lg={3}>
         </Grid>
         <Grid item xs={12} sm={11} lg={9}>
-          <SectionTitle
-            title={sectionTitle}
-            marginBottom="80px"
-          />
+          <SectionTitle marginBottom="80px">
+            {sectionTitle}
+          </SectionTitle>
           <Typography
             sx={{
               fontSize: { xs: "60px", sm: "80px", md: '100px' },
