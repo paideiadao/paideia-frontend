@@ -1,7 +1,14 @@
 import { createTheme } from "@mui/material/styles";
 import darkScrollbar from "@mui/material/darkScrollbar";
 
+export const mainTheme = createTheme({
+  typography: {
+    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif'
+  },
+});
+
 export const LightTheme = createTheme({
+  ...mainTheme,
   palette: {
     circle: {
       main: "#00868F",
@@ -114,15 +121,11 @@ export const LightTheme = createTheme({
         completed: {},
       },
     },
-    MuiCssBaseline: {
-      styleOverrides: {
-        body: null,
-      },
-    },
   },
 });
 
 export const DarkTheme = createTheme({
+  ...mainTheme,
   palette: {
     mode: "dark",
     background: {
@@ -354,16 +357,6 @@ export const DarkTheme = createTheme({
         },
       },
     },
-    MuiTypography: {
-      styleOverrides: {
-        root: {
-          color: "white",
-        },
-        caption: {
-          color: "white",
-        },
-      },
-    },
     MuiStepIcon: {
       styleOverrides: {
         root: {
@@ -386,10 +379,5 @@ export const DarkTheme = createTheme({
         completed: {},
       },
     },
-    // MuiCssBaseline: {
-    //   styleOverrides: {
-    //     body: darkScrollbar(),
-    //   },
-    // },
   },
 });

@@ -2,7 +2,7 @@ import "../styles/global.css";
 import { AppProps } from "next/app";
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import * as React from "react";
-import { DarkTheme, LightTheme } from "../theme/theme";
+import { mainTheme, DarkTheme, LightTheme } from "../theme/theme";
 import { ThemeProvider } from "@mui/material/styles";
 import { ThemeContext } from "../lib/ThemeContext";
 import { AppApi } from "../lib/AppApi";
@@ -36,29 +36,29 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <AddWalletProvider>
       <WalletProvider>
-        {isDao(Component) ? (
-          <ThemeProvider theme={theme}>
-            <ThemeContext.Provider value={{ theme, setTheme }}>
-              <CssBaseline />
-              <GlobalContext.Provider value={{ api }}>
-                {Component !== Creation ? (
-                  <DaoTemplate subdomain="">
+          {isDao(Component) ? (
+            <ThemeProvider theme={theme}>
+              <ThemeContext.Provider value={{ theme, setTheme }}>
+                <CssBaseline />
+                <GlobalContext.Provider value={{ api }}>
+                  {Component !== Creation ? (
+                    <DaoTemplate subdomain="">
+                      <Component {...pageProps} />
+                    </DaoTemplate>
+                  ) : (
                     <Component {...pageProps} />
-                  </DaoTemplate>
-                ) : (
-                  <Component {...pageProps} />
-                )}
-              </GlobalContext.Provider>
-            </ThemeContext.Provider>
-          </ThemeProvider>
-        ) : (
-          <ThemeProvider theme={DarkTheme}>
-            <CssBaseline />
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </ThemeProvider>
-        )}
+                  )}
+                </GlobalContext.Provider>
+              </ThemeContext.Provider>
+            </ThemeProvider>
+          ) : (
+            <ThemeProvider theme={DarkTheme}>
+              <CssBaseline />
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </ThemeProvider>
+          )}
       </WalletProvider>
     </AddWalletProvider>
   );
