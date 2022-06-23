@@ -13,10 +13,15 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Box,
+  Avatar,
+  Chip,
 } from "@mui/material";
 import { useAddWallet } from "@components/wallet/AddWalletContext";
 import { useWallet } from "@components/wallet/WalletContext";
 import { Address } from "@components/wallet/Address";
+import Nautilus from "@public/icons/nautilus.png";
+import CheckIcon from "@mui/icons-material/Check";
 
 const WALLET_ADDRESS = "wallet_address";
 const WALLET_ADDRESS_LIST = "wallet_address_list";
@@ -221,66 +226,86 @@ export const AddWallet: React.FC = () => {
   return (
     <>
       <Dialog open={addWalletOpen} onClose={handleClose}>
-        <DialogTitle>Connect Wallet</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Enter your Ergo wallet public key. This will be used to interact
-            with smart contracts and display assets on the dashboard. Your
-            public key will never be stored on our server. If you are using a
-            dapp wallet please make sure only one wallet is enabled. Enabling
-            multiple wallet extensions will cause undefined behaviour.
+        <DialogTitle sx={{ backgroundColor: "fileInput.main" }}>
+          Connect Wallet
+        </DialogTitle>
+        <DialogContent sx={{ backgroundColor: "fileInput.main" }}>
+          <DialogContentText sx={{ fontSize: ".9rem" }}>
+            Your private key will never be stored on our server. If you are
+            using a dapp wallet, please make sure only one wallet is enabled.
+            Enabling multiple wallet extensions willl cause undefined behavior.
           </DialogContentText>
-          <Grid sx={{ py: 2 }}>
-            <Button
-              disabled={loading}
-              onClick={dAppConnect}
-              sx={{
-                color: "#fff",
-                fontSize: "1rem",
-                py: "0.6rem",
-                px: "1.6rem",
-                textTransform: "none",
-                backgroundColor: "primary.main",
-                "&:hover": {
-                  backgroundColor: "secondary.main",
-                  boxShadow: "none",
-                },
-                "&:active": {
-                  backgroundColor: "green",
-                },
-              }}
-            >
-              {dAppWallet.connected
-                ? "dApp Connected"
-                : "Connect with Nautilus or SAFEW"}
-              {loading && (
-                <CircularProgress
-                  sx={{ ml: 2, color: "white" }}
-                  size={"1.2rem"}
+          <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
+            <Avatar
+              src={Nautilus.src}
+              sx={{ height: "2.rem", width: "2.5rem", mr: "1rem" }}
+            />
+            <Box sx={{ fontSize: ".9rem", color: "text.light" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1rem",
+                  color: "text.main",
+                }}
+              >
+                Nautilus
+                <Chip
+                  icon={<CheckIcon />}
+                  variant="outlined"
+                  color="primary"
+                  label="Recommended"
+                  size="small"
+                  sx={{ ml: ".5rem" }}
                 />
-              )}
-            </Button>
-            <FormHelperText error={true}>
-              {dAppError ? "Failed to connect to wallet. Please retry." : ""}
-            </FormHelperText>
-            {dAppWallet.connected && (
-              <Accordion sx={{ mt: 1 }}>
-                <AccordionSummary onClick={loadAddresses}>
-                  <strong>Change Address</strong>
-                </AccordionSummary>
-                <AccordionDetails>
-                  List wallets here...
-                  {/* <PaginatedTable
+              </Box>
+              Connect automatically signing with your wallet.
+            </Box>
+          </Box>
+          <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
+            <Avatar
+              src={Nautilus.src}
+              sx={{ height: "2.rem", width: "2.5rem", mr: "1rem" }}
+            />
+            <Box sx={{ fontSize: ".9rem", color: "text.light" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1rem",
+                  color: "text.main",
+                }}
+              >
+                Mobile Wallet
+                <Chip
+                  icon={<CheckIcon />}
+                  variant="outlined"
+                  color="primary"
+                  label="Recommended"
+                  size="small"
+                  sx={{ ml: ".5rem" }}
+                />
+              </Box>
+              Connect by manually adding your wallet address
+            </Box>
+          </Box>
+          {dAppWallet.connected && (
+            <Accordion sx={{ mt: 1 }}>
+              <AccordionSummary onClick={loadAddresses}>
+                <strong>Change Address</strong>
+              </AccordionSummary>
+              <AccordionDetails>
+                List wallets here...
+                {/* <PaginatedTable
                       rows={dAppAddressTableData}
                       onClick={(index) =>
                         changeWalletAddress(dAppAddressTableData[index].name)
                       }
                     /> */}
-                </AccordionDetails>
-              </Accordion>
-            )}
-          </Grid>
-          <TextField
+              </AccordionDetails>
+            </Accordion>
+          )}
+          {/* <TextField
             disabled={dAppWallet.connected}
             autoFocus
             margin="dense"
@@ -295,17 +320,15 @@ export const AddWallet: React.FC = () => {
           />
           <FormHelperText error={true}>
             {!isAddressValid(walletInput) ? "Invalid ergo address." : ""}
-          </FormHelperText>
+          </FormHelperText> */}
         </DialogContent>
-        <DialogActions sx={{ justifyContent: "space-between" }}>
-          <Button onClick={() => clearWallet()}>Remove wallet</Button>
-          <Button onClick={handleClose}>Close Window</Button>
-          <Button
-            onClick={handleSubmitWallet}
-            disabled={!isAddressValid(walletInput) || dAppWallet.connected}
-          >
-            Connect Read Only Wallet
-          </Button>
+        <DialogActions sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ ml: "auto" }}>
+            <Button onClick={() => clearWallet()}>Cancel</Button>
+            <Button onClick={handleClose} disabled>
+              Confirm
+            </Button>
+          </Box>
         </DialogActions>
       </Dialog>
     </>

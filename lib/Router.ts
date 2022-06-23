@@ -53,7 +53,7 @@ export const isDao = (Component: any) => {
     Component === Members ||
     Component === Staking ||
     Component === ManageStake ||
-    Component === Distributions || 
+    Component === Distributions ||
     Component === CreateDistribution ||
     Component === Distribution ||
     Component === RedeemDistribution

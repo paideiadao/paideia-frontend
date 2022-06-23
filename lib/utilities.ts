@@ -21,7 +21,9 @@ export class AbstractApi {
     return await this.post(
       "/auth/signup",
       { username, password },
-      "added user."
+      "added user.",
+      "",
+      true
     );
   }
 
@@ -29,7 +31,9 @@ export class AbstractApi {
     const res: any = await this.post(
       "/auth/token",
       { username, password },
-      "logged in."
+      "logged in.",
+      "",
+      true
     );
 
     if (res !== false) {
@@ -50,12 +54,14 @@ export class AbstractApi {
   };
 
   showAlert = (value: string, current: string, action: string): boolean => {
-    this.setAlert({
-      show: true,
-      value: value,
-      current: current,
-      action: action,
-    });
+    if (action !== "" && action !== undefined) {
+      this.setAlert({
+        show: true,
+        value: value,
+        current: current,
+        action: action,
+      });
+    }
     return false;
   };
 
@@ -75,14 +81,18 @@ export class AbstractApi {
     url: string,
     body: any,
     action: string = undefined,
-    current: string = ""
+    current: string = "",
+    auth: boolean = undefined
   ): Promise<T | boolean> {
     console.log("here...");
     let self = this;
-    return await this.request(url, "POST", body).then((data: T | boolean) => {
-      self.showAlert("success", current, action);
-      return data;
-    }, self.error);
+    return await this.request(url, "POST", body, auth).then(
+      (data: T | boolean) => {
+        self.showAlert("success", current, action);
+        return data;
+      },
+      self.error
+    );
   }
 
   async patch<T>(
@@ -127,7 +137,7 @@ export class AbstractApi {
     url: string,
     method: string,
     body?: IObj<any>,
-    type?: any
+    auth?: boolean
   ): Promise<Response> {
     console.log("request here...");
     const methods = {
@@ -140,45 +150,48 @@ export class AbstractApi {
     const defaultOptions = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt_token_login")}`,
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/json",
       },
     };
     // only for auth... everything else can be passed throught he body
-    // const formData = new FormData();
-    // console.log(body);
-    // for (const [k, v] of Object.entries(body)) {
-    //   formData.append(k, v);
-    // }
+    if (auth) {
+      const params = new URLSearchParams();
 
-    console.log(body);
-    let params = new URLSearchParams();
-    for (const [k, v] of Object.entries(body)) {
-      params.append(k, JSON.stringify(v));
+      for (const [k, v] of Object.entries(body)) {
+        params.append(k, v);
+      }
+      console.log("skeep");
+      return await methods[method]("http://localhost:8000/api" + url, params, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt_token_login")}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
+    } else {
+      return await methods[method](
+        "http://localhost:8000/api" + url,
+        JSON.stringify(body),
+        defaultOptions
+      );
     }
-
-    console.log(body);
-
-    return await methods[method](
-      "http://localhost:8000/api" + url,
-      params,
-      defaultOptions
-    );
   }
 
-  async request(url: string, method: string, body?: any) {
+  async request(url: string, method: string, body?: any, auth?: boolean) {
     return await new Promise(async (resolve, reject) => {
       try {
         if (body !== undefined) {
-          return await this._request(url, method, body).then(async (res) => {
-            if (res.status !== statusLookup[method]) {
-              resolve("error");
-            } else {
-              console.log(res);
-              resolve(res);
+          return await this._request(url, method, body, auth).then(
+            async (res) => {
+              if (res.status !== statusLookup[method]) {
+                resolve("error");
+              } else {
+                console.log(res);
+                resolve(res);
+              }
             }
-          });
+          );
         } else {
-          return await this._request(url, method).then(async (res) => {
+          return await this._request(url, method, body).then(async (res) => {
             if (res.status !== statusLookup[method]) {
               resolve(undefined);
             } else {

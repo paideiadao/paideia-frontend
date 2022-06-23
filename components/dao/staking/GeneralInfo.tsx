@@ -2,9 +2,16 @@ import {
   Subheader,
   Subtitle,
 } from "@components/creation/utilities/HeaderComponents";
-import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import * as React from "react";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { ThemeContext } from "@lib/ThemeContext";
 import { DarkTheme } from "@theme/theme";
 
@@ -13,11 +20,11 @@ export interface IInfoCard {
   value: string;
   last?: boolean;
   ticker?: string;
-  dropdown?: boolean
+  dropdown?: boolean;
 }
 
 export const InfoCard: React.FC<IInfoCard> = (props) => {
-  const [time, setTime] = React.useState('24hrs');
+  const [time, setTime] = React.useState("24hrs");
 
   const handleChange = (event: SelectChangeEvent) => {
     setTime(event.target.value as string);
@@ -40,32 +47,49 @@ export const InfoCard: React.FC<IInfoCard> = (props) => {
         mr: props.last ? 0 : "1rem",
       }}
     >
-        <Box sx={{textAlign: 'center'}}>
-            <Box sx={{ fontSize: "1.3rem", color: "primary.text" }}>
-                {props.value} <Box sx={{display: 'inline', color: 'text.light', fontSize: '.9rem', fontWeight: 500}}>{props.ticker}</Box>
-            </Box>
-            <Box sx={{ color: "text.light", fontSize: ".9rem" }}>{props.title}</Box>
+      <Box sx={{ textAlign: "center" }}>
+        <Box sx={{ fontSize: "1.3rem", color: "primary.text" }}>
+          {props.value}{" "}
+          <Box
+            sx={{
+              display: "inline",
+              color: "text.light",
+              fontSize: ".9rem",
+              fontWeight: 500,
+            }}
+          >
+            {props.ticker}
+          </Box>
         </Box>
-        {props.dropdown && <Box sx={{ml: '1rem', color: 'backgroundColor.main'}}>
-            <Select
+        <Box sx={{ color: "text.light", fontSize: ".9rem" }}>{props.title}</Box>
+      </Box>
+      {props.dropdown && (
+        <Box sx={{ ml: "1rem", color: "backgroundColor.main" }}>
+          <Select
             size="small"
-            sx={{backgroundColor: 'primary.main', color: 'backgroundColor.main', fontSize: '.9rem', p: '-1rem', svg: {
-                fill: themeContext.theme === DarkTheme ? 'black' : 'white'
-            }}}
+            sx={{
+              backgroundColor: "primary.main",
+              color: "backgroundColor.main",
+              fontSize: ".9rem",
+              p: "-1rem",
+              svg: {
+                fill: themeContext.theme === DarkTheme ? "black" : "white",
+              },
+            }}
             notched
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={time}
             onChange={handleChange}
-            >
-            <MenuItem value='24hrs'>24hrs</MenuItem>
-            <MenuItem value='1d'>1d</MenuItem>
-            <MenuItem value='1w'>1w</MenuItem>
-            <MenuItem value='1m'>1m</MenuItem>
-            <MenuItem value='1yr'>1yr</MenuItem>
-            </Select>
-        </Box>}
-      
+          >
+            <MenuItem value="24hrs">24hrs</MenuItem>
+            <MenuItem value="1d">1d</MenuItem>
+            <MenuItem value="1w">1w</MenuItem>
+            <MenuItem value="1m">1m</MenuItem>
+            <MenuItem value="1yr">1yr</MenuItem>
+          </Select>
+        </Box>
+      )}
     </Box>
   );
 };

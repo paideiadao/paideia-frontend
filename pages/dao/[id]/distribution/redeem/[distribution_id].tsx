@@ -4,12 +4,8 @@ import Layout from "@components/dao/Layout";
 
 // move dao to a wildcard subdomain
 const RedeemDistribution: React.FC = () => {
-  return (
-    <Layout>
-        Redeem Distribution Here....
-    </Layout>
-  );
-}
+  return <Layout>Redeem Distribution Here....</Layout>;
+};
 
 export default RedeemDistribution;
 

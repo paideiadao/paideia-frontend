@@ -5,6 +5,7 @@ import { GlobalContext } from "../../../lib/creation/Context";
 import { Header } from "../utilities/HeaderComponents";
 import ReviewDrawer from "./ReviewDrawer";
 import { modalBackground } from "../../utilities/modalBackground";
+import Router from "next/router";
 
 const Review: React.FC = () => {
   const globalContext = React.useContext(GlobalContext);
@@ -106,13 +107,18 @@ const Review: React.FC = () => {
                 Cancel
               </Button>
               <Button
-                onClick={() => {
-                  // globalContext.api.setData({
-                  //   ...data,
-                  //   isDraft: 0,
-                  //   isPublished: 1,
-                  // })
-                  globalContext.api.createDao();
+                onClick={async () => {
+                  globalContext.api.setData({
+                    ...data,
+                    isDraft: 0,
+                    isPublished: 1,
+                  });
+                  let res = await globalContext.api.createDao(false);
+                  if (res !== false) {
+                    Router.push(`/dao/${res.data.dao_name.toLowerCase()}`);
+                  } else {
+                    console.log("error here..");
+                  }
                 }}
               >
                 Publish DAO
