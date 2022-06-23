@@ -55,7 +55,12 @@ const Governance: React.FC = () => {
           borderBottomColor: "divider.main",
         }}
       >
-        <LearnMore title="Optimistic governance" tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
+        <LearnMore
+          title="Optimistic governance"
+          tooltipTitle="Title Here"
+          tooltipText="Content here."
+          tooltipLink="/here"
+        />
         <Box sx={{ width: "100%", color: "text.light", fontSize: ".8rem" }}>
           If active only whitelisted members will be able to create proposals.
           If proposals are not challenged, they will be approved.
@@ -87,8 +92,12 @@ const Governance: React.FC = () => {
         </Box>
         {data.optimisticGovernance && (
           <>
-            
-        <LearnMore title="White listed members" tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
+            <LearnMore
+              title="White listed members"
+              tooltipTitle="Title Here"
+              tooltipText="Content here."
+              tooltipLink="/here"
+            />
 
             <Box
               sx={{
@@ -202,8 +211,13 @@ const Governance: React.FC = () => {
                 Add from file <FileUploadIcon />
               </Button>
             </Box>
-        <LearnMore small title="Collateral" tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
-
+            <LearnMore
+              small
+              title="Collateral"
+              tooltipTitle="Title Here"
+              tooltipText="Content here."
+              tooltipLink="/here"
+            />
 
             <Box
               sx={{
@@ -254,7 +268,13 @@ const Governance: React.FC = () => {
                 </FormControl>
               </Box>
             </Box>
-            <LearnMore small title="Time to challenge a proposal" tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
+            <LearnMore
+              small
+              title="Time to challenge a proposal"
+              tooltipTitle="Title Here"
+              tooltipText="Content here."
+              tooltipLink="/here"
+            />
 
             <Box
               sx={{
@@ -341,7 +361,12 @@ const Governance: React.FC = () => {
           borderBottomColor: "divider.main",
         }}
       >
-                    <LearnMore title="Quadratic voting" tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
+        <LearnMore
+          title="Quadratic voting"
+          tooltipTitle="Title Here"
+          tooltipText="Content here."
+          tooltipLink="/here"
+        />
 
         <Box sx={{ width: "100%", color: "text.light", fontSize: ".8rem" }}>
           If active, voting power will not be determined only by the stakeholder
@@ -382,7 +407,13 @@ const Governance: React.FC = () => {
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Box>Configure voting system</Box>
         </Box>
-        <LearnMore small title="Support needed on single choice voting" tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
+        <LearnMore
+          small
+          title="Support needed on single choice voting"
+          tooltipTitle="Title Here"
+          tooltipText="Content here."
+          tooltipLink="/here"
+        />
 
         <Box
           sx={{ display: "flex", alignItem: "center", mt: ".4rem", pl: "1rem" }}
@@ -441,7 +472,13 @@ const Governance: React.FC = () => {
             approved. Can't be set to less than 51%
           </Alert>
         </Box>
-        <LearnMore small title="Quorum" tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
+        <LearnMore
+          small
+          title="Quorum"
+          tooltipTitle="Title Here"
+          tooltipText="Content here."
+          tooltipLink="/here"
+        />
 
         <Box
           sx={{ display: "flex", alignItem: "center", mt: ".4rem", pl: "1rem" }}

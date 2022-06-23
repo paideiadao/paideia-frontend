@@ -27,12 +27,6 @@ const FileBanner: React.FC<{
           backgroundColor: "fileInput.main",
           border: "1px dashed",
           borderColor: "fileInput.border",
-          height:
-            props.fileUrl !== "" &&
-            props.fileUrl !== undefined &&
-            props.file !== undefined
-              ? "17rem"
-              : "9rem",
           display: "flex",
           justifyContent: "center",
           flexDirection: "column",
@@ -74,7 +68,7 @@ const FileBanner: React.FC<{
                   {props.file.name}
                   <Box sx={{ color: "text.light", fontSize: ".9rem" }}>
                     {props.file === undefined || props.file === -1
-                      ? "File Max size 1Mb. Dimensions 48px by 48px."
+                      ? "File Max size 1Mb. Dimensions 720px by 350px."
                       : bytesToSize(props.file.size)}
                   </Box>
                 </Box>

@@ -1,7 +1,14 @@
 import { createTheme } from "@mui/material/styles";
 import darkScrollbar from "@mui/material/darkScrollbar";
 
+export const mainTheme = createTheme({
+  typography: {
+    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif'
+  },
+});
+
 export const LightTheme = createTheme({
+  ...mainTheme,
   palette: {
     circle: {
       main: "#00868F",
@@ -114,20 +121,16 @@ export const LightTheme = createTheme({
         completed: {},
       },
     },
-    MuiCssBaseline: {
-      styleOverrides: {
-        body: null,
-      },
-    },
   },
 });
 
 export const DarkTheme = createTheme({
+  ...mainTheme,
   palette: {
     mode: "dark",
     background: {
-      default: '#0E1421',
-      paper: '#0E1421',
+      default: "#0E1421",
+      paper: "#0E1421",
     },
     text: {
       main: "white",
@@ -282,11 +285,15 @@ export const DarkTheme = createTheme({
     MuiAlert: {
       styleOverrides: {
         root: {
-          backgroundColor: "#191207",
-          color: "#FFE2B7",
+          warning: {
+            backgroundColor: "#191207",
+            color: "#FFE2B7",
+          },
         },
         MuiAlert: {
-          backgroundColor: "rgba(255, 167, 38, .8)",
+          warning: {
+            backgroundColor: "rgba(255, 167, 38, .8)",
+          },
         },
       },
     },
@@ -350,16 +357,6 @@ export const DarkTheme = createTheme({
         },
       },
     },
-    MuiTypography: {
-      styleOverrides: {
-        root: {
-          color: "white",
-        },
-        caption: {
-          color: "white",
-        },
-      },
-    },
     MuiStepIcon: {
       styleOverrides: {
         root: {
@@ -382,10 +379,5 @@ export const DarkTheme = createTheme({
         completed: {},
       },
     },
-    // MuiCssBaseline: {
-    //   styleOverrides: {
-    //     body: darkScrollbar(),
-    //   },
-    // },
   },
 });

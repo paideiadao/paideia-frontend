@@ -5,9 +5,11 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ProposalCard from "../proposals/ProposalCard";
 import useDidMountEffect from "@components/utilities/hooks";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-let temp = new Date() 
-temp.setDate(temp.getDate() - 30)
+let temp = new Date();
+temp.setDate(temp.getDate() - 30);
 
 export const proposals = [
   {
@@ -88,8 +90,15 @@ const ActiveProposal: React.FC = () => {
     let element = document.getElementById(
       `proposal-active-${slide === 0 ? slide : slide - 1}`
     );
-    element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "start",
+    });
   }, [slide]);
+
+  const router = useRouter();
+  const { id } = router.query;
 
   return (
     <>
@@ -103,7 +112,9 @@ const ActiveProposal: React.FC = () => {
       >
         <Subheader title="Active proposals" small bold />
         <Box sx={{ ml: "auto" }}>
-          <Button sx={{ fontSize: ".8rem" }}>View All</Button>
+          <Link href={id + "/proposals/all"}>
+            <Button sx={{ fontSize: ".8rem" }}>View All</Button>
+          </Link>
           <IconButton
             size="small"
             disabled={slide <= 1}
@@ -137,7 +148,7 @@ const ActiveProposal: React.FC = () => {
             {...i}
             c={c}
             key={"proposal-card-key-" + c}
-            width="33%"
+            width="34.5%"
           />
         ))}
       </Box>

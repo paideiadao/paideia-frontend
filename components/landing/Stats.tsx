@@ -1,90 +1,102 @@
-import { Typography, Grid, Box, Button, Link, Container, Divider } from "@mui/material"
-import Image from "next/image"
-import { DarkTheme } from "@theme/theme"
-import SectionTitle from '@components/SectionTitle'
+import {
+  Typography,
+  Grid,
+  Box,
+  Button,
+  Link,
+  Container,
+  Divider,
+} from "@mui/material";
+import Image from "next/image";
+import { DarkTheme } from "@theme/theme";
+import SectionTitle from "@components/SectionTitle";
 
 const titleStyle = {
   fontSize: "48px",
   fontWeight: "400",
-  lineHeight: '116.7%',
-  mb: '24px',
+  lineHeight: "116.7%",
+  mb: "24px",
   color: DarkTheme.palette.text.primary,
-  textTransform: 'uppercase',
-  fontFamily: '"Viga" !important',
-}
+  textTransform: "uppercase",
+  fontFamily: '"Viga", sans-serif',
+};
 
 const secondaryTitleStyle = {
   fontSize: "20px",
   fontWeight: "700",
   color: DarkTheme.palette.text.primary,
-  textTransform: 'uppercase',
-  fontFamily: '"Space Grotesk" !important',
-}
+  textTransform: "uppercase",
+  fontFamily: '"Space Grotesk", sans-serif',
+};
 
 const paragraphStyle = {
-  fontWeight: '400',
-  fontSize: '16px',
-  lineHeight: '24px',
-  letterSpacing: '0.15px',
-}
+  fontWeight: "400",
+  fontSize: "16px",
+  lineHeight: "24px",
+  letterSpacing: "0.15px",
+};
 
 const statList = [
   {
-    title: 'Projects started',
-    value: '25122',
-    subTitle: 'DAOs initiated on Paideia',
+    title: "DAOs initiated on Paideia",
+    value: "0",
+    subTitle: "Organizations",
   },
   {
-    title: 'Hello',
-    value: '3150',
-    subTitle: 'Is it me youre looking for',
+    title: "Participants in DAOs",
+    value: "0",
+    subTitle: "Unique wallets",
   },
   {
-    title: 'I can see it in your eyes',
-    value: '213000',
-    subTitle: 'I can see it in your smile',
+    title: "TVL on Paideia",
+    value: "$0",
+    subTitle: "SigUSD Locked",
   },
   {
-    title: 'Youre all I ever wanted',
-    value: '15M',
-    subTitle: 'And my arms are open wide',
+    title: "Paideia Token Price",
+    value: "$0.0169",
+    subTitle: "SigUSD",
   },
-]
+];
 
 export default function Stats() {
   return (
-    <Container sx={{ flexGrow: 1, px: '24px', pt: '240px', minHeight: '2200px', position: 'relative' }}>
+    <Container
+      sx={{
+        flexGrow: 1,
+        px: "24px",
+        pt: { xs: "0", md: "240px" },
+        mt: { xs: "120px", md: "-60px" },
+        minHeight: "2200px",
+        position: "relative",
+      }}
+    >
       <Box
         sx={{
-          position: 'absolute',
-          top: '-160px',
-          left: { sm: '27%', md: '42%' },
-          width: '2160px',
-          transform: 'translate(-50%, -60px)',
-          overflow: 'visible',
-          zIndex: '-5',
-          ml: '-24px',
-          display: { xs: 'none', sm: 'block' }
+          position: "absolute",
+          top: { xs: "-160px", sm: "-400px", md: "-160px" },
+          left: { sm: "27%", md: "42%" },
+          width: "2160px",
+          transform: "translate(-50%, -60px)",
+          overflow: "visible",
+          zIndex: "-5",
+          ml: "-24px",
+          display: { xs: "none", sm: "block" },
         }}
       >
-        <Image
-          src="/stats-bg.png"
-          layout="fixed"
-          width={2299}
-          height={2687}
-        />
+        <Image src="/stats-bg.png" layout="fixed" width={2299} height={2687} />
       </Box>
       <Box
         sx={{
-          position: 'absolute',
-          top: '-160px',
-          right: '-15%',
-          height: '100%',
-          width: '900px',
-          overflow: 'visible',
-          zIndex: '-5',
-          ml: '-24px',
-          display: { xs: 'block', sm: 'none' }
+          position: "absolute",
+          top: "-160px",
+          right: "-15%",
+          height: "100%",
+          width: "900px",
+          overflow: "visible",
+          zIndex: "-5",
+          ml: "-24px",
+          display: { xs: "block", sm: "none" },
         }}
       >
         <Image
@@ -96,26 +108,31 @@ export default function Stats() {
       </Box>
       <Grid container>
         <Grid item md={4}>
-          <SectionTitle title="Paideia statistics" marginBottom="24px" />
-          <Typography sx={titleStyle}>
-            Some Numbers to Look At &lt;
-          </Typography>
+          <SectionTitle marginBottom="24px">
+            Statistics
+          </SectionTitle>
+          <Typography sx={titleStyle}>Some Numbers to Look At &lt;</Typography>
         </Grid>
-        <Grid item md={3}>
-        </Grid>
+        <Grid item md={3}></Grid>
         <Grid item md={4}>
-          <Grid container wrap="nowrap" spacing={2} sx={{ mb: '120px' }}>
+          <Grid container wrap="nowrap" spacing={2} sx={{ mb: "120px" }}>
             <Grid item>
-              <Box sx={{
-                width: '8px',
-                height: '100%',
-                background: 'linear-gradient(161.68deg, #6FA1A9 19.58%, #ED7E21 84.97%)'
-              }}>
-              </Box>
+              <Box
+                sx={{
+                  width: "8px",
+                  height: "100%",
+                  background:
+                    "linear-gradient(161.68deg, #6FA1A9 19.58%, #ED7E21 84.97%)",
+                }}
+              ></Box>
             </Grid>
             <Grid item zeroMinWidth>
               <Typography component="p" sx={paragraphStyle}>
-                Many projects use NFTs as the analogical equivalent of a key being and open a door to a home. We strive to bring utility to our NFTs through exclusive access to a blockchain related game, along with offering other smaller utilities within our social media platforms, including Discord
+                Many projects use NFTs as the analogical equivalent of a key
+                being and open a door to a home. We strive to bring utility to
+                our NFTs through exclusive access to a blockchain related game,
+                along with offering other smaller utilities within our social
+                media platforms, including Discord
               </Typography>
             </Grid>
           </Grid>
@@ -125,10 +142,10 @@ export default function Stats() {
             justifyContent="flex-start"
             alignItems="stretch"
             spacing={12}
-            sx={{ maxWidth: '500px', float: 'right', mb: '240px' }}
+            sx={{ maxWidth: "500px", float: "right", mb: "240px" }}
           >
             {statList.map((stat, i: number) => (
-              <Grid item key={i} >
+              <Grid item key={i}>
                 <Grid container spacing={2} direction="row">
                   <Grid item>
                     <Image src={`/stats/${i + 1}.svg`} width={25} height={25} />
@@ -139,11 +156,13 @@ export default function Stats() {
                     </Typography>
                   </Grid>
                 </Grid>
-                <Typography sx={{
-                  fontFamily: '"Viga"',
-                  fontSize: '100px',
-                  lineHeight: '100px',
-                }}>
+                <Typography
+                  sx={{
+                    fontFamily: '"Viga", sans-serif',
+                    fontSize: "100px",
+                    lineHeight: "100px",
+                  }}
+                >
                   {stat.value}
                 </Typography>
                 <Grid
@@ -156,24 +175,32 @@ export default function Stats() {
                     item
                     flexGrow={1}
                     sx={{
-                      position: 'relative',
-                      maxWidth: '100%',
-                      minHeight: '100%'
+                      position: "relative",
+                      maxWidth: "100%",
+                      minHeight: "100%",
                     }}
                   >
-                    <Grid container direction="column" sx={{ height: '100%', pr: '12px' }}>
-                      <Grid item xs={6} sx={{ borderBottom: '1px solid white' }}>
-                      </Grid>
-                      <Grid item xs={6}>
-                      </Grid>
+                    <Grid
+                      container
+                      direction="column"
+                      sx={{ height: "100%", pr: "12px" }}
+                    >
+                      <Grid
+                        item
+                        xs={6}
+                        sx={{ borderBottom: "1px solid white" }}
+                      ></Grid>
+                      <Grid item xs={6}></Grid>
                     </Grid>
                   </Grid>
                   <Grid item xs="auto">
-                    <Typography sx={{
-                      fontFamily: '"Inter"',
-                      fontSize: '16px',
-                      textTransform: 'uppercase'
-                    }}>
+                    <Typography
+                      sx={{
+                        fontFamily: '"Inter", sans-serif',
+                        fontSize: "16px",
+                        textTransform: "uppercase",
+                      }}
+                    >
                       {stat.subTitle}
                     </Typography>
                   </Grid>
@@ -182,37 +209,42 @@ export default function Stats() {
             ))}
           </Grid>
           <Box>
-            <SectionTitle title="How to begin" marginBottom="24px" />
-            <Grid container wrap="nowrap" spacing={2} sx={{ mb: '24px' }}>
+            <SectionTitle marginBottom="24px">
+              How to begin
+            </SectionTitle>
+            <Grid container wrap="nowrap" spacing={2} sx={{ mb: "24px" }}>
               <Grid item>
-                <Box sx={{
-                  width: '8px',
-                  height: '100%',
-                  background: '#fff'
-                }}>
-                </Box>
+                <Box
+                  sx={{
+                    width: "8px",
+                    height: "100%",
+                    background: "#fff",
+                  }}
+                ></Box>
               </Grid>
               <Grid item zeroMinWidth>
-                <Typography component="p" sx={{
-                  fontFamily: '"Viga"',
-                  fontSize: '56px',
-                  lineHeight: '120%',
-                  letterSpacing: '-0.5px',
-                  textTransform: 'uppercase',
-                  textShadow: '0px 2px 2px rgba(0, 0, 0, 0.6)'
-                }}>
+                <Typography
+                  component="p"
+                  sx={{
+                    fontFamily: '"Viga", sans-serif',
+                    fontSize: { xs: "48px", md: "56px" },
+                    lineHeight: "120%",
+                    letterSpacing: "-0.5px",
+                    textTransform: "uppercase",
+                    textShadow: "0px 2px 2px rgba(0, 0, 0, 0.6)",
+                  }}
+                >
                   Ready to try Paideia?
                 </Typography>
               </Grid>
             </Grid>
-            <Button variant="contained" sx={{}}>
-              Create your DAO
+            <Button disabled variant="contained" sx={{}}>
+              Coming Soon
             </Button>
           </Box>
         </Grid>
-        <Grid item md={1}>
-        </Grid>
+        <Grid item md={1}></Grid>
       </Grid>
     </Container>
-  )
+  );
 }

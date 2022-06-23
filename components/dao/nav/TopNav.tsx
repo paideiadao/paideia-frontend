@@ -14,6 +14,7 @@ import {
   Notification,
 } from "@pages/dao/[id]/notifications";
 import { useRouter } from "next/router";
+import ConnectWallet from "@components/wallet/ConnectWallet";
 
 const TopNav: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
@@ -21,7 +22,7 @@ const TopNav: React.FC = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const router = useRouter();
-  const {id} = router.query
+  const { id } = router.query;
   return (
     <Box
       sx={{
@@ -45,6 +46,7 @@ const TopNav: React.FC = () => {
         }}
       >
         <DarkSwitch />
+        <ConnectWallet />
         <Box
           sx={{
             ml: ".5rem",

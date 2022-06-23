@@ -1,6 +1,6 @@
 import { Avatar, Box, Button, LinearProgress, Modal } from "@mui/material";
 import * as React from "react";
-import Musk from "../../../public/profile/musk-full.png";
+import Musk from "@public/profile/musk-full.png";
 import InfoIcon from "@mui/icons-material/Info";
 import EditIcon from "@mui/icons-material/Edit";
 import Link from "next/link";

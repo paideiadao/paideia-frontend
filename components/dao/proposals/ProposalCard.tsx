@@ -1,6 +1,5 @@
-import { Box, Badge, Chip, Avatar } from "@mui/material";
+import { Box, Badge, Chip, Avatar, IconButton } from "@mui/material";
 import * as React from "react";
-import { Subheader } from "../../creation/utilities/HeaderComponents";
 import CircleIcon from "@mui/icons-material/Circle";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
@@ -76,7 +75,7 @@ const VoteWidget: React.FC<{
           display: "flex",
           alignItems: "center",
           color: "text.light",
-          fontSize: ".8rem",
+          fontSize: "1rem",
         }}
       >
         {props.yes} votes
@@ -86,7 +85,7 @@ const VoteWidget: React.FC<{
   );
 };
 
-const ProposalStatus: React.FC<{ status: string }> = (props) => {
+export const ProposalStatus: React.FC<{ status: string }> = (props) => {
   const getStatusColor = () => {
     switch (props.status) {
       case "Challenged": {
@@ -104,6 +103,9 @@ const ProposalStatus: React.FC<{ status: string }> = (props) => {
       }
       case "Unchallenged": {
         return "primary.lightSuccess";
+      }
+      case "Failed": {
+        return "red";
       }
     }
   };
@@ -123,48 +125,115 @@ const ProposalStatus: React.FC<{ status: string }> = (props) => {
   );
 };
 
-// userSide, undefined for no vote, 0 for dislike, 1 for like
-const LikesDislikes: React.FC<{
+interface ILikesDislikes {
   likes: number;
   dislikes: number;
   userSide: number;
-}> = (props) => {
+}
+
+// userSide, undefined for no vote, 0 for dislike, 1 for like
+export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
   // use a prop setter function to set user state to liked or disliked & make an api call here.
+  const [value, setValue] = React.useState<ILikesDislikes>({
+    ...props,
+  });
+
   return (
-    <Box sx={{ display: "flex", alignItems: "center", fontSize: ".8rem" }}>
-      {props.userSide === undefined ? (
+    <Box sx={{ display: "flex", alignItems: "center", fontSize: "1rem" }}>
+      {value.userSide === undefined ? (
         <>
-          <ThumbDownOffAltIcon sx={{ mr: ".3rem", fontSize: ".8rem" }} />
-          {props.dislikes}
           <ThumbUpOffAltIcon
-            sx={{ ml: ".5rem", mr: ".3rem", fontSize: ".8rem" }}
+            sx={{
+              ml: ".5rem",
+              mr: ".3rem",
+              fontSize: "1rem",
+              cursor: "pointer",
+            }}
+            onClick={() =>
+              setValue({
+                ...value,
+                userSide: 1,
+                likes: value.likes + 1,
+              })
+            }
           />
-          {props.likes}
+          {value.likes}
+          <ThumbDownOffAltIcon
+            sx={{
+              mr: ".3rem",
+              fontSize: "1rem",
+              cursor: "pointer",
+              ml: ".5rem",
+            }}
+            onClick={() =>
+              setValue({
+                ...value,
+                userSide: 0,
+                dislikes: value.dislikes + 1,
+              })
+            }
+          />
+          {value.dislikes}
         </>
-      ) : props.userSide === 0 ? (
+      ) : value.userSide === 0 ? (
         <>
-          <ThumbDownIcon
-            sx={{ mr: ".3rem", fontSize: ".8rem", color: "red" }}
-          />
-          <span style={{ color: "red" }}>{props.dislikes}</span>
           <ThumbUpOffAltIcon
-            sx={{ ml: ".5rem", mr: ".3rem", fontSize: ".8rem" }}
+            sx={{
+              ml: ".5rem",
+              mr: ".3rem",
+              fontSize: "1rem",
+              cursor: "pointer",
+            }}
+            onClick={() =>
+              setValue({
+                ...value,
+                userSide: 1,
+                likes: value.likes + 1,
+                dislikes: value.dislikes - 1,
+              })
+            }
           />
-          {props.likes}
+          {value.likes}
+          <ThumbDownIcon
+            sx={{
+              mr: ".3rem",
+              ml: ".5rem",
+              fontSize: "1rem",
+              cursor: "pointer",
+              color: "red",
+            }}
+          />
+          <span style={{ color: "red" }}>{value.dislikes}</span>
         </>
       ) : (
         <>
-          <ThumbDownOffAltIcon sx={{ mr: ".3rem", fontSize: ".8rem" }} />
-          {props.dislikes}
           <ThumbUpIcon
             sx={{
               ml: ".5rem",
               mr: ".3rem",
               fontSize: "1rem",
               color: "primary.lightSuccess",
+              cursor: "pointer",
             }}
           />
-          <Box sx={{ color: "primary.lightSuccess" }}>{props.likes}</Box>
+          <Box sx={{ color: "primary.lightSuccess" }}>{value.likes}</Box>
+          <ThumbDownOffAltIcon
+            sx={{
+              mr: ".3rem",
+              fontSize: "1rem",
+              cursor: "pointer",
+              ml: ".5rem",
+            }}
+            onClick={() =>
+              setValue({
+                ...value,
+                userSide: 0,
+                dislikes: value.dislikes + 1,
+                likes: value.likes - 1,
+              })
+            }
+          />
+          {value.dislikes}
         </>
       )}
     </Box>
@@ -306,7 +375,7 @@ const CountdownWidget: React.FC<{ date: Date }> = (props) => {
     <Box
       sx={{
         width: "100%",
-        fontSize: ".8rem",
+        fontSize: "1rem",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -322,6 +391,7 @@ const CountdownWidget: React.FC<{ date: Date }> = (props) => {
 };
 
 const ProposalCard: React.FC<IProposalCard> = (props) => {
+  const [favorited, setFavorited] = React.useState<boolean>(props.favorited);
   const getFooter = () => {
     switch (props.status) {
       case "Challenged": {
@@ -355,84 +425,86 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
 
   // use a local state to make it dynamic...
   return (
-    <Link
-      href={`/dao/${id}/${
-        props.status === "Discussion" ? "discussion" : "proposal"
-      }/${props.id}`}
+    <Box
+      sx={{
+        pr: "1rem",
+        pt: ".5rem",
+        pb: ".5rem",
+        minWidth: props.width,
+        maxWidth: props.width,
+      }}
+      id={`proposal-active-${props.c}`}
     >
-      <Box
-        sx={{
-          pr: "1rem",
-          pt: ".5rem",
-          pb: ".5rem",
-          minWidth: props.width,
-          maxWidth: props.width,
-        }}
-        id={`proposal-active-${props.c}`}
+      <Badge
+        badgeContent={
+          <IconButton
+            sx={{
+              backgroundColor: "favoriteBackground.main",
+              color: "text.light",
+              p: ".2rem",
+              borderRadius: "50%",
+              width: "1.5rem",
+              height: "1.5rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              setFavorited(!favorited);
+            }}
+          >
+            {favorited ? (
+              <FavoriteIcon sx={{ fontSize: "1rem", fill: "red" }} />
+            ) : (
+              <FavoriteBorderIcon sx={{ fontSize: "1rem", fill: "red" }} />
+            )}
+          </IconButton>
+        }
+        sx={{ width: "100%" }}
       >
-        <Badge
-          badgeContent={
-            <Box
-              sx={{
-                backgroundColor: "favoriteBackground.main",
-                color: "text.light",
-                p: ".2rem",
-                borderRadius: "50%",
-                width: "1.5rem",
-                height: "1.5rem",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-              onClick={() => console.log("favorite api call here.")}
-            >
-              {props.favorited ? (
-                <FavoriteIcon sx={{ fontSize: "1rem", fill: "red" }} />
-              ) : (
-                <FavoriteBorderIcon sx={{ fontSize: "1rem", fill: "red" }} />
-              )}
-            </Box>
-          }
-          sx={{ width: "100%" }}
+        <Box
+          sx={{
+            backgroundColor: "fileInput.outer",
+            border: "1px solid",
+            borderColor: "divider.main",
+            borderRadius: ".3rem",
+            width: "100%",
+            ":hover": {
+              borderColor: "primary.main",
+            },
+          }}
         >
           <Box
             sx={{
-              backgroundColor: "fileInput.outer",
-              border: "1px solid",
-              borderColor: "divider.main",
-              borderRadius: ".3rem",
-              width: "100%",
-              ":hover": {
-                borderColor: 'primary.main'
-              },
+              borderBottom: "1px solid",
+              borderBottomColor: "divider.main",
+              p: ".5rem",
             }}
           >
-            <Box
-              sx={{
-                borderBottom: "1px solid",
-                borderBottomColor: "divider.main",
-                p: ".5rem",
-              }}
+            <Link
+              href={`/dao/${id}/${
+                props.status === "Discussion" ? "discussion" : "proposal"
+              }/${props.id}`}
             >
-              <Subheader title={props.proposalName} small />
-              <Box sx={{ display: "flex", fontSize: ".8rem" }}>
-                <ProposalStatus status={props.status} />
-                <Box sx={{ ml: "auto" }}>
-                  <LikesDislikes
-                    likes={props.likes}
-                    dislikes={props.dislikes}
-                    userSide={props.userSide}
-                  />
-                </Box>
+              <Box sx={{ cursor: "pointer" }}>{props.proposalName}</Box>
+            </Link>
+            <Box sx={{ display: "flex", fontSize: "1rem" }}>
+              <ProposalStatus status={props.status} />
+              <Box sx={{ ml: "auto" }}>
+                <LikesDislikes
+                  likes={props.likes}
+                  dislikes={props.dislikes}
+                  userSide={props.userSide}
+                />
               </Box>
-              <CardContent category={props.category} widget={props.widget} />
             </Box>
-            <Box sx={{ p: ".5rem", height: "4rem" }}>{getFooter()}</Box>
+            <CardContent category={props.category} widget={props.widget} />
           </Box>
-        </Badge>
-      </Box>
-    </Link>
+          <Box sx={{ p: ".5rem", height: "4rem" }}>{getFooter()}</Box>
+        </Box>
+      </Badge>
+    </Box>
   );
 };
 

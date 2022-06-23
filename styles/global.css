@@ -2,7 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   line-height: 1.6;
   font-size: 18px;
@@ -21,20 +21,19 @@ body {
 /* Track */
 ::-webkit-scrollbar-track {
   border-radius: 0.3rem;
-
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: gray;
+  background: #00868f;
   border-radius: 0.3rem;
   border: 1px solid;
-  border-color: black
+  border-color: black;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: transparent;
+  background: #005962;
 }
 
 * {
@@ -56,5 +55,9 @@ img {
 
 .outlineText {
   -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: #FFFFFF;
-  }
+  -webkit-text-stroke-color: #ffffff;
+}
+
+.slick-arrow {
+  display: none !important;
+}

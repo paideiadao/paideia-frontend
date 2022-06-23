@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import * as React from "react";
 import { GlobalContext, IGlobalContext } from "../../../lib/AppContext";
-import PaideiaLogo from "../../../public/dao/bio-image/paideia-logo.png";
+import PaideiaLogo from "@public/dao/bio-image/paideia-logo.png";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -140,8 +140,8 @@ const DaoBio: React.FC = () => {
               <CloseIcon color="primary" sx={{ fontSize: "1rem" }} />
             </IconButton>
           </Box>
-          {daos.map((d: any) => (
-            <DaoSelect {...d} set={setDaoWrapper} />
+          {daos.map((d: any, c: number) => (
+            <DaoSelect {...d} set={setDaoWrapper} key={`dao-select-key-${c}`} />
           ))}
         </Box>
       )}

@@ -300,7 +300,13 @@ const PublicRound: React.FC<{
       </Box>
       <Box sx={{ width: "100%", pl: "1rem", mt: "1rem", pr: "1rem" }}>
         <CapsInfo title="Configuration" />
-        <LearnMore title="Token Holder Addresses" light tooltipTitle="Title Here" tooltipText="Content here." tooltipLink="/here" />
+        <LearnMore
+          title="Token Holder Addresses"
+          light
+          tooltipTitle="Title Here"
+          tooltipText="Content here."
+          tooltipLink="/here"
+        />
         {value.tokenHolders.map((i: ITokenHolder, c: number) => {
           return (
             <Box sx={{ display: "flex", alignItems: "center", height: "5rem" }}>
