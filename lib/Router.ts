@@ -26,6 +26,10 @@ import Distributions from "@pages/dao/[id]/distributions";
 import CreateDistribution from "@pages/dao/[id]/distributions/create";
 import Distribution from "@pages/dao/[id]/distribution/[distribution_id]";
 import RedeemDistribution from "@pages/dao/[id]/distribution/redeem/[distribution_id]";
+import Token from "@pages/dao/[id]/financials/token";
+import Tokenomics from "@pages/dao/[id]/financials/tokenomics";
+import Recurring from "@pages/dao/[id]/financials/recurring";
+import Treasury from "@pages/dao/[id]/financials/treasury";
 
 export const isDao = (Component: any) => {
   return (
@@ -56,6 +60,10 @@ export const isDao = (Component: any) => {
     Component === Distributions ||
     Component === CreateDistribution ||
     Component === Distribution ||
-    Component === RedeemDistribution
+    Component === RedeemDistribution ||
+    Component === Token ||
+    Component === Tokenomics ||
+    Component === Recurring || 
+    Component === Treasury
   );
 };
