@@ -52,7 +52,13 @@ export const AddWallet: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
   const [dAppError, setDAppError] = React.useState(false);
   const [dAppAddressTableData, setdAppAddressTableData] = React.useState([]); // table data
-  const [view, setView] = React.useState<string>(wallet !== '' && !dAppWallet.connected ? 'mobile' : wallet !== '' && dAppWallet.connected ? 'nautilus' : 'listing');
+  const [view, setView] = React.useState<string>(
+    wallet !== "" && !dAppWallet.connected
+      ? "mobile"
+      : wallet !== "" && dAppWallet.connected
+      ? "nautilus"
+      : "listing"
+  );
 
   React.useEffect(() => {
     // load primary address
@@ -108,7 +114,7 @@ export const AddWallet: React.FC = () => {
 
   const handleClose = () => {
     // reset unsaved changes
-    handleSubmitWallet()
+    handleSubmitWallet();
     setDAppError(false);
   };
 
@@ -134,9 +140,9 @@ export const AddWallet: React.FC = () => {
       connected: false,
       addresses: [],
     });
-    localStorage.setItem(WALLET_ADDRESS, undefined)
-    localStorage.setItem(WALLET_ADDRESS_LIST, undefined)
-    localStorage.setItem(DAPP_CONNECTED, undefined)
+    localStorage.setItem(WALLET_ADDRESS, undefined);
+    localStorage.setItem(WALLET_ADDRESS_LIST, undefined);
+    localStorage.setItem(DAPP_CONNECTED, undefined);
   };
 
   const handleWalletFormChange = (e) => {
@@ -209,9 +215,11 @@ export const AddWallet: React.FC = () => {
       //@ts-ignore
       const address_unused = await ergo.get_unused_addresses();
       const addresses = [...address_used, ...address_unused];
+      console.log(addresses);
       const addressData = addresses.map((address, index) => {
         return { id: index, name: address };
       });
+      console.log("here...");
       setDAppWallet({
         ...dAppWallet,
         addresses: addresses,
@@ -223,9 +231,13 @@ export const AddWallet: React.FC = () => {
     setLoading(false);
   };
 
+  React.useEffect(() => {
+    setWallet(localStorage.getItem(WALLET_ADDRESS))
+  }, [view])
+
   return (
     <>
-      <Dialog open={addWalletOpen} onClose={handleClose}>
+      <Dialog open={addWalletOpen} onClose={() => setAddWalletOpen(false)}>
         <DialogTitle sx={{ backgroundColor: "fileInput.main" }}>
           Connect Wallet
         </DialogTitle>
@@ -238,10 +250,18 @@ export const AddWallet: React.FC = () => {
           {view === "listing" ? (
             <ProviderListing set={setView} />
           ) : view === "nautilus" ? (
-            <Nautilus set={() => setView('listing')} connect={dAppConnect}/>
+            <Nautilus
+              set={() => setView("listing")}
+              connect={dAppConnect}
+              wallet={wallet}
+              connected={dAppWallet.connected}
+              addresses={dAppAddressTableData}
+              setWallet={setWallet}
+              load={loadAddresses}
+            />
           ) : (
-            <MobileWallet 
-              set={() => setView('listing')}
+            <MobileWallet
+              set={() => setView("listing")}
               wallet={walletInput}
               setWallet={setWalletInput}
             />
@@ -284,24 +304,39 @@ export const AddWallet: React.FC = () => {
             display: "flex",
             alignItems: "center",
             backgroundColor: "fileInput.main",
-            pl: '1rem', pr: '1rem', pb: '.5rem'
+            pl: "1rem",
+            pr: "1rem",
+            pb: ".5rem",
           }}
         >
-          {wallet !== '' && <Button color='error' variant='outlined' onClick={() => {
-            setWallet("");
+          <Button onClick={() => setAddWalletOpen(false)} sx={{ mr: "1rem" }}>
+            Close
+          </Button>
 
-            clearWallet();
-            setAddWalletOpen(false);
-          }}>
-            Disconnect
-          </Button>}
           <Box sx={{ ml: "auto" }}>
-            <Button onClick={handleClose} sx={{ mr: "1rem" }}>
-              Cancel
-            </Button>
-            <Button onClick={handleClose} disabled={walletInput === ''} variant='contained'>
-              Confirm
-            </Button>
+            {wallet !== "" && (
+              <Button
+                color="error"
+                variant="outlined"
+                sx={{ mr: ".5rem" }}
+                onClick={() => {
+                  setWallet("");
+
+                  clearWallet();
+                }}
+              >
+                Disconnect
+              </Button>
+            )}
+            {view === "mobile" && (
+              <Button
+                onClick={handleClose}
+                disabled={walletInput === ""}
+                variant="contained"
+              >
+                Confirm
+              </Button>
+            )}
           </Box>
         </DialogActions>
       </Dialog>

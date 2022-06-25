@@ -306,9 +306,10 @@ const Members: React.FC = () => {
       <Box
         sx={{ display: "flex", width: "100%", flexWrap: "wrap", mt: "1.5rem" }}
       >
-        {members.map((i: IMemberCard) => (
+        {members.map((i: IMemberCard, c: number) => (
           <MemberCard
             {...i}
+            key={"member-card" + c}
             width={{ sm: "50%", md: "33%", lg: "33%", xl: "25%" }}
           />
         ))}

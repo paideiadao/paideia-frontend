@@ -291,13 +291,76 @@ const DropdownLink: React.FC<{
 // accordion should go inside a scollable wrapper.
 
 const Contents: React.FC = () => {
-  const [selected, setSelected] = React.useState<string>("Dashboard");
-  const [subSelected, setSubSelected] = React.useState<string>(undefined);
+  const router = useRouter();
+  const path = router.asPath;
+
+  const getSelected = (): string => {
+    if (path.includes("proposals")) {
+      return "Proposals";
+    } else if (path.includes("financials")) {
+      return "Financials";
+    } else if (path.includes("staking")) {
+      return "Staking";
+    } else if (path.includes("distributions")) {
+      return "Distributions";
+    } else if (path.includes("members")) {
+      return "Members";
+    } else if (path.includes("activity")) {
+      return "Activity";
+    } else if (path.includes("settings")) {
+      return "Settings";
+    } else if (path.includes("config")) {
+      return "DAO Config";
+    } else if (path.includes("/wallet")) {
+      return "Settings";
+    } else {
+      return "Dashboard";
+    }
+  };
+
+  const getSubSelected = (): string => {
+    if (path.includes("profile/edit")) {
+      return "Edit profile";
+    } else if (path.includes("notifications/edit")) {
+      return "Notifications";
+    } else if (path.includes("/wallet")) {
+      return "Wallet";
+    } else if (path.includes("/financials/treasury")) {
+      return "Treasury";
+    } else if (path.includes("/financials/tokenomics")) {
+      return "Tokenomics";
+    } else if (path.includes("/financials/recurring")) {
+      return "Recurring";
+    } else if (path.includes("/financials/token")) {
+      return "Token";
+    } else if (path.includes("/proposals/all")) {
+      return "All";
+    } else if (path.includes("/proposals/following")) {
+      return "Following";
+    } else if (path.includes("/proposals/mine")) {
+      return "Mine";
+    } else if (path.includes("/proposals/past")) {
+      return "Past";
+    } else {
+      return "";
+    }
+  };
+
+  const [selected, setSelected] = React.useState<string>(getSelected());
+  const [subSelected, setSubSelected] = React.useState<string>(
+    getSubSelected()
+  );
   const setWrapper = (v: string) => {
     setSubSelected(undefined);
     setSelected(v);
   };
   const setSubWrapper = (v: string) => setSubSelected(v);
+
+  React.useEffect(() => {
+    setSelected(getSelected());
+    setSubSelected(getSubSelected());
+  }, [router]);
+
   let categories = [
     { icon: <BarChartIcon sx={{ opacity: ".8" }} />, label: "Dashboard" },
     {

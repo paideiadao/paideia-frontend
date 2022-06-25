@@ -58,7 +58,7 @@ const LatestActivity: React.FC = () => {
         </Button>
       </Box>
       {activities.map((i: any, c: number) => {
-        return <Activity i={i} c={c} />;
+        return <Activity i={i} c={c} key={"latest-activity" + c} />;
       })}
     </Box>
   );

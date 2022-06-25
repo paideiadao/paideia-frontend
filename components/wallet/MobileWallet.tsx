@@ -1,9 +1,20 @@
-import { Avatar, Box, Button, IconButton, InputAdornment, TextField } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  IconButton,
+  InputAdornment,
+  TextField,
+} from "@mui/material";
 import * as React from "react";
 import ergo from "@public/icons/ergo.png";
-import ClearIcon from '@mui/icons-material/Clear';
+import ClearIcon from "@mui/icons-material/Clear";
 
-const MobileWallet: React.FC<{set: Function, wallet: string, setWallet: Function}> = (props) => {
+const MobileWallet: React.FC<{
+  set: Function;
+  wallet: string;
+  setWallet: Function;
+}> = (props) => {
   return (
     <Box sx={{ width: "100%" }}>
       <Box
@@ -33,24 +44,28 @@ const MobileWallet: React.FC<{set: Function, wallet: string, setWallet: Function
           Change
         </Button>
       </Box>
-      <Box sx={{ mt: ".75rem", fontSize: '.9rem' }}>
-        Please type your wallet address in the input field in order to connect it to Paideia and access all of Paideia's features.
+      <Box sx={{ mt: ".75rem", fontSize: ".9rem" }}>
+        Please type your wallet address in the input field in order to connect
+        it to Paideia and access all of Paideia's features.
       </Box>
       <TextField
-        key='mobile-wallet-input'
-        label='Wallet address    '
-        sx={{width: '100%', mt: '.75rem', fontSize: '.9rem'}}
+        key="mobile-wallet-input"
+        label="Wallet address    "
+        sx={{ width: "100%", mt: ".75rem", fontSize: ".9rem" }}
         value={props.wallet}
         onChange={(e: any) => props.setWallet(e.target.value)}
-        autoComplete={'false'}
-        size='medium'
+        autoComplete={"false"}
+        size="medium"
         InputProps={{
-            endAdornment: <InputAdornment position="end">
-                {props.wallet !== '' && <IconButton color='primary' onClick={() => props.setWallet('')}>
-                    <ClearIcon/>
-
-                </IconButton>}
+          endAdornment: (
+            <InputAdornment position="end">
+              {props.wallet !== "" && (
+                <IconButton color="primary" onClick={() => props.setWallet("")}>
+                  <ClearIcon />
+                </IconButton>
+              )}
             </InputAdornment>
+          ),
         }}
       />
     </Box>
