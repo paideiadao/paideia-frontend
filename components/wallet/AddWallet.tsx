@@ -2,14 +2,10 @@ import * as React from "react";
 import {
   Button,
   Dialog,
-  TextField,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  FormHelperText,
-  Grid,
-  CircularProgress,
   Accordion,
   AccordionSummary,
   AccordionDetails,
@@ -20,8 +16,9 @@ import {
 import { useAddWallet } from "@components/wallet/AddWalletContext";
 import { useWallet } from "@components/wallet/WalletContext";
 import { Address } from "@components/wallet/Address";
-import Nautilus from "@public/icons/nautilus.png";
-import CheckIcon from "@mui/icons-material/Check";
+import ProviderListing from "./ProviderListing";
+import Nautilus from "./Nautilus";
+import MobileWallet from "./MobileWallet";
 
 const WALLET_ADDRESS = "wallet_address";
 const WALLET_ADDRESS_LIST = "wallet_address_list";
@@ -55,6 +52,7 @@ export const AddWallet: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
   const [dAppError, setDAppError] = React.useState(false);
   const [dAppAddressTableData, setdAppAddressTableData] = React.useState([]); // table data
+  const [view, setView] = React.useState<string>(wallet !== '' && !dAppWallet.connected ? 'mobile' : wallet !== '' && dAppWallet.connected ? 'nautilus' : 'listing');
 
   React.useEffect(() => {
     // load primary address
@@ -110,8 +108,7 @@ export const AddWallet: React.FC = () => {
 
   const handleClose = () => {
     // reset unsaved changes
-    setAddWalletOpen(false);
-    setWalletInput(wallet);
+    handleSubmitWallet()
     setDAppError(false);
   };
 
@@ -137,6 +134,9 @@ export const AddWallet: React.FC = () => {
       connected: false,
       addresses: [],
     });
+    localStorage.setItem(WALLET_ADDRESS, undefined)
+    localStorage.setItem(WALLET_ADDRESS_LIST, undefined)
+    localStorage.setItem(DAPP_CONNECTED, undefined)
   };
 
   const handleWalletFormChange = (e) => {
@@ -235,76 +235,33 @@ export const AddWallet: React.FC = () => {
             using a dapp wallet, please make sure only one wallet is enabled.
             Enabling multiple wallet extensions willl cause undefined behavior.
           </DialogContentText>
-          <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
-            <Avatar
-              src={Nautilus.src}
-              sx={{ height: "2.rem", width: "2.5rem", mr: "1rem" }}
+          {view === "listing" ? (
+            <ProviderListing set={setView} />
+          ) : view === "nautilus" ? (
+            <Nautilus set={() => setView('listing')} connect={dAppConnect}/>
+          ) : (
+            <MobileWallet 
+              set={() => setView('listing')}
+              wallet={walletInput}
+              setWallet={setWalletInput}
             />
-            <Box sx={{ fontSize: ".9rem", color: "text.light" }}>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "1rem",
-                  color: "text.main",
-                }}
-              >
-                Nautilus
-                <Chip
-                  icon={<CheckIcon />}
-                  variant="outlined"
-                  color="primary"
-                  label="Recommended"
-                  size="small"
-                  sx={{ ml: ".5rem" }}
-                />
-              </Box>
-              Connect automatically signing with your wallet.
-            </Box>
-          </Box>
-          <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
-            <Avatar
-              src={Nautilus.src}
-              sx={{ height: "2.rem", width: "2.5rem", mr: "1rem" }}
-            />
-            <Box sx={{ fontSize: ".9rem", color: "text.light" }}>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  fontSize: "1rem",
-                  color: "text.main",
-                }}
-              >
-                Mobile Wallet
-                <Chip
-                  icon={<CheckIcon />}
-                  variant="outlined"
-                  color="primary"
-                  label="Recommended"
-                  size="small"
-                  sx={{ ml: ".5rem" }}
-                />
-              </Box>
-              Connect by manually adding your wallet address
-            </Box>
-          </Box>
-          {dAppWallet.connected && (
+          )}
+          {/* {dAppWallet.connected && (
             <Accordion sx={{ mt: 1 }}>
               <AccordionSummary onClick={loadAddresses}>
                 <strong>Change Address</strong>
               </AccordionSummary>
               <AccordionDetails>
                 List wallets here...
-                {/* <PaginatedTable
+                <PaginatedTable
                       rows={dAppAddressTableData}
                       onClick={(index) =>
                         changeWalletAddress(dAppAddressTableData[index].name)
                       }
-                    /> */}
+                    />
               </AccordionDetails>
             </Accordion>
-          )}
+          )} */}
           {/* <TextField
             disabled={dAppWallet.connected}
             autoFocus
@@ -322,10 +279,27 @@ export const AddWallet: React.FC = () => {
             {!isAddressValid(walletInput) ? "Invalid ergo address." : ""}
           </FormHelperText> */}
         </DialogContent>
-        <DialogActions sx={{ display: "flex", alignItems: "center" }}>
+        <DialogActions
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            backgroundColor: "fileInput.main",
+            pl: '1rem', pr: '1rem', pb: '.5rem'
+          }}
+        >
+          {wallet !== '' && <Button color='error' variant='outlined' onClick={() => {
+            setWallet("");
+
+            clearWallet();
+            setAddWalletOpen(false);
+          }}>
+            Disconnect
+          </Button>}
           <Box sx={{ ml: "auto" }}>
-            <Button onClick={() => clearWallet()}>Cancel</Button>
-            <Button onClick={handleClose} disabled>
+            <Button onClick={handleClose} sx={{ mr: "1rem" }}>
+              Cancel
+            </Button>
+            <Button onClick={handleClose} disabled={walletInput === ''} variant='contained'>
               Confirm
             </Button>
           </Box>

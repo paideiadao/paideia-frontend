@@ -42,6 +42,7 @@ export const LightTheme = createTheme({
       contrast: "#FFFFFF",
       selectedButton: "rgb(0, 134, 143, 0.1)",
       lightSuccess: "green",
+      lightOpacity: "rgba(0, 134, 143, 0.08)",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
@@ -186,6 +187,7 @@ export const DarkTheme = createTheme({
       dark: "#6FA1A9",
       selectedButton: "rgba(2, 136, 209, 0.1)",
       lightSuccess: "#66BB6A",
+      lightOpacity: "rgba(159, 210, 219, 0.08)",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
