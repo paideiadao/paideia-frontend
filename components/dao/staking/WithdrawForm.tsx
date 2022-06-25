@@ -83,7 +83,7 @@ const WithdrawForm: React.FC = () => {
           Withdraw
         </Button>
       </Box>
-      <Modal open={withdraw} onClose={closeWithdraw}>
+      {/* <Modal open={withdraw} onClose={closeWithdraw}>
         <Box
           sx={{
             ...modalBackground,
@@ -94,7 +94,7 @@ const WithdrawForm: React.FC = () => {
         >
           Withdraw confirm here...
         </Box>
-      </Modal>
+      </Modal> */}
     </Box>
   );
 };

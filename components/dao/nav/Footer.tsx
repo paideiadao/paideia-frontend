@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
       sx={{
         mt: ".5rem",
         pt: ".5rem",
-        width: "13rem",
+        width: "13.5rem",
         mb: "0rem",
         position: "absolute",
         bottom: "0",

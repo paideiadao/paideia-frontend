@@ -82,7 +82,7 @@ const StakingForm: React.FC = () => {
           Stake
         </Button>
       </Box>
-      <Modal open={stake} onClose={closeStake}>
+      {/* <Modal open={stake} onClose={closeStake}>
         <Box
           sx={{
             ...modalBackground,
@@ -93,7 +93,7 @@ const StakingForm: React.FC = () => {
         >
           Stake Confirm Here...
         </Box>
-      </Modal>
+      </Modal> */}
     </Box>
   );
 };

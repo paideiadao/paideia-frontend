@@ -2,9 +2,12 @@ import {
   Avatar,
   Box,
   Button,
+  ClickAwayListener,
   FormControl,
+  InputAdornment,
   InputLabel,
   MenuItem,
+  TextField,
 } from "@mui/material";
 import * as React from "react";
 import { GlobalContext, IGlobalContext } from "../../../lib/AppContext";
@@ -14,6 +17,15 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
+import CheckIcon from '@mui/icons-material/Check';
+import Link from "next/link";
+import SearchIcon from '@mui/icons-material/Search';
+import Spreadly from '@public/icons/spreadly.png'
+import ErgoPad from '@public/icons/ergopad.png'
+import Azorus from '@public/icons/azorus.png'
+import ErgoLend from '@public/icons/ergolend.png'
+import Swamp from '@public/icons/swamp.png'
+
 
 export interface IDao {
   name: string;
@@ -22,27 +34,48 @@ export interface IDao {
 
 const daos = [
   {
+    id: 5,
+    name: "Spreadly",
+    url: "paideia.im/dao/spreadly",
+    href: 'spreadly',
+    img: Spreadly.src
+  },
+  {
+    id: 1,
     name: "Paideia",
-    url: "dao.paideia.im",
+    url: "paideia.im/dao",
+    href: '',
+    img: PaideiaLogo.src
   },
   {
+    id: 2,
     name: "Ergo Lend",
-    url: "ergolend.paideia.im",
+    url: "paideia.im/dao/ergolend",
+    href: 'ergolend',
+    img: ErgoLend.src
   },
   {
+    id: 3,
     name: "Ergo Pad",
-    url: "ergopad.paideia.im",
+    url: "paideia.im/dao/ergopad",
+    href: 'ergopad',
+    img: ErgoPad.src
   },
   {
-    name: "Ergo Games",
-    url: "ergogames.paideia.im",
+    id: 4,
+    name: "Swamp Audio",
+    url: "paideia.im/dao/swamp",
+    href: 'swamp',
+    img: Swamp.src
   },
 ];
 
 const DaoBio: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [dropdown, setDropdown] = React.useState<boolean>(false);
+  const [search, setSearch] = React.useState<string>('');
 
+  const id = 1;
   const [dao, setDao] = React.useState<IDao>({
     name: "Spreadly",
     url: "spreadly.paideia.im",
@@ -110,70 +143,97 @@ const DaoBio: React.FC = () => {
         </Box>
       </Box>
       {dropdown && (
+        <ClickAwayListener onClickAway={() => setDropdown(false)}>
+
         <Box
           sx={{
             position: "absolute",
-            width: "90%",
+            width: "89%",
             backgroundColor: "fileInput.main",
-            bottom: "-7rem",
-            m: ".4rem",
-            mr: "6%",
-            ml: "6%",
+            // bottom: "-7rem",
+            top: '5rem',
             display: "flex",
             alignItems: "flex-start",
-            height: "10rem",
             zIndex: 100,
             borderRadius: ".25rem",
-            overflowY: "scroll",
             flexDirection: "column",
+            p: '.5rem',
+            pl: '0',
+            pr: '0',
+            border: '1px solid',
+            borderColor: 'divider.main'
           }}
         >
-          <Box
-            sx={{
-              cursor: "pointer",
-              position: "fixed",
-              left: "12rem",
-              top: "5rem",
-            }}
-          >
-            <IconButton onClick={() => setDropdown(false)} size="small">
-              <CloseIcon color="primary" sx={{ fontSize: "1rem" }} />
-            </IconButton>
-          </Box>
-          {daos.map((d: any, c: number) => (
-            <DaoSelect {...d} set={setDaoWrapper} key={`dao-select-key-${c}`} />
-          ))}
+          {daos.length > 5 && <Box sx={{width: '100%', pb: '.5rem', borderBottom: '1px solid', borderColor: 'divider.main', mb: '.5rem', pl: '.5rem', pr: '.5rem'}}>
+            <TextField
+              value={search}
+              onChange={(e: any) => setSearch(e.target.value)}
+              size='small'
+              placeholder="Search by name or url"
+              InputProps={{
+                sx: {fontSize: '.7rem'},
+                endAdornment: <InputAdornment position='end'>
+                  <SearchIcon color='primary' sx={{fontSize:'1rem'}}/>
+                </InputAdornment>
+              }}
+              sx={{width: '100%'}}
+            />
+          </Box>}
+          <Box sx={{width: '100%', pl: '.5rem', pr: '.5rem', 
+            overflowY: "auto",
+        
+        
+        maxHeight: "15rem",
+      }}>
+          {daos.filter((i: any) => search === '' ? true : i.name.toLowerCase().includes(search.toLowerCase())).map((d: any, c: number) => (
+            <DaoSelect {...d} set={setDaoWrapper} key={`dao-select-key-${c}`} selected={id === d.id} />
+          ))} </Box>
+
+
+         
         </Box>
+        </ClickAwayListener>
+
       )}
     </Box>
   );
 };
 
-const DaoSelect: React.FC<{ set: Function; name: string; url: string }> = (
+const DaoSelect: React.FC<{ set: Function; name: string; url: string, img: string, selected: boolean, href: string}> = (
   props
 ) => {
   return (
-    <Box
-      sx={{
-        pl: ".5rem",
-        pt: ".25rem",
-        pb: ".25rem",
-        borderBottom: "1px solid",
-        borderBottomColor: "divider.main",
-        width: "100%",
-        cursor: "pointer",
-        backgroundColor: "fileInput.main",
-      }}
-      onClick={() =>
-        props.set({
-          name: props.name,
-          url: props.url,
-        })
-      }
-    >
-      <Box sx={{ fontSize: ".7rem" }}>{props.name}</Box>
-      <Box sx={{ fontSize: ".6rem", color: "text.light" }}>{props.url}</Box>
-    </Box>
+    <Link href={`/dao/${props.href}`}>
+      <Box
+        sx={{
+          pl: ".5rem",
+          pt: ".25rem",
+          pb: ".25rem",
+          mb: '.5rem',
+          width: "100%",
+          cursor: "pointer",
+          borderRadius: '.3rem',
+          display: 'flex',
+          alignItems: 'center',
+          backgroundColor: props.selected ? 'primary.lightOpacity' : "fileInput.main",
+          pr: '.25rem',
+        }}
+        onClick={() =>
+          props.set({
+            name: props.name,
+            url: props.url,
+          })
+        }
+      >
+        <Avatar src={props.img} sx={{width: '1.5rem', height: '1.5rem'}}/>
+        <Box sx={{ fontSize: ".7rem", ml: '.5rem' }}>{props.name}
+        <Box sx={{ fontSize: ".6rem", color: "text.light" }}>{props.url}</Box></Box>
+        {props.selected && <Box sx={{ml: 'auto'}}>
+          <CheckIcon sx={{fontSize: '1rem'}} color='primary'/>
+        </Box>}
+      </Box>
+    </Link>
+    
   );
 };
 

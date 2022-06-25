@@ -8,7 +8,7 @@ const Nav: React.FC = (props) => {
   return (
     <Box
       sx={{
-        width: "13rem",
+        width: "13.5rem",
         backgroundColor: "backgroundColor.main",
         borderRight: "1px solid",
         borderRightColor: "divider.main",
