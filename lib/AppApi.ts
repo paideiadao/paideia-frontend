@@ -22,5 +22,8 @@ export class AppApi extends AbstractApi {
     this.setDaoId = _setDaoId;
   }
 
-  ///
+  async getDaos(): Promise<any> {
+    let res = await this.get<any>("/dao", "");
+    return res;
+  }
 }

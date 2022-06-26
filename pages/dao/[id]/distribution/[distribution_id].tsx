@@ -10,5 +10,5 @@ const Distribution: React.FC = () => {
 export default Distribution;
 
 // routing for the dao urls should be dynamic... the routing for the dao pages is contained here.
-export const getStaticPaths = paths;
-export const getStaticProps = props;
+// export const getStaticPaths = paths;
+// export const getStaticProps = props;

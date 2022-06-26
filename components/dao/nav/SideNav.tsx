@@ -4,7 +4,14 @@ import Contents from "./Contents";
 import DaoBio from "./DaoBio";
 import Footer from "./Footer";
 
+import LightFooter from "../../../public/dao/light-footer.png";
+import DarkFooter from "../../../public/dao/dark-footer.png";
+import { ThemeContext, IThemeContext } from "@lib/ThemeContext";
+import { DarkTheme } from "@theme/theme";
+
 const Nav: React.FC = (props) => {
+  const themeContext = React.useContext<IThemeContext>(ThemeContext);
+
   return (
     <Box
       sx={{
@@ -17,11 +24,17 @@ const Nav: React.FC = (props) => {
         height: "100vh",
         borderBottomColor: "divider.main",
         position: "relative",
+        backgroundImage: `url(${
+          themeContext.theme === DarkTheme ? DarkFooter.src : LightFooter.src
+        })`,
+        backgroundPosition: "bottom 0px right 0px",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "13rem",
       }}
     >
       <DaoBio />
       <Contents />
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   );
 };

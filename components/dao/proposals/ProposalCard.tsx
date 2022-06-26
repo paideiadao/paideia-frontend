@@ -483,9 +483,12 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
             }}
           >
             <Link
-              href={`/dao/${id}/${
-                props.status === "Discussion" ? "discussion" : "proposal"
-              }/${props.id}`}
+              href={
+                (id === undefined ? "/dao/" : `/dao/${id}/`) +
+                `${props.status === "Discussion" ? "discussion" : "proposal"}/${
+                  props.id
+                }`
+              }
             >
               <Box sx={{ cursor: "pointer" }}>{props.proposalName}</Box>
             </Link>

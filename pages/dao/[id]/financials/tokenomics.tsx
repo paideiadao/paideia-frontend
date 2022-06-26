@@ -1,10 +1,8 @@
-import Layout from '@components/dao/Layout';
-import * as React from 'react';
+import Layout from "@components/dao/Layout";
+import * as React from "react";
 
 const Tokenomics: React.FC = () => {
-    return <Layout>
-        Tokenomics Here...
-    </Layout>
-}
+  return <Layout>Tokenomics Here...</Layout>;
+};
 
 export default Tokenomics;

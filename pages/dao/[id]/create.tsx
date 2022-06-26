@@ -25,7 +25,13 @@ const Create: React.FC = () => {
         <CreateHeader />
 
         <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
-          <Link href={`/dao/${id}/proposal/create`}>
+          <Link
+            href={
+              id === undefined
+                ? "/dao/proposals/create"
+                : `/dao/${id}/proposal/create`
+            }
+          >
             <Box
               sx={{
                 cursor: "pointer",
@@ -114,7 +120,7 @@ const Create: React.FC = () => {
   );
 };
 
-export const getStaticPaths = paths;
-export const getStaticProps = props;
+// export const getStaticPaths = paths;
+// export const getStaticProps = props;
 
 export default Create;

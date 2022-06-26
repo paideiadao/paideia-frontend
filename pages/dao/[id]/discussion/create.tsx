@@ -98,7 +98,9 @@ const CreateDiscussion: React.FC = () => {
             <Box
               sx={{ display: "flex", width: "15%", justifyContent: "center" }}
             >
-              <Link href={`/dao/${id}/create`}>
+              <Link
+                href={id === undefined ? "/dao/create" : `/dao/${id}/create`}
+              >
                 <Button size="small">Change</Button>
               </Link>
             </Box>

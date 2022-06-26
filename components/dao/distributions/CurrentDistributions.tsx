@@ -104,7 +104,13 @@ export const DistributionCard: React.FC<IDistributionCard> = (props) => {
         {props.status}
       </Box>
       <Box sx={{ width: "8%", display: "flex" }}>
-        <Link href={`/dao/${id}/distribution/${props.id}`}>
+        <Link
+          href={
+            id === undefined
+              ? `/dao/distribution/${props.id}`
+              : `/dao/${id}/distribution/${props.id}`
+          }
+        >
           <Button variant="text" sx={{ ml: "auto" }}>
             View
           </Button>

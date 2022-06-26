@@ -21,7 +21,7 @@ import Nautilus from "./Nautilus";
 import MobileWallet from "./MobileWallet";
 
 const WALLET_ADDRESS = "wallet_address";
-const WALLET_ADDRESS_LIST = "wallet_address_list";
+export const WALLET_ADDRESS_LIST = "wallet_address_list";
 const DAPP_CONNECTED = "dapp_connected";
 
 /**
@@ -185,10 +185,13 @@ export const AddWallet: React.FC = () => {
       const address = addresses.length ? addresses[0] : "";
       setWallet(address);
       setWalletInput(address);
+      const addressData = addresses.map((address, index) => {
+        return { id: index, name: address };
+      });
       // update dApp state
       setDAppWallet({
         connected: true,
-        addresses: addresses,
+        addresses: addressData,
       });
       setDAppError(false);
     } catch (e) {
@@ -207,7 +210,7 @@ export const AddWallet: React.FC = () => {
     setWalletInput(address);
   };
 
-  const loadAddresses = async () => {
+  let loadAddresses = async () => {
     setLoading(true);
     try {
       //@ts-ignore
@@ -219,10 +222,9 @@ export const AddWallet: React.FC = () => {
       const addressData = addresses.map((address, index) => {
         return { id: index, name: address };
       });
-      console.log("here...");
       setDAppWallet({
         ...dAppWallet,
-        addresses: addresses,
+        addresses: addressData,
       });
       setdAppAddressTableData(addressData);
     } catch (e) {
@@ -232,8 +234,16 @@ export const AddWallet: React.FC = () => {
   };
 
   React.useEffect(() => {
-    setWallet(localStorage.getItem(WALLET_ADDRESS))
-  }, [view])
+    setWallet(localStorage.getItem(WALLET_ADDRESS));
+    if (localStorage.getItem(WALLET_ADDRESS_LIST)) {
+      setDAppWallet({
+        connected: true,
+        addresses: JSON.parse(localStorage.getItem(WALLET_ADDRESS_LIST)),
+      });
+    }
+  }, [view]);
+
+  console.log(dAppWallet.addresses);
 
   return (
     <>
@@ -255,9 +265,13 @@ export const AddWallet: React.FC = () => {
               connect={dAppConnect}
               wallet={wallet}
               connected={dAppWallet.connected}
-              addresses={dAppAddressTableData}
+              addresses={dAppWallet.addresses}
               setWallet={setWallet}
               load={loadAddresses}
+              setLoading={setLoading}
+              setDAppWallet={setDAppWallet}
+              dAppWallet={dAppWallet}
+              setdAppAddressTableData={setdAppAddressTableData}
             />
           ) : (
             <MobileWallet
@@ -266,38 +280,6 @@ export const AddWallet: React.FC = () => {
               setWallet={setWalletInput}
             />
           )}
-          {/* {dAppWallet.connected && (
-            <Accordion sx={{ mt: 1 }}>
-              <AccordionSummary onClick={loadAddresses}>
-                <strong>Change Address</strong>
-              </AccordionSummary>
-              <AccordionDetails>
-                List wallets here...
-                <PaginatedTable
-                      rows={dAppAddressTableData}
-                      onClick={(index) =>
-                        changeWalletAddress(dAppAddressTableData[index].name)
-                      }
-                    />
-              </AccordionDetails>
-            </Accordion>
-          )} */}
-          {/* <TextField
-            disabled={dAppWallet.connected}
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Wallet address"
-            type="wallet"
-            fullWidth
-            variant="standard"
-            value={walletInput}
-            onChange={handleWalletFormChange}
-            error={!isAddressValid(walletInput)}
-          />
-          <FormHelperText error={true}>
-            {!isAddressValid(walletInput) ? "Invalid ergo address." : ""}
-          </FormHelperText> */}
         </DialogContent>
         <DialogActions
           sx={{

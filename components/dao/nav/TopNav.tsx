@@ -145,7 +145,13 @@ const TopNav: React.FC = () => {
             }}
             onClick={handleClose}
           >
-            <Link href={`/dao/${id}/notifications`}>
+            <Link
+              href={
+                id === undefined
+                  ? "/dao/notifications"
+                  : `/dao/${id}/notifications`
+              }
+            >
               <Button size="small">View all</Button>
             </Link>
           </Box>

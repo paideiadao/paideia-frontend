@@ -9,5 +9,5 @@ const Vote: React.FC = () => {
 };
 
 export default Vote;
-export const getStaticPaths = paths;
-export const getStaticProps = props;
+// export const getStaticPaths = paths;
+// export const getStaticProps = props;

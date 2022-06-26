@@ -18,7 +18,13 @@ const Distributions: React.FC = () => {
       <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
         <Header title="Distributions" large />
         <Box sx={{ ml: "auto" }}>
-          <Link href={`/dao/${id}/distributions/create`}>
+          <Link
+            href={
+              id === undefined
+                ? "/dao/distributions/create"
+                : `/dao/${id}/distributions/create`
+            }
+          >
             <Button variant="contained">
               Create New <AddIcon sx={{ ml: ".5rem" }} />
             </Button>

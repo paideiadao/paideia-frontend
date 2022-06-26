@@ -18,8 +18,8 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { paths, props } from "@lib/DaoPaths";
 
-export const getStaticPaths = paths;
-export const getStaticProps = props;
+// export const getStaticPaths = paths;
+// export const getStaticProps = props;
 
 const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
   const { wallet, dAppWallet } = useWallet();

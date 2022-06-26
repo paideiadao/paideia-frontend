@@ -10,6 +10,7 @@ import * as React from "react";
 import nautilus from "@public/icons/nautilus.png";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ClearIcon from "@mui/icons-material/Clear";
+import { WALLET_ADDRESS_LIST } from "./AddWallet";
 
 const Nautilus: React.FC<{
   set: Function;
@@ -19,26 +20,48 @@ const Nautilus: React.FC<{
   addresses: any[];
   setWallet: Function;
   load: Function;
+  setLoading: Function;
+  setDAppWallet: Function;
+  dAppWallet: any;
+  setdAppAddressTableData: Function;
 }> = (props) => {
   const [wallet, setWallet] = React.useState<string>(props.wallet);
   React.useEffect(() => {
-    if (wallet === '') {
-      const connect = async () => await props.connect()
-      connect().then(() => props.load())
-    } else {
-      console.log('fuck')
-      props.load()
+    const load = async () => {
+      props.setLoading(true);
+      try {
+        //@ts-ignore
+        const address_used = await ergo.get_used_addresses();
+        //@ts-ignore
+        const address_unused = await ergo.get_unused_addresses();
+        const addresses = [...address_used, ...address_unused];
+        console.log(addresses);
+        const addressData = addresses.map((address, index) => {
+          return { id: index, name: address };
+        });
+        props.setDAppWallet({
+          ...props.dAppWallet,
+          addresses: addressData,
+        });
+        props.setdAppAddressTableData(addresses);
+        localStorage.setItem(WALLET_ADDRESS_LIST, JSON.stringify(addressData));
+      } catch (e) {
+        console.log(e);
+      }
+      props.setLoading(false);
+    };
+    if (wallet === "" && props.connected) {
+      const connect = async () => await props.connect();
+      connect().then(() => setTimeout(load, 1000));
     }
-    
-  }, []);
-
+  }, [wallet]);
 
   React.useEffect(() => {
-    setWallet(props.wallet)
-  }, [props.wallet])
+    setWallet(props.wallet);
+  }, [props.wallet]);
   return (
     <Box sx={{ width: "100%" }}>
-      {props.wallet !== '' ? (
+      {props.wallet !== "" ? (
         <>
           <Box
             sx={{
@@ -104,8 +127,8 @@ const Nautilus: React.FC<{
                     {i.name}
                     <Button
                       sx={{ ml: "auto", mr: ".5rem" }}
-                      disabled={wallet === i.name}
                       variant="contained"
+                      color={wallet === i.name ? "success" : "primary"}
                       size="small"
                       onClick={() => {
                         setWallet(i.name);
@@ -154,7 +177,7 @@ const Nautilus: React.FC<{
               Change
             </Button>
           </Box>
-          <Box sx={{ mt: ".5rem", fontSize: '.9rem' }}>
+          <Box sx={{ mt: ".5rem", fontSize: ".9rem" }}>
             Follow the instructions in your Nautilus Wallet to confirm and you
             will connect your wallet instantly. If a popup box is not appearing
             or if you accidentally closed it, please{" "}
@@ -165,7 +188,32 @@ const Nautilus: React.FC<{
                 textDecoration: "underline",
                 color: "primary.main",
               }}
-              onClick={() => props.connect()}
+              onClick={() => {
+                const load = async () => {
+                  props.setLoading(true);
+                  try {
+                    //@ts-ignore
+                    const address_used = await ergo.get_used_addresses();
+                    //@ts-ignore
+                    const address_unused = await ergo.get_unused_addresses();
+                    const addresses = [...address_used, ...address_unused];
+                    console.log(addresses);
+                    const addressData = addresses.map((address, index) => {
+                      return { id: index, name: address };
+                    });
+                    props.setDAppWallet({
+                      ...props.dAppWallet,
+                      addresses: addressData,
+                    });
+                    props.setdAppAddressTableData(addressData);
+                  } catch (e) {
+                    console.log(e);
+                  }
+                  props.setLoading(false);
+                };
+                const connect = async () => await props.connect();
+                connect().then(() => load());
+              }}
             >
               click here
             </Box>{" "}

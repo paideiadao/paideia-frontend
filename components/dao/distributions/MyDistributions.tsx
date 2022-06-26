@@ -85,7 +85,13 @@ const MyDistributionCard: React.FC<IMyDistributionCard> = (props) => {
         <Box sx={{ fontSize: ".8rem" }}>future redemption</Box>
       </Box>
       <Box sx={{ width: "8%", display: "flex" }}>
-        <Link href={`/dao/${id}/distribution/redeem/${props.id}`}>
+        <Link
+          href={
+            id === undefined
+              ? `/dao/distribution/redeem/${props.id}`
+              : `/dao/${id}/distribution/redeem/${props.id}`
+          }
+        >
           <Button variant="text" sx={{ ml: "auto" }}>
             Redeem
           </Button>

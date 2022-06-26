@@ -66,7 +66,7 @@ const ManageStake: React.FC = () => {
   const { id } = router.query;
   return (
     <Layout width="65%">
-      <Link href={`/dao/${id}/staking`}>
+      <Link href={id === undefined ? "/dao/staking" : `/dao/${id}/staking`}>
         <Button variant="outlined" size="small" sx={{ mb: "1rem" }}>
           <ArrowBackIcon
             sx={{ mr: ".5rem", fontSize: "1.1rem" }}

@@ -45,7 +45,13 @@ const Staking: React.FC = () => {
       <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
         <Header title="Staking" large />
         <Box sx={{ ml: "auto" }}>
-          <Link href={`/dao/${id}/staking/manage`}>
+          <Link
+            href={
+              id === undefined
+                ? "/dao/staking/manage"
+                : `/dao/${id}/staking/manage`
+            }
+          >
             <Button variant="contained" size="small">
               Manage Stake{" "}
               <img

@@ -63,7 +63,7 @@ export const isDao = (Component: any) => {
     Component === RedeemDistribution ||
     Component === Token ||
     Component === Tokenomics ||
-    Component === Recurring || 
+    Component === Recurring ||
     Component === Treasury
   );
 };

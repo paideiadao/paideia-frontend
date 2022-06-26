@@ -112,7 +112,9 @@ const ActiveProposal: React.FC = () => {
       >
         <Subheader title="Active proposals" small bold />
         <Box sx={{ ml: "auto" }}>
-          <Link href={id + "/proposals/all"}>
+          <Link
+            href={id === undefined ? "/proposals/all" : id + "/proposals/all"}
+          >
             <Button sx={{ fontSize: ".8rem" }}>View All</Button>
           </Link>
           <IconButton

@@ -14,8 +14,8 @@ import MarkunreadIcon from "@mui/icons-material/Markunread";
 import dateFormat from "dateformat";
 import { paths, props } from "@lib/DaoPaths";
 
-export const getStaticPaths = paths;
-export const getStaticProps = props;
+// export const getStaticPaths = paths;
+// export const getStaticProps = props;
 let temp = new Date(),
   temp1 = new Date(),
   temp2 = new Date(),

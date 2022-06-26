@@ -156,7 +156,13 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
               justifyContent: "center",
             }}
           >
-            <Link href={`/dao/${id}/member/${props.id}`}>
+            <Link
+              href={
+                id === undefined
+                  ? `/dao/member/${props.id}`
+                  : `/dao/${id}/member/${props.id}`
+              }
+            >
               <Button variant="text">View Profile</Button>
             </Link>
           </Box>

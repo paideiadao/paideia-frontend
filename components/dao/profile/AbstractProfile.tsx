@@ -59,13 +59,18 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
-  const router = useRouter();
-  const { id } = router.query;
+
   return (
     <Layout width="100%">
       <Box sx={{ display: "flex", alignItems: "flex-start", width: "100%" }}>
         <Box sx={{ width: "70%", p: "1rem" }}>
-          <Link href={props.edit ? `/dao/${id}` : `/dao/${id}/members`}>
+          <Link
+            href={
+              props.edit
+                ? `/dao/${globalContext.api.daoId}`
+                : `/dao/${globalContext.api.daoId}/members`
+            }
+          >
             <Button variant="outlined">
               <ArrowBackIcon
                 sx={{ ml: "-.5rem", mr: ".5rem" }}

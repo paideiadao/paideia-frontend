@@ -6,5 +6,5 @@ const Member: React.FC = () => {
   return <AbstractProfile />;
 };
 export default Member;
-export const getStaticPaths = paths;
-export const getStaticProps = props;
+// export const getStaticPaths = paths;
+// export const getStaticProps = props;

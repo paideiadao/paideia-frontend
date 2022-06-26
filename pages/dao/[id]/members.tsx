@@ -20,8 +20,8 @@ import MemberCard, { IMemberCard } from "@components/dao/members/MemberCard";
 import Musk from "@public/profile/musk-full.png";
 import { paths, props } from "@lib/DaoPaths";
 
-export const getStaticPaths = paths;
-export const getStaticProps = props;
+// export const getStaticPaths = paths;
+// export const getStaticProps = props;
 const marks = [
   {
     value: 1,
