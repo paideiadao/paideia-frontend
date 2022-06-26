@@ -1,5 +1,5 @@
 import { data } from "jquery";
-import { ICreationData, ITokenHolder } from "../../lib/creation/Api";
+import { ICreationData, ITokenHolder } from "./CreationApi";
 
 export function checkCompleteness(_data: ICreationData): boolean {
   switch (_data.navStage) {
@@ -22,7 +22,7 @@ export function checkCompleteness(_data: ICreationData): boolean {
     }
     case 1: {
       return (
-        _data.tokenomics.tokenRemaining <= 0 ||
+        _data.tokenomics.tokenRemaining < 0 ||
         _data.tokenomics.tokenAmount === 0 ||
         _data.tokenomics.tokenHolders.filter((i: ITokenHolder) => {
           return i.alias !== "" && i.balance !== 0;

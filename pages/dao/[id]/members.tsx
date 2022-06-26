@@ -18,7 +18,10 @@ import AppsIcon from "@mui/icons-material/Apps";
 import StarIcon from "@mui/icons-material/Star";
 import MemberCard, { IMemberCard } from "@components/dao/members/MemberCard";
 import Musk from "@public/profile/musk-full.png";
+import { paths, props } from "@lib/DaoPaths";
 
+// export const getStaticPaths = paths;
+// export const getStaticProps = props;
 const marks = [
   {
     value: 1,
@@ -303,8 +306,12 @@ const Members: React.FC = () => {
       <Box
         sx={{ display: "flex", width: "100%", flexWrap: "wrap", mt: "1.5rem" }}
       >
-        {members.map((i: IMemberCard) => (
-          <MemberCard {...i} width="25%" />
+        {members.map((i: IMemberCard, c: number) => (
+          <MemberCard
+            {...i}
+            key={"member-card" + c}
+            width={{ sm: "50%", md: "33%", lg: "33%", xl: "25%" }}
+          />
         ))}
       </Box>
     </Layout>

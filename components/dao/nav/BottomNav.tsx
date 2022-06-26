@@ -14,7 +14,7 @@ const BottomNav: React.FC = () => {
         p: ".5rem",
         display: "flex",
         alignItems: "center",
-        mb: 0,
+        mb: "-1rem",
         pb: 0,
         pt: 0,
         height: "3.5rem",

@@ -8,7 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 import * as React from "react";
-import { ISocialLink } from "../../../lib/creation/Api";
+import { ISocialLink } from "../../../lib/creation/CreationApi";
 import { GlobalContext } from "../../../lib/creation/Context";
 import { Subheader, Subtitle } from "../utilities/HeaderComponents";
 import LabeledSwitch from "../utilities/LabeledSwitch";

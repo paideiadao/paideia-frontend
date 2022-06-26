@@ -9,13 +9,13 @@ import Highlights from "@components/landing/Highlights";
 export default function Home() {
   return (
     <>
-        <Hero />
-        <WhitepaperQuote />
-        <Perks />
-        {/* <Examples /> */}
-        {/* <Highlights /> */}
-        <Stats />
-        {/* <Featured /> */}
+      <Hero />
+      <WhitepaperQuote />
+      <Perks />
+      {/* <Examples /> */}
+      {/* <Highlights /> */}
+      <Stats />
+      {/* <Featured /> */}
     </>
   );
 }

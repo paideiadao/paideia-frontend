@@ -3,7 +3,7 @@ import { Box, Button, ButtonGroup } from "@mui/material";
 import { GlobalContext, IGlobalContext } from "../../../lib/creation/Context";
 import { Header, Subheader } from "../utilities/HeaderComponents";
 import TokenInformation from "./TokenInformation";
-import { ITokenHolder, ITokenomics } from "../../../lib/creation/Api";
+import { ITokenHolder, ITokenomics } from "../../../lib/creation/CreationApi";
 import TokenSymbol from "./TokenSymbol";
 import TokenHolders from "./TokenHolders";
 import AdvancedTokenomics from "./AdvancedTokenomics/AdvancedTokenomics";

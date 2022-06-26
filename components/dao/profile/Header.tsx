@@ -10,6 +10,8 @@ import {
   Header,
   Subtitle,
 } from "@components/creation/utilities/HeaderComponents";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 interface ILevel {
   name: string;
@@ -41,11 +43,16 @@ let actions: IAction[] = [
   { action: "Get your proposal approved", pointsEarned: 500 },
 ];
 
-const ProfileHeader: React.FC = () => {
+const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
+  props
+) => {
   let globalContext = React.useContext(GlobalContext);
   const [open, setOpen] = React.useState<boolean>(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [value, setValue] = React.useState<{ followed: boolean }>({
+    followed: props.followed,
+  });
   return (
     <Box
       sx={{
@@ -64,7 +71,7 @@ const ProfileHeader: React.FC = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            width: "65%",
+            width: "72%",
           }}
         >
           <Box sx={{ fontSize: "1.1rem" }}>Alone Musk</Box>
@@ -81,8 +88,17 @@ const ProfileHeader: React.FC = () => {
           >
             Lvl 7 | Philosopher
             <Box sx={{ ml: "auto" }}>
-              <Button onClick={handleOpen}>
-                <InfoIcon color="primary" sx={{ mr: ".5rem" }} />
+              <Button
+                onClick={handleOpen}
+                sx={{ fontSize: { xs: ".5rem", s: ".8rem", md: ".8rem" } }}
+              >
+                <InfoIcon
+                  color="primary"
+                  sx={{
+                    mr: ".5rem",
+                    fontSize: { xs: ".5rem", s: ".8rem", md: ".8rem" },
+                  }}
+                />
                 Learn More
               </Button>
             </Box>
@@ -104,12 +120,54 @@ const ProfileHeader: React.FC = () => {
             ml: "auto",
           }}
         >
-          <Link href={`/dao/${globalContext.api.daoId}/profile/edit`}>
-            <Button variant="contained">
-              <EditIcon sx={{ mr: ".5rem", ml: "-.25rem" }} />
-              Edit Profile
+          {props.edit ? (
+            <Link href={`/dao/${globalContext.api.daoId}/profile/edit`}>
+              <Button
+                variant="contained"
+                sx={{ fontSize: { xs: ".5rem", s: ".8rem", md: ".7rem" } }}
+              >
+                <EditIcon
+                  sx={{
+                    mr: ".5rem",
+                    ml: "-.25rem",
+                    fontSize: { xs: ".5rem", s: ".8rem", md: ".8rem" },
+                  }}
+                />
+                Edit Profile
+              </Button>
+            </Link>
+          ) : (
+            <Button
+              onClick={() => setValue({ ...value, followed: !value.followed })}
+              sx={{
+                color: value.followed ? "error.main" : "text.light",
+                borderColor: value.followed ? "red" : "text.light",
+                fontSize: { xs: ".5rem", s: ".8rem", md: ".8rem" },
+                ":hover": {
+                  borderColor: "red",
+                  color: "red",
+                },
+              }}
+              variant="outlined"
+            >
+              {value.followed ? (
+                <FavoriteIcon
+                  sx={{
+                    mr: ".3rem",
+                    fontSize: { xs: ".5rem", s: ".8rem", md: ".8rem" },
+                  }}
+                />
+              ) : (
+                <FavoriteBorderIcon
+                  sx={{
+                    mr: ".3rem",
+                    fontSize: { xs: ".5rem", s: ".8rem", md: ".8rem" },
+                  }}
+                />
+              )}
+              Follow{value.followed && "ed"}
             </Button>
-          </Link>
+          )}
         </Box>
       </Box>
       <Modal open={open} onClose={handleClose}>

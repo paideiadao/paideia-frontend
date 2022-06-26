@@ -1,6 +1,9 @@
 import { Box, Button, InputAdornment, TextField } from "@mui/material";
 import * as React from "react";
-import { ITokenHolder, ITokenomics } from "../../../../lib/creation/Api";
+import {
+  ITokenHolder,
+  ITokenomics,
+} from "../../../../lib/creation/CreationApi";
 import { IData } from "../../../../lib/utilities";
 import { CapsInfo, Header, LearnMore } from "../../utilities/HeaderComponents";
 import VestingSchedule, { IVestingSchedule } from "./VestingSchedule";
