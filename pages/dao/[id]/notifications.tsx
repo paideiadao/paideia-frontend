@@ -134,7 +134,7 @@ const Notifications: React.FC<{ params: any }> = (props) => {
   const [view, setView] = React.useState<string>("All");
   const router = useRouter();
 
-  const {id} = router.query;
+  const { id } = router.query;
 
   return (
     <Box
@@ -147,7 +147,7 @@ const Notifications: React.FC<{ params: any }> = (props) => {
       }}
     >
       <Box sx={{ width: "65%" }}>
-        <Link href={id === undefined ? '/dao' : `/dao/${id}`}>
+        <Link href={id === undefined ? "/dao" : `/dao/${id}`}>
           <Button variant="outlined">
             <ArrowBackIcon sx={{ ml: "-.5rem", mr: ".5rem" }} color="primary" />
             Back
