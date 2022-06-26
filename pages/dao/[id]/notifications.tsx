@@ -13,6 +13,7 @@ import Chip from "@components/utilities/Chip";
 import MarkunreadIcon from "@mui/icons-material/Markunread";
 import dateFormat from "dateformat";
 import { paths, props } from "@lib/DaoPaths";
+import { useRouter } from "next/router";
 
 // export const getStaticPaths = paths;
 // export const getStaticProps = props;
@@ -131,6 +132,9 @@ const getNotificationCountdown = (date: Date) => {
 const Notifications: React.FC<{ params: any }> = (props) => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [view, setView] = React.useState<string>("All");
+  const router = useRouter();
+
+  const {id} = router.query;
 
   return (
     <Box
@@ -143,7 +147,7 @@ const Notifications: React.FC<{ params: any }> = (props) => {
       }}
     >
       <Box sx={{ width: "65%" }}>
-        <Link href={`/dao/${props.params.id}`}>
+        <Link href={id === undefined ? '/dao' : `/dao/${id}`}>
           <Button variant="outlined">
             <ArrowBackIcon sx={{ ml: "-.5rem", mr: ".5rem" }} color="primary" />
             Back

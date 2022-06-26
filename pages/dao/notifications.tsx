@@ -1,3 +1,3 @@
-import Notifications from "./[id]/notifications";
+import Component from "./[id]/notifications";
 
-export default Notifications;
+export default Component;

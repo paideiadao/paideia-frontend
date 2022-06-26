@@ -60,6 +60,10 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
     setValue(newValue);
   };
 
+  const router = useRouter();
+
+  const {id} = router.query;
+
   return (
     <Layout width="100%">
       <Box sx={{ display: "flex", alignItems: "flex-start", width: "100%" }}>
@@ -67,8 +71,8 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
           <Link
             href={
               props.edit
-                ? `/dao/${globalContext.api.daoId}`
-                : `/dao/${globalContext.api.daoId}/members`
+                ? id === undefined ? '/dao' : `/dao/${id}`
+                : id === undefined ? `/dao/members` : `/dao/${id}/members`
             }
           >
             <Button variant="outlined">
