@@ -15,7 +15,7 @@ const WithdrawForm: React.FC = () => {
     address: wallet,
     img: "",
   });
-  const ticker = "DTK";
+  const ticker = "DTK", available = '50,000';
   const [withdraw, setWithdraw] = React.useState<boolean>(false);
   const openWithdraw = () => setWithdraw(true);
   const closeWithdraw = () => setWithdraw(false);
@@ -36,7 +36,6 @@ const WithdrawForm: React.FC = () => {
           img: "",
         }}
         number={1}
-        canDelete
         set={(j: any) => {
           setHolder(j);
         }}
@@ -45,11 +44,16 @@ const WithdrawForm: React.FC = () => {
         <TextField
           label="Amount of tokens to stake"
           sx={{ width: "45%" }}
-          size="small"
+          size="medium"
           value={value}
           type="number"
           onChange={handleChange}
+          helperText={`${available} ${ticker} available`}
           InputProps={{
+            inputProps: {
+              min: 1,
+              max: 50000
+            },
             endAdornment: (
               <InputAdornment position="end">{ticker}</InputAdornment>
             ),
@@ -59,7 +63,7 @@ const WithdrawForm: React.FC = () => {
           variant="text"
           size="small"
           sx={{ ml: ".5rem" }}
-          onClick={() => setValue(124421)}
+          onClick={() => setValue(50000)}
         >
           Max
         </Button>
