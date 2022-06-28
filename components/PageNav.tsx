@@ -18,6 +18,8 @@ const listItemSx = {
   },
 };
 
+
+
 export default function PageHeader({ navLinks }) {
   const [sliderSx, setSliderSx] = useState({
     mt: undefined,
@@ -28,6 +30,10 @@ export default function PageHeader({ navLinks }) {
     height: undefined
   });
   sliderSxRef.current = sliderSx;
+
+  // This is the top of the area which contains content. This is defined rather than using the top
+  // and bottom of the page, because we don't want the scroll animation to start moving until after
+  // the header, and it should reach the bottom once it hits the top of the footer. 
   const [topAndBottom, setTopAndBottom] = useState({
     top: 0,
     bottom: 0
@@ -39,23 +45,15 @@ export default function PageHeader({ navLinks }) {
   topAndBottomRef.current = topAndBottom;
 
   const handleResize = () => {
-    let totalHeight = 0
-    let topPosition = 0
-    let bottomPosition = 0
+    const element = document.getElementById("navContainer")
+    const topPosition = element.offsetTop
+    const totalHeight = element.getBoundingClientRect().height
+    const thisBottom = element.offsetTop + totalHeight
 
     navLinks.forEach((link: { link: string, position: number }) => {
-      const element = document.getElementById(link.link);
-      totalHeight += element.getBoundingClientRect().height
-      const thisTop = element.offsetTop - 85
+      const linkElement = document.getElementById(link.link)
+      const thisTop = linkElement.offsetTop - 85
       link.position = thisTop
-      const thisBottom = link.position + element.getBoundingClientRect().height
-
-      if ((thisTop < topPosition) || topPosition === 0) {
-        topPosition = thisTop
-      }
-      if ((bottomPosition < thisBottom)) {
-        bottomPosition = thisBottom
-      }
     })
 
     const visibleHeight = window.innerHeight
@@ -63,12 +61,14 @@ export default function PageHeader({ navLinks }) {
     const barHeight = barElement.getBoundingClientRect().height
     const sliderHeight = visibleHeight / totalHeight * barHeight
 
+    console.log(thisBottom)
+
     setSliderSx({
       ...sliderSx,
       height: sliderHeight
     })
 
-    setTopAndBottom(prevState => ({ ...prevState, top: topPosition, bottom: bottomPosition }))
+    setTopAndBottom(prevState => ({ ...prevState, top: topPosition, bottom: thisBottom }))
     handleScroll()
   }
 
@@ -93,7 +93,7 @@ export default function PageHeader({ navLinks }) {
       }))
     }
     if (position > (topAndBottomRef.current.bottom - window.innerHeight)) {
-      const distanceDown = barHeight - sliderSxRef.current.height 
+      const distanceDown = barHeight - sliderSxRef.current.height
       setSliderSx(prevState => ({
         ...prevState,
         mt: distanceDown.toString() + 'px'

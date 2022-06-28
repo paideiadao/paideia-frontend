@@ -50,37 +50,37 @@ const theCards = [
   {
     title: "Blockchain Development Teams",
     body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
-    image: "/DevIcon.svg",
+    image: "/icons/HandshakeIcon.svg",
   },
   {
     title: "Blockchain Development Teams",
     body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
-    image: "/DevIcon.svg",
+    image: "/icons/DevIcon.svg",
   },
   {
     title: "Investor Groups",
     body: "Using a DAO, groups of people can pool their funds and manage each members' stake in the overall investment. Eliminate the need to trust a specific individual with control of the funds.",
-    image: "/ChartIcon.svg",
+    image: "/icons/ChartIcon.svg",
   },
   {
     title: "Blockchain Development Teams",
     body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
-    image: "/DevIcon.svg",
+    image: "/icons/DevIcon.svg",
   },
   {
     title: "Blockchain Development Teams",
     body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
-    image: "/DevIcon.svg",
+    image: "/icons/DevIcon.svg",
   },
   {
     title: "Blockchain Development Teams",
     body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
-    image: "/DevIcon.svg",
+    image: "/icons/DevIcon.svg",
   },
   {
     title: "Blockchain Development Teams",
     body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
-    image: "/DevIcon.svg",
+    image: "/icons/DevIcon.svg",
   },
 ]
 

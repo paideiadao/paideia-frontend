@@ -21,13 +21,17 @@ const paragraphStyle = {
   letterSpacing: "0.15px",
 };
 
-export default function Perks() {
+interface PerkProps {
+  sx?: object;
+}
+
+
+export default function Perks<PerkProps>({sx}) {
   return (
-    <>
+    <Box sx={sx}>
       <Container
         sx={{
           position: "relative",
-          flexGrow: 1,
           px: "24px",
           pl: { xs: "60px", md: "24px" },
         }}
@@ -149,6 +153,6 @@ export default function Perks() {
           <Grid item md={2}></Grid>
         </Grid>
       </Container>
-    </>
+    </Box>
   );
 }

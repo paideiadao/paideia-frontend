@@ -1,25 +1,35 @@
 import PageHeader from "@components/PageHeader";
 import PageNav from "@components/PageNav";
 import Blockquote from "@components/Blockquote";
-import { Typography, Grid, Container } from "@mui/material";
+import { Typography, Grid, Container, Divider, Box } from "@mui/material";
+import Image from "next/image";
+import WhitepaperQuote from '@components/landing/WhitepaperQuote'
+import SectionHeading from "@components/SectionHeading";
+import RoadmapAccordion from "@components/RoadmapAccordion";
 
 const navLinks = [
   {
     name: 'Introduction',
-    icon: 'info',
+    icon: 'waving_hand',
     link: 'introduction',
     position: undefined
   },
   {
-    name: 'Disclaimer',
-    icon: 'gavel',
-    link: 'disclaimer',
+    name: 'Whitepaper',
+    icon: 'description',
+    link: 'whitepaper',
     position: undefined
   },
   {
-    name: 'Our Philosophy',
-    icon: 'account_balance',
-    link: 'philosophy',
+    name: 'The Problem',
+    icon: 'warning',
+    link: 'theproblem',
+    position: undefined
+  },
+  {
+    name: 'The Solution',
+    icon: 'emoji_objects',
+    link: 'thesolution',
     position: undefined
   },
   {
@@ -28,13 +38,52 @@ const navLinks = [
     link: 'roadmap',
     position: undefined
   },
-  {
-    name: 'Tokenomics',
-    icon: 'data_usage',
-    link: 'tokenomics',
-    position: undefined
-  },
 ];
+
+const examples = [
+  {
+    text: 'Existing DAOs that need on-chain voting',
+    icon: '/icons/StrongHandshakeIcon.svg'
+  },
+  {
+    text: 'Investment groups that pool their resources to meet minimums',
+    icon: '/icons/GoldBarsIcon.svg'
+  },
+  {
+    text: 'Developer teams that need to protect funding runway',
+    icon: '/icons/DevIcon.svg'
+  },
+  {
+    text: 'Startups looking to raise funds',
+    icon: '/icons/TokenIcon.svg'
+  },
+  {
+    text: 'Blockchain Projects that need to provide transparency and rugpull resistance',
+    icon: '/icons/CubesIcon.svg'
+  },
+  {
+    text: 'P2E gaming guilds that want to play in shifts',
+    icon: '/icons/GamingIcon.svg'
+  },
+]
+
+const problems = [
+  {
+    num: '01',
+    title: 'Standard Functionality and Governance Options',
+    body: 'A software suite that offers a selection of pre-defined governance options and capabilities that simplifies the whole process of creating and participating in a DAO, with clear documentation that eliminates the need to read the DAO smart contracts and open source code for those with the desire and ability to review the code themselves.'
+  },
+  {
+    num: '02',
+    title: 'Support',
+    body: 'DAOs are a new type of organization. The concept will evolve. Individual groups will grow and change. DAOs are going to need membership support and developers that can implement new features to meet the needs of the DAO.'
+  },
+  {
+    num: '03',
+    title: 'Security',
+    body: 'All smart contracts are reviewed by independent third parties familiar with Ergoscript to make sure it conforms to the best practices. Further, smart contracts will be tested extensively to ensure funds are secure, and vote tallies are fair, transparent, and untamperable. '
+  },
+]
 
 export default function About() {
 
@@ -48,7 +97,7 @@ export default function About() {
         subTitleOne="A Web3 DAO Management"
         subTitleTwo="Software Suite"
       />
-      <Container sx={{ px: "24px", py: '60px' }}>
+      <Container sx={{ px: "24px", py: '60px' }} id="navContainer">
         <Grid container spacing={4}>
           <Grid item md={3}>
             <PageNav navLinks={navLinks} />
@@ -56,92 +105,112 @@ export default function About() {
           <Grid item md={9}>
             <section id="introduction">
               <Grid container>
-                <Grid item md={8}>
-                  <Blockquote small sx={{ mb: '32px' }}>
+                <Grid item md={7}>
+                  <Blockquote small sx={{ mb: '48px' }}>
                     Paideia is an organization whose purpose is to create a functional, secure, and well-documented DAO software suite that supports DAOs as they form and develop. It will make it easy for anyone to initiate a DAO, distribute tokens using various methods, create proposals and collect votes. It will help various organizations share funds in a secure and fair way.
                   </Blockquote>
                 </Grid>
-                <Grid item md={4}>
-
+                <Grid item md={5}>
                 </Grid>
               </Grid>
               <Grid container>
-                <Grid item md={4}>
+                <Grid item md={3}>
                 </Grid>
-                <Grid item md={8}>
-                  <Typography>
+                <Grid item md={7}>
+                  <Typography sx={{ fontWeight: '700', mb: '48px' }}>
                     Anyone who needs to manage a treasury as a group will benefit from these tools. Examples include:
                   </Typography>
-                  <Grid container>
-                    <Grid item md={6}>
-                      Hello
-                    </Grid>
-                    <Grid item md={6}>
-                      is it me
-                    </Grid>
-                    <Grid item md={6}>
-                      you're looking for
-                    </Grid>
-                    <Grid item md={6}>
-                      I can see it in your eyes
-                    </Grid>
+                  <Grid container justifyContent="center" spacing={6} sx={{ mb: '48px' }}>
+                    {examples.map(({ text, icon }, i) => {
+                      return (
+                        <Grid item md={6} key={i} sx={{ maxWidth: '320px' }}>
+                          <Image src={icon} width={35} height={35} />
+                          <Typography sx={{
+                            fontFamily: '"Space Grotesk", sans-serif',
+                            fontWeight: '600',
+                            fontSize: '18px',
+                          }}>
+                            {text}
+                          </Typography>
+                        </Grid>
+                      )
+                    })}
+                  </Grid>
+                  <Grid item md={2}>
                   </Grid>
                 </Grid>
               </Grid>
+            </section>
+            <section id="whitepaper">
+              <WhitepaperQuote sx={{ my: '64px' }} />
+            </section>
+            <section id="theproblem">
+              <SectionHeading
+                category="The Problem"
+                title="Functionality, Security, and Support"
+                sx={{ mb: '120px' }}
+              >
+                People do not join DAOs to create software. They join them to accomplish something in the real world that benefits them or their communities. But, a DAO needs software to enable it to function as a decentralized, autonomous organization. DAOs need an off-the-shelf DAO toolkit, one that provides:
+              </SectionHeading>
+              <Grid container sx={{ mb: '200px' }}>
+                <Grid item md={3}>
 
+                </Grid>
+                <Grid item md={7}>
+                  <Grid container direction="column" spacing={12}>
+                    {problems.map(({ num, title, body }, i) => {
+                      return (
+                        <Grid item>
+                          <Grid container>
+                            <Grid item xs={4}>
+                              <Typography sx={{
+                                fontFamily: '"Viga", sans-serif',
+                                fontSize: '100px',
+                                lineHeight: '100px'
+                              }}>
+                                {num}&#47;
+                              </Typography>
+                            </Grid>
+                            <Grid item xs={8}>
+                              <Typography sx={{
+                                fontFamily: '"Space Grotesk", sans-serif',
+                                fontWeight: '700',
+                                fontSize: '24px',
+                              }}>
+                                {title}
+                              </Typography>
+                              <Divider sx={{ my: '12px' }} />
+                              <Typography>
+                                {body}
+                              </Typography>
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                      )
+                    })}
+                  </Grid>
+                </Grid>
+                <Grid item md={2}>
+
+                </Grid>
+              </Grid>
             </section>
-            <section id="disclaimer">
-              <Typography variant="h4">
-                Disclaimer
-              </Typography>
-              <Typography sx={{ mb: '24px' }}>
-                Sapien et ligula ullamcorper malesuada proin libero nunc consequat. Vel eros donec ac odio tempor orci. Viverra adipiscing at in tellus integer feugiat. Turpis massa tincidunt dui ut ornare lectus. Eu scelerisque felis imperdiet proin fermentum leo. Sit amet facilisis magna etiam tempor orci eu lobortis. Ornare massa eget egestas purus viverra accumsan in nisl. Amet aliquam id diam maecenas ultricies mi eget. At erat pellentesque adipiscing commodo elit at. Eget magna fermentum iaculis eu. Cras adipiscing enim eu turpis egestas pretium. Tellus at urna condimentum mattis pellentesque id nibh. Vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor. Praesent semper feugiat nibh sed pulvinar proin gravida hendrerit. Enim neque volutpat ac tincidunt vitae semper quis lectus nulla. Neque egestas congue quisque egestas diam in arcu. Maecenas ultricies mi eget mauris pharetra et ultrices. Nulla aliquet enim tortor at auctor urna nunc id.
-              </Typography>
-              <Typography sx={{ mb: '24px' }}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis imperdiet massa tincidunt nunc pulvinar. Urna neque viverra justo nec ultrices dui sapien. Arcu bibendum at varius vel. Eu feugiat pretium nibh ipsum. Ac ut consequat semper viverra nam libero justo. Cras ornare arcu dui vivamus arcu felis bibendum. Praesent elementum facilisis leo vel fringilla est. Fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate. Risus commodo viverra maecenas accumsan. Ultrices eros in cursus turpis massa tincidunt dui.
-              </Typography>
-            </section>
-            <section id="philosophy">
-              <Typography variant="h4">
-                Our Philosophy
-              </Typography>
-              <Typography sx={{ mb: '24px' }}>
-                Sapien et ligula ullamcorper malesuada proin libero nunc consequat. Vel eros donec ac odio tempor orci. Viverra adipiscing at in tellus integer feugiat. Turpis massa tincidunt dui ut ornare lectus. Eu scelerisque felis imperdiet proin fermentum leo. Sit amet facilisis magna etiam tempor orci eu lobortis. Ornare massa eget egestas purus viverra accumsan in nisl. Amet aliquam id diam maecenas ultricies mi eget. At erat pellentesque adipiscing commodo elit at. Eget magna fermentum iaculis eu. Cras adipiscing enim eu turpis egestas pretium. Tellus at urna condimentum mattis pellentesque id nibh. Vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor. Praesent semper feugiat nibh sed pulvinar proin gravida hendrerit. Enim neque volutpat ac tincidunt vitae semper quis lectus nulla. Neque egestas congue quisque egestas diam in arcu. Maecenas ultricies mi eget mauris pharetra et ultrices. Nulla aliquet enim tortor at auctor urna nunc id.
-              </Typography>
-              <Typography sx={{ mb: '24px' }}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis imperdiet massa tincidunt nunc pulvinar. Urna neque viverra justo nec ultrices dui sapien. Arcu bibendum at varius vel. Eu feugiat pretium nibh ipsum. Ac ut consequat semper viverra nam libero justo. Cras ornare arcu dui vivamus arcu felis bibendum. Praesent elementum facilisis leo vel fringilla est. Fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate. Risus commodo viverra maecenas accumsan. Ultrices eros in cursus turpis massa tincidunt dui.
-              </Typography>
+            <section id="thesolution">
+              <Box sx={{ mb: '48px' }}>
+                <Image src="/exclamation.svg" height={266} width={60} layout="fixed" />
+              </Box>
+              <SectionHeading
+                category="The Solution"
+                title="Paideia is a DAO management software suite"
+                sx={{ mb: '180px' }}
+              >
+                It is designed to make it easy for anyone to create, manage and be involved in a DAO, as well as facilitate the distribution of governance tokens and allow the ability to raise funds. The technical goal is to provide a secure DAO tool set that is open, easy to use, inexpensive, and allows for use in any environment.
+
+                With Paideia in the hands of anyone that wishes to use it, this software suite can open new ways for people to work together, to change their lives and the world for the better.
+              </SectionHeading>
             </section>
             <section id="roadmap">
-              <Typography variant="h4">
-                Roadmap
-              </Typography>
-              <Typography sx={{ mb: '24px' }}>
-                At urna condimentum mattis pellentesque id nibh tortor id. Ac tortor vitae purus faucibus ornare suspendisse sed nisi. In eu mi bibendum neque egestas congue quisque egestas diam. Dolor sed viverra ipsum nunc aliquet bibendum. Habitant morbi tristique senectus et netus et malesuada fames ac. Egestas pretium aenean pharetra magna ac placerat vestibulum. Turpis massa tincidunt dui ut ornare. Quam id leo in vitae turpis massa. Laoreet sit amet cursus sit amet dictum sit. Turpis egestas sed tempus urna et pharetra pharetra massa. Amet purus gravida quis blandit. Eget nunc lobortis mattis aliquam faucibus purus in massa tempor.
-              </Typography>
-              <Typography sx={{ mb: '24px' }}>
-                Est sit amet facilisis magna etiam tempor orci eu. Pellentesque id nibh tortor id aliquet lectus. At lectus urna duis convallis convallis tellus. Pellentesque habitant morbi tristique senectus et. Habitant morbi tristique senectus et netus et malesuada fames. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim. Scelerisque felis imperdiet proin fermentum leo vel orci porta. Eu facilisis sed odio morbi quis commodo odio aenean sed. Cursus vitae congue mauris rhoncus aenean vel elit. Egestas quis ipsum suspendisse ultrices gravida dictum fusce ut. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus.
-              </Typography>
-              <Typography sx={{ mb: '24px' }}>
-                Mi tempus imperdiet nulla malesuada pellentesque elit eget gravida. Urna cursus eget nunc scelerisque viverra mauris in aliquam sem. Turpis egestas integer eget aliquet nibh praesent tristique. Ante metus dictum at tempor commodo ullamcorper. Tellus molestie nunc non blandit. Neque viverra justo nec ultrices. Viverra accumsan in nisl nisi scelerisque eu ultrices vitae. Mi ipsum faucibus vitae aliquet. At augue eget arcu dictum varius duis at consectetur lorem. Orci a scelerisque purus semper eget duis at. Erat imperdiet sed euismod nisi. Proin nibh nisl condimentum id venenatis a condimentum. Rhoncus aenean vel elit scelerisque. Tellus mauris a diam maecenas. Vel turpis nunc eget lorem dolor sed. Ante metus dictum at tempor commodo ullamcorper. Aliquam vestibulum morbi blandit cursus risus at ultrices mi tempus. Donec enim diam vulputate ut pharetra sit. Morbi quis commodo odio aenean sed adipiscing.
-              </Typography>
-              <Typography sx={{ mb: '24px' }}>
-                At urna condimentum mattis pellentesque id nibh tortor id. Ac tortor vitae purus faucibus ornare suspendisse sed nisi. In eu mi bibendum neque egestas congue quisque egestas diam. Dolor sed viverra ipsum nunc aliquet bibendum. Habitant morbi tristique senectus et netus et malesuada fames ac. Egestas pretium aenean pharetra magna ac placerat vestibulum. Turpis massa tincidunt dui ut ornare. Quam id leo in vitae turpis massa. Laoreet sit amet cursus sit amet dictum sit. Turpis egestas sed tempus urna et pharetra pharetra massa. Amet purus gravida quis blandit. Eget nunc lobortis mattis aliquam faucibus purus in massa tempor.
-              </Typography>
-              <Typography sx={{ mb: '24px' }}>
-                Est sit amet facilisis magna etiam tempor orci eu. Pellentesque id nibh tortor id aliquet lectus. At lectus urna duis convallis convallis tellus. Pellentesque habitant morbi tristique senectus et. Habitant morbi tristique senectus et netus et malesuada fames. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim. Scelerisque felis imperdiet proin fermentum leo vel orci porta. Eu facilisis sed odio morbi quis commodo odio aenean sed. Cursus vitae congue mauris rhoncus aenean vel elit. Egestas quis ipsum suspendisse ultrices gravida dictum fusce ut. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus.
-              </Typography>
-              <Typography sx={{ mb: '24px' }}>
-                Mi tempus imperdiet nulla malesuada pellentesque elit eget gravida. Urna cursus eget nunc scelerisque viverra mauris in aliquam sem. Turpis egestas integer eget aliquet nibh praesent tristique. Ante metus dictum at tempor commodo ullamcorper. Tellus molestie nunc non blandit. Neque viverra justo nec ultrices. Viverra accumsan in nisl nisi scelerisque eu ultrices vitae. Mi ipsum faucibus vitae aliquet. At augue eget arcu dictum varius duis at consectetur lorem. Orci a scelerisque purus semper eget duis at. Erat imperdiet sed euismod nisi. Proin nibh nisl condimentum id venenatis a condimentum. Rhoncus aenean vel elit scelerisque. Tellus mauris a diam maecenas. Vel turpis nunc eget lorem dolor sed. Ante metus dictum at tempor commodo ullamcorper. Aliquam vestibulum morbi blandit cursus risus at ultrices mi tempus. Donec enim diam vulputate ut pharetra sit. Morbi quis commodo odio aenean sed adipiscing.
-              </Typography>
-            </section>
-            <section id="tokenomics">
-              <Typography variant="h4">
-                Tokenomics
-              </Typography>
-              <Typography sx={{ mb: '24px' }}>
-                Sapien et ligula ullamcorper malesuada proin libero nunc consequat. Vel eros donec ac odio tempor orci. Viverra adipiscing at in tellus integer feugiat. Turpis massa tincidunt dui ut ornare lectus. Eu scelerisque felis imperdiet proin fermentum leo. Sit amet facilisis magna etiam tempor orci eu lobortis. Ornare massa eget egestas purus viverra accumsan in nisl. Amet aliquam id diam maecenas ultricies mi eget. At erat pellentesque adipiscing commodo elit at. Eget magna fermentum iaculis eu. Cras adipiscing enim eu turpis egestas pretium. Tellus at urna condimentum mattis pellentesque id nibh. Vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor. Praesent semper feugiat nibh sed pulvinar proin gravida hendrerit. Enim neque volutpat ac tincidunt vitae semper quis lectus nulla. Neque egestas congue quisque egestas diam in arcu. Maecenas ultricies mi eget mauris pharetra et ultrices. Nulla aliquet enim tortor at auctor urna nunc id.
-              </Typography>
+              <RoadmapAccordion />
             </section>
           </Grid>
         </Grid>
