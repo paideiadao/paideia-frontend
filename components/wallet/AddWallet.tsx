@@ -2,24 +2,26 @@ import * as React from "react";
 import {
   Button,
   Dialog,
-  TextField,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  FormHelperText,
-  Grid,
-  CircularProgress,
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Box,
+  Avatar,
+  Chip,
 } from "@mui/material";
 import { useAddWallet } from "@components/wallet/AddWalletContext";
 import { useWallet } from "@components/wallet/WalletContext";
 import { Address } from "@components/wallet/Address";
+import ProviderListing from "./ProviderListing";
+import Nautilus from "./Nautilus";
+import MobileWallet from "./MobileWallet";
 
 const WALLET_ADDRESS = "wallet_address";
-const WALLET_ADDRESS_LIST = "wallet_address_list";
+export const WALLET_ADDRESS_LIST = "wallet_address_list";
 const DAPP_CONNECTED = "dapp_connected";
 
 /**
@@ -50,6 +52,13 @@ export const AddWallet: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
   const [dAppError, setDAppError] = React.useState(false);
   const [dAppAddressTableData, setdAppAddressTableData] = React.useState([]); // table data
+  const [view, setView] = React.useState<string>(
+    wallet !== "" && !dAppWallet.connected
+      ? "mobile"
+      : wallet !== "" && dAppWallet.connected
+      ? "nautilus"
+      : "listing"
+  );
 
   React.useEffect(() => {
     // load primary address
@@ -105,8 +114,7 @@ export const AddWallet: React.FC = () => {
 
   const handleClose = () => {
     // reset unsaved changes
-    setAddWalletOpen(false);
-    setWalletInput(wallet);
+    handleSubmitWallet();
     setDAppError(false);
   };
 
@@ -132,6 +140,9 @@ export const AddWallet: React.FC = () => {
       connected: false,
       addresses: [],
     });
+    localStorage.setItem(WALLET_ADDRESS, undefined);
+    localStorage.setItem(WALLET_ADDRESS_LIST, undefined);
+    localStorage.setItem(DAPP_CONNECTED, undefined);
   };
 
   const handleWalletFormChange = (e) => {
@@ -174,10 +185,13 @@ export const AddWallet: React.FC = () => {
       const address = addresses.length ? addresses[0] : "";
       setWallet(address);
       setWalletInput(address);
+      const addressData = addresses.map((address, index) => {
+        return { id: index, name: address };
+      });
       // update dApp state
       setDAppWallet({
         connected: true,
-        addresses: addresses,
+        addresses: addressData,
       });
       setDAppError(false);
     } catch (e) {
@@ -196,7 +210,7 @@ export const AddWallet: React.FC = () => {
     setWalletInput(address);
   };
 
-  const loadAddresses = async () => {
+  let loadAddresses = async () => {
     setLoading(true);
     try {
       //@ts-ignore
@@ -204,12 +218,13 @@ export const AddWallet: React.FC = () => {
       //@ts-ignore
       const address_unused = await ergo.get_unused_addresses();
       const addresses = [...address_used, ...address_unused];
+      console.log(addresses);
       const addressData = addresses.map((address, index) => {
         return { id: index, name: address };
       });
       setDAppWallet({
         ...dAppWallet,
-        addresses: addresses,
+        addresses: addressData,
       });
       setdAppAddressTableData(addressData);
     } catch (e) {
@@ -218,94 +233,93 @@ export const AddWallet: React.FC = () => {
     setLoading(false);
   };
 
+  React.useEffect(() => {
+    setWallet(localStorage.getItem(WALLET_ADDRESS));
+    if (localStorage.getItem(WALLET_ADDRESS_LIST)) {
+      setDAppWallet({
+        connected: true,
+        addresses: JSON.parse(localStorage.getItem(WALLET_ADDRESS_LIST)),
+      });
+    }
+  }, [view]);
+
+  console.log(dAppWallet.addresses);
+
   return (
     <>
-      <Dialog open={addWalletOpen} onClose={handleClose}>
-        <DialogTitle>Connect Wallet</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Enter your Ergo wallet public key. This will be used to interact
-            with smart contracts and display assets on the dashboard. Your
-            public key will never be stored on our server. If you are using a
-            dapp wallet please make sure only one wallet is enabled. Enabling
-            multiple wallet extensions will cause undefined behaviour.
+      <Dialog open={addWalletOpen} onClose={() => setAddWalletOpen(false)}>
+        <DialogTitle sx={{ backgroundColor: "fileInput.main" }}>
+          Connect Wallet
+        </DialogTitle>
+        <DialogContent sx={{ backgroundColor: "fileInput.main" }}>
+          <DialogContentText sx={{ fontSize: ".9rem" }}>
+            Your private key will never be stored on our server. If you are
+            using a dapp wallet, please make sure only one wallet is enabled.
+            Enabling multiple wallet extensions willl cause undefined behavior.
           </DialogContentText>
-          <Grid sx={{ py: 2 }}>
-            <Button
-              disabled={loading}
-              onClick={dAppConnect}
-              sx={{
-                color: "#fff",
-                fontSize: "1rem",
-                py: "0.6rem",
-                px: "1.6rem",
-                textTransform: "none",
-                backgroundColor: "primary.main",
-                "&:hover": {
-                  backgroundColor: "secondary.main",
-                  boxShadow: "none",
-                },
-                "&:active": {
-                  backgroundColor: "green",
-                },
-              }}
-            >
-              {dAppWallet.connected
-                ? "dApp Connected"
-                : "Connect with Nautilus or SAFEW"}
-              {loading && (
-                <CircularProgress
-                  sx={{ ml: 2, color: "white" }}
-                  size={"1.2rem"}
-                />
-              )}
-            </Button>
-            <FormHelperText error={true}>
-              {dAppError ? "Failed to connect to wallet. Please retry." : ""}
-            </FormHelperText>
-            {dAppWallet.connected && (
-              <Accordion sx={{ mt: 1 }}>
-                <AccordionSummary onClick={loadAddresses}>
-                  <strong>Change Address</strong>
-                </AccordionSummary>
-                <AccordionDetails>
-                  List wallets here...
-                  {/* <PaginatedTable
-                      rows={dAppAddressTableData}
-                      onClick={(index) =>
-                        changeWalletAddress(dAppAddressTableData[index].name)
-                      }
-                    /> */}
-                </AccordionDetails>
-              </Accordion>
-            )}
-          </Grid>
-          <TextField
-            disabled={dAppWallet.connected}
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Wallet address"
-            type="wallet"
-            fullWidth
-            variant="standard"
-            value={walletInput}
-            onChange={handleWalletFormChange}
-            error={!isAddressValid(walletInput)}
-          />
-          <FormHelperText error={true}>
-            {!isAddressValid(walletInput) ? "Invalid ergo address." : ""}
-          </FormHelperText>
+          {view === "listing" ? (
+            <ProviderListing set={setView} />
+          ) : view === "nautilus" ? (
+            <Nautilus
+              set={() => setView("listing")}
+              connect={dAppConnect}
+              wallet={wallet}
+              connected={dAppWallet.connected}
+              addresses={dAppWallet.addresses}
+              setWallet={setWallet}
+              load={loadAddresses}
+              setLoading={setLoading}
+              setDAppWallet={setDAppWallet}
+              dAppWallet={dAppWallet}
+              setdAppAddressTableData={setdAppAddressTableData}
+            />
+          ) : (
+            <MobileWallet
+              set={() => setView("listing")}
+              wallet={walletInput}
+              setWallet={setWalletInput}
+            />
+          )}
         </DialogContent>
-        <DialogActions sx={{ justifyContent: "space-between" }}>
-          <Button onClick={() => clearWallet()}>Remove wallet</Button>
-          <Button onClick={handleClose}>Close Window</Button>
-          <Button
-            onClick={handleSubmitWallet}
-            disabled={!isAddressValid(walletInput) || dAppWallet.connected}
-          >
-            Connect Read Only Wallet
+        <DialogActions
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            backgroundColor: "fileInput.main",
+            pl: "1rem",
+            pr: "1rem",
+            pb: ".5rem",
+          }}
+        >
+          <Button onClick={() => setAddWalletOpen(false)} sx={{ mr: "1rem" }}>
+            Close
           </Button>
+
+          <Box sx={{ ml: "auto" }}>
+            {wallet !== "" && (
+              <Button
+                color="error"
+                variant="outlined"
+                sx={{ mr: ".5rem" }}
+                onClick={() => {
+                  setWallet("");
+
+                  clearWallet();
+                }}
+              >
+                Disconnect
+              </Button>
+            )}
+            {view === "mobile" && (
+              <Button
+                onClick={handleClose}
+                disabled={walletInput === ""}
+                variant="contained"
+              >
+                Confirm
+              </Button>
+            )}
+          </Box>
         </DialogActions>
       </Dialog>
     </>

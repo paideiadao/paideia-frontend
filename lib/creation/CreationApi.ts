@@ -51,6 +51,12 @@ interface IBasicInformation {
   shortDescription: string;
 }
 
+export interface IWallet {
+  alias: string;
+  address: string;
+  img: string;
+}
+
 interface IGovernance {
   optimisticGovernance: boolean;
   quadraticVoting: boolean;
@@ -120,5 +126,64 @@ export class CreationApi extends AbstractApi {
     this.setTheme = _setTheme;
     this.data = _data;
     this.setData = _setData;
+  }
+
+  // to do... get authorization token working (store in local storage & post using header)
+  // format data to properly match the endpoint
+  // view in sql
+  // create data checking for the dao paths
+  async createDao(draft: boolean = true): Promise<any> {
+    const data = this.cleanData(this.data, draft);
+    console.log(data);
+    let res = await this.post<any>("/dao", data);
+    return res;
+  }
+
+  cleanData(data: ICreationData, draft: boolean): any {
+    return {
+      dao_name: data.basicInformation.daoName,
+      dao_short_description: data.basicInformation.shortDescription,
+      dao_url: data.basicInformation.daoUrl,
+      governance: {
+        is_optimistic: data.governance.quadraticVoting,
+        is_quadratic_voting: data.governance.quadraticVoting,
+        time_to_challenge__sec: data.governance.timeToChallenge,
+        quorum: data.governance.quorum,
+        vote_duration__sec: data.governance.voteDuration,
+        amount: data.governance.amount === "" ? 0 : data.governance.amount,
+        currency: data.governance.currency,
+        support_needed: data.governance.supportNeeded,
+        governance_whitelist: [], //data.governance.whitelist.map((i: any) => i.address),
+      },
+      tokenomics: {
+        type: data.tokenomics.type,
+        token_name: data.tokenomics.tokenName,
+        token_ticker: data.tokenomics.tokenTicker,
+        token_amount: data.tokenomics.tokenAmount,
+        token_image_url: data.tokenomics.tokenImageUrl,
+        token_remaining: data.tokenomics.tokenRemaining,
+        is_activated: data.tokenomics.activateTokenomics,
+        token_holders: data.tokenomics.tokenHolders.map((i: ITokenHolder) => {
+          return { user_id: 1, percentage: i.percentage, balance: i.balance };
+        }),
+        /// MVP does not include distributions...
+        distributions: [],
+      },
+      design: {
+        theme_id: data.design.theme,
+        logo_url: "",
+        show_banner: data.design.banner.show,
+        banner_url: "",
+        show_footer: data.design.footer.show,
+        footer_text: data.design.footer.mainText,
+        footer_social_links: data.design.footer.links.map((i: ISocialLink) => {
+          return { social_network: i.socialNetwork, link_url: i.address };
+        }),
+      },
+      is_draft: draft ? 1 : 0,
+      is_published: draft ? 0 : 1,
+      nav_stage: data.navStage,
+      is_review: data.review,
+    };
   }
 }

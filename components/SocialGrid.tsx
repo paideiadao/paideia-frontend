@@ -64,8 +64,8 @@ export default function SocialGrid() {
           sx={iconLinkStyles}
           rel="noreferrer"
         > */}
-          <MediumIcon sx={{ color: '#aaa' }} fontSize="inherit" />
-       {/*  </Link> */}
+        <MediumIcon sx={{ color: "#aaa" }} fontSize="inherit" />
+        {/*  </Link> */}
       </Grid>
     </>
   );

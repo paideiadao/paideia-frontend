@@ -14,7 +14,7 @@ const BasicInformation: React.FC = () => {
       ...globalContext.api.data,
       basicInformation: {
         ...data,
-        daoUrl: clean === "" ? clean : clean + ".paideia.im",
+        daoUrl: clean === "" ? clean : "paideia.im/dao/" + clean,
       },
     });
   }, [data.daoName]);

@@ -11,7 +11,7 @@ const PerformanceWidget: React.FC<{ value: number }> = (props) => {
       sx={{
         display: "flex",
         alignItems: "center",
-        backgroundColor: props.value <= 0 ? "red" : "text.lightSuccess",
+        backgroundColor: props.value <= 0 ? "error.main" : "text.lightSuccess",
         borderRadius: ".3rem",
         fontSize: ".7rem",
         color: "backgroundColor.main",

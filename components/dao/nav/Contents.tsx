@@ -40,24 +40,47 @@ const BasicLink: React.FC<{
   const router = useRouter();
   const { id } = router.query;
   let linkLookup = {
-    Dashboard: `/dao/${id}`,
-    All: `/dao/${id}/proposals/all`,
-    Following: `/dao/${id}/proposals/following`,
-    Mine: `/dao/${id}/proposals/mine`,
-    Past: `/dao/${id}/proposals/past`,
-    Treasury: `/dao/${id}/financials/treasury`,
-    Tokenomics: `/dao/${id}/financials/tokenomics`,
-    Recurring: `/dao/${id}/financials/recurring`,
-    Token: `/dao/${id}/financials/token`,
-    Distributions: `/dao/${id}/distributions`,
-    Staking: `/dao/${id}/staking`,
-    Members: `/dao/${id}/members`,
-    Activity: `/dao/${id}/activity`,
-    "Edit profile": `/dao/${id}/profile/edit`,
-    Notifications: `/dao/${id}/notifications/edit`,
-    Wallet: `/dao/${id}/wallet`,
+    Dashboard: id === undefined ? `/dao` : `/dao/${id}`,
+    All: id === undefined ? `/dao/proposals/all` : `/dao/${id}/proposals/all`,
+    Following:
+      id === undefined
+        ? `/dao/proposals/following`
+        : `/dao/${id}/proposals/following`,
+    Mine:
+      id === undefined ? `/dao/proposals/mine` : `/dao/${id}/proposals/mine`,
+    Past:
+      id === undefined ? `/dao/proposals/past` : `/dao/${id}/proposals/past`,
+    Treasury:
+      id === undefined
+        ? `/dao/financials/treasury`
+        : `/dao/${id}/financials/treasury`,
+    Tokenomics:
+      id === undefined
+        ? `/dao/financials/tokenomics`
+        : `/dao/${id}/financials/tokenomics`,
+    Recurring:
+      id === undefined
+        ? `/dao/financials/recurring`
+        : `/dao/${id}/financials/recurring`,
+    Token:
+      id === undefined
+        ? `/dao/financials/token`
+        : `/dao/${id}/financials/token`,
+    Distributions:
+      id === undefined ? `/dao/distributions` : `/dao/${id}/distributions`,
+    Staking: id === undefined ? `/dao/staking` : `/dao/${id}/staking`,
+    Members: id === undefined ? `/dao/members` : `/dao/${id}/members`,
+    Activity: id === undefined ? `/dao/activity` : `/dao/${id}/activity`,
+    "Edit profile":
+      id === undefined ? `/dao/profile/edit` : `/dao/${id}/profile/edit`,
+    Notifications:
+      id === undefined
+        ? `/dao/notifications/edit`
+        : `/dao/${id}/notifications/edit`,
+    Wallet: id === undefined ? `/dao/wallet` : `/dao/${id}/wallet`,
 
-    "DAO Config": `/dao/${id}/dao-config`,
+    "DAO Config":
+      id === undefined ? `/dao/dao-config` : `/dao/${id}/dao-config`,
   };
   return (
     <Link href={linkLookup[props.title]}>
@@ -152,7 +175,7 @@ const DropdownLink: React.FC<{
   return (
     <Accordion
       sx={{
-        backgroundColor: "backgroundColor.main",
+        backgroundColor: "transparent",
         color: props.selected ? "primary.main" : "primary.text",
         pl: 0,
         ml: 0,
@@ -291,13 +314,76 @@ const DropdownLink: React.FC<{
 // accordion should go inside a scollable wrapper.
 
 const Contents: React.FC = () => {
-  const [selected, setSelected] = React.useState<string>("Dashboard");
-  const [subSelected, setSubSelected] = React.useState<string>(undefined);
+  const router = useRouter();
+  const path = router.asPath;
+
+  const getSelected = (): string => {
+    if (path.includes("proposals")) {
+      return "Proposals";
+    } else if (path.includes("financials")) {
+      return "Financials";
+    } else if (path.includes("staking")) {
+      return "Staking";
+    } else if (path.includes("distributions")) {
+      return "Distributions";
+    } else if (path.includes("members")) {
+      return "Members";
+    } else if (path.includes("activity")) {
+      return "Activity";
+    } else if (path.includes("settings")) {
+      return "Settings";
+    } else if (path.includes("config")) {
+      return "DAO Config";
+    } else if (path.includes("/wallet")) {
+      return "Settings";
+    } else {
+      return "Dashboard";
+    }
+  };
+
+  const getSubSelected = (): string => {
+    if (path.includes("profile/edit")) {
+      return "Edit profile";
+    } else if (path.includes("notifications/edit")) {
+      return "Notifications";
+    } else if (path.includes("/wallet")) {
+      return "Wallet";
+    } else if (path.includes("/financials/treasury")) {
+      return "Treasury";
+    } else if (path.includes("/financials/tokenomics")) {
+      return "Tokenomics";
+    } else if (path.includes("/financials/recurring")) {
+      return "Recurring";
+    } else if (path.includes("/financials/token")) {
+      return "Token";
+    } else if (path.includes("/proposals/all")) {
+      return "All";
+    } else if (path.includes("/proposals/following")) {
+      return "Following";
+    } else if (path.includes("/proposals/mine")) {
+      return "Mine";
+    } else if (path.includes("/proposals/past")) {
+      return "Past";
+    } else {
+      return "";
+    }
+  };
+
+  const [selected, setSelected] = React.useState<string>(getSelected());
+  const [subSelected, setSubSelected] = React.useState<string>(
+    getSubSelected()
+  );
   const setWrapper = (v: string) => {
     setSubSelected(undefined);
     setSelected(v);
   };
   const setSubWrapper = (v: string) => setSubSelected(v);
+
+  React.useEffect(() => {
+    setSelected(getSelected());
+    setSubSelected(getSubSelected());
+  }, [router]);
+
   let categories = [
     { icon: <BarChartIcon sx={{ opacity: ".8" }} />, label: "Dashboard" },
     {
@@ -422,7 +508,7 @@ const Contents: React.FC = () => {
       sx={{
         width: "100%",
         mb: "1rem",
-        height: "70%",
+        height: "85%",
         overflowY: "auto",
         overflowX: "hidden",
       }}

@@ -1,10 +1,10 @@
-import { Box } from "@mui/material";
 import * as React from "react";
 import { paths, props } from "@lib/MemberPaths";
+import AbstractProfile from "@components/dao/profile/AbstractProfile";
 
 const Member: React.FC = () => {
-  return <Box sx={{ p: "1.5rem" }}>Member Here...</Box>;
+  return <AbstractProfile />;
 };
 export default Member;
-export const getStaticPaths = paths;
-export const getStaticProps = props;
+// export const getStaticPaths = paths;
+// export const getStaticProps = props;

@@ -5,6 +5,7 @@ import { GlobalContext } from "../../../lib/creation/Context";
 import { Header } from "../utilities/HeaderComponents";
 import ReviewDrawer from "./ReviewDrawer";
 import { modalBackground } from "../../utilities/modalBackground";
+import Router from "next/router";
 
 const Review: React.FC = () => {
   const globalContext = React.useContext(GlobalContext);
@@ -31,6 +32,10 @@ const Review: React.FC = () => {
           Back
         </Button>
       </Box>
+      <Button onClick={() => globalContext.api.createDao()} size="small">
+        <ArrowBackIcon sx={{ mr: ".5rem", fontSize: "1rem" }} />
+        Test
+      </Button>
       <Header
         title="Review"
         large={true}
@@ -82,6 +87,7 @@ const Review: React.FC = () => {
           <Box sx={{ fontSize: "1.1rem", fontWeight: 450 }}>
             You are about to publish the final version of your DAO
           </Box>
+
           <Box sx={{ mt: "1rem", fontSize: ".9rem" }}>
             Once you publish the DAO any configuration change would have to be
             done through the proposal system. Also, keep in mind that tokens
@@ -101,13 +107,19 @@ const Review: React.FC = () => {
                 Cancel
               </Button>
               <Button
-                onClick={() =>
+                onClick={async () => {
                   globalContext.api.setData({
                     ...data,
                     isDraft: 0,
                     isPublished: 1,
-                  })
-                }
+                  });
+                  let res = await globalContext.api.createDao(false);
+                  if (res !== false) {
+                    Router.push(`/dao/${res.data.dao_name.toLowerCase()}`);
+                  } else {
+                    console.log("error here..");
+                  }
+                }}
               >
                 Publish DAO
               </Button>

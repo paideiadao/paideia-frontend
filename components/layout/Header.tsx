@@ -24,7 +24,7 @@ const pages = [
   {
     name: "Home",
     link: "/",
-    disabled: false
+    disabled: false,
   },
   {
     name: "About",
@@ -34,22 +34,22 @@ const pages = [
   {
     name: "Education",
     link: "education",
-    disabled: true
+    disabled: true,
   },
   {
     name: "Documentation",
     link: "https://docs.paideia.im",
-    disabled: false
+    disabled: false,
   },
   {
     name: "Blog",
     link: "blog",
-    disabled: true
+    disabled: true,
   },
   {
     name: "Dashboard",
     link: "dashboard",
-    disabled: true
+    disabled: true,
   },
 ];
 
@@ -102,8 +102,8 @@ export default function Header(props) {
         color="transparent"
         elevation={trigger && !navbarOpen ? 4 : 0}
         sx={{
-          zIndex: '30',
-          backdropFilter: `${trigger ? 'blur(25px)' : ''}`
+          zIndex: "30",
+          backdropFilter: `${trigger ? "blur(25px)" : ""}`,
         }}
       >
         <Container sx={{ px: "24px" }}>
@@ -113,7 +113,14 @@ export default function Header(props) {
             alignItems="center"
             sx={{ minHeight: "70px" }}
           >
-            <Grid item alignItems="center" sx={{ height: { xs: "32px", md: "40px" }, width: { xs: "32px", md: "40px" } }}>
+            <Grid
+              item
+              alignItems="center"
+              sx={{
+                height: { xs: "32px", md: "40px" },
+                width: { xs: "32px", md: "40px" },
+              }}
+            >
               <Link href="/">
                 <Paideia
                   sx={{
@@ -147,13 +154,18 @@ export default function Header(props) {
                     {pages.map((page, i) => (
                       <Grid key={i} item>
                         {page.disabled ? (
-                          <Typography sx={{
-                            fontFamily: ['"Space Grotesk"', "sans-serif"].join(","),
-                            fontWeight: "Bold",
-                            textTransform: "uppercase",
-                            fontSize: "13px", 
-                            color: '#777'
-                          }}>
+                          <Typography
+                            sx={{
+                              fontFamily: [
+                                '"Space Grotesk"',
+                                "sans-serif",
+                              ].join(","),
+                              fontWeight: "Bold",
+                              textTransform: "uppercase",
+                              fontSize: "13px",
+                              color: "#777",
+                            }}
+                          >
                             {page.name}
                           </Typography>
                         ) : (
@@ -278,12 +290,17 @@ export default function Header(props) {
                 {pages.map((page, i) => (
                   <Grid key={i} item>
                     {page.disabled ? (
-                      <Typography sx={{
-                        fontFamily: ['"Space Grotesk"', "sans-serif"].join(","),
-                        fontWeight: "Bold",
-                        textTransform: "uppercase",
-                        fontSize: "20px", color: '#777'
-                      }}>
+                      <Typography
+                        sx={{
+                          fontFamily: ['"Space Grotesk"', "sans-serif"].join(
+                            ","
+                          ),
+                          fontWeight: "Bold",
+                          textTransform: "uppercase",
+                          fontSize: "20px",
+                          color: "#777",
+                        }}
+                      >
                         {page.name}
                       </Typography>
                     ) : (
@@ -326,7 +343,7 @@ export default function Header(props) {
                 container
                 spacing={4}
                 direction="row"
-                sx={{ fontSize: '24px' }}
+                sx={{ fontSize: "24px" }}
               >
                 <SocialGrid />
               </Grid>

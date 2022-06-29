@@ -8,22 +8,17 @@ import { DarkTheme } from "@theme/theme";
 const Footer: React.FC = () => {
   const globalContext = React.useContext<IThemeContext>(ThemeContext);
   return (
-    <Box
-      sx={{
-        mt: ".5rem",
-        pt: ".5rem",
-        width: "15rem",
-        mb: "0rem",
+    <img
+      style={{
+        marginTop: ".5rem",
+        paddingTop: ".5rem",
+        width: "13.5rem",
+        marginBottom: "0rem",
         position: "absolute",
         bottom: "0",
       }}
-    >
-      <img
-        src={
-          globalContext.theme === DarkTheme ? DarkFooter.src : LightFooter.src
-        }
-      />
-    </Box>
+      src={globalContext.theme === DarkTheme ? DarkFooter.src : LightFooter.src}
+    />
   );
 };
 

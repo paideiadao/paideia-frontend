@@ -112,7 +112,9 @@ const ActiveProposal: React.FC = () => {
       >
         <Subheader title="Active proposals" small bold />
         <Box sx={{ ml: "auto" }}>
-          <Link href={id + "/proposals/all"}>
+          <Link
+            href={id === undefined ? "/proposals/all" : id + "/proposals/all"}
+          >
             <Button sx={{ fontSize: ".8rem" }}>View All</Button>
           </Link>
           <IconButton
@@ -148,7 +150,7 @@ const ActiveProposal: React.FC = () => {
             {...i}
             c={c}
             key={"proposal-card-key-" + c}
-            width="34.5%"
+            width={{ sm: "50%", md: "45%", lg: "33%" }}
           />
         ))}
       </Box>

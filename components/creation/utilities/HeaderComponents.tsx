@@ -73,9 +73,17 @@ export const CapsInfo: React.FC<{
   );
 };
 
-export const Subtitle: React.FC<{ subtitle: string }> = (props) => {
+export const Subtitle: React.FC<{ subtitle: string; small?: boolean }> = (
+  props
+) => {
   return (
-    <Box sx={{ width: "100%", color: "text.light", fontSize: ".9rem" }}>
+    <Box
+      sx={{
+        width: "100%",
+        color: "text.light",
+        fontSize: props.small ? ".8rem" : ".9rem",
+      }}
+    >
       {props.subtitle}
     </Box>
   );

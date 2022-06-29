@@ -14,9 +14,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-import { IFile, ISocialLink } from "@lib/creation/Api";
+import { IFile, ISocialLink } from "@lib/creation/CreationApi";
 import { SocialRow } from "@components/creation/design/Footer";
 import Status from "@components/utilities/Status";
+import Layout from "@components/dao/Layout";
 
 const ProfileEditImage: React.FC = () => {
   const [file, setFile] = React.useState<IFile>({
@@ -140,120 +141,105 @@ const Edit: React.FC<{ params: any }> = (props) => {
   }, [value.alert]);
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        justifyContent: "center",
-        display: "flex",
-        pb: "1.5rem",
-        pt: "1.5rem",
-      }}
-    >
-      <Box sx={{ width: "70%" }}>
-        <Header title="Edit profile" />
-        <ProfileEditImage />
-        <TextField
-          value={value.username}
-          label="User name"
-          sx={{ width: "100%", mt: ".5rem" }}
-          onChange={(e) => setValue({ ...value, username: e.target.value })}
-        />
-        <TextField
-          value={value.shortBio}
-          label="Short bio"
-          sx={{ width: "100%", mt: "1rem" }}
-          minRows={2}
-          onChange={(e) => setValue({ ...value, shortBio: e.target.value })}
-          multiline
-          FormHelperTextProps={{ sx: { textAlign: "right" } }}
-          helperText={`${value.shortBio.length}/250`}
-        />
-        <Header title="Social Links" small />
-        <Box sx={{ mt: ".5rem" }}>
-          {value.socialLinks.map((i: ISocialLink, c: number) => (
-            <SocialRow
-              c={c}
-              data={i}
-              key={`social-link-${c}`}
-              set={(m: any) => {
-                let temp = [...value.socialLinks];
-                temp[c] = m;
-                setValue({
-                  ...value,
-                  socialLinks: temp,
-                });
-              }}
-              delete={(m: any) => {
-                let temp = [...value.socialLinks];
-                temp.splice(c, 1);
-                setValue({
-                  ...value,
-                  socialLinks: temp,
-                });
-              }}
-            />
-          ))}
-        </Box>
-        <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
-          <Button
-            onClick={() => {
+    <Layout>
+      <Header title="Edit profile" />
+      <ProfileEditImage />
+      <TextField
+        value={value.username}
+        label="User name"
+        sx={{ width: "100%", mt: ".5rem" }}
+        onChange={(e) => setValue({ ...value, username: e.target.value })}
+      />
+      <TextField
+        value={value.shortBio}
+        label="Short bio"
+        sx={{ width: "100%", mt: "1rem" }}
+        minRows={2}
+        onChange={(e) => setValue({ ...value, shortBio: e.target.value })}
+        multiline
+        FormHelperTextProps={{ sx: { textAlign: "right" } }}
+        helperText={`${value.shortBio.length}/250`}
+      />
+      <Header title="Social Links" small />
+      <Box sx={{ mt: ".5rem" }}>
+        {value.socialLinks.map((i: ISocialLink, c: number) => (
+          <SocialRow
+            c={c}
+            data={i}
+            key={`social-link-${c}`}
+            set={(m: any) => {
               let temp = [...value.socialLinks];
-              temp.push({
-                socialNetwork: "",
-                address: "",
+              temp[c] = m;
+              setValue({
+                ...value,
+                socialLinks: temp,
               });
-              setValue({ ...value, socialLinks: temp });
             }}
-          >
-            <AddIcon sx={{ mr: ".5rem" }} />
-            Add {value.socialLinks.length > 0 ? "Another" : ""}
-          </Button>
-        </Box>
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            mt: "1rem",
+            delete={(m: any) => {
+              let temp = [...value.socialLinks];
+              temp.splice(c, 1);
+              setValue({
+                ...value,
+                socialLinks: temp,
+              });
+            }}
+          />
+        ))}
+      </Box>
+      <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <Button
+          onClick={() => {
+            let temp = [...value.socialLinks];
+            temp.push({
+              socialNetwork: "",
+              address: "",
+            });
+            setValue({ ...value, socialLinks: temp });
           }}
         >
-          <Button variant="outlined" sx={{ width: "49%", mr: ".5rem" }}>
-            Cancel
-          </Button>
-          <Button
-            variant="contained"
-            sx={{ width: "49%" }}
-            onClick={() => setValue({ ...value, alert: "info" })}
-          >
-            Save Changes
-          </Button>
-        </Box>
+          <AddIcon sx={{ mr: ".5rem" }} />
+          Add {value.socialLinks.length > 0 ? "Another" : ""}
+        </Button>
       </Box>
-      <Status
-        value={value.alert}
-        current="profile settings."
-        action="updated"
-      />
-    </Box>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          mt: "1rem",
+        }}
+      >
+        <Button variant="outlined" sx={{ width: "49%", mr: ".5rem" }}>
+          Cancel
+        </Button>
+        <Button
+          variant="contained"
+          sx={{ width: "49%" }}
+          onClick={() => setValue({ ...value, alert: "info" })}
+        >
+          Save Changes
+        </Button>
+      </Box>
+    </Layout>
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = [{ params: { id: "spreadly" } }, { params: { id: "ergopad" } }];
-  return {
-    paths,
-    fallback: false,
-  };
-};
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const paths = [{ params: { id: "spreadly" } }, { params: { id: "ergopad" } }];
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const daoData = { params };
-  return {
-    props: {
-      params,
-    },
-  };
-};
+// export const getStaticProps: GetStaticProps = async ({ params }) => {
+//   const daoData = { params };
+//   return {
+//     props: {
+//       params,
+//     },
+//   };
+// };
 
 export default Edit;

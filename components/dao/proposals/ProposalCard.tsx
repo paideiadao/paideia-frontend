@@ -31,7 +31,7 @@ export interface IProposalCard {
   comments: number;
   users: number;
   date: Date;
-  width: string;
+  width: any;
 }
 
 const VoteWidget: React.FC<{
@@ -49,7 +49,7 @@ const VoteWidget: React.FC<{
         }}
       >
         {percentage(props.yes / (props.yes + props.no), 0)} YES
-        <Box sx={{ ml: "auto", color: "red" }}>
+        <Box sx={{ ml: "auto", color: "error.main" }}>
           {percentage(props.no / (props.yes + props.no), 0)} NO
         </Box>
       </Box>
@@ -64,7 +64,7 @@ const VoteWidget: React.FC<{
         <Box
           sx={{
             width: percentage(props.no / (props.yes + props.no)),
-            backgroundColor: "red",
+            backgroundColor: "error.main",
             height: ".2rem",
           }}
         ></Box>
@@ -316,10 +316,10 @@ const CardContent: React.FC<{ category: string; widget: any }> = (props) => {
             fontSize: ".7rem",
             color: "backgroundColor.main",
             backgroundColor:
-              widget === "DAO termination" ? "red" : "tokenAlert.main",
+              widget === "DAO termination" ? "error.main" : "tokenAlert.main",
             border: "1px solid",
             borderColor:
-              widget === "DAO termination" ? "red" : "tokenAlert.main",
+              widget === "DAO termination" ? "error.main" : "tokenAlert.main",
           }}
         />
       </Box>
@@ -483,9 +483,12 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
             }}
           >
             <Link
-              href={`/dao/${id}/${
-                props.status === "Discussion" ? "discussion" : "proposal"
-              }/${props.id}`}
+              href={
+                (id === undefined ? "/dao/" : `/dao/${id}/`) +
+                `${props.status === "Discussion" ? "discussion" : "proposal"}/${
+                  props.id
+                }`
+              }
             >
               <Box sx={{ cursor: "pointer" }}>{props.proposalName}</Box>
             </Link>

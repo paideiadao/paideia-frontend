@@ -1,6 +1,6 @@
 import { Avatar, Box, Button, Paper } from "@mui/material";
 import * as React from "react";
-import { ITokenomics } from "../../../lib/creation/Api";
+import { ITokenomics } from "../../../lib/creation/CreationApi";
 import { bytesToSize } from "../../../lib/creation/Utilities";
 import { IData } from "../../../lib/utilities";
 import FileInput from "../../utilities/file";

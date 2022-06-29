@@ -8,9 +8,9 @@ const Layout: React.FC<{ width?: string }> = (props) => {
         width: "100%",
         display: "flex",
         justifyContent: "center",
-        pt: "1.5rem",
+        pt: { md: ".5rem", lg: "1.5rem" },
         pb: "1.5rem",
-        height: 'calc(100vh - 7.5rem)'
+        minHeight: "calc(100vh - 7.5rem)",
       }}
     >
       <Box sx={{ width: props.width === undefined ? "70%" : props.width }}>

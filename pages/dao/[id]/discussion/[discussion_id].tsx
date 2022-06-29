@@ -243,5 +243,5 @@ const Discussion: React.FC = () => {
 export default Discussion;
 
 // clean up paths...
-export const getStaticPaths = paths;
-export const getStaticProps = props;
+// export const getStaticPaths = paths;
+// export const getStaticProps = props;

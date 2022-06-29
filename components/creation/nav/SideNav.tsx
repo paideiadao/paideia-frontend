@@ -78,6 +78,24 @@ export default function Nav(props) {
             <img src={logo.src} />
           </Box>
           <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => global.api.signup("a;654654", "skeep")}
+              // onClick={() => global.api.signup('test', 'test')}
+              sx={{ mr: 1 }}
+            >
+              Signup
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => global.api.login("a;654654", "skeep")}
+              // onClick={() => global.api.signup('test', 'test')}
+              sx={{ mr: 1 }}
+            >
+              Login
+            </Button>
             <DarkSwitch />
             <Button variant="outlined" color="error">
               Cancel <DeleteIcon sx={{ ml: 1 }} />
