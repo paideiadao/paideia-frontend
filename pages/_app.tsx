@@ -56,9 +56,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     </DaoTemplate>
                   ) : (
                     <Component {...pageProps} />
-                ) : (
-                  <Component {...pageProps} />
-                )}
+                  )}
                 {alert.show && (
                   <Modal
                     open={alert.show}
