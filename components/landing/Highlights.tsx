@@ -106,23 +106,6 @@ function Example(props: any) {
           // borderRadius: 0
         },
       }}
-      navButtonsWrapperProps={{
-        // Move the buttons to the bottom. Unsetting top here to override default style.
-        style: {},
-      }}
-      navButtonsWrapperProps={{   // Move the buttons to the bottom. Unsetting top here to override default style.
-        style: {
-
-        }
-      }}
-      indicatorIconButtonProps={{
-        style: {},
-      }}
-      activeIndicatorIconButtonProps={{
-        style: {
-          // color: '#fff',
-        },
-      }}
       sx={{
         zIndex: "2",
         maxWidth: "xl",
