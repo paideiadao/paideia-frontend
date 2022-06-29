@@ -101,7 +101,11 @@ export default function Perks() {
                   </Grid>
                   <Grid item zeroMinWidth>
                     <Typography component="p" sx={paragraphStyle}>
-                      Blockchain provides several advantages over legacy financial systems. Transparency, decentralization, and fair access are some of the hallmarks of the technology. DAOs are an extension of these features. Paideia can help with that.
+                      Blockchain provides several advantages over legacy
+                      financial systems. Transparency, decentralization, and
+                      fair access are some of the hallmarks of the technology.
+                      DAOs are an extension of these features. Paideia can help
+                      with that.
                     </Typography>
                   </Grid>
                 </Grid>
@@ -124,10 +128,12 @@ export default function Perks() {
             sx={{ display: { xs: "none", md: "flex" } }}
           ></Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Image src="/StackIcon.svg" width={35} height={35} />
+            <Image src="/icons/StackIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Simple to Use</Typography>
             <Typography component="p" sx={paragraphStyle}>
-              The Paideia UX/UI was designed with ease-of-use in mind, removing the complexity so you can focus on what matters: participating in DAOs.
+              The Paideia UX/UI was designed with ease-of-use in mind, removing
+              the complexity so you can focus on what matters: participating in
+              DAOs.
             </Typography>
           </Grid>
           <Grid
@@ -138,10 +144,12 @@ export default function Perks() {
             sx={{ display: { xs: "none", md: "flex" } }}
           ></Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Image src="/CubeIcon.svg" width={35} height={35} />
+            <Image src="/icons/CubeIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Secure</Typography>
             <Typography component="p" sx={paragraphStyle}>
-              Smart contracts written in Ergoscript maintain secure, predictable voting structures, which ensures your treasury is spent according to fair voting.
+              Smart contracts written in Ergoscript maintain secure, predictable
+              voting structures, which ensures your treasury is spent according
+              to fair voting.
             </Typography>
           </Grid>
           <Grid
@@ -159,10 +167,12 @@ export default function Perks() {
             sx={{ display: { xs: "none", md: "flex" } }}
           ></Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Image src="/PyramidIcon.svg" width={35} height={35} />
+            <Image src="/icons/PyramidIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Flexible</Typography>
             <Typography component="p" sx={paragraphStyle}>
-              Not all DAOs have the same needs. Paideia offers various governance structures and voting mechanisms, so you can get organized in the most productive way possible.
+              Not all DAOs have the same needs. Paideia offers various
+              governance structures and voting mechanisms, so you can get
+              organized in the most productive way possible.
             </Typography>
           </Grid>
           <Grid
@@ -173,10 +183,12 @@ export default function Perks() {
             sx={{ display: { xs: "none", md: "flex" } }}
           ></Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Image src="/TokenIcon.svg" width={35} height={35} />
+            <Image src="/icons/TokenIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Inexpensive</Typography>
             <Typography component="p" sx={paragraphStyle}>
-              Paideia is built on Ergo, so transaction fees are miniscule, and the platform fees will always remain low. You&apos;ll never pay hundreds in gas fees here.
+              Paideia is built on Ergo, so transaction fees are miniscule, and
+              the platform fees will always remain low. You&apos;ll never pay
+              hundreds in gas fees here.
             </Typography>
           </Grid>
           <Grid

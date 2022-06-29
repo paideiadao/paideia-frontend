@@ -1,5 +1,6 @@
 import { AbstractApi } from "./utilities";
 import { Theme } from "@mui/material";
+import { CreationApi } from "./creation/CreationApi";
 
 export class AppApi extends AbstractApi {
   theme: Theme;
@@ -19,5 +20,10 @@ export class AppApi extends AbstractApi {
     this.setTheme = _setTheme;
     this.daoId = _daoId;
     this.setDaoId = _setDaoId;
+  }
+
+  async getDaos(): Promise<any> {
+    let res = await this.get<any>("/dao", "");
+    return res;
   }
 }

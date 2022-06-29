@@ -12,7 +12,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import EditIcon from "@mui/icons-material/Edit";
 import { bytesToSize, percentage } from "../../../lib/creation/Utilities";
-import { ITokenHolder, ITokenomics } from "../../../lib/creation/Api";
+import { ITokenHolder, ITokenomics } from "../../../lib/creation/CreationApi";
 
 const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
   let tokenHolderBalance = props.data.tokenHolders

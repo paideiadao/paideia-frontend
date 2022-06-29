@@ -13,6 +13,9 @@ export const LightTheme = createTheme({
     circle: {
       main: "#00868F",
     },
+    error: {
+      main: "#F44336",
+    },
     favoriteBackground: {
       main: "#FEE8E7",
     },
@@ -46,6 +49,7 @@ export const LightTheme = createTheme({
       contrast: "#FFFFFF",
       selectedButton: "rgb(0, 134, 143, 0.1)",
       lightSuccess: "green",
+      lightOpacity: "rgba(0, 134, 143, 0.08)",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
@@ -77,9 +81,6 @@ export const LightTheme = createTheme({
           color: "inherit",
         },
       },
-    },
-    MuiCircularProgress: {
-      styleOverrides: {},
     },
     MuiSelect: {
       styleOverrides: {
@@ -117,8 +118,6 @@ export const LightTheme = createTheme({
           fill: "rgba(224, 104, 4, 1)",
           fontSize: ".8rem",
         },
-        active: {},
-        completed: {},
       },
     },
   },
@@ -131,6 +130,9 @@ export const DarkTheme = createTheme({
     background: {
       default: "#0E1421",
       paper: "#0E1421",
+    },
+    error: {
+      main: "#F44336",
     },
     text: {
       main: "white",
@@ -158,12 +160,14 @@ export const DarkTheme = createTheme({
       main: "linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), #FFA726",
     },
     darkHover: {
-      main: "rgba(17, 24, 39,.08)",
+      main: "rgba(17, 24, 39, 0.08)",
       text: "rgba(0, 0, 0, 1)",
     },
-    divider: {
-      main: "rgba(159, 210, 219, 0.2)",
-    },
+    // THIS IS CAUSING AN ERROR WITH <TableCell> 
+    // "Uncaught TypeError: color.charAt is not a function"
+    // divider: {
+    //   main: "rgba(159, 210, 219, 0.2)",
+    // }, 
     fileInput: {
       main: "rgba(45, 51, 64, 1)",
       outer: "rgba(17, 24, 39, 1)",
@@ -183,6 +187,7 @@ export const DarkTheme = createTheme({
       dark: "#6FA1A9",
       selectedButton: "rgba(2, 136, 209, 0.1)",
       lightSuccess: "#66BB6A",
+      lightOpacity: "rgba(159, 210, 219, 0.08)",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
@@ -369,14 +374,11 @@ export const DarkTheme = createTheme({
               fill: "white",
             },
           },
-
           color: "rgba(252, 158, 79, 0.08)",
         },
         text: {
           fill: "rgba(255, 207, 126, 1)",
         },
-        active: {},
-        completed: {},
       },
     },
   },

@@ -18,15 +18,11 @@ export default function PageHeader({ bgUrl, sectionTitle, titleLineOne, titleLin
         sx={{
           position: "absolute",
           top: "200px",
-          left: { xs: "40%", sm: "50%", md: "45%", lg: "50%" },
+          left: '50%',
           height: { xs: "100vh", md: "1261px" },
           minHeight: "600px",
           width: '1716px',
-          transform: {
-            xs: "translate(-50%, 0)",
-            sm: "translate(-50%, 0)",
-            md: "translate(-50%, 0)",
-          },
+          transform: "translate(-50%, 0)",
           overflow: "hidden",
           zIndex: "-1",
           ml: "-24px",

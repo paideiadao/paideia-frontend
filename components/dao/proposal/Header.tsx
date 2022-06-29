@@ -15,7 +15,11 @@ const CreateHeader: React.FC<{ type?: string }> = (props) => {
   return (
     <>
       <Box>
-        <Link href={`/dao/${id}/proposals/all`}>
+        <Link
+          href={
+            id === undefined ? "/dao/proposals/all" : `/dao/${id}/proposals/all`
+          }
+        >
           <Button sx={{ mb: "1rem" }}>
             <ArrowBackIcon sx={{ mr: ".3rem" }} />
             Back

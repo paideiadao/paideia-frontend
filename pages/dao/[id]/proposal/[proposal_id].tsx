@@ -8,5 +8,5 @@ const Proposal: React.FC = () => {
 
 export default Proposal;
 
-export const getStaticPaths = paths;
-export const getStaticProps = props;
+// export const getStaticPaths = paths;
+// export const getStaticProps = props;

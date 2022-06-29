@@ -11,15 +11,20 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Layout from "@components/Layout";
 import Creation from "./creation";
 import DaoTemplate from "@components/dao/DaoTemplate";
-
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { isDao } from "@lib/Router";
 import { WalletProvider } from "@components/wallet/WalletContext";
 import { AddWalletProvider } from "@components/wallet/AddWalletContext";
+import { Box, Modal } from "@mui/material";
+import { modalBackground } from "@components/utilities/modalBackground";
+import { IAlert } from "@lib/utilities";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
-  const [alert, setAlert] = React.useState({ show: false });
+  const [alert, setAlert] = React.useState<IAlert>({
+    show: false,
+  });
   const router = useRouter();
   const [daoId, setDaoId] = React.useState<any>(router.query.id);
 
@@ -34,6 +39,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const api = new AppApi(alert, setAlert, theme, setTheme, daoId, setDaoId);
   return (
+    <>
+    <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes" />
+    </Head>
     <AddWalletProvider>
       <WalletProvider>
           {isDao(Component) ? (
@@ -48,19 +57,45 @@ export default function App({ Component, pageProps }: AppProps) {
                   ) : (
                     <Component {...pageProps} />
                   )}
-                </GlobalContext.Provider>
-              </ThemeContext.Provider>
-            </ThemeProvider>
-          ) : (
-            <ThemeProvider theme={DarkTheme}>
-              <CssBaseline />
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-            </ThemeProvider>
-          )}
+                {alert.show && (
+                  <Modal
+                    open={alert.show}
+                    onClose={() => setAlert({ show: false })}
+                  >
+                    <Box sx={{ ...modalBackground, width: "35rem" }}>
+                      <Box sx={{ fontSize: "1.1rem", fontWeight: 450 }}>
+                        {alert.header}
+                      </Box>
+                      <Box sx={{ mt: "1rem", fontSize: ".9rem" }}>
+                        {alert.content}
+                      </Box>
+                      <Box
+                        sx={{
+                          width: "100%",
+                          display: "flex",
+                          alignItems: "center",
+                          mt: "1rem",
+                        }}
+                      >
+                        <Box sx={{ ml: "auto" }}></Box>
+                      </Box>
+                    </Box>
+                  </Modal>
+                )}
+              </GlobalContext.Provider>
+            </ThemeContext.Provider>
+          </ThemeProvider>
+        ) : (
+          <ThemeProvider theme={DarkTheme}>
+            <CssBaseline />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ThemeProvider>
+        )}
       </WalletProvider>
     </AddWalletProvider>
+    </>
   );
 }
 

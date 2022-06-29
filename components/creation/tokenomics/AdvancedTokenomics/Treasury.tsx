@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ITokenomics } from "../../../../lib/creation/Api";
+import { ITokenomics } from "../../../../lib/creation/CreationApi";
 import { IData } from "../../../../lib/utilities";
 import { Box, InputAdornment, TextField } from "@mui/material";
 import { CapsInfo, Header, Subheader } from "../../utilities/HeaderComponents";

@@ -13,7 +13,7 @@ const Proposals: React.FC = () => {
           {...i}
           c={c}
           key={"proposal-card-key-profile-" + c}
-          width="33%"
+          width={{ xs: "50%", s: "50%", md: "50%", lg: "33%" }}
         />
       ))}
     </Box>

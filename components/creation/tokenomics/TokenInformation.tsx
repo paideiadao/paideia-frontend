@@ -1,6 +1,6 @@
 import { Box, Button, ButtonGroup, TextField } from "@mui/material";
 import * as React from "react";
-import { ICreationData, ITokenomics } from "../../../lib/creation/Api";
+import { ICreationData, ITokenomics } from "../../../lib/creation/CreationApi";
 import { GlobalContext } from "../../../lib/creation/Context";
 import { IData } from "../../../lib/utilities";
 import { Header, LearnMore, Subheader } from "../utilities/HeaderComponents";

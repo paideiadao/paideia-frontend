@@ -1,6 +1,6 @@
 import { Box, Button, ButtonGroup } from "@mui/material";
 import * as React from "react";
-import { ITokenomics } from "../../../lib/creation/Api";
+import { ITokenomics } from "../../../lib/creation/CreationApi";
 import { IData, IObj } from "../../../lib/utilities";
 import { Header } from "../utilities/HeaderComponents";
 import Emissions from "./Charts/Emissions";

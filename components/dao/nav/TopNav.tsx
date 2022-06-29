@@ -26,13 +26,13 @@ const TopNav: React.FC = () => {
   return (
     <Box
       sx={{
-        width: "calc(100% - 15rem)",
+        width: "calc(100% - 13rem)",
         p: ".5rem",
         borderBottom: "1px solid",
         borderBottomColor: "divider.main",
         display: "flex",
         backgroundColor: "backgroundColor.main",
-        zIndex: 100,
+        zIndex: 1000,
       }}
     >
       <Box
@@ -145,7 +145,13 @@ const TopNav: React.FC = () => {
             }}
             onClick={handleClose}
           >
-            <Link href={`/dao/${id}/notifications`}>
+            <Link
+              href={
+                id === undefined
+                  ? "/dao/notifications"
+                  : `/dao/${id}/notifications`
+              }
+            >
               <Button size="small">View all</Button>
             </Link>
           </Box>

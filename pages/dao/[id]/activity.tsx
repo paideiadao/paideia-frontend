@@ -18,6 +18,10 @@ import StarIcon from "@mui/icons-material/Star";
 import Activity, { IActivity } from "@components/dao/activity/Activity";
 import Musk from "@public/profile/musk-full.png";
 import PaideiaLogo from "@public/dao/bio-image/paideia-logo.png";
+import { paths, props } from "@lib/DaoPaths";
+
+// export const getStaticPaths = paths;
+// export const getStaticProps = props;
 
 const categories = [
   { icon: <AppsIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />, label: "All" },
@@ -42,7 +46,7 @@ const categories = [
 let temp = new Date();
 temp.setDate(temp.getDate() - 4);
 
-const activities: IActivity[] = [
+export const activities: IActivity[] = [
   {
     img: Musk.src,
     name: "Alone Musk",
@@ -156,7 +160,7 @@ const activities: IActivity[] = [
     action: "added an addendum",
     value: "<addendum name>",
     date: new Date(),
-    category: "Staking",
+    category: "Proposals",
     secondary: "to the proposal",
     secondaryValue: "<proposal name>",
   },

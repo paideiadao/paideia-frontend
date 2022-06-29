@@ -8,8 +8,8 @@ const Status: React.FC<{ value: string; action: string; current: string }> = (
     props.value !== undefined && (
       <Alert
         variant="filled"
-          //@ts-ignore
-severity={props.value}
+        //@ts-ignore
+        severity={props.value}
         sx={{ position: "fixed", bottom: ".5rem", right: "1rem" }}
       >
         {props.value === "success"
