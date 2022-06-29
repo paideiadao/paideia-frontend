@@ -20,6 +20,7 @@ export const Header: React.FC<{
             : props.small === undefined
             ? "1.1rem"
             : "1rem",
+        fontWeight: 500,
         color: "primary.text",
       }}
     >

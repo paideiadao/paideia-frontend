@@ -5,16 +5,16 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { percentage } from "../../../lib/creation/Utilities";
 
-const PerformanceWidget: React.FC<{ value: number }> = (props) => {
+export const PerformanceWidget: React.FC<{ value: number, invert?: boolean, places?: number, large?: boolean }> = (props) => {
   return (
     <Box
       sx={{
         display: "flex",
         alignItems: "center",
-        backgroundColor: props.value <= 0 ? "error.main" : "text.lightSuccess",
+        backgroundColor: props.invert ? 'transparent' : props.value <= 0 ? "error.main" : "primary.lightSuccess",
         borderRadius: ".3rem",
-        fontSize: ".7rem",
-        color: "backgroundColor.main",
+        fontSize: props.large ? '1rem' : ".9rem",
+        color: props.invert ? props.value <= 0 ? "error.main" : "primary.lightSuccess" : "backgroundColor.main",
         p: ".2rem",
       }}
     >
@@ -23,12 +23,12 @@ const PerformanceWidget: React.FC<{ value: number }> = (props) => {
       ) : (
         <ArrowDownwardIcon style={{ fontSize: "1rem", marginRight: ".1rem" }} />
       )}
-      {percentage(props.value, 0)}
+      {percentage(props.value, props.places === undefined ? 0 : props.places)}
     </Box>
   );
 };
 
-const TimeWidget: React.FC<{ amount: number; unit: string }> = (props) => {
+export const TimeWidget: React.FC<{ amount: number; unit: string, small?: boolean }> = (props) => {
   return (
     <Box
       sx={{
@@ -36,9 +36,11 @@ const TimeWidget: React.FC<{ amount: number; unit: string }> = (props) => {
         alignItems: "center",
         backgroundColor: "fileInput.main",
         borderRadius: ".3rem",
-        fontSize: ".7rem",
+        fontSize: props.small ? '.8rem' : ".9rem",
         color: "text.light",
         p: ".2rem",
+        pt: '.1rem',
+        pb: '.1rem',
         ml: ".5rem",
         border: "1px solid",
         borderColor: "divider.main",

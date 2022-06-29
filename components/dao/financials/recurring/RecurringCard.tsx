@@ -28,34 +28,37 @@ const RecurringCard: React.FC<IRecurringCard> = (props) => {
         borderRadius: ".4rem",
         pt: '.5rem',
         pb: '.5rem',
-        fontSize: '.99rem'
+        fontSize: {xs: '.8rem', sm: '.8rem', md: '.9rem', lg: '.9rem', xl: '1.1rem'},
+        ':hover': {
+          borderColor: 'primary.main'
+        }
       }}
     >
       <Box sx={{ width: "35%", pl: '.5rem' }}>
         Paid to: {props.username}
-        <Box sx={{ fontSize: ".9rem", color: "text.light" }}>
+        <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
             {props.address.slice(0, 13) + "....." + props.address.slice(-13)}
         </Box>
       </Box>
-      <Box sx={{ width: "16%" }}>
+      <Box sx={{ width: "18%" }}>
         {props.proposalName}
-        <Box sx={{ fontSize: ".9rem", color: "text.light" }}>
+        <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
           By: {props.proposalUsername}
         </Box>
       </Box>
-      <Box sx={{ width: "18%" }}>
+      <Box sx={{ width: "20%" }}>
         {props.frequency}
-        <Box sx={{ fontSize: ".9rem", color: "text.light" }}>
+        <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
             {dateFormat(props.startDate, "mm/dd/yyyy HH:MM")}
         </Box>
       </Box>
       <Box sx={{ width: "12%" }}>
         ${props.paymentSig}
-        <Box sx={{ fontSize: ".9rem", color: "text.light" }}>
+        <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
           {props.paymentErg}
         </Box>
       </Box>
-      <Button endIcon={<DeleteIcon />} variant="text" color="error" sx={{ml: 'auto', mr: '1rem'}}>
+      <Button endIcon={<DeleteIcon />} variant="text" color="error" sx={{ml: 'auto', mr: '1rem'}} size='small'>
         Cancel
       </Button>
     </Box>

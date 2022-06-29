@@ -160,12 +160,12 @@ const Funds: React.FC = () => {
           ? summaryCards.map((i: IFundCard, c: number) => (
               <FundCard
                 {...i}
-                width="23.75%"
+                width="23.3%"
                 key={`summary-financial-card-${c}`}
               />
             ))
           : allCards.map((i: IFundCard, c: number) => (
-              <FundCard {...i} width="23.75%" key={`all-financial-card-${c}`} />
+              <FundCard {...i} width="23.3%" key={`all-financial-card-${c}`} />
             ))}
       </Box>
       <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>

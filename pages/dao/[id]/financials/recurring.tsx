@@ -124,7 +124,7 @@ const Recurring: React.FC = () => {
             <RecurringCard key={`recurring-card-${c}`} {...i} />
           ))}
         </Box>
-        <Box sx={{ width: "28%" }}>
+        <Box sx={{ width: "28%", position: 'sticky', top: '1.6rem' }}>
           <TreasuryInfo />
         </Box>
       </Box>

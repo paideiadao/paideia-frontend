@@ -75,9 +75,6 @@ export const LightTheme = createTheme({
         },
       },
     },
-    MuiCircularProgress: {
-      styleOverrides: {},
-    },
     MuiSelect: {
       styleOverrides: {
         icon: {
@@ -114,13 +111,6 @@ export const LightTheme = createTheme({
           fill: "rgba(224, 104, 4, 1)",
           fontSize: ".8rem",
         },
-        active: {},
-        completed: {},
-      },
-    },
-    MuiCssBaseline: {
-      styleOverrides: {
-        body: null,
       },
     },
   },
@@ -390,8 +380,6 @@ export const DarkTheme = createTheme({
         text: {
           fill: "rgba(255, 207, 126, 1)",
         },
-        active: {},
-        completed: {},
       },
     },
     // MuiCssBaseline: {
