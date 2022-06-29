@@ -19,12 +19,6 @@ interface TableProps {
 const CustomTable: FC<TableProps> = ({ rows, heading }): JSX.Element => {
   return (
     <Table aria-label="customized table">
-      <TableBody>
-        <TableRow>
-          <TableCell>hello</TableCell>
-        </TableRow>
-      </TableBody>
-                  {/* 
       <TableHead>
         <TableRow sx={{ background: '#19202b' }}>
           {heading.map((heading) => {
@@ -56,20 +50,16 @@ const CustomTable: FC<TableProps> = ({ rows, heading }): JSX.Element => {
               {Object.keys(row).map((key, i) => {
                 return (
                   <TableCell
-                    // align={
-                    // internalColumnData[index].align ?
-                    //   internalColumnData[index].align :
-                    //   "inherit"}
                     key={key}
                   >
-                    {key}
+                    {row[key]}
                   </TableCell>
                 )
               })}
             </TableRow>
           )
         })}
- */}
+        </TableBody>
     </Table>
 
 

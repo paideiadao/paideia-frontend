@@ -30,6 +30,7 @@ export default function PageHeader({ bgUrl, sectionTitle, titleLineOne, titleLin
       >
         <Image
           src={bgUrl}
+          priority
           layout="fill"
           objectFit="contain"
           objectPosition="center top"
