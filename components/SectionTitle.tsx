@@ -1,7 +1,12 @@
+import React, { FC } from 'react';
 import { Grid, Typography } from "@mui/material";
 import SquareIcon from "@mui/icons-material/Square";
 
-export default function SectionTitle({ title, marginBottom }) {
+interface SectionTitleProps {
+  marginBottom?: string;
+}
+
+const SectionTitle: FC<SectionTitleProps> = ({ marginBottom, children }) => {
   return (
     <Grid
       container
@@ -15,9 +20,11 @@ export default function SectionTitle({ title, marginBottom }) {
       </Grid>
       <Grid item>
         <Typography sx={{ textTransform: "uppercase", fontSize: "12px" }}>
-          {title}
+          {children}
         </Typography>
       </Grid>
     </Grid>
   );
 }
+
+export default SectionTitle;

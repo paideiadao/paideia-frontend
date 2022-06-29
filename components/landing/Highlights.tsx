@@ -110,6 +110,11 @@ function Example(props: any) {
         // Move the buttons to the bottom. Unsetting top here to override default style.
         style: {},
       }}
+      navButtonsWrapperProps={{   // Move the buttons to the bottom. Unsetting top here to override default style.
+        style: {
+
+        }
+      }}
       indicatorIconButtonProps={{
         style: {},
       }}
@@ -288,7 +293,9 @@ export default function Highlights() {
       >
         <Grid container sx={{ mt: "120px" }}>
           <Grid item md={6}>
-            <SectionTitle title="Featured" marginBottom="24px" />
+            <SectionTitle marginBottom="24px">
+              Featured
+            </SectionTitle>
             <Typography sx={{ ...titleStyle, mb: "64px" }}>
               You can&apos;t miss these highlights
             </Typography>

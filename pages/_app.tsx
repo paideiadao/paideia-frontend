@@ -2,7 +2,7 @@ import "../styles/global.css";
 import { AppProps } from "next/app";
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import * as React from "react";
-import { DarkTheme, LightTheme } from "../theme/theme";
+import { mainTheme, DarkTheme, LightTheme } from "../theme/theme";
 import { ThemeProvider } from "@mui/material/styles";
 import { ThemeContext } from "../lib/ThemeContext";
 import { AppApi } from "../lib/AppApi";
@@ -11,7 +11,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Layout from "@components/Layout";
 import Creation from "./creation";
 import DaoTemplate from "@components/dao/DaoTemplate";
-
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { isDao } from "@lib/Router";
 import { WalletProvider } from "@components/wallet/WalletContext";
@@ -39,15 +39,22 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const api = new AppApi(alert, setAlert, theme, setTheme, daoId, setDaoId);
   return (
+    <>
+    <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes" />
+    </Head>
     <AddWalletProvider>
       <WalletProvider>
-        {isDao(Component) ? (
-          <ThemeProvider theme={theme}>
-            <ThemeContext.Provider value={{ theme, setTheme }}>
-              <CssBaseline />
-              <GlobalContext.Provider value={{ api }}>
-                {Component !== Creation ? (
-                  <DaoTemplate subdomain="">
+          {isDao(Component) ? (
+            <ThemeProvider theme={theme}>
+              <ThemeContext.Provider value={{ theme, setTheme }}>
+                <CssBaseline />
+                <GlobalContext.Provider value={{ api }}>
+                  {Component !== Creation ? (
+                    <DaoTemplate subdomain="">
+                      <Component {...pageProps} />
+                    </DaoTemplate>
+                  ) : (
                     <Component {...pageProps} />
                   </DaoTemplate>
                 ) : (
@@ -91,6 +98,7 @@ export default function App({ Component, pageProps }: AppProps) {
         )}
       </WalletProvider>
     </AddWalletProvider>
+    </>
   );
 }
 
