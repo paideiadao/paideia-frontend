@@ -8,12 +8,6 @@ import SectionHeading from "@components/SectionHeading";
 import RoadmapAccordion from "@components/RoadmapAccordion";
 import CustomTable from "@components/CustomTable";
 
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-
 const navLinks = [
   {
     name: 'Introduction',
@@ -350,13 +344,7 @@ export default function About() {
               <RoadmapAccordion />
             </section>
             <section id="tokenomics">
-              <Table>
-                <TableBody>
-                  <TableRow>
-                    <TableCell>hello</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
+              <CustomTable rows={tableRows} heading={tableHeading} />
             </section>
           </Grid>
         </Grid>
