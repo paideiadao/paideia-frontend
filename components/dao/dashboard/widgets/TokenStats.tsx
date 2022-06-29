@@ -1,8 +1,12 @@
 import * as React from "react";
 import { CapsInfo } from "../../../creation/utilities/HeaderComponents";
 import { Box, Paper, Button } from "@mui/material";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 const TokenStats: React.FC = () => {
+  const router = useRouter();
+  const {id} = router.query;
   return (
     <Paper
       elevation={0}
@@ -96,7 +100,10 @@ const TokenStats: React.FC = () => {
           pb: ".25rem",
         }}
       >
-        <Button>Learn More</Button>
+        <Link href={id === undefined ? '/dao/financials/token' : `/dao/${id}/financials/token`}>
+          <Button>Learn More</Button>
+        
+        </Link>
       </Box>
     </Paper>
   );

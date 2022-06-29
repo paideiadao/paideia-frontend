@@ -101,7 +101,7 @@ const Nautilus: React.FC<{
               borderColor: "divider.main",
               borderRadius: ".3rem",
               mt: "1rem",
-              maxHeight: "15rem",
+              maxHeight: "12rem",
               overflowY: "auto",
             }}
           >

@@ -177,35 +177,33 @@ const DaoBio: React.FC = () => {
               borderColor: "divider.main",
             }}
           >
-            {daos.length > 5 && (
-              <Box
-                sx={{
-                  width: "100%",
-                  pb: ".5rem",
-                  borderBottom: "1px solid",
-                  borderColor: "divider.main",
-                  mb: ".5rem",
-                  pl: ".5rem",
-                  pr: ".5rem",
+            <Box
+              sx={{
+                width: "100%",
+                pb: ".5rem",
+                borderBottom: "1px solid",
+                borderColor: "divider.main",
+                mb: ".5rem",
+                pl: ".5rem",
+                pr: ".5rem",
+              }}
+            >
+              <TextField
+                value={search}
+                onChange={(e: any) => setSearch(e.target.value)}
+                size="small"
+                placeholder="Search by name or url"
+                InputProps={{
+                  sx: { fontSize: ".7rem" },
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <SearchIcon color="primary" sx={{ fontSize: "1rem" }} />
+                    </InputAdornment>
+                  ),
                 }}
-              >
-                <TextField
-                  value={search}
-                  onChange={(e: any) => setSearch(e.target.value)}
-                  size="small"
-                  placeholder="Search by name or url"
-                  InputProps={{
-                    sx: { fontSize: ".7rem" },
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <SearchIcon color="primary" sx={{ fontSize: "1rem" }} />
-                      </InputAdornment>
-                    ),
-                  }}
-                  sx={{ width: "100%" }}
-                />
-              </Box>
-            )}
+                sx={{ width: "100%" }}
+              />
+            </Box>
             <Box
               sx={{
                 width: "100%",

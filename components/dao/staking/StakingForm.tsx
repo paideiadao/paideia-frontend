@@ -17,7 +17,8 @@ const StakingForm: React.FC = () => {
     img: "",
   });
   console.log(wallet, holder);
-  const ticker = "DTK";
+  const ticker = "DTK",
+    available = "32,661";
   const [value, setValue] = React.useState<number>(100);
   const [stake, setStake] = React.useState<boolean>(false);
   const openStake = () => setStake(true);
@@ -39,7 +40,6 @@ const StakingForm: React.FC = () => {
           img: "",
         }}
         number={1}
-        canDelete
         set={(j: any) => {
           setHolder(j);
         }}
@@ -48,11 +48,16 @@ const StakingForm: React.FC = () => {
         <TextField
           label="Amount of tokens to stake"
           sx={{ width: "45%" }}
-          size="small"
+          size="medium"
           value={value}
           type="number"
           onChange={handleChange}
+          helperText={`${available} ${ticker} available`}
           InputProps={{
+            inputProps: {
+              min: 1,
+              max: 32661,
+            },
             endAdornment: (
               <InputAdornment position="end">{ticker}</InputAdornment>
             ),
@@ -62,7 +67,7 @@ const StakingForm: React.FC = () => {
           variant="text"
           size="small"
           sx={{ ml: ".5rem" }}
-          onClick={() => setValue(124421)}
+          onClick={() => setValue(32661)}
         >
           Max
         </Button>

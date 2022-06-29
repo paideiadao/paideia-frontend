@@ -62,7 +62,7 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
 
   const router = useRouter();
 
-  const {id} = router.query;
+  const { id } = router.query;
 
   return (
     <Layout width="100%">
@@ -71,8 +71,12 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
           <Link
             href={
               props.edit
-                ? id === undefined ? '/dao' : `/dao/${id}`
-                : id === undefined ? `/dao/members` : `/dao/${id}/members`
+                ? id === undefined
+                  ? "/dao"
+                  : `/dao/${id}`
+                : id === undefined
+                ? `/dao/members`
+                : `/dao/${id}/members`
             }
           >
             <Button variant="outlined">
