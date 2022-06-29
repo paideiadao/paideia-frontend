@@ -15,7 +15,8 @@ const WithdrawForm: React.FC = () => {
     address: wallet,
     img: "",
   });
-  const ticker = "DTK", available = '50,000';
+  const ticker = "DTK",
+    available = "50,000";
   const [withdraw, setWithdraw] = React.useState<boolean>(false);
   const openWithdraw = () => setWithdraw(true);
   const closeWithdraw = () => setWithdraw(false);
@@ -52,7 +53,7 @@ const WithdrawForm: React.FC = () => {
           InputProps={{
             inputProps: {
               min: 1,
-              max: 50000
+              max: 50000,
             },
             endAdornment: (
               <InputAdornment position="end">{ticker}</InputAdornment>

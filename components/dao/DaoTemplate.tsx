@@ -12,7 +12,7 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
   const api = globalContext.api;
 
   React.useEffect(() => {
-    console.log('skeep')
+    console.log("skeep");
     const getData = async () => await api.getDaos();
     getData().then((data) => console.log(data));
   }, []);

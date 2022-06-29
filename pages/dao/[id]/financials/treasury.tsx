@@ -55,7 +55,7 @@ const ValueLabel: React.FC<{
   );
 };
 
-const TreasuryInfo: React.FC = () => {
+export const TreasuryInfo: React.FC = () => {
   const dao = "Paideia";
   const router = useRouter();
   const { id } = router.query;

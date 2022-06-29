@@ -17,7 +17,8 @@ const StakingForm: React.FC = () => {
     img: "",
   });
   console.log(wallet, holder);
-  const ticker = "DTK", available = '32,661';
+  const ticker = "DTK",
+    available = "32,661";
   const [value, setValue] = React.useState<number>(100);
   const [stake, setStake] = React.useState<boolean>(false);
   const openStake = () => setStake(true);
@@ -55,7 +56,7 @@ const StakingForm: React.FC = () => {
           InputProps={{
             inputProps: {
               min: 1,
-              max: 32661
+              max: 32661,
             },
             endAdornment: (
               <InputAdornment position="end">{ticker}</InputAdornment>
