@@ -4,6 +4,8 @@ import { Subheader } from "../../creation/utilities/HeaderComponents";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { percentage } from "../../../lib/creation/Utilities";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export const PerformanceWidget: React.FC<{ value: number, invert?: boolean, places?: number, large?: boolean }> = (props) => {
   return (
@@ -92,11 +94,17 @@ const assets = [
 ];
 
 const FinancialSummary: React.FC = () => {
+  const router = useRouter();
+
+  const {id} = router.query
   return (
     <Box sx={{ width: "100%", mt: ".5rem" }}>
       <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
         <Subheader title="Financial summary" small bold />
-        <Button sx={{ ml: "auto", fontSize: ".8rem" }}>View More</Button>
+        <Link href={id === undefined ? '/dao/financials/treasury' : `/dao/${id}/financials/treasury`}>
+          <Button sx={{ ml: "auto", fontSize: ".8rem" }}>View More</Button>
+        
+        </Link>
       </Box>
       <Paper
         elevation={0}
