@@ -1,11 +1,8 @@
-import React, { FC, useState } from 'react';
-import { styled } from '@mui/material/styles';
+import React, { FC } from 'react';
 import { Grid, Typography, Box, Icon } from "@mui/material";
 import SectionTitle from "@components/SectionTitle";
-import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
-import MuiAccordionSummary, {
-  AccordionSummaryProps,
-} from '@mui/material/AccordionSummary';
+import MuiAccordion from '@mui/material/Accordion';
+import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import Timeline from '@mui/lab/Timeline';
@@ -16,48 +13,10 @@ import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 
-const Accordion = styled((props: AccordionProps) => (
-  <MuiAccordion disableGutters elevation={0} square {...props} />
-))(({ theme }) => ({
-  // border: `1px solid ${theme.palette.divider}`,
-  '&:not(:last-child)': {
-    borderBottom: 0,
-  },
-  '&:before': {
-    display: 'none',
-  },
-}));
-
-const AccordionSummary = styled((props: AccordionSummaryProps) => (
-  <MuiAccordionSummary
-    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '2rem' }} />}
-    sx={{ justifyContent: 'flex-start' }}
-    {...props}
-  />
-))(({ theme }) => ({
-
-
-  '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-    transform: 'rotate(90deg)',
-  },
-  '& .MuiAccordionSummary-content': {
-    marginLeft: theme.spacing(1),
-    flexGrow: '0',
-  },
-}));
-
-const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-  padding: theme.spacing(2),
-  borderTop: '1px solid rgba(0, 0, 0, .125)',
-}));
-
-interface AccordionExtraProps {
-  sx?: object;
-}
-
 const accordionObject = [
   {
     title: 'Q1/ 2022',
+    image: 'Q1',
     panel: 'panel1',
     content: [
       {
@@ -77,7 +36,7 @@ const accordionObject = [
       },
       {
         title: 'Raise Funds',
-        body: 'Using the Ergopad platform, raise funds from DAO members for developing the platform',
+        body: 'Using the Ergopad platform, raise funds from DAO members to develop the platform',
         completed: true
       },
       {
@@ -94,6 +53,7 @@ const accordionObject = [
   },
   {
     title: 'Q2/ 2022',
+    image: 'Q2',
     panel: 'panel2',
     content: [
       {
@@ -115,6 +75,7 @@ const accordionObject = [
   },
   {
     title: 'Q3/ 2022',
+    image: 'Q3',
     panel: 'panel3',
     content: [
       {
@@ -136,6 +97,7 @@ const accordionObject = [
   },
   {
     title: 'Q4/ 2022',
+    image: 'Q4',
     panel: 'panel4',
     content: [
       {
@@ -157,6 +119,7 @@ const accordionObject = [
   },
   {
     title: '2023 & Beyond',
+    image: '2023',
     panel: 'panel5',
     content: [
       {
@@ -178,6 +141,10 @@ const accordionObject = [
   },
 ]
 
+interface AccordionExtraProps {
+  sx?: object;
+}
+
 const RoadmapAccordion: FC<AccordionExtraProps> = ({ sx }) => {
   const [expanded, setExpanded] = React.useState<string | false>('panel1');
 
@@ -191,11 +158,41 @@ const RoadmapAccordion: FC<AccordionExtraProps> = ({ sx }) => {
       <SectionTitle marginBottom='120px'>
         Roadmap
       </SectionTitle>
-
       {accordionObject.map((item) => {
         return (
-          <Accordion expanded={expanded === item.panel} onChange={handleChange(item.panel)}>
-            <AccordionSummary aria-controls={item.panel + 'd-content'} id={item.panel + 'd-header'}>
+          <MuiAccordion
+            disableGutters
+            elevation={0}
+            square
+            expanded={expanded === item.panel}
+            onChange={handleChange(item.panel)}
+            sx={{
+              minHeight: '300px',
+              backgroundImage: `url(/${item.image}.png)`,
+              backgroundRepeat: 'no-repeat',
+              '&:not(:last-child)': {
+                borderBottom: 0,
+              },
+              '&:before': {
+                display: 'none',
+              },
+            }}
+          >
+            <MuiAccordionSummary
+              expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '2rem' }} />}
+              aria-controls={item.panel + 'd-content'}
+              id={item.panel + 'd-header'}
+              sx={{
+                justifyContent: 'flex-start',
+                '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+                  transform: 'rotate(90deg)',
+                },
+                '& .MuiAccordionSummary-content': {
+                  marginLeft: '12px',
+                  flexGrow: '0',
+                },
+              }}
+            >
               <Typography
                 sx={{
                   fontSize: "48px",
@@ -204,51 +201,81 @@ const RoadmapAccordion: FC<AccordionExtraProps> = ({ sx }) => {
                   textTransform: "uppercase",
                   fontFamily: '"Viga", sans-serif',
                 }}
-              >{item.title}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Timeline>
-
+              >{item.title}&nbsp;</Typography>
+            </MuiAccordionSummary>
+            <MuiAccordionDetails>
+              <Timeline sx={{
+                '& li:last-child': {
+                  '& .MuiTimelineConnector-root': {
+                    display: 'none'
+                  }
+                }
+              }}>
                 {item.content.map((time) => {
                   return (
-                    <TimelineItem sx={{}}>
-                      <TimelineOppositeContent
-                        sx={{ flexGrow: 0 }}
-                      >
-                      </TimelineOppositeContent>
+                    <TimelineItem>
+                      <TimelineOppositeContent sx={{ flexGrow: 0 }} />
                       <TimelineSeparator>
-                        <TimelineDot>
-                          <Icon>
-                            {time.completed ? 'check_circle' : 'history'}
+                        <TimelineDot
+                          sx={{
+                            background: 'linear-gradient(180deg, #F2CA83 0%, #6A8C90 100%)',
+                            border: 'none',
+                            color: '#000',
+                          }}>
+                          <Icon color="inherit">
+                            {time.completed ? 'done' : 'history'}
                           </Icon>
                         </TimelineDot>
-                        <TimelineConnector />
+                        <TimelineConnector sx={{ width: '1px' }} />
                       </TimelineSeparator>
-                      <TimelineContent>
-                        <Typography>
-                          {time.title}
-                        </Typography>
-                        <Typography>
+                      <TimelineContent sx={{ color: time.completed ? 'rgba(255, 255, 255, 0.7)' : '#fff' }}>
+                        <Grid
+                          container
+                          direction="row"
+                          justifyContent="flex-start"
+                          alignItems="center"
+                          spacing={1}
+                        >
+                          <Grid item>
+                            <Typography sx={{
+                              fontFamily: '"Space Grotesk", sans-serif',
+                              fontWeight: "700",
+                              fontSize: "24px",
+                              lineHeight: '32px',
+                              my: '6px',
+                              mr: '6px',
+                            }}>
+                              {time.title}
+                            </Typography>
+                          </Grid>
+                          <Grid item>
+                            <Icon color="inherit" sx={{ fontSize: '16px !important' }}>
+                              calendar_today
+                            </Icon>
+                          </Grid>
+                          <Grid item>
+                            <Typography sx={{ fontSize: '14px', letterSpacing: '1px' }}>
+                              {time.completed ? 'COMPLETED' : 'COMING SOON'}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                        <Typography
+                          sx={{
+                            fontSize: '16px',
+                            mb: '32px',
+                          }}>
                           {time.body}
                         </Typography>
                       </TimelineContent>
                     </TimelineItem>
                   )
-                })
-                }
-
+                })}
               </Timeline>
-
-
-            </AccordionDetails>
-          </Accordion>
+            </MuiAccordionDetails>
+          </MuiAccordion>
         )
       })
-      }
-
-
-
-
+    }
     </Box>
   )
 }

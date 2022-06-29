@@ -6,6 +6,13 @@ import Image from "next/image";
 import WhitepaperQuote from '@components/landing/WhitepaperQuote'
 import SectionHeading from "@components/SectionHeading";
 import RoadmapAccordion from "@components/RoadmapAccordion";
+import CustomTable from "@components/CustomTable";
+
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 const navLinks = [
   {
@@ -36,6 +43,12 @@ const navLinks = [
     name: 'Roadmap',
     icon: 'signpost',
     link: 'roadmap',
+    position: undefined
+  },
+  {
+    name: 'Tokenomics',
+    icon: 'signpost',
+    link: 'tokenomics',
     position: undefined
   },
 ];
@@ -83,6 +96,130 @@ const problems = [
     title: 'Security',
     body: 'All smart contracts are reviewed by independent third parties familiar with Ergoscript to make sure it conforms to the best practices. Further, smart contracts will be tested extensively to ensure funds are secure, and vote tallies are fair, transparent, and untamperable. '
   },
+]
+
+const tableHeading = [
+  {
+    id: 'name',
+    name: 'Name',
+  },
+  {
+    id: 'amount',
+    name: 'Amount',
+  },
+  {
+    id: 'value',
+    name: 'Value',
+  },
+  {
+    id: 'tge',
+    name: 'TGE',
+  },
+  {
+    id: 'freq',
+    name: 'Frequency',
+  },
+  {
+    id: 'length',
+    name: 'Length',
+  },
+  {
+    id: 'cliff',
+    name: 'Cliff',
+  },
+]
+
+const tableRows = [
+  {
+    name: "Ergopad Staker Round",
+    amount: 28000000,
+    value: "0.001",
+    tge: "",
+    freq: "Daily",
+    length: "12 Months",
+    cliff: "None"
+  },
+  {
+    name: "Seed Round",
+    amount: 36000000,
+    value: "0.005",
+    tge: "",
+    freq: "Daily",
+    length: "9 Months",
+    cliff: "None"
+  },
+  {
+    name: "Strategic Round",
+    amount: 20000000,
+    value: "0.008",
+    tge: "",
+    freq: "Daily",
+    length: "6 Months",
+    cliff: "None"
+  },
+  {
+    name: "Liquidity (Locked)",
+    amount: 16000000,
+    value: "0.01",
+    tge: "100%",
+    freq: "",
+    length: "",
+    cliff: ""
+  },
+  {
+    name: "Marketing",
+    amount: 20000000,
+    value: "",
+    tge: "10%",
+    freq: "Monthly",
+    length: "24 Months",
+    cliff: "1 Month"
+  },
+  {
+    name: "Staking Rewards",
+    amount: 40000000,
+    value: "",
+    tge: "",
+    freq: "Daily",
+    length: "48 Months",
+    cliff: "Start Date TBD"
+  },
+  {
+    name: "Airdrops",
+    amount: 2000000,
+    value: "",
+    tge: "",
+    freq: "",
+    length: "",
+    cliff: ""
+  },
+  {
+    name: "DAO Reserve",
+    amount: 16000000,
+    value: "",
+    tge: "10%",
+    freq: "Quarterly",
+    length: "5 Quarters",
+    cliff: "1 Quarter"
+  },
+  {
+    name: "Advisors",
+    amount: 6000000,
+    value: "",
+    tge: "5%",
+    freq: "Monthly",
+    length: "6 Months",
+    cliff: "3 Months"
+  },
+  {
+    name: "Team",
+    amount: 16000000,
+    value: "",
+    tge: "5%",
+    freq: "Monthly",
+    length: "12 Months",
+    cliff: "6 Months"
+  }
 ]
 
 export default function About() {
@@ -211,6 +348,15 @@ export default function About() {
             </section>
             <section id="roadmap">
               <RoadmapAccordion />
+            </section>
+            <section id="tokenomics">
+              <Table>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>hello</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
             </section>
           </Grid>
         </Grid>

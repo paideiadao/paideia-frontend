@@ -1,32 +1,14 @@
+import React, { FC } from 'react';
 import { Grid, Container, Box, Typography, Button } from "@mui/material";
 import { DarkTheme } from "@theme/theme";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForward";
 import Image from "next/image";
 
-const perkTitleStyle = {
-  fontSize: "24px",
-  fontWeight: "700",
-  lineHeight: "133%",
-  color: DarkTheme.palette.text.primary,
-  textTransform: "uppercase",
-  fontFamily: '"Space Grotesk", sans-serif',
-  mt: "2px",
-  mb: "16px",
-};
-
-const paragraphStyle = {
-  fontWeight: "400",
-  fontSize: "16px",
-  lineHeight: "24px",
-  letterSpacing: "0.15px",
-};
-
 interface PerkProps {
   sx?: object;
 }
 
-
-export default function Perks<PerkProps>({sx}) {
+const Perks: FC<PerkProps> = ({sx}) => {
   return (
     <Box sx={sx}>
       <Container
@@ -156,3 +138,5 @@ export default function Perks<PerkProps>({sx}) {
     </Box>
   );
 }
+
+export default Perks

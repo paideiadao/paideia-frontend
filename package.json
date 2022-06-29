@@ -30,8 +30,6 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-material-ui-carousel": "^3.4.2",
-    "react-slick": "^0.29.0",
-    "slick-carousel": "^1.8.1",
     "tinymce": "^6.0.3",
     "unsplash-js": "^7.0.15"
   },

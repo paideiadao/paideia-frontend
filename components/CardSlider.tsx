@@ -146,7 +146,7 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin 
 
   return (
     <>
-    <Container maxWidth="lg" id="setWidth"></Container>
+    <Container maxWidth="lg" id="setWidth" sx={{ zIndex: '1' }}></Container>
       {buttonTop ? (
         <ButtonBox />
       ) : null}

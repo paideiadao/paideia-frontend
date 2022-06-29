@@ -69,6 +69,7 @@ export default function Stats() {
         mt: { xs: "120px", md: "-60px" },
         minHeight: "2200px",
         position: "relative",
+        zIndex: '-1'
       }}
     >
       <Box
