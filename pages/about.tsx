@@ -176,7 +176,7 @@ const tableRows = [
     tge: "",
     freq: "Daily",
     length: "48 Months",
-    cliff: "Start Date TBD"
+    cliff: ""
   },
   {
     name: "Airdrops",
