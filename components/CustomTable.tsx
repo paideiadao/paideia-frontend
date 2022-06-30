@@ -8,6 +8,7 @@ import {
   TableContainer,
   useMediaQuery,
 } from '@mui/material';
+import { IObj } from '@lib/utilities'
 
 interface HeadingData {
   id: string
@@ -17,7 +18,7 @@ interface HeadingData {
 
 interface TableProps {
   heading: HeadingData[],
-  rows: any[],
+  rows: IObj<number | string>[],
 }
 
 const CustomTable: FC<TableProps> = ({ rows, heading }): JSX.Element => {
