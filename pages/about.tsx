@@ -1,3 +1,4 @@
+import React, { useEffect, useRef, useState } from 'react';
 import PageHeader from "@components/PageHeader";
 import PageNav from "@components/PageNav";
 import Blockquote from "@components/Blockquote";
@@ -7,6 +8,7 @@ import WhitepaperQuote from '@components/landing/WhitepaperQuote'
 import SectionHeading from "@components/SectionHeading";
 import RoadmapAccordion from "@components/RoadmapAccordion";
 import CustomTable from "@components/CustomTable";
+import TabsPanel from '@components/TabsPanel';
 
 const navLinks = [
   {
@@ -216,6 +218,21 @@ const tableRows = [
   }
 ]
 
+const tabs = [
+  {
+    title: 'Table',
+    fragment: <CustomTable rows={tableRows} heading={tableHeading} />
+  },
+  {
+    title: 'Table',
+    fragment: <Box sx={{ p: '24px', minHeight: '400px'}}>Hello</Box>
+  },
+  {
+    title: 'Table',
+    fragment: <CustomTable rows={tableRows} heading={tableHeading} />
+  },
+]
+
 export default function About() {
 
   return (
@@ -291,7 +308,7 @@ export default function About() {
                   <Grid container direction="column" spacing={12}>
                     {problems.map(({ num, title, body }, i) => {
                       return (
-                        <Grid item>
+                        <Grid item key={i}>
                           <Grid container>
                             <Grid item xs={4}>
                               <Typography sx={{
@@ -341,10 +358,18 @@ export default function About() {
               </SectionHeading>
             </section>
             <section id="roadmap">
-              <RoadmapAccordion />
+              <RoadmapAccordion sx={{ mb: '180px' }} />
             </section>
             <section id="tokenomics">
-              <CustomTable rows={tableRows} heading={tableHeading} />
+              <SectionHeading
+                category="Paideia Token"
+                title="Tokenomics"
+                sx={{ mb: '100px' }}
+              />
+              <Box sx={{ width: '100%' }}>
+                {/* <TabsPanel tabs={tabs} /> */}
+              </Box>
+
             </section>
           </Grid>
         </Grid>
