@@ -16,26 +16,34 @@ interface HeadingData {
   align?: "center" | "inherit" | "justify" | "left" | "right"
 }
 
-interface TableProps {
+interface ITableProps {
   heading: HeadingData[],
   rows: IObj<number | string>[],
 }
 
-const CustomTable: FC<TableProps> = ({ rows, heading }): JSX.Element => {
-const [thisNavigator, setThisNavigator] = useState('en-US')
+const CustomTable: FC<ITableProps> = ({ rows, heading }): JSX.Element => {
+  const [thisNavigator, setThisNavigator] = useState('en-US')
 
-useEffect(() => {
-  setThisNavigator(navigator.language)
-}, [])
+  useEffect(() => {
+    setThisNavigator(navigator.language)
+  }, [])
 
   const checkSmall = useMediaQuery('(min-width:740px)');
+
   return (
     <TableContainer sx={{
       border: '2px solid rgba(255, 255, 255, 0.12)',
-      borderRadius: '8px'
+      borderRadius: checkSmall ? '8px' : '0',
+      overflowX: 'auto',
+      maxWidth: '100vw',
+      ml: checkSmall ? '0' : '0',
+      mr: checkSmall ? '0' : '-48px',
     }}>
-      {checkSmall ? (
-        <Table aria-label="customized table">
+        <Table aria-label="customized table" sx={{
+          position: 'sticky',
+          top: '0',
+          width: '100%'
+        }}>
           <TableHead>
             <TableRow sx={{
               background: 'rgba(255, 255, 255, 0.09)',
@@ -85,38 +93,6 @@ useEffect(() => {
             })}
           </TableBody>
         </Table>
-      ) : (
-        <Table sx={{ p: 0 }}>
-          <TableBody>
-            {rows.map((row, i) => {
-              return (
-                Object.keys(row).map((key, i) => {
-                  if (row[key]) {
-                    return (
-                      <TableRow
-                        key={i + key}
-                        sx={
-                          (i > Object.keys(row).length) ? { border: '1px solid rgba(255, 255, 255, 0.12)', } : {}
-                        }
-                      >
-                        <TableCell>
-                          {heading[i].name}
-                        </TableCell>
-                        <TableCell>
-                          {row[key].toLocaleString(thisNavigator, {
-                            maximumFractionDigits: 0,
-                          })}
-                        </TableCell>
-                      </TableRow>
-                    )
-                  }
-                  else return null
-                })
-              )
-            })}
-          </TableBody>
-        </Table >
-      )}
     </TableContainer>
   )
 }

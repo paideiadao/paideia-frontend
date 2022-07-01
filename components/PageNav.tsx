@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import React, { FC, useEffect, useState, useRef } from 'react';
 import {
   Box,
   List,
@@ -18,9 +18,12 @@ const listItemSx = {
   },
 };
 
+interface IPageNav {
+  navLinks: any[],
+}
 
+const PageNav: FC<IPageNav> = ({ navLinks }) => {
 
-export default function PageHeader({ navLinks }) {
   const [sliderSx, setSliderSx] = useState({
     mt: undefined,
     height: undefined
@@ -45,10 +48,10 @@ export default function PageHeader({ navLinks }) {
   topAndBottomRef.current = topAndBottom;
 
   const handleResize = () => {
-    const element = document.getElementById("navContainer")
+    const element = document.getElementById('navContainer')
     const topPosition = element.offsetTop
     const totalHeight = element.getBoundingClientRect().height
-    const thisBottom = element.offsetTop + totalHeight
+    const thisBottom = topPosition + totalHeight
 
     navLinks.forEach((link: { link: string, position: number }) => {
       const linkElement = document.getElementById(link.link)
@@ -60,8 +63,6 @@ export default function PageHeader({ navLinks }) {
     const barElement = document.getElementById('navPositionBar')
     const barHeight = barElement.getBoundingClientRect().height
     const sliderHeight = visibleHeight / totalHeight * barHeight
-
-    console.log(thisBottom)
 
     setSliderSx({
       ...sliderSx,
@@ -121,8 +122,18 @@ export default function PageHeader({ navLinks }) {
     // Call handler right away so state gets updated with initial window size
     handleResize();
     // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    }
   }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleResize()
+    }, 200);
+  
+    return () => clearInterval(interval);
+  }, []);
 
   const navBarList = (
     <List sx={{ p: 0 }}>
@@ -172,3 +183,5 @@ export default function PageHeader({ navLinks }) {
     </Box>
   )
 };
+
+export default PageNav
