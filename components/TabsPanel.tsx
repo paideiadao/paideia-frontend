@@ -48,11 +48,11 @@ interface StyledTabProps {
   label: string;
 }
 
-const StyledTab = styled((props: StyledTabProps) => <Tab disableRipple {...props} />)(
+/* const StyledTab = styled((props: StyledTabProps) => <Tab disableRipple {...props} />)(
   ({ theme }) => ({
     background: theme.palette.primary
   }),
-)
+) */
 
 
 const CustomTable: FC<ITabs> = ({ tabs }) => {
@@ -68,7 +68,7 @@ const CustomTable: FC<ITabs> = ({ tabs }) => {
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
           {tabs.map((tab, i) => {
             return (
-              <StyledTab label={tab.title} {...a11yProps(i)} />
+              <Tab label={tab.title} {...a11yProps(i)} />
             )
           })}
         </Tabs>
