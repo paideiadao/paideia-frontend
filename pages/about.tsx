@@ -1,14 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { FC } from 'react';
 import PageHeader from "@components/PageHeader";
 import PageNav from "@components/PageNav";
 import Blockquote from "@components/Blockquote";
-import { Typography, Grid, Container, Divider, Box } from "@mui/material";
+import { Typography, Grid, Container, Divider, Box, Card, CardContent, } from "@mui/material";
 import Image from "next/image";
 import WhitepaperQuote from '@components/landing/WhitepaperQuote'
 import SectionHeading from "@components/SectionHeading";
 import RoadmapAccordion from "@components/RoadmapAccordion";
 import CustomTable from "@components/CustomTable";
 import TabsPanel from '@components/TabsPanel';
+import CardSlider from "@components/CardSlider";
 
 const navLinks = [
   {
@@ -43,8 +44,14 @@ const navLinks = [
   },
   {
     name: 'Tokenomics',
-    icon: 'signpost',
+    icon: 'toll',
     link: 'tokenomics',
+    position: undefined
+  },
+  {
+    name: 'Team',
+    icon: 'groups',
+    link: 'team',
     position: undefined
   },
 ];
@@ -220,16 +227,85 @@ const tableRows = [
 
 const tabs = [
   {
-    title: 'Table',
+    title: 'Distribution',
     fragment: <CustomTable rows={tableRows} heading={tableHeading} />
   },
   {
-    title: 'Table',
-    fragment: <Box sx={{ p: '24px', minHeight: '400px'}}>Hello</Box>
+    title: 'Chart',
+    fragment: <Box sx={{ p: '24px', minHeight: '600px' }}>Hello</Box>
+  },
+]
+
+const cardTitleStyle = {
+  fontSize: "16px",
+  fontWeight: "400",
+  lineHeight: "24px",
+  fontFamily: '"Inter", sans-serif',
+};
+
+interface MyCardProps {
+  image: string;
+  title: string;
+  body: string;
+}
+
+const MyCard: FC<MyCardProps> = ({ image, title, body }) => {
+  return (
+    <Card sx={{
+      backgroundColor: '#20252f',
+      backgroundImage: 'url("/card-bg.jpg")',
+      width: '200px',
+      maxWidth: 'calc(100vw - 48px)',
+      // display: 'inline-flex',
+      whiteSpace: 'normal',
+      px: '20px',
+      py: '32px',
+      borderRadius: '10px',
+      border: '1px solid rgba(255, 255, 255, 0.2)'
+    }}>
+      <CardContent>
+        <Image src={image} width={80} height={80} />
+        <Typography sx={cardTitleStyle}>{title}</Typography>
+      </CardContent>
+    </Card>
+  )
+}
+
+const theCards = [
+  {
+    title: "Blockchain Development Teams",
+    body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
+    image: "/icons/HandshakeIcon.svg",
   },
   {
-    title: 'Table',
-    fragment: <CustomTable rows={tableRows} heading={tableHeading} />
+    title: "Blockchain Development Teams",
+    body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
+    image: "/icons/DevIcon.svg",
+  },
+  {
+    title: "Investor Groups",
+    body: "Using a DAO, groups of people can pool their funds and manage each members' stake in the overall investment. Eliminate the need to trust a specific individual with control of the funds.",
+    image: "/icons/ChartIcon.svg",
+  },
+  {
+    title: "Blockchain Development Teams",
+    body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
+    image: "/icons/DevIcon.svg",
+  },
+  {
+    title: "Blockchain Development Teams",
+    body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
+    image: "/icons/DevIcon.svg",
+  },
+  {
+    title: "Blockchain Development Teams",
+    body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
+    image: "/icons/DevIcon.svg",
+  },
+  {
+    title: "Blockchain Development Teams",
+    body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
+    image: "/icons/DevIcon.svg",
   },
 ]
 
@@ -350,7 +426,7 @@ export default function About() {
               <SectionHeading
                 category="The Solution"
                 title="Paideia is a DAO management software suite"
-                sx={{ mb: '180px' }}
+                sx={{ mb: '280px' }}
               >
                 It is designed to make it easy for anyone to create, manage and be involved in a DAO, as well as facilitate the distribution of governance tokens and allow the ability to raise funds. The technical goal is to provide a secure DAO tool set that is open, easy to use, inexpensive, and allows for use in any environment.
 
@@ -358,7 +434,7 @@ export default function About() {
               </SectionHeading>
             </section>
             <section id="roadmap">
-              <RoadmapAccordion sx={{ mb: '180px' }} />
+              <RoadmapAccordion sx={{ mb: '280px' }} />
             </section>
             <section id="tokenomics">
               <SectionHeading
@@ -366,11 +442,24 @@ export default function About() {
                 title="Tokenomics"
                 sx={{ mb: '100px' }}
               />
-              <Box sx={{ width: '100%' }}>
-                {/* <TabsPanel tabs={tabs} /> */}
+              <Box sx={{ width: '100%', mb: '280px' }}>
+                <TabsPanel tabs={tabs} headline={'There will be a max supply of 200M Paideia tokens distributed as follows: '} />
               </Box>
-
             </section>
+            <Box component="section" id="team">
+              <SectionHeading
+                category="Get to know us"
+                title="Our Team"
+                sx={{ mb: '100px' }}
+              />
+              <CardSlider uniqueId="team" addMargin={0} contained>
+                {
+                  theCards.map(({ title, body, image }, i: number) => {
+                    return <MyCard key={i} title={title} body={body} image={image} />
+                  })
+                }
+              </CardSlider>
+            </Box>
           </Grid>
         </Grid>
       </Container>

@@ -2,6 +2,7 @@ import Head from "next/head";
 import Header from "@components/layout/Header";
 import Footer from "@components/layout/Footer";
 import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 export const siteTitle = "Paideia";
 
@@ -22,6 +23,7 @@ export default function Layout({
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes"
         />
       </Head>
+
       <Grid
         sx={{
           display: "flex",
@@ -40,6 +42,7 @@ export default function Layout({
           <Footer />
         </Grid>
       </Grid>
+
     </>
   );
 }

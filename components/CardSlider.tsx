@@ -7,15 +7,20 @@ interface SliderProps {
   buttonTop?: boolean;
   uniqueId: string;
   addMargin?: number;
+  contained?: boolean;
 }
 
-const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin }) => {
+const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin, contained }) => {
   const [marginLeftCalc, setMarginLeftCalc] = useState({ mx: '0px' })
   const [marginLeftNum, setMarginLeftNum] = useState(0)
   const [scrollPosition, setScrollPosition] = useState(0)
   const [leftDisabled, setLeftDisabled] = useState(false)
   const [rightDisabled, setRightDisabled] = useState(false)
   const [slideDistance, setSlideDistance] = useState(460)
+
+  useEffect(() => {
+    contained
+  }, []);
 
   const handleScroll = () => {
     const scroll = document.getElementById(uniqueId + "pnProductNav").scrollLeft
@@ -45,7 +50,10 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin 
 
   const marginFunction = () => {
     const pnArrowContainer = document.getElementById(uniqueId + "pnArrowContainer");
-    const margin = (pnArrowContainer.getBoundingClientRect().left + (addMargin ? addMargin : 0)).toString() + 'px'
+    let margin = '0px';
+    if (!contained) {
+      margin = (pnArrowContainer.getBoundingClientRect().left + (addMargin ? addMargin : 0)).toString() + 'px'
+    }
     setMarginLeftCalc({ ...marginLeftCalc, mx: margin })
     setMarginLeftNum(pnArrowContainer.getBoundingClientRect().left + (addMargin ? addMargin : 0))
     const containerWidth = document.getElementById("setWidth").offsetWidth
@@ -74,9 +82,6 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin 
     // Remove event listener on cleanup
     return () => window.removeEventListener("resize", marginFunction);
   }, [])
-
-  const scrollRef = useRef(0)
-  scrollRef.current = scrollPosition
 
   const [pos, setPos] = useState({
     left: undefined,
@@ -132,7 +137,7 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin 
   const ButtonBox = () => {
     return (
       <Container id={uniqueId + "pnArrowContainer"} maxWidth="lg" sx={{ my: '32px' }}>
-        <Box sx={buttonTop ? { display: 'flex', justifyContent: 'flex-end'} : null }>
+        <Box sx={buttonTop ? { display: 'flex', justifyContent: 'flex-end' } : null}>
           <Button onClick={clickLeft} disabled={leftDisabled}>
             <ArrowBackIosIcon />
           </Button>
@@ -146,7 +151,7 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin 
 
   return (
     <>
-    <Container maxWidth="lg" id="setWidth" sx={{ zIndex: '1' }}></Container>
+      <Container maxWidth="lg" id="setWidth" sx={{ zIndex: '1', width: '100vw' }}></Container>
       {buttonTop ? (
         <ButtonBox />
       ) : null}
@@ -166,11 +171,21 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin 
         '&::-webkit-scrollbar': {
           display: 'none'
         },
+        maxWidth: '100vw',
+        ml: contained ? '-24px' : '0',
       }}
         id={uniqueId + "pnProductNav"}
         onMouseDown={(e) => handleMouseDown(e)}
       >
-        <Box id={uniqueId + "pnProductNavContents"} display="flex" sx={{ width: 'min-content', gap: '24px', ...marginLeftCalc }}>
+        <Box
+          id={uniqueId + "pnProductNavContents"}
+          display="flex"
+          sx={{
+            width: 'min-content',
+            gap: '24px',
+            ...marginLeftCalc
+          }}
+        >
           {children}
         </Box>
       </Box>
