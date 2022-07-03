@@ -83,6 +83,12 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin,
     return () => window.removeEventListener("resize", marginFunction);
   }, [])
 
+  useEffect(() => {
+    setTimeout(() => {
+      marginFunction()
+    }, 1000);
+  }, []);
+
   const [pos, setPos] = useState({
     left: undefined,
     x: undefined,
@@ -126,7 +132,6 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin,
   const clickLeft = () => {
     const pnProductNav = document.getElementById(uniqueId + "pnProductNav")
     pnProductNav.scrollTo({ left: (scrollPosition - slideDistance), behavior: 'smooth' });
-    console.log(slideDistance)
   }
 
   const clickRight = () => {
