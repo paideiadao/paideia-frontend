@@ -115,7 +115,7 @@ const Design: React.FC = (props) => {
                 sx={{
                   backgroundColor: "fileInput.outer",
                   border: "1px solid",
-                  borderColor: "divider.main",
+                  borderColor: "border.main",
                   m: i.id === theme ? "0rem" : ".2rem",
                   borderRadius: ".6rem",
                 }}
@@ -162,7 +162,7 @@ const Design: React.FC = (props) => {
                     pb: "1rem",
                     pt: "1rem",
                     borderTop: "1px solid",
-                    borderTopColor: "divider.main",
+                    borderTopColor: "border.main",
                     fontSize: ".9rem",
                   }}
                 >

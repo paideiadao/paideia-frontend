@@ -23,7 +23,7 @@ const RecurringCard: React.FC<IRecurringCard> = (props) => {
         alignItems: "center",
         width: "100%",
         border: 1,
-        borderColor: "divider.main",
+        borderColor: "border.main",
         mb: "1rem",
         borderRadius: ".4rem",
         pt: '.5rem',

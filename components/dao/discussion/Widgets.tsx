@@ -9,7 +9,7 @@ export const Overview: React.FC = () => {
       sx={{
         backgroundColor: "fileInput.outer",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         borderRadius: ".3rem",
         width: "100%",
         mb: "1rem",
@@ -19,7 +19,7 @@ export const Overview: React.FC = () => {
         sx={{
           width: "100%",
           borderBottom: "1px solid",
-          borderBottomColor: "divider.main",
+          borderBottomColor: "border.main",
           p: ".5rem",
         }}
       >
@@ -51,7 +51,7 @@ export const Overview: React.FC = () => {
               color: "text.light",
               textAlign: "center",
               borderRight: "1px solid",
-              borderRightColor: "divider.main",
+              borderRightColor: "border.main",
               pr: "1rem",
             }}
           >
@@ -65,7 +65,7 @@ export const Overview: React.FC = () => {
               color: "text.light",
               textAlign: "center",
               borderRight: "1px solid",
-              borderRightColor: "divider.main",
+              borderRightColor: "border.main",
               pr: "1rem",
             }}
           >
@@ -107,7 +107,7 @@ export const State: React.FC = () => {
       sx={{
         backgroundColor: "fileInput.outer",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         borderRadius: ".3rem",
         width: "100%",
         mb: "1rem",

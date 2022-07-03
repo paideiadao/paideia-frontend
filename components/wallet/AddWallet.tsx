@@ -300,7 +300,7 @@ export const AddWallet: React.FC = () => {
               <Button
                 color="error"
                 variant="outlined"
-                sx={{ mr: ".5rem" }}
+                sx={{ mr: view === "mobile" ? ".5rem": 0 }}
                 onClick={() => {
                   setWallet("");
 

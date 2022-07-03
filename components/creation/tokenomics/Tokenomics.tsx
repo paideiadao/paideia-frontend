@@ -142,7 +142,7 @@ const Tokenomics: React.FC = () => {
       <Box
         sx={{
           borderBottom: "1px solid",
-          borderBottomColor: "divider.main",
+          borderBottomColor: "border.main",
           pb: "1rem",
         }}
       >

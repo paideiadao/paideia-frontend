@@ -20,7 +20,7 @@ const FundCard: React.FC<{
         backgroundColor: "fileInput.outer",
         m: ".3rem",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         borderRadius: ".3rem",
         p: ".5rem",
       }}
@@ -145,7 +145,7 @@ const Funds: React.FC = () => {
             ml: "auto",
             p: ".25rem",
             border: "1px solid",
-            borderColor: "divider.main",
+            borderColor: "border.main",
             pt: ".1rem",
             pb: ".1rem",
             fontSize: ".9rem",

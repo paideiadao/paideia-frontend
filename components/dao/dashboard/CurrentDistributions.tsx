@@ -58,7 +58,7 @@ const CurrentDistributions: React.FC = () => {
               mb: "1rem",
               borderRadius: ".3rem",
               border: "1px solid",
-              borderColor: "divider.main",
+              borderColor: "border.main",
               display: "flex",
               alignItems: "center",
               p: "1rem",
@@ -120,7 +120,7 @@ const CurrentDistributions: React.FC = () => {
                 display: "flex",
                 justifyContent: "center",
                 borderLeft: "1px solid",
-                borderLeftColor: "divider.main",
+                borderLeftColor: "border.main",
               }}
             >
               <Button>View</Button>

@@ -204,7 +204,7 @@ const Members: React.FC = () => {
           sx={{
             backgroundColor: "backgroundColor.main",
             border: "1px solid",
-            borderColor: "divider.main",
+            borderColor: "border.main",
             p: ".65rem",
             borderRadius: "5rem",
             display: "flex",

@@ -14,7 +14,7 @@ const TokenStats: React.FC = () => {
         borderRadius: ".5rem",
         backgroundColor: "fileInput.outer",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         p: ".5rem",
         mt: 0,
         pl: 0,
@@ -35,7 +35,7 @@ const TokenStats: React.FC = () => {
             fontSize: ".7rem",
             color: "text.light",
             borderRight: "1px solid",
-            borderColor: "divider.main",
+            borderColor: "border.main",
           }}
         >
           Ticker
@@ -69,7 +69,7 @@ const TokenStats: React.FC = () => {
             fontSize: ".7rem",
             color: "text.light",
             borderRight: "1px solid",
-            borderColor: "divider.main",
+            borderColor: "border.main",
           }}
         >
           Market cap
@@ -95,7 +95,7 @@ const TokenStats: React.FC = () => {
           color: "primary.main",
           textAlign: "center",
           borderTop: "1px solid",
-          borderTopColor: "divider.main",
+          borderTopColor: "border.main",
           pt: ".25rem",
           pb: ".25rem",
         }}

@@ -29,7 +29,7 @@ const CreationLoading: React.FC<{ theme: any }> = (props) => {
           alignItems: "center",
           backgroundColor: "fileInput.outer",
           borderBottom: "1px solid",
-          borderBottomColor: "divider.main",
+          borderBottomColor: "border.main",
           pl: "1.5rem",
         }}
       >

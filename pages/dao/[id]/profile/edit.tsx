@@ -72,7 +72,7 @@ const ProfileEditImage: React.FC = () => {
                 backgroundColor: "favoriteBackground.main",
               },
               border: "1px solid",
-              borderColor: "divider.main",
+              borderColor: "border.main",
             }}
             onClick={() =>
               setFile({

@@ -51,7 +51,7 @@ export default function StepSelector(props) {
             <Divider
               orientation="vertical"
               flexItem
-              style={{ background: "divider.main" }}
+              style={{ background: "border.main" }}
             />
           </Box>
         }

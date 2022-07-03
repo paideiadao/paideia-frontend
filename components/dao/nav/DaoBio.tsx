@@ -108,7 +108,7 @@ const DaoBio: React.FC = () => {
         display: "flex",
         alignItems: "center",
         borderBottom: "1px solid",
-        borderBottomColor: "divider.main",
+        borderBottomColor: "border.main",
         flexDirection: "column",
         p: ".75rem",
         pt: "0rem",
@@ -130,7 +130,7 @@ const DaoBio: React.FC = () => {
           display: "flex",
           alignItems: "center",
           border: "1px solid",
-          borderColor: "divider.main",
+          borderColor: "border.main",
           cursor: "pointer",
         }}
         onClick={() => setDropdown(true)}
@@ -174,7 +174,7 @@ const DaoBio: React.FC = () => {
               pl: "0",
               pr: "0",
               border: "1px solid",
-              borderColor: "divider.main",
+              borderColor: "border.main",
             }}
           >
             <Box
@@ -182,7 +182,7 @@ const DaoBio: React.FC = () => {
                 width: "100%",
                 pb: ".5rem",
                 borderBottom: "1px solid",
-                borderColor: "divider.main",
+                borderColor: "border.main",
                 mb: ".5rem",
                 pl: ".5rem",
                 pr: ".5rem",

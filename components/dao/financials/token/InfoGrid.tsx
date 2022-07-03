@@ -11,7 +11,7 @@ interface IInfoCard {
 }
 
 const InfoCard: React.FC<IInfoCard> = (props) => {
-    return <Box sx={{width: '25%', p: '.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', backgroundColor: 'fileInput.outer', borderRadius: '.4rem', border: 1, borderColor: 'divider.main'}}>
+    return <Box sx={{width: '25%', p: '.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', backgroundColor: 'fileInput.outer', borderRadius: '.4rem', border: 1, borderColor: 'border.main'}}>
         <Box sx={{display: 'flex', alignItems: 'center'}}>
             <Box sx={{fontSize: '1.5rem', fontWeight: 500, mr: '.5rem'}}>
                 {props.value}

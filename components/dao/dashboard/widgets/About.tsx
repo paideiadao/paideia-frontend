@@ -10,7 +10,7 @@ const About: React.FC = () => {
         borderRadius: ".5rem",
         backgroundColor: "fileInput.outer",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         p: ".5rem",
         mt: ".5rem",
         mr: "1rem",
@@ -26,7 +26,7 @@ const About: React.FC = () => {
             fontSize: ".7rem",
             color: "text.light",
             borderRight: "1px solid",
-            borderColor: "divider.main",
+            borderColor: "border.main",
           }}
         >
           Members

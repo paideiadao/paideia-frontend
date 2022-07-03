@@ -69,7 +69,7 @@ const AddDistribution: React.FC<{
         borderRadius: ".3rem",
         backgroundColor: "fileInput.outer",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         display: "flex",
         flexWrap: "wrap",
         mt: ".5rem",
@@ -95,7 +95,7 @@ const AddDistribution: React.FC<{
             sx={{
               width: "100%",
               borderBottom: "1px solid",
-              borderColor: "divider.main",
+              borderColor: "border.main",
               mb: "1rem",
               pl: "1rem",
             }}

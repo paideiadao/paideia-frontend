@@ -98,7 +98,7 @@ const Nautilus: React.FC<{
             sx={{
               width: "100%",
               border: "1px solid",
-              borderColor: "divider.main",
+              borderColor: "border.main",
               borderRadius: ".3rem",
               mt: "1rem",
               maxHeight: "12rem",
@@ -120,7 +120,7 @@ const Nautilus: React.FC<{
                       pb: ".5rem",
                       borderBottom:
                         c === props.addresses.length - 1 ? 0 : "1px solid",
-                      borderBottomColor: "divider.main",
+                      borderBottomColor: "border.main",
                     }}
                     key={`${i.name}-address-selector`}
                   >

@@ -37,16 +37,16 @@ export default function Nav(props) {
           pb: 2,
           borderRight: "1px solid",
           borderBottom: "1px solid",
-          borderRightColor: "divider.main",
-          borderBottomColor: "divider.main",
+          borderRightColor: "border.main",
+          borderBottomColor: "border.main",
           backgroundColor: "backgroundColor.main",
           color: "color.main",
         }}
       >
         <Progress {...props} />
-        <Divider sx={{ mt: 2, mb: 1, borderBottomColor: "divider.main" }} />
+        <Divider sx={{ mt: 2, mb: 1, borderBottomColor: "border.main" }} />
         <StepSelector {...props} />
-        <Divider sx={{ mt: 1, mb: 1, borderBottomColor: "divider.main" }} />
+        <Divider sx={{ mt: 1, mb: 1, borderBottomColor: "border.main" }} />
         <Help />
       </Box>
       <Box
@@ -56,7 +56,7 @@ export default function Nav(props) {
           ml: "15rem",
           backgroundColor: "backgroundColor.main",
           borderBottom: "1px solid",
-          borderBottomColor: "divider.main",
+          borderBottomColor: "border.main",
           height: "3.5rem",
           width: "calc(100% - 15rem)",
         }}

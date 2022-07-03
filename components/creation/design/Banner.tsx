@@ -72,7 +72,7 @@ const Banner: React.FC = () => {
     <Box
       sx={{
         borderTop: "1px solid",
-        borderTopColor: "divider.main",
+        borderTopColor: "border.main",
         pt: "1rem",
         mt: "1rem",
       }}

@@ -283,7 +283,7 @@ const CardContent: React.FC<{ category: string; widget: any }> = (props) => {
         height: "7rem",
         backgroundColor: "fileInput.outer",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         borderRadius: ".3rem",
         p: ".25rem",
         position: "relative",
@@ -467,7 +467,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
           sx={{
             backgroundColor: "fileInput.outer",
             border: "1px solid",
-            borderColor: "divider.main",
+            borderColor: "border.main",
             borderRadius: ".3rem",
             width: "100%",
             ":hover": {
@@ -478,7 +478,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
           <Box
             sx={{
               borderBottom: "1px solid",
-              borderBottomColor: "divider.main",
+              borderBottomColor: "border.main",
               p: ".5rem",
             }}
           >

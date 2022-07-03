@@ -23,7 +23,7 @@ const Governance: React.FC<{
       sx={{
         backgroundColor: "fileInput.outer",
         borderBottom: "1px solid",
-        borderBottomColor: "divider.main",
+        borderBottomColor: "border.main",
       }}
     >
       <AccordionSummary expandIcon={<ExpandMoreIcon />} id="governance-header">

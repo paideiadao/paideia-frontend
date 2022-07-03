@@ -37,7 +37,7 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
         pb: ".25rem",
         backgroundColor: "fileInput.outer",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         borderRadius: ".3rem",
       }}
     >
@@ -151,7 +151,7 @@ const Wallet: React.FC = () => {
           sx={{
             width: "100%",
             borderBottom: "1px solid",
-            borderBottomColor: "divider.main",
+            borderBottomColor: "border.main",
             mt: "1rem",
           }}
         >

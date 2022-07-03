@@ -1,9 +1,9 @@
 import { Header } from '@components/creation/utilities/HeaderComponents';
 import { Box } from '@mui/material';
 import * as React from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 
-const columns: GridColDef[] = [
+const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
     {
       field: 'firstName',
@@ -30,8 +30,8 @@ const columns: GridColDef[] = [
       description: 'This column has a value getter and is not sortable.',
       sortable: false,
       width: 160,
-      valueGetter: (params: GridValueGetterParams) =>
-        `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+      // valueGetter: (params: GridValueGetterParams) =>
+      //   `${params.row.firstName || ''} ${params.row.lastName || ''}`,
     },
   ];
   
@@ -52,14 +52,14 @@ const Markets: React.FC = () => {
     const ticker = 'PTK'
     return <Box sx={{width: '100%', mt: '1rem'}}>
         <Header title={`${ticker} markets`} />
-        {/* <DataGrid
+        <DataGrid
             rows={rows}
             columns={columns}
             pageSize={5}
             rowsPerPageOptions={[5]}
             checkboxSelection
             disableSelectionOnClick
-        /> */}
+        />
     </Box>
 }
 

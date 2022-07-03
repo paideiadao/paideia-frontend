@@ -78,7 +78,7 @@ const DiscussionCard: React.FC<IReference> = (props) => {
         p: ".5rem",
         borderRadius: ".3rem",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         display: "flex",
         alignItems: "center",
       }}

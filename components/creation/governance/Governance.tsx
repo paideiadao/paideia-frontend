@@ -52,7 +52,7 @@ const Governance: React.FC = () => {
           mt: ".8rem",
           pb: "1rem",
           borderBottom: "1px solid",
-          borderBottomColor: "divider.main",
+          borderBottomColor: "border.main",
         }}
       >
         <LearnMore
@@ -358,7 +358,7 @@ const Governance: React.FC = () => {
           pb: "1rem",
           mb: "1rem",
           borderBottom: "1px solid",
-          borderBottomColor: "divider.main",
+          borderBottomColor: "border.main",
         }}
       >
         <LearnMore

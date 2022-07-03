@@ -195,7 +195,7 @@ const Notifications: React.FC<{ params: any }> = (props) => {
           sx={{
             mt: "1rem",
             borderBottom: "1px solid",
-            borderBottomColor: "divider.main",
+            borderBottomColor: "border.main",
             pb: "1rem",
           }}
         >
@@ -234,7 +234,7 @@ export const Notification: React.FC<{ i: any; m?: string }> = (props) => {
         backgroundColor: i.isread === 0 ? "fileInput.read" : "fileInput.outer",
         borderRadius: props.m === undefined ? ".3rem" : "0rem",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         cursor: "pointer",
       }}
     >

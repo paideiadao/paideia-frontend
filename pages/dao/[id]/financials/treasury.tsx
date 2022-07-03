@@ -64,7 +64,7 @@ export const TreasuryInfo: React.FC = () => {
     <Box
       sx={{
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         backgroundColor: "fileInput.outer",
         p: ".5rem",
         ml: "1.5rem",
@@ -77,7 +77,7 @@ export const TreasuryInfo: React.FC = () => {
           sx={{
             width: "50%",
             borderRight: "1px solid",
-            borderColor: "divider.main",
+            borderColor: "border.main",
           }}
         >
           <ValueLabel label="Ticker" value="PTK" />
@@ -91,7 +91,7 @@ export const TreasuryInfo: React.FC = () => {
           sx={{
             width: "50%",
             borderRight: "1px solid",
-            borderColor: "divider.main",
+            borderColor: "border.main",
           }}
         >
           <ValueLabel label="High (24hrs)" value="$0.2199" small />
@@ -105,7 +105,7 @@ export const TreasuryInfo: React.FC = () => {
           sx={{
             width: "50%",
             borderRight: "1px solid",
-            borderColor: "divider.main",
+            borderColor: "border.main",
           }}
         >
           <ValueLabel label="Market Cap" value="$10,467,400" small />

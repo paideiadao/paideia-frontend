@@ -91,7 +91,7 @@ const Treasury: React.FC<{
         sx={{
           width: "100%",
           borderBottom: "1px solid",
-          borderColor: "divider.main",
+          borderColor: "border.main",
           mb: "1rem",
           pl: "1rem",
         }}

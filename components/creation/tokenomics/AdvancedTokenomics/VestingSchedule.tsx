@@ -47,7 +47,7 @@ const VestingSchedule: React.FC<{
     <Box
       sx={{
         borderTop: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         width: "100%",
         mt: "1rem",
         pl: "1rem",

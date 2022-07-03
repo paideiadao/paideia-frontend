@@ -10,7 +10,7 @@ const BottomNav: React.FC = () => {
         width: "calc(100%)",
         backgroundColor: "backgroundColor.main",
         borderTop: "1px solid",
-        borderTopColor: "divider.main",
+        borderTopColor: "border.main",
         p: ".5rem",
         display: "flex",
         alignItems: "center",

@@ -53,7 +53,7 @@ const StatisticsRow: React.FC<{title: string, secondRow?: JSX.Element}> = (props
 }
 
 const StatisticsCard: React.FC<{title: string | JSX.Element}> = (props) => {
-    return <Box sx={{width: '23.2%', pl: '1rem', pt: '.5rem', pb: '.5rem', pr: '1rem', backgroundColor: 'fileInput.outer', border: 1, borderColor: 'divider.main', borderRadius: '.4rem', mr: '1rem', height: '4.5rem', display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
+    return <Box sx={{width: '23.2%', pl: '1rem', pt: '.5rem', pb: '.5rem', pr: '1rem', backgroundColor: 'fileInput.outer', border: 1, borderColor: 'border.main', borderRadius: '.4rem', mr: '1rem', height: '4.5rem', display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
         {props.children}
         <Box sx={{fontSize: '.8rem', color: 'text.light'}}>{props.title}</Box>
 

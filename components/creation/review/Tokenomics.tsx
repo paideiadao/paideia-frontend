@@ -57,7 +57,7 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
               sx={{
                 borderRadius: ".2rem",
                 border: ".1rem solid",
-                borderColor: "divider.main",
+                borderColor: "border.main",
                 mb: ".5rem",
                 p: ".5rem",
                 display: "flex",
@@ -92,7 +92,7 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
               sx={{
                 borderRadius: ".2rem",
                 border: ".1rem solid",
-                borderColor: "divider.main",
+                borderColor: "border.main",
                 mb: ".5rem",
                 p: ".5rem",
                 display: "flex",
@@ -137,7 +137,7 @@ const Tokenomics: React.FC<{
       sx={{
         backgroundColor: "fileInput.outer",
         borderBottom: "1px solid",
-        borderBottomColor: "divider.main",
+        borderBottomColor: "border.main",
       }}
       expanded={props.expanded === "tokenomics"}
       onChange={props.handleChange("tokenomics")}

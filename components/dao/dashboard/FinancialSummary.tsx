@@ -45,7 +45,7 @@ export const TimeWidget: React.FC<{ amount: number; unit: string, small?: boolea
         pb: '.1rem',
         ml: ".5rem",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
       }}
     >
       {props.amount}
@@ -71,7 +71,7 @@ const AssetCard: React.FC<IAssetCard> = (props) => {
         p: ".5rem",
         width: "25%",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         ml: props.c === 0 ? 0 : ".5rem",
         fontSize: ".9rem",
       }}
@@ -112,7 +112,7 @@ const FinancialSummary: React.FC = () => {
           width: "100%",
           backgroundColor: "fileInput.outer",
           border: "1px solid",
-          borderColor: "divider.main",
+          borderColor: "border.main",
           mt: ".5rem",
           mb: ".5rem",
           p: ".5rem",

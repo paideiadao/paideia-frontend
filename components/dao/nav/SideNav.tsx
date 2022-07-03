@@ -18,11 +18,11 @@ const Nav: React.FC = (props) => {
         width: "13.5rem",
         backgroundColor: "backgroundColor.main",
         borderRight: "1px solid",
-        borderRightColor: "divider.main",
+        borderRightColor: "border.main",
         color: "primary.text",
         borderBottom: "1px solid",
         height: "100vh",
-        borderBottomColor: "divider.main",
+        borderBottomColor: "border.main",
         position: "relative",
         backgroundImage: `url(${
           themeContext.theme === DarkTheme ? DarkFooter.src : LightFooter.src
