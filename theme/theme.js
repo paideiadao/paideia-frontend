@@ -166,7 +166,7 @@ export const DarkTheme = createTheme({
     // THIS IS CAUSING AN ERROR WITH <TableCell> 
     // "Uncaught TypeError: color.charAt is not a function"
     border: {
-      main: "#435964",
+      main: "rgba(159, 210, 219, 0.2)",
     }, 
     fileInput: {
       main: "rgba(45, 51, 64, 1)",
@@ -221,6 +221,11 @@ export const DarkTheme = createTheme({
     },
   },
   components: {
+    MuiAccordion: {
+      root: {
+          backgroundColor: 'transparent'
+      },
+    },
     MuiChip: {
       styleOverrides: {
         icon: {
