@@ -141,7 +141,7 @@ const Treasury: React.FC = () => {
           <Chart />
           <Transactions />
         </Box>
-        <Box sx={{ width: "28%", position: 'sticky', top: '1.6rem' }}>
+        <Box sx={{ width: "28%", position: "sticky", top: "1.6rem" }}>
           <TreasuryInfo />
         </Box>
       </Box>

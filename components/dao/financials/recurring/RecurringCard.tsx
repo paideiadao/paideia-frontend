@@ -26,18 +26,24 @@ const RecurringCard: React.FC<IRecurringCard> = (props) => {
         borderColor: "border.main",
         mb: "1rem",
         borderRadius: ".4rem",
-        pt: '.5rem',
-        pb: '.5rem',
-        fontSize: {xs: '.8rem', sm: '.8rem', md: '.9rem', lg: '.9rem', xl: '1.1rem'},
-        ':hover': {
-          borderColor: 'primary.main'
-        }
+        pt: ".5rem",
+        pb: ".5rem",
+        fontSize: {
+          xs: ".8rem",
+          sm: ".8rem",
+          md: ".9rem",
+          lg: ".9rem",
+          xl: "1.1rem",
+        },
+        ":hover": {
+          borderColor: "primary.main",
+        },
       }}
     >
-      <Box sx={{ width: "35%", pl: '.5rem' }}>
+      <Box sx={{ width: "35%", pl: ".5rem" }}>
         Paid to: {props.username}
         <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
-            {props.address.slice(0, 13) + "....." + props.address.slice(-13)}
+          {props.address.slice(0, 13) + "....." + props.address.slice(-13)}
         </Box>
       </Box>
       <Box sx={{ width: "18%" }}>
@@ -49,7 +55,7 @@ const RecurringCard: React.FC<IRecurringCard> = (props) => {
       <Box sx={{ width: "20%" }}>
         {props.frequency}
         <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
-            {dateFormat(props.startDate, "mm/dd/yyyy HH:MM")}
+          {dateFormat(props.startDate, "mm/dd/yyyy HH:MM")}
         </Box>
       </Box>
       <Box sx={{ width: "12%" }}>
@@ -58,7 +64,13 @@ const RecurringCard: React.FC<IRecurringCard> = (props) => {
           {props.paymentErg}
         </Box>
       </Box>
-      <Button endIcon={<DeleteIcon />} variant="text" color="error" sx={{ml: 'auto', mr: '1rem'}} size='small'>
+      <Button
+        endIcon={<DeleteIcon />}
+        variant="text"
+        color="error"
+        sx={{ ml: "auto", mr: "1rem" }}
+        size="small"
+      >
         Cancel
       </Button>
     </Box>

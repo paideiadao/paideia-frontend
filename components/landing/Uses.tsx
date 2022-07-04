@@ -1,5 +1,14 @@
 import React, { FC } from "react";
-import { Grid, Container, Box, Typography, Button, Card, CardContent, FabClassKey } from "@mui/material";
+import {
+  Grid,
+  Container,
+  Box,
+  Typography,
+  Button,
+  Card,
+  CardContent,
+  FabClassKey,
+} from "@mui/material";
 import SectionTitle from "@components/SectionTitle";
 import Blockquote from "@components/Blockquote";
 import CardSlider from "@components/CardSlider";
@@ -23,28 +32,28 @@ interface MyCardProps {
 
 const MyCard: FC<MyCardProps> = ({ image, title, body }) => {
   return (
-    <Card sx={{
-      backgroundColor: '#20252f',
-      backgroundImage: 'url("/card-bg.jpg")',
-      width: '460px',
-      maxWidth: 'calc(100vw - 48px)',
-      display: 'inline-flex',
-      whiteSpace: 'normal',
-      px: '20px',
-      py: '32px',
-      borderRadius: '10px',
-      border: '1px solid rgba(255, 255, 255, 0.2)'
-    }}>
+    <Card
+      sx={{
+        backgroundColor: "#20252f",
+        backgroundImage: 'url("/card-bg.jpg")',
+        width: "460px",
+        maxWidth: "calc(100vw - 48px)",
+        display: "inline-flex",
+        whiteSpace: "normal",
+        px: "20px",
+        py: "32px",
+        borderRadius: "10px",
+        border: "1px solid rgba(255, 255, 255, 0.2)",
+      }}
+    >
       <CardContent>
         <Image src={image} width={35} height={35} />
         <Typography sx={cardTitleStyle}>{title}</Typography>
-        <Blockquote small>
-          {body}
-        </Blockquote>
+        <Blockquote small>{body}</Blockquote>
       </CardContent>
     </Card>
-  )
-}
+  );
+};
 
 const theCards = [
   {
@@ -82,19 +91,17 @@ const theCards = [
     body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
     image: "/icons/DevIcon.svg",
   },
-]
+];
 
 export default function Uses() {
   return (
     <>
       <Container sx={{ px: "24px" }}>
-        <Grid container sx={{ pt: "120px", pb: '64px' }}>
+        <Grid container sx={{ pt: "120px", pb: "64px" }}>
           <Grid item md={5}>
             <Grid container spacing={3}>
               <Grid item>
-                <SectionTitle>
-                  Uses
-                </SectionTitle>
+                <SectionTitle>Uses</SectionTitle>
               </Grid>
               <Grid item>
                 <Typography
@@ -112,7 +119,9 @@ export default function Uses() {
               </Grid>
               <Grid item>
                 <Blockquote small>
-                  There are a lot of ways to use a DAO. Here are just a few examples of the types of organizations that could launch a DAO on Paideia.
+                  There are a lot of ways to use a DAO. Here are just a few
+                  examples of the types of organizations that could launch a DAO
+                  on Paideia.
                 </Blockquote>
               </Grid>
             </Grid>
@@ -121,12 +130,10 @@ export default function Uses() {
         </Grid>
       </Container>
       <CardSlider uniqueId="uses" addMargin={24}>
-        {
-          theCards.map(({ title, body, image }, i: number) => {
-            return <MyCard key={i} title={title} body={body} image={image} />
-          })
-        }
+        {theCards.map(({ title, body, image }, i: number) => {
+          return <MyCard key={i} title={title} body={body} image={image} />;
+        })}
       </CardSlider>
     </>
-  )
+  );
 }

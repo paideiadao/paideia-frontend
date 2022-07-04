@@ -7,16 +7,29 @@ import { percentage } from "../../../lib/creation/Utilities";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-export const PerformanceWidget: React.FC<{ value: number, invert?: boolean, places?: number, large?: boolean }> = (props) => {
+export const PerformanceWidget: React.FC<{
+  value: number;
+  invert?: boolean;
+  places?: number;
+  large?: boolean;
+}> = (props) => {
   return (
     <Box
       sx={{
         display: "flex",
         alignItems: "center",
-        backgroundColor: props.invert ? 'transparent' : props.value <= 0 ? "error.main" : "primary.lightSuccess",
+        backgroundColor: props.invert
+          ? "transparent"
+          : props.value <= 0
+          ? "error.main"
+          : "primary.lightSuccess",
         borderRadius: ".3rem",
-        fontSize: props.large ? '1rem' : ".9rem",
-        color: props.invert ? props.value <= 0 ? "error.main" : "primary.lightSuccess" : "backgroundColor.main",
+        fontSize: props.large ? "1rem" : ".9rem",
+        color: props.invert
+          ? props.value <= 0
+            ? "error.main"
+            : "primary.lightSuccess"
+          : "backgroundColor.main",
         p: ".2rem",
       }}
     >
@@ -30,7 +43,11 @@ export const PerformanceWidget: React.FC<{ value: number, invert?: boolean, plac
   );
 };
 
-export const TimeWidget: React.FC<{ amount: number; unit: string, small?: boolean }> = (props) => {
+export const TimeWidget: React.FC<{
+  amount: number;
+  unit: string;
+  small?: boolean;
+}> = (props) => {
   return (
     <Box
       sx={{
@@ -38,11 +55,11 @@ export const TimeWidget: React.FC<{ amount: number; unit: string, small?: boolea
         alignItems: "center",
         backgroundColor: "fileInput.main",
         borderRadius: ".3rem",
-        fontSize: props.small ? '.8rem' : ".9rem",
+        fontSize: props.small ? ".8rem" : ".9rem",
         color: "text.light",
         p: ".2rem",
-        pt: '.1rem',
-        pb: '.1rem',
+        pt: ".1rem",
+        pb: ".1rem",
         ml: ".5rem",
         border: "1px solid",
         borderColor: "border.main",
@@ -96,14 +113,19 @@ const assets = [
 const FinancialSummary: React.FC = () => {
   const router = useRouter();
 
-  const {id} = router.query
+  const { id } = router.query;
   return (
     <Box sx={{ width: "100%", mt: ".5rem" }}>
       <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
         <Subheader title="Financial summary" small bold />
-        <Link href={id === undefined ? '/dao/financials/treasury' : `/dao/${id}/financials/treasury`}>
+        <Link
+          href={
+            id === undefined
+              ? "/dao/financials/treasury"
+              : `/dao/${id}/financials/treasury`
+          }
+        >
           <Button sx={{ ml: "auto", fontSize: ".8rem" }}>View More</Button>
-        
         </Link>
       </Box>
       <Paper
