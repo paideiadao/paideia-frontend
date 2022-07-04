@@ -123,7 +123,7 @@ export const TreasuryInfo: React.FC = () => {
           mt: "1rem",
         }}
       >
-        <Link href={id === undefined ? "/dao/financials/token" : `/dao/${id}`}>
+        <Link href={id === undefined ? "/dao/financials/token" : `/dao/${id}/financials/token`}>
           <Button variant="text">Learn More</Button>
         </Link>
       </Box>
