@@ -6,6 +6,7 @@ const TokenomicsChart: React.FC = () => {
     return <Box sx={{mt: '1rem', width: '100%'}}>
         <Box sx={{width: '100%', display: 'flex', alignItems: 'center'}}>
             <Header title='Token distribution information'/>
+            
         </Box>
     </Box>
 }

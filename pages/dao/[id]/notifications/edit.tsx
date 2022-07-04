@@ -9,6 +9,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Alert from "@mui/material/Alert";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Status from "@components/utilities/Status";
+import Layout from "@components/dao/Layout";
 
 const notifications = [
   {
@@ -64,17 +65,7 @@ const EditNotifications: React.FC<{ params: any }> = (props) => {
   }, [value.alert]);
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        pt: "1.5rem",
-        pb: "1.5rem",
-      }}
-    >
-      <Box sx={{ width: "70%" }}>
+    <Layout>
         <Header title="Notification settings" large />
         <LabeledSwitch
           title="Notify me through email"
@@ -144,13 +135,12 @@ const EditNotifications: React.FC<{ params: any }> = (props) => {
             Save Changes
           </Button>
         </Box>
-      </Box>
       <Status
         value={value.alert}
         current="notification settings."
         action="updated"
       />
-    </Box>
+    </Layout>
   );
 };
 

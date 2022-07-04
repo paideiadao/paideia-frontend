@@ -1,3 +1,4 @@
+
 import { Avatar, Box, Button } from "@mui/material";
 import * as React from "react";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
@@ -14,6 +15,7 @@ import MarkunreadIcon from "@mui/icons-material/Markunread";
 import dateFormat from "dateformat";
 import { paths, props } from "@lib/DaoPaths";
 import { useRouter } from "next/router";
+import Layout from "@components/dao/Layout";
 
 // export const getStaticPaths = paths;
 // export const getStaticProps = props;
@@ -137,16 +139,9 @@ const Notifications: React.FC<{ params: any }> = (props) => {
   const { id } = router.query;
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        pt: "1.5rem",
-        pb: "1rem",
-      }}
-    >
-      <Box sx={{ width: "65%" }}>
+    <Layout>
+
+
         <Link href={id === undefined ? "/dao" : `/dao/${id}`}>
           <Button variant="outlined">
             <ArrowBackIcon sx={{ ml: "-.5rem", mr: ".5rem" }} color="primary" />
@@ -215,8 +210,8 @@ const Notifications: React.FC<{ params: any }> = (props) => {
             return <Notification i={i} />;
           })}
         </Box>
-      </Box>
-    </Box>
+    </Layout>
+
   );
 };
 

@@ -36,13 +36,13 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
         sx={{
           width: "calc(100% - 13.5rem)",
           position: "fixed",
-          top: "3.63rem",
+          top: "3.8rem",
           left: "13.5rem",
           pt: "0rem",
           pb: ".5rem",
           overflowY: "scroll",
           height: "calc(100vh - 3.5rem)",
-          zIndex: 999,
+          zIndex: 1000,
         }}
       >
         {props.children}
