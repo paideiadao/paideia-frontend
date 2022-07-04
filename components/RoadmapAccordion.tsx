@@ -141,31 +141,24 @@ const accordionObject = [
   },
 ]
 
-interface AccordionExtraProps {
+interface IAccordion {
   sx?: object;
 }
 
-const RoadmapAccordion: FC<AccordionExtraProps> = ({ sx }) => {
-  const [expanded, setExpanded] = React.useState<string | false>('panel1');
-
-  const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
-      setExpanded(newExpanded ? panel : false);
-    };
+const RoadmapAccordion: FC<IAccordion> = ({ sx }) => {
 
   return (
     <Box sx={sx}>
       <SectionTitle marginBottom='120px'>
         Roadmap
       </SectionTitle>
-      {accordionObject.map((item) => {
+      {accordionObject.map((item, i) => {
         return (
           <MuiAccordion
+            key={i}
             disableGutters
             elevation={0}
             square
-            expanded={expanded === item.panel}
-            onChange={handleChange(item.panel)}
             sx={{
               minHeight: '300px',
               backgroundImage: `url(/${item.image}.png)`,
@@ -211,9 +204,9 @@ const RoadmapAccordion: FC<AccordionExtraProps> = ({ sx }) => {
                   }
                 }
               }}>
-                {item.content.map((time) => {
+                {item.content.map((time, i) => {
                   return (
-                    <TimelineItem>
+                    <TimelineItem key={i}>
                       <TimelineOppositeContent sx={{ flexGrow: 0 }} />
                       <TimelineSeparator>
                         <TimelineDot
@@ -275,7 +268,7 @@ const RoadmapAccordion: FC<AccordionExtraProps> = ({ sx }) => {
           </MuiAccordion>
         )
       })
-    }
+      }
     </Box>
   )
 }

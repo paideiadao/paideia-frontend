@@ -11,7 +11,7 @@ interface HeadingProps {
 
 const SectionHeading: FC<HeadingProps> = ({ category, title, children, sx }) => {
   return (
-      <Grid container spacing={3} sx={sx ? sx : { mb: '64px' }}>
+      <Grid container direction="column" spacing={3} sx={sx ? sx : { mb: '64px' }}>
         <Grid item>
           <SectionTitle>
             {category}

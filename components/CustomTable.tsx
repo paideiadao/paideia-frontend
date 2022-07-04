@@ -1,9 +1,14 @@
-import React, { FC } from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+import React, { FC, useEffect, useState } from 'react';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  TableContainer,
+  useMediaQuery,
+} from '@mui/material';
+import { IObj } from '@lib/utilities'
 
 interface HeadingData {
   id: string
@@ -11,58 +16,84 @@ interface HeadingData {
   align?: "center" | "inherit" | "justify" | "left" | "right"
 }
 
-interface TableProps {
+interface ITableProps {
   heading: HeadingData[],
-  rows: any[],
+  rows: IObj<number | string>[],
 }
 
-const CustomTable: FC<TableProps> = ({ rows, heading }): JSX.Element => {
-  return (
-    <Table aria-label="customized table">
-      <TableHead>
-        <TableRow sx={{ background: '#19202b' }}>
-          {heading.map((heading) => {
-            return (
-            <TableCell
-              key={heading.id}
-              align={heading.align ? heading.align : 'left'}
-            >
-              {heading.name}
-            </TableCell>
-            )
-          })}
-        </TableRow>
-      </TableHead>
-      <TableBody>
+const CustomTable: FC<ITableProps> = ({ rows, heading }): JSX.Element => {
+  const [thisNavigator, setThisNavigator] = useState('en-US')
 
-        {rows.map((row, i) => {
-          return (
-            <TableRow key={i} sx={{
-              background: '#0c1321',
-              '&:nth-of-type(odd)': {
-                background: '#071020',
-              },
-              // hide last border
-              '&:last-child td, &:last-child th': {
-                border: 0,
-              },
+  useEffect(() => {
+    setThisNavigator(navigator.language)
+  }, [])
+
+  const checkSmall = useMediaQuery('(min-width:740px)');
+
+  return (
+    <TableContainer sx={{
+      border: '2px solid rgba(255, 255, 255, 0.12)',
+      borderRadius: checkSmall ? '8px' : '0',
+      overflowX: 'auto',
+      maxWidth: '100vw',
+      ml: checkSmall ? '0' : '0',
+      mr: checkSmall ? '0' : '-48px',
+    }}>
+        <Table aria-label="customized table" sx={{
+          position: 'sticky',
+          top: '0',
+          width: '100%'
+        }}>
+          <TableHead>
+            <TableRow sx={{
+              background: 'rgba(255, 255, 255, 0.09)',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
             }}>
-              {Object.keys(row).map((key, i) => {
+              {heading.map((heading) => {
                 return (
                   <TableCell
-                    key={key}
+                    key={heading.id}
+                    align={heading.align ? heading.align : 'left'}
+                    sx={{ border: 'none', fontWeight: '700', letterSpacing: '1px' }}
                   >
-                    {row[key]}
+                    {heading.name}
                   </TableCell>
                 )
               })}
             </TableRow>
-          )
-        })}
-        </TableBody>
-    </Table>
-
-
+          </TableHead>
+          <TableBody>
+            {rows.map((row, i) => {
+              return (
+                <TableRow key={i} sx={{
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
+                  '&:nth-of-type(odd)': {
+                    background: 'rgba(255, 255, 255, 0.02)',
+                  },
+                  // hide last border
+                  '&:last-child td, &:last-child th': {
+                    border: 0,
+                  },
+                }}>
+                  {Object.keys(row).map((key, i) => {
+                    return (
+                      <TableCell
+                        key={key}
+                        sx={{ border: 'none' }}
+                      >
+                        {row[key].toLocaleString(thisNavigator, {
+                          maximumFractionDigits: 0,
+                        })}
+                      </TableCell>
+                    )
+                  })}
+                </TableRow>
+              )
+            })}
+          </TableBody>
+        </Table>
+    </TableContainer>
   )
 }
 
