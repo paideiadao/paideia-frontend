@@ -7,11 +7,11 @@ interface SliderProps {
   buttonTop?: boolean;
   uniqueId: string;
   addMargin?: number;
+  contained?: boolean;
 }
 
-const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin }) => {
-  const [marginLeftCalc, setMarginLeftCalc] = useState({ mx: '0px' })
-  const [marginLeftNum, setMarginLeftNum] = useState(0)
+const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin, contained }) => {
+  const [marginLeftCalc, setMarginLeftCalc] = useState({ px: '0px' })
   const [scrollPosition, setScrollPosition] = useState(0)
   const [leftDisabled, setLeftDisabled] = useState(false)
   const [rightDisabled, setRightDisabled] = useState(false)
@@ -24,8 +24,8 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin 
 
   const determineOverflow = (content: any, container: any) => {
     const containerMetrics = container.getBoundingClientRect();
-    const containerMetricsRight = Math.floor(containerMetrics.right) - marginLeftNum;
-    const containerMetricsLeft = Math.floor(containerMetrics.left) + marginLeftNum;
+    const containerMetricsRight = Math.floor(containerMetrics.right);
+    const containerMetricsLeft = Math.floor(containerMetrics.left);
     const contentMetrics = content.getBoundingClientRect();
     const contentMetricsRight = Math.floor(contentMetrics.right);
     const contentMetricsLeft = Math.floor(contentMetrics.left);
@@ -45,11 +45,13 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin 
 
   const marginFunction = () => {
     const pnArrowContainer = document.getElementById(uniqueId + "pnArrowContainer");
-    const margin = (pnArrowContainer.getBoundingClientRect().left + (addMargin ? addMargin : 0)).toString() + 'px'
-    setMarginLeftCalc({ ...marginLeftCalc, mx: margin })
-    setMarginLeftNum(pnArrowContainer.getBoundingClientRect().left + (addMargin ? addMargin : 0))
+    let margin = 24;
+    if (!contained) {
+      margin = (pnArrowContainer.getBoundingClientRect().left + (addMargin ? addMargin : 0))
+    }
+    setMarginLeftCalc({ ...marginLeftCalc, px: (margin.toString() + 'px' )})
     const containerWidth = document.getElementById("setWidth").offsetWidth
-    setSlideDistance(containerWidth)
+    setSlideDistance(containerWidth - margin)
   }
 
   useEffect(() => {
@@ -75,8 +77,11 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin 
     return () => window.removeEventListener("resize", marginFunction);
   }, [])
 
-  const scrollRef = useRef(0)
-  scrollRef.current = scrollPosition
+  useEffect(() => {
+    setTimeout(() => {
+      marginFunction()
+    }, 1000);
+  }, []);
 
   const [pos, setPos] = useState({
     left: undefined,
@@ -121,7 +126,6 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin 
   const clickLeft = () => {
     const pnProductNav = document.getElementById(uniqueId + "pnProductNav")
     pnProductNav.scrollTo({ left: (scrollPosition - slideDistance), behavior: 'smooth' });
-    console.log(slideDistance)
   }
 
   const clickRight = () => {
@@ -132,7 +136,7 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin 
   const ButtonBox = () => {
     return (
       <Container id={uniqueId + "pnArrowContainer"} maxWidth="lg" sx={{ my: '32px' }}>
-        <Box sx={buttonTop ? { display: 'flex', justifyContent: 'flex-end'} : null }>
+        <Box sx={buttonTop ? { display: 'flex', justifyContent: 'flex-end' } : null}>
           <Button onClick={clickLeft} disabled={leftDisabled}>
             <ArrowBackIosIcon />
           </Button>
@@ -146,7 +150,7 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin 
 
   return (
     <>
-    <Container maxWidth="lg" id="setWidth" sx={{ zIndex: '1' }}></Container>
+      <Container maxWidth="lg" id="setWidth" sx={{ zIndex: '1', width: '100vw' }}></Container>
       {buttonTop ? (
         <ButtonBox />
       ) : null}
@@ -166,11 +170,21 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin 
         '&::-webkit-scrollbar': {
           display: 'none'
         },
+        maxWidth: '100vw',
+        ml: contained ? '-24px' : '0',
       }}
         id={uniqueId + "pnProductNav"}
         onMouseDown={(e) => handleMouseDown(e)}
       >
-        <Box id={uniqueId + "pnProductNavContents"} display="flex" sx={{ width: 'min-content', gap: '24px', ...marginLeftCalc }}>
+        <Box
+          id={uniqueId + "pnProductNavContents"}
+          display="flex"
+          sx={{
+            width: 'min-content',
+            gap: '24px',
+            ...marginLeftCalc
+          }}
+        >
           {children}
         </Box>
       </Box>

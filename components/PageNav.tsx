@@ -1,4 +1,5 @@
-import React, { FC, useEffect, useState, useRef } from 'react';
+import React, { FC, useEffect, useState, useRef, useContext } from 'react';
+import { DarkTheme, LightTheme } from "@theme/theme";
 import {
   Box,
   List,
@@ -6,8 +7,16 @@ import {
   ListItem,
   ListItemIcon,
   Icon,
-  Grid
+  Grid,
+  useMediaQuery,
+  Fab,
+  Zoom,
+  useScrollTrigger,
+  Fade,
+  Typography
 } from '@mui/material';
+import Link from 'next/link';
+import { PageNavContext } from '@components/Layout'
 
 const listItemSx = {
   '&:hover': {
@@ -19,10 +28,35 @@ const listItemSx = {
 };
 
 interface IPageNav {
-  navLinks: any[],
+  navLinks: any[];
+  children: React.ReactNode;
 }
 
-const PageNav: FC<IPageNav> = ({ navLinks }) => {
+function NavPopup(props: { children: React.ReactNode }) {
+  const { children } = props;
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 100,
+  });
+
+  return (
+    <Zoom in={trigger}>
+      <Box
+        role="presentation"
+        sx={{ position: "fixed", bottom: 16, right: 16, zIndex: "26" }}
+      >
+        {children}
+      </Box>
+    </Zoom>
+  );
+}
+
+const lottieStyle = {
+  width: '36px',
+  height: '36px'
+}
+
+const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
 
   const [sliderSx, setSliderSx] = useState({
     mt: undefined,
@@ -61,7 +95,7 @@ const PageNav: FC<IPageNav> = ({ navLinks }) => {
 
     const visibleHeight = window.innerHeight
     const barElement = document.getElementById('navPositionBar')
-    const barHeight = barElement.getBoundingClientRect().height
+    const barHeight = barElement?.getBoundingClientRect().height
     const sliderHeight = visibleHeight / totalHeight * barHeight
 
     setSliderSx({
@@ -76,7 +110,7 @@ const PageNav: FC<IPageNav> = ({ navLinks }) => {
   const handleScroll = () => {
     const position = window.scrollY;
     const barElement = document.getElementById('navPositionBar')
-    const barHeight = barElement.getBoundingClientRect().height
+    const barHeight = barElement?.getBoundingClientRect().height
 
     if (position <= topAndBottomRef.current.top) {
       setSliderSx(prevState => ({ ...prevState, mt: 0 }))
@@ -131,9 +165,22 @@ const PageNav: FC<IPageNav> = ({ navLinks }) => {
     const interval = setInterval(() => {
       handleResize()
     }, 200);
-  
+
     return () => clearInterval(interval);
   }, []);
+
+  const { setInPageNav } = useContext(PageNavContext)
+
+  useEffect(() => {
+    setInPageNav(true)
+  }, []);
+
+  const [pageNavOpen, setPageNavOpen] = useState(false);
+
+  const openPageNav = () => {
+    setPageNavOpen(!pageNavOpen)
+
+  }
 
   const navBarList = (
     <List sx={{ p: 0 }}>
@@ -142,7 +189,9 @@ const PageNav: FC<IPageNav> = ({ navLinks }) => {
           key={i}
           button
           sx={listItemSx}
-          onClick={() => scrollToHeading(position)}
+          onClick={() => {
+            scrollToHeading(position)
+          }}
         >
           <ListItemIcon>
             <Icon>{icon}</Icon>
@@ -159,29 +208,125 @@ const PageNav: FC<IPageNav> = ({ navLinks }) => {
     </List>
   );
 
-  return (
-    <Box
-      sx={{
-        position: 'sticky',
-        top: 100,
-        background: 'rgba(0, 0, 0, 0.1)',
-        backdropFilter: 'blur(5px)',
-        borderRadius: '12px',
-        zIndex: 3,
-        p: '12px',
-      }}
-    >
-      <Grid container>
-        <Grid item sx={{ width: '3px', background: '#F8F8F8' }} id="navPositionBar">
-          <Box sx={{ background: '#ED7E21', zIndex: '2', ...sliderSx }}></Box>
+  const navBarListSmall = (
+    <List sx={{ p: 0 }}>
+      {navLinks.map(({ icon, name, position }, i: number) => (
+        <ListItem
+          key={i}
+          button
+          sx={listItemSx}
+          onClick={() => {
+            scrollToHeading(position)
+            setPageNavOpen(!pageNavOpen)
+          }}
+        >
+          <ListItemText primary={name} sx={{
+            '& .MuiTypography-root': {
+              fontFamily: '"Space Grotesk", sans-serif',
+              fontWeight: '400',
+              fontSize: '20px',
+            }
+          }} />
+          <ListItemIcon sx={{ justifyContent: 'flex-end' }}>
+            <Icon>{icon}</Icon>
+          </ListItemIcon>
+        </ListItem>
+      ))}
+    </List>
+  );
+
+  if (useMediaQuery('(min-width:1100px)')) {
+    return (
+      <Grid container spacing={4}>
+        <Grid item md={3}>
+          <Box
+            sx={{
+              position: 'sticky',
+              top: 100,
+              background: 'rgba(0, 0, 0, 0.1)',
+              backdropFilter: 'blur(5px)',
+              borderRadius: '12px',
+              zIndex: 3,
+              p: '12px',
+            }}
+          >
+            <Grid container>
+              <Grid item sx={{ width: '3px', background: '#F8F8F8' }} id="navPositionBar">
+                <Box sx={{ background: '#ED7E21', zIndex: '2', ...sliderSx }}></Box>
+              </Grid>
+              <Grid item>
+                {navBarList}
+              </Grid>
+            </Grid>
+
+          </Box>
         </Grid>
-        <Grid item>
-          {navBarList}
+        <Grid item md={9}>
+          {children}
         </Grid>
       </Grid>
+    )
+  }
+  else {
+    return (
+      <>
+        {children}
+        <Fade in={pageNavOpen} style={{ transitionDuration: "400ms" }}>
+          <Box
+            sx={{
+              height: "100vh",
+              width: "100vw",
+              position: "fixed",
+              top: "0px",
+              left: '0px',
+              zIndex: "25",
+              background: "rgba(0, 0, 0, 0.1)",
+              backdropFilter: "blur(55px)",
+              p: "24px",
+            }}
+          >
+            <Grid
+              container
+              direction="column"
+              justifyContent="flex-end"
+              alignItems="flex-end"
+              sx={{ height: 'calc(100vh - 110px)' }}
+            >
+              <Grid item>
+                {navBarListSmall}
+              </Grid>
+            </Grid>
+            <Box sx={{
+              position: 'absolute',
+              bottom: '0',
+              left: '0',
+              height: '45vh',
+              width: '100vw',
+              zIndex: '-1',
+              background: "linear-gradient(359.63deg, #ED7E21 10.26%, rgba(237, 126, 33, 0) 76.79%)",
+            }}>
 
-    </Box>
-  )
+            </Box>
+          </Box>
+        </Fade>
+        <NavPopup>
+          <Fab sx={{
+            bgcolor: !pageNavOpen ? '#ED7E21' : '#FFFFFF',
+            '&:hover:focus': {
+              background: !pageNavOpen ? '#ED7E21' : '#FFFFFF',
+            }
+          }}
+            aria-label="open in page navigation"
+            onClick={() => openPageNav()}
+          >
+
+          </Fab>
+
+        </NavPopup>
+      </>
+    )
+  }
+
 };
 
 export default PageNav
