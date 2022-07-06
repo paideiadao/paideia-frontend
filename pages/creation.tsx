@@ -244,7 +244,12 @@ export default function Creation(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={{ ...modalBackground, width: "35rem" }}>
+        <Box
+          sx={{
+            ...modalBackground,
+            width: deviceStruct("90%", "90%", "35%", "35%", "35%"),
+          }}
+        >
           <Box sx={{ fontSize: "1.1rem", fontWeight: 450 }}>
             You are about to publish your DAO as a draft
           </Box>
