@@ -21,72 +21,64 @@ interface ITableProps {
   rows: IObj<number | string>[];
 }
 
-const CustomTable: FC<ITableProps> = ({ rows, heading }): JSX.Element => {
-  const [thisNavigator, setThisNavigator] = useState("en-US");
+const CustomTable: FC<ITableProps> = ({ rows, heading, }, ): JSX.Element => {
+  const [thisNavigator, setThisNavigator] = useState('en-US')
 
   useEffect(() => {
     setThisNavigator(navigator.language);
   }, []);
 
-  const checkSmall = useMediaQuery("(min-width:740px)");
+
+  const checkSmall = useMediaQuery('(min-width:700px)');
 
   return (
-    <TableContainer
-      sx={{
-        border: "2px solid rgba(255, 255, 255, 0.12)",
-        borderRadius: checkSmall ? "8px" : "0",
-        overflowX: "auto",
-        maxWidth: "100vw",
-        ml: checkSmall ? "0" : "0",
-        mr: checkSmall ? "0" : "-48px",
-      }}
-    >
-      <Table
-        aria-label="customized table"
-        sx={{
-          position: "sticky",
-          top: "0",
-          width: "100%",
-        }}
-      >
-        <TableHead>
-          <TableRow
-            sx={{
-              background: "rgba(255, 255, 255, 0.09)",
-              border: "1px solid rgba(255, 255, 255, 0.12)",
-            }}
-          >
-            {heading.map((heading) => {
+    <TableContainer sx={{
+      border: '2px solid rgba(255, 255, 255, 0.12)',
+      borderRadius: checkSmall ? '8px' : '0',
+      overflowX: 'auto',
+      width: checkSmall ? '100%' : '100vw',
+      maxWidth: '100vw',
+      ml: checkSmall ? '0' : '-24px',
+      // mr: checkSmall ? '0' : '-48px',
+    }}>
+        <Table aria-label="customized table" sx={{
+          position: 'sticky',
+          top: '0',
+          width: '100%',
+          '& tr:last-child': {
+            border: 'none'
+          }
+        }}>
+          <TableHead>
+            <TableRow sx={{
+              background: 'rgba(255, 255, 255, 0.09)',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.12) !important',
+            }}>
+              {heading.map((heading) => {
+                return (
+                  <TableCell
+                    key={heading.id}
+                    align={heading.align ? heading.align : 'left'}
+                    sx={{ border: 'none', fontWeight: '700', letterSpacing: '1px' }}
+                  >
+                    {heading.name}
+                  </TableCell>
+                )
+              })}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row, i) => {
               return (
-                <TableCell
-                  key={heading.id}
-                  align={heading.align ? heading.align : "left"}
-                  sx={{
-                    border: "none",
-                    fontWeight: "700",
-                    letterSpacing: "1px",
-                  }}
-                >
-                  {heading.name}
-                </TableCell>
-              );
-            })}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row, i) => {
-            return (
-              <TableRow
-                key={i}
-                sx={{
-                  background: "rgba(255, 255, 255, 0.05)",
-                  border: "1px solid rgba(255, 255, 255, 0.12)",
-                  "&:nth-of-type(odd)": {
-                    background: "rgba(255, 255, 255, 0.02)",
+                <TableRow key={i} sx={{
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.12)',
+                  '&:nth-of-type(odd)': {
+                    background: 'rgba(255, 255, 255, 0.02)',
                   },
                   // hide last border
-                  "&:last-child td, &:last-child th": {
-                    border: 0,
+                  '&:last-child td, &:last-child th': {
+                    borderBottom: 'none',
                   },
                 }}
               >

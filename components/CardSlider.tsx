@@ -7,20 +7,16 @@ interface SliderProps {
   buttonTop?: boolean;
   uniqueId: string;
   addMargin?: number;
+  contained?: boolean;
 }
 
-const CardSlider: FC<SliderProps> = ({
-  children,
-  buttonTop,
-  uniqueId,
-  addMargin,
-}) => {
-  const [marginLeftCalc, setMarginLeftCalc] = useState({ mx: "0px" });
-  const [marginLeftNum, setMarginLeftNum] = useState(0);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [leftDisabled, setLeftDisabled] = useState(false);
-  const [rightDisabled, setRightDisabled] = useState(false);
-  const [slideDistance, setSlideDistance] = useState(460);
+
+const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin, contained }) => {
+  const [marginLeftCalc, setMarginLeftCalc] = useState({ px: '0px' })
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const [leftDisabled, setLeftDisabled] = useState(false)
+  const [rightDisabled, setRightDisabled] = useState(false)
+  const [slideDistance, setSlideDistance] = useState(460)
 
   const handleScroll = () => {
     const scroll = document.getElementById(
@@ -31,10 +27,9 @@ const CardSlider: FC<SliderProps> = ({
 
   const determineOverflow = (content: any, container: any) => {
     const containerMetrics = container.getBoundingClientRect();
-    const containerMetricsRight =
-      Math.floor(containerMetrics.right) - marginLeftNum;
-    const containerMetricsLeft =
-      Math.floor(containerMetrics.left) + marginLeftNum;
+
+    const containerMetricsRight = Math.floor(containerMetrics.right);
+    const containerMetricsLeft = Math.floor(containerMetrics.left);
     const contentMetrics = content.getBoundingClientRect();
     const contentMetricsRight = Math.floor(contentMetrics.right);
     const contentMetricsLeft = Math.floor(contentMetrics.left);
@@ -56,22 +51,16 @@ const CardSlider: FC<SliderProps> = ({
   };
 
   const marginFunction = () => {
-    const pnArrowContainer = document.getElementById(
-      uniqueId + "pnArrowContainer"
-    );
-    const margin =
-      (
-        pnArrowContainer.getBoundingClientRect().left +
-        (addMargin ? addMargin : 0)
-      ).toString() + "px";
-    setMarginLeftCalc({ ...marginLeftCalc, mx: margin });
-    setMarginLeftNum(
-      pnArrowContainer.getBoundingClientRect().left +
-        (addMargin ? addMargin : 0)
-    );
-    const containerWidth = document.getElementById("setWidth").offsetWidth;
-    setSlideDistance(containerWidth);
-  };
+
+    const pnArrowContainer = document.getElementById(uniqueId + "pnArrowContainer");
+    let margin = 24;
+    if (!contained) {
+      margin = (pnArrowContainer.getBoundingClientRect().left + (addMargin ? addMargin : 0))
+    }
+    setMarginLeftCalc({ ...marginLeftCalc, px: (margin.toString() + 'px' )})
+    const containerWidth = document.getElementById("setWidth").offsetWidth
+    setSlideDistance(containerWidth - margin)
+  }
 
   useEffect(() => {
     const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
@@ -98,8 +87,12 @@ const CardSlider: FC<SliderProps> = ({
     return () => window.removeEventListener("resize", marginFunction);
   }, []);
 
-  const scrollRef = useRef(0);
-  scrollRef.current = scrollPosition;
+
+  useEffect(() => {
+    setTimeout(() => {
+      marginFunction()
+    }, 1000);
+  }, []);
 
   const [pos, setPos] = useState({
     left: undefined,
@@ -143,13 +136,10 @@ const CardSlider: FC<SliderProps> = ({
   };
 
   const clickLeft = () => {
-    const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
-    pnProductNav.scrollTo({
-      left: scrollPosition - slideDistance,
-      behavior: "smooth",
-    });
-    console.log(slideDistance);
-  };
+
+    const pnProductNav = document.getElementById(uniqueId + "pnProductNav")
+    pnProductNav.scrollTo({ left: (scrollPosition - slideDistance), behavior: 'smooth' });
+  }
 
   const clickRight = () => {
     const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
@@ -161,16 +151,9 @@ const CardSlider: FC<SliderProps> = ({
 
   const ButtonBox = () => {
     return (
-      <Container
-        id={uniqueId + "pnArrowContainer"}
-        maxWidth="lg"
-        sx={{ my: "32px" }}
-      >
-        <Box
-          sx={
-            buttonTop ? { display: "flex", justifyContent: "flex-end" } : null
-          }
-        >
+
+      <Container id={uniqueId + "pnArrowContainer"} maxWidth="lg" sx={{ my: '32px' }}>
+        <Box sx={buttonTop ? { display: 'flex', justifyContent: 'flex-end' } : null}>
           <Button onClick={clickLeft} disabled={leftDisabled}>
             <ArrowBackIosIcon />
           </Button>
@@ -184,33 +167,42 @@ const CardSlider: FC<SliderProps> = ({
 
   return (
     <>
-      <Container maxWidth="lg" id="setWidth" sx={{ zIndex: "1" }}></Container>
-      {buttonTop ? <ButtonBox /> : null}
-      <Box
-        sx={{
-          /* Make this scrollable when needed */
-          overflowX: "auto",
-          /* We don't want vertical scrolling */
-          overflowY: "hidden",
-          cursor: "grab",
-          /* Make an auto-hiding scroller for the 3 people using a IE */
-          msOverflowStyle: "-ms-autohiding-scrollbar",
-          /* For WebKit implementations, provide inertia scrolling */
-          WebkitOverflowScrolling: "touch",
-          /* We don't want internal inline elements to wrap */
-          whiteSpace: "nowrap",
-          /* Remove the default scrollbar for WebKit implementations */
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
-        }}
+
+      <Container maxWidth="lg" id="setWidth" sx={{ zIndex: '1', width: '100vw' }}></Container>
+      {buttonTop ? (
+        <ButtonBox />
+      ) : null}
+      <Box sx={{
+        /* Make this scrollable when needed */
+        overflowX: 'auto',
+        /* We don't want vertical scrolling */
+        overflowY: 'hidden',
+        cursor: 'grab',
+        /* Make an auto-hiding scroller for the 3 people using a IE */
+        msOverflowStyle: '-ms-autohiding-scrollbar',
+        /* For WebKit implementations, provide inertia scrolling */
+        WebkitOverflowScrolling: 'touch',
+        /* We don't want internal inline elements to wrap */
+        whiteSpace: 'nowrap',
+        /* Remove the default scrollbar for WebKit implementations */
+        '&::-webkit-scrollbar': {
+          display: 'none'
+        },
+        maxWidth: '100vw',
+        ml: contained ? '-24px' : '0',
+      }}
         id={uniqueId + "pnProductNav"}
         onMouseDown={(e) => handleMouseDown(e)}
       >
         <Box
           id={uniqueId + "pnProductNavContents"}
           display="flex"
-          sx={{ width: "min-content", gap: "24px", ...marginLeftCalc }}
+
+          sx={{
+            width: 'min-content',
+            gap: '24px',
+            ...marginLeftCalc
+          }}
         >
           {children}
         </Box>
