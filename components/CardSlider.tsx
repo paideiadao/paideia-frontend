@@ -11,16 +11,11 @@ interface SliderProps {
 }
 
 const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin, contained }) => {
-  const [marginLeftCalc, setMarginLeftCalc] = useState({ mx: '0px' })
-  const [marginLeftNum, setMarginLeftNum] = useState(0)
+  const [marginLeftCalc, setMarginLeftCalc] = useState({ px: '0px' })
   const [scrollPosition, setScrollPosition] = useState(0)
   const [leftDisabled, setLeftDisabled] = useState(false)
   const [rightDisabled, setRightDisabled] = useState(false)
   const [slideDistance, setSlideDistance] = useState(460)
-
-  useEffect(() => {
-    contained
-  }, []);
 
   const handleScroll = () => {
     const scroll = document.getElementById(uniqueId + "pnProductNav").scrollLeft
@@ -29,8 +24,8 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin,
 
   const determineOverflow = (content: any, container: any) => {
     const containerMetrics = container.getBoundingClientRect();
-    const containerMetricsRight = Math.floor(containerMetrics.right) - marginLeftNum;
-    const containerMetricsLeft = Math.floor(containerMetrics.left) + marginLeftNum;
+    const containerMetricsRight = Math.floor(containerMetrics.right);
+    const containerMetricsLeft = Math.floor(containerMetrics.left);
     const contentMetrics = content.getBoundingClientRect();
     const contentMetricsRight = Math.floor(contentMetrics.right);
     const contentMetricsLeft = Math.floor(contentMetrics.left);
@@ -50,14 +45,13 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin,
 
   const marginFunction = () => {
     const pnArrowContainer = document.getElementById(uniqueId + "pnArrowContainer");
-    let margin = '0px';
+    let margin = 24;
     if (!contained) {
-      margin = (pnArrowContainer.getBoundingClientRect().left + (addMargin ? addMargin : 0)).toString() + 'px'
+      margin = (pnArrowContainer.getBoundingClientRect().left + (addMargin ? addMargin : 0))
     }
-    setMarginLeftCalc({ ...marginLeftCalc, mx: margin })
-    setMarginLeftNum(pnArrowContainer.getBoundingClientRect().left + (addMargin ? addMargin : 0))
+    setMarginLeftCalc({ ...marginLeftCalc, px: (margin.toString() + 'px' )})
     const containerWidth = document.getElementById("setWidth").offsetWidth
-    setSlideDistance(containerWidth)
+    setSlideDistance(containerWidth - margin)
   }
 
   useEffect(() => {

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import PageHeader from "@components/PageHeader";
 import PageNav from "@components/PageNav";
 import Blockquote from "@components/Blockquote";
-import { Typography, Grid, Container, Divider, Box, Card, CardContent, } from "@mui/material";
+import { Typography, Grid, Container, Divider, Box, Card, CardContent, Avatar, Link } from "@mui/material";
 import Image from "next/image";
 import WhitepaperQuote from '@components/landing/WhitepaperQuote'
 import SectionHeading from "@components/SectionHeading";
@@ -10,6 +10,9 @@ import RoadmapAccordion from "@components/RoadmapAccordion";
 import CustomTable from "@components/CustomTable";
 import TabsPanel from '@components/TabsPanel';
 import CardSlider from "@components/CardSlider";
+import TwitterIcon from "@components/svgs/TwitterIcon";
+import LinkedinIcon from "@components/svgs/LinkedinIcon";
+import { DarkTheme } from "@theme/theme";
 
 const navLinks = [
   {
@@ -241,71 +244,144 @@ const cardTitleStyle = {
   fontWeight: "400",
   lineHeight: "24px",
   fontFamily: '"Inter", sans-serif',
+  mb: '12px',
+  textAlign: 'center',
 };
 
-interface MyCardProps {
-  image: string;
-  title: string;
-  body: string;
+const iconLinkStyles = {
+  color: DarkTheme.palette.text.primary,
+  fontSize: "inherit",
+  "&:hover": {
+    color: DarkTheme.palette.primary.main,
+  },
+};
+
+interface IPerson {
+  name: string,
+  title: string,
+  image?: string,
+  linkedin?: string,
+  twitter?: string,
 }
 
-const MyCard: FC<MyCardProps> = ({ image, title, body }) => {
+interface IPersonObj {
+  person: IPerson;
+}
+
+
+const MyCard: FC<IPersonObj> = ({ person }) => {
   return (
     <Card sx={{
-      backgroundColor: '#20252f',
-      backgroundImage: 'url("/card-bg.jpg")',
-      width: '200px',
+      background: 'rgba(255, 255, 255, 0.02)',
+      width: '196px',
       maxWidth: 'calc(100vw - 48px)',
-      // display: 'inline-flex',
       whiteSpace: 'normal',
-      px: '20px',
-      py: '32px',
       borderRadius: '10px',
-      border: '1px solid rgba(255, 255, 255, 0.2)'
+      border: '1px solid rgba(255, 255, 255, 0.12)'
     }}>
-      <CardContent>
-        <Image src={image} width={80} height={80} />
-        <Typography sx={cardTitleStyle}>{title}</Typography>
+      <CardContent sx={{ height: '100%' }}>
+        <Grid
+          container
+          direction="column"
+          justifyContent="space-between"
+          alignItems="center"
+          sx={{ height: '100%' }}
+        >
+          <Grid item>
+            <Avatar src={person?.image} sx={{ width: 80, height: 80, mx: 'auto' }} alt={person.name} />
+            <Typography sx={{ ...cardTitleStyle, mt: '12px' }}>{person.name}</Typography>
+            <Typography sx={{ ...cardTitleStyle, color: '#aaa' }}>{person.title}</Typography>
+          </Grid>
+          <Grid item>
+            <Grid container spacing={2}>
+              {person.linkedin ? (
+                <Grid item>
+                  <Link
+                    href={person.linkedin}
+                    target="_blank"
+                    sx={iconLinkStyles}
+                    rel="noreferrer"
+                  >
+                    <LinkedinIcon fontSize="inherit" />
+                  </Link>
+                </Grid>
+              ) : null}
+              {person.twitter ? (
+                <Grid item>
+                  <Link
+                    href={person.twitter}
+                    target="_blank"
+                    sx={iconLinkStyles}
+                    rel="noreferrer"
+                  >
+                    <TwitterIcon fontSize="inherit" />
+                  </Link>
+                </Grid>
+              ) : null}
+            </Grid>
+          </Grid>
+        </Grid>
       </CardContent>
     </Card>
   )
 }
 
-const theCards = [
+const theCards: IPerson[] = [
   {
-    title: "Blockchain Development Teams",
-    body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
-    image: "/icons/HandshakeIcon.svg",
+    name: 'Marty C.',
+    title: 'CEO',
+    image: '',
+    linkedin: '',
+    twitter: 'https://twitter.com/esot321c',
   },
   {
-    title: "Blockchain Development Teams",
-    body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
-    image: "/icons/DevIcon.svg",
+    name: 'Leif Erickson',
+    title: 'CTO',
+    image: '',
+    linkedin: '',
+    twitter: 'https://twitter.com/leiferiqson',
   },
   {
-    title: "Investor Groups",
-    body: "Using a DAO, groups of people can pool their funds and manage each members' stake in the overall investment. Eliminate the need to trust a specific individual with control of the funds.",
-    image: "/icons/ChartIcon.svg",
+    name: 'Nicolas Bondancia Girard',
+    title: 'UX/UI Designer',
+    image: '/images/team/nico.png',
+    linkedin: 'https://linkedin.com/in/nicolas-bondancia-girard-aa39a0197/',
+    twitter: 'https://twitter.com/NicoUXUI',
   },
   {
-    title: "Blockchain Development Teams",
-    body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
-    image: "/icons/DevIcon.svg",
+    name: 'Ornella Manes',
+    title: 'Graphic Designer',
+    image: '/images/team/orne.jpeg',
+    linkedin: 'https://linkedin.com/in/ornellamanes/',
+    twitter: '',
   },
   {
-    title: "Blockchain Development Teams",
-    body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
-    image: "/icons/DevIcon.svg",
+    name: 'Robert Pieter van Leeuwen - Luivatra',
+    title: 'Lead Ergoscript Dev',
+    image: '',
+    linkedin: 'https://linkedin.com/in/robert-pieter-van-leeuwen-28b8b853/',
+    twitter: 'https://twitter.com/Luivatra',
   },
   {
-    title: "Blockchain Development Teams",
-    body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
-    image: "/icons/DevIcon.svg",
+    name: 'Abhishek Pal - noob77777',
+    title: 'Full Stack Dev',
+    image: '/images/team/noob.jpg',
+    linkedin: '',
+    twitter: 'https://twitter.com/abhishekpc3po',
   },
   {
-    title: "Blockchain Development Teams",
-    body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
-    image: "/icons/DevIcon.svg",
+    name: 'Trapper T',
+    title: 'Front End Dev',
+    image: '',
+    linkedin: '',
+    twitter: '',
+  },
+  {
+    name: 'Alexis Ekici',
+    title: 'Marketing Manager',
+    image: '/images/team/alexis.jpg',
+    linkedin: '',
+    twitter: 'https://twitter.com/AlexisEkici',
   },
 ]
 
@@ -322,146 +398,141 @@ export default function About() {
         subTitleTwo="Software Suite"
       />
       <Container sx={{ px: "24px", py: '60px' }} id="navContainer">
-        <Grid container spacing={4}>
-          <Grid item md={3}>
-            <PageNav navLinks={navLinks} />
-          </Grid>
-          <Grid item md={9}>
-            <section id="introduction">
-              <Grid container>
-                <Grid item md={7}>
-                  <Blockquote small sx={{ mb: '48px' }}>
-                    Paideia is an organization whose purpose is to create a functional, secure, and well-documented DAO software suite that supports DAOs as they form and develop. It will make it easy for anyone to initiate a DAO, distribute tokens using various methods, create proposals and collect votes. It will help various organizations share funds in a secure and fair way.
-                  </Blockquote>
-                </Grid>
-                <Grid item md={5}>
-                </Grid>
+        <PageNav navLinks={navLinks}>
+          <Box component="section" id="introduction">
+            <Grid container>
+              <Grid item md={7}>
+                <Blockquote small sx={{ mb: '48px' }}>
+                  Paideia is an organization whose purpose is to create a functional, secure, and well-documented DAO software suite that supports DAOs as they form and develop. It will make it easy for anyone to initiate a DAO, distribute tokens using various methods, create proposals and collect votes. It will help various organizations share funds in a secure and fair way.
+                </Blockquote>
               </Grid>
-              <Grid container>
-                <Grid item md={3}>
-                </Grid>
-                <Grid item md={7}>
-                  <Typography sx={{ fontWeight: '700', mb: '48px' }}>
-                    Anyone who needs to manage a treasury as a group will benefit from these tools. Examples include:
-                  </Typography>
-                  <Grid container justifyContent="center" spacing={6} sx={{ mb: '48px' }}>
-                    {examples.map(({ text, icon }, i) => {
-                      return (
-                        <Grid item md={6} key={i} sx={{ maxWidth: '320px' }}>
-                          <Image src={icon} width={35} height={35} />
-                          <Typography sx={{
-                            fontFamily: '"Space Grotesk", sans-serif',
-                            fontWeight: '600',
-                            fontSize: '18px',
-                          }}>
-                            {text}
-                          </Typography>
-                        </Grid>
-                      )
-                    })}
-                  </Grid>
-                  <Grid item md={2}>
-                  </Grid>
-                </Grid>
+              <Grid item md={5}>
               </Grid>
-            </section>
-            <section id="whitepaper">
-              <WhitepaperQuote sx={{ my: '64px' }} />
-            </section>
-            <section id="theproblem">
-              <SectionHeading
-                category="The Problem"
-                title="Functionality, Security, and Support"
-                sx={{ mb: '120px' }}
-              >
-                People do not join DAOs to create software. They join them to accomplish something in the real world that benefits them or their communities. But, a DAO needs software to enable it to function as a decentralized, autonomous organization. DAOs need an off-the-shelf DAO toolkit, one that provides:
-              </SectionHeading>
-              <Grid container sx={{ mb: '200px' }}>
-                <Grid item md={3}>
-
-                </Grid>
-                <Grid item md={7}>
-                  <Grid container direction="column" spacing={12}>
-                    {problems.map(({ num, title, body }, i) => {
-                      return (
-                        <Grid item key={i}>
-                          <Grid container>
-                            <Grid item xs={4}>
-                              <Typography sx={{
-                                fontFamily: '"Viga", sans-serif',
-                                fontSize: '100px',
-                                lineHeight: '100px'
-                              }}>
-                                {num}&#47;
-                              </Typography>
-                            </Grid>
-                            <Grid item xs={8}>
-                              <Typography sx={{
-                                fontFamily: '"Space Grotesk", sans-serif',
-                                fontWeight: '700',
-                                fontSize: '24px',
-                              }}>
-                                {title}
-                              </Typography>
-                              <Divider sx={{ my: '12px' }} />
-                              <Typography>
-                                {body}
-                              </Typography>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                      )
-                    })}
-                  </Grid>
+            </Grid>
+            <Grid container>
+              <Grid item md={3}>
+              </Grid>
+              <Grid item md={7}>
+                <Typography sx={{ fontWeight: '700', mb: '48px' }}>
+                  Anyone who needs to manage a treasury as a group will benefit from these tools. Examples include:
+                </Typography>
+                <Grid container justifyContent="center" spacing={6} sx={{ mb: '48px' }}>
+                  {examples.map(({ text, icon }, i) => {
+                    return (
+                      <Grid item md={6} key={i} sx={{ maxWidth: '320px' }}>
+                        <Image src={icon} width={35} height={35} />
+                        <Typography sx={{
+                          fontFamily: '"Space Grotesk", sans-serif',
+                          fontWeight: '600',
+                          fontSize: '18px',
+                        }}>
+                          {text}
+                        </Typography>
+                      </Grid>
+                    )
+                  })}
                 </Grid>
                 <Grid item md={2}>
-
                 </Grid>
               </Grid>
-            </section>
-            <section id="thesolution">
-              <Box sx={{ mb: '48px' }}>
-                <Image src="/exclamation.svg" height={266} width={60} layout="fixed" />
-              </Box>
-              <SectionHeading
-                category="The Solution"
-                title="Paideia is a DAO management software suite"
-                sx={{ mb: '280px' }}
-              >
-                It is designed to make it easy for anyone to create, manage and be involved in a DAO, as well as facilitate the distribution of governance tokens and allow the ability to raise funds. The technical goal is to provide a secure DAO tool set that is open, easy to use, inexpensive, and allows for use in any environment.
+            </Grid>
+          </Box>
+          <Box component="section" id="whitepaper">
+            <WhitepaperQuote sx={{ my: '64px' }} />
+          </Box>
+          <Box component="section" id="theproblem">
+            <SectionHeading
+              category="The Problem"
+              title="Functionality, Security, and Support"
+              sx={{ mb: '120px' }}
+            >
+              People do not join DAOs to create software. They join them to accomplish something in the real world that benefits them or their communities. But, a DAO needs software to enable it to function as a decentralized, autonomous organization. DAOs need an off-the-shelf DAO toolkit, one that provides:
+            </SectionHeading>
+            <Grid container sx={{ mb: '200px' }}>
+              <Grid item md={3}>
 
-                With Paideia in the hands of anyone that wishes to use it, this software suite can open new ways for people to work together, to change their lives and the world for the better.
-              </SectionHeading>
-            </section>
-            <section id="roadmap">
-              <RoadmapAccordion sx={{ mb: '280px' }} />
-            </section>
-            <section id="tokenomics">
-              <SectionHeading
-                category="Paideia Token"
-                title="Tokenomics"
-                sx={{ mb: '100px' }}
-              />
-              <Box sx={{ width: '100%', mb: '280px' }}>
-                <TabsPanel tabs={tabs} headline={'There will be a max supply of 200M Paideia tokens distributed as follows: '} />
-              </Box>
-            </section>
-            <Box component="section" id="team">
-              <SectionHeading
-                category="Get to know us"
-                title="Our Team"
-                sx={{ mb: '100px' }}
-              />
-              <CardSlider uniqueId="team" addMargin={0} contained>
-                {
-                  theCards.map(({ title, body, image }, i: number) => {
-                    return <MyCard key={i} title={title} body={body} image={image} />
-                  })
-                }
-              </CardSlider>
+              </Grid>
+              <Grid item md={7}>
+                <Grid container direction="column" spacing={12}>
+                  {problems.map(({ num, title, body }, i) => {
+                    return (
+                      <Grid item key={i}>
+                        <Grid container>
+                          <Grid item xs={4}>
+                            <Typography sx={{
+                              fontFamily: '"Viga", sans-serif',
+                              fontSize: '100px',
+                              lineHeight: '100px'
+                            }}>
+                              {num}&#47;
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Typography sx={{
+                              fontFamily: '"Space Grotesk", sans-serif',
+                              fontWeight: '700',
+                              fontSize: '24px',
+                            }}>
+                              {title}
+                            </Typography>
+                            <Divider sx={{ my: '12px' }} />
+                            <Typography>
+                              {body}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    )
+                  })}
+                </Grid>
+              </Grid>
+              <Grid item md={2}>
+
+              </Grid>
+            </Grid>
+          </Box>
+          <Box component="section" id="thesolution">
+            <Box sx={{ mb: '48px' }}>
+              <Image src="/exclamation.svg" height={266} width={60} layout="fixed" />
             </Box>
-          </Grid>
-        </Grid>
+            <SectionHeading
+              category="The Solution"
+              title="Paideia is a DAO management software suite"
+              sx={{ mb: '280px' }}
+            >
+              It is designed to make it easy for anyone to create, manage and be involved in a DAO, as well as facilitate the distribution of governance tokens and allow the ability to raise funds. The technical goal is to provide a secure DAO tool set that is open, easy to use, inexpensive, and allows for use in any environment.
+
+              With Paideia in the hands of anyone that wishes to use it, this software suite can open new ways for people to work together, to change their lives and the world for the better.
+            </SectionHeading>
+          </Box>
+          <Box component="section" id="roadmap">
+            <RoadmapAccordion sx={{ mb: '280px' }} />
+          </Box>
+          <Box component="section" id="tokenomics">
+            <SectionHeading
+              category="Paideia Token"
+              title="Tokenomics"
+              sx={{ mb: '100px' }}
+            />
+            <Box sx={{ width: '100%', mb: '280px' }}>
+              <TabsPanel tabs={tabs} headline={'There will be a max supply of 200M Paideia tokens distributed as follows: '} />
+            </Box>
+          </Box>
+          <Box component="section" id="team">
+            <SectionHeading
+              category="Get to know us"
+              title="Our Team"
+              sx={{ mb: '100px' }}
+            />
+            <CardSlider uniqueId="team" contained>
+              {
+                theCards.map((person, i: number) => {
+                  return <MyCard key={i} person={person} />
+                })
+              }
+            </CardSlider>
+          </Box>
+        </PageNav>
       </Container>
     </>
   );

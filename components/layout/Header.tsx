@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import AppBar from "@mui/material/AppBar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Grid from "@mui/material/Grid";
@@ -18,6 +18,7 @@ import Fab from "@mui/material/Fab";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Zoom from "@mui/material/Zoom";
 import Toolbar from "@mui/material/Toolbar";
+import { PageNavContext } from '@components/Layout'
 // import ConnectWallet from "@components/wallet/ConnectWallet";
 
 const pages = [
@@ -60,7 +61,6 @@ function ScrollTop(props: { children: React.ReactNode }) {
     threshold: 100,
   });
 
-
   const handleClick = () => {
     const anchor = (document).querySelector(
       '#back-to-top-anchor',
@@ -89,6 +89,7 @@ function ScrollTop(props: { children: React.ReactNode }) {
 
 export default function Header(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
+  const { inPageNav } = useContext(PageNavContext)
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -225,9 +226,8 @@ export default function Header(props) {
                           borderRadius: "2px",
                           background: "#fff",
                           transition: "transform 100ms ease-in-out",
-                          transform: `${
-                            navbarOpen ? "rotate(45deg)" : "translateY(6px)"
-                          }`,
+                          transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                            }`,
                         }}
                       ></Box>
                       <Box
@@ -238,9 +238,8 @@ export default function Header(props) {
                           borderRadius: "2px",
                           background: "#fff",
                           transition: "transform 100ms ease-in-out",
-                          transform: `${
-                            navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
-                          }`,
+                          transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                            }`,
                         }}
                       ></Box>
                     </Box>
@@ -351,11 +350,13 @@ export default function Header(props) {
           </Grid>
         </Box>
       </Fade>
-      <ScrollTop {...props}>
-        <Fab color="secondary" size="small" aria-label="scroll back to top">
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </ScrollTop>
+      {!inPageNav ? (
+        <ScrollTop {...props}>
+          <Fab color="secondary" size="small" aria-label="scroll back to top">
+            <KeyboardArrowUpIcon />
+          </Fab>
+        </ScrollTop>
+      ) : null}
     </>
   );
 }
