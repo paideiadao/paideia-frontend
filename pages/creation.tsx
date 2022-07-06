@@ -156,7 +156,7 @@ export default function Creation(props) {
               display: "flex",
               flexDirection: "column",
               height: "calc(100% - 3rem)",
-              pb: deviceStruct(".5rem", ".5rem", "1rem", "1.5rem", "1.5rem"),
+              pb: deviceStruct("4.5rem", "4.5rem", "1rem", "1.5rem", "1.5rem"),
               overflowY: "scroll",
             }}
           >
