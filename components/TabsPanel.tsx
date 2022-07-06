@@ -142,7 +142,6 @@ const CustomTable: FC<ITabs> = ({ tabs, headline }) => {
   )
 }
 
-export default CustomTable
 
 
 export default CustomTable;
