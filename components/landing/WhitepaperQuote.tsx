@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 import { Grid, Container, Box, Typography, Button } from "@mui/material";
 import { DarkTheme } from "@theme/theme";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForward";
@@ -8,7 +8,7 @@ interface PerkProps {
   sx?: object;
 }
 
-const Perks: FC<PerkProps> = ({sx}) => {
+const Perks: FC<PerkProps> = ({ sx }) => {
   return (
     <Box sx={sx}>
       <Container
@@ -137,6 +137,6 @@ const Perks: FC<PerkProps> = ({sx}) => {
       </Container>
     </Box>
   );
-}
+};
 
-export default Perks
+export default Perks;

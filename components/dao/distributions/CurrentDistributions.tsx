@@ -57,7 +57,7 @@ export const DistributionCard: React.FC<IDistributionCard> = (props) => {
         alignItems: "center",
         backgroundColor: "fileInput.outer",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         borderRadius: ".3rem",
       }}
     >

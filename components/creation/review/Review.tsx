@@ -6,6 +6,7 @@ import { Header } from "../utilities/HeaderComponents";
 import ReviewDrawer from "./ReviewDrawer";
 import { modalBackground } from "../../utilities/modalBackground";
 import Router from "next/router";
+import { deviceStruct } from "@components/utilities/Style";
 
 const Review: React.FC = () => {
   const globalContext = React.useContext(GlobalContext);
@@ -14,7 +15,7 @@ const Review: React.FC = () => {
   return (
     <Box
       sx={{
-        width: "70%",
+        width: deviceStruct("93%", "93%", "70%", "70%", "70%"),
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
@@ -32,10 +33,6 @@ const Review: React.FC = () => {
           Back
         </Button>
       </Box>
-      <Button onClick={() => globalContext.api.createDao()} size="small">
-        <ArrowBackIcon sx={{ mr: ".5rem", fontSize: "1rem" }} />
-        Test
-      </Button>
       <Header
         title="Review"
         large={true}
@@ -57,7 +54,20 @@ const Review: React.FC = () => {
             globalContext.api.setData({ ...data, draftModal: true })
           }
         >
-          Publish as a draft
+          <Box
+            sx={{
+              display: deviceStruct("none", "none", "block", "block", "block"),
+            }}
+          >
+            Publish as a draft
+          </Box>
+          <Box
+            sx={{
+              display: deviceStruct("block", "block", "none", "none", "none"),
+            }}
+          >
+            Publish Draft
+          </Box>
         </Button>
         <Button
           sx={{ width: "49%", ml: ".5rem" }}
@@ -70,11 +80,13 @@ const Review: React.FC = () => {
       <Box sx={{ mt: "1rem" }}>
         <Alert severity="warning" color="warning" sx={{ fontSize: ".8rem" }}>
           <AlertTitle sx={{ fontSize: ".9rem" }}>Draft publishing</AlertTitle>
-          Publishing as a draft allows you to see the DAO configuation before
-          committing to it. You will be able to change any configuration (except
-          name and URL). When you publish as a draft the users you whitelisted
-          won't be notified and nothing will happen until you are ready to do
-          the FINAL publish.
+          <Box sx={{ ml: "-1.75rem" }}>
+            Publishing as a draft allows you to see the DAO configuation before
+            committing to it. You will be able to change any configuration
+            (except name and URL). When you publish as a draft the users you
+            whitelisted won't be notified and nothing will happen until you are
+            ready to do the FINAL publish.
+          </Box>
         </Alert>
       </Box>
       <Modal
@@ -83,7 +95,12 @@ const Review: React.FC = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={{ ...modalBackground, width: "35rem" }}>
+        <Box
+          sx={{
+            ...modalBackground,
+            width: deviceStruct("90%", "90%", "35%", "35%", "35%"),
+          }}
+        >
           <Box sx={{ fontSize: "1.1rem", fontWeight: 450 }}>
             You are about to publish the final version of your DAO
           </Box>

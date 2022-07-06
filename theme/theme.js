@@ -3,7 +3,8 @@ import darkScrollbar from "@mui/material/darkScrollbar";
 
 export const mainTheme = createTheme({
   typography: {
-    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif'
+    fontFamily:
+      '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif',
   },
 });
 
@@ -20,23 +21,23 @@ export const LightTheme = createTheme({
       main: "#FEE8E7",
     },
     text: {
-      main: "black",
+      main: "#000000",
       light: "#666666",
     },
     linkHover: {
       main: "#EBF5F6",
     },
     tokenAlert: {
-      main: "rgba(237, 108, 2, 1)",
+      main: "#ed6c02",
     },
     circleBackground: {
-      main: "rgba(0, 134, 143, 0.08)",
+      main: "#EBF6F6",
     },
-    divider: {
-      main: "rgb(51, 51, 51, .2)",
+    border: {
+      main: "#D6D6D6",
     },
     darkHover: {
-      main: "rgba(255, 255, 255, 0.08)",
+      main: "#FFFFFF",
     },
     backgroundColor: {
       main: "#FFFFFF",
@@ -47,9 +48,9 @@ export const LightTheme = createTheme({
       light: "#50B6BF",
       dark: "#005962",
       contrast: "#FFFFFF",
-      selectedButton: "rgb(0, 134, 143, 0.1)",
-      lightSuccess: "green",
-      lightOpacity: "rgba(0, 134, 143, 0.08)",
+      selectedButton: "#E5F3F4",
+      lightSuccess: "#00A300",
+      lightOpacity: "#EBF6F6",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
@@ -62,13 +63,13 @@ export const LightTheme = createTheme({
     },
     fileInput: {
       main: "#F5F5F5",
-      outer: "white",
-      border: "rgba(255, 255, 255, 1)",
+      outer: "#FFFFFF",
+      border: "FFFFFF",
       read: "#F0F5F6",
     },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
-    contrastThreshold: 3,
+    // contrastThreshold: 3,
     // Used by the functions below to shift a color's luminance by approximately
     // two indexes within its tonal palette.
     // E.g., shift from Red 500 to Red 300 or Red 700.
@@ -85,14 +86,14 @@ export const LightTheme = createTheme({
     MuiSelect: {
       styleOverrides: {
         icon: {
-          color: "rgba(0, 0, 0, 0.6)",
+          color: "#666666",
         },
       },
     },
     MuiStepLabel: {
       styleOverrides: {
         labelContainer: {
-          color: "black",
+          color: "#000000",
         },
         label: {
           fontWeight: 500,
@@ -103,19 +104,19 @@ export const LightTheme = createTheme({
       styleOverrides: {
         root: {
           "&.Mui-completed": {
-            color: "green",
+            color: "#00A300",
           },
           "&.Mui-active": {
             color: "#00868F",
             "& text": {
-              fill: "white",
+              fill: "#FFFFFF",
             },
           },
 
-          color: "rgba(255, 130, 26, 0.08)",
+          color: "#FFF5ED",
         },
         text: {
-          fill: "rgba(224, 104, 4, 1)",
+          fill: "#E16804",
           fontSize: ".8rem",
         },
       },
@@ -135,7 +136,7 @@ export const DarkTheme = createTheme({
       main: "#F44336",
     },
     text: {
-      main: "white",
+      main: "#FFFFFF",
       light: "#B8BABE",
     },
     circle: {
@@ -163,11 +164,11 @@ export const DarkTheme = createTheme({
       main: "rgba(17, 24, 39, 0.08)",
       text: "rgba(0, 0, 0, 1)",
     },
-    // THIS IS CAUSING AN ERROR WITH <TableCell> 
+    // THIS IS CAUSING AN ERROR WITH <TableCell>
     // "Uncaught TypeError: color.charAt is not a function"
-    // divider: {
-    //   main: "rgba(159, 210, 219, 0.2)",
-    // }, 
+    border: {
+      main: "rgba(159, 210, 219, 0.2)",
+    },
     fileInput: {
       main: "rgba(45, 51, 64, 1)",
       outer: "rgba(17, 24, 39, 1)",
@@ -178,7 +179,7 @@ export const DarkTheme = createTheme({
       main: "rgba(17, 24, 39, 1)",
     },
     color: {
-      main: "white",
+      main: "#FFFFFF",
     },
     primary: {
       // light: will be calculated from palette.primary.main,
@@ -200,7 +201,7 @@ export const DarkTheme = createTheme({
     },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
-    contrastThreshold: 3,
+    // contrastThreshold: 3,
     // Used by the functions below to shift a color's luminance by approximately
     // two indexes within its tonal palette.
     // E.g., shift from Red 500 to Red 300 or Red 700.
@@ -217,10 +218,15 @@ export const DarkTheme = createTheme({
     zIndex: 20,
     backgroundColor: "red",
     "&:hover": {
-      backgroundColor: "yellow",
+      backgroundColor: "#FFFF00",
     },
   },
   components: {
+    MuiAccordion: {
+      root: {
+        backgroundColor: "transparent",
+      },
+    },
     MuiChip: {
       styleOverrides: {
         icon: {
@@ -238,7 +244,7 @@ export const DarkTheme = createTheme({
     MuiAccordionSummary: {
       styleOverrides: {
         expandedIconWrapper: {
-          backgroundColor: "blue",
+          backgroundColor: "#0000FF",
         },
       },
     },
@@ -251,7 +257,7 @@ export const DarkTheme = createTheme({
           "&:hover .MuiOutlinedInput-notchedOutline": {
             borderColor: "#9FD2DB",
           },
-          color: "rgba(255, 255, 255, 1)",
+          color: "FFFFFF",
         },
       },
     },
@@ -271,9 +277,9 @@ export const DarkTheme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: "rgba(17, 24, 39, 1)",
-          color: "white",
+          color: "#FFFFFF",
           "&Mui-Typography": {
-            color: "white",
+            color: "#FFFFFF",
           },
         },
       },
@@ -323,7 +329,7 @@ export const DarkTheme = createTheme({
       styleOverrides: {
         root: {
           "& .MuiAlert-Icon": {
-            color: "green",
+            color: "#00A300",
           },
         },
       },
@@ -346,18 +352,18 @@ export const DarkTheme = createTheme({
       styleOverrides: {
         root: {
           "&-label.Mui-completed": {
-            color: "white",
+            color: "#FFFFFF",
           },
         },
         labelContainer: {
-          color: "white",
+          color: "#FFFFFF",
         },
         label: {
           "&.Mui-completed": {
-            color: "white",
+            color: "#FFFFFF",
           },
           "&.Mui-active": {
-            color: "white",
+            color: "#FFFFFF",
           },
         },
       },
@@ -371,7 +377,7 @@ export const DarkTheme = createTheme({
           "&.Mui-active": {
             color: "#00868F",
             "& text": {
-              fill: "white",
+              fill: "#FFFFFF",
             },
           },
           color: "rgba(252, 158, 79, 0.08)",

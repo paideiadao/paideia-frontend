@@ -28,7 +28,7 @@ const AbstractDate: React.FC<{
               pb: ".5rem",
               backgroundColor: "backgroundColor.main",
               borderBottom: "1px solid",
-              borderBottomColor: "divider.main",
+              borderBottomColor: "border.main",
             }}
           >
             <CapsInfo title="Select Date" />

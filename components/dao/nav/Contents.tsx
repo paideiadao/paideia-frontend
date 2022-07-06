@@ -181,6 +181,9 @@ const DropdownLink: React.FC<{
         ml: 0,
         mt: ".25rem",
         mb: ".25rem",
+        "&:before": {
+          display: "none",
+        },
       }}
       disableGutters
       elevation={0}

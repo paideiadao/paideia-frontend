@@ -7,31 +7,31 @@ import StepLabel from "@mui/material/StepLabel";
 import StepButton from "@mui/material/StepButton";
 import { withStyles } from "@material-ui/core/styles";
 
+export const steps = [
+  {
+    title: "Basic Information",
+    label: "Pick your name and url",
+  },
+
+  {
+    title: "Tokenomics",
+    label: "Mint and configure your token",
+  },
+  {
+    title: "Governance",
+    label: "Manage how voting will work",
+  },
+  {
+    title: "Design",
+    label: "Make it your own!",
+  },
+  {
+    title: "Review",
+    label: "Make sure everything is correct",
+  },
+];
+
 export default function StepSelector(props) {
-  const steps = [
-    {
-      title: "Basic Information",
-      label: "Pick your name and url",
-    },
-
-    {
-      title: "Tokenomics",
-      label: "Mint and configure your token",
-    },
-    {
-      title: "Governance",
-      label: "Manage how voting will work",
-    },
-    {
-      title: "Design",
-      label: "Make it your own!",
-    },
-    {
-      title: "Review",
-      label: "Make sure everything is correct",
-    },
-  ];
-
   return (
     <Box
       sx={{
@@ -51,7 +51,7 @@ export default function StepSelector(props) {
             <Divider
               orientation="vertical"
               flexItem
-              style={{ background: "divider.main" }}
+              style={{ background: "border.main" }}
             />
           </Box>
         }

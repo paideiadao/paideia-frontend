@@ -122,7 +122,7 @@ const TeamPartners: React.FC<{
         sx={{
           width: "100%",
           borderBottom: "1px solid",
-          borderColor: "divider.main",
+          borderColor: "border.main",
           mb: "1rem",
           pl: "1rem",
         }}
@@ -137,7 +137,7 @@ const TeamPartners: React.FC<{
           width: "100%",
           pl: "1rem",
           borderBottom: "1px solid",
-          borderColor: "divider.main",
+          borderColor: "border.main",
           pb: "1rem",
         }}
       >

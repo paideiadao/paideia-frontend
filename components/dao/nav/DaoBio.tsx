@@ -108,7 +108,7 @@ const DaoBio: React.FC = () => {
         display: "flex",
         alignItems: "center",
         borderBottom: "1px solid",
-        borderBottomColor: "divider.main",
+        borderBottomColor: "border.main",
         flexDirection: "column",
         p: ".75rem",
         pt: "0rem",
@@ -130,7 +130,7 @@ const DaoBio: React.FC = () => {
           display: "flex",
           alignItems: "center",
           border: "1px solid",
-          borderColor: "divider.main",
+          borderColor: "border.main",
           cursor: "pointer",
         }}
         onClick={() => setDropdown(true)}
@@ -174,38 +174,36 @@ const DaoBio: React.FC = () => {
               pl: "0",
               pr: "0",
               border: "1px solid",
-              borderColor: "divider.main",
+              borderColor: "border.main",
             }}
           >
-            {daos.length > 5 && (
-              <Box
-                sx={{
-                  width: "100%",
-                  pb: ".5rem",
-                  borderBottom: "1px solid",
-                  borderColor: "divider.main",
-                  mb: ".5rem",
-                  pl: ".5rem",
-                  pr: ".5rem",
+            <Box
+              sx={{
+                width: "100%",
+                pb: ".5rem",
+                borderBottom: "1px solid",
+                borderColor: "border.main",
+                mb: ".5rem",
+                pl: ".5rem",
+                pr: ".5rem",
+              }}
+            >
+              <TextField
+                value={search}
+                onChange={(e: any) => setSearch(e.target.value)}
+                size="small"
+                placeholder="Search by name or url"
+                InputProps={{
+                  sx: { fontSize: ".7rem" },
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <SearchIcon color="primary" sx={{ fontSize: "1rem" }} />
+                    </InputAdornment>
+                  ),
                 }}
-              >
-                <TextField
-                  value={search}
-                  onChange={(e: any) => setSearch(e.target.value)}
-                  size="small"
-                  placeholder="Search by name or url"
-                  InputProps={{
-                    sx: { fontSize: ".7rem" },
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <SearchIcon color="primary" sx={{ fontSize: "1rem" }} />
-                      </InputAdornment>
-                    ),
-                  }}
-                  sx={{ width: "100%" }}
-                />
-              </Box>
-            )}
+                sx={{ width: "100%" }}
+              />
+            </Box>
             <Box
               sx={{
                 width: "100%",

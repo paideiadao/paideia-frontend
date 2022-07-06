@@ -204,7 +204,7 @@ const Discussion: React.FC = () => {
           </Box>
           <TabContext value={tab}>
             <Box
-              sx={{ borderBottom: 1, borderColor: "divider.main", mt: ".5rem" }}
+              sx={{ borderBottom: 1, borderColor: "border.main", mt: ".5rem" }}
             >
               <TabList onChange={handleChange}>
                 <Tab label="Discussion Info" value="1" />

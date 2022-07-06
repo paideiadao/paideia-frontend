@@ -4,17 +4,32 @@ import { Subheader } from "../../creation/utilities/HeaderComponents";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { percentage } from "../../../lib/creation/Utilities";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
-const PerformanceWidget: React.FC<{ value: number }> = (props) => {
+export const PerformanceWidget: React.FC<{
+  value: number;
+  invert?: boolean;
+  places?: number;
+  large?: boolean;
+}> = (props) => {
   return (
     <Box
       sx={{
         display: "flex",
         alignItems: "center",
-        backgroundColor: props.value <= 0 ? "error.main" : "text.lightSuccess",
+        backgroundColor: props.invert
+          ? "transparent"
+          : props.value <= 0
+          ? "error.main"
+          : "primary.lightSuccess",
         borderRadius: ".3rem",
-        fontSize: ".7rem",
-        color: "backgroundColor.main",
+        fontSize: props.large ? "1rem" : ".9rem",
+        color: props.invert
+          ? props.value <= 0
+            ? "error.main"
+            : "primary.lightSuccess"
+          : "backgroundColor.main",
         p: ".2rem",
       }}
     >
@@ -23,12 +38,16 @@ const PerformanceWidget: React.FC<{ value: number }> = (props) => {
       ) : (
         <ArrowDownwardIcon style={{ fontSize: "1rem", marginRight: ".1rem" }} />
       )}
-      {percentage(props.value, 0)}
+      {percentage(props.value, props.places === undefined ? 0 : props.places)}
     </Box>
   );
 };
 
-const TimeWidget: React.FC<{ amount: number; unit: string }> = (props) => {
+export const TimeWidget: React.FC<{
+  amount: number;
+  unit: string;
+  small?: boolean;
+}> = (props) => {
   return (
     <Box
       sx={{
@@ -36,12 +55,14 @@ const TimeWidget: React.FC<{ amount: number; unit: string }> = (props) => {
         alignItems: "center",
         backgroundColor: "fileInput.main",
         borderRadius: ".3rem",
-        fontSize: ".7rem",
+        fontSize: props.small ? ".8rem" : ".9rem",
         color: "text.light",
         p: ".2rem",
+        pt: ".1rem",
+        pb: ".1rem",
         ml: ".5rem",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
       }}
     >
       {props.amount}
@@ -67,7 +88,7 @@ const AssetCard: React.FC<IAssetCard> = (props) => {
         p: ".5rem",
         width: "25%",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         ml: props.c === 0 ? 0 : ".5rem",
         fontSize: ".9rem",
       }}
@@ -90,11 +111,22 @@ const assets = [
 ];
 
 const FinancialSummary: React.FC = () => {
+  const router = useRouter();
+
+  const { id } = router.query;
   return (
     <Box sx={{ width: "100%", mt: ".5rem" }}>
       <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
         <Subheader title="Financial summary" small bold />
-        <Button sx={{ ml: "auto", fontSize: ".8rem" }}>View More</Button>
+        <Link
+          href={
+            id === undefined
+              ? "/dao/financials/treasury"
+              : `/dao/${id}/financials/treasury`
+          }
+        >
+          <Button sx={{ ml: "auto", fontSize: ".8rem" }}>View More</Button>
+        </Link>
       </Box>
       <Paper
         elevation={0}
@@ -102,7 +134,7 @@ const FinancialSummary: React.FC = () => {
           width: "100%",
           backgroundColor: "fileInput.outer",
           border: "1px solid",
-          borderColor: "divider.main",
+          borderColor: "border.main",
           mt: ".5rem",
           mb: ".5rem",
           p: ".5rem",

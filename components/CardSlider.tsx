@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState, useRef } from "react";
 import { Button, Container, Box } from "@mui/material";
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 interface SliderProps {
   buttonTop?: boolean;
@@ -9,6 +9,7 @@ interface SliderProps {
   addMargin?: number;
   contained?: boolean;
 }
+
 
 const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin, contained }) => {
   const [marginLeftCalc, setMarginLeftCalc] = useState({ px: '0px' })
@@ -18,32 +19,39 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin,
   const [slideDistance, setSlideDistance] = useState(460)
 
   const handleScroll = () => {
-    const scroll = document.getElementById(uniqueId + "pnProductNav").scrollLeft
-    setScrollPosition(scroll)
+    const scroll = document.getElementById(
+      uniqueId + "pnProductNav"
+    ).scrollLeft;
+    setScrollPosition(scroll);
   };
 
   const determineOverflow = (content: any, container: any) => {
     const containerMetrics = container.getBoundingClientRect();
+
     const containerMetricsRight = Math.floor(containerMetrics.right);
     const containerMetricsLeft = Math.floor(containerMetrics.left);
     const contentMetrics = content.getBoundingClientRect();
     const contentMetricsRight = Math.floor(contentMetrics.right);
     const contentMetricsLeft = Math.floor(contentMetrics.left);
 
-    if (containerMetricsLeft > contentMetricsLeft && containerMetricsRight < contentMetricsRight) {
-      setLeftDisabled(false)
-      setRightDisabled(false)
+    if (
+      containerMetricsLeft > contentMetricsLeft &&
+      containerMetricsRight < contentMetricsRight
+    ) {
+      setLeftDisabled(false);
+      setRightDisabled(false);
     } else if (contentMetricsLeft < containerMetricsLeft) {
-      setRightDisabled(true)
+      setRightDisabled(true);
     } else if (contentMetricsRight > containerMetricsRight) {
-      setLeftDisabled(true)
+      setLeftDisabled(true);
     } else {
-      setLeftDisabled(true)
-      setRightDisabled(true)
+      setLeftDisabled(true);
+      setRightDisabled(true);
     }
-  }
+  };
 
   const marginFunction = () => {
+
     const pnArrowContainer = document.getElementById(uniqueId + "pnArrowContainer");
     let margin = 24;
     if (!contained) {
@@ -64,18 +72,21 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin,
 
   useEffect(() => {
     const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
-    const pnProductNavContents = document.getElementById(uniqueId + "pnProductNavContents");
-    determineOverflow(pnProductNavContents, pnProductNav)
+    const pnProductNavContents = document.getElementById(
+      uniqueId + "pnProductNavContents"
+    );
+    determineOverflow(pnProductNavContents, pnProductNav);
   }, [scrollPosition]);
 
   useEffect(() => {
     // Add event listener
     window.addEventListener("resize", marginFunction);
     // Call handler right away so state gets updated with initial window size
-    marginFunction()
+    marginFunction();
     // Remove event listener on cleanup
     return () => window.removeEventListener("resize", marginFunction);
-  }, [])
+  }, []);
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -86,55 +97,61 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin,
   const [pos, setPos] = useState({
     left: undefined,
     x: undefined,
-  })
+  });
 
   const posRef = useRef({
     left: undefined,
     x: undefined,
-  })
-  posRef.current = pos
+  });
+  posRef.current = pos;
 
   const mouseMoveHandler = (e: any) => {
     const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
-    pnProductNav.scrollLeft = posRef.current.left - (e.clientX - posRef.current.x);
-  }
+    pnProductNav.scrollLeft =
+      posRef.current.left - (e.clientX - posRef.current.x);
+  };
 
   const mouseUpHandler = (e: any) => {
     const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
-    pnProductNav.style.cursor = 'grab';
-    pnProductNav.style.userSelect = 'none';
-    document.removeEventListener('mousemove', mouseMoveHandler);
-    document.removeEventListener('mouseup', mouseUpHandler);
-  }
+    pnProductNav.style.cursor = "grab";
+    pnProductNav.style.userSelect = "none";
+    document.removeEventListener("mousemove", mouseMoveHandler);
+    document.removeEventListener("mouseup", mouseUpHandler);
+  };
 
   const handleMouseDown = (e: any) => {
     const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
-    pnProductNav.style.cursor = 'grabbing';
-    pnProductNav.style.userSelect = 'none';
+    pnProductNav.style.cursor = "grabbing";
+    pnProductNav.style.userSelect = "none";
 
     setPos({
       // The current scroll
       left: scrollPosition,
       // Get the current mouse position
       x: e.clientX,
-    })
+    });
 
-    document.addEventListener('mousemove', mouseMoveHandler);
-    document.addEventListener('mouseup', mouseUpHandler);
-  }
+    document.addEventListener("mousemove", mouseMoveHandler);
+    document.addEventListener("mouseup", mouseUpHandler);
+  };
 
   const clickLeft = () => {
+
     const pnProductNav = document.getElementById(uniqueId + "pnProductNav")
     pnProductNav.scrollTo({ left: (scrollPosition - slideDistance), behavior: 'smooth' });
   }
 
   const clickRight = () => {
-    const pnProductNav = document.getElementById(uniqueId + "pnProductNav")
-    pnProductNav.scrollTo({ left: (scrollPosition + slideDistance), behavior: 'smooth' });
-  }
+    const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
+    pnProductNav.scrollTo({
+      left: scrollPosition + slideDistance,
+      behavior: "smooth",
+    });
+  };
 
   const ButtonBox = () => {
     return (
+
       <Container id={uniqueId + "pnArrowContainer"} maxWidth="lg" sx={{ my: '32px' }}>
         <Box sx={buttonTop ? { display: 'flex', justifyContent: 'flex-end' } : null}>
           <Button onClick={clickLeft} disabled={leftDisabled}>
@@ -145,11 +162,12 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin,
           </Button>
         </Box>
       </Container>
-    )
-  }
+    );
+  };
 
   return (
     <>
+
       <Container maxWidth="lg" id="setWidth" sx={{ zIndex: '1', width: '100vw' }}></Container>
       {buttonTop ? (
         <ButtonBox />
@@ -179,6 +197,7 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin,
         <Box
           id={uniqueId + "pnProductNavContents"}
           display="flex"
+
           sx={{
             width: 'min-content',
             gap: '24px',
@@ -188,11 +207,9 @@ const CardSlider: FC<SliderProps> = ({ children, buttonTop, uniqueId, addMargin,
           {children}
         </Box>
       </Box>
-      {buttonTop ? null : (
-        <ButtonBox />
-      )}
+      {buttonTop ? null : <ButtonBox />}
     </>
-  )
-}
+  );
+};
 
-export default CardSlider
+export default CardSlider;

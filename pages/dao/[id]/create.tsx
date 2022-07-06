@@ -39,7 +39,7 @@ const Create: React.FC = () => {
                 border: "1px solid",
                 p: ".5rem",
                 backgroundColor: "fileInput.outer",
-                borderColor: "divider.main",
+                borderColor: "border.main",
                 width: "50%",
                 display: "flex",
                 alignItems: "center",
@@ -73,7 +73,13 @@ const Create: React.FC = () => {
               </Box>
             </Box>
           </Link>
-          <Link href={`/dao/${id}/discussion/create`}>
+          <Link
+            href={
+              id === undefined
+                ? "/dao/discussion/create"
+                : `/dao/${id}/discussion/create`
+            }
+          >
             <Box
               sx={{
                 cursor: "pointer",
@@ -81,7 +87,7 @@ const Create: React.FC = () => {
                 border: "1px solid",
                 p: ".5rem",
                 backgroundColor: "fileInput.outer",
-                borderColor: "divider.main",
+                borderColor: "border.main",
                 width: "50%",
                 display: "flex",
                 alignItems: "center",

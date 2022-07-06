@@ -29,8 +29,11 @@ const CreationLoading: React.FC<{ theme: any }> = (props) => {
           alignItems: "center",
           backgroundColor: "fileInput.outer",
           borderBottom: "1px solid",
-          borderBottomColor: "divider.main",
-          pl: "1.5rem",
+          borderBottomColor: "border.main",
+          pl: 2,
+          img: {
+            width: "7rem",
+          },
         }}
       >
         <img src={logo.src} />
@@ -44,6 +47,8 @@ const CreationLoading: React.FC<{ theme: any }> = (props) => {
           alignItems: "center",
           justifyContent: "center",
           flexDirection: "column",
+          pl: "1rem",
+          pr: "1rem",
         }}
       >
         <CircularProgress size="5rem" thickness={5} />

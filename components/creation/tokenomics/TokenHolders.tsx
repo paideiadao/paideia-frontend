@@ -14,6 +14,7 @@ import PercentageInput from "../utilities/PercentageInput";
 import BalanceInput from "../utilities/BalanceInput";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CsvLoader from "../../utilities/CsvLoader";
+import { deviceStruct } from "@components/utilities/Style";
 
 const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
   let globalContext = React.useContext(GlobalContext);
@@ -25,7 +26,7 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
     <Box
       sx={{
         borderBottom: "1px solid",
-        borderBottomColor: "divider.main",
+        borderBottomColor: "border.main",
         pb: "1rem",
       }}
     >
@@ -43,12 +44,23 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
         {data.tokenHolders.map((i: any, c: number) => {
           return (
             <Box
-              sx={{ display: "flex", alignItems: "center", height: "5rem" }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                flexWrap: deviceStruct(
+                  "wrap",
+                  "wrap",
+                  "no-wrap",
+                  "no-wrap",
+                  "no-wrap"
+                ),
+                mt: "1rem",
+              }}
               key={`${c}-token-holder`}
             >
               <Box
                 sx={{
-                  width: "50%",
+                  width: deviceStruct("100%", "100%", "50%", "50%", "50%"),
                   mr: ".5rem",
                   display: "flex",
                   alignItems: "center",
@@ -71,12 +83,29 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                     props.setData({ ...props.data, tokenHolders: temp });
                   }}
                 />
+                {data.tokenHolders.length > 1 && screen.width <= 900 && (
+                  <DeleteIcon
+                    style={{
+                      fill: "red",
+                      marginLeft: ".4rem",
+                      cursor: "pointer",
+                      width: "10%",
+                    }}
+                    onClick={() => {
+                      let temp = [...data.tokenHolders];
+                      temp.splice(c, 1);
+                      props.setData({ ...data, tokenHolders: temp });
+                    }}
+                  />
+                )}
               </Box>
               <BalanceInput
                 total={data.tokenAmount}
                 remaining={data.tokenRemaining}
                 balance={data.tokenHolders[c].balance}
                 value={data.tokenHolders[c]}
+                mt={deviceStruct(".5rem", ".5rem", "0", "0", "0")}
+                width={deviceStruct("48%", "48%", "23%", "23%", "23%")}
                 set={(newValue: any) => {
                   let temp = [...data.tokenHolders];
                   temp[c] = { ...newValue };
@@ -84,6 +113,8 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                 }}
               />
               <PercentageInput
+                width={deviceStruct("48%", "48%", "23%", "23%", "23%")}
+                mt={deviceStruct(".5rem", ".5rem", "0", "0", "0")}
                 total={data.tokenAmount}
                 remaining={data.tokenRemaining}
                 percentage={data.tokenHolders[c].percentage}
@@ -94,7 +125,7 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                   props.setData({ ...props.data, tokenHolders: temp });
                 }}
               />
-              {data.tokenHolders.length > 1 && (
+              {data.tokenHolders.length > 1 && screen.width > 900 && (
                 <DeleteIcon
                   style={{
                     fill: "red",
@@ -180,11 +211,13 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
             <AlertTitle sx={{ fontSize: ".9rem" }}>
               Tokens will be automatically sent to the treasury
             </AlertTitle>
-            You have {data.tokenRemaining} unassigned {data.tokenName} tokens
-            {data.tokenAmount > 0 &&
-              ` (${percentage(data.tokenRemaining / data.tokenAmount)})`}
-            . You can distribute them now by setting token configuration below
-            or if you choose not to do it now, they will go to the treasury.
+            <Box sx={{ ml: "-1.75rem" }}>
+              You have {data.tokenRemaining} unassigned {data.tokenName} tokens
+              {data.tokenAmount > 0 &&
+                ` (${percentage(data.tokenRemaining / data.tokenAmount)})`}
+              . You can distribute them now by setting token configuration below
+              or if you choose not to do it now, they will go to the treasury.
+            </Box>
           </Alert>
         </Box>
       )}

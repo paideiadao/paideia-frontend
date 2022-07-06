@@ -9,6 +9,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Alert from "@mui/material/Alert";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Status from "@components/utilities/Status";
+import Layout from "@components/dao/Layout";
 
 const notifications = [
   {
@@ -64,93 +65,80 @@ const EditNotifications: React.FC<{ params: any }> = (props) => {
   }, [value.alert]);
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        pt: "1.5rem",
-        pb: "1.5rem",
-      }}
-    >
-      <Box sx={{ width: "70%" }}>
-        <Header title="Notification settings" large />
-        <LabeledSwitch
-          title="Notify me through email"
-          value={value.showEmail}
-          onChange={() => setValue({ ...value, showEmail: !value.showEmail })}
-          small
+    <Layout>
+      <Header title="Notification settings" large />
+      <LabeledSwitch
+        title="Notify me through email"
+        value={value.showEmail}
+        onChange={() => setValue({ ...value, showEmail: !value.showEmail })}
+        small
+      />
+      {value.showEmail && (
+        <TextField
+          value={value.emailAddress}
+          label="Email address"
+          sx={{ width: "100%" }}
+          onChange={(e: any) =>
+            setValue({ ...value, emailAddress: e.target.value })
+          }
         />
-        {value.showEmail && (
-          <TextField
-            value={value.emailAddress}
-            label="Email address"
-            sx={{ width: "100%" }}
-            onChange={(e: any) =>
-              setValue({ ...value, emailAddress: e.target.value })
-            }
-          />
-        )}
-        <LabeledSwitch
-          title="Notify me through phone"
-          value={value.showPhone}
-          small
-          onChange={() => setValue({ ...value, showPhone: !value.showPhone })}
+      )}
+      <LabeledSwitch
+        title="Notify me through phone"
+        value={value.showPhone}
+        small
+        onChange={() => setValue({ ...value, showPhone: !value.showPhone })}
+      />
+      {value.showPhone && (
+        <TextField
+          value={value.phoneNumber}
+          label="Phone number"
+          sx={{ width: "100%" }}
+          onChange={(e: any) =>
+            setValue({ ...value, phoneNumber: e.target.value })
+          }
         />
-        {value.showPhone && (
-          <TextField
-            value={value.phoneNumber}
-            label="Phone number"
-            sx={{ width: "100%" }}
-            onChange={(e: any) =>
-              setValue({ ...value, phoneNumber: e.target.value })
-            }
-          />
-        )}
-        <Box sx={{ width: "100%", mt: "1.5rem", fontSize: ".9rem" }}>
-          Notify me when
-          <FormGroup>
-            {notifications.map((i: any) => (
-              <FormControlLabel
-                disableTypography
-                onClick={() =>
-                  setValue({ ...value, [i.value]: !value[i.value] })
-                }
-                control={<Checkbox checked={value[i.value]} />}
-                label={i.label}
-                sx={{ mt: ".25rem", mb: ".25rem" }}
-              />
-            ))}
-          </FormGroup>
-        </Box>
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            mt: "1rem",
-          }}
+      )}
+      <Box sx={{ width: "100%", mt: "1.5rem", fontSize: ".9rem" }}>
+        Notify me when
+        <FormGroup>
+          {notifications.map((i: any) => (
+            <FormControlLabel
+              disableTypography
+              onClick={() => setValue({ ...value, [i.value]: !value[i.value] })}
+              control={<Checkbox checked={value[i.value]} />}
+              label={i.label}
+              sx={{ mt: ".25rem", mb: ".25rem" }}
+            />
+          ))}
+        </FormGroup>
+      </Box>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          mt: "1rem",
+        }}
+      >
+        <Button variant="outlined" sx={{ width: "49%", mr: ".5rem" }}>
+          Cancel
+        </Button>
+        <Button
+          variant="contained"
+          sx={{ width: "49%" }}
+          onClick={() => setValue({ ...value, alert: "info" })}
         >
-          <Button variant="outlined" sx={{ width: "49%", mr: ".5rem" }}>
-            Cancel
-          </Button>
-          <Button
-            variant="contained"
-            sx={{ width: "49%" }}
-            onClick={() => setValue({ ...value, alert: "info" })}
-          >
-            Save Changes
-          </Button>
-        </Box>
+          Save Changes
+        </Button>
       </Box>
       <Status
         value={value.alert}
         current="notification settings."
         action="updated"
       />
-    </Box>
+    </Layout>
   );
 };
 

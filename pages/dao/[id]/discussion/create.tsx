@@ -70,7 +70,7 @@ const CreateDiscussion: React.FC = () => {
               alignItems: "center",
               width: "100%",
               border: "1px solid",
-              borderColor: "divider.main",
+              borderColor: "border.main",
               backgroundColor: "fileInput.outer",
               p: ".5rem",
               pl: "0",
@@ -109,7 +109,7 @@ const CreateDiscussion: React.FC = () => {
             sx={{
               width: "100%",
               borderTop: "1px solid",
-              borderTopColor: "divider.main",
+              borderTopColor: "border.main",
               mt: "1rem",
               pt: "1rem",
             }}

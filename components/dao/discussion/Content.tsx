@@ -10,7 +10,7 @@ const Content: React.FC = () => {
     <Box
       sx={{
         borderTop: "1px solid",
-        borderTopColor: "divider.main",
+        borderTopColor: "border.main",
         mt: "1rem",
         pt: "1rem",
       }}

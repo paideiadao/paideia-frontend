@@ -32,7 +32,7 @@ const TokenBanner: React.FC<ITokenBanner> = (props) => {
         fontWeight: 500,
         color: "text.main",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         p: "1rem",
         borderRadius: ".3rem",
         mt: "1rem",
@@ -78,9 +78,7 @@ const ManageStake: React.FC = () => {
       <Header title="Manage your staked tokens" large />
       <TokenBanner amount={"32,661"} ticker="DTK" />
       <TabContext value={value}>
-        <Box
-          sx={{ borderBottom: 1, borderColor: "divider.main", mt: "1.5rem" }}
-        >
+        <Box sx={{ borderBottom: 1, borderColor: "border.main", mt: "1.5rem" }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
             <Tab label="Stake Tokens" value="Stake Tokens" />
             <Tab label="Withdraw Tokens" value="Withdraw Tokens" />

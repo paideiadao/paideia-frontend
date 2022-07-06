@@ -17,7 +17,7 @@ const DiscussionBanner: React.FC<{
         p: "1rem",
         backgroundColor: "fileInput.outer",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         borderRadius: ".5rem",
       }}
     >

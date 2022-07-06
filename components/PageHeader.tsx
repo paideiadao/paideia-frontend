@@ -10,18 +10,24 @@ const paragraphStyle = {
   letterSpacing: "0.15px",
 };
 
-
-export default function PageHeader({ bgUrl, sectionTitle, titleLineOne, titleLineTwo, subTitleOne, subTitleTwo }) {
+export default function PageHeader({
+  bgUrl,
+  sectionTitle,
+  titleLineOne,
+  titleLineTwo,
+  subTitleOne,
+  subTitleTwo,
+}) {
   return (
     <Container sx={{ px: "24px" }}>
       <Box
         sx={{
           position: "absolute",
           top: "200px",
-          left: '50%',
+          left: "50%",
           height: { xs: "100vh", md: "1261px" },
           minHeight: "600px",
-          width: '1716px',
+          width: "1716px",
           transform: "translate(-50%, 0)",
           overflow: "hidden",
           zIndex: "-1",
@@ -49,23 +55,20 @@ export default function PageHeader({ bgUrl, sectionTitle, titleLineOne, titleLin
           alignItems: { xs: "flex-end", sm: "center" },
         }}
       >
-        <Grid item xs={0} sm={1} lg={3}>
-        </Grid>
+        <Grid item xs={0} sm={1} lg={3}></Grid>
         <Grid item xs={12} sm={11} lg={9}>
-          <SectionTitle marginBottom="80px">
-            {sectionTitle}
-          </SectionTitle>
+          <SectionTitle marginBottom="80px">{sectionTitle}</SectionTitle>
           <Typography
             sx={{
-              fontSize: { xs: "60px", sm: "80px", md: '100px' },
+              fontSize: { xs: "60px", sm: "80px", md: "100px" },
               fontWeight: { xs: "400", sm: "600" },
               color: "rgba(0,0,0,0.0)",
-              lineHeight: '100%',
+              lineHeight: "100%",
               textTransform: "uppercase",
               fontFamily: '"Viga", sans-serif',
               // strokeWidth: "1px",
               // strokeColor: "#ffffff",
-              letterSpacing: '-1.5px',
+              letterSpacing: "-1.5px",
             }}
             className="outlineText"
           >
@@ -73,19 +76,19 @@ export default function PageHeader({ bgUrl, sectionTitle, titleLineOne, titleLin
           </Typography>
           <Typography
             sx={{
-              fontSize: { xs: "60px", sm: "80px", md: '100px' },
+              fontSize: { xs: "60px", sm: "80px", md: "100px" },
               fontWeight: { xs: "400", sm: "600" },
               color: DarkTheme.palette.text.primary,
               textTransform: "uppercase",
               fontFamily: '"Viga", sans-serif',
-              letterSpacing: '-1.5px',
-              lineHeight: '100%',
-              mb: '40px'
+              letterSpacing: "-1.5px",
+              lineHeight: "100%",
+              mb: "40px",
             }}
           >
             {titleLineTwo}
           </Typography>
-          <Grid container wrap="nowrap" spacing={2} sx={{ mb: '120px' }}>
+          <Grid container wrap="nowrap" spacing={2} sx={{ mb: "120px" }}>
             <Grid item>
               <Box
                 sx={{
@@ -95,9 +98,7 @@ export default function PageHeader({ bgUrl, sectionTitle, titleLineOne, titleLin
                   background:
                     "linear-gradient(161.68deg, #6FA1A9 19.58%, #ED7E21 84.97%)",
                 }}
-              >
-
-              </Box>
+              ></Box>
             </Grid>
             <Grid item zeroMinWidth>
               <Typography component="p" sx={paragraphStyle}>
@@ -111,5 +112,5 @@ export default function PageHeader({ bgUrl, sectionTitle, titleLineOne, titleLin
         </Grid>
       </Grid>
     </Container>
-  )
-};
+  );
+}

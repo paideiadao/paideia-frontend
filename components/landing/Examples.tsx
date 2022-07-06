@@ -153,36 +153,35 @@ export default function Examples() {
     <>
       {!sizeMd
         ? tabs.map(({ image }, i: number) => {
-
-          return (
-            <TabPanel
-              value={value}
-              index={i}
-              key={i}
-              sx={{ position: "relative", mt: "100px" }}
-            >
-              <Box
-                sx={{
-                  position: { xs: "relative", md: "absolute" },
-                  height: "100%",
-                  zIndex: "-3",
-                  top: "0",
-                  right: "0",
-                  maskImage: "linear-gradient(black 0%, transparent 70%)",
-                }}
+            return (
+              <TabPanel
+                value={value}
+                index={i}
+                key={i}
+                sx={{ position: "relative", mt: "100px" }}
               >
-                {sizeMd ? null : (
-                  <Image
-                    src={image}
-                    layout="responsive"
-                    width={585}
-                    height={800}
-                  />
-                )}
-              </Box>
-            </TabPanel>
-          );
-        })
+                <Box
+                  sx={{
+                    position: { xs: "relative", md: "absolute" },
+                    height: "100%",
+                    zIndex: "-3",
+                    top: "0",
+                    right: "0",
+                    maskImage: "linear-gradient(black 0%, transparent 70%)",
+                  }}
+                >
+                  {sizeMd ? null : (
+                    <Image
+                      src={image}
+                      layout="responsive"
+                      width={585}
+                      height={800}
+                    />
+                  )}
+                </Box>
+              </TabPanel>
+            );
+          })
         : null}
 
       <Container
@@ -242,9 +241,7 @@ export default function Examples() {
           </Grid>
           <Grid item xs={12} md={6} sx={{ minHeight: "600px" }}>
             <Box sx={{ position: "relative" }}>
-              <SectionTitle marginBottom="64px">
-                Examples
-              </SectionTitle>
+              <SectionTitle marginBottom="64px">Examples</SectionTitle>
               <Box sx={{ width: "100%", maxWidth: "500px" }}>
                 <Box>
                   <StyledTabs

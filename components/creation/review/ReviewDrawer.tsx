@@ -7,6 +7,7 @@ import BasicInformation from "./BasicInformation";
 import Governance from "./Governance";
 import Tokenomics from "./Tokenomics";
 import Design from "./Design";
+import { deviceStruct } from "@components/utilities/Style";
 
 export const Value: React.FC<{
   labelWidth: string;
@@ -23,9 +24,23 @@ export const Value: React.FC<{
         mt: "1rem",
         mb: "1rem",
         height: "100%",
+        fontSize: deviceStruct(".9rem", ".9rem", "1rem", "1rem", "1rem"),
+
+        flexDirection: deviceStruct("column", "column", "row", "row", "row"),
       }}
     >
-      <Box sx={{ width: props.labelWidth, color: "text.light" }}>
+      <Box
+        sx={{
+          width: deviceStruct(
+            "100%",
+            "100%",
+            props.labelWidth,
+            props.labelWidth,
+            props.labelWidth
+          ),
+          color: "text.light",
+        }}
+      >
         {props.title}
       </Box>
       {props.component === undefined ? (
@@ -55,7 +70,40 @@ export const WalletListing: React.FC<{ data: any }> = (props) => {
           <Box sx={{ ml: ".5rem" }}>
             <Box sx={{ fontSize: ".9rem" }}>{i.alias}</Box>
             <Box sx={{ fontSize: ".7rem", color: "text.light" }}>
-              {i.address}
+              <Box
+                sx={{
+                  display: deviceStruct(
+                    "none",
+                    "none",
+                    "block",
+                    "block",
+                    "block"
+                  ),
+                }}
+              >
+                {i.address !== undefined &&
+                  `${i.address.slice(0, 18)}....${i.address.slice(
+                    i.address.length - 18,
+                    i.address.length
+                  )}`}
+              </Box>
+              <Box
+                sx={{
+                  display: deviceStruct(
+                    "block",
+                    "block",
+                    "none",
+                    "none",
+                    "none"
+                  ),
+                }}
+              >
+                {i.address !== undefined &&
+                  `${i.address.slice(0, 17)}....${i.address.slice(
+                    i.address.length - 17,
+                    i.address.length
+                  )}`}
+              </Box>
             </Box>
           </Box>
         </Box>
@@ -129,7 +177,7 @@ const ReviewDrawer: React.FC = () => {
     <Box
       sx={{
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         borderRadius: ".3rem",
       }}
     >
@@ -139,13 +187,13 @@ const ReviewDrawer: React.FC = () => {
         handleChange={handleChange}
         data={data}
       />
-      <Governance
+      <Tokenomics
         edit={setNavStage}
         expanded={expanded}
         handleChange={handleChange}
         data={data}
       />
-      <Tokenomics
+      <Governance
         edit={setNavStage}
         expanded={expanded}
         handleChange={handleChange}

@@ -1,3 +1,4 @@
+
 import React, { useContext } from 'react';
 import AppBar from "@mui/material/AppBar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
@@ -30,7 +31,7 @@ const pages = [
   {
     name: "About",
     link: "about",
-    disabled: false
+    disabled: false,
   },
   {
     name: "Education",
@@ -62,9 +63,7 @@ function ScrollTop(props: { children: React.ReactNode }) {
   });
 
   const handleClick = () => {
-    const anchor = (document).querySelector(
-      '#back-to-top-anchor',
-    );
+    const anchor = document.querySelector("#back-to-top-anchor");
 
     if (anchor) {
       anchor.scrollIntoView({

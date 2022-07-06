@@ -2,6 +2,7 @@ import { Avatar, Box, Button, Paper } from "@mui/material";
 import { bytesToSize } from "../../lib/creation/Utilities";
 import ImageIcon from "@mui/icons-material/Image";
 import Image from "next/image";
+import { deviceStruct } from "./Style";
 
 const FileBanner: React.FC<{
   file: any;
@@ -17,7 +18,7 @@ const FileBanner: React.FC<{
         p: "1rem",
         backgroundColor: "fileInput.outer",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         borderRadius: ".5rem",
       }}
     >
@@ -66,7 +67,18 @@ const FileBanner: React.FC<{
               >
                 <Box sx={{ mt: ".2rem" }}>
                   {props.file.name}
-                  <Box sx={{ color: "text.light", fontSize: ".9rem" }}>
+                  <Box
+                    sx={{
+                      color: "text.light",
+                      fontSize: deviceStruct(
+                        ".7rem",
+                        ".7rem",
+                        ".9rem",
+                        ".9rem",
+                        ".9rem"
+                      ),
+                    }}
+                  >
                     {props.file === undefined || props.file === -1
                       ? "File Max size 1Mb. Dimensions 720px by 350px."
                       : bytesToSize(props.file.size)}
@@ -77,7 +89,7 @@ const FileBanner: React.FC<{
                   <Button
                     variant="contained"
                     sx={{ mt: ".5rem" }}
-                    size="medium"
+                    size="small"
                     onClick={() => {
                       const fileInput = document.getElementById(props.id);
                       fileInput.click();

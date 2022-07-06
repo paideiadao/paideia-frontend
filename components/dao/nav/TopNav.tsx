@@ -29,7 +29,7 @@ const TopNav: React.FC = () => {
         width: "calc(100% - 13rem)",
         p: ".5rem",
         borderBottom: "1px solid",
-        borderBottomColor: "divider.main",
+        borderBottomColor: "border.main",
         display: "flex",
         backgroundColor: "backgroundColor.main",
         zIndex: 1000,
@@ -108,7 +108,7 @@ const TopNav: React.FC = () => {
               borderTopLeftRadius: ".2rem",
               borderTopRightRadius: ".2rem",
               borderBottom: "1px solid",
-              borderBottomColor: "divider.main",
+              borderBottomColor: "border.main",
             }}
           >
             <CapsInfo title="Configuration" mb={"0"} />
@@ -141,7 +141,7 @@ const TopNav: React.FC = () => {
               borderBottomLeftRadius: ".2rem",
               borderBottomRightRadius: ".2rem",
               borderBottom: "1px solid",
-              borderBottomColor: "divider.main",
+              borderBottomColor: "border.main",
             }}
             onClick={handleClose}
           >

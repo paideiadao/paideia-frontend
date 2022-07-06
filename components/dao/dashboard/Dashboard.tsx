@@ -26,7 +26,7 @@ const Dashboard: React.FC = () => {
         sx={{
           mb: ".5rem",
           borderBottom: "1px solid",
-          borderBottomColor: "divider.main",
+          borderBottomColor: "border.main",
         }}
       >
         <img src={PaideiaBanner.src} style={{ width: "100%" }} />

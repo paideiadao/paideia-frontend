@@ -153,7 +153,7 @@ const PublicRound: React.FC<{
         sx={{
           width: "100%",
           borderBottom: "1px solid",
-          borderColor: "divider.main",
+          borderColor: "border.main",
           mb: "1rem",
           pl: "1rem",
         }}
@@ -169,7 +169,7 @@ const PublicRound: React.FC<{
           pl: "1rem",
           pr: "1rem",
           borderBottom: "1px solid",
-          borderColor: "divider.main",
+          borderColor: "border.main",
           mb: "1rem",
           pb: "1rem",
         }}

@@ -1,13 +1,15 @@
+
 import React, { FC } from 'react';
 import PageHeader from "@components/PageHeader";
 import PageNav from "@components/PageNav";
 import Blockquote from "@components/Blockquote";
 import { Typography, Grid, Container, Divider, Box, Card, CardContent, Avatar, Link } from "@mui/material";
 import Image from "next/image";
-import WhitepaperQuote from '@components/landing/WhitepaperQuote'
+import WhitepaperQuote from "@components/landing/WhitepaperQuote";
 import SectionHeading from "@components/SectionHeading";
 import RoadmapAccordion from "@components/RoadmapAccordion";
 import CustomTable from "@components/CustomTable";
+
 import TabsPanel from '@components/TabsPanel';
 import CardSlider from "@components/CardSlider";
 import TwitterIcon from "@components/svgs/TwitterIcon";
@@ -16,36 +18,37 @@ import { DarkTheme } from "@theme/theme";
 
 const navLinks = [
   {
-    name: 'Introduction',
-    icon: 'waving_hand',
-    link: 'introduction',
-    position: undefined
+    name: "Introduction",
+    icon: "waving_hand",
+    link: "introduction",
+    position: undefined,
   },
   {
-    name: 'Whitepaper',
-    icon: 'description',
-    link: 'whitepaper',
-    position: undefined
+    name: "Whitepaper",
+    icon: "description",
+    link: "whitepaper",
+    position: undefined,
   },
   {
-    name: 'The Problem',
-    icon: 'warning',
-    link: 'theproblem',
-    position: undefined
+    name: "The Problem",
+    icon: "warning",
+    link: "theproblem",
+    position: undefined,
   },
   {
-    name: 'The Solution',
-    icon: 'emoji_objects',
-    link: 'thesolution',
-    position: undefined
+    name: "The Solution",
+    icon: "emoji_objects",
+    link: "thesolution",
+    position: undefined,
   },
   {
-    name: 'Roadmap',
-    icon: 'signpost',
-    link: 'roadmap',
-    position: undefined
+    name: "Roadmap",
+    icon: "signpost",
+    link: "roadmap",
+    position: undefined,
   },
   {
+
     name: 'Tokenomics',
     icon: 'toll',
     link: 'tokenomics',
@@ -61,79 +64,79 @@ const navLinks = [
 
 const examples = [
   {
-    text: 'Existing DAOs that need on-chain voting',
-    icon: '/icons/StrongHandshakeIcon.svg'
+    text: "Existing DAOs that need on-chain voting",
+    icon: "/icons/StrongHandshakeIcon.svg",
   },
   {
-    text: 'Investment groups that pool their resources to meet minimums',
-    icon: '/icons/GoldBarsIcon.svg'
+    text: "Investment groups that pool their resources to meet minimums",
+    icon: "/icons/GoldBarsIcon.svg",
   },
   {
-    text: 'Developer teams that need to protect funding runway',
-    icon: '/icons/DevIcon.svg'
+    text: "Developer teams that need to protect funding runway",
+    icon: "/icons/DevIcon.svg",
   },
   {
-    text: 'Startups looking to raise funds',
-    icon: '/icons/TokenIcon.svg'
+    text: "Startups looking to raise funds",
+    icon: "/icons/TokenIcon.svg",
   },
   {
-    text: 'Blockchain Projects that need to provide transparency and rugpull resistance',
-    icon: '/icons/CubesIcon.svg'
+    text: "Blockchain Projects that need to provide transparency and rugpull resistance",
+    icon: "/icons/CubesIcon.svg",
   },
   {
-    text: 'P2E gaming guilds that want to play in shifts',
-    icon: '/icons/GamingIcon.svg'
+    text: "P2E gaming guilds that want to play in shifts",
+    icon: "/icons/GamingIcon.svg",
   },
-]
+];
 
 const problems = [
   {
-    num: '01',
-    title: 'Standard Functionality and Governance Options',
-    body: 'A software suite that offers a selection of pre-defined governance options and capabilities that simplifies the whole process of creating and participating in a DAO, with clear documentation that eliminates the need to read the DAO smart contracts and open source code for those with the desire and ability to review the code themselves.'
+    num: "01",
+    title: "Standard Functionality and Governance Options",
+    body: "A software suite that offers a selection of pre-defined governance options and capabilities that simplifies the whole process of creating and participating in a DAO, with clear documentation that eliminates the need to read the DAO smart contracts and open source code for those with the desire and ability to review the code themselves.",
   },
   {
-    num: '02',
-    title: 'Support',
-    body: 'DAOs are a new type of organization. The concept will evolve. Individual groups will grow and change. DAOs are going to need membership support and developers that can implement new features to meet the needs of the DAO.'
+    num: "02",
+    title: "Support",
+    body: "DAOs are a new type of organization. The concept will evolve. Individual groups will grow and change. DAOs are going to need membership support and developers that can implement new features to meet the needs of the DAO.",
   },
   {
-    num: '03',
-    title: 'Security',
-    body: 'All smart contracts are reviewed by independent third parties familiar with Ergoscript to make sure it conforms to the best practices. Further, smart contracts will be tested extensively to ensure funds are secure, and vote tallies are fair, transparent, and untamperable. '
+    num: "03",
+    title: "Security",
+    body: "All smart contracts are reviewed by independent third parties familiar with Ergoscript to make sure it conforms to the best practices. Further, smart contracts will be tested extensively to ensure funds are secure, and vote tallies are fair, transparent, and untamperable. ",
   },
-]
+];
 
 const tableHeading = [
   {
-    id: 'name',
-    name: 'Name',
+    id: "name",
+    name: "Name",
   },
   {
-    id: 'amount',
-    name: 'Amount',
+    id: "amount",
+    name: "Amount",
   },
   {
-    id: 'value',
-    name: 'Value',
+    id: "value",
+    name: "Value",
   },
   {
-    id: 'tge',
-    name: 'TGE',
+    id: "tge",
+    name: "TGE",
   },
   {
-    id: 'freq',
-    name: 'Frequency',
+    id: "freq",
+    name: "Frequency",
   },
   {
-    id: 'length',
-    name: 'Length',
+    id: "length",
+    name: "Length",
   },
   {
-    id: 'cliff',
-    name: 'Cliff',
+    id: "cliff",
+    name: "Cliff",
   },
-]
+];
 
 const tableRows = [
   {
@@ -143,7 +146,7 @@ const tableRows = [
     tge: "",
     freq: "Daily",
     length: "12 Months",
-    cliff: "None"
+    cliff: "None",
   },
   {
     name: "Seed Round",
@@ -152,7 +155,7 @@ const tableRows = [
     tge: "",
     freq: "Daily",
     length: "9 Months",
-    cliff: "None"
+    cliff: "None",
   },
   {
     name: "Strategic Round",
@@ -161,7 +164,7 @@ const tableRows = [
     tge: "",
     freq: "Daily",
     length: "6 Months",
-    cliff: "None"
+    cliff: "None",
   },
   {
     name: "Liquidity (Locked)",
@@ -170,7 +173,7 @@ const tableRows = [
     tge: "100%",
     freq: "",
     length: "",
-    cliff: ""
+    cliff: "",
   },
   {
     name: "Marketing",
@@ -179,7 +182,7 @@ const tableRows = [
     tge: "10%",
     freq: "Monthly",
     length: "24 Months",
-    cliff: "1 Month"
+    cliff: "1 Month",
   },
   {
     name: "Staking Rewards",
@@ -188,7 +191,7 @@ const tableRows = [
     tge: "",
     freq: "Daily",
     length: "48 Months",
-    cliff: ""
+    cliff: "",
   },
   {
     name: "Airdrops",
@@ -197,7 +200,7 @@ const tableRows = [
     tge: "",
     freq: "",
     length: "",
-    cliff: ""
+    cliff: "",
   },
   {
     name: "DAO Reserve",
@@ -206,7 +209,7 @@ const tableRows = [
     tge: "10%",
     freq: "Quarterly",
     length: "5 Quarters",
-    cliff: "1 Quarter"
+    cliff: "1 Quarter",
   },
   {
     name: "Advisors",
@@ -215,7 +218,7 @@ const tableRows = [
     tge: "5%",
     freq: "Monthly",
     length: "6 Months",
-    cliff: "3 Months"
+    cliff: "3 Months",
   },
   {
     name: "Team",
@@ -224,12 +227,13 @@ const tableRows = [
     tge: "5%",
     freq: "Monthly",
     length: "12 Months",
-    cliff: "6 Months"
-  }
-]
+    cliff: "6 Months",
+  },
+];
 
 const tabs = [
   {
+
     title: 'Distribution',
     fragment: <CustomTable rows={tableRows} heading={tableHeading} />
   },
@@ -328,6 +332,7 @@ const MyCard: FC<IPersonObj> = ({ person }) => {
 
 const theCards: IPerson[] = [
   {
+
     name: 'Marty C.',
     title: 'CEO',
     image: '',
@@ -383,10 +388,9 @@ const theCards: IPerson[] = [
     linkedin: '',
     twitter: 'https://twitter.com/AlexisEkici',
   },
-]
+];
 
 export default function About() {
-
   return (
     <>
       <PageHeader
@@ -397,6 +401,7 @@ export default function About() {
         subTitleOne="A Web3 DAO Management"
         subTitleTwo="Software Suite"
       />
+
       <Container sx={{ px: "24px", py: '60px' }} id="navContainer">
         <PageNav navLinks={navLinks}>
           <Box component="section" id="introduction">

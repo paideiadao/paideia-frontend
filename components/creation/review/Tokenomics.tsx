@@ -13,6 +13,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import EditIcon from "@mui/icons-material/Edit";
 import { bytesToSize, percentage } from "../../../lib/creation/Utilities";
 import { ITokenHolder, ITokenomics } from "../../../lib/creation/CreationApi";
+import { deviceStruct } from "@components/utilities/Style";
 
 const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
   let tokenHolderBalance = props.data.tokenHolders
@@ -47,7 +48,7 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
   ];
 
   return (
-    <Box sx={{ width: "65%" }}>
+    <Box sx={{ width: deviceStruct("100%", "100%", "65%", "65%", "65%") }}>
       {tokenomics
         .filter((i: any) => i !== undefined)
         .map((i: any, c: number) => {
@@ -57,7 +58,7 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
               sx={{
                 borderRadius: ".2rem",
                 border: ".1rem solid",
-                borderColor: "divider.main",
+                borderColor: "border.main",
                 mb: ".5rem",
                 p: ".5rem",
                 display: "flex",
@@ -92,7 +93,7 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
               sx={{
                 borderRadius: ".2rem",
                 border: ".1rem solid",
-                borderColor: "divider.main",
+                borderColor: "border.main",
                 mb: ".5rem",
                 p: ".5rem",
                 display: "flex",
@@ -137,7 +138,7 @@ const Tokenomics: React.FC<{
       sx={{
         backgroundColor: "fileInput.outer",
         borderBottom: "1px solid",
-        borderBottomColor: "divider.main",
+        borderBottomColor: "border.main",
       }}
       expanded={props.expanded === "tokenomics"}
       onChange={props.handleChange("tokenomics")}
@@ -145,7 +146,7 @@ const Tokenomics: React.FC<{
       <AccordionSummary expandIcon={<ExpandMoreIcon />} id="tokenomics-header">
         <CheckCircleIcon color="success" sx={{ mr: "1rem" }} />
         <Typography sx={{ width: "100%", flexShrink: 0, fontSize: "1.1rem" }}>
-          3. Tokenomics
+          2. Tokenomics
         </Typography>
       </AccordionSummary>
       <AccordionDetails>

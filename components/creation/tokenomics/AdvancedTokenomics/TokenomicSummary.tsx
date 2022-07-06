@@ -11,7 +11,7 @@ import { percentage } from "../../../../lib/creation/Utilities";
 import AddIcon from "@mui/icons-material/Add";
 import AddDistribution from "./AddDistribution";
 
-const TokenomicsRow: React.FC<{
+export const TokenomicsRow: React.FC<{
   title: string;
   balance: number;
   percentage: number;

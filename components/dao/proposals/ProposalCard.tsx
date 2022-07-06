@@ -119,7 +119,7 @@ export const ProposalStatus: React.FC<{ status: string }> = (props) => {
         fontSize: ".7rem",
       }}
     >
-      <CircleIcon sx={{ fontSize: "1rem", mr: ".3rem" }} />
+      <CircleIcon sx={{ fontSize: "1rem", mr: ".1rem" }} />
       {props.status}
     </Box>
   );
@@ -138,15 +138,23 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
     ...props,
   });
 
+  const iconFont = {
+    xs: ".5rem",
+    sm: ".5rem",
+    md: ".8rem",
+    lg: ".8rem",
+    xl: "1rem",
+  };
+
   return (
-    <Box sx={{ display: "flex", alignItems: "center", fontSize: "1rem" }}>
+    <Box sx={{ display: "flex", alignItems: "center", fontSize: iconFont }}>
       {value.userSide === undefined ? (
         <>
           <ThumbUpOffAltIcon
             sx={{
-              ml: ".5rem",
-              mr: ".3rem",
-              fontSize: "1rem",
+              ml: ".2rem",
+              mr: ".1rem",
+              fontSize: iconFont,
               cursor: "pointer",
             }}
             onClick={() =>
@@ -160,10 +168,10 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
           {value.likes}
           <ThumbDownOffAltIcon
             sx={{
-              mr: ".3rem",
-              fontSize: "1rem",
+              mr: ".1rem",
+              fontSize: iconFont,
               cursor: "pointer",
-              ml: ".5rem",
+              ml: ".2rem",
             }}
             onClick={() =>
               setValue({
@@ -179,9 +187,9 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
         <>
           <ThumbUpOffAltIcon
             sx={{
-              ml: ".5rem",
-              mr: ".3rem",
-              fontSize: "1rem",
+              ml: ".2rem",
+              mr: ".1rem",
+              fontSize: iconFont,
               cursor: "pointer",
             }}
             onClick={() =>
@@ -196,9 +204,9 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
           {value.likes}
           <ThumbDownIcon
             sx={{
-              mr: ".3rem",
-              ml: ".5rem",
-              fontSize: "1rem",
+              mr: ".1rem",
+              ml: ".2rem",
+              fontSize: iconFont,
               cursor: "pointer",
               color: "red",
             }}
@@ -209,9 +217,9 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
         <>
           <ThumbUpIcon
             sx={{
-              ml: ".5rem",
-              mr: ".3rem",
-              fontSize: "1rem",
+              ml: ".2rem",
+              mr: ".1rem",
+              fontSize: iconFont,
               color: "primary.lightSuccess",
               cursor: "pointer",
             }}
@@ -219,10 +227,10 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
           <Box sx={{ color: "primary.lightSuccess" }}>{value.likes}</Box>
           <ThumbDownOffAltIcon
             sx={{
-              mr: ".3rem",
-              fontSize: "1rem",
+              mr: ".1rem",
+              fontSize: iconFont,
               cursor: "pointer",
-              ml: ".5rem",
+              ml: ".2rem",
             }}
             onClick={() =>
               setValue({
@@ -283,7 +291,7 @@ const CardContent: React.FC<{ category: string; widget: any }> = (props) => {
         height: "7rem",
         backgroundColor: "fileInput.outer",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         borderRadius: ".3rem",
         p: ".25rem",
         position: "relative",
@@ -393,6 +401,20 @@ const CountdownWidget: React.FC<{ date: Date }> = (props) => {
 const ProposalCard: React.FC<IProposalCard> = (props) => {
   const [favorited, setFavorited] = React.useState<boolean>(props.favorited);
   const getFooter = () => {
+    const footerFont = {
+      xs: ".7rem",
+      sm: ".7rem",
+      md: ".8rem",
+      lg: ".9rem",
+      xl: "1rem",
+    };
+    const footerSmallFont = {
+      xs: ".5rem",
+      sm: ".5rem",
+      md: ".65rem",
+      lg: ".7rem",
+      xl: ".8rem",
+    };
     switch (props.status) {
       case "Challenged": {
         return <VoteWidget yes={props.yes} no={props.no} />;
@@ -406,9 +428,9 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
       }
       case "Discussion": {
         return (
-          <Box sx={{ width: "100%" }}>
+          <Box sx={{ width: "100%", fontSize: footerFont }}>
             Join the Conversation
-            <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
+            <Box sx={{ fontSize: footerSmallFont, color: "text.light" }}>
               {props.comments} comments from {props.users} users
             </Box>
           </Box>
@@ -467,7 +489,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
           sx={{
             backgroundColor: "fileInput.outer",
             border: "1px solid",
-            borderColor: "divider.main",
+            borderColor: "border.main",
             borderRadius: ".3rem",
             width: "100%",
             ":hover": {
@@ -478,7 +500,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
           <Box
             sx={{
               borderBottom: "1px solid",
-              borderBottomColor: "divider.main",
+              borderBottomColor: "border.main",
               p: ".5rem",
             }}
           >

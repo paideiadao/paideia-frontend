@@ -62,7 +62,7 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
 
   const router = useRouter();
 
-  const {id} = router.query;
+  const { id } = router.query;
 
   return (
     <Layout width="100%">
@@ -71,8 +71,12 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
           <Link
             href={
               props.edit
-                ? id === undefined ? '/dao' : `/dao/${id}`
-                : id === undefined ? `/dao/members` : `/dao/${id}/members`
+                ? id === undefined
+                  ? "/dao"
+                  : `/dao/${id}`
+                : id === undefined
+                ? `/dao/members`
+                : `/dao/${id}/members`
             }
           >
             <Button variant="outlined">
@@ -86,7 +90,7 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
           <ProfileHeader edit={props.edit} followed={props.followed} />
           <Box>
             <TabContext value={value}>
-              <Box sx={{ borderBottom: 1, borderColor: "divider.main" }}>
+              <Box sx={{ borderBottom: 1, borderColor: "border.main" }}>
                 <TabList onChange={handleChange}>
                   <Tab label="Proposals | 5" value="1" />
                   <Tab label="Activity" value="2" />
@@ -108,7 +112,7 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
               m: ".5rem",
               borderRadius: ".3rem",
               border: "1px solid",
-              borderColor: "divider.main",
+              borderColor: "border.main",
             }}
           >
             <Box sx={{ p: ".5rem", width: "100%" }}>
@@ -127,7 +131,7 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
                     color: "text.light",
                     textAlign: "center",
                     borderRight: "1px solid",
-                    borderRightColor: "divider.main",
+                    borderRightColor: "border.main",
                     pr: ".75rem",
                   }}
                 >
@@ -141,7 +145,7 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
                     color: "text.light",
                     textAlign: "center",
                     borderRight: "1px solid",
-                    borderRightColor: "divider.main",
+                    borderRightColor: "border.main",
                     pr: "1rem",
                   }}
                 >
@@ -189,7 +193,7 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
             <Box
               sx={{
                 borderTop: "1px solid",
-                borderTopColor: "divider.main",
+                borderTopColor: "border.main",
                 pt: ".5rem",
                 pl: ".5rem",
                 pb: ".5rem",

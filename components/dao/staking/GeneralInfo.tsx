@@ -35,7 +35,7 @@ export const InfoCard: React.FC<IInfoCard> = (props) => {
       sx={{
         border: "1px solid",
         backgroundColor: "fileInput.outer",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         borderRadius: ".3rem",
         width: "33%",
         display: "flex",

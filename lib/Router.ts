@@ -30,6 +30,8 @@ import Token from "@pages/dao/[id]/financials/token";
 import Tokenomics from "@pages/dao/[id]/financials/tokenomics";
 import Recurring from "@pages/dao/[id]/financials/recurring";
 import Treasury from "@pages/dao/[id]/financials/treasury";
+import Send from "@pages/dao/[id]/financials/treasury/send";
+import Burn from "@pages/dao/[id]/financials/token/burn";
 
 export const isDao = (Component: any) => {
   return (
@@ -64,6 +66,8 @@ export const isDao = (Component: any) => {
     Component === Token ||
     Component === Tokenomics ||
     Component === Recurring ||
-    Component === Treasury
+    Component === Treasury ||
+    Component === Send ||
+    Component === Burn
   );
 };

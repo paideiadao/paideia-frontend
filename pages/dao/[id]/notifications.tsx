@@ -14,6 +14,7 @@ import MarkunreadIcon from "@mui/icons-material/Markunread";
 import dateFormat from "dateformat";
 import { paths, props } from "@lib/DaoPaths";
 import { useRouter } from "next/router";
+import Layout from "@components/dao/Layout";
 
 // export const getStaticPaths = paths;
 // export const getStaticProps = props;
@@ -134,89 +135,79 @@ const Notifications: React.FC<{ params: any }> = (props) => {
   const [view, setView] = React.useState<string>("All");
   const router = useRouter();
 
-  const {id} = router.query;
+  const { id } = router.query;
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        pt: "1.5rem",
-        pb: "1rem",
-      }}
-    >
-      <Box sx={{ width: "65%" }}>
-        <Link href={id === undefined ? '/dao' : `/dao/${id}`}>
-          <Button variant="outlined">
-            <ArrowBackIcon sx={{ ml: "-.5rem", mr: ".5rem" }} color="primary" />
-            Back
+    <Layout>
+      <Link href={id === undefined ? "/dao" : `/dao/${id}`}>
+        <Button variant="outlined">
+          <ArrowBackIcon sx={{ ml: "-.5rem", mr: ".5rem" }} color="primary" />
+          Back
+        </Button>
+      </Link>
+
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          mt: "1rem",
+          fontSize: "1.6rem",
+          alignItems: "center",
+        }}
+      >
+        Notifications (4 new)
+        <Link href={`/dao/${globalContext.api.daoId}/notifications/edit`}>
+          <Button sx={{ ml: "auto" }} variant="contained">
+            Notification Settings{" "}
+            <SettingsIcon sx={{ ml: ".5rem", mr: "0rem" }} />
           </Button>
         </Link>
-
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            mt: "1rem",
-            fontSize: "1.6rem",
-            alignItems: "center",
-          }}
-        >
-          Notifications (4 new)
-          <Link href={`/dao/${globalContext.api.daoId}/notifications/edit`}>
-            <Button sx={{ ml: "auto" }} variant="contained">
-              Notification Settings{" "}
-              <SettingsIcon sx={{ ml: ".5rem", mr: "0rem" }} />
-            </Button>
-          </Link>
-        </Box>
-        <Box sx={{ mt: ".5rem", display: "flex", alignItems: "center" }}>
-          <Chip
-            label="All"
-            icon={<AppsIcon sx={{ fontSize: "1rem", mr: ".3rem" }} />}
-            set={() => {
-              setView("All");
-            }}
-            c={1}
-            variant={view === "All" ? "contained" : "outlined"}
-          />
-          <Chip
-            label="Unread"
-            icon={<MarkunreadIcon sx={{ fontSize: "1rem", mr: ".3rem" }} />}
-            set={() => {
-              setView("Unread");
-            }}
-            c={1}
-            variant={view === "Unread" ? "contained" : "outlined"}
-          />
-        </Box>
-        <Box
-          sx={{
-            mt: "1rem",
-            borderBottom: "1px solid",
-            borderBottomColor: "divider.main",
-            pb: "1rem",
-          }}
-        >
-          <CapsInfo title="New" />
-          {newNotifications.map((i: any, c: number) => {
-            return <Notification i={i} />;
-          })}
-        </Box>
-        <Box
-          sx={{
-            mt: "1rem",
-            pb: "1rem",
-          }}
-        >
-          <CapsInfo title="Old" />
-          {oldNotifications.map((i: any, c: number) => {
-            return <Notification i={i} />;
-          })}
-        </Box>
       </Box>
-    </Box>
+      <Box sx={{ mt: ".5rem", display: "flex", alignItems: "center" }}>
+        <Chip
+          label="All"
+          icon={<AppsIcon sx={{ fontSize: "1rem", mr: ".3rem" }} />}
+          set={() => {
+            setView("All");
+          }}
+          c={1}
+          variant={view === "All" ? "contained" : "outlined"}
+        />
+        <Chip
+          label="Unread"
+          icon={<MarkunreadIcon sx={{ fontSize: "1rem", mr: ".3rem" }} />}
+          set={() => {
+            setView("Unread");
+          }}
+          c={1}
+          variant={view === "Unread" ? "contained" : "outlined"}
+        />
+      </Box>
+      <Box
+        sx={{
+          mt: "1rem",
+          borderBottom: "1px solid",
+          borderBottomColor: "border.main",
+          pb: "1rem",
+        }}
+      >
+        <CapsInfo title="New" />
+        {newNotifications.map((i: any, c: number) => {
+          return <Notification i={i} />;
+        })}
+      </Box>
+      <Box
+        sx={{
+          mt: "1rem",
+          pb: "1rem",
+        }}
+      >
+        <CapsInfo title="Old" />
+        {oldNotifications.map((i: any, c: number) => {
+          return <Notification i={i} />;
+        })}
+      </Box>
+    </Layout>
   );
 };
 
@@ -234,7 +225,7 @@ export const Notification: React.FC<{ i: any; m?: string }> = (props) => {
         backgroundColor: i.isread === 0 ? "fileInput.read" : "fileInput.outer",
         borderRadius: props.m === undefined ? ".3rem" : "0rem",
         border: "1px solid",
-        borderColor: "divider.main",
+        borderColor: "border.main",
         cursor: "pointer",
       }}
     >

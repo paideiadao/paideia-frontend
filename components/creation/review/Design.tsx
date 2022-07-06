@@ -148,7 +148,7 @@ export const SocialLinksPreview: React.FC<{ links: ISocialLink[] }> = (
             sx={{
               borderRadius: ".2rem",
               border: ".1rem solid",
-              borderColor: "divider.main",
+              borderColor: "border.main",
               mb: ".5rem",
               p: ".5rem",
               pl: "0",
