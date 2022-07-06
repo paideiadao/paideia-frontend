@@ -47,7 +47,13 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                flexWrap: deviceStruct("wrap", "wrap", "", "", ""),
+                flexWrap: deviceStruct(
+                  "wrap",
+                  "wrap",
+                  "no-wrap",
+                  "no-wrap",
+                  "no-wrap"
+                ),
                 mt: "1rem",
               }}
               key={`${c}-token-holder`}
@@ -98,8 +104,8 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                 remaining={data.tokenRemaining}
                 balance={data.tokenHolders[c].balance}
                 value={data.tokenHolders[c]}
-                mt={deviceStruct(".5rem", ".5rem", "", "", "")}
-                width={deviceStruct("48%", "48%", "100%", "100%", "100%")}
+                mt={deviceStruct(".5rem", ".5rem", "0", "0", "0")}
+                width={deviceStruct("48%", "48%", "23%", "23%", "23%")}
                 set={(newValue: any) => {
                   let temp = [...data.tokenHolders];
                   temp[c] = { ...newValue };
@@ -107,8 +113,8 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                 }}
               />
               <PercentageInput
-                width={deviceStruct("48%", "48%", "100%", "100%", "100%")}
-                mt={deviceStruct(".5rem", ".5rem", "", "", "")}
+                width={deviceStruct("48%", "48%", "23%", "23%", "23%")}
+                mt={deviceStruct(".5rem", ".5rem", "0", "0", "0")}
                 total={data.tokenAmount}
                 remaining={data.tokenRemaining}
                 percentage={data.tokenHolders[c].percentage}

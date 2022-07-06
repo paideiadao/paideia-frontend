@@ -159,7 +159,7 @@ export const LearnMore: React.FC<{
           <Box
             sx={{
               ml: "auto",
-              minWidth: deviceStruct("40%", "40%", "30%", "20%", "20%"),
+              minWidth: deviceStruct("40%", "40%", "", "", ""),
             }}
           >
             <Tooltip

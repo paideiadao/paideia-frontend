@@ -70,7 +70,17 @@ export const WalletListing: React.FC<{ data: any }> = (props) => {
           <Box sx={{ ml: ".5rem" }}>
             <Box sx={{ fontSize: ".9rem" }}>{i.alias}</Box>
             <Box sx={{ fontSize: ".7rem", color: "text.light" }}>
-              <Box sx={{ display: deviceStruct("none", "none", "", "", "") }}>
+              <Box
+                sx={{
+                  display: deviceStruct(
+                    "none",
+                    "none",
+                    "block",
+                    "block",
+                    "block"
+                  ),
+                }}
+              >
                 {i.address !== undefined &&
                   `${i.address.slice(0, 18)}....${i.address.slice(
                     i.address.length - 18,
@@ -79,7 +89,13 @@ export const WalletListing: React.FC<{ data: any }> = (props) => {
               </Box>
               <Box
                 sx={{
-                  display: deviceStruct("", "", "none", "none", "none"),
+                  display: deviceStruct(
+                    "block",
+                    "block",
+                    "none",
+                    "none",
+                    "none"
+                  ),
                 }}
               >
                 {i.address !== undefined &&

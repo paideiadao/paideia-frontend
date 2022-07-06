@@ -79,7 +79,15 @@ const WalletSelector: React.FC<{
                   }}
                 >
                   <Box
-                    sx={{ display: deviceStruct("none", "none", "", "", "") }}
+                    sx={{
+                      display: deviceStruct(
+                        "none",
+                        "none",
+                        "block",
+                        "block",
+                        "block"
+                      ),
+                    }}
                   >
                     {props.data.address !== undefined &&
                       `${props.data.address.slice(
@@ -92,7 +100,13 @@ const WalletSelector: React.FC<{
                   </Box>
                   <Box
                     sx={{
-                      display: deviceStruct("", "", "none", "none", "none"),
+                      display: deviceStruct(
+                        "block",
+                        "block",
+                        "none",
+                        "none",
+                        "none"
+                      ),
                     }}
                   >
                     {props.data.address !== undefined &&

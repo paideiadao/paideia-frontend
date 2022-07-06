@@ -142,10 +142,18 @@ const TokenInformation: React.FC<IData<ITokenomics>> = (props) => {
           }}
           onClick={() => setTokenType("create")}
         >
-          <Box sx={{ display: deviceStruct("none", "none", "", "", "") }}>
+          <Box
+            sx={{
+              display: deviceStruct("none", "none", "block", "block", "block"),
+            }}
+          >
             Create a new token
           </Box>
-          <Box sx={{ display: deviceStruct("", "", "none", "none", "none") }}>
+          <Box
+            sx={{
+              display: deviceStruct("block", "block", "none", "none", "none"),
+            }}
+          >
             New token
           </Box>
         </Button>
@@ -158,10 +166,18 @@ const TokenInformation: React.FC<IData<ITokenomics>> = (props) => {
           }}
           onClick={() => setTokenType("existing")}
         >
-          <Box sx={{ display: deviceStruct("none", "none", "", "", "") }}>
+          <Box
+            sx={{
+              display: deviceStruct("none", "none", "block", "block", "block"),
+            }}
+          >
             Use an existing one
           </Box>
-          <Box sx={{ display: deviceStruct("", "", "none", "none", "none") }}>
+          <Box
+            sx={{
+              display: deviceStruct("block", "block", "none", "none", "none"),
+            }}
+          >
             Existing One
           </Box>
         </Button>

@@ -232,7 +232,7 @@ export const SocialRow: React.FC<{
       <Box
         sx={{
           width: "13%",
-          display: deviceStruct("", "", "none", "none", "none"),
+          display: deviceStruct("block", "block", "none", "none", "none"),
           justifyContent: "center",
         }}
       >
@@ -254,7 +254,7 @@ export const SocialRow: React.FC<{
       <Box
         sx={{
           width: "13%",
-          display: deviceStruct("none", "none", "", "", ""),
+          display: deviceStruct("none", "none", "block", "block", "block"),
           justifyContent: "center",
         }}
       >

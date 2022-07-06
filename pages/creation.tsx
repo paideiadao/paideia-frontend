@@ -206,7 +206,7 @@ export default function Creation(props) {
                       color="primary"
                       startIcon={<ArrowBackIcon />}
                       sx={{
-                        width: deviceStruct("90%", "90%", "", "", ""),
+                        width: deviceStruct("90%", "90%", "10%", "10%", "10%"),
                         mr: ".5rem",
                         ml: ".5rem",
                       }}
@@ -223,7 +223,7 @@ export default function Creation(props) {
                     color="primary"
                     endIcon={<ArrowForwardIcon />}
                     sx={{
-                      width: deviceStruct("90%", "90%", "", "", ""),
+                      width: deviceStruct("90%", "90%", "10%", "10%", "10%"),
                       mr: data.navStage > 0 ? ".5rem" : "0",
                     }}
                     onClick={() =>

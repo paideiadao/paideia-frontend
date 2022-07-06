@@ -82,7 +82,7 @@ const FileInput: React.FC<{
               color: "text.light",
               fontSize: deviceStruct(
                 ".7rem",
-                "7rem",
+                ".7rem",
                 ".8rem",
                 ".9rem",
                 ".9rem"

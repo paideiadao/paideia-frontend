@@ -54,10 +54,18 @@ const Review: React.FC = () => {
             globalContext.api.setData({ ...data, draftModal: true })
           }
         >
-          <Box sx={{ display: deviceStruct("none", "none", "", "", "") }}>
+          <Box
+            sx={{
+              display: deviceStruct("none", "none", "block", "block", "block"),
+            }}
+          >
             Publish as a draft
           </Box>
-          <Box sx={{ display: deviceStruct("", "", "none", "none", "none") }}>
+          <Box
+            sx={{
+              display: deviceStruct("block", "block", "none", "none", "none"),
+            }}
+          >
             Publish Draft
           </Box>
         </Button>

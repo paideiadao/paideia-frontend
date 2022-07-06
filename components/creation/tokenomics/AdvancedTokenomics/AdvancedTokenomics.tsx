@@ -14,7 +14,11 @@ const AdvancedTokenomics: React.FC<IData<ITokenomics>> = (props) => {
   let globalData = globalContext.api.data;
   return (
     <Box sx={{ mt: ".5rem" }}>
-      <Box sx={{ display: deviceStruct("none", "none", "", "", "") }}>
+      <Box
+        sx={{
+          display: deviceStruct("none", "none", "block", "block", "block"),
+        }}
+      >
         <LearnMore
           title="Set advanced tokenomics"
           tooltipTitle="Title Here"
@@ -22,7 +26,9 @@ const AdvancedTokenomics: React.FC<IData<ITokenomics>> = (props) => {
           tooltipLink="/here"
         />
       </Box>
-      <Box sx={{ display: deviceStruct("", "", "none", "none", "none") }}>
+      <Box
+        sx={{ display: deviceStruct("block", "block", "none", "none", "none") }}
+      >
         <LearnMore
           title="Advanced tokenomics"
           tooltipTitle="Title Here"
