@@ -1,7 +1,7 @@
 import Progress from "./Progress";
 import * as React from "react";
-import { Box, Divider } from "@mui/material";
-import StepSelector from "./StepSelector";
+import { Box, Divider, Step, StepLabel, Stepper } from "@mui/material";
+import StepSelector, { steps } from "./StepSelector";
 import Help from "./Help";
 import DarkLogo from "@public/logos/dark_logo.svg";
 import LightLogo from "@public/logos/light_logo.svg";
@@ -65,7 +65,6 @@ export default function Nav(props) {
           backgroundColor: "backgroundColor.main",
           borderBottom: "1px solid",
           borderBottomColor: "border.main",
-          height: "3.5rem",
           width: deviceStruct(
             "100%",
             "100%",
@@ -73,6 +72,7 @@ export default function Nav(props) {
             "calc(100% - 15rem)",
             "calc(100% - 15rem)"
           ),
+          zIndex: 1000,
         }}
       >
         <Box
@@ -155,6 +155,56 @@ export default function Nav(props) {
               Save
             </Button>
           </Box>
+        </Box>
+        <Box
+          sx={{
+            backgroundColor: "fileInput.main",
+            zIndex: 1000,
+            pb: ".5rem",
+            pt: ".5rem",
+            borderTop: "1px solid",
+            borderTopColor: "border.main",
+            height: "2.5rem",
+            display: deviceStruct("block", "block", "none", "none", "none"),
+          }}
+        >
+          <Stepper
+            activeStep={props.value}
+            connector={
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  ml: "-.3rem",
+                }}
+              >
+                <Box
+                  sx={{ width: "100%", border: 1, borderColor: "border.main" }}
+                ></Box>
+              </Box>
+            }
+          >
+            {steps.map((i: any, c: number) => (
+              <Step
+                key={i.title}
+                sx={{
+                  width: "100%",
+                  textAlign: "center",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <StepLabel sx={{ ml: ".1rem" }}>
+                  {c === props.value && (
+                    <Box sx={{ fontSize: ".68rem", width: "5.6rem" }}>
+                      {i.title}
+                    </Box>
+                  )}
+                </StepLabel>
+              </Step>
+            ))}
+          </Stepper>
         </Box>
       </Box>
     </>

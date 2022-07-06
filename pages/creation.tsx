@@ -144,7 +144,7 @@ export default function Creation(props) {
             sx={{
               position: "fixed",
               ml: deviceStruct("0", "0", "15rem", "15rem", "15rem"),
-              top: "3.5rem",
+              top: deviceStruct("6rem", "6rem", "3.5rem", "3.5rem", "3.5rem"),
               width: deviceStruct(
                 "100%",
                 "100%",
@@ -152,11 +152,11 @@ export default function Creation(props) {
                 "calc(100% - 15rem)",
                 "calc(100% - 15rem)"
               ),
-              pt: deviceStruct(".5rem", ".5rem", "1.5rem", "1.5rem", "1.5rem"),
+              pt: deviceStruct(".5rem", ".5rem", "1rem", "1.5rem", "1.5rem"),
               display: "flex",
               flexDirection: "column",
-              height: "calc(100% - 3.5rem)",
-              pb: "2rem",
+              height: "calc(100% - 3rem)",
+              pb: deviceStruct(".5rem", ".5rem", "1rem", "1.5rem", "1.5rem"),
               overflowY: "scroll",
             }}
           >
