@@ -9,10 +9,20 @@ import { deviceStruct } from "@components/utilities/Style";
 const NewToken: React.FC<IData<ITokenomics>> = (props) => {
   let data = props.data;
   return (
-    <Box sx={{ display: "flex", alignItems: "center", flexWrap: deviceStruct('wrap', 'wrap', '', '', '') }}>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        flexWrap: deviceStruct("wrap", "wrap", "", "", ""),
+      }}
+    >
       <TextField
         value={data.tokenName}
-        sx={{ width: deviceStruct('100%', '100%', '50%', '50%', '50%'), mt: "1rem", pr: ".5rem" }}
+        sx={{
+          width: deviceStruct("100%", "100%", "50%", "50%", "50%"),
+          mt: "1rem",
+          pr: ".5rem",
+        }}
         label="Token name"
         onChange={(e) =>
           props.setData({
@@ -23,7 +33,11 @@ const NewToken: React.FC<IData<ITokenomics>> = (props) => {
       />
       <TextField
         value={data.tokenTicker}
-        sx={{ width: deviceStruct('50%', '50%', '25%', '25%', '25%'), mt: "1rem", pr: ".5rem" }}
+        sx={{
+          width: deviceStruct("50%", "50%", "25%", "25%", "25%"),
+          mt: "1rem",
+          pr: ".5rem",
+        }}
         label="Token ticker"
         onChange={(e) =>
           props.setData({
@@ -34,7 +48,11 @@ const NewToken: React.FC<IData<ITokenomics>> = (props) => {
       />
       <TextField
         value={data.tokenAmount === 0 ? "" : data.tokenAmount}
-        sx={{ width: deviceStruct('50%', '50%', '25%', '25%', '25%'), mt: "1rem", pr: ".5rem" }}
+        sx={{
+          width: deviceStruct("50%", "50%", "25%", "25%", "25%"),
+          mt: "1rem",
+          pr: ".5rem",
+        }}
         label="Token amount"
         type="number"
         onChange={(e) =>
@@ -124,9 +142,12 @@ const TokenInformation: React.FC<IData<ITokenomics>> = (props) => {
           }}
           onClick={() => setTokenType("create")}
         >
-          <Box sx={{display: deviceStruct('none', 'none', '', '' , '')}}>Create a new token</Box>
-          <Box sx={{display: deviceStruct('', '', 'none', 'none' , 'none')}}>New token</Box>
-
+          <Box sx={{ display: deviceStruct("none", "none", "", "", "") }}>
+            Create a new token
+          </Box>
+          <Box sx={{ display: deviceStruct("", "", "none", "none", "none") }}>
+            New token
+          </Box>
         </Button>
         <Button
           sx={{
@@ -137,8 +158,12 @@ const TokenInformation: React.FC<IData<ITokenomics>> = (props) => {
           }}
           onClick={() => setTokenType("existing")}
         >
-         <Box sx={{display: deviceStruct('none', 'none', '', '' , '')}}>Use an existing one</Box>
-          <Box sx={{display: deviceStruct('', '', 'none', 'none' , 'none')}}>Existing One</Box>
+          <Box sx={{ display: deviceStruct("none", "none", "", "", "") }}>
+            Use an existing one
+          </Box>
+          <Box sx={{ display: deviceStruct("", "", "none", "none", "none") }}>
+            Existing One
+          </Box>
         </Button>
       </ButtonGroup>
       {tokenType === "create" ? (

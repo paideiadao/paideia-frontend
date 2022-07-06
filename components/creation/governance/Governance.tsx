@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Divider,
+  IconButton,
   OutlinedInput,
   Select,
   Slider,
@@ -21,6 +22,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { LearnMore } from "../utilities/HeaderComponents";
+import { deviceStruct } from "@components/utilities/Style";
 
 const Governance: React.FC = () => {
   const globalContext = React.useContext(GlobalContext);
@@ -28,7 +30,7 @@ const Governance: React.FC = () => {
   return (
     <Box
       sx={{
-        width: "70%",
+        width: deviceStruct("91%", "93%", "70%", "70%", "70%"),
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
@@ -48,7 +50,6 @@ const Governance: React.FC = () => {
         sx={{
           textAlign: "left",
           width: "100%",
-          fontSize: "1.1rem",
           mt: ".8rem",
           pb: "1rem",
           borderBottom: "1px solid",
@@ -120,7 +121,7 @@ const Governance: React.FC = () => {
                   >
                     <Box
                       sx={{
-                        width: "90%",
+                        width: deviceStruct("80%", "80%", "90%", "90%", "90%"),
                         display: "flex",
                         alignItems: "center",
                       }}
@@ -150,32 +151,33 @@ const Governance: React.FC = () => {
                     </Box>
                     <Box
                       sx={{
-                        width: "10%",
+                        width: deviceStruct("20%", "20%", "10%", "10%", "10%"),
                         display: "flex",
                         alignItems: "center",
+                        justifyContent: "center",
                       }}
                     >
-                      {data.whitelist.length > 1 && (
+                      <IconButton
+                        color="error"
+                        disabled={data.whitelist.length === 1}
+                        onClick={() => {
+                          let temp = [...data.whitelist];
+                          temp.splice(c, 1);
+                          globalContext.api.setData({
+                            ...globalContext.api.data,
+                            governance: {
+                              ...data,
+                              whitelist: temp,
+                            },
+                          });
+                        }}
+                      >
                         <DeleteIcon
                           style={{
-                            fill: "red",
-                            marginLeft: ".4rem",
                             cursor: "pointer",
-                            width: "3rem",
-                          }}
-                          onClick={() => {
-                            let temp = [...data.whitelist];
-                            temp.splice(c, 1);
-                            globalContext.api.setData({
-                              ...globalContext.api.data,
-                              governance: {
-                                ...data,
-                                whitelist: temp,
-                              },
-                            });
                           }}
                         />
-                      )}
+                      </IconButton>
                     </Box>
                   </Box>
                 );
@@ -191,6 +193,7 @@ const Governance: React.FC = () => {
             >
               <Button
                 variant="text"
+                size="small"
                 sx={{ mr: 2 }}
                 onClick={() => {
                   let temp = [...data.whitelist];
@@ -207,7 +210,7 @@ const Governance: React.FC = () => {
               >
                 Add Another <AddIcon />
               </Button>
-              <Button variant="text">
+              <Button variant="text" size="small">
                 Add from file <FileUploadIcon />
               </Button>
             </Box>
@@ -284,7 +287,9 @@ const Governance: React.FC = () => {
                 mt: ".8rem",
               }}
             >
-              <Box sx={{ width: "30%" }}>
+              <Box
+                sx={{ width: deviceStruct("70%", "70%", "30%", "30%", "30%") }}
+              >
                 <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
                   <InputLabel htmlFor={`challenge-time-input`} shrink>
                     Challenge time
@@ -418,7 +423,13 @@ const Governance: React.FC = () => {
         <Box
           sx={{ display: "flex", alignItem: "center", mt: ".4rem", pl: "1rem" }}
         >
-          <Box sx={{ width: "87%", display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{
+              width: deviceStruct("70%", "70%", "87%", "87%", "87%"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Slider
               value={data.supportNeeded}
               min={51}
@@ -436,7 +447,7 @@ const Governance: React.FC = () => {
           </Box>
           <Box
             sx={{
-              width: "13%",
+              width: deviceStruct("30%", "30%", "13%", "13%", "13%"),
               ml: "1rem",
               display: "flex",
               alignItems: "center",
@@ -467,9 +478,11 @@ const Governance: React.FC = () => {
             <AlertTitle sx={{ fontSize: ".9rem" }}>
               Only for single-choice voting
             </AlertTitle>
-            Support will only apply to single-choice voting. It determines the
-            percentage of users that need to agree for a proposal to be
-            approved. Can't be set to less than 51%
+            <Box sx={{ ml: "-1.75rem" }}>
+              Support will only apply to single-choice voting. It determines the
+              percentage of users that need to agree for a proposal to be
+              approved. Can't be set to less than 51%
+            </Box>
           </Alert>
         </Box>
         <LearnMore
@@ -483,7 +496,13 @@ const Governance: React.FC = () => {
         <Box
           sx={{ display: "flex", alignItem: "center", mt: ".4rem", pl: "1rem" }}
         >
-          <Box sx={{ width: "87%", display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{
+              width: deviceStruct("70%", "70%", "87%", "87%", "87%"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Slider
               value={data.quorum}
               min={0}
@@ -501,7 +520,7 @@ const Governance: React.FC = () => {
           </Box>
           <Box
             sx={{
-              width: "13%",
+              width: deviceStruct("30%", "30%", "13%", "13%", "13%"),
               ml: "1.5rem",
               display: "flex",
               alignItems: "center",
@@ -530,7 +549,11 @@ const Governance: React.FC = () => {
         <Box sx={{ fontSize: ".9rem", fontWeight: 410, mb: "1rem", ml: 1 }}>
           How long does the voting period last for?
         </Box>
-        <FormControl sx={{ m: 1, width: "30%" }} variant="outlined">
+
+        <FormControl
+          sx={{ m: 1, width: deviceStruct("60%", "60%", "30%", "30%", "30%") }}
+          variant="outlined"
+        >
           <InputLabel htmlFor={`challenge-time-input`} shrink>
             Vote duration
           </InputLabel>

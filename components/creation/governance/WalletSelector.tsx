@@ -78,25 +78,31 @@ const WalletSelector: React.FC<{
                     mt: "-.3rem",
                   }}
                 >
-                  <Box sx={{display: deviceStruct('none', 'none', '', '' , '')}}>
-                  {props.data.address !== undefined &&
-                    `${props.data.address.slice(
-                      0,
-                      18
-                    )}....${props.data.address.slice(
-                      props.data.address.length - 18,
-                      props.data.address.length
-                    )}`}
+                  <Box
+                    sx={{ display: deviceStruct("none", "none", "", "", "") }}
+                  >
+                    {props.data.address !== undefined &&
+                      `${props.data.address.slice(
+                        0,
+                        18
+                      )}....${props.data.address.slice(
+                        props.data.address.length - 18,
+                        props.data.address.length
+                      )}`}
                   </Box>
-                  <Box sx={{display: deviceStruct('', '', 'none', 'none' , 'none')}}>
-                  {props.data.address !== undefined &&
-                    `${props.data.address.slice(
-                      0,
-                      13
-                    )}...${props.data.address.slice(
-                      props.data.address.length - 13,
-                      props.data.address.length
-                    )}`}
+                  <Box
+                    sx={{
+                      display: deviceStruct("", "", "none", "none", "none"),
+                    }}
+                  >
+                    {props.data.address !== undefined &&
+                      `${props.data.address.slice(
+                        0,
+                        13
+                      )}...${props.data.address.slice(
+                        props.data.address.length - 13,
+                        props.data.address.length
+                      )}`}
                   </Box>
                 </Box>
               </Box>

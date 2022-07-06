@@ -118,30 +118,22 @@ const Tokenomics: React.FC = () => {
               "calc(100vw - 15.4rem)",
               "calc(100vw - 15.4rem)"
             ),
-            ml:  deviceStruct(
-              "0",
-              "0",
-              "-21.5%",
-              "-21.5%",
-              "-21.5%"
-            ),
+            ml: deviceStruct("0", "0", "-21.5%", "-21.5%", "-21.5%"),
             mt: deviceStruct(
-              '0',
-              '0',
-              '-2rem',
-              '-2rem',
+              "0",
+              "0",
+              "-2rem",
+              "-2rem",
 
-              '-2rem',
-
+              "-2rem"
             ),
             top: deviceStruct(
-              '0rem',
-              '0rem',
-              '-2rem',
-              '-2rem',
+              "0rem",
+              "0rem",
+              "-2rem",
+              "-2rem",
 
-              '-2rem',
-
+              "-2rem"
             ),
             zIndex: 100,
             display: "flex",
@@ -191,7 +183,7 @@ const Tokenomics: React.FC = () => {
         />
       </Box>
       <Box sx={{ mt: "1rem" }}>
-        <Header title="Tokenomics" large/>
+        <Header title="Tokenomics" large />
         <ButtonGroup variant="outlined" sx={{ width: "100%", mt: ".5rem" }}>
           <Button
             sx={{
@@ -211,7 +203,7 @@ const Tokenomics: React.FC = () => {
             Token Holders
           </Button>
           <Button
-          disabled
+            disabled
             sx={{
               width: "50%",
               fontSize: ".8rem",

@@ -10,12 +10,15 @@ const PercentageInput: React.FC<{
   set: Function;
   label?: string;
   width?: string | any;
-  mt?: string | any
+  mt?: string | any;
 }> = (props) => {
   return (
     <TextField
       value={props.percentage === 0 ? "" : props.percentage}
-      sx={{ width: props.width === undefined ? "23%" : props.width , mt: props.mt !== undefined ? props.mt : 0}}
+      sx={{
+        width: props.width === undefined ? "23%" : props.width,
+        mt: props.mt !== undefined ? props.mt : 0,
+      }}
       onChange={(e: any) => {
         let temp = { ...props.value };
         let percentage = parseFloat(e.target.value);

@@ -44,7 +44,7 @@ const FileInput: React.FC<{
         >
           <img src={ImagePlaceholder.src} />
         </Avatar>
-        <Box sx={{pr: '.5rem'}}>
+        <Box sx={{ pr: ".5rem" }}>
           <input
             type="file"
             id={props.id}
@@ -52,7 +52,12 @@ const FileInput: React.FC<{
             style={{ display: "none" }}
             onChange={(e) => props.handleImage(e)}
           />
-          <Box sx={{ color: "primary.text", fontSize: deviceStruct('.8rem', '.8rem', '.9rem', '1rem', '1rem') }}>
+          <Box
+            sx={{
+              color: "primary.text",
+              fontSize: deviceStruct(".8rem", ".8rem", ".9rem", "1rem", "1rem"),
+            }}
+          >
             {props.file === undefined || props.file === -1
               ? "To replace, drop your image here or "
               : props.file.name}
@@ -72,7 +77,18 @@ const FileInput: React.FC<{
               </Box>
             )}
           </Box>
-          <Box sx={{ color: "text.light", fontSize: deviceStruct('.7rem', '7rem', '.8rem', '.9rem', '.9rem') }}>
+          <Box
+            sx={{
+              color: "text.light",
+              fontSize: deviceStruct(
+                ".7rem",
+                "7rem",
+                ".8rem",
+                ".9rem",
+                ".9rem"
+              ),
+            }}
+          >
             {props.file === undefined || props.file === -1
               ? "File Max size 1Mb. Dimensions 48px by 48px."
               : bytesToSize(props.file.size)}
@@ -85,7 +101,7 @@ const FileInput: React.FC<{
           {props.file !== undefined && props.file !== -1 && (
             <Button
               variant="contained"
-              size='small'
+              size="small"
               sx={{ mt: ".5rem" }}
               onClick={() => {
                 const fileInput = document.getElementById(props.id);
