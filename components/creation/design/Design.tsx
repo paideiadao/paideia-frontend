@@ -6,6 +6,7 @@ import Logo from "./Logo";
 import { GlobalContext } from "../../../lib/creation/Context";
 import Banner from "./Banner";
 import Footer from "./Footer";
+import { deviceStruct } from "@components/utilities/Style";
 
 export const themes = [
   {
@@ -78,7 +79,14 @@ const Design: React.FC = (props) => {
     });
   }, [theme]);
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", width: "70%" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+
+        width: deviceStruct("93%", "93%", "70%", "70%", "70%"),
+      }}
+    >
       <Header
         title="DAO Design"
         subtitle="Choose the perfect theme for your DAO. Add a logo, upload a banner, and create your own personalized footer."
@@ -99,7 +107,7 @@ const Design: React.FC = (props) => {
               onClick={() => setTheme(i.id)}
               elevation={0}
               sx={{
-                width: "22%",
+                width: deviceStruct("44%", "44%", "22%", "22%", "22%"),
                 cursor: "pointer",
                 m: ".5rem",
                 p: i.id === theme ? ".2rem" : 0,

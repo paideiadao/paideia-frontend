@@ -1,7 +1,7 @@
 import Progress from "./Progress";
 import * as React from "react";
-import { Box, Divider } from "@mui/material";
-import StepSelector from "./StepSelector";
+import { Box, Divider, Step, StepLabel, Stepper } from "@mui/material";
+import StepSelector, { steps } from "./StepSelector";
 import Help from "./Help";
 import DarkLogo from "@public/logos/dark_logo.svg";
 import LightLogo from "@public/logos/light_logo.svg";
@@ -12,6 +12,7 @@ import Save from "@mui/icons-material/Save";
 import DarkSwitch from "@components/utilities/DarkSwitch";
 import { GlobalContext } from "@lib/creation/Context";
 import { ThemeContext } from "@lib/ThemeContext";
+import { deviceStruct } from "@components/utilities/Style";
 
 export default function Nav(props) {
   let globalContext = React.useContext(ThemeContext);
@@ -41,6 +42,13 @@ export default function Nav(props) {
           borderBottomColor: "border.main",
           backgroundColor: "backgroundColor.main",
           color: "color.main",
+          display: deviceStruct(
+            "none",
+            "none",
+            "inherit",
+            "inherit",
+            "inherit"
+          ),
         }}
       >
         <Progress {...props} />
@@ -53,12 +61,18 @@ export default function Nav(props) {
         sx={{
           position: "fixed",
           top: "0",
-          ml: "15rem",
+          ml: deviceStruct("0", "0", "15rem", "15rem", "15rem"),
           backgroundColor: "backgroundColor.main",
           borderBottom: "1px solid",
           borderBottomColor: "border.main",
-          height: "3.5rem",
-          width: "calc(100% - 15rem)",
+          width: deviceStruct(
+            "100%",
+            "100%",
+            "calc(100% - 15rem)",
+            "calc(100% - 15rem)",
+            "calc(100% - 15rem)"
+          ),
+          zIndex: 1000,
         }}
       >
         <Box
@@ -73,7 +87,12 @@ export default function Nav(props) {
           }}
         >
           <Box
-            sx={{ display: "flex", alignItems: "center", fontSize: "1.6rem" }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "1.6rem",
+              mr: "1.5rem",
+            }}
           >
             <img src={logo.src} />
           </Box>
@@ -83,7 +102,16 @@ export default function Nav(props) {
               color="primary"
               onClick={() => global.api.signup("a;654654", "skeep")}
               // onClick={() => global.api.signup('test', 'test')}
-              sx={{ mr: 1 }}
+              sx={{
+                mr: 1,
+                display: deviceStruct(
+                  "none",
+                  "none",
+                  "inherit",
+                  "inherit",
+                  "inherit"
+                ),
+              }}
             >
               Signup
             </Button>
@@ -92,25 +120,91 @@ export default function Nav(props) {
               color="primary"
               onClick={() => global.api.login("a;654654", "skeep")}
               // onClick={() => global.api.signup('test', 'test')}
-              sx={{ mr: 1 }}
+              sx={{
+                mr: 1,
+                display: deviceStruct(
+                  "none",
+                  "none",
+                  "inherit",
+                  "inherit",
+                  "inherit"
+                ),
+              }}
             >
               Login
             </Button>
             <DarkSwitch />
-            <Button variant="outlined" color="error">
-              Cancel <DeleteIcon sx={{ ml: 1 }} />
+            <Button
+              variant="outlined"
+              color="error"
+              endIcon={<DeleteIcon />}
+              size="small"
+            >
+              Cancel
             </Button>
             <Button
               variant="outlined"
               color="primary"
               sx={{ ml: 2 }}
+              size="small"
+              endIcon={<Save />}
               onClick={() =>
                 global.api.setData({ ...global.api.data, draftModal: true })
               }
             >
-              Save as Draft <Save sx={{ ml: 1 }} />
+              Save
             </Button>
           </Box>
+        </Box>
+        <Box
+          sx={{
+            backgroundColor: "fileInput.main",
+            zIndex: 1000,
+            pb: ".5rem",
+            pt: ".5rem",
+            borderTop: "1px solid",
+            borderTopColor: "border.main",
+            height: "2.5rem",
+            display: deviceStruct("block", "block", "none", "none", "none"),
+          }}
+        >
+          <Stepper
+            activeStep={props.value}
+            connector={
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  ml: "-.3rem",
+                }}
+              >
+                <Box
+                  sx={{ width: "100%", border: 1, borderColor: "border.main" }}
+                ></Box>
+              </Box>
+            }
+          >
+            {steps.map((i: any, c: number) => (
+              <Step
+                key={i.title}
+                sx={{
+                  width: "100%",
+                  textAlign: "center",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <StepLabel sx={{ ml: ".1rem" }}>
+                  {c === props.value && (
+                    <Box sx={{ fontSize: ".68rem", width: "5.6rem" }}>
+                      {i.title}
+                    </Box>
+                  )}
+                </StepLabel>
+              </Step>
+            ))}
+          </Stepper>
         </Box>
       </Box>
     </>

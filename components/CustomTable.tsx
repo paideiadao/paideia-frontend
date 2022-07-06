@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -7,26 +7,27 @@ import {
   TableRow,
   TableContainer,
   useMediaQuery,
-} from '@mui/material';
-import { IObj } from '@lib/utilities'
+} from "@mui/material";
+import { IObj } from "@lib/utilities";
 
 interface HeadingData {
-  id: string
-  name: string,
-  align?: "center" | "inherit" | "justify" | "left" | "right"
+  id: string;
+  name: string;
+  align?: "center" | "inherit" | "justify" | "left" | "right";
 }
 
 interface ITableProps {
-  heading: HeadingData[],
-  rows: IObj<number | string>[],
+  heading: HeadingData[];
+  rows: IObj<number | string>[];
 }
 
 const CustomTable: FC<ITableProps> = ({ rows, heading, }, ): JSX.Element => {
   const [thisNavigator, setThisNavigator] = useState('en-US')
 
   useEffect(() => {
-    setThisNavigator(navigator.language)
-  }, [])
+    setThisNavigator(navigator.language);
+  }, []);
+
 
   const checkSmall = useMediaQuery('(min-width:700px)');
 
@@ -79,28 +80,24 @@ const CustomTable: FC<ITableProps> = ({ rows, heading, }, ): JSX.Element => {
                   '&:last-child td, &:last-child th': {
                     borderBottom: 'none',
                   },
-                }}>
-                  {Object.keys(row).map((key, i) => {
-                    return (
-                      <TableCell
-                        key={key}
-                        sx={{ border: 'none' }}
-                      >
-                        {row[key].toLocaleString(thisNavigator, {
-                          maximumFractionDigits: 0,
-                        })}
-                      </TableCell>
-                    )
-                  })}
-                </TableRow>
-              )
-            })}
-          </TableBody>
-        </Table>
+                }}
+              >
+                {Object.keys(row).map((key, i) => {
+                  return (
+                    <TableCell key={key} sx={{ border: "none" }}>
+                      {row[key].toLocaleString(thisNavigator, {
+                        maximumFractionDigits: 0,
+                      })}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
     </TableContainer>
-  )
-}
+  );
+};
 
-export default CustomTable
-
-
+export default CustomTable;

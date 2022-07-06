@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 import { Grid, Typography } from "@mui/material";
 import SquareIcon from "@mui/icons-material/Square";
 
@@ -25,6 +25,6 @@ const SectionTitle: FC<SectionTitleProps> = ({ marginBottom, children }) => {
       </Grid>
     </Grid>
   );
-}
+};
 
 export default SectionTitle;

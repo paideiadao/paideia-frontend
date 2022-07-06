@@ -5,6 +5,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { walletStruct } from "../../../lib/creation/Constants";
 import ClearIcon from "@mui/icons-material/Clear";
 import PersonIcon from "@mui/icons-material/Person";
+import { deviceStruct } from "@components/utilities/Style";
 
 const WalletSelector: React.FC<{
   data: {
@@ -77,14 +78,46 @@ const WalletSelector: React.FC<{
                     mt: "-.3rem",
                   }}
                 >
-                  {props.data.address !== undefined &&
-                    `${props.data.address.slice(
-                      0,
-                      18
-                    )}......${props.data.address.slice(
-                      props.data.address.length - 18,
-                      props.data.address.length
-                    )}`}
+                  <Box
+                    sx={{
+                      display: deviceStruct(
+                        "none",
+                        "none",
+                        "block",
+                        "block",
+                        "block"
+                      ),
+                    }}
+                  >
+                    {props.data.address !== undefined &&
+                      `${props.data.address.slice(
+                        0,
+                        18
+                      )}....${props.data.address.slice(
+                        props.data.address.length - 18,
+                        props.data.address.length
+                      )}`}
+                  </Box>
+                  <Box
+                    sx={{
+                      display: deviceStruct(
+                        "block",
+                        "block",
+                        "none",
+                        "none",
+                        "none"
+                      ),
+                    }}
+                  >
+                    {props.data.address !== undefined &&
+                      `${props.data.address.slice(
+                        0,
+                        13
+                      )}...${props.data.address.slice(
+                        props.data.address.length - 13,
+                        props.data.address.length
+                      )}`}
+                  </Box>
                 </Box>
               </Box>
             </InputAdornment>

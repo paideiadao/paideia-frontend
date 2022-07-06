@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   FormControl,
+  IconButton,
   InputLabel,
   MenuItem,
   Select,
@@ -21,6 +22,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import RedditIcon from "@mui/icons-material/Reddit";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { deviceStruct } from "@components/utilities/Style";
 
 const Footer: React.FC = () => {
   let globalContext = React.useContext(GlobalContext);
@@ -110,6 +112,7 @@ const Footer: React.FC = () => {
             sx={{ width: "100%", display: "flex", justifyContent: "center" }}
           >
             <Button
+              size="small"
               onClick={() => {
                 let temp = [...data.footer.links];
                 temp.push({
@@ -143,9 +146,15 @@ export const SocialRow: React.FC<{
         display: "flex",
         alignItems: "center",
         width: "100%",
+        flexWrap: deviceStruct("wrap", "wrap", "", "", ""),
       }}
     >
-      <FormControl sx={{ width: "35%", mr: ".5rem" }}>
+      <FormControl
+        sx={{
+          width: deviceStruct("83%", "83%", "35%", "35%", "35%"),
+          mr: ".5rem",
+        }}
+      >
         <InputLabel htmlFor={`social-link-label-${props.c}`}>
           Social network
         </InputLabel>
@@ -220,19 +229,38 @@ export const SocialRow: React.FC<{
           </MenuItem>
         </Select>
       </FormControl>
+      <Box
+        sx={{
+          width: "13%",
+          display: deviceStruct("block", "block", "none", "none", "none"),
+          justifyContent: "center",
+        }}
+      >
+        <IconButton color="error" onClick={() => props.delete()}>
+          <DeleteIcon />
+        </IconButton>
+      </Box>
       <TextField
         label="Address"
-        sx={{ width: "50%" }}
+        sx={{
+          width: deviceStruct("100%", "100%", "50%", "50%", "50%"),
+          mt: deviceStruct(".5rem", ".5rem", "", "", ""),
+        }}
         value={props.data.address}
         onChange={(e: any) =>
           props.set({ ...props.data, address: e.target.value })
         }
       />
-      <Box sx={{ width: "13%", display: "flex", justifyContent: "center" }}>
-        <DeleteIcon
-          style={{ fill: "red", cursor: "pointer" }}
-          onClick={() => props.delete()}
-        />
+      <Box
+        sx={{
+          width: "13%",
+          display: deviceStruct("none", "none", "block", "block", "block"),
+          justifyContent: "center",
+        }}
+      >
+        <IconButton color="error" onClick={() => props.delete()}>
+          <DeleteIcon />
+        </IconButton>
       </Box>
     </Box>
   );

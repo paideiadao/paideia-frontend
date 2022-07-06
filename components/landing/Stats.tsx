@@ -69,7 +69,7 @@ export default function Stats() {
         mt: { xs: "120px", md: "-60px" },
         minHeight: "2200px",
         position: "relative",
-        zIndex: '-1'
+        zIndex: "-1",
       }}
     >
       <Box
@@ -109,9 +109,7 @@ export default function Stats() {
       </Box>
       <Grid container>
         <Grid item md={4}>
-          <SectionTitle marginBottom="24px">
-            Statistics
-          </SectionTitle>
+          <SectionTitle marginBottom="24px">Statistics</SectionTitle>
           <Typography sx={titleStyle}>Some Numbers to Look At &lt;</Typography>
         </Grid>
         <Grid item md={3}></Grid>
@@ -210,9 +208,7 @@ export default function Stats() {
             ))}
           </Grid>
           <Box>
-            <SectionTitle marginBottom="24px">
-              How to begin
-            </SectionTitle>
+            <SectionTitle marginBottom="24px">How to begin</SectionTitle>
             <Grid container wrap="nowrap" spacing={2} sx={{ mb: "24px" }}>
               <Grid item>
                 <Box

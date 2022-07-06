@@ -1,3 +1,4 @@
+
 import React, { FC } from 'react';
 import { styled } from '@mui/system';
 import {
@@ -133,6 +134,7 @@ const CustomTable: FC<ITabs> = ({ tabs, headline }) => {
         return (
           <TabPanelUnstyled value={i} key={i}>
             {tab.fragment}
+
           </TabPanelUnstyled>
         )
       })}
@@ -143,3 +145,4 @@ const CustomTable: FC<ITabs> = ({ tabs, headline }) => {
 export default CustomTable
 
 
+export default CustomTable;

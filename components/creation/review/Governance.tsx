@@ -24,12 +24,13 @@ const Governance: React.FC<{
         backgroundColor: "fileInput.outer",
         borderBottom: "1px solid",
         borderBottomColor: "border.main",
+        alignItems: "center",
       }}
     >
       <AccordionSummary expandIcon={<ExpandMoreIcon />} id="governance-header">
         <CheckCircleIcon color="success" sx={{ mr: "1rem" }} />
         <Typography sx={{ width: "100%", flexShrink: 0, fontSize: "1.1rem" }}>
-          2. Governance and voting configuration
+          3. Governance and voting configuration
         </Typography>
       </AccordionSummary>
       <AccordionDetails>

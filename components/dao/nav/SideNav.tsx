@@ -8,6 +8,7 @@ import LightFooter from "../../../public/dao/light-footer.png";
 import DarkFooter from "../../../public/dao/dark-footer.png";
 import { ThemeContext, IThemeContext } from "@lib/ThemeContext";
 import { DarkTheme } from "@theme/theme";
+import { deviceStruct } from "@components/utilities/Style";
 
 const Nav: React.FC = (props) => {
   const themeContext = React.useContext<IThemeContext>(ThemeContext);

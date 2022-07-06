@@ -8,11 +8,17 @@ const BalanceInput: React.FC<{
   balance: number;
   value: any;
   set: Function;
+  width?: string | any;
+  mt?: string | any;
 }> = (props) => {
   return (
     <TextField
       value={props.balance === 0 ? "" : props.balance}
-      sx={{ width: "27%", mr: ".5rem" }}
+      sx={{
+        width: props.width !== undefined ? props.width : "27%",
+        mr: ".5rem",
+        mt: props.mt !== undefined ? props.mt : 0,
+      }}
       onChange={(e: any) => {
         let temp = { ...props.value };
         let balance = parseFloat(e.target.value);

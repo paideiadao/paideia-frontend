@@ -3,7 +3,8 @@ import darkScrollbar from "@mui/material/darkScrollbar";
 
 export const mainTheme = createTheme({
   typography: {
-    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif'
+    fontFamily:
+      '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif',
   },
 });
 
@@ -163,11 +164,11 @@ export const DarkTheme = createTheme({
       main: "rgba(17, 24, 39, 0.08)",
       text: "rgba(0, 0, 0, 1)",
     },
-    // THIS IS CAUSING AN ERROR WITH <TableCell> 
+    // THIS IS CAUSING AN ERROR WITH <TableCell>
     // "Uncaught TypeError: color.charAt is not a function"
     border: {
       main: "rgba(159, 210, 219, 0.2)",
-    }, 
+    },
     fileInput: {
       main: "rgba(45, 51, 64, 1)",
       outer: "rgba(17, 24, 39, 1)",
@@ -223,7 +224,7 @@ export const DarkTheme = createTheme({
   components: {
     MuiAccordion: {
       root: {
-          backgroundColor: 'transparent'
+        backgroundColor: "transparent",
       },
     },
     MuiChip: {
@@ -386,5 +387,5 @@ export const DarkTheme = createTheme({
         },
       },
     },
-  }
+  },
 });

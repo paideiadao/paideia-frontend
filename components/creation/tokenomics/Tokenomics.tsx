@@ -15,6 +15,7 @@ import {
   percentageToBalance,
 } from "../../../lib/creation/Utilities";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { deviceStruct } from "@components/utilities/Style";
 
 const Tokenomics: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
@@ -93,7 +94,13 @@ const Tokenomics: React.FC = () => {
   }, [tokenAmount]);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", width: "70%" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        width: deviceStruct("93%", "93%", "70%", "70%", "70%"),
+      }}
+    >
       {data.distributions.length > 0 && data.tokenAmount > 0 && (
         <Box
           sx={{
@@ -104,10 +111,30 @@ const Tokenomics: React.FC = () => {
                 : data.tokenRemaining < 0
                 ? "tokenAlert.main"
                 : "primary.main",
-            width: "calc(100vw - 15.4rem)",
-            ml: "-21.5%",
-            mt: "-2rem",
-            top: "-2rem",
+            width: deviceStruct(
+              "100%",
+              "100%",
+              "calc(100vw - 15.4rem)",
+              "calc(100vw - 15.4rem)",
+              "calc(100vw - 15.4rem)"
+            ),
+            ml: deviceStruct("0", "0", "-21.5%", "-21.5%", "-21.5%"),
+            mt: deviceStruct(
+              "0",
+              "0",
+              "-2rem",
+              "-2rem",
+
+              "-2rem"
+            ),
+            top: deviceStruct(
+              "0rem",
+              "0rem",
+              "-2rem",
+              "-2rem",
+
+              "-2rem"
+            ),
             zIndex: 100,
             display: "flex",
             alignItems: "center",
@@ -156,7 +183,7 @@ const Tokenomics: React.FC = () => {
         />
       </Box>
       <Box sx={{ mt: "1rem" }}>
-        <Subheader title="Token information" />
+        <Header title="Tokenomics" large />
         <ButtonGroup variant="outlined" sx={{ width: "100%", mt: ".5rem" }}>
           <Button
             sx={{
@@ -176,6 +203,7 @@ const Tokenomics: React.FC = () => {
             Token Holders
           </Button>
           <Button
+            disabled
             sx={{
               width: "50%",
               fontSize: ".8rem",

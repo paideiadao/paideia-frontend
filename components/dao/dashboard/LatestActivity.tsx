@@ -45,7 +45,7 @@ export const activities = [
 
 const LatestActivity: React.FC = () => {
   const router = useRouter();
-  const {id} = router.query;
+  const { id } = router.query;
   return (
     <Box sx={{ width: "100%", pb: ".5rem" }}>
       <Box
@@ -57,12 +57,11 @@ const LatestActivity: React.FC = () => {
         }}
       >
         <Subheader title="Latest activity" small bold />
-        <Link href={id === undefined ? '/dao/activity' : `/dao/${id}/activity`}>
+        <Link href={id === undefined ? "/dao/activity" : `/dao/${id}/activity`}>
           <Button sx={{ ml: "auto", fontSize: ".8rem" }}>
             View Activity Log
           </Button>
         </Link>
-        
       </Box>
       {activities.map((i: any, c: number) => {
         return <Activity i={i} c={c} key={"latest-activity" + c} />;

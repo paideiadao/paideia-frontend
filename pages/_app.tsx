@@ -40,11 +40,14 @@ export default function App({ Component, pageProps }: AppProps) {
   const api = new AppApi(alert, setAlert, theme, setTheme, daoId, setDaoId);
   return (
     <>
-    <Head>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes" />
-    </Head>
-    <AddWalletProvider>
-      <WalletProvider>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes"
+        />
+      </Head>
+      <AddWalletProvider>
+        <WalletProvider>
           {isDao(Component) ? (
             <ThemeProvider theme={theme}>
               <ThemeContext.Provider value={{ theme, setTheme }}>
@@ -57,44 +60,44 @@ export default function App({ Component, pageProps }: AppProps) {
                   ) : (
                     <Component {...pageProps} />
                   )}
-                {alert.show && (
-                  <Modal
-                    open={alert.show}
-                    onClose={() => setAlert({ show: false })}
-                  >
-                    <Box sx={{ ...modalBackground, width: "35rem" }}>
-                      <Box sx={{ fontSize: "1.1rem", fontWeight: 450 }}>
-                        {alert.header}
+                  {alert.show && (
+                    <Modal
+                      open={alert.show}
+                      onClose={() => setAlert({ show: false })}
+                    >
+                      <Box sx={{ ...modalBackground, width: "35rem" }}>
+                        <Box sx={{ fontSize: "1.1rem", fontWeight: 450 }}>
+                          {alert.header}
+                        </Box>
+                        <Box sx={{ mt: "1rem", fontSize: ".9rem" }}>
+                          {alert.content}
+                        </Box>
+                        <Box
+                          sx={{
+                            width: "100%",
+                            display: "flex",
+                            alignItems: "center",
+                            mt: "1rem",
+                          }}
+                        >
+                          <Box sx={{ ml: "auto" }}></Box>
+                        </Box>
                       </Box>
-                      <Box sx={{ mt: "1rem", fontSize: ".9rem" }}>
-                        {alert.content}
-                      </Box>
-                      <Box
-                        sx={{
-                          width: "100%",
-                          display: "flex",
-                          alignItems: "center",
-                          mt: "1rem",
-                        }}
-                      >
-                        <Box sx={{ ml: "auto" }}></Box>
-                      </Box>
-                    </Box>
-                  </Modal>
-                )}
-              </GlobalContext.Provider>
-            </ThemeContext.Provider>
-          </ThemeProvider>
-        ) : (
-          <ThemeProvider theme={DarkTheme}>
-            <CssBaseline />
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </ThemeProvider>
-        )}
-      </WalletProvider>
-    </AddWalletProvider>
+                    </Modal>
+                  )}
+                </GlobalContext.Provider>
+              </ThemeContext.Provider>
+            </ThemeProvider>
+          ) : (
+            <ThemeProvider theme={DarkTheme}>
+              <CssBaseline />
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </ThemeProvider>
+          )}
+        </WalletProvider>
+      </AddWalletProvider>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 import { Grid, Box, Typography } from "@mui/material";
 import { DarkTheme } from "@theme/theme";
 
@@ -14,7 +14,7 @@ const blockquoteStyle = {
   fontWeight: "700",
   fontSize: "24px",
   lineHeight: "32px",
-}
+};
 
 interface BlockquoteProps {
   small?: boolean;
@@ -28,7 +28,7 @@ const Blockquote: FC<BlockquoteProps> = ({ small, sx, children }) => {
         <Box
           sx={{
             mt: "3px",
-            ml: (small ? '0' : '36px' ),
+            ml: small ? "0" : "36px",
             width: "8px",
             height: "95%",
             background:
@@ -42,7 +42,7 @@ const Blockquote: FC<BlockquoteProps> = ({ small, sx, children }) => {
         </Typography>
       </Grid>
     </Grid>
-  )
-}
+  );
+};
 
 export default Blockquote;

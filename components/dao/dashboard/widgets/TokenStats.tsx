@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const TokenStats: React.FC = () => {
   const router = useRouter();
-  const {id} = router.query;
+  const { id } = router.query;
   return (
     <Paper
       elevation={0}
@@ -100,9 +100,14 @@ const TokenStats: React.FC = () => {
           pb: ".25rem",
         }}
       >
-        <Link href={id === undefined ? '/dao/financials/token' : `/dao/${id}/financials/token`}>
+        <Link
+          href={
+            id === undefined
+              ? "/dao/financials/token"
+              : `/dao/${id}/financials/token`
+          }
+        >
           <Button>Learn More</Button>
-        
         </Link>
       </Box>
     </Paper>

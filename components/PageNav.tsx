@@ -1,3 +1,4 @@
+
 import React, { FC, useEffect, useState, useRef, useContext } from 'react';
 import { DarkTheme, LightTheme } from "@theme/theme";
 import {
@@ -8,6 +9,7 @@ import {
   ListItemIcon,
   Icon,
   Grid,
+
   useMediaQuery,
   Fab,
   Zoom,
@@ -19,16 +21,17 @@ import Link from 'next/link';
 import { PageNavContext } from '@components/Layout'
 
 const listItemSx = {
-  '&:hover': {
-    '& .MuiTypography-root': {
-      fontWeight: '700',
-      textDecoration: 'underline',
-    }
+  "&:hover": {
+    "& .MuiTypography-root": {
+      fontWeight: "700",
+      textDecoration: "underline",
+    },
   },
 };
 
 interface IPageNav {
   navLinks: any[];
+
   children: React.ReactNode;
 }
 
@@ -60,28 +63,29 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
 
   const [sliderSx, setSliderSx] = useState({
     mt: undefined,
-    height: undefined
-  })
+    height: undefined,
+  });
   const sliderSxRef = useRef({
     mt: undefined,
-    height: undefined
+    height: undefined,
   });
   sliderSxRef.current = sliderSx;
 
   // This is the top of the area which contains content. This is defined rather than using the top
   // and bottom of the page, because we don't want the scroll animation to start moving until after
-  // the header, and it should reach the bottom once it hits the top of the footer. 
+  // the header, and it should reach the bottom once it hits the top of the footer.
   const [topAndBottom, setTopAndBottom] = useState({
     top: 0,
-    bottom: 0
-  })
+    bottom: 0,
+  });
   const topAndBottomRef = useRef({
     top: 0,
-    bottom: 0
+    bottom: 0,
   });
   topAndBottomRef.current = topAndBottom;
 
   const handleResize = () => {
+
     const element = document.getElementById('navContainer')
     const topPosition = element.offsetTop
     const totalHeight = element.getBoundingClientRect().height
@@ -100,48 +104,55 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
 
     setSliderSx({
       ...sliderSx,
-      height: sliderHeight
-    })
+      height: sliderHeight,
+    });
 
-    setTopAndBottom(prevState => ({ ...prevState, top: topPosition, bottom: thisBottom }))
-    handleScroll()
-  }
+    setTopAndBottom((prevState) => ({
+      ...prevState,
+      top: topPosition,
+      bottom: thisBottom,
+    }));
+    handleScroll();
+  };
 
   const handleScroll = () => {
     const position = window.scrollY;
+
     const barElement = document.getElementById('navPositionBar')
     const barHeight = barElement?.getBoundingClientRect().height
 
     if (position <= topAndBottomRef.current.top) {
-      setSliderSx(prevState => ({ ...prevState, mt: 0 }))
+      setSliderSx((prevState) => ({ ...prevState, mt: 0 }));
     }
     if (
-      (position > topAndBottomRef.current.top) // position is below the first element top
-      && (position < (topAndBottomRef.current.bottom - window.innerHeight)) // above the bottom element bottom
+      position > topAndBottomRef.current.top && // position is below the first element top
+      position < topAndBottomRef.current.bottom - window.innerHeight // above the bottom element bottom
     ) {
-      const pageHeight = topAndBottomRef.current.bottom - topAndBottomRef.current.top
-      const distanceDown = (position - topAndBottomRef.current.top) / pageHeight * barHeight - 2
+      const pageHeight =
+        topAndBottomRef.current.bottom - topAndBottomRef.current.top;
+      const distanceDown =
+        ((position - topAndBottomRef.current.top) / pageHeight) * barHeight - 2;
 
-      setSliderSx(prevState => ({
+      setSliderSx((prevState) => ({
         ...prevState,
-        mt: distanceDown.toString() + 'px'
-      }))
+        mt: distanceDown.toString() + "px",
+      }));
     }
-    if (position > (topAndBottomRef.current.bottom - window.innerHeight)) {
-      const distanceDown = barHeight - sliderSxRef.current.height
-      setSliderSx(prevState => ({
+    if (position > topAndBottomRef.current.bottom - window.innerHeight) {
+      const distanceDown = barHeight - sliderSxRef.current.height;
+      setSliderSx((prevState) => ({
         ...prevState,
-        mt: distanceDown.toString() + 'px'
-      }))
+        mt: distanceDown.toString() + "px",
+      }));
     }
   };
 
   const scrollToHeading = (position: number): void => {
     scrollTo({
-      top: (position),
-      behavior: 'smooth'
-    })
-  }
+      top: position,
+      behavior: "smooth",
+    });
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -158,12 +169,12 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
     // Remove event listener on cleanup
     return () => {
       window.removeEventListener("resize", handleResize);
-    }
-  }, [])
+    };
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      handleResize()
+      handleResize();
     }, 200);
 
     return () => clearInterval(interval);
@@ -196,17 +207,21 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
           <ListItemIcon>
             <Icon>{icon}</Icon>
           </ListItemIcon>
-          <ListItemText primary={name} sx={{
-            '& .MuiTypography-root': {
-              fontFamily: '"Space Grotesk", sans-serif',
-              fontWeight: '400',
-              fontSize: '20px',
-            }
-          }} />
+          <ListItemText
+            primary={name}
+            sx={{
+              "& .MuiTypography-root": {
+                fontFamily: '"Space Grotesk", sans-serif',
+                fontWeight: "400",
+                fontSize: "20px",
+              },
+            }}
+          />
         </ListItem>
       ))}
     </List>
   );
+
 
   const navBarListSmall = (
     <List sx={{ p: 0 }}>
@@ -264,7 +279,9 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
         <Grid item md={9}>
           {children}
         </Grid>
+        <Grid item>{navBarList}</Grid>
       </Grid>
+
     )
   }
   else {
@@ -329,4 +346,4 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
 
 };
 
-export default PageNav
+export default PageNav;

@@ -4,6 +4,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import Tooltip from "@mui/material/Tooltip";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Link from "next/link";
+import { deviceStruct } from "@components/utilities/Style";
 
 export const Header: React.FC<{
   title: string;
@@ -82,7 +83,9 @@ export const Subtitle: React.FC<{ subtitle: string; small?: boolean }> = (
       sx={{
         width: "100%",
         color: "text.light",
-        fontSize: props.small ? ".8rem" : ".9rem",
+        fontSize: props.small
+          ? deviceStruct(".7rem", ".7rem", ".8rem", ".8rem", ".8rem")
+          : deviceStruct(".7rem", ".7rem", ".9rem", ".9rem", ".9rem"),
       }}
     >
       {props.subtitle}
@@ -100,7 +103,9 @@ export const Subheader: React.FC<{
     <Box
       sx={{
         color: "primary.text",
-        fontSize: props.small ? ".9rem" : "1.1rem",
+        fontSize: props.small
+          ? deviceStruct(".8rem", ".8rem", ".9rem", ".9rem", ".9rem")
+          : deviceStruct("1.05rem", "1.05rem", "1.1rem", "1.1rem", "1.1rem"),
         fontWeight: props.bold ? 500 : 400,
         display: "flex",
         alignItems: "center",
@@ -151,7 +156,12 @@ export const LearnMore: React.FC<{
           light={props.light}
         />
         <ClickAwayListener onClickAway={handleTooltipClose}>
-          <Box sx={{ ml: "auto" }}>
+          <Box
+            sx={{
+              ml: "auto",
+              minWidth: deviceStruct("40%", "40%", "", "", ""),
+            }}
+          >
             <Tooltip
               PopperProps={{
                 disablePortal: true,
@@ -162,7 +172,13 @@ export const LearnMore: React.FC<{
                 tooltip: {
                   sx: {
                     bgcolor: "fileInput.main",
-                    maxWidth: "40rem",
+                    maxWidth: deviceStruct(
+                      "15rem",
+                      "15rem",
+                      "35rem",
+                      "40rem",
+                      "45rem"
+                    ),
                     "& .MuiTooltip-arrow": {
                       color: "fileInput.main",
                       width: "7rem",
@@ -216,11 +232,12 @@ export const LearnMore: React.FC<{
                 </Box>
               }
             >
-              <Button onClick={handleTooltipOpen}>
+              <Button
+                onClick={handleTooltipOpen}
+                size="small"
+                endIcon={<InfoIcon />}
+              >
                 Learn More{" "}
-                <InfoIcon
-                  style={{ fill: "primary.main", marginLeft: ".4rem" }}
-                />
               </Button>
             </Tooltip>
           </Box>
