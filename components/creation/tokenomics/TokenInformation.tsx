@@ -4,14 +4,15 @@ import { ICreationData, ITokenomics } from "../../../lib/creation/CreationApi";
 import { GlobalContext } from "../../../lib/creation/Context";
 import { IData } from "../../../lib/utilities";
 import { Header, LearnMore, Subheader } from "../utilities/HeaderComponents";
+import { deviceStruct } from "@components/utilities/Style";
 
 const NewToken: React.FC<IData<ITokenomics>> = (props) => {
   let data = props.data;
   return (
-    <Box sx={{ display: "flex", alignItems: "center" }}>
+    <Box sx={{ display: "flex", alignItems: "center", flexWrap: deviceStruct('wrap', 'wrap', '', '', '') }}>
       <TextField
         value={data.tokenName}
-        sx={{ width: "50%", mt: "1rem", pr: ".5rem" }}
+        sx={{ width: deviceStruct('100%', '100%', '50%', '50%', '50%'), mt: "1rem", pr: ".5rem" }}
         label="Token name"
         onChange={(e) =>
           props.setData({
@@ -22,7 +23,7 @@ const NewToken: React.FC<IData<ITokenomics>> = (props) => {
       />
       <TextField
         value={data.tokenTicker}
-        sx={{ width: "25%", mt: "1rem", pr: ".5rem" }}
+        sx={{ width: deviceStruct('50%', '50%', '25%', '25%', '25%'), mt: "1rem", pr: ".5rem" }}
         label="Token ticker"
         onChange={(e) =>
           props.setData({
@@ -33,7 +34,7 @@ const NewToken: React.FC<IData<ITokenomics>> = (props) => {
       />
       <TextField
         value={data.tokenAmount === 0 ? "" : data.tokenAmount}
-        sx={{ width: "25%", mt: "1rem", pr: ".5rem" }}
+        sx={{ width: deviceStruct('50%', '50%', '25%', '25%', '25%'), mt: "1rem", pr: ".5rem" }}
         label="Token amount"
         type="number"
         onChange={(e) =>
@@ -78,7 +79,7 @@ const ExistingToken: React.FC<IData<ITokenomics>> = (props) => {
             }
           />
         </Box>
-        <Box sx={{ width: "50%", ml: ".5rem" }}>
+        <Box sx={{ width: "50%" }}>
           <TextField
             value={data.tokenTicker}
             sx={{ width: "100%" }}
@@ -123,7 +124,9 @@ const TokenInformation: React.FC<IData<ITokenomics>> = (props) => {
           }}
           onClick={() => setTokenType("create")}
         >
-          Create a new token
+          <Box sx={{display: deviceStruct('none', 'none', '', '' , '')}}>Create a new token</Box>
+          <Box sx={{display: deviceStruct('', '', 'none', 'none' , 'none')}}>New token</Box>
+
         </Button>
         <Button
           sx={{
@@ -134,7 +137,8 @@ const TokenInformation: React.FC<IData<ITokenomics>> = (props) => {
           }}
           onClick={() => setTokenType("existing")}
         >
-          Use an existing one
+         <Box sx={{display: deviceStruct('none', 'none', '', '' , '')}}>Use an existing one</Box>
+          <Box sx={{display: deviceStruct('', '', 'none', 'none' , 'none')}}>Existing One</Box>
         </Button>
       </ButtonGroup>
       {tokenType === "create" ? (

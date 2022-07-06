@@ -138,7 +138,13 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
     ...props,
   });
 
-  const iconFont = {xs: '.5rem', sm: '.5rem', md: '.8rem', lg: '.8rem', xl: '1rem'}
+  const iconFont = {
+    xs: ".5rem",
+    sm: ".5rem",
+    md: ".8rem",
+    lg: ".8rem",
+    xl: "1rem",
+  };
 
   return (
     <Box sx={{ display: "flex", alignItems: "center", fontSize: iconFont }}>
@@ -395,8 +401,20 @@ const CountdownWidget: React.FC<{ date: Date }> = (props) => {
 const ProposalCard: React.FC<IProposalCard> = (props) => {
   const [favorited, setFavorited] = React.useState<boolean>(props.favorited);
   const getFooter = () => {
-    const footerFont = {xs: '.7rem', sm: '.7rem', md: '.8rem', lg: '.9rem', xl: '1rem'}
-    const footerSmallFont = {xs: '.5rem', sm: '.5rem', md: '.65rem', lg: '.7rem', xl: '.8rem'}
+    const footerFont = {
+      xs: ".7rem",
+      sm: ".7rem",
+      md: ".8rem",
+      lg: ".9rem",
+      xl: "1rem",
+    };
+    const footerSmallFont = {
+      xs: ".5rem",
+      sm: ".5rem",
+      md: ".65rem",
+      lg: ".7rem",
+      xl: ".8rem",
+    };
     switch (props.status) {
       case "Challenged": {
         return <VoteWidget yes={props.yes} no={props.no} />;

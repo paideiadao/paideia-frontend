@@ -4,6 +4,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import Tooltip from "@mui/material/Tooltip";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Link from "next/link";
+import { deviceStruct } from "@components/utilities/Style";
 
 export const Header: React.FC<{
   title: string;
@@ -162,7 +163,7 @@ export const LearnMore: React.FC<{
                 tooltip: {
                   sx: {
                     bgcolor: "fileInput.main",
-                    maxWidth: "40rem",
+                    maxWidth: deviceStruct('15rem', '15rem', '35rem', '40rem', '45rem'),
                     "& .MuiTooltip-arrow": {
                       color: "fileInput.main",
                       width: "7rem",
@@ -216,7 +217,7 @@ export const LearnMore: React.FC<{
                 </Box>
               }
             >
-              <Button onClick={handleTooltipOpen}>
+              <Button onClick={handleTooltipOpen} size='small'>
                 Learn More{" "}
                 <InfoIcon
                   style={{ fill: "primary.main", marginLeft: ".4rem" }}

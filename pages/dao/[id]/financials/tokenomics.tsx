@@ -7,17 +7,19 @@ import * as React from "react";
 import { TreasuryInfo } from "./treasury";
 
 const Tokenomics: React.FC = () => {
-  return <Layout width="95%">
-    <Box sx={{width: '100%', display: 'flex', alignItems: 'flex-start'}}>
-      <Box sx={{width: '72%'}}>
-        <TokenomicsHeader/>
-        <TokenomicsChart/>
+  return (
+    <Layout width="95%">
+      <Box sx={{ width: "100%", display: "flex", alignItems: "flex-start" }}>
+        <Box sx={{ width: "72%" }}>
+          <TokenomicsHeader />
+          <TokenomicsChart />
+        </Box>
+        <Box sx={{ width: "28%", position: "sticky", top: "1.6rem" }}>
+          <TreasuryInfo />
+        </Box>
       </Box>
-      <Box sx={{width: '28%', position: "sticky", top: "1.6rem"}}>
-        <TreasuryInfo/>
-      </Box>
-    </Box>
-  </Layout>;
+    </Layout>
+  );
 };
 
 export default Tokenomics;

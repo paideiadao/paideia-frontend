@@ -17,6 +17,7 @@ import Review from "../components/creation/review/Review";
 import CreationLoading from "../components/creation/loading/CreationLoading";
 import { modalBackground } from "@components/utilities/modalBackground";
 import Status from "@components/utilities/Status";
+import { deviceStruct } from "@components/utilities/Style";
 
 export let colorLookup = {
   light: "#FFFFFF",
@@ -142,10 +143,16 @@ export default function Creation(props) {
           <Box
             sx={{
               position: "fixed",
-              ml: "15rem",
+              ml: deviceStruct("0", "0", "15rem", "15rem", "15rem"),
               top: "3.5rem",
-              width: "calc(100% - 15rem)",
-              pt: "2rem",
+              width: deviceStruct(
+                "100%",
+                "100%",
+                "calc(100% - 15rem)",
+                "calc(100% - 15rem)",
+                "calc(100% - 15rem)"
+              ),
+              pt: deviceStruct(".5rem", ".5rem", "1.5rem", "1.5rem", "1.5rem"),
               display: "flex",
               flexDirection: "column",
               height: "calc(100% - 3.5rem)",
@@ -197,23 +204,33 @@ export default function Creation(props) {
                     <Button
                       variant="outlined"
                       color="primary"
+                      startIcon={<ArrowBackIcon />}
+                      sx={{
+                        width: deviceStruct("90%", "90%", "", "", ""),
+                        mr: ".5rem",
+                        ml: ".5rem",
+                      }}
                       onClick={() =>
                         setData({ ...data, navStage: data.navStage - 1 })
                       }
-                      sx={{ mr: 1 }}
                     >
-                      <ArrowBackIcon sx={{ mr: 1 }} /> Back
+                      Back
                     </Button>
                   )}
                   <Button
                     variant="contained"
                     disabled={checkCompleteness(data)}
                     color="primary"
+                    endIcon={<ArrowForwardIcon />}
+                    sx={{
+                      width: deviceStruct("90%", "90%", "", "", ""),
+                      mr: data.navStage > 0 ? ".5rem" : "0",
+                    }}
                     onClick={() =>
                       setData({ ...data, navStage: data.navStage + 1 })
                     }
                   >
-                    Next <ArrowForwardIcon sx={{ ml: 1 }} />
+                    Next
                   </Button>
                 </>
               )}

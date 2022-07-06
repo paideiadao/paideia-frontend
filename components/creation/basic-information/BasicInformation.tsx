@@ -3,6 +3,7 @@ import { AlertTitle, Box, Divider } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import TextField from "@mui/material/TextField";
 import { GlobalContext } from "../../../lib/creation/Context";
+import { deviceStruct } from "@components/utilities/Style";
 
 const BasicInformation: React.FC = () => {
   let globalContext = React.useContext(GlobalContext);
@@ -22,7 +23,7 @@ const BasicInformation: React.FC = () => {
   return (
     <Box
       sx={{
-        width: "70%",
+        width: deviceStruct("91%", "93%", "70%", "70%", "70%"),
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
@@ -37,8 +38,22 @@ const BasicInformation: React.FC = () => {
           DAO is about.
         </Box>
       </Box>
-      <Box sx={{ width: "100%", display: "flex", alignItems: "center", mt: 2 }}>
-        <Box sx={{ width: "50%", mr: 2 }}>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          mt: 2,
+          flexDirection: deviceStruct("column", "column", "row", "row", "row"),
+        }}
+      >
+        <Box
+          sx={{
+            width: deviceStruct("100%", "100%", "50%", "50%", "50%"),
+            mr: deviceStruct("0", "0", ".5rem", ".5rem", ".5rem"),
+            mt: deviceStruct(".5rem", ".5rem", "0", "0", "0"),
+          }}
+        >
           <TextField
             label="DAO Name"
             sx={{ width: "100%" }}
@@ -54,7 +69,13 @@ const BasicInformation: React.FC = () => {
             }
           />
         </Box>
-        <Box sx={{ width: "50%" }}>
+        <Box
+          sx={{
+            width: deviceStruct("100%", "100%", "50%", "50%", "50%"),
+            mr: deviceStruct("0", "0", ".5rem", ".5rem", ".5rem"),
+            mt: deviceStruct(".5rem", ".5rem", "0", "0", "0"),
+          }}
+        >
           <TextField
             label="DAO URL"
             sx={{ width: "100%" }}
@@ -77,9 +98,11 @@ const BasicInformation: React.FC = () => {
           <AlertTitle sx={{ fontSize: ".9rem" }}>
             You won't be able to change this once published
           </AlertTitle>
-          The name and URL of your DAO can't be changed even if you publish your
-          DAO as a draft. You will be able to review everything later before
-          fully committing though.
+          <Box sx={{ ml: "-2rem" }}>
+            The name and URL of your DAO can't be changed even if you publish
+            your DAO as a draft. You will be able to review everything later
+            before fully committing though.
+          </Box>
         </Alert>
       </Box>
       <Box sx={{ width: "100%", mt: 2 }}>
