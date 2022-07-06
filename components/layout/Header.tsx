@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+import { useMediaQuery } from '@mui/material';
 import Paideia from "@components/svgs/Paideia";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { DarkTheme, LightTheme } from "@theme/theme";
@@ -20,6 +21,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Zoom from "@mui/material/Zoom";
 import Toolbar from "@mui/material/Toolbar";
 import { PageNavContext } from '@components/Layout'
+import { useRouter } from "next/router";
 // import ConnectWallet from "@components/wallet/ConnectWallet";
 
 const pages = [
@@ -41,6 +43,11 @@ const pages = [
   {
     name: "Documentation",
     link: "https://docs.paideia.im",
+    disabled: false,
+  },
+  {
+    name: "Projects",
+    link: "projects",
     disabled: false,
   },
   {
@@ -86,9 +93,11 @@ function ScrollTop(props: { children: React.ReactNode }) {
   );
 }
 
-export default function Header(props) {
+export default function Header() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const { inPageNav } = useContext(PageNavContext)
+
+  const checkWide = useMediaQuery('(min-width:1100px)')
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -349,13 +358,13 @@ export default function Header(props) {
           </Grid>
         </Box>
       </Fade>
-      {!inPageNav ? (
-        <ScrollTop {...props}>
-          <Fab color="secondary" size="small" aria-label="scroll back to top">
+      {(!inPageNav || checkWide) && (
+        <ScrollTop>
+          <Fab sx={{ background: '#ED7E21' }} size="small" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />
           </Fab>
         </ScrollTop>
-      ) : null}
+      )}
     </>
   );
 }
