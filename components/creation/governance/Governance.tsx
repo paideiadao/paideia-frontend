@@ -30,7 +30,7 @@ const Governance: React.FC = () => {
   return (
     <Box
       sx={{
-        width: deviceStruct("91%", "93%", "70%", "70%", "70%"),
+        width: deviceStruct("93%", "93%", "70%", "70%", "70%"),
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",

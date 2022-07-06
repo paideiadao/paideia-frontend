@@ -98,7 +98,7 @@ const Tokenomics: React.FC = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        width: deviceStruct("91%", "93%", "70%", "70%", "70%"),
+        width: deviceStruct("93%", "93%", "70%", "70%", "70%"),
       }}
     >
       {data.distributions.length > 0 && data.tokenAmount > 0 && (
