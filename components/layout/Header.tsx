@@ -97,6 +97,10 @@ export default function Header() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const { inPageNav } = useContext(PageNavContext)
 
+  const router = useRouter();
+
+  console.log(router.asPath)
+
   const checkWide = useMediaQuery('(min-width:1100px)')
 
   const trigger = useScrollTrigger({

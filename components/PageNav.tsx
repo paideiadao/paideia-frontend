@@ -90,12 +90,8 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
 
     const visibleHeight = window.innerHeight
     const barElement = document.getElementById('navPositionBar')
-    let barHeight = 0
-    let sliderHeight = 0
-    if (barElement) {
-      barHeight = barElement?.getBoundingClientRect().height
-      sliderHeight = visibleHeight / totalHeight * barHeight
-    }
+    const barHeight = barElement?.getBoundingClientRect().height
+    const sliderHeight = visibleHeight / totalHeight * barHeight
     
     setSliderSx({
       ...sliderSx,
@@ -171,7 +167,6 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
     const interval = setInterval(() => {
       handleResize();
     }, 200);
-
     return () => clearInterval(interval);
   }, []);
 

@@ -1,7 +1,6 @@
 
 import React, { FC } from 'react';
 import PageHeader from "@components/PageHeader";
-import PageNav from "@components/PageNav";
 import { 
   Typography, 
   Grid, 
@@ -9,29 +8,9 @@ import {
   Box, 
 } from "@mui/material";
 import Image from "next/image";
+import Highlights from '@components/Highlights';
 import SectionHeading from "@components/SectionHeading";
 import { DarkTheme } from "@theme/theme";
-
-const navLinks = [
-  {
-    name: "Introduction",
-    icon: "waving_hand",
-    link: "sponsored",
-    position: undefined,
-  },
-  {
-    name: "Whitepaper",
-    icon: "description",
-    link: "feedback",
-    position: undefined,
-  },
-  {
-    name: "The Solution",
-    icon: "emoji_objects",
-    link: "activedaos",
-    position: undefined,
-  },
-];
 
 export default function Projects() {
   return (
@@ -44,8 +23,9 @@ export default function Projects() {
         subTitleOne="Find all the projects launched on"
         subTitleTwo="Paideia and new ones coming soon. "
       />
+      <Highlights />
       <Container sx={{ px: "24px", py: '60px' }} id="navContainer">
-        <PageNav navLinks={navLinks}>
+        
           <Box component="section" id="sponsored">
             
           </Box>
@@ -65,7 +45,7 @@ export default function Projects() {
             </SectionHeading>
           </Box>
 
-        </PageNav>
+        
       </Container>
     </>
   );
