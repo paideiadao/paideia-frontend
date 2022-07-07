@@ -17,6 +17,14 @@ import Content from "@components/dao/proposal/Context";
 import { modalBackground } from "@components/utilities/modalBackground";
 import LoadingButton from "@mui/lab/LoadingButton";
 import PublishIcon from "@mui/icons-material/Publish";
+import Warning from "@components/utilities/Warning";
+
+export interface IProposalAction {
+  name: "Quadratic Voting" | undefined;
+  data: any;
+  close?: () => void;
+  c?: Number;
+}
 
 export interface IProposal {
   id?: number;
@@ -24,6 +32,8 @@ export interface IProposal {
   image: IFile;
   category: string;
   content: string;
+  votingSystem: "yes/no" | "options" | "unselected";
+  actions: IProposalAction[];
 }
 
 const CreateProposal: React.FC = () => {
@@ -38,6 +48,13 @@ const CreateProposal: React.FC = () => {
     },
     category: "",
     content: "",
+    votingSystem: "unselected",
+    actions: [
+      {
+        name: undefined,
+        data: undefined,
+      },
+    ],
   });
   const context = React.useContext<IGlobalContext>(GlobalContext);
   const api = new ProposalApi(
@@ -51,7 +68,7 @@ const CreateProposal: React.FC = () => {
 
   return (
     <ProposalContext.Provider value={{ api }}>
-      <Layout>
+      <Layout width="60%">
         <CreateHeader type="proposal" />
         <Box
           sx={{
@@ -111,6 +128,11 @@ const CreateProposal: React.FC = () => {
         />
         <ProposalVote />
         <Content />
+        <Box sx={{ mt: "1rem" }} />
+        <Warning
+          title="What would it take to get this proposal approved?"
+          subtitle="Because of the DAO's configuration, in order for this proposal to be approved it will need to have at least 51% support and 70% quorum of the full DAO. You can find more information about this on the DAO configuration"
+        />
         <Box
           sx={{
             display: "flex",

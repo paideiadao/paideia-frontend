@@ -11,6 +11,7 @@ export const Header: React.FC<{
   subtitle?: string;
   small?: boolean;
   large?: boolean;
+  mb?: string | any;
 }> = (props) => {
   return props.subtitle === undefined ? (
     <Box
@@ -44,7 +45,7 @@ export const Header: React.FC<{
               ? "1.1rem"
               : "1rem",
           color: "primary.text",
-          mb: ".5rem",
+          mb: props.mb === undefined ? ".5rem" : props.mb,
         }}
       >
         {props.title}

@@ -5,20 +5,24 @@ import {
 import ProposalContext, {
   IProposalContext,
 } from "@lib/dao/proposal/ProposalContext";
+import { IObj } from "@lib/utilities";
 import { Box } from "@mui/material";
 import * as React from "react";
-import CheckIcon from "@mui/icons-material/Check";
-import ListIcon from "@mui/icons-material/List";
+import Options from "./vote/Options";
+import Selector from "./vote/Selector";
+import YesNo from "./vote/YesNo/YesNo";
 
 interface IVoteChoice {
   title: string;
   icon: JSX.Element;
   subtitle: string;
+  change: () => void;
 }
 
-const VoteChoice: React.FC<IVoteChoice> = (props) => {
+export const VoteChoice: React.FC<IVoteChoice> = (props) => {
   return (
     <Box
+      onClick={props.change}
       sx={{
         backgroundColor: "fileInput.outer",
         width: "50%",
@@ -45,6 +49,12 @@ const VoteChoice: React.FC<IVoteChoice> = (props) => {
 
 const ProposalVote: React.FC = () => {
   const context = React.useContext<IProposalContext>(ProposalContext);
+  const content: IObj<JSX.Element> = {
+    unselected: <Selector />,
+    "yes/no": <YesNo />,
+    options: <Options />,
+  };
+  const votingSystem = context.api.value.votingSystem;
   return (
     <>
       <LearnMore
@@ -53,20 +63,7 @@ const ProposalVote: React.FC = () => {
         tooltipText={"Content here"}
         tooltipLink="/here"
       />
-
-      <Box sx={{ width: "100%", alignItems: "stretch", display: "flex" }}>
-        <VoteChoice
-          icon={<CheckIcon />}
-          title="Yes or no"
-          subtitle="Vote to pass or decline the proposal. This type of proposal allows for multiple actions."
-        />
-        <Box sx={{ ml: "1rem" }} />
-        <VoteChoice
-          icon={<ListIcon />}
-          title="Provide options"
-          subtitle="Provide multiple options for users to choose from. This type of proposal only allows for a single actions to be decided on."
-        />
-      </Box>
+      {content[votingSystem]}
     </>
   );
 };
