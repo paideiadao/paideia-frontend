@@ -6,11 +6,13 @@ import ProposalContext, {
   IProposalContext,
 } from "@lib/dao/proposal/ProposalContext";
 import { IObj } from "@lib/utilities";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import { IProposalAction } from "@pages/dao/[id]/proposal/create";
 import * as React from "react";
 import Options from "./vote/Options";
 import Selector from "./vote/Selector";
 import YesNo from "./vote/YesNo/YesNo";
+import AddIcon from "@mui/icons-material/Add";
 
 interface IVoteChoice {
   title: string;
@@ -64,6 +66,36 @@ const ProposalVote: React.FC = () => {
         tooltipLink="/here"
       />
       {content[votingSystem]}
+      {context.api.value.actions.filter(
+        (i: IProposalAction) => i.name === undefined
+      ).length === 0 && (
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            mt: ".5rem",
+          }}
+        >
+          <Button
+            endIcon={<AddIcon />}
+            onClick={() => {
+              const temp = [...context.api.value.actions];
+              temp.push({
+                name: undefined,
+                data: undefined,
+              });
+              context.api.setValue({
+                ...context.api.value,
+                actions: temp,
+              });
+            }}
+          >
+            Add Another Action
+          </Button>
+        </Box>
+      )}
     </>
   );
 };

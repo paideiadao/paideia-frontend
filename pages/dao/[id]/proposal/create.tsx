@@ -20,10 +20,20 @@ import PublishIcon from "@mui/icons-material/Publish";
 import Warning from "@components/utilities/Warning";
 
 export interface IProposalAction {
-  name: 'Send funds' | 'Create liquidity pool' | "Change DAO's description" | "Quadratic voting" | 'Vote duration' | 'Support' | 'Quorum' | 'Optimistic governance' | undefined;
+  name:
+    | "Custom action"
+    | "Send funds"
+    | "Create liquidity pool"
+    | "Change DAO's description"
+    | "Quadratic voting"
+    | "Vote duration"
+    | "Support"
+    | "Quorum"
+    | "Optimistic governance"
+    | undefined;
   data: any;
   close?: () => void;
-  c?: Number;
+  c?: number;
 }
 
 export interface IProposal {
@@ -58,11 +68,19 @@ const CreateProposal: React.FC = () => {
   });
   const context = React.useContext<IGlobalContext>(GlobalContext);
   const api = new ProposalApi(
-    context.api.alert,
-    context.api.setAlert,
+    context.api === undefined ? undefined : context.api.alert,
+    context.api === undefined ? undefined : context.api.setAlert,
     value,
     setValue
   );
+
+  React.useEffect(() => {
+    if (context.api !== undefined) {
+      api.alert = context.api.alert;
+      api.setAlert = context.api.setAlert;
+    }
+  }, [context.api]);
+
   const [publish, setPublish] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
 

@@ -2,7 +2,7 @@ import { Box, Button, InputBase, Paper } from "@mui/material";
 import * as React from "react";
 import BalanceIcon from "@mui/icons-material/Balance";
 import CancelIcon from "@mui/icons-material/Cancel";
-import QuadraticVoting from "./QuadraticVoting";
+import QuadraticVoting from "./Actions/QuadraticVoting";
 import {
   CapsInfo,
   Header,
@@ -10,25 +10,58 @@ import {
 import { IProposalAction } from "@pages/dao/[id]/proposal/create";
 import SearchIcon from "@mui/icons-material/Search";
 import ActionSelect from "./ActionSelect";
-import ProposalContext, { IProposalContext } from "@lib/dao/proposal/ProposalContext";
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import SettingsIcon from '@mui/icons-material/Settings';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import AddIcon from '@mui/icons-material/Add';
+import ProposalContext, {
+  IProposalContext,
+} from "@lib/dao/proposal/ProposalContext";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import SettingsIcon from "@mui/icons-material/Settings";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import AddIcon from "@mui/icons-material/Add";
+import SendFunds from "./Actions/SendFunds";
+import LiquidityPool from "./Actions/LiquidityPool";
+import DaoDescription from "./Actions/DaoDescription";
+import VoteDuration from "./Actions/VoteDuration";
+import Support from "./Actions/Support";
+import Quorum from "./Actions/Quorum";
+import OptimisticGovernance from "./Actions/OptimisticGovernance";
 
 export interface IActionType {
-  title: 'Send funds' | 'Create liquidity pool' | "Change DAO's description" | "Quadratic voting" | 'Vote duration' | 'Support' | 'Quorum' | 'Optimistic governance' | undefined;
+  title:
+    | "Custom action"
+    | "Send funds"
+    | "Create liquidity pool"
+    | "Change DAO's description"
+    | "Quadratic voting"
+    | "Vote duration"
+    | "Support"
+    | "Quorum"
+    | "Optimistic governance"
+    | undefined;
   subtitle: string;
   icon: JSX.Element;
   mostCommon?: boolean;
-  select?: () => void
+  select?: () => void;
 }
 
 const renderDisplay = (display: string, props: IProposalAction) => {
   switch (display) {
     case "Quadratic voting":
       return <QuadraticVoting {...props} />;
+    case "Send funds":
+      return <SendFunds {...props} />;
+    case "Create liquidity pool":
+      return <LiquidityPool {...props} />;
+    case "Change DAO's description":
+      return <DaoDescription {...props} />;
+    case "Vote duration":
+      return <VoteDuration {...props} />;
+    case "Support":
+      return <Support {...props} />;
+    case "Quorum":
+      return <Quorum {...props} />;
+    case "Optimistic governance":
+      return <OptimisticGovernance {...props} />;
   }
 };
 
@@ -38,19 +71,19 @@ const AddAction: React.FC<IProposalAction> = (props) => {
       title: "Send funds",
       subtitle: "Propose to send an amount of fund to one or multiple wallets",
       icon: <AttachMoneyIcon />,
-      mostCommon: true
+      mostCommon: true,
     },
     {
       title: "Create liquidity pool",
       subtitle: "Create a liquidity pool with a set amount of tokens",
       icon: <AttachMoneyIcon />,
-      mostCommon: true
+      mostCommon: true,
     },
     {
       title: "Change DAO's description",
       subtitle: "Propose a different text for the DAO's description",
       icon: <SettingsIcon />,
-      mostCommon: true
+      mostCommon: true,
     },
     {
       title: "Quadratic voting",
@@ -59,30 +92,33 @@ const AddAction: React.FC<IProposalAction> = (props) => {
     },
     {
       title: "Vote duration",
-      subtitle: "Create, edit, or delete the vote durations set for the DAO's governance",
+      subtitle:
+        "Create, edit, or delete the vote durations set for the DAO's governance",
       icon: <BalanceIcon />,
     },
     {
       title: "Support",
-      subtitle: "Edit the minimum level of support needed for single choice voting",
+      subtitle:
+        "Edit the minimum level of support needed for single choice voting",
       icon: <BalanceIcon />,
     },
     {
       title: "Quorum",
-      subtitle: "Edit the minimum level of quorum needed fro any proposal to be approved",
+      subtitle:
+        "Edit the minimum level of quorum needed fro any proposal to be approved",
       icon: <BalanceIcon />,
     },
     {
       title: "Optimistic governance",
-      subtitle: "Turn on or off optimistic governance and or edit the whitelisted members",
+      subtitle:
+        "Turn on or off optimistic governance and or edit the whitelisted members",
       icon: <BalanceIcon />,
     },
   ];
   const [search, setSearch] = React.useState<string>("");
   const [showAll, setShowAll] = React.useState<boolean>(false);
 
-
-  const context = React.useContext<IProposalContext>(ProposalContext)
+  const context = React.useContext<IProposalContext>(ProposalContext);
 
   return (
     <Box
@@ -102,16 +138,6 @@ const AddAction: React.FC<IProposalAction> = (props) => {
     >
       {props.name === undefined ? (
         <Box sx={{ width: "100%", pl: "1rem", pr: "1rem" }}>
-          {/* <CancelIcon
-                sx={{
-                  position: "absolute",
-                  top: "1rem",
-                  right: "1rem",
-                  cursor: "pointer",
-                }}
-                color="error"
-                onClick={() => props.close()}
-              /> */}
           <Box
             sx={{
               width: "100%",
@@ -167,40 +193,90 @@ const AddAction: React.FC<IProposalAction> = (props) => {
             />
           </Paper>
           <Box sx={{ mt: "1rem" }}>
-            <CapsInfo title={showAll ? 'All actions' : search === '' ? "Most Common Actions" : 'Search Results'} mb='.25rem' />
+            <CapsInfo
+              title={
+                showAll
+                  ? "All actions"
+                  : search === ""
+                  ? "Most Common Actions"
+                  : "Search Results"
+              }
+              mb=".25rem"
+            />
             {actionTypes
               .filter((i: IActionType) => {
                 let temp = search.toLowerCase();
-                return showAll ? true : temp === ""
+                return showAll
+                  ? true
+                  : temp === ""
                   ? i.mostCommon
                   : i.title.toLowerCase().includes(temp);
               })
               .map((i: IActionType, c: number) => {
-                return <ActionSelect {...i} select={() => {
-                  let temp = [...context.api.value.actions]
-                  temp[c].name = i.title
-                  context.api.setValue({
-                    ...context.api.value,
-                    actions: temp
-                  })
-                }}/>;
+                return (
+                  <ActionSelect
+                    key={`proposal-action-${c}`}
+                    {...i}
+                    select={() => {
+                      let temp = [...context.api.value.actions];
+                      temp[props.c].name = i.title;
+                      context.api.setValue({
+                        ...context.api.value,
+                        actions: temp,
+                      });
+                    }}
+                  />
+                );
               })}
           </Box>
-          <Box sx={{width: '100%', borderTop: 1, borderColor: 'border.main'}}>
+          <Box sx={{ width: "100%", borderTop: 1, borderColor: "border.main" }}>
             <ActionSelect
-              icon={<AddIcon/>}
-              title='Custom action'
+              icon={<AddIcon />}
+              select={() => {
+                let temp = [...context.api.value.actions];
+                temp[props.c].name = "Custom action";
+                context.api.setValue({
+                  ...context.api.value,
+                  actions: temp,
+                });
+              }}
+              title="Custom action"
               subtitle="Create your own action from scratch, you can even include a call to a custom smart contract."
             />
           </Box>
-          <Box sx={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', pb: '.5rem'}}>
-              <Button onClick={() => setShowAll(!showAll)} endIcon={showAll ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}>
-                {showAll ? 'Show most common actions' : 'Show all actions' }
-              </Button>
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              pb: ".5rem",
+            }}
+          >
+            <Button
+              onClick={() => setShowAll(!showAll)}
+              endIcon={
+                showAll ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />
+              }
+            >
+              {showAll ? "Show most common actions" : "Show all actions"}
+            </Button>
           </Box>
         </Box>
       ) : (
-        renderDisplay(props.name, props)
+        <>
+          <CancelIcon
+            sx={{
+              position: "absolute",
+              top: "1rem",
+              right: "1rem",
+              cursor: "pointer",
+            }}
+            color="error"
+            onClick={() => props.close()}
+          />
+          {renderDisplay(props.name, props)}
+        </>
       )}
     </Box>
   );

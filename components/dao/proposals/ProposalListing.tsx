@@ -73,7 +73,7 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
         <Header large title={props.title} />
         <Link href={id === undefined ? "/dao/create" : `/dao/${id}/create`}>
           <Button variant="contained" sx={{ ml: "auto" }} endIcon={<AddIcon />}>
-            Create New 
+            Create New
           </Button>
         </Link>
       </Box>
