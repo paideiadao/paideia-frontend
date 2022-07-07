@@ -1,11 +1,11 @@
 
 import React, { FC } from 'react';
 import PageHeader from "@components/PageHeader";
-import { 
-  Typography, 
-  Grid, 
-  Container, 
-  Box, 
+import {
+  Typography,
+  Grid,
+  Container,
+  Box,
 } from "@mui/material";
 import Image from "next/image";
 import Highlights from '@components/Highlights';
@@ -24,28 +24,29 @@ export default function Projects() {
         subTitleTwo="Paideia and new ones coming soon. "
       />
       <Highlights />
-      <Container sx={{ px: "24px", py: '60px' }} id="navContainer">
-        
-          <Box component="section" id="sponsored">
-            
-          </Box>
-          <Box component="section" id="feedback">
-            
-          </Box>
-
-          <Box component="section" id="activedaos">
+      <Container sx={{ px: "24px", py: '240px' }}>
+        <Grid container>
+          <Grid item md={3}>
+          </Grid>
+          <Grid item md={9}>
             <SectionHeading
-              category="The Solution"
-              title="Paideia is a DAO management software suite"
-              sx={{ mb: '280px' }}
-            >
-              It is designed to make it easy for anyone to create, manage and be involved in a DAO, as well as facilitate the distribution of governance tokens and allow the ability to raise funds. The technical goal is to provide a secure DAO tool set that is open, easy to use, inexpensive, and allows for use in any environment.
-
-              With Paideia in the hands of anyone that wishes to use it, this software suite can open new ways for people to work together, to change their lives and the world for the better.
-            </SectionHeading>
-          </Box>
-
-        
+              category="Why Trust Us?"
+              title="Feedback from our Users"
+              sx={{ mb: '80px', maxWidth: '550px', }}
+            ></SectionHeading>
+            <Grid container>
+              <Grid item md={4}>
+                Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!
+              </Grid>
+              <Grid item md={4}>
+                Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!
+              </Grid>
+              <Grid item md={4}>
+                Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
       </Container>
     </>
   );
