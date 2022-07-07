@@ -20,7 +20,7 @@ import PublishIcon from "@mui/icons-material/Publish";
 import Warning from "@components/utilities/Warning";
 
 export interface IProposalAction {
-  name: "Quadratic Voting" | undefined;
+  name: 'Send funds' | 'Create liquidity pool' | "Change DAO's description" | "Quadratic voting" | 'Vote duration' | 'Support' | 'Quorum' | 'Optimistic governance' | undefined;
   data: any;
   close?: () => void;
   c?: Number;

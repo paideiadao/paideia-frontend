@@ -28,7 +28,7 @@ const Create: React.FC = () => {
           <Link
             href={
               id === undefined
-                ? "/dao/proposals/create"
+                ? "/dao/proposal/create"
                 : `/dao/${id}/proposal/create`
             }
           >
