@@ -1,17 +1,17 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext } from "react";
 import Head from "next/head";
 import Header from "@components/layout/Header";
 import Footer from "@components/layout/Footer";
 import Grid from "@mui/material/Grid";
 
 interface IContextProps {
-  inPageNav: boolean; 
-  setInPageNav: React.Dispatch<React.SetStateAction<boolean>>; 
+  inPageNav: boolean;
+  setInPageNav: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const [inPageNav, setInPageNav] = useState(false)
- 
+  const [inPageNav, setInPageNav] = useState(false);
+
   return (
     <>
       <Head>
@@ -40,8 +40,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </PageNavContext.Provider>
     </>
   );
-}
+};
 
-export default Layout
+export default Layout;
 
 export const PageNavContext = createContext({} as IContextProps);

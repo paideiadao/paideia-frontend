@@ -8,7 +8,7 @@ import Link from "next/link";
 export interface IMemberCard {
   width: any;
   favorited: boolean;
-  id: string;
+  id: number;
   name: string;
   level: number;
   followers: number;

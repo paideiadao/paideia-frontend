@@ -40,7 +40,7 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
           left: "13.5rem",
           pt: "0rem",
           pb: ".5rem",
-          overflowY: "scroll",
+          overflowY: "auto",
           height: "calc(100vh - 3.5rem)",
           zIndex: 1000,
         }}

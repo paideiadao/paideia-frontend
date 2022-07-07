@@ -1,16 +1,25 @@
-
-import React, { FC } from 'react';
+import React, { FC } from "react";
 import PageHeader from "@components/PageHeader";
 import PageNav from "@components/PageNav";
 import Blockquote from "@components/Blockquote";
-import { Typography, Grid, Container, Divider, Box, Card, CardContent, Avatar, Link } from "@mui/material";
+import {
+  Typography,
+  Grid,
+  Container,
+  Divider,
+  Box,
+  Card,
+  CardContent,
+  Avatar,
+  Link,
+} from "@mui/material";
 import Image from "next/image";
 import WhitepaperQuote from "@components/landing/WhitepaperQuote";
 import SectionHeading from "@components/SectionHeading";
 import RoadmapAccordion from "@components/RoadmapAccordion";
 import CustomTable from "@components/CustomTable";
 
-import TabsPanel from '@components/TabsPanel';
+import TabsPanel from "@components/TabsPanel";
 import CardSlider from "@components/CardSlider";
 import TwitterIcon from "@components/svgs/TwitterIcon";
 import LinkedinIcon from "@components/svgs/LinkedinIcon";
@@ -48,17 +57,16 @@ const navLinks = [
     position: undefined,
   },
   {
-
-    name: 'Tokenomics',
-    icon: 'toll',
-    link: 'tokenomics',
-    position: undefined
+    name: "Tokenomics",
+    icon: "toll",
+    link: "tokenomics",
+    position: undefined,
   },
   {
-    name: 'Team',
-    icon: 'groups',
-    link: 'team',
-    position: undefined
+    name: "Team",
+    icon: "groups",
+    link: "team",
+    position: undefined,
   },
 ];
 
@@ -233,23 +241,22 @@ const tableRows = [
 
 const tabs = [
   {
-
-    title: 'Distribution',
-    fragment: <CustomTable rows={tableRows} heading={tableHeading} />
+    title: "Distribution",
+    fragment: <CustomTable rows={tableRows} heading={tableHeading} />,
   },
   {
-    title: 'Chart',
-    fragment: <Box sx={{ p: '24px', minHeight: '600px' }}>Hello</Box>
+    title: "Chart",
+    fragment: <Box sx={{ p: "24px", minHeight: "600px" }}>Hello</Box>,
   },
-]
+];
 
 const cardTitleStyle = {
   fontSize: "16px",
   fontWeight: "400",
   lineHeight: "24px",
   fontFamily: '"Inter", sans-serif',
-  mb: '12px',
-  textAlign: 'center',
+  mb: "12px",
+  textAlign: "center",
 };
 
 const iconLinkStyles = {
@@ -261,40 +268,49 @@ const iconLinkStyles = {
 };
 
 interface IPerson {
-  name: string,
-  title: string,
-  image?: string,
-  linkedin?: string,
-  twitter?: string,
+  name: string;
+  title: string;
+  image?: string;
+  linkedin?: string;
+  twitter?: string;
 }
 
 interface IPersonObj {
   person: IPerson;
 }
 
-
 const MyCard: FC<IPersonObj> = ({ person }) => {
   return (
-    <Card sx={{
-      background: 'rgba(255, 255, 255, 0.02)',
-      width: '196px',
-      maxWidth: 'calc(100vw - 48px)',
-      whiteSpace: 'normal',
-      borderRadius: '10px',
-      border: '1px solid rgba(255, 255, 255, 0.12)'
-    }}>
-      <CardContent sx={{ height: '100%' }}>
+    <Card
+      sx={{
+        background: "rgba(255, 255, 255, 0.02)",
+        width: "196px",
+        maxWidth: "calc(100vw - 48px)",
+        whiteSpace: "normal",
+        borderRadius: "10px",
+        border: "1px solid rgba(255, 255, 255, 0.12)",
+      }}
+    >
+      <CardContent sx={{ height: "100%" }}>
         <Grid
           container
           direction="column"
           justifyContent="space-between"
           alignItems="center"
-          sx={{ height: '100%' }}
+          sx={{ height: "100%" }}
         >
           <Grid item>
-            <Avatar src={person?.image} sx={{ width: 80, height: 80, mx: 'auto' }} alt={person.name} />
-            <Typography sx={{ ...cardTitleStyle, mt: '12px' }}>{person.name}</Typography>
-            <Typography sx={{ ...cardTitleStyle, color: '#aaa' }}>{person.title}</Typography>
+            <Avatar
+              src={person?.image}
+              sx={{ width: 80, height: 80, mx: "auto" }}
+              alt={person.name}
+            />
+            <Typography sx={{ ...cardTitleStyle, mt: "12px" }}>
+              {person.name}
+            </Typography>
+            <Typography sx={{ ...cardTitleStyle, color: "#aaa" }}>
+              {person.title}
+            </Typography>
           </Grid>
           <Grid item>
             <Grid container spacing={2}>
@@ -327,66 +343,65 @@ const MyCard: FC<IPersonObj> = ({ person }) => {
         </Grid>
       </CardContent>
     </Card>
-  )
-}
+  );
+};
 
 const theCards: IPerson[] = [
   {
-
-    name: 'Marty C.',
-    title: 'CEO',
-    image: '',
-    linkedin: '',
-    twitter: 'https://twitter.com/esot321c',
+    name: "Marty C.",
+    title: "CEO",
+    image: "",
+    linkedin: "",
+    twitter: "https://twitter.com/esot321c",
   },
   {
-    name: 'Leif Erickson',
-    title: 'CTO',
-    image: '',
-    linkedin: '',
-    twitter: 'https://twitter.com/leiferiqson',
+    name: "Leif Erickson",
+    title: "CTO",
+    image: "",
+    linkedin: "",
+    twitter: "https://twitter.com/leiferiqson",
   },
   {
-    name: 'Nicolas Bondancia Girard',
-    title: 'UX/UI Designer',
-    image: '/images/team/nico.png',
-    linkedin: 'https://linkedin.com/in/nicolas-bondancia-girard-aa39a0197/',
-    twitter: 'https://twitter.com/NicoUXUI',
+    name: "Nicolas Bondancia Girard",
+    title: "UX/UI Designer",
+    image: "/images/team/nico.png",
+    linkedin: "https://linkedin.com/in/nicolas-bondancia-girard-aa39a0197/",
+    twitter: "https://twitter.com/NicoUXUI",
   },
   {
-    name: 'Ornella Manes',
-    title: 'Graphic Designer',
-    image: '/images/team/orne.jpeg',
-    linkedin: 'https://linkedin.com/in/ornellamanes/',
-    twitter: '',
+    name: "Ornella Manes",
+    title: "Graphic Designer",
+    image: "/images/team/orne.jpeg",
+    linkedin: "https://linkedin.com/in/ornellamanes/",
+    twitter: "",
   },
   {
-    name: 'Robert Pieter van Leeuwen - Luivatra',
-    title: 'Lead Ergoscript Dev',
-    image: '',
-    linkedin: 'https://linkedin.com/in/robert-pieter-van-leeuwen-28b8b853/',
-    twitter: 'https://twitter.com/Luivatra',
+    name: "Robert Pieter van Leeuwen - Luivatra",
+    title: "Lead Ergoscript Dev",
+    image: "",
+    linkedin: "https://linkedin.com/in/robert-pieter-van-leeuwen-28b8b853/",
+    twitter: "https://twitter.com/Luivatra",
   },
   {
-    name: 'Abhishek Pal - noob77777',
-    title: 'Full Stack Dev',
-    image: '/images/team/noob.jpg',
-    linkedin: '',
-    twitter: 'https://twitter.com/abhishekpc3po',
+    name: "Abhishek Pal - noob77777",
+    title: "Full Stack Dev",
+    image: "/images/team/noob.jpg",
+    linkedin: "",
+    twitter: "https://twitter.com/abhishekpc3po",
   },
   {
-    name: 'Trapper T',
-    title: 'Front End Dev',
-    image: '',
-    linkedin: '',
-    twitter: '',
+    name: "Trapper T",
+    title: "Front End Dev",
+    image: "",
+    linkedin: "",
+    twitter: "",
   },
   {
-    name: 'Alexis Ekici',
-    title: 'Marketing Manager',
-    image: '/images/team/alexis.jpg',
-    linkedin: '',
-    twitter: 'https://twitter.com/AlexisEkici',
+    name: "Alexis Ekici",
+    title: "Marketing Manager",
+    image: "/images/team/alexis.jpg",
+    linkedin: "",
+    twitter: "https://twitter.com/AlexisEkici",
   },
 ];
 
@@ -402,61 +417,74 @@ export default function About() {
         subTitleTwo="Software Suite"
       />
 
-      <Container sx={{ px: "24px", py: '60px' }} id="navContainer">
+      <Container sx={{ px: "24px", py: "60px" }} id="navContainer">
         <PageNav navLinks={navLinks}>
           <Box component="section" id="introduction">
             <Grid container>
               <Grid item md={7}>
-                <Blockquote small sx={{ mb: '48px' }}>
-                  Paideia is an organization whose purpose is to create a functional, secure, and well-documented DAO software suite that supports DAOs as they form and develop. It will make it easy for anyone to initiate a DAO, distribute tokens using various methods, create proposals and collect votes. It will help various organizations share funds in a secure and fair way.
+                <Blockquote small sx={{ mb: "48px" }}>
+                  Paideia is an organization whose purpose is to create a
+                  functional, secure, and well-documented DAO software suite
+                  that supports DAOs as they form and develop. It will make it
+                  easy for anyone to initiate a DAO, distribute tokens using
+                  various methods, create proposals and collect votes. It will
+                  help various organizations share funds in a secure and fair
+                  way.
                 </Blockquote>
               </Grid>
-              <Grid item md={5}>
-              </Grid>
+              <Grid item md={5}></Grid>
             </Grid>
             <Grid container>
-              <Grid item md={3}>
-              </Grid>
+              <Grid item md={3}></Grid>
               <Grid item md={7}>
-                <Typography sx={{ fontWeight: '700', mb: '48px' }}>
-                  Anyone who needs to manage a treasury as a group will benefit from these tools. Examples include:
+                <Typography sx={{ fontWeight: "700", mb: "48px" }}>
+                  Anyone who needs to manage a treasury as a group will benefit
+                  from these tools. Examples include:
                 </Typography>
-                <Grid container justifyContent="center" spacing={6} sx={{ mb: '48px' }}>
+                <Grid
+                  container
+                  justifyContent="center"
+                  spacing={6}
+                  sx={{ mb: "48px" }}
+                >
                   {examples.map(({ text, icon }, i) => {
                     return (
-                      <Grid item md={6} key={i} sx={{ maxWidth: '320px' }}>
+                      <Grid item md={6} key={i} sx={{ maxWidth: "320px" }}>
                         <Image src={icon} width={35} height={35} />
-                        <Typography sx={{
-                          fontFamily: '"Space Grotesk", sans-serif',
-                          fontWeight: '600',
-                          fontSize: '18px',
-                        }}>
+                        <Typography
+                          sx={{
+                            fontFamily: '"Space Grotesk", sans-serif',
+                            fontWeight: "600",
+                            fontSize: "18px",
+                          }}
+                        >
                           {text}
                         </Typography>
                       </Grid>
-                    )
+                    );
                   })}
                 </Grid>
-                <Grid item md={2}>
-                </Grid>
+                <Grid item md={2}></Grid>
               </Grid>
             </Grid>
           </Box>
           <Box component="section" id="whitepaper">
-            <WhitepaperQuote sx={{ my: '64px' }} />
+            <WhitepaperQuote sx={{ my: "64px" }} />
           </Box>
           <Box component="section" id="theproblem">
             <SectionHeading
               category="The Problem"
               title="Functionality, Security, and Support"
-              sx={{ mb: '120px' }}
+              sx={{ mb: "120px" }}
             >
-              People do not join DAOs to create software. They join them to accomplish something in the real world that benefits them or their communities. But, a DAO needs software to enable it to function as a decentralized, autonomous organization. DAOs need an off-the-shelf DAO toolkit, one that provides:
+              People do not join DAOs to create software. They join them to
+              accomplish something in the real world that benefits them or their
+              communities. But, a DAO needs software to enable it to function as
+              a decentralized, autonomous organization. DAOs need an
+              off-the-shelf DAO toolkit, one that provides:
             </SectionHeading>
-            <Grid container sx={{ mb: '200px' }}>
-              <Grid item md={3}>
-
-              </Grid>
+            <Grid container sx={{ mb: "200px" }}>
+              <Grid item md={3}></Grid>
               <Grid item md={7}>
                 <Grid container direction="column" spacing={12}>
                   {problems.map(({ num, title, body }, i) => {
@@ -464,77 +492,90 @@ export default function About() {
                       <Grid item key={i}>
                         <Grid container>
                           <Grid item xs={4}>
-                            <Typography sx={{
-                              fontFamily: '"Viga", sans-serif',
-                              fontSize: '100px',
-                              lineHeight: '100px'
-                            }}>
+                            <Typography
+                              sx={{
+                                fontFamily: '"Viga", sans-serif',
+                                fontSize: "100px",
+                                lineHeight: "100px",
+                              }}
+                            >
                               {num}&#47;
                             </Typography>
                           </Grid>
                           <Grid item xs={8}>
-                            <Typography sx={{
-                              fontFamily: '"Space Grotesk", sans-serif',
-                              fontWeight: '700',
-                              fontSize: '24px',
-                            }}>
+                            <Typography
+                              sx={{
+                                fontFamily: '"Space Grotesk", sans-serif',
+                                fontWeight: "700",
+                                fontSize: "24px",
+                              }}
+                            >
                               {title}
                             </Typography>
-                            <Divider sx={{ my: '12px' }} />
-                            <Typography>
-                              {body}
-                            </Typography>
+                            <Divider sx={{ my: "12px" }} />
+                            <Typography>{body}</Typography>
                           </Grid>
                         </Grid>
                       </Grid>
-                    )
+                    );
                   })}
                 </Grid>
               </Grid>
-              <Grid item md={2}>
-
-              </Grid>
+              <Grid item md={2}></Grid>
             </Grid>
           </Box>
           <Box component="section" id="thesolution">
-            <Box sx={{ mb: '48px' }}>
-              <Image src="/exclamation.svg" height={266} width={60} layout="fixed" />
+            <Box sx={{ mb: "48px" }}>
+              <Image
+                src="/exclamation.svg"
+                height={266}
+                width={60}
+                layout="fixed"
+              />
             </Box>
             <SectionHeading
               category="The Solution"
               title="Paideia is a DAO management software suite"
-              sx={{ mb: '280px' }}
+              sx={{ mb: "280px" }}
             >
-              It is designed to make it easy for anyone to create, manage and be involved in a DAO, as well as facilitate the distribution of governance tokens and allow the ability to raise funds. The technical goal is to provide a secure DAO tool set that is open, easy to use, inexpensive, and allows for use in any environment.
-
-              With Paideia in the hands of anyone that wishes to use it, this software suite can open new ways for people to work together, to change their lives and the world for the better.
+              It is designed to make it easy for anyone to create, manage and be
+              involved in a DAO, as well as facilitate the distribution of
+              governance tokens and allow the ability to raise funds. The
+              technical goal is to provide a secure DAO tool set that is open,
+              easy to use, inexpensive, and allows for use in any environment.
+              With Paideia in the hands of anyone that wishes to use it, this
+              software suite can open new ways for people to work together, to
+              change their lives and the world for the better.
             </SectionHeading>
           </Box>
           <Box component="section" id="roadmap">
-            <RoadmapAccordion sx={{ mb: '280px' }} />
+            <RoadmapAccordion sx={{ mb: "280px" }} />
           </Box>
           <Box component="section" id="tokenomics">
             <SectionHeading
               category="Paideia Token"
               title="Tokenomics"
-              sx={{ mb: '100px' }}
+              sx={{ mb: "100px" }}
             />
-            <Box sx={{ width: '100%', mb: '280px' }}>
-              <TabsPanel tabs={tabs} headline={'There will be a max supply of 200M Paideia tokens distributed as follows: '} />
+            <Box sx={{ width: "100%", mb: "280px" }}>
+              <TabsPanel
+                tabs={tabs}
+                headline={
+                  "There will be a max supply of 200M Paideia tokens distributed as follows: "
+                }
+              />
             </Box>
           </Box>
           <Box component="section" id="team">
             <SectionHeading
               category="Get to know us"
               title="Our Team"
-              sx={{ mb: '100px' }}
+              sx={{ mb: "100px" }}
             />
             <CardSlider uniqueId="team" contained>
-              {
-                theCards.map((person, i: number) => {
-                  return <MyCard key={i} person={person} />
-                })
-              }
+              {theCards.map((person, i: number) => {
+                return <MyCard key={i} person={person} />;
+              })}
             </CardSlider>
           </Box>
         </PageNav>

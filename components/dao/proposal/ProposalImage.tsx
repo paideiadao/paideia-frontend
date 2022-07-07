@@ -1,11 +1,13 @@
 import { LearnMore } from "@components/creation/utilities/HeaderComponents";
-import DiscussionContext from "@lib/dao/discussion/DiscussionContext";
+import ProposalContext, {
+  IProposalContext,
+} from "@lib/dao/proposal/ProposalContext";
 import { Box } from "@mui/material";
 import * as React from "react";
-import DiscussionBanner from "./DiscussionBanner";
+import DiscussionBanner from "../discussion/DiscussionBanner";
 
-const DiscussionImage: React.FC = () => {
-  const context = React.useContext(DiscussionContext);
+const ProposalImage: React.FC = () => {
+  const context = React.useContext<IProposalContext>(ProposalContext);
   const data = context.api.value.image;
   const [url, setUrl] = React.useState<any>(data === undefined ? "" : data.url);
 
@@ -55,7 +57,7 @@ const DiscussionImage: React.FC = () => {
     <>
       <LearnMore
         small
-        title="Discussion image"
+        title="Proposal image"
         tooltipText="Content Here"
         tooltipTitle="Title Here"
         tooltipLink="/here"
@@ -64,10 +66,10 @@ const DiscussionImage: React.FC = () => {
         file={data === undefined ? "" : data.file}
         fileUrl={data === undefined ? "" : data.url}
         handleImage={handleImage}
-        id="discussion-img-upload"
+        id="proposal-img-upload"
       />
     </>
   );
 };
 
-export default DiscussionImage;
+export default ProposalImage;
