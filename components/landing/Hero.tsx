@@ -52,7 +52,7 @@ export default function Hero() {
           <Typography
             sx={{
               fontSize: { xs: "3.5rem", md: "5rem" },
-              fontWeight: { xs: "500", md: "700" },
+              fontWeight: '500',
               color: "rgba(0,0,0,0.0)",
               lineHeight: 0.5,
               textTransform: "uppercase",
@@ -67,7 +67,7 @@ export default function Hero() {
           <Typography
             sx={{
               fontSize: { xs: "3.5rem", md: "5rem" },
-              fontWeight: { xs: "500", md: "700" },
+              fontWeight: '500',
               color: "rgba(0,0,0,0.0)",
               textTransform: "uppercase",
               fontFamily: '"Viga", sans-serif',
@@ -79,7 +79,7 @@ export default function Hero() {
               component="span"
               sx={{
                 fontSize: { xs: "3.5rem", md: "5rem" },
-                fontWeight: { xs: "500", md: "700" },
+                fontWeight: '500',
                 color: DarkTheme.palette.text.primary,
                 textTransform: "uppercase",
                 fontFamily: '"Viga", sans-serif',

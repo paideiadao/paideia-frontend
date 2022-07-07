@@ -115,7 +115,7 @@ export default function Header() {
         color="transparent"
         elevation={trigger && !navbarOpen ? 4 : 0}
         sx={{
-          zIndex: "30",
+          zIndex: "24",
           backdropFilter: `${trigger ? "blur(25px)" : ""}`,
         }}
       >
@@ -212,7 +212,7 @@ export default function Header() {
                   </IconButton>
                   <Box
                     sx={{
-                      zIndex: "21",
+                      zIndex: "25",
                       position: "relative",
                       width: "40px",
                       height: "40px",
@@ -266,16 +266,69 @@ export default function Header() {
       <Fade in={navbarOpen} style={{ transitionDuration: "400ms" }}>
         <Box
           sx={{
+            zIndex: "35",
+            position: "fixed",
+            width: "40px",
+            height: "40px",
+            top: '12px',
+            right: '24px',
+            color: "#fff",
+            // focus: 'outline-none',
+          }}
+          onClick={() => setNavbarOpen(!navbarOpen)}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              width: "20px",
+              transform: "translate(-50%, -50%)",
+              left: "50%",
+              top: "50%",
+            }}
+          >
+            <Box
+              sx={{
+                position: "absolute",
+                height: "3px",
+                width: "28px",
+                borderRadius: "2px",
+                background: "#fff",
+                transition: "transform 100ms ease-in-out",
+                transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                  }`,
+              }}
+            ></Box>
+            <Box
+              sx={{
+                position: "absolute",
+                height: "3px",
+                width: "28px",
+                borderRadius: "2px",
+                background: "#fff",
+                transition: "transform 100ms ease-in-out",
+                transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                  }`,
+              }}
+            ></Box>
+          </Box>
+        </Box>
+      </Fade>
+      <Fade in={navbarOpen} style={{ transitionDuration: "400ms" }}>
+
+        <Box
+          sx={{
             height: "100vh",
             width: "100vw",
             position: "fixed",
-            top: "0px",
+            bottom: "0px",
             zIndex: "25",
             background: "rgba(0, 0, 0, 0.1)",
             backdropFilter: "blur(55px)",
             p: "24px",
+            pb: '0'
           }}
         >
+
           <Grid
             container
             direction="column"
@@ -364,7 +417,7 @@ export default function Header() {
       </Fade>
       {(!inPageNav || checkWide) && (
         <ScrollTop>
-          <Fab sx={{ background: '#ED7E21' }} size="small" aria-label="scroll back to top">
+          <Fab sx={{ background: '#ED7E21' }} aria-label="scroll back to top">
             <KeyboardArrowUpIcon />
           </Fab>
         </ScrollTop>
