@@ -32,12 +32,12 @@ const pages = [
   },
   {
     name: "About",
-    link: "about",
+    link: "/about",
     disabled: false,
   },
   {
     name: "Education",
-    link: "education",
+    link: "/education",
     disabled: true,
   },
   {
@@ -47,17 +47,17 @@ const pages = [
   },
   {
     name: "Projects",
-    link: "projects",
+    link: "/projects",
     disabled: false,
   },
   {
     name: "Blog",
-    link: "blog",
+    link: "/blog",
     disabled: true,
   },
   {
     name: "Dashboard",
-    link: "dashboard",
+    link: "/dashboard",
     disabled: true,
   },
 ];
@@ -93,13 +93,55 @@ function ScrollTop(props: { children: React.ReactNode }) {
   );
 }
 
+interface INavItemProps {
+  size: number;
+  page: {
+    name: string;
+    link: string;
+    disabled: boolean;
+  };
+}
+
 export default function Header() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const { inPageNav } = useContext(PageNavContext)
 
   const router = useRouter();
 
-  console.log(router.asPath)
+  const NavigationListItem: React.FC<INavItemProps> = ({size, page}) => {
+    return (
+      <Grid item>
+        {page.disabled ? (
+          <Typography
+            sx={{
+              fontFamily: ['"Space Grotesk"', "sans-serif"].join(
+                ","
+              ),
+              fontWeight: "Bold",
+              textTransform: "uppercase",
+              fontSize: `${size}px`,
+              color: "#777",
+            }}
+          >
+            {page.name}
+          </Typography>
+        ) : (
+          <Link
+            href={page.link}
+            underline="hover"
+            sx={{
+              color: (router.pathname === page.link) ? LightTheme.palette.secondary.main : '#fff',
+              textDecoration: (router.pathname === page.link) ? 'underline' : 'none',
+              "&:hover": {
+                color: LightTheme.palette.secondary.main,
+              },
+            }}
+          >
+            {page.name}
+          </Link>
+        )}
+      </Grid>
+  )}
 
   const checkWide = useMediaQuery('(min-width:1100px)')
 
@@ -165,37 +207,7 @@ export default function Header() {
                     }}
                   >
                     {pages.map((page, i) => (
-                      <Grid key={i} item>
-                        {page.disabled ? (
-                          <Typography
-                            sx={{
-                              fontFamily: [
-                                '"Space Grotesk"',
-                                "sans-serif",
-                              ].join(","),
-                              fontWeight: "Bold",
-                              textTransform: "uppercase",
-                              fontSize: "13px",
-                              color: "#777",
-                            }}
-                          >
-                            {page.name}
-                          </Typography>
-                        ) : (
-                          <Link
-                            href={page.link}
-                            underline="hover"
-                            sx={{
-                              color: "#fff",
-                              "&:hover": {
-                                color: LightTheme.palette.secondary.main,
-                              },
-                            }}
-                          >
-                            {page.name}
-                          </Link>
-                        )}
-                      </Grid>
+                      <NavigationListItem size={13} key={i} page={page} />
                     ))}
                   </Grid>
                 </Grid>
@@ -352,36 +364,7 @@ export default function Header() {
                 }}
               >
                 {pages.map((page, i) => (
-                  <Grid key={i} item>
-                    {page.disabled ? (
-                      <Typography
-                        sx={{
-                          fontFamily: ['"Space Grotesk"', "sans-serif"].join(
-                            ","
-                          ),
-                          fontWeight: "Bold",
-                          textTransform: "uppercase",
-                          fontSize: "20px",
-                          color: "#777",
-                        }}
-                      >
-                        {page.name}
-                      </Typography>
-                    ) : (
-                      <Link
-                        href={page.link}
-                        underline="hover"
-                        sx={{
-                          color: "#fff",
-                          "&:hover": {
-                            color: LightTheme.palette.secondary.main,
-                          },
-                        }}
-                      >
-                        {page.name}
-                      </Link>
-                    )}
-                  </Grid>
+                  <NavigationListItem size={20} key={i} page={page} />
                 ))}
               </Grid>
             </Grid>

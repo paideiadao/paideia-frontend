@@ -6,11 +6,44 @@ import {
   Grid,
   Container,
   Box,
+  Divider,
+  Icon
 } from "@mui/material";
 import Image from "next/image";
 import Highlights from '@components/Highlights';
 import SectionHeading from "@components/SectionHeading";
+import ProjectList from '@components/ProjectsList';
 import { DarkTheme } from "@theme/theme";
+
+interface IQuotesProps {
+  quote: string;
+  author: string;
+}
+
+const quotes: IQuotesProps[] = [
+  {
+    quote: 'Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!',
+    author: 'Ornella Maines'
+  },
+  {
+    quote: 'Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!',
+    author: 'Ornella Maines'
+  },
+  {
+    quote: 'Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!',
+    author: 'Ornella Maines'
+  },
+]
+
+const daos = [
+  {
+    name: 'Swamp Audio',
+    image: '',
+    description: 'A layer 1 on chain royalty management platform',
+    link: '/',
+    category: 'Music'
+  }
+]
 
 export default function Projects() {
   return (
@@ -23,8 +56,10 @@ export default function Projects() {
         subTitleOne="Find all the projects launched on"
         subTitleTwo="Paideia and new ones coming soon. "
       />
+
       <Highlights />
-      <Container sx={{ px: "24px", py: '240px' }}>
+
+      <Container sx={{ py: '240px', }}>
         <Grid container>
           <Grid item md={3}>
           </Grid>
@@ -35,18 +70,38 @@ export default function Projects() {
               sx={{ mb: '80px', maxWidth: '550px', }}
             ></SectionHeading>
             <Grid container>
-              <Grid item md={4}>
-                Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!
-              </Grid>
-              <Grid item md={4}>
-                Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!
-              </Grid>
-              <Grid item md={4}>
-                Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!
-              </Grid>
+              {quotes.map((quote, i: number) => (
+                <Grid key={i} item md={4} sx={{ mb: '80px' }}>
+                  <Typography>
+                    {quote.quote}
+                  </Typography>
+                  <Box >
+                    <Divider sx={{ width: '70%', display: 'inline-block', verticalAlign: 'middle', borderColor: '#fff' }} />&nbsp;
+                    <Icon sx={{ verticalAlign: 'middle', fontSize: '20px' }}>add</Icon>
+                  </Box>
+                  <Typography>
+                    {quote.author}
+                  </Typography>
+                </Grid>
+              ))}
             </Grid>
           </Grid>
         </Grid>
+      </Container>
+
+      <Container sx={{ pb: '240px', }}>
+        <Grid container>
+          <Grid item md={3}>
+          </Grid>
+          <Grid item md={9}>
+            <SectionHeading
+              category="Who Uses Paideia?"
+              title="List of All Active DAOs"
+              sx={{ mb: '80px', maxWidth: '550px', }}
+            ></SectionHeading>
+          </Grid>
+        </Grid>
+        <ProjectList daos={daos} />
       </Container>
     </>
   );

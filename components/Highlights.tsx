@@ -162,13 +162,23 @@ function Item(props: any) {
                 zIndex: "1",
               }}
             >
-              <Image
-                src={props.item.image}
-                layout="fixed"
-                objectFit="cover"
-                height={558}
-                width={720}
-              />
+              <Box sx={{
+                backgroundImage: `url(${props.item.image})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center center',
+                width: '768px',
+                height: '558px',
+                zIndex: '2'
+              }}>
+                <Box sx={{ 
+                   width: '100%',
+                   height: '100%',
+                   background: 'rgba(111,161,169,1)',
+                   mixBlendMode: 'hard-light',
+                }}>
+                </Box>
+              </Box>
             </Box>
           </Box>
         </Grid>
@@ -203,12 +213,24 @@ function Item(props: any) {
                 zIndex: "1",
               }}
             >
-              <Image
-                src={props.item.image}
-                layout="fixed"
-                height={558}
-                width={768}
-              />
+              <Box sx={{
+                backgroundImage: `url(${props.item.image})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center center',
+                width: '768px',
+                height: '558px',
+                zIndex: '2'
+              }}>
+                <Box sx={{ 
+                   width: '100%',
+                   height: '100%',
+                   background: 'rgba(111,161,169,1)',
+                   mixBlendMode: 'hard-light',
+                }}>
+                </Box>
+              </Box>
+
             </Box>
           </Box>
         </Grid>
@@ -217,7 +239,7 @@ function Item(props: any) {
             <Content />
           </Box>
         </Grid>
-      </Grid>
+      </Grid >
     );
   } else if (sizeMd) {
     return (
@@ -231,9 +253,23 @@ function Item(props: any) {
         }}
       >
         <Grid item md={6}>
-          <Box sx={{ height: "558px", display: "block", position: "relative" }}>
-            <Image src={props.item.image} layout="fill" objectFit="cover" />
-          </Box>
+        <Box sx={{
+                backgroundImage: `url(${props.item.image})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center center',
+
+                height: '558px',
+                zIndex: '2'
+              }}>
+                <Box sx={{ 
+                   width: '100%',
+                   height: '100%',
+                   background: 'rgba(111,161,169,1)',
+                   mixBlendMode: 'hard-light',
+                }}>
+                </Box>
+              </Box>
         </Grid>
         <Grid item md={6} sx={{ pr: "63px" }}>
           <Content />
@@ -254,7 +290,23 @@ function Item(props: any) {
             maskImage: "linear-gradient(black 40%, transparent 100%)",
           }}
         >
-          <Image src={props.item.image} layout="fill" objectFit="cover" />
+          <Box sx={{
+                backgroundImage: `url(${props.item.image})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center center',
+                width: '100vw',
+                height: '400px',
+                zIndex: '2'
+              }}>
+                <Box sx={{ 
+                   width: '100%',
+                   height: '100%',
+                   background: 'rgba(111,161,169,1)',
+                   mixBlendMode: 'hard-light',
+                }}>
+                </Box>
+              </Box>
         </Box>
         <Box sx={{ pt: "300px", position: "relative", display: "block" }}>
           <Content />
