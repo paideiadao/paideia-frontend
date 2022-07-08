@@ -18,6 +18,7 @@ import { modalBackground } from "@components/utilities/modalBackground";
 import LoadingButton from "@mui/lab/LoadingButton";
 import PublishIcon from "@mui/icons-material/Publish";
 import Warning from "@components/utilities/Warning";
+import { IOptimisticGovernance } from "@components/dao/proposal/vote/YesNo/Actions/OptimisticGovernance";
 
 export interface IProposalAction {
   name:
@@ -31,7 +32,7 @@ export interface IProposalAction {
     | "Quorum"
     | "Optimistic governance"
     | undefined;
-  data: any;
+  data: IOptimisticGovernance;
   close?: () => void;
   c?: number;
 }
