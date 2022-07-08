@@ -61,13 +61,11 @@ export default function PageHeader({
           <Typography
             sx={{
               fontSize: { xs: "60px", sm: "80px", md: "100px" },
-              fontWeight: { xs: "400", sm: "600" },
+              fontWeight: '500',
               color: "rgba(0,0,0,0.0)",
               lineHeight: "100%",
               textTransform: "uppercase",
               fontFamily: '"Viga", sans-serif',
-              // strokeWidth: "1px",
-              // strokeColor: "#ffffff",
               letterSpacing: "-1.5px",
             }}
             className="outlineText"

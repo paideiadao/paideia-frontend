@@ -13,7 +13,6 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { DarkTheme, LightTheme } from "@theme/theme";
 import { useTheme } from "@mui/material/styles";
 import SectionTitle from "@components/SectionTitle";
-import GlassBox from "@components/GlassBox";
 import StarIcon from "@mui/icons-material/Star";
 import CardSlider from "@components/CardSlider";
 
@@ -76,21 +75,19 @@ const FeaturedCard = ({ dao }) => {
   return (
     <Box
       sx={{
-        background:
-          "linear-gradient(130.4deg, rgba(0, 0, 0, 0.4) 14.89%, rgba(0, 0, 0, 0.1) 87.67%)",
-        backdropFilter: "blur(5px)",
-        border: "1px solid",
-        borderImageSlice: "1",
-        borderWidth: "1px",
-        borderImageSource:
-          "linear-gradient(140deg, rgba(224, 104, 4, 0) 34.23%, rgba(224, 104, 4, 0.5) 72.7%)",
-        p: "24px",
+        // background: "linear-gradient(130.4deg, rgba(0, 0, 0, 0.4) 14.89%, rgba(0, 0, 0, 0.1) 87.67%)",
+        // backdropFilter: "blur(5px)",
+        // border: "1px solid",
+        // borderImageSlice: "1",
+        // borderWidth: "1px",
+        // borderImageSource: "linear-gradient(140deg, rgba(224, 104, 4, 0) 34.23%, rgba(224, 104, 4, 0.5) 72.7%)",
         height: "100%",
       }}
+      className="border-grad"
     >
       <Grid
         container
-        sx={{ height: "100%" }}
+        sx={{ height: "100%", p: "24px" }}
         direction="column"
         justifyContent="space-between"
         alignItems="flex-start"
