@@ -76,10 +76,9 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
   topAndBottomRef.current = topAndBottom;
 
   const handleResize = () => {
-
-    const element = document.getElementById('navContainer')
-    const topPosition = element.offsetTop
-    const totalHeight = element.getBoundingClientRect().height
+    const navContainer = document.getElementById('navContainer')
+    const topPosition = navContainer.offsetTop
+    const totalHeight = navContainer.getBoundingClientRect().height
     const thisBottom = topPosition + totalHeight
 
     navLinks.forEach((link: { link: string, position: number }) => {
