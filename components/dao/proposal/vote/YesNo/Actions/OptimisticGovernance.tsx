@@ -45,7 +45,8 @@ const OptimisticGovernance: React.FC<IProposalAction> = (props) => {
       />
       <Box
         sx={{
-          width: "100%",
+          width: "calc(100% + 1rem)",
+          ml: '-.5rem',
           borderBottom: 1,
           borderColor: "border.main",
           mt: "rem",
@@ -71,7 +72,8 @@ const OptimisticGovernance: React.FC<IProposalAction> = (props) => {
       />
       <Box
         sx={{
-          width: "100%",
+          width: "calc(100% + 1rem)",
+          ml: '-.5rem',
           borderBottom: 1,
           borderColor: "border.main",
           mt: ".5rem",
