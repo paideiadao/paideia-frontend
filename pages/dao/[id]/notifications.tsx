@@ -31,7 +31,17 @@ temp2.setDate(temp.getDate() - 5);
 temp3.setDate(temp.getDate() - 100);
 temp4.setTime(temp.getTime() - 0.5 * 60 * 60 * 1000);
 
-export const newNotifications = [
+export interface INotification {
+  img: string;
+  action: string;
+  username: string;
+  date: Date;
+  isread: number;
+  proposalname: string;
+  id: number;
+}
+
+export const newNotifications: INotification[] = [
   {
     img: ImagePlaceholder.src,
     username: "<User name>",
@@ -39,6 +49,7 @@ export const newNotifications = [
     proposalname: "<Proposal name>",
     date: temp4, // less than 1 hour, show minutes. less than 1 day, show hours. less than 1 month show days. less than 1 year, show years.
     isread: 1,
+    id: 1,
   },
   {
     img: ImagePlaceholder.src,
@@ -47,6 +58,7 @@ export const newNotifications = [
     proposalname: "<Proposal name>",
     date: temp1, // less than 1 hour, show minutes. less than 1 day, show hours. less than 1 month show days. less than 1 year, show years.
     isread: 0,
+    id: 2,
   },
   {
     img: ImagePlaceholder.src,
@@ -55,6 +67,7 @@ export const newNotifications = [
     proposalname: "<Proposal name>",
     date: temp2, // less than 1 hour, show minutes. less than 1 day, show hours. less than 1 month show days. less than 1 year, show years.
     isread: 0,
+    id: 3,
   },
   {
     img: ImagePlaceholder.src,
@@ -63,10 +76,11 @@ export const newNotifications = [
     proposalname: "<Proposal name>",
     date: temp3, // less than 1 hour, show minutes. less than 1 day, show hours. less than 1 month show days. less than 1 year, show years.
     isread: 1,
+    id: 4,
   },
 ];
 
-export const oldNotifications = [
+export const oldNotifications: INotification[] = [
   {
     img: ImagePlaceholder.src,
     username: "<User name>",
@@ -74,6 +88,7 @@ export const oldNotifications = [
     proposalname: "<Proposal name>",
     date: temp4, // less than 1 hour, show minutes. less than 1 day, show hours. less than 1 month show days. less than 1 year, show years.
     isread: 1,
+    id: 5,
   },
   {
     img: ImagePlaceholder.src,
@@ -82,6 +97,7 @@ export const oldNotifications = [
     proposalname: "<Proposal name>",
     date: temp1, // less than 1 hour, show minutes. less than 1 day, show hours. less than 1 month show days. less than 1 year, show years.
     isread: 0,
+    id: 6,
   },
   {
     img: ImagePlaceholder.src,
@@ -90,6 +106,7 @@ export const oldNotifications = [
     proposalname: "<Proposal name>",
     date: temp2, // less than 1 hour, show minutes. less than 1 day, show hours. less than 1 month show days. less than 1 year, show years.
     isread: 0,
+    id: 7,
   },
   {
     img: ImagePlaceholder.src,
@@ -98,6 +115,7 @@ export const oldNotifications = [
     proposalname: "<Proposal name>",
     date: temp3, // less than 1 hour, show minutes. less than 1 day, show hours. less than 1 month show days. less than 1 year, show years.
     isread: 1,
+    id: 8,
   },
 ];
 
@@ -192,7 +210,7 @@ const Notifications: React.FC<{ params: any }> = (props) => {
         }}
       >
         <CapsInfo title="New" />
-        {newNotifications.map((i: any, c: number) => {
+        {newNotifications.map((i: INotification, c: number) => {
           return <Notification i={i} />;
         })}
       </Box>
@@ -203,7 +221,7 @@ const Notifications: React.FC<{ params: any }> = (props) => {
         }}
       >
         <CapsInfo title="Old" />
-        {oldNotifications.map((i: any, c: number) => {
+        {oldNotifications.map((i: INotification, c: number) => {
           return <Notification i={i} />;
         })}
       </Box>
@@ -211,7 +229,9 @@ const Notifications: React.FC<{ params: any }> = (props) => {
   );
 };
 
-export const Notification: React.FC<{ i: any; m?: string }> = (props) => {
+export const Notification: React.FC<{ i: INotification; m?: string }> = (
+  props
+) => {
   let i = props.i;
   return (
     <Box

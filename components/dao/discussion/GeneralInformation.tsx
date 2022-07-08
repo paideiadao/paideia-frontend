@@ -1,4 +1,7 @@
 import { Header } from "@components/creation/utilities/HeaderComponents";
+import DiscussionContext, {
+  IDiscussionContext,
+} from "@lib/dao/discussion/DiscussionContext";
 import {
   Box,
   FormControl,
@@ -8,10 +11,10 @@ import {
   TextField,
 } from "@mui/material";
 import * as React from "react";
-import DiscussionContext from "./DiscussionContext";
 
 const GeneralInformation: React.FC = () => {
-  let discussionContext = React.useContext(DiscussionContext);
+  let discussionContext =
+    React.useContext<IDiscussionContext>(DiscussionContext);
   let value = discussionContext.api.value;
 
   return (

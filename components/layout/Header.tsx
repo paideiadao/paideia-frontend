@@ -1,5 +1,4 @@
-
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Grid from "@mui/material/Grid";
@@ -104,7 +103,7 @@ interface INavItemProps {
 
 export default function Header() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
-  const { inPageNav } = useContext(PageNavContext)
+  const { inPageNav } = useContext(PageNavContext);
 
   const router = useRouter();
 
@@ -250,8 +249,9 @@ export default function Header() {
                           borderRadius: "2px",
                           background: "#fff",
                           transition: "transform 100ms ease-in-out",
-                          transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"
-                            }`,
+                          transform: `${
+                            navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                          }`,
                         }}
                       ></Box>
                       <Box
@@ -262,8 +262,9 @@ export default function Header() {
                           borderRadius: "2px",
                           background: "#fff",
                           transition: "transform 100ms ease-in-out",
-                          transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
-                            }`,
+                          transform: `${
+                            navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                          }`,
                         }}
                       ></Box>
                     </Box>

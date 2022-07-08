@@ -1,21 +1,17 @@
-
-import React, { FC } from 'react';
-import { styled } from '@mui/system';
-import {
-  Grid,
-  Typography,
-} from '@mui/material';
-import TabsUnstyled from '@mui/base/TabsUnstyled';
-import TabsListUnstyled from '@mui/base/TabsListUnstyled';
-import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
-import TabUnstyled from '@mui/base/TabUnstyled';
+import React, { FC } from "react";
+import { styled } from "@mui/system";
+import { Grid, Typography } from "@mui/material";
+import TabsUnstyled from "@mui/base/TabsUnstyled";
+import TabsListUnstyled from "@mui/base/TabsListUnstyled";
+import TabPanelUnstyled from "@mui/base/TabPanelUnstyled";
+import TabUnstyled from "@mui/base/TabUnstyled";
 
 interface ITabs {
   tabs: {
-    title: string,
-    fragment: React.ReactFragment
-  }[],
-  headline?: string,
+    title: string;
+    fragment: React.ReactFragment;
+  }[];
+  headline?: string;
 }
 
 const TabsList = styled(TabsListUnstyled)`
@@ -25,7 +21,7 @@ const TabsList = styled(TabsListUnstyled)`
     -webkit-text-decoration: none;
     text-decoration: none;
     background-color: rgba(159, 210, 219, 0.08);
-    border: 1px solid #9FD2DB;
+    border: 1px solid #9fd2db;
   }
 `;
 
@@ -62,7 +58,8 @@ const TabsStyled = styled(TabUnstyled)`
   -webkit-text-decoration: none;
   text-decoration: none;
   color: inherit;
-  font-family: "Inter",-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", sans-serif;
   font-weight: 500;
   font-size: 0.8125rem;
   line-height: 1.75;
@@ -70,10 +67,16 @@ const TabsStyled = styled(TabUnstyled)`
   min-width: 64px;
   padding: 3px 9px;
   border-radius: 4px;
-  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   border: 1px solid rgba(159, 210, 219, 0.5);
-  color: #9FD2DB;
+  color: #9fd2db;
   min-width: 40px;
   :not(:last-of-type) {
     border-top-right-radius: 0;
@@ -89,31 +92,32 @@ const TabsStyled = styled(TabUnstyled)`
     -webkit-text-decoration: none;
     text-decoration: none;
     background-color: rgba(159, 210, 219, 0.08);
-    border: 1px solid #9FD2DB;
+    border: 1px solid #9fd2db;
   }
 `;
 
 const CustomTable: FC<ITabs> = ({ tabs, headline }) => {
-
   return (
     <TabsUnstyled defaultValue={0}>
       <Grid
         container
         spacing={3}
         sx={{
-          flexDirection: { xs: 'column', md: "row" },
+          flexDirection: { xs: "column", md: "row" },
           justifyContent: "space-between",
-          alignItems: { xs: 'center', md: "flex-start" },
-          marginBottom: '24px'
+          alignItems: { xs: "center", md: "flex-start" },
+          marginBottom: "24px",
         }}
       >
         <Grid item md={8}>
-          <Typography sx={{
-            fontFamily: '"Space Grotesk", sans-serif',
-            fontWeight: "500",
-            fontSize: "20px",
-            lineHeight: '23px',
-          }}>
+          <Typography
+            sx={{
+              fontFamily: '"Space Grotesk", sans-serif',
+              fontWeight: "500",
+              fontSize: "20px",
+              lineHeight: "23px",
+            }}
+          >
             {headline}
           </Typography>
         </Grid>
@@ -125,7 +129,7 @@ const CustomTable: FC<ITabs> = ({ tabs, headline }) => {
                   {tab.title}
                   <span className="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
                 </TabsStyled>
-              )
+              );
             })}
           </TabsList>
         </Grid>
@@ -134,14 +138,11 @@ const CustomTable: FC<ITabs> = ({ tabs, headline }) => {
         return (
           <TabPanelUnstyled value={i} key={i}>
             {tab.fragment}
-
           </TabPanelUnstyled>
-        )
+        );
       })}
     </TabsUnstyled>
-  )
-}
-
-
+  );
+};
 
 export default CustomTable;

@@ -1,5 +1,4 @@
-
-import React, { FC, useEffect, useState, useRef, useContext } from 'react';
+import React, { FC, useEffect, useState, useRef, useContext } from "react";
 import { DarkTheme, LightTheme } from "@theme/theme";
 import {
   Box,
@@ -108,8 +107,8 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
   const handleScroll = () => {
     const position = window.scrollY;
 
-    const barElement = document.getElementById('navPositionBar')
-    const barHeight = barElement?.getBoundingClientRect().height
+    const barElement = document.getElementById("navPositionBar");
+    const barHeight = barElement?.getBoundingClientRect().height;
 
     if (position <= topAndBottomRef.current.top) {
       setSliderSx((prevState) => ({ ...prevState, mt: 0 }));
@@ -169,17 +168,18 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
     return () => clearInterval(interval);
   }, []);
 
-  const { setInPageNav } = useContext(PageNavContext)
+  const { setInPageNav } = useContext(PageNavContext);
 
   useEffect(() => {
-    setInPageNav(true)
+    setInPageNav(true);
   }, []);
 
   const [pageNavOpen, setPageNavOpen] = useState(false);
 
   const openPageNav = () => {
-    setPageNavOpen(!pageNavOpen)
-  }
+    setPageNavOpen(!pageNavOpen);
+  };
+
 
   const navBarList = (
     <List sx={{ p: 0 }}>
@@ -189,7 +189,7 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
           button
           sx={listItemSx}
           onClick={() => {
-            scrollToHeading(position)
+            scrollToHeading(position);
           }}
         >
           <ListItemIcon>
@@ -210,7 +210,6 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
     </List>
   );
 
-
   const navBarListSmall = (
     <List sx={{ p: 0, position: 'absolute', bottom: 80, right: 16 }}>
       {navLinks.map(({ icon, name, position }, i: number) => (
@@ -219,18 +218,21 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
           button
           sx={listItemSx}
           onClick={() => {
-            scrollToHeading(position)
-            setPageNavOpen(!pageNavOpen)
+            scrollToHeading(position);
+            setPageNavOpen(!pageNavOpen);
           }}
         >
-          <ListItemText primary={name} sx={{
-            '& .MuiTypography-root': {
-              fontFamily: '"Space Grotesk", sans-serif',
-              fontWeight: '400',
-              fontSize: '20px',
-            }
-          }} />
-          <ListItemIcon sx={{ justifyContent: 'flex-end' }}>
+          <ListItemText
+            primary={name}
+            sx={{
+              "& .MuiTypography-root": {
+                fontFamily: '"Space Grotesk", sans-serif',
+                fontWeight: "400",
+                fontSize: "20px",
+              },
+            }}
+          />
+          <ListItemIcon sx={{ justifyContent: "flex-end" }}>
             <Icon>{icon}</Icon>
           </ListItemIcon>
         </ListItem>
@@ -238,30 +240,33 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
     </List>
   );
 
-  if (useMediaQuery('(min-width:1100px)')) {
+  if (useMediaQuery("(min-width:1100px)")) {
     return (
       <Grid container spacing={4}>
         <Grid item md={3}>
           <Box
             sx={{
-              position: 'sticky',
+              position: "sticky",
               top: 100,
-              background: 'rgba(0, 0, 0, 0.1)',
-              backdropFilter: 'blur(5px)',
-              borderRadius: '12px',
+              background: "rgba(0, 0, 0, 0.1)",
+              backdropFilter: "blur(5px)",
+              borderRadius: "12px",
               zIndex: 3,
-              p: '12px',
+              p: "12px",
             }}
           >
             <Grid container>
-              <Grid item sx={{ width: '3px', background: '#F8F8F8' }} id="navPositionBar">
-                <Box sx={{ background: '#ED7E21', zIndex: '2', ...sliderSx }}></Box>
+              <Grid
+                item
+                sx={{ width: "3px", background: "#F8F8F8" }}
+                id="navPositionBar"
+              >
+                <Box
+                  sx={{ background: "#ED7E21", zIndex: "2", ...sliderSx }}
+                ></Box>
               </Grid>
-              <Grid item>
-                {navBarList}
-              </Grid>
+              <Grid item>{navBarList}</Grid>
             </Grid>
-
           </Box>
         </Grid>
         <Grid item md={9}>
@@ -269,10 +274,8 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
         </Grid>
 
       </Grid>
-
-    )
-  }
-  else {
+    );
+  } else {
     return (
       <>
         {children}
@@ -318,9 +321,8 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
           </Fab>
         </NavPopup>
       </>
-    )
+    );
   }
-
 };
 
 export default PageNav;

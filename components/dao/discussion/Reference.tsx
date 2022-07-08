@@ -1,13 +1,15 @@
+import DiscussionContext, {
+  IDiscussionContext,
+} from "@lib/dao/discussion/DiscussionContext";
 import { Autocomplete, Avatar, Box, Chip, TextField } from "@mui/material";
 import * as React from "react";
 import { proposals } from "../dashboard/ActiveProposals";
-import DiscussionContext from "./DiscussionContext";
 
 // proposal or discussion
 // abstract: img, name, id
 
 const Reference: React.FC = () => {
-  const context = React.useContext(DiscussionContext);
+  const context = React.useContext<IDiscussionContext>(DiscussionContext);
   const value = context.api.value;
   console.log(value.references);
   return (

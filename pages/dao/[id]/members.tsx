@@ -65,11 +65,11 @@ const marks = [
   },
 ];
 
-const members = [
+const members: IMemberCard[] = [
   {
     width: "25%",
     favorited: true,
-    id: "1",
+    id: 1,
     name: "Alone Musk",
     level: 7,
     followers: 107,
@@ -80,7 +80,7 @@ const members = [
   {
     width: "25%",
     favorited: true,
-    id: "1",
+    id: 2,
     name: "Alone Musk",
     level: 7,
     followers: 107,
@@ -91,7 +91,7 @@ const members = [
   {
     width: "25%",
     favorited: true,
-    id: "1",
+    id: 3,
     name: "Alone Musk",
     level: 7,
     followers: 107,
@@ -102,7 +102,7 @@ const members = [
   {
     width: "25%",
     favorited: true,
-    id: "1",
+    id: 4,
     name: "Alone Musk",
     level: 7,
     followers: 107,
@@ -113,7 +113,7 @@ const members = [
   {
     width: "25%",
     favorited: true,
-    id: "1",
+    id: 5,
     name: "Alone Musk",
     level: 7,
     followers: 107,
@@ -124,7 +124,7 @@ const members = [
   {
     width: "25%",
     favorited: true,
-    id: "1",
+    id: 6,
     name: "Alone Musk",
     level: 7,
     followers: 107,
@@ -135,7 +135,7 @@ const members = [
   {
     width: "25%",
     favorited: true,
-    id: "1",
+    id: 7,
     name: "Alone Musk",
     level: 7,
     followers: 107,
@@ -146,7 +146,7 @@ const members = [
   {
     width: "25%",
     favorited: true,
-    id: "1",
+    id: 8,
     name: "Alone Musk",
     level: 7,
     followers: 107,

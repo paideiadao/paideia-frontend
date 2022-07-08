@@ -2,6 +2,9 @@ import { Box } from "@mui/material";
 import * as React from "react";
 
 const Layout: React.FC<{ width?: string }> = (props) => {
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Box
       sx={{

@@ -7,8 +7,8 @@ import Link from "next/link";
 import { IFile } from "@lib/creation/CreationApi";
 import { IProposal } from "../proposal/create";
 import GeneralInformation from "@components/dao/discussion/GeneralInformation";
-import DiscussionApi from "@components/dao/discussion/DiscussionApi";
-import DiscussionContext from "@components/dao/discussion/DiscussionContext";
+import DiscussionApi from "@lib/dao/discussion/DiscussionApi";
+import DiscussionContext from "@lib/dao/discussion/DiscussionContext";
 import DiscussionImage from "@components/dao/discussion/DiscussionImage";
 import DiscussionPlaceholder from "@public/dao/discussion-banner-placeholder.png";
 import Reference from "@components/dao/discussion/Reference";
@@ -16,6 +16,7 @@ import Content from "@components/dao/discussion/Content";
 import { modalBackground } from "@components/utilities/modalBackground";
 import LoadingButton from "@mui/lab/LoadingButton";
 import PublishIcon from "@mui/icons-material/Publish";
+import { IComment } from "@components/dao/discussion/Comments";
 
 export interface IDiscussion {
   name: string;
@@ -29,8 +30,8 @@ export interface IDiscussion {
   followed?: boolean;
   tags?: any[];
   userSide?: number;
-  comments?: any[];
-  attachments?: any[];
+  comments?: IComment[];
+  attachments?: IFile[];
 }
 
 const CreateDiscussion: React.FC = () => {
@@ -72,9 +73,10 @@ const CreateDiscussion: React.FC = () => {
               border: "1px solid",
               borderColor: "border.main",
               backgroundColor: "fileInput.outer",
-              p: ".5rem",
               pl: "0",
               borderRadius: ".3rem",
+              pt: ".75rem",
+              pb: ".75rem",
             }}
           >
             <Box
