@@ -47,7 +47,7 @@ const pages = [
   {
     name: "Projects",
     link: "/projects",
-    disabled: false,
+    disabled: true,
   },
   {
     name: "Blog",
