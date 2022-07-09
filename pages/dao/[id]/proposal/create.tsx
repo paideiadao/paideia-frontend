@@ -20,6 +20,7 @@ import PublishIcon from "@mui/icons-material/Publish";
 import Warning from "@components/utilities/Warning";
 import { IOptimisticGovernance } from "@components/dao/proposal/vote/YesNo/Actions/OptimisticGovernance";
 import { IQuorum } from "@components/dao/proposal/vote/YesNo/Actions/Quorum";
+import { ISendFunds } from "@components/dao/proposal/vote/YesNo/Actions/SendFunds";
 
 export interface IProposalAction {
   name:
@@ -33,7 +34,7 @@ export interface IProposalAction {
     | "Quorum"
     | "Optimistic governance"
     | undefined;
-  data: IOptimisticGovernance | IQuorum;
+  data: IOptimisticGovernance | IQuorum | ISendFunds;
   close?: () => void;
   c?: number;
 }

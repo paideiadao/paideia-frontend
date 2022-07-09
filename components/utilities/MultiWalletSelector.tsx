@@ -2,7 +2,7 @@ import { deviceStruct } from "@components/utilities/Style";
 import { IWallet } from "@lib/creation/CreationApi";
 import { Box, Button, IconButton } from "@mui/material";
 import * as React from "react";
-import WalletSelector from "../governance/WalletSelector";
+import WalletSelector from "../creation/governance/WalletSelector";
 import AddIcon from "@mui/icons-material/Add";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import DeleteIcon from "@mui/icons-material/Delete";
