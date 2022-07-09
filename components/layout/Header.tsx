@@ -283,7 +283,7 @@ export default function Header() {
             position: "fixed",
             width: "40px",
             height: "40px",
-            top: '12px',
+            top: '14px',
             right: '24px',
             color: "#fff",
             // focus: 'outline-none',

@@ -7,7 +7,7 @@ import {
   Container,
   Box,
   Divider,
-  Icon
+  Icon,
 } from "@mui/material";
 import Image from "next/image";
 import Highlights from '@components/Highlights';
@@ -38,11 +38,60 @@ const quotes: IQuotesProps[] = [
 const daos = [
   {
     name: 'Swamp Audio',
-    image: '',
+    image: '/featured/featured.png',
     description: 'A layer 1 on chain royalty management platform',
     link: '/',
     category: 'Music'
-  }
+  },
+  {
+    name: 'Swamp Audio',
+    image: '/featured/featured.png',
+    description: 'A layer 1 on chain royalty management platform',
+    link: '/',
+    category: 'Music'
+  },
+  {
+    name: 'Swamp Audio',
+    image: '/featured/featured.png',
+    description: 'A layer 1 on chain royalty management platform',
+    link: '/',
+    category: 'Music'
+  },
+  {
+    name: 'Swamp Audio',
+    image: '/featured/featured.png',
+    description: 'A layer 1 on chain royalty management platform',
+    link: '/',
+    category: 'Music'
+  },
+  {
+    name: 'Swamp Audio',
+    image: '/featured/featured.png',
+    description: 'A layer 1 on chain royalty management platform',
+    link: '/',
+    category: 'Music'
+  },
+  {
+    name: 'Swamp Audio',
+    image: '/featured/featured.png',
+    description: 'A layer 1 on chain royalty management platform',
+    link: '/',
+    category: 'Music'
+  },
+  {
+    name: 'Swamp Audio',
+    image: '/featured/featured.png',
+    description: 'A layer 1 on chain royalty management platform',
+    link: '/',
+    category: 'Music'
+  },
+  {
+    name: 'Swamp Audio',
+    image: '/featured/featured.png',
+    description: 'A layer 1 on chain royalty management platform',
+    link: '/',
+    category: 'Music'
+  },
 ]
 
 export default function Projects() {
@@ -76,7 +125,15 @@ export default function Projects() {
                     {quote.quote}
                   </Typography>
                   <Box >
-                    <Divider sx={{ width: '70%', display: 'inline-block', verticalAlign: 'middle', borderColor: '#fff' }} />&nbsp;
+                    <Divider
+                      sx={{
+                        width: '70%',
+                        display: 'inline-block',
+                        verticalAlign: 'middle',
+                        borderColor: '#fff'
+                      }}
+                    />
+                    &nbsp;
                     <Icon sx={{ verticalAlign: 'middle', fontSize: '20px' }}>add</Icon>
                   </Box>
                   <Typography>
