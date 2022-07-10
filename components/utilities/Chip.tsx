@@ -8,6 +8,7 @@ const Chip: React.FC<{
   variant: string;
   icon: JSX.Element;
   label: string;
+  mt?: string;
 }> = (props) => {
   return (
     <Button
@@ -19,6 +20,7 @@ const Chip: React.FC<{
         borderRadius: "5rem",
         fontWeight: 500,
         mr: ".5rem",
+        mt: props.mt === undefined ? 0 : props.mt,
       }}
       onClick={props.set}
       key={`filter-chip-${props.label}-key-${props.c}`}
