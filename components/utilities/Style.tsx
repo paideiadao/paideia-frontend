@@ -13,3 +13,7 @@ export const deviceStruct = (
     xl: xl,
   };
 };
+
+export const deviceWrapper = (mobile: string, desktop: string) => {
+  return deviceStruct(mobile, mobile, desktop, desktop, desktop);
+};

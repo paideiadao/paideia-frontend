@@ -12,8 +12,7 @@ const About: React.FC = () => {
         border: "1px solid",
         borderColor: "border.main",
         p: ".5rem",
-        mt: ".5rem",
-        mr: "1rem",
+        mt: "1rem",
         mb: ".5rem",
       }}
     >

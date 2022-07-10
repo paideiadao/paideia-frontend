@@ -61,13 +61,6 @@ const DarkSwitch: React.FC = () => {
           <MaterialUISwitch
             sx={{
               m: 1,
-              display: deviceStruct(
-                "none",
-                "none",
-                "inherit",
-                "inherit",
-                "inherit"
-              ),
             }}
           />
         }

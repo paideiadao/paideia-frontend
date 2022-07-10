@@ -1,3 +1,4 @@
+import { deviceWrapper } from "@components/utilities/Style";
 import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 import * as React from "react";
@@ -21,6 +22,9 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
     console.log(router.query.id);
     api.setDaoId(router.query.id);
   }, [router]);
+
+  const [showMobile, setShowMobile] = React.useState<boolean>(false);
+
   return (
     <Box
       sx={{
@@ -30,22 +34,24 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
         width: "100vw",
       }}
     >
-      <Nav />
-      <TopNav />
+      <Nav showMobile={showMobile} setShowMobile={setShowMobile} />
       <Box
         sx={{
-          width: "calc(100% - 13.5rem)",
+          width: deviceWrapper("100%", "calc(100% - 14.5rem)"),
           position: "fixed",
-          top: "3.8rem",
-          left: "13.5rem",
+          top: "0",
+          left: deviceWrapper("0", "14.5rem"),
           pt: "0rem",
           pb: ".5rem",
           overflowY: "auto",
-          height: "calc(100vh - 3.5rem)",
-          zIndex: 1000,
+          height: "100vh",
+          zIndex: deviceWrapper("100", "1000"),
         }}
       >
-        {props.children}
+        <TopNav showMobile={showMobile} setShowMobile={setShowMobile} />
+        <Box sx={{ width: "100%" }} onClick={() => setShowMobile(false)}>
+          {props.children}
+        </Box>
         <BottomNav />
       </Box>
     </Box>

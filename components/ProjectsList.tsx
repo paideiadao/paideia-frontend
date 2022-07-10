@@ -1,4 +1,6 @@
 import React, { FC } from "react";
+
+
 import {
   Grid,
   Typography,
@@ -49,21 +51,23 @@ const DaoCard = ({ dao }) => {
       >
         <Grid item>
           {dao?.category && (
+
             <Box sx={{ position: 'absolute', top: '-4px', right: '-6px', fontSize: '12px' }}>
               <Chip
                 icon={<StarIcon sx={{ fontSize: 16 }} />}
                 label={dao.category}
                 size="small"
                 sx={{
-                  color: '#bbb',
+                  color: "#bbb",
                   background: "#111827",
                   fontSize: "14px",
                   mb: "24px",
-                  border: '1px solid #999',
+                  border: "1px solid #999",
                 }}
               />
             </Box>
           )}
+
           <Avatar
             src={dao?.image}
             sx={{
@@ -90,15 +94,19 @@ const DaoCard = ({ dao }) => {
           </Typography>
           <Typography
             sx={{
-              fontSize: '14px',
-              mb: '24px',
+              fontSize: "14px",
+              mb: "24px",
             }}
           >
             {dao.description}
           </Typography>
         </Grid>
         <Grid item>
-          <Button endIcon={<ArrowForwardIcon />} href={dao.link} sx={{ py: '2px', ml: '-6px' }}>
+          <Button
+            endIcon={<ArrowForwardIcon />}
+            href={dao.link}
+            sx={{ py: "2px", ml: "-6px" }}
+          >
             Learn More
           </Button>
         </Grid>
@@ -116,6 +124,7 @@ const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
 
   return (
     <Grid container sx={sx}>
+
       <Grid item md={3} sx={{ pr: '24px' }}>
         <FilterOptions />
       </Grid>

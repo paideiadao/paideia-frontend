@@ -56,7 +56,9 @@ const CardSlider: FC<SliderProps> = ({
   };
 
   const marginFunction = () => {
-    const pnArrowContainer = document.getElementById(uniqueId + "pnArrowContainer");
+    const pnArrowContainer = document.getElementById(
+      uniqueId + "pnArrowContainer"
+    );
     let margin = 24;
     if (!contained) {
       margin =
@@ -95,11 +97,11 @@ const CardSlider: FC<SliderProps> = ({
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      marginFunction()
+      marginFunction();
     }, 1000);
     return () => {
       clearTimeout(timeout);
-    }
+    };
   }, []);
 
   const [pos, setPos] = useState({

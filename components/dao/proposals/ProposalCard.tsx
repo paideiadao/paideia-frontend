@@ -14,6 +14,7 @@ import { percentage } from "../../../lib/creation/Utilities";
 import Link from "next/link";
 import { GlobalContext } from "@lib/AppContext";
 import { useRouter } from "next/router";
+import { deviceWrapper } from "@components/utilities/Style";
 
 export interface IProposalCard {
   id: number;
@@ -449,7 +450,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
   return (
     <Box
       sx={{
-        pr: "1rem",
+        pr: deviceWrapper("0", "1rem"),
         pt: ".5rem",
         pb: ".5rem",
         minWidth: props.width,

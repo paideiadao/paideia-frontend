@@ -7,6 +7,7 @@ import ProposalCard from "../proposals/ProposalCard";
 import useDidMountEffect from "@components/utilities/hooks";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { deviceStruct } from "@components/utilities/Style";
 
 let temp = new Date();
 temp.setDate(temp.getDate() - 30);
@@ -115,7 +116,9 @@ const ActiveProposal: React.FC = () => {
           <Link
             href={id === undefined ? "/proposals/all" : id + "/proposals/all"}
           >
-            <Button sx={{ fontSize: ".8rem" }}>View All</Button>
+            <Button sx={{ fontSize: ".8rem" }} size="small">
+              View All
+            </Button>
           </Link>
           <IconButton
             size="small"
@@ -150,7 +153,7 @@ const ActiveProposal: React.FC = () => {
             {...i}
             c={c}
             key={"proposal-card-key-" + c}
-            width={{ sm: "50%", md: "45%", lg: "33%" }}
+            width={deviceStruct("92%", "92%", "45%", "33%", "33%")}
           />
         ))}
       </Box>

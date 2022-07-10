@@ -16,6 +16,7 @@ import LatestActivity from "./LatestActivity";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
 import { LightTheme } from "@theme/theme";
+import { deviceWrapper } from "@components/utilities/Style";
 
 const Dashboard: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
@@ -27,6 +28,7 @@ const Dashboard: React.FC = () => {
           mb: ".5rem",
           borderBottom: "1px solid",
           borderBottomColor: "border.main",
+          display: deviceWrapper("none", "block"),
         }}
       >
         <img src={PaideiaBanner.src} style={{ width: "100%" }} />
@@ -38,8 +40,15 @@ const Dashboard: React.FC = () => {
           alignItems: "flex-start",
         }}
       >
-        <Box sx={{ width: "70%", p: "1rem", pt: 0 }}>
-          <Box sx={{ width: "100", display: "flex", alignItems: "center" }}>
+        <Box sx={{ width: deviceWrapper("100%", "70%"), p: "1rem", pt: 0 }}>
+          <Box
+            sx={{
+              width: "100%",
+              display: deviceWrapper("-webkit-box", "flex"),
+              alignItems: "center",
+              overflowX: "auto",
+            }}
+          >
             <Box
               sx={{
                 position: "relative",
@@ -49,7 +58,7 @@ const Dashboard: React.FC = () => {
                 color: "white",
                 backgroundImage: `url(${AnnouncementBackground.src})`,
                 backgroundSize: "100% 100%",
-                width: "60%",
+                width: deviceWrapper("90%", "60%"),
                 height: "13.5rem",
                 mr: "1rem",
               }}
@@ -98,7 +107,7 @@ const Dashboard: React.FC = () => {
                 display: "flex",
                 flexDirection: "column",
                 pl: "1rem",
-                width: "40%",
+                width: deviceWrapper("90%", "40%"),
                 fontSize: "1rem",
                 color: "white",
                 justifyContent: "flex-start",
@@ -160,16 +169,24 @@ const Dashboard: React.FC = () => {
             <ActiveProposals />
             <CurrentDistributions />
             <LatestActivity />
+            <Box
+              sx={{ width: "100%", display: deviceWrapper("block", "none") }}
+            >
+              <About />
+              <Box sx={{ mt: "1rem" }} />
+              <TokenStats />
+            </Box>
           </Box>
         </Box>
         <Box
           sx={{
             width: "30%",
-            display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             position: "sticky",
             top: ".2rem",
+            mr: ".5rem",
+            display: deviceWrapper("none", "flex"),
           }}
         >
           <About />

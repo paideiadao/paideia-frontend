@@ -1,8 +1,9 @@
-import { Typography, Grid, Box, Button, Link, Container } from "@mui/material";
+import { Typography, Grid, Box, Button, Container } from "@mui/material";
 import Image from "next/image";
 import { DarkTheme } from "@theme/theme";
 import SectionTitle from "@components/SectionTitle";
 import SocialGrid from "@components/SocialGrid";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -52,7 +53,7 @@ export default function Hero() {
           <Typography
             sx={{
               fontSize: { xs: "3.5rem", md: "5rem" },
-              fontWeight: '500',
+              fontWeight: "500",
               color: "rgba(0,0,0,0.0)",
               lineHeight: 0.5,
               textTransform: "uppercase",
@@ -67,7 +68,7 @@ export default function Hero() {
           <Typography
             sx={{
               fontSize: { xs: "3.5rem", md: "5rem" },
-              fontWeight: '500',
+              fontWeight: "500",
               color: "rgba(0,0,0,0.0)",
               textTransform: "uppercase",
               fontFamily: '"Viga", sans-serif',
@@ -79,7 +80,7 @@ export default function Hero() {
               component="span"
               sx={{
                 fontSize: { xs: "3.5rem", md: "5rem" },
-                fontWeight: '500',
+                fontWeight: "500",
                 color: DarkTheme.palette.text.primary,
                 textTransform: "uppercase",
                 fontFamily: '"Viga", sans-serif',
@@ -88,9 +89,12 @@ export default function Hero() {
               DAO
             </Typography>
           </Typography>
-          <Button variant="contained" disabled>
-            Coming Soon
-          </Button>
+          <Link href='/creation'>
+            <Button variant="contained">
+              Create your dao
+            </Button>
+          </Link>
+          
         </Grid>
         <Grid item>
           <Typography

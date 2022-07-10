@@ -2,6 +2,7 @@ import { Avatar, Box } from "@mui/material";
 import * as React from "react";
 import dateFormat from "dateformat";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import { deviceWrapper } from "@components/utilities/Style";
 
 export interface IActivity {
   img: string;
@@ -24,9 +25,16 @@ const Activity: React.FC<{ i: IActivity; c: number }> = (props) => {
         display: "flex",
         alignItems: "center",
         fontSize: ".8rem",
+        flexWrap: deviceWrapper("wrap", "nowrap"),
       }}
     >
-      <Box sx={{ display: "flex", alignItems: "center", width: "80%" }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          width: deviceWrapper("100%", "80%"),
+        }}
+      >
         <Avatar
           sx={{ mr: ".5rem", width: "2rem", height: "2rem" }}
           src={props.i.img}
@@ -62,13 +70,16 @@ const Activity: React.FC<{ i: IActivity; c: number }> = (props) => {
 
       <Box
         sx={{
-          ml: "auto",
+          ml: deviceWrapper("2.5rem", "auto"),
           color: "text.light",
           display: "flex",
           alignItems: "center",
+          mt: deviceWrapper(".5rem", "0"),
         }}
       >
-        <CalendarTodayIcon sx={{ mr: ".5rem" }} />
+        <CalendarTodayIcon
+          sx={{ mr: ".5rem", fontSize: deviceWrapper("1rem", "1.5rem") }}
+        />
         {dateFormat(props.i.date, "mmm dd, yyyy: h:MM")}
       </Box>
     </Box>

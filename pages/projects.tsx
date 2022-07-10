@@ -1,6 +1,6 @@
-
-import React, { FC } from 'react';
+import React, { FC } from "react";
 import PageHeader from "@components/PageHeader";
+
 import {
   Typography,
   Grid,
@@ -10,9 +10,9 @@ import {
   Icon,
 } from "@mui/material";
 import Image from "next/image";
-import Highlights from '@components/Highlights';
+import Highlights from "@components/Highlights";
 import SectionHeading from "@components/SectionHeading";
-import ProjectList from '@components/ProjectsList';
+import ProjectList from "@components/ProjectsList";
 import { DarkTheme } from "@theme/theme";
 
 interface IQuotesProps {
@@ -22,21 +22,25 @@ interface IQuotesProps {
 
 const quotes: IQuotesProps[] = [
   {
-    quote: 'Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!',
-    author: 'Ornella Maines'
+    quote:
+      "Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!",
+    author: "Ornella Maines",
   },
   {
-    quote: 'Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!',
-    author: 'Ornella Maines'
+    quote:
+      "Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!",
+    author: "Ornella Maines",
   },
   {
-    quote: 'Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!',
-    author: 'Ornella Maines'
+    quote:
+      "Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!",
+    author: "Ornella Maines",
   },
-]
+];
 
 const daos = [
   {
+
     name: 'Swamp Audio',
     image: '/featured/featured.png',
     description: 'A layer 1 on chain royalty management platform',
@@ -108,18 +112,18 @@ export default function Projects() {
 
       <Highlights />
 
-      <Container sx={{ py: '240px', }}>
+      <Container sx={{ py: "240px" }}>
         <Grid container>
-          <Grid item md={3}>
-          </Grid>
+          <Grid item md={3}></Grid>
           <Grid item md={9}>
             <SectionHeading
               category="Why Trust Us?"
               title="Feedback from our Users"
-              sx={{ mb: '80px', maxWidth: '550px', }}
+              sx={{ mb: "80px", maxWidth: "550px" }}
             ></SectionHeading>
             <Grid container>
               {quotes.map((quote, i: number) => (
+
                 <Grid key={i} item md={4} sx={{ mb: '80px' }}>
                   <Typography>
                     {quote.quote}
@@ -136,9 +140,7 @@ export default function Projects() {
                     &nbsp;
                     <Icon sx={{ verticalAlign: 'middle', fontSize: '20px' }}>add</Icon>
                   </Box>
-                  <Typography>
-                    {quote.author}
-                  </Typography>
+                  <Typography>{quote.author}</Typography>
                 </Grid>
               ))}
             </Grid>
@@ -146,15 +148,14 @@ export default function Projects() {
         </Grid>
       </Container>
 
-      <Container sx={{ pb: '240px', }}>
+      <Container sx={{ pb: "240px" }}>
         <Grid container>
-          <Grid item md={3}>
-          </Grid>
+          <Grid item md={3}></Grid>
           <Grid item md={9}>
             <SectionHeading
               category="Who Uses Paideia?"
               title="List of All Active DAOs"
-              sx={{ mb: '80px', maxWidth: '550px', }}
+              sx={{ mb: "80px", maxWidth: "550px" }}
             ></SectionHeading>
           </Grid>
         </Grid>

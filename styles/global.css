@@ -64,7 +64,11 @@ img {
 }
 
 .border-grad {
-  background: linear-gradient(130.4deg, rgba(0, 0, 0, 0.4) 14.89%, rgba(0, 0, 0, 0.1) 87.67%);
+  background: linear-gradient(
+    130.4deg,
+    rgba(0, 0, 0, 0.4) 14.89%,
+    rgba(0, 0, 0, 0.1) 87.67%
+  );
   mix-blend-mode: normal;
   backdrop-filter: blur(40px);
   /* Note: backdrop-filter has minimal browser support */
@@ -82,14 +86,13 @@ img {
   inset: 0;
   padding: 1px;
   border-radius: 16px;
-  background: linear-gradient(161.45deg, rgba(224, 104, 4, 0) 34.23%, rgba(224, 104, 4, 0.4) 72.7%);
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
+  background: linear-gradient(
+    161.45deg,
+    rgba(224, 104, 4, 0) 34.23%,
+    rgba(224, 104, 4, 0.4) 72.7%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-
 }
