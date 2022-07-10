@@ -13,9 +13,9 @@ import {
   Zoom,
   useScrollTrigger,
   Fade,
-  Typography
-} from '@mui/material';
-import { PageNavContext } from '@components/Layout'
+  Typography,
+} from "@mui/material";
+import { PageNavContext } from "@components/Layout";
 
 const listItemSx = {
   "&:hover": {
@@ -32,7 +32,7 @@ interface IPageNav {
   children: React.ReactNode;
 }
 
-function NavPopup(props: { children: React.ReactNode, navOpen: boolean }) {
+function NavPopup(props: { children: React.ReactNode; navOpen: boolean }) {
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 100,
@@ -42,7 +42,12 @@ function NavPopup(props: { children: React.ReactNode, navOpen: boolean }) {
     <Zoom in={trigger}>
       <Box
         role="presentation"
-        sx={{ position: "fixed", bottom: 16, right: 16, zIndex: props.navOpen ? '61' : '5' }}
+        sx={{
+          position: "fixed",
+          bottom: 16,
+          right: 16,
+          zIndex: props.navOpen ? "61" : "5",
+        }}
       >
         {props.children}
       </Box>
@@ -75,25 +80,25 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
   topAndBottomRef.current = topAndBottom;
 
   const handleResize = () => {
-    const navContainer = document.getElementById('navContainer')
-    const topPosition = navContainer.offsetTop
-    const totalHeight = navContainer.getBoundingClientRect().height
-    const thisBottom = topPosition + totalHeight
+    const navContainer = document.getElementById("navContainer");
+    const topPosition = navContainer.offsetTop;
+    const totalHeight = navContainer.getBoundingClientRect().height;
+    const thisBottom = topPosition + totalHeight;
 
-    navLinks.forEach((link: { link: string, position: number }) => {
-      const linkElement = document.getElementById(link.link)
-      const thisTop = linkElement.offsetTop - 85
-      link.position = thisTop
-    })
+    navLinks.forEach((link: { link: string; position: number }) => {
+      const linkElement = document.getElementById(link.link);
+      const thisTop = linkElement.offsetTop - 85;
+      link.position = thisTop;
+    });
 
-    const visibleHeight = window.innerHeight
-    const barElement = document.getElementById('navPositionBar')
-    const barHeight = barElement?.getBoundingClientRect().height
-    const sliderHeight = visibleHeight / totalHeight * barHeight
-    
+    const visibleHeight = window.innerHeight;
+    const barElement = document.getElementById("navPositionBar");
+    const barHeight = barElement?.getBoundingClientRect().height;
+    const sliderHeight = (visibleHeight / totalHeight) * barHeight;
+
     setSliderSx({
       ...sliderSx,
-      height: (sliderHeight < barHeight) ? sliderHeight : barHeight, // number
+      height: sliderHeight < barHeight ? sliderHeight : barHeight, // number
     });
 
     setTopAndBottom((prevState) => ({
@@ -180,7 +185,6 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
     setPageNavOpen(!pageNavOpen);
   };
 
-
   const navBarList = (
     <List sx={{ p: 0 }}>
       {navLinks.map(({ icon, name, position }, i: number) => (
@@ -211,7 +215,7 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
   );
 
   const navBarListSmall = (
-    <List sx={{ p: 0, position: 'absolute', bottom: 80, right: 16 }}>
+    <List sx={{ p: 0, position: "absolute", bottom: 80, right: 16 }}>
       {navLinks.map(({ icon, name, position }, i: number) => (
         <ListItem
           key={i}
@@ -272,7 +276,6 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
         <Grid item md={9}>
           {children}
         </Grid>
-
       </Grid>
     );
   } else {
@@ -287,38 +290,38 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
               position: "fixed",
               bottom: 0,
               right: 0,
-              zIndex: pageNavOpen ? '60' : '15',
+              zIndex: pageNavOpen ? "60" : "15",
               background: "rgba(0, 0, 0, 0.1)",
               backdropFilter: "blur(55px)",
               p: "24px",
             }}
           >
             {navBarListSmall}
-            <Box sx={{
-            position: 'fixed',
-            bottom: 0,
-            left: 0,
-            height: '45vh',
-            width: '100vw',
-            zIndex: '-1',
-            background: "linear-gradient(359.63deg, #ED7E21 10.26%, rgba(237, 126, 33, 0) 76.79%)",
-          }}>
-
-          </Box>
+            <Box
+              sx={{
+                position: "fixed",
+                bottom: 0,
+                left: 0,
+                height: "45vh",
+                width: "100vw",
+                zIndex: "-1",
+                background:
+                  "linear-gradient(359.63deg, #ED7E21 10.26%, rgba(237, 126, 33, 0) 76.79%)",
+              }}
+            ></Box>
           </Box>
         </Fade>
         <NavPopup navOpen={pageNavOpen}>
-          <Fab sx={{
-            bgcolor: !pageNavOpen ? '#ED7E21' : '#FFFFFF',
-            '&:hover:focus': {
-              background: !pageNavOpen ? '#ED7E21' : '#FFFFFF',
-            }
-          }}
+          <Fab
+            sx={{
+              bgcolor: !pageNavOpen ? "#ED7E21" : "#FFFFFF",
+              "&:hover:focus": {
+                background: !pageNavOpen ? "#ED7E21" : "#FFFFFF",
+              },
+            }}
             aria-label="open in page navigation"
             onClick={() => openPageNav()}
-          >
-
-          </Fab>
+          ></Fab>
         </NavPopup>
       </>
     );

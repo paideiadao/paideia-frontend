@@ -61,7 +61,7 @@ export default function PageHeader({
           <Typography
             sx={{
               fontSize: { xs: "60px", sm: "80px", md: "100px" },
-              fontWeight: '500',
+              fontWeight: "500",
               color: "rgba(0,0,0,0.0)",
               lineHeight: "100%",
               textTransform: "uppercase",

@@ -16,7 +16,7 @@ const Nav: React.FC = (props) => {
   return (
     <Box
       sx={{
-        width: "13.5rem",
+        width: "14.5rem",
         backgroundColor: "backgroundColor.main",
         borderRight: "1px solid",
         borderRightColor: "border.main",

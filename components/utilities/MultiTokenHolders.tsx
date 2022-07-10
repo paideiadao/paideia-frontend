@@ -1,22 +1,23 @@
-import WalletSelector from '@components/creation/governance/WalletSelector';
-import BalanceInput from '@components/creation/utilities/BalanceInput';
-import PercentageInput from '@components/creation/utilities/PercentageInput';
-import { ITokenHolder } from '@lib/creation/CreationApi';
-import { Box, Button } from '@mui/material';
-import * as React from 'react';
+import WalletSelector from "@components/creation/governance/WalletSelector";
+import BalanceInput from "@components/creation/utilities/BalanceInput";
+import PercentageInput from "@components/creation/utilities/PercentageInput";
+import { ITokenHolder } from "@lib/creation/CreationApi";
+import { Box, Button } from "@mui/material";
+import * as React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
 interface IMultiTokenHolders {
-    tokenHolders: ITokenHolder[],
-    treasuryAmount: number,
-    set: (tokenHolders: ITokenHolder[]) => void
+  tokenHolders: ITokenHolder[];
+  treasuryAmount: number;
+  set: (tokenHolders: ITokenHolder[]) => void;
 }
 
 const MultiTokenHolders: React.FC<IMultiTokenHolders> = (props) => {
-    return <>
-    {props.tokenHolders.map((i: ITokenHolder, c: number) => {
+  return (
+    <>
+      {props.tokenHolders.map((i: ITokenHolder, c: number) => {
         return (
           <Box
             sx={{ display: "flex", alignItems: "center", height: "5rem" }}
@@ -44,7 +45,7 @@ const MultiTokenHolders: React.FC<IMultiTokenHolders> = (props) => {
                   } else {
                     temp[c] = { ...temp[c], ...j };
                   }
-                  props.set(temp)
+                  props.set(temp);
                 }}
               />
             </Box>
@@ -61,7 +62,7 @@ const MultiTokenHolders: React.FC<IMultiTokenHolders> = (props) => {
               set={(newValue: any) => {
                 let temp = [...props.tokenHolders];
                 temp[c] = { ...newValue };
-                props.set(temp)
+                props.set(temp);
               }}
             />
             <PercentageInput
@@ -91,7 +92,8 @@ const MultiTokenHolders: React.FC<IMultiTokenHolders> = (props) => {
                 onClick={() => {
                   let temp = [...props.tokenHolders];
                   temp.splice(c, 1);
-props.set(temp)                }}
+                  props.set(temp);
+                }}
               />
             )}
           </Box>
@@ -111,7 +113,11 @@ props.set(temp)                }}
           sx={{ mr: 2 }}
           onClick={() => {
             let temp = [...props.tokenHolders];
-            props.set(temp.concat([{ alias: "", address: "", img: "", balance: 0, percentage: 0 }]));
+            props.set(
+              temp.concat([
+                { alias: "", address: "", img: "", balance: 0, percentage: 0 },
+              ])
+            );
           }}
         >
           Add Another <AddIcon />
@@ -121,8 +127,7 @@ props.set(temp)                }}
         </Button>
       </Box>
     </>
-    
-    
-}
+  );
+};
 
-export default MultiTokenHolders
+export default MultiTokenHolders;

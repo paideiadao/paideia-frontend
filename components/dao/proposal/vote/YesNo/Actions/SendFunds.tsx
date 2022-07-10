@@ -8,35 +8,37 @@ import LabeledSwitch from "@components/creation/utilities/LabeledSwitch";
 import PercentageInput from "@components/creation/utilities/PercentageInput";
 import MultiTokenHolders from "@components/utilities/MultiTokenHolders";
 import { ITokenHolder, IWallet } from "@lib/creation/CreationApi";
-import ProposalContext, { IProposalContext } from "@lib/dao/proposal/ProposalContext";
+import ProposalContext, {
+  IProposalContext,
+} from "@lib/dao/proposal/ProposalContext";
 import { Box } from "@mui/material";
 import { IProposalAction } from "@pages/dao/[id]/proposal/create";
 import * as React from "react";
 import Layout from "./Layout";
 
 export interface ISendFunds {
-  tokenHolders: ITokenHolder[]
-  recurring: boolean
+  tokenHolders: ITokenHolder[];
+  recurring: boolean;
 }
 
 const SendFunds: React.FC<IProposalAction> = (props) => {
   const context = React.useContext<IProposalContext>(ProposalContext);
   const [value, setValue] = React.useState<ISendFunds>({
-    tokenHolders: [{ alias: "", address: "", img: "", balance: 0,
-    percentage: 0, }],
-    recurring: false
+    tokenHolders: [
+      { alias: "", address: "", img: "", balance: 0, percentage: 0 },
+    ],
+    recurring: false,
   });
   const treasuryAmount = 50000;
 
-
   React.useEffect(() => {
-    const temp = [...context.api.value.actions]
-    temp[props.c].data = value
+    const temp = [...context.api.value.actions];
+    temp[props.c].data = value;
     context.api.setValue({
       ...context.api.value,
-      actions: temp
-    })
-  }, [value])
+      actions: temp,
+    });
+  }, [value]);
   return (
     <Layout>
       <Header
@@ -48,7 +50,7 @@ const SendFunds: React.FC<IProposalAction> = (props) => {
       <Box
         sx={{
           width: "calc(100% + 1rem)",
-          ml: '-.5rem',
+          ml: "-.5rem",
           borderBottom: 1,
           borderColor: "border.main",
           mt: "1rem",
@@ -56,18 +58,20 @@ const SendFunds: React.FC<IProposalAction> = (props) => {
         }}
       />
       <CapsInfo title="Receiving Wallets" mb=".5rem" />
-        <MultiTokenHolders
-          tokenHolders={value.tokenHolders}
-          treasuryAmount={treasuryAmount}
-          set={(newTokenHolders: ITokenHolder[]) => setValue({
+      <MultiTokenHolders
+        tokenHolders={value.tokenHolders}
+        treasuryAmount={treasuryAmount}
+        set={(newTokenHolders: ITokenHolder[]) =>
+          setValue({
             ...value,
-            tokenHolders: newTokenHolders
-          })}
-        />
+            tokenHolders: newTokenHolders,
+          })
+        }
+      />
       <Box
         sx={{
           width: "calc(100% + 1rem)",
-          ml: '-.5rem',
+          ml: "-.5rem",
           borderBottom: 1,
           borderColor: "border.main",
           mt: "1rem",
@@ -75,7 +79,14 @@ const SendFunds: React.FC<IProposalAction> = (props) => {
         }}
       />
       <CapsInfo title="Configuration" mb="-1rem" />
-      <Box sx={{width: '100%', display: 'flex', alignItems: 'center', mt: '.25rem'}}>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          mt: ".25rem",
+        }}
+      >
         <LabeledSwitch
           title="Set as recurring"
           subtitle="Set and schedule this payment to be done for a determined amount of time, in any frequency you wish."
@@ -84,10 +95,9 @@ const SendFunds: React.FC<IProposalAction> = (props) => {
         />
       </Box>
 
-      <Box sx={{mb: '.5rem'}}/>
+      <Box sx={{ mb: ".5rem" }} />
     </Layout>
   );
 };
-
 
 export default SendFunds;

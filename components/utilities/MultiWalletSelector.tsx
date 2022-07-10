@@ -69,7 +69,7 @@ const MultiWalletSelector: React.FC<IMultiWalletSelector> = (props) => {
                 <IconButton
                   color="error"
                   disabled={props.wallets.length === 1}
-                  sx={{color: 'error.main'}}
+                  sx={{ color: "error.main" }}
                   onClick={() => {
                     let temp = [...props.wallets];
                     temp.splice(c, 1);
