@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import { useMediaQuery } from '@mui/material';
+import { useMediaQuery } from "@mui/material";
 import Paideia from "@components/svgs/Paideia";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { DarkTheme, LightTheme } from "@theme/theme";
@@ -19,8 +19,9 @@ import Fab from "@mui/material/Fab";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Zoom from "@mui/material/Zoom";
 import Toolbar from "@mui/material/Toolbar";
-import { PageNavContext } from '@components/Layout'
+import { PageNavContext } from "@components/Layout";
 import { useRouter } from "next/router";
+import ConnectWallet from "@components/wallet/ConnectWallet";
 // import ConnectWallet from "@components/wallet/ConnectWallet";
 
 const pages = [
@@ -107,15 +108,13 @@ export default function Header() {
 
   const router = useRouter();
 
-  const NavigationListItem: React.FC<INavItemProps> = ({size, page}) => {
+  const NavigationListItem: React.FC<INavItemProps> = ({ size, page }) => {
     return (
       <Grid item>
         {page.disabled ? (
           <Typography
             sx={{
-              fontFamily: ['"Space Grotesk"', "sans-serif"].join(
-                ","
-              ),
+              fontFamily: ['"Space Grotesk"', "sans-serif"].join(","),
               fontWeight: "Bold",
               textTransform: "uppercase",
               fontSize: `${size}px`,
@@ -129,8 +128,12 @@ export default function Header() {
             href={page.link}
             underline="hover"
             sx={{
-              color: (router.pathname === page.link) ? LightTheme.palette.secondary.main : '#fff',
-              textDecoration: (router.pathname === page.link) ? 'underline' : 'none',
+              color:
+                router.pathname === page.link
+                  ? LightTheme.palette.secondary.main
+                  : "#fff",
+              textDecoration:
+                router.pathname === page.link ? "underline" : "none",
               "&:hover": {
                 color: LightTheme.palette.secondary.main,
               },
@@ -140,9 +143,10 @@ export default function Header() {
           </Link>
         )}
       </Grid>
-  )}
+    );
+  };
 
-  const checkWide = useMediaQuery('(min-width:1100px)')
+  const checkWide = useMediaQuery("(min-width:1100px)");
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -211,9 +215,7 @@ export default function Header() {
                   </Grid>
                 </Grid>
                 <Grid item sx={{ display: { xs: "none", md: "flex" } }}>
-                  <Button disabled variant="contained" size="small">
-                    Connect Wallet
-                  </Button>
+                  <ConnectWallet/>
                 </Grid>
                 <Grid item sx={{ display: { xs: "flex", md: "none" } }}>
                   <IconButton>
@@ -283,7 +285,8 @@ export default function Header() {
             position: "fixed",
             width: "40px",
             height: "40px",
-            top: '12px',
+
+            top: '14px',
             right: '24px',
             color: "#fff",
             // focus: 'outline-none',
@@ -307,8 +310,9 @@ export default function Header() {
                 borderRadius: "2px",
                 background: "#fff",
                 transition: "transform 100ms ease-in-out",
-                transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"
-                  }`,
+                transform: `${
+                  navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                }`,
               }}
             ></Box>
             <Box
@@ -319,15 +323,15 @@ export default function Header() {
                 borderRadius: "2px",
                 background: "#fff",
                 transition: "transform 100ms ease-in-out",
-                transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
-                  }`,
+                transform: `${
+                  navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                }`,
               }}
             ></Box>
           </Box>
         </Box>
       </Fade>
       <Fade in={navbarOpen} style={{ transitionDuration: "400ms" }}>
-
         <Box
           sx={{
             height: "100vh",
@@ -338,10 +342,9 @@ export default function Header() {
             background: "rgba(0, 0, 0, 0.1)",
             backdropFilter: "blur(55px)",
             p: "24px",
-            pb: '0'
+            pb: "0",
           }}
         >
-
           <Grid
             container
             direction="column"
@@ -401,7 +404,7 @@ export default function Header() {
       </Fade>
       {(!inPageNav || checkWide) && (
         <ScrollTop>
-          <Fab sx={{ background: '#ED7E21' }} aria-label="scroll back to top">
+          <Fab sx={{ background: "#ED7E21" }} aria-label="scroll back to top">
             <KeyboardArrowUpIcon />
           </Fab>
         </ScrollTop>

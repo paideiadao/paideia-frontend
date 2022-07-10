@@ -24,11 +24,11 @@ const Create: React.FC = () => {
         {/* get last link here */}
         <CreateHeader />
 
-        <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
+        <Box sx={{ width: "100%", display: "flex", alignItems: "stretch" }}>
           <Link
             href={
               id === undefined
-                ? "/dao/proposals/create"
+                ? "/dao/proposal/create"
                 : `/dao/${id}/proposal/create`
             }
           >

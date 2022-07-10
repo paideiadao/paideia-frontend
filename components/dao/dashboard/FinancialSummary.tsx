@@ -6,6 +6,7 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { percentage } from "../../../lib/creation/Utilities";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { deviceWrapper } from "@components/utilities/Style";
 
 export const PerformanceWidget: React.FC<{
   value: number;
@@ -86,10 +87,14 @@ const AssetCard: React.FC<IAssetCard> = (props) => {
         borderRadius: ".3rem",
         backgroundColor: "fileInput.outer",
         p: ".5rem",
-        width: "25%",
+        width: deviceWrapper("48.5%", "25%"),
         border: "1px solid",
         borderColor: "border.main",
-        ml: props.c === 0 ? 0 : ".5rem",
+        mt: deviceWrapper(props.c > 1 ? ".5rem" : "0", "0"),
+        ml: deviceWrapper(
+          props.c % 2 === 0 || props.c === 0 ? "0" : ".5rem",
+          props.c === 0 ? "0" : "1rem"
+        ),
         fontSize: ".9rem",
       }}
     >
@@ -125,7 +130,9 @@ const FinancialSummary: React.FC = () => {
               : `/dao/${id}/financials/treasury`
           }
         >
-          <Button sx={{ ml: "auto", fontSize: ".8rem" }}>View More</Button>
+          <Button sx={{ ml: "auto", fontSize: ".8rem" }} size="small">
+            View More
+          </Button>
         </Link>
       </Box>
       <Paper
@@ -159,7 +166,14 @@ const FinancialSummary: React.FC = () => {
           <TimeWidget amount={24} unit={"h"} />
         </Box>
       </Paper>
-      <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          flexWrap: deviceWrapper("wrap", "nowrap"),
+        }}
+      >
         {assets.map((i: any, c: number) => {
           return <AssetCard {...i} c={c} key={"asset-card-key-" + c} />;
         })}

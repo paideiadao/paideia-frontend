@@ -25,6 +25,7 @@ import ErgoPad from "@public/icons/ergopad.png";
 import Azorus from "@public/icons/azorus.png";
 import ErgoLend from "@public/icons/ergolend.png";
 import Swamp from "@public/icons/swamp.png";
+import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
 
 export interface IDao {
   name: string;
@@ -161,7 +162,7 @@ const DaoBio: React.FC = () => {
           <Box
             sx={{
               position: "absolute",
-              width: "89%",
+              width: "89.5%",
               backgroundColor: "fileInput.main",
               // bottom: "-7rem",
               top: "5rem",
@@ -171,6 +172,7 @@ const DaoBio: React.FC = () => {
               borderRadius: ".25rem",
               flexDirection: "column",
               p: ".5rem",
+              pb: 0,
               pl: "0",
               pr: "0",
               border: "1px solid",
@@ -204,6 +206,13 @@ const DaoBio: React.FC = () => {
                 sx={{ width: "100%" }}
               />
             </Box>
+            <Box sx={{ pl: ".5rem" }}>
+              <CapsInfo
+                title="Daos Connected to your wallet"
+                fontSize=".6rem"
+                mb=".25rem"
+              />
+            </Box>
             <Box
               sx={{
                 width: "100%",
@@ -229,6 +238,19 @@ const DaoBio: React.FC = () => {
                   />
                 ))}{" "}
             </Box>
+            <Button
+              size="small"
+              sx={{
+                fontSize: ".7rem",
+                width: "100%",
+                mt: ".5rem",
+                borderTop: 1,
+                borderColor: "border.main",
+                borderRadius: 0,
+              }}
+            >
+              View complete dao list
+            </Button>
           </Box>
         </ClickAwayListener>
       )}
