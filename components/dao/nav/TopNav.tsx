@@ -233,7 +233,7 @@ const TopNav: React.FC<INav> = (props) => {
             backgroundPosition: "bottom 0px right 0px",
             backgroundRepeat: "no-repeat",
             backgroundSize: "14rem",
-            position: "absolute",
+            position: "fixed",
             top: 0,
           }}
         >

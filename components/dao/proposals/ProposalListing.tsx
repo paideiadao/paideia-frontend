@@ -1,5 +1,16 @@
-import { Header } from "@components/creation/utilities/HeaderComponents";
-import { Box, Button, Paper, InputBase } from "@mui/material";
+import {
+  CapsInfo,
+  Header,
+} from "@components/creation/utilities/HeaderComponents";
+import {
+  Box,
+  Button,
+  Paper,
+  InputBase,
+  Fab,
+  Slide,
+  IconButton,
+} from "@mui/material";
 import * as React from "react";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
@@ -16,15 +27,18 @@ import ProposalCard, {
 import Chip from "@components/utilities/Chip";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { deviceStruct, deviceWrapper } from "@components/utilities/Style";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import MobileFilters from "./MobileFilters";
 
-interface IFilters {
+export interface IFilters {
   search: string;
   proposalStatus: string;
   sortBy: string;
   categories: string[];
 }
 
-const categories = [
+export const categories = [
   { icon: <AppsIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />, label: "All" },
   {
     icon: <AttachMoneyIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />,
@@ -57,173 +71,245 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
     categories: ["All"],
   });
 
+  const [showFilters, setShowFilters] = React.useState<boolean>(false);
+
   const router = useRouter();
   const { id } = router.query;
 
   return (
-    <Box sx={{ width: "100%", p: "1.5rem" }}>
+    <>
       <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          mb: "1rem",
-        }}
+        sx={{ width: "100%", p: deviceWrapper("1rem", "1.5rem") }}
+        onClick={() => setShowFilters(false)}
       >
-        <Header large title={props.title} />
-        <Link href={id === undefined ? "/dao/create" : `/dao/${id}/create`}>
-          <Button variant="contained" sx={{ ml: "auto" }} endIcon={<AddIcon />}>
-            Create New
-          </Button>
-        </Link>
-      </Box>
-      <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
-        <Paper
-          elevation={0}
+        <Box
           sx={{
-            backgroundColor: "backgroundColor.main",
-            border: "1px solid",
-            borderColor: "border.main",
-            p: ".65rem",
-            borderRadius: "5rem",
+            width: "100%",
             display: "flex",
             alignItems: "center",
-            ":hover": {
-              borderColor: "primary.main",
-            },
-            width: "50%",
+            mb: "1rem",
           }}
         >
-          <Box
+          <Header large title={props.title} />
+          <Link href={id === undefined ? "/dao/create" : `/dao/${id}/create`}>
+            <Button
+              variant="contained"
+              sx={{ ml: "auto" }}
+              endIcon={<AddIcon />}
+              size="small"
+            >
+              Create New
+            </Button>
+          </Link>
+        </Box>
+        <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
+          <Paper
+            elevation={0}
             sx={{
-              width: "5%",
+              backgroundColor: "backgroundColor.main",
+              border: "1px solid",
+              borderColor: "border.main",
+              p: ".65rem",
+              borderRadius: "5rem",
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
+              ":hover": {
+                borderColor: "primary.main",
+              },
+              width: deviceWrapper("100%", "50%"),
             }}
           >
-            <SearchIcon sx={{ opacity: ".6", fontSize: "1.2rem" }} />
-          </Box>
-          <InputBase
+            <Box
+              sx={{
+                width: "5%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <SearchIcon sx={{ opacity: ".6", fontSize: "1.2rem" }} />
+            </Box>
+            <InputBase
+              sx={{
+                ml: ".5rem",
+                fontSize: ".9rem",
+                color: "text.main",
+                width: "100%",
+              }}
+              placeholder="Search by proposal name, id, or user"
+              value={filters.search}
+              // @ts-ignore
+              onChange={(event: any) =>
+                setFilters({ ...filters, search: event.target.value })
+              }
+            />
+          </Paper>
+          <FormControl
             sx={{
-              ml: ".5rem",
-              fontSize: ".9rem",
-              color: "text.main",
-              width: "100%",
+              width: "25%",
+              ml: "1rem",
+              display: deviceWrapper("none", "block"),
             }}
-            placeholder="Search by proposal name, id, or user"
-            value={filters.search}
-            // @ts-ignore
-            onChange={(event: any) =>
-              setFilters({ ...filters, search: event.target.value })
-            }
-          />
-        </Paper>
-        <FormControl sx={{ width: "25%", ml: "1rem" }}>
-          <InputLabel id="sort-by-select-label">Proposal status</InputLabel>
-          <Select
-            labelId="sort-by-select-label"
-            id="sort-by-select"
-            value={filters.proposalStatus}
-            label="Proposal status"
-            onChange={(event: SelectChangeEvent) =>
-              setFilters({ ...filters, proposalStatus: event.target.value })
-            }
           >
-            <MenuItem value={"All"}>All</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl sx={{ width: "25%", ml: "1rem" }}>
-          <InputLabel id="sort-by-select-label">Sort by</InputLabel>
-          <Select
-            labelId="sort-by-select-label"
-            id="sort-by-select"
-            value={filters.sortBy}
-            label="Sort by"
-            onChange={(event: SelectChangeEvent) =>
-              setFilters({ ...filters, sortBy: event.target.value })
-            }
+            <InputLabel id="sort-by-select-label">Proposal status</InputLabel>
+            <Select
+              labelId="sort-by-select-label"
+              id="sort-by-select"
+              value={filters.proposalStatus}
+              label="Proposal status"
+              onChange={(event: SelectChangeEvent) =>
+                setFilters({ ...filters, proposalStatus: event.target.value })
+              }
+            >
+              <MenuItem value={"All"}>All</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl
+            sx={{
+              width: "25%",
+              ml: "1rem",
+              display: deviceWrapper("none", "block"),
+            }}
           >
-            <MenuItem value="Most Recent">Most recent</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
-      <Box sx={{ display: "flex", alignItems: "center", pt: ".75rem" }}>
-        {categories.map((i: any, c: number) => (
-          <Chip
-            {...i}
-            set={() => {
-              let temp = [...filters.categories];
-              let allIndex = temp.indexOf("All");
-              let index = temp.indexOf(i.label);
-              if (index > -1) {
-                temp.splice(index, 1);
-              } else {
-                if (i.label === "All") {
-                  temp = ["All"];
+            <InputLabel id="sort-by-select-label">Sort by</InputLabel>
+            <Select
+              labelId="sort-by-select-label"
+              id="sort-by-select"
+              value={filters.sortBy}
+              label="Sort by"
+              onChange={(event: SelectChangeEvent) =>
+                setFilters({ ...filters, sortBy: event.target.value })
+              }
+            >
+              <MenuItem value="Most Recent">Most recent</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+        <Box
+          sx={{
+            display: "-webkit-box",
+            alignItems: "center",
+            pt: ".75rem",
+            overflowX: "auto",
+            "::-webkit-scrollbar": {
+              display: "none",
+            },
+          }}
+        >
+          {categories.map((i: any, c: number) => (
+            <Chip
+              {...i}
+              set={() => {
+                let temp = [...filters.categories];
+                let allIndex = temp.indexOf("All");
+                let index = temp.indexOf(i.label);
+                if (index > -1) {
+                  temp.splice(index, 1);
                 } else {
                   if (i.label === "All") {
                     temp = ["All"];
-                  } else if (i.label !== "All" && allIndex > -1) {
-                    temp.splice(allIndex, 1);
-                    temp.push(i.label);
                   } else {
-                    temp.push(i.label);
+                    if (i.label === "All") {
+                      temp = ["All"];
+                    } else if (i.label !== "All" && allIndex > -1) {
+                      temp.splice(allIndex, 1);
+                      temp.push(i.label);
+                    } else {
+                      temp.push(i.label);
+                    }
                   }
                 }
-              }
 
-              setFilters({
-                ...filters,
-                categories: temp,
-              });
-            }}
-            c={c}
-            key={"proposal-filter-chip-key-" + c}
-            variant={
-              filters.categories.indexOf(i.label) > -1
-                ? "contained"
-                : "outlined"
-            }
-          />
-        ))}
-      </Box>
-      <Box
-        sx={{ width: "100%", flexWrap: "wrap", display: "flex", mt: "1rem" }}
-      >
-        {props.proposals
-          .sort((a, b) =>
-            filters.sortBy === ""
-              ? true
-              : filters.sortBy === "Most Recent"
-              ? new Date(a.date).getTime() - new Date(b.date).getTime()
-              : true
-          )
-          .filter((i: any) => {
-            return (
-              (filters.proposalStatus === "" || filters.proposalStatus === "All"
-                ? true
-                : i.status === filters.proposalStatus) &&
-              (filters.search === ""
-                ? true
-                : i.proposalName
-                    .toLowerCase()
-                    .includes(filters.search.toLowerCase())) &&
-              (filters.categories.indexOf("All") > -1
-                ? true
-                : filters.categories.indexOf(i.category) > -1)
-            );
-          })
-          .map((i: any, c: number) => (
-            <ProposalCard
-              {...i}
+                setFilters({
+                  ...filters,
+                  categories: temp,
+                });
+              }}
               c={c}
-              key={"proposal-card-key-" + c + i.id}
-              width={{ sm: "33%", md: "33%", lg: "25%" }}
+              key={"proposal-filter-chip-key-" + c}
+              variant={
+                filters.categories.indexOf(i.label) > -1
+                  ? "contained"
+                  : "outlined"
+              }
             />
           ))}
+        </Box>
+        <Box
+          sx={{ width: "100%", flexWrap: "wrap", display: "flex", mt: "1rem" }}
+        >
+          {props.proposals
+            .sort((a, b) =>
+              filters.sortBy === ""
+                ? true
+                : filters.sortBy === "Most Recent"
+                ? new Date(a.date).getTime() - new Date(b.date).getTime()
+                : true
+            )
+            .filter((i: any) => {
+              return (
+                (filters.proposalStatus === "" ||
+                filters.proposalStatus === "All"
+                  ? true
+                  : i.status === filters.proposalStatus) &&
+                (filters.search === ""
+                  ? true
+                  : i.proposalName
+                      .toLowerCase()
+                      .includes(filters.search.toLowerCase())) &&
+                (filters.categories.indexOf("All") > -1
+                  ? true
+                  : filters.categories.indexOf(i.category) > -1)
+              );
+            })
+            .map((i: any, c: number) => (
+              <ProposalCard
+                {...i}
+                c={c}
+                key={"proposal-card-key-" + c + i.id}
+                width={deviceStruct("98%", "98%", "33%", "25%", "25%")}
+              />
+            ))}
+        </Box>
       </Box>
-    </Box>
+      <Fab
+        color="primary"
+        sx={{
+          position: "fixed",
+          bottom: ".5rem",
+          right: ".5rem",
+          display: deviceWrapper("flex", "none"),
+          zIndex: 999,
+        }}
+        size="medium"
+        onClick={() => setShowFilters(true)}
+      >
+        <FilterAltIcon />
+      </Fab>
+      <Slide direction="left" in={showFilters} mountOnEnter unmountOnExit>
+        <Box
+          sx={{
+            width: "17rem",
+            zIndex: 1000,
+            backgroundColor: "backgroundColor.main",
+            borderRight: "1px solid",
+            color: "primary.text",
+            borderLeft: "1px solid",
+            height: "100vh",
+            borderColor: "border.main",
+            position: "fixed",
+            top: 0,
+            right: 0,
+          }}
+        >
+          <MobileFilters
+            close={() => setShowFilters(false)}
+            set={(val: IFilters) => setFilters(val)}
+            filters={filters}
+          />
+        </Box>
+      </Slide>
+    </>
   );
 };
 
