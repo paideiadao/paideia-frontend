@@ -217,7 +217,7 @@ const TopNav: React.FC<ITopNav> = (props) => {
           <CloseIcon/>
         </IconButton> */}
             <DaoBio />
-            <Contents />
+            <Contents setShowMobile={props.setShowMobile}/>
           </Box>
 
           {/* <Footer /> */}

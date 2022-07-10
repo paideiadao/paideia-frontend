@@ -316,7 +316,11 @@ const DropdownLink: React.FC<{
 // change to accordion.... still use list structure, but change components
 // accordion should go inside a scollable wrapper.
 
-const Contents: React.FC = () => {
+interface IContents {
+  setShowMobile: (val: boolean) => void
+}
+
+const Contents: React.FC<IContents> = (props) => {
   const router = useRouter();
   const path = router.asPath;
 
@@ -377,10 +381,24 @@ const Contents: React.FC = () => {
     getSubSelected()
   );
   const setWrapper = (v: string) => {
+    console.log(v, '1')
     setSubSelected(undefined);
     setSelected(v);
+    if ([
+      'Proposals',
+      'Financials',
+      'Settings'
+    ].indexOf(v) === -1) {
+      props.setShowMobile(false)
+    }
+
   };
-  const setSubWrapper = (v: string) => setSubSelected(v);
+  const setSubWrapper = (v: string) => {
+    console.log(v, '2')
+    setSubSelected(v)
+
+      props.setShowMobile(false)
+  };
 
   React.useEffect(() => {
     setSelected(getSelected());
