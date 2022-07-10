@@ -81,30 +81,30 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
 
   const handleResize = () => {
     const navContainer = document.getElementById("navContainer");
+    // @ts-ignore
     const topPosition = navContainer.offsetTop;
+    // @ts-ignore
     const totalHeight = navContainer.getBoundingClientRect().height;
     const thisBottom = topPosition + totalHeight;
 
     navLinks.forEach((link: { link: string; position: number }) => {
       const linkElement = document.getElementById(link.link);
-      const thisTop = linkElement.offsetTop - 85;
+    // @ts-ignore
+    const thisTop = linkElement.offsetTop - 85;
       link.position = thisTop;
     });
 
     const visibleHeight = window.innerHeight;
     const barElement = document.getElementById("navPositionBar");
     const barHeight = barElement?.getBoundingClientRect().height;
+    // @ts-ignore
     const sliderHeight = (visibleHeight / totalHeight) * barHeight;
 
 
-    const visibleHeight = window.innerHeight
-    const barElement = document.getElementById('navPositionBar')
-    const barHeight = barElement?.getBoundingClientRect().height
-    const sliderHeight = visibleHeight / totalHeight * barHeight
-
     setSliderSx({
       ...sliderSx,
-      height: sliderHeight < barHeight ? sliderHeight : barHeight, // number
+    // @ts-ignore
+    height: sliderHeight < barHeight ? sliderHeight : barHeight, // number
     });
 
     setTopAndBottom((prevState) => ({
@@ -122,7 +122,8 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
     const barHeight = barElement?.getBoundingClientRect().height;
 
     if (position <= topAndBottomRef.current.top) {
-      setSliderSx((prevState) => ({ ...prevState, mt: 0 }));
+    // @ts-ignore
+    setSliderSx((prevState) => ({ ...prevState, mt: 0 }));
     }
     if (
       position > topAndBottomRef.current.top && // position is below the first element top
@@ -131,7 +132,10 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
       const pageHeight =
         topAndBottomRef.current.bottom - topAndBottomRef.current.top;
       const distanceDown =
+        // @ts-ignore
         ((position - topAndBottomRef.current.top) / pageHeight) * barHeight - 2;
+
+      // @ts-ignore
 
       setSliderSx((prevState) => ({
         ...prevState,
@@ -139,7 +143,11 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
       }));
     }
     if (position > topAndBottomRef.current.bottom - window.innerHeight) {
+        // @ts-ignore
+
       const distanceDown = barHeight - sliderSxRef.current.height;
+        // @ts-ignore
+
       setSliderSx((prevState) => ({
         ...prevState,
         mt: distanceDown.toString() + "px",
