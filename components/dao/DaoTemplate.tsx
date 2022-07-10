@@ -34,23 +34,24 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
         width: "100vw",
       }}
     >
-      <Nav />
-      <TopNav showMobile={showMobile} setShowMobile={setShowMobile} />
+      <Nav showMobile={showMobile} setShowMobile={setShowMobile} />
       <Box
         sx={{
           width: deviceWrapper("100%", "calc(100% - 14.5rem)"),
           position: "fixed",
-          top: "3.8rem",
+          top: "0",
           left: deviceWrapper("0", "14.5rem"),
           pt: "0rem",
           pb: ".5rem",
           overflowY: "auto",
-          height: "calc(100vh - 3.5rem)",
+          height: "100vh",
           zIndex: deviceWrapper("100", "1000"),
         }}
-        onClick={() => setShowMobile(false)}
       >
-        {props.children}
+        <TopNav showMobile={showMobile} setShowMobile={setShowMobile} />
+        <Box sx={{ width: "100%" }} onClick={() => setShowMobile(false)}>
+          {props.children}
+        </Box>
         <BottomNav />
       </Box>
     </Box>

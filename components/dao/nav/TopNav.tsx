@@ -32,12 +32,12 @@ import DaoBio from "./DaoBio";
 import Contents from "./Contents";
 import CloseIcon from "@mui/icons-material/Close";
 
-interface ITopNav {
+export interface INav {
   setShowMobile: (val: boolean) => void;
   showMobile: boolean;
 }
 
-const TopNav: React.FC<ITopNav> = (props) => {
+const TopNav: React.FC<INav> = (props) => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -45,24 +45,25 @@ const TopNav: React.FC<ITopNav> = (props) => {
   const router = useRouter();
   const { id } = router.query;
   const themeContext = React.useContext<IThemeContext>(ThemeContext);
-
   return (
     <>
       <Box
         sx={{
-          width: deviceWrapper("100%", "calc(100% - 14.5rem)"),
+          width: "100%",
           p: ".5rem",
           borderBottom: "1px solid",
           borderBottomColor: "border.main",
           display: "flex",
           backgroundColor: "backgroundColor.main",
           zIndex: 1000,
+          position: "sticky",
+          top: 0,
         }}
       >
         <IconButton
           color="primary"
           onClick={() => props.setShowMobile(true)}
-          sx={{ display: deviceWrapper("block", "none") }}
+          sx={{ display: deviceWrapper("flex", "none") }}
         >
           <MenuIcon />
         </IconButton>
@@ -93,7 +94,7 @@ const TopNav: React.FC<ITopNav> = (props) => {
                   : `/dao/${id}/notifications`
               }
             >
-              <IconButton sx={{ display: deviceWrapper("block", "none") }}>
+              <IconButton sx={{ display: deviceWrapper("flex", "none") }}>
                 <Badge badgeContent={1} color="primary">
                   <NotificationsIcon
                     sx={{
@@ -108,7 +109,7 @@ const TopNav: React.FC<ITopNav> = (props) => {
 
             <IconButton
               onClick={handleOpen}
-              sx={{ display: deviceWrapper("none", "block") }}
+              sx={{ display: deviceWrapper("none", "flex") }}
             >
               <Badge badgeContent={1} color="primary">
                 <NotificationsIcon
@@ -233,6 +234,7 @@ const TopNav: React.FC<ITopNav> = (props) => {
             backgroundRepeat: "no-repeat",
             backgroundSize: "14rem",
             position: "absolute",
+            top: 0,
           }}
         >
           <Box sx={{ width: "100%", position: "relative" }}>

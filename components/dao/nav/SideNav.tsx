@@ -9,8 +9,9 @@ import DarkFooter from "@public/dao/dark-footer.png";
 import { ThemeContext, IThemeContext } from "@lib/ThemeContext";
 import { DarkTheme } from "@theme/theme";
 import { deviceStruct, deviceWrapper } from "@components/utilities/Style";
+import { INav } from "./TopNav";
 
-const Nav: React.FC = (props) => {
+const Nav: React.FC<INav> = (props) => {
   const themeContext = React.useContext<IThemeContext>(ThemeContext);
 
   return (
@@ -35,7 +36,7 @@ const Nav: React.FC = (props) => {
       }}
     >
       <DaoBio />
-      <Contents />
+      <Contents setShowMobile={props.setShowMobile} />
       {/* <Footer /> */}
     </Box>
   );
