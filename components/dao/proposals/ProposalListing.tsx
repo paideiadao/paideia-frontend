@@ -39,21 +39,21 @@ export interface IFilters {
 }
 
 export const categories = [
-  { icon: <AppsIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />, label: "All" },
+  { icon: <AppsIcon sx={{fontSize: ".9rem" }} />, label: "All" },
   {
-    icon: <AttachMoneyIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />,
+    icon: <AttachMoneyIcon sx={{fontSize: ".9rem" }} />,
     label: "Finance",
   },
   {
-    icon: <StarIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />,
+    icon: <StarIcon sx={{fontSize: ".9rem" }} />,
     label: "Category 2",
   },
   {
-    icon: <StarIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />,
+    icon: <StarIcon sx={{fontSize: ".9rem" }} />,
     label: "Category 3",
   },
   {
-    icon: <StarIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />,
+    icon: <StarIcon sx={{fontSize: ".9rem" }} />,
     label: "Category 4",
   },
 ];
@@ -148,7 +148,7 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
             sx={{
               width: "25%",
               ml: "1rem",
-              display: deviceWrapper("none", "block"),
+              display: deviceWrapper("none", "flex"),
             }}
           >
             <InputLabel id="sort-by-select-label">Proposal status</InputLabel>
@@ -168,7 +168,7 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
             sx={{
               width: "25%",
               ml: "1rem",
-              display: deviceWrapper("none", "block"),
+              display: deviceWrapper("none", "flex"),
             }}
           >
             <InputLabel id="sort-by-select-label">Sort by</InputLabel>

@@ -1,8 +1,9 @@
-import { Typography, Grid, Box, Button, Link, Container } from "@mui/material";
+import { Typography, Grid, Box, Button, Container } from "@mui/material";
 import Image from "next/image";
 import { DarkTheme } from "@theme/theme";
 import SectionTitle from "@components/SectionTitle";
 import SocialGrid from "@components/SocialGrid";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -88,9 +89,12 @@ export default function Hero() {
               DAO
             </Typography>
           </Typography>
-          <Button variant="contained" disabled>
-            Coming Soon
-          </Button>
+          <Link href='/creation'>
+            <Button variant="contained">
+              Create your dao
+            </Button>
+          </Link>
+          
         </Grid>
         <Grid item>
           <Typography
