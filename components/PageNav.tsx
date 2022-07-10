@@ -96,6 +96,12 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
     const barHeight = barElement?.getBoundingClientRect().height;
     const sliderHeight = (visibleHeight / totalHeight) * barHeight;
 
+
+    const visibleHeight = window.innerHeight
+    const barElement = document.getElementById('navPositionBar')
+    const barHeight = barElement?.getBoundingClientRect().height
+    const sliderHeight = visibleHeight / totalHeight * barHeight
+
     setSliderSx({
       ...sliderSx,
       height: sliderHeight < barHeight ? sliderHeight : barHeight, // number
@@ -297,31 +303,72 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
             }}
           >
             {navBarListSmall}
-            <Box
-              sx={{
-                position: "fixed",
-                bottom: 0,
-                left: 0,
-                height: "45vh",
-                width: "100vw",
-                zIndex: "-1",
-                background:
-                  "linear-gradient(359.63deg, #ED7E21 10.26%, rgba(237, 126, 33, 0) 76.79%)",
-              }}
-            ></Box>
+
+            <Box sx={{
+              position: 'fixed',
+              bottom: 0,
+              left: 0,
+              height: '45vh',
+              width: '100vw',
+              zIndex: '-1',
+              background: "linear-gradient(359.63deg, #ED7E21 10.26%, rgba(237, 126, 33, 0) 76.79%)",
+            }}>
+
+            </Box>
           </Box>
         </Fade>
         <NavPopup navOpen={pageNavOpen}>
-          <Fab
-            sx={{
-              bgcolor: !pageNavOpen ? "#ED7E21" : "#FFFFFF",
-              "&:hover:focus": {
-                background: !pageNavOpen ? "#ED7E21" : "#FFFFFF",
-              },
-            }}
+          <Fab sx={{
+            bgcolor: !pageNavOpen ? '#ED7E21' : '#FFFFFF',
+            '&:hover:focus': {
+              background: !pageNavOpen ? '#ED7E21' : '#fff',
+            }
+          }}
             aria-label="open in page navigation"
             onClick={() => openPageNav()}
-          ></Fab>
+          >
+            <Box sx={{
+              position: 'absolute',
+              width: '6px',
+              height: '6px',
+              borderRadius: '20px',
+              backgroundColor: '#fff',
+              transform: 'rotate(270deg)',
+              cursor: 'pointer',
+              '&::before, &::after': {
+                position: 'absolute',
+                width: '6px',
+                height: '6px',
+                borderRadius: '20px',
+                backgroundColor: '#fff',
+                transform: 'rotate(270deg)',
+                cursor: 'pointer',
+                content: '""',
+                transition: "transform 100ms ease-in-out, background-color 100ms ease-in-out",
+              },
+              '&::before': {
+                right: '10px',
+                ...(pageNavOpen && {
+                  right: '-12px',
+                  width: '30px',
+                  backgroundColor: '#ED7E21',
+                  transform: 'rotate(225deg)',
+                  
+                })
+              },
+              '&::after': {
+                left: '10px',
+                ...(pageNavOpen && {
+                  left: '-12px',
+                  width: '30px',
+                  backgroundColor: '#ED7E21',
+                  transform: 'rotate(135deg)',
+                  
+                })
+              }
+            }}>
+            </Box>
+          </Fab>
         </NavPopup>
       </>
     );
