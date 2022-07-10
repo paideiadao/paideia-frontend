@@ -4,7 +4,7 @@ import WhitepaperQuote from "@components/landing/WhitepaperQuote";
 import Uses from "@components/landing/Uses";
 import Stats from "@components/landing/Stats";
 import Featured from "@components/landing/Featured";
-import Highlights from "@components/landing/Highlights";
+import Highlights from "@components/Highlights";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
       <Hero />
       <WhitepaperQuote />
       <Perks />
-      <Uses />
+      {/* <Uses /> */}
       {/* <Highlights /> */}
       <Stats />
       <Featured />
