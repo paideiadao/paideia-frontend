@@ -58,7 +58,7 @@ const LatestActivity: React.FC = () => {
       >
         <Subheader title="Latest activity" small bold />
         <Link href={id === undefined ? "/dao/activity" : `/dao/${id}/activity`}>
-          <Button sx={{ ml: "auto", fontSize: ".8rem" }}>
+          <Button sx={{ ml: "auto", fontSize: ".8rem" }} size="small">
             View Activity Log
           </Button>
         </Link>

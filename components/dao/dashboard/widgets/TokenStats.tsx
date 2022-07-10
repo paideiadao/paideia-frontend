@@ -16,11 +16,9 @@ const TokenStats: React.FC = () => {
         border: "1px solid",
         borderColor: "border.main",
         p: ".5rem",
-        mt: 0,
         pl: 0,
         pr: 0,
         pb: 0,
-        mr: "1rem",
         mb: "1rem",
       }}
     >
@@ -107,7 +105,7 @@ const TokenStats: React.FC = () => {
               : `/dao/${id}/financials/token`
           }
         >
-          <Button>Learn More</Button>
+          <Button size="small">Learn More</Button>
         </Link>
       </Box>
     </Paper>

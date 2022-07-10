@@ -317,7 +317,7 @@ const DropdownLink: React.FC<{
 // accordion should go inside a scollable wrapper.
 
 interface IContents {
-  setShowMobile: (val: boolean) => void
+  setShowMobile: (val: boolean) => void;
 }
 
 const Contents: React.FC<IContents> = (props) => {
@@ -381,23 +381,18 @@ const Contents: React.FC<IContents> = (props) => {
     getSubSelected()
   );
   const setWrapper = (v: string) => {
-    console.log(v, '1')
+    console.log(v, "1");
     setSubSelected(undefined);
     setSelected(v);
-    if ([
-      'Proposals',
-      'Financials',
-      'Settings'
-    ].indexOf(v) === -1) {
-      props.setShowMobile(false)
+    if (["Proposals", "Financials", "Settings"].indexOf(v) === -1) {
+      props.setShowMobile(false);
     }
-
   };
   const setSubWrapper = (v: string) => {
-    console.log(v, '2')
-    setSubSelected(v)
+    console.log(v, "2");
+    setSubSelected(v);
 
-      props.setShowMobile(false)
+    props.setShowMobile(false);
   };
 
   React.useEffect(() => {

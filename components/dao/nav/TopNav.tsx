@@ -86,7 +86,30 @@ const TopNav: React.FC<ITopNav> = (props) => {
               alignItems: "center",
             }}
           >
-            <IconButton onClick={handleOpen}>
+            <Link
+              href={
+                id === undefined
+                  ? "/dao/notifications"
+                  : `/dao/${id}/notifications`
+              }
+            >
+              <IconButton sx={{ display: deviceWrapper("block", "none") }}>
+                <Badge badgeContent={1} color="primary">
+                  <NotificationsIcon
+                    sx={{
+                      fontSize: "1.1rem",
+                      opacity:
+                        globalContext.api.theme === DarkTheme ? "1" : ".5",
+                    }}
+                  />
+                </Badge>
+              </IconButton>
+            </Link>
+
+            <IconButton
+              onClick={handleOpen}
+              sx={{ display: deviceWrapper("none", "block") }}
+            >
               <Badge badgeContent={1} color="primary">
                 <NotificationsIcon
                   sx={{
@@ -97,7 +120,7 @@ const TopNav: React.FC<ITopNav> = (props) => {
               </Badge>
             </IconButton>
           </Box>
-          <Link href={`/dao/${id}/profile`}>
+          <Link href={id === undefined ? "/dao/profile" : `/dao/${id}/profile`}>
             <Box sx={{ ml: "1rem", display: "flex", alignItems: "center" }}>
               <Avatar sx={{ mr: ".5rem" }}>
                 <img src={Musk.src} />
@@ -217,7 +240,7 @@ const TopNav: React.FC<ITopNav> = (props) => {
           <CloseIcon/>
         </IconButton> */}
             <DaoBio />
-            <Contents setShowMobile={props.setShowMobile}/>
+            <Contents setShowMobile={props.setShowMobile} />
           </Box>
 
           {/* <Footer /> */}
