@@ -46,10 +46,10 @@ export const LightTheme = createTheme({
     // favoriteBackground: {
     //   main: "#FEE8E7",
     // },
-    // text: {
-    //   primary: "#000000",
-    //   secondary: "#666666",
-    // },
+    text: {
+      primary: "#000000",
+      secondary: "#666666",
+    },
     // linkHover: {
     //   main: "#EBF5F6",
     // },
