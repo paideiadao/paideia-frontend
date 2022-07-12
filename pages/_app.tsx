@@ -126,7 +126,7 @@ export async function getServerSideProps(context) {
   let wildcard = context.req.headers.host.split(".")[0];
   let all_ids = ["spreadly", "ergopad"];
 
-  console.log(context.req.headers.host);
+  // console.log(context.req.headers.host);
 
   wildcard =
     all_ids.indexOf(wildcard) > -1

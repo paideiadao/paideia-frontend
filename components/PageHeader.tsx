@@ -1,3 +1,4 @@
+import React, { FC } from "react";
 import { Typography, Grid, Box, Container } from "@mui/material";
 import Image from "next/image";
 import { DarkTheme } from "@theme/theme";
@@ -10,14 +11,23 @@ const paragraphStyle = {
   letterSpacing: "0.15px",
 };
 
-export default function PageHeader({
+interface IPageHeader {
+  bgUrl: string;
+  sectionTitle: string;
+  titleLineOne: string;
+  titleLineTwo: string;
+  subTitleOne?: string;
+  subTitleTwo?: string;
+}
+
+const PageHeader: FC<IPageHeader> = ({
   bgUrl,
   sectionTitle,
   titleLineOne,
   titleLineTwo,
   subTitleOne,
   subTitleTwo,
-}) {
+}) => {
   return (
     <Container sx={{ px: "24px" }}>
       <Box
@@ -87,28 +97,34 @@ export default function PageHeader({
             {titleLineTwo}
           </Typography>
           <Grid container wrap="nowrap" spacing={2} sx={{ mb: "120px" }}>
-            <Grid item>
-              <Box
-                sx={{
-                  mt: "3px",
-                  width: "8px",
-                  height: "90%",
-                  background:
-                    "linear-gradient(161.68deg, #6FA1A9 19.58%, #ED7E21 84.97%)",
-                }}
-              ></Box>
-            </Grid>
-            <Grid item zeroMinWidth>
-              <Typography component="p" sx={paragraphStyle}>
-                {subTitleOne}
-              </Typography>
-              <Typography component="p" sx={paragraphStyle}>
-                {subTitleTwo}
-              </Typography>
-            </Grid>
+            {(subTitleOne && subTitleTwo) && (
+              <>
+                <Grid item>
+                  <Box
+                    sx={{
+                      mt: "3px",
+                      width: "8px",
+                      height: "90%",
+                      background:
+                        "linear-gradient(161.68deg, #6FA1A9 19.58%, #ED7E21 84.97%)",
+                    }}
+                  ></Box>
+                </Grid>
+                <Grid item zeroMinWidth>
+                  <Typography component="p" sx={paragraphStyle}>
+                    {subTitleOne}
+                  </Typography>
+                  <Typography component="p" sx={paragraphStyle}>
+                    {subTitleTwo}
+                  </Typography>
+                </Grid>
+              </>
+            )}
           </Grid>
         </Grid>
       </Grid>
     </Container>
   );
 }
+
+export default PageHeader;

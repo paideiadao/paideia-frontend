@@ -1,6 +1,4 @@
 import React, { FC } from "react";
-
-
 import {
   Grid,
   Typography,
@@ -12,14 +10,17 @@ import {
   InputLabel,
   MenuItem,
   InputAdornment,
-  OutlinedInput
+  OutlinedInput,
+  useMediaQuery,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import StarIcon from "@mui/icons-material/Star";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { DarkTheme } from "@theme/theme";
 import SearchIcon from '@mui/icons-material/Search';
 import FilterOptions from '@components/FilterOptions'
+import { SxProps } from '@mui/material';
 
 interface IDaosProps {
   name: string;
@@ -31,7 +32,7 @@ interface IDaosProps {
 
 interface IProjectListProps {
   daos: IDaosProps[];
-  sx?: object;
+  sx?: SxProps;
 }
 
 const DaoCard = ({ dao }) => {
@@ -115,7 +116,7 @@ const DaoCard = ({ dao }) => {
   );
 };
 
-const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
+const SortBy: FC = () => {
   const [sortOption, setSortOption] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -123,56 +124,79 @@ const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
   };
 
   return (
-    <Grid container sx={sx}>
+    <FormControl fullWidth>
+      <InputLabel id="sort-select-box-input">Sort By</InputLabel>
+      <Select
+        labelId="sort-select-box-label"
+        id="sort-select-box"
+        value={sortOption}
+        label="Sort By"
+        onChange={handleChange}
+      >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        <MenuItem value={'oldest'}>Oldest</MenuItem>
+        <MenuItem value={'newest'}>Newest</MenuItem>
+        <MenuItem value={'most members'}>Most Members</MenuItem>
+        <MenuItem value={'least members'}>Least Members</MenuItem>
+      </Select>
+    </FormControl>
+  )
+}
 
-      <Grid item md={3} sx={{ pr: '24px' }}>
+interface ISearchBar {
+  sx?: SxProps;
+}
+
+const SearchBar: FC<ISearchBar> = ({ sx }) => {
+  return (
+    <FormControl fullWidth variant="outlined" sx={sx}>
+      <InputLabel htmlFor="outlined-adornment-search">Search</InputLabel>
+      <OutlinedInput
+        id="outlined-adornment-search"
+        endAdornment={
+          <InputAdornment position="start">
+            <SearchIcon />
+          </InputAdornment>
+        }
+        label="Search"
+      />
+    </FormControl>
+  )
+}
+
+const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
+
+  const theme = useTheme();
+
+  return (
+    <Grid container sx={sx}>
+      <Grid item lg={3} sx={{ pr: '24px', display: { xs: 'none', lg: 'block' } }}>
         <FilterOptions />
       </Grid>
-      <Grid item md={9}>
-        <Grid container sx={{ mb: '32px' }} spacing={3}>
-          <Grid item md={7}>
-            <FormControl fullWidth variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-search">Search</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-search"
-                endAdornment={
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                }
-                label="Search"
-              />
-            </FormControl>
+      <Grid item lg={9} xs={12}>
+        {useMediaQuery(theme.breakpoints.up("lg")) ? (
+          <Grid container sx={{ mb: '32px' }} spacing={3}>
+            <Grid item md={7}>
+              <SearchBar />
+            </Grid>
+            <Grid item md={5}>
+              <SortBy />
+            </Grid>
           </Grid>
-          <Grid item md={5}>
-            <FormControl fullWidth>
-              <InputLabel id="sort-select-box-input">Sort By</InputLabel>
-              <Select
-                labelId="sort-select-box-label"
-                id="sort-select-box"
-                value={sortOption}
-                label="Sort By"
-                onChange={handleChange}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={'oldest'}>Oldest</MenuItem>
-                <MenuItem value={'newest'}>Newest</MenuItem>
-                <MenuItem value={'most members'}>Most Members</MenuItem>
-                <MenuItem value={'least members'}>Least Members</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-        </Grid>
-        <Grid container spacing={4}>
+        ) : (
+          <SearchBar sx={{ mb: '24px' }} />
+        )}
+        <Grid container spacing={4} justifyContent="center">
           {daos.map((dao, i) => (
-            <Grid key={i} item xs={12} sm={6} md={4}>
+            <Grid key={i} item xs={12} sm={6} sm3={4} md={4} md2={3} lg={4} sx={{ justifyContent: 'center' }}>
               <DaoCard dao={dao} />
             </Grid>
           ))}
         </Grid>
       </Grid>
+
     </Grid>
   );
 };

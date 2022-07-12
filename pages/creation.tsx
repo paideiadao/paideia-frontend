@@ -2,7 +2,7 @@ import { Box, Modal } from "@mui/material";
 import * as React from "react";
 import Nav from "@components/creation/nav/SideNav";
 import { ThemeProvider } from "@mui/material/styles";
-import { LightTheme, DarkTheme } from "../theme/theme.js";
+import { LightTheme, DarkTheme } from "../theme/theme";
 import Button from "@mui/material/Button";
 import BasicInformation from "../components/creation/basic-information/BasicInformation";
 import { GlobalContext } from "../lib/creation/Context";
