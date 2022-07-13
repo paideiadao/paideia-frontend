@@ -188,9 +188,9 @@ const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
         ) : (
           <SearchBar sx={{ mb: '24px' }} />
         )}
-        <Grid container spacing={4} justifyContent="center">
+        <Grid container spacing={4} columns={{ xs: 1, sm: 2, sm3: 3, md: 3, md2: 4, lg: 3 }}>
           {daos.map((dao, i) => (
-            <Grid key={i} item xs={12} sm={6} sm3={4} md={4} md2={3} lg={4} sx={{ justifyContent: 'center' }}>
+            <Grid key={i} item xs={1} sx={{ textAlign: 'center' }}>
               <DaoCard dao={dao} />
             </Grid>
           ))}

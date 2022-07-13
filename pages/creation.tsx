@@ -24,7 +24,7 @@ export let colorLookup = {
   dark: "#0E1420",
 };
 
-export default function Creation(props) {
+export default function Creation() {
   const [alert, setAlert] = React.useState({
     show: false,
     value: "",
@@ -132,7 +132,7 @@ export default function Creation(props) {
   return (
     <GlobalContext.Provider value={{ api }}>
       {data.isPublished === 1 ? (
-        <CreationLoading theme={theme} />
+        <CreationLoading />
       ) : (
         <>
           <Nav

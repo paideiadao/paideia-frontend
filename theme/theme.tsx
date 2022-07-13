@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import darkScrollbar from "@mui/material/darkScrollbar";
 
 declare module '@mui/material/styles' {
   interface BreakpointOverrides {
