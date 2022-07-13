@@ -12,7 +12,9 @@ import {
   InputAdornment,
   OutlinedInput,
   useMediaQuery,
+  IconButton,
 } from "@mui/material";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { useTheme } from "@mui/material/styles";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import StarIcon from "@mui/icons-material/Star";
@@ -21,19 +23,6 @@ import { DarkTheme } from "@theme/theme";
 import SearchIcon from '@mui/icons-material/Search';
 import FilterOptions from '@components/FilterOptions'
 import { SxProps } from '@mui/material';
-
-interface IDaosProps {
-  name: string;
-  image?: string;
-  description: string;
-  link: string;
-  category?: string;
-}
-
-interface IProjectListProps {
-  daos: IDaosProps[];
-  sx?: SxProps;
-}
 
 const DaoCard = ({ dao }) => {
   return (
@@ -166,6 +155,19 @@ const SearchBar: FC<ISearchBar> = ({ sx }) => {
   )
 }
 
+interface IDaosProps {
+  name: string;
+  image?: string;
+  description: string;
+  link: string;
+  category?: string;
+}
+
+interface IProjectListProps {
+  daos: IDaosProps[];
+  sx?: SxProps;
+}
+
 const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
 
   const theme = useTheme();
@@ -186,7 +188,21 @@ const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
             </Grid>
           </Grid>
         ) : (
-          <SearchBar sx={{ mb: '24px' }} />
+          <Grid
+            container
+            sx={{ mb: '32px' }}
+            spacing={3}
+            direction="row"
+          >
+            <Grid item xs>
+              <SearchBar />
+            </Grid>
+            <Grid item xs="auto">
+              <Button sx={{ height: '100%' }} variant="outlined" aria-label="filter">
+                <FilterAltIcon />
+              </Button>
+            </Grid>
+          </Grid>
         )}
         <Grid container spacing={4} columns={{ xs: 1, sm: 2, sm3: 3, md: 3, md2: 4, lg: 3 }}>
           {daos.map((dao, i) => (
