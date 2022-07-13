@@ -2,7 +2,7 @@ import { Box, Modal } from "@mui/material";
 import * as React from "react";
 import Nav from "@components/creation/nav/SideNav";
 import { ThemeProvider } from "@mui/material/styles";
-import { LightTheme, DarkTheme } from "../theme/theme.js";
+import { LightTheme, DarkTheme } from "../theme/theme";
 import Button from "@mui/material/Button";
 import BasicInformation from "../components/creation/basic-information/BasicInformation";
 import { GlobalContext } from "../lib/creation/Context";
@@ -24,7 +24,7 @@ export let colorLookup = {
   dark: "#0E1420",
 };
 
-export default function Creation(props) {
+export default function Creation() {
   const [alert, setAlert] = React.useState({
     show: false,
     value: "",
@@ -132,7 +132,7 @@ export default function Creation(props) {
   return (
     <GlobalContext.Provider value={{ api }}>
       {data.isPublished === 1 ? (
-        <CreationLoading theme={theme} />
+        <CreationLoading />
       ) : (
         <>
           <Nav

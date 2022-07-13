@@ -2,11 +2,12 @@ import React, { FC } from "react";
 import { Grid, Typography, Box } from "@mui/material";
 import SectionTitle from "@components/SectionTitle";
 import Blockquote from "@components/Blockquote";
+import { SxProps } from '@mui/material';
 
 interface HeadingProps {
   category?: string;
   title?: string;
-  sx?: object;
+  sx?: SxProps;
 }
 
 const SectionHeading: FC<HeadingProps> = ({

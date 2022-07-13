@@ -2,7 +2,6 @@ import * as React from "react";
 import CircularProgress, {
   CircularProgressProps,
 } from "@mui/material/CircularProgress";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 function CircularProgressWithLabel(
@@ -26,8 +25,7 @@ function CircularProgressWithLabel(
             size="4rem"
             sx={{ position: "relative", zIndex: 2 }}
             value={props.value * 20}
-            // @ts-expect-error
-            color="circle"
+            // color="circle"
           />
           <CircularProgress
             variant="determinate"
@@ -35,8 +33,7 @@ function CircularProgressWithLabel(
             sx={{ position: "absolute" }}
             size="4rem"
             value={100}
-            // @ts-expect-error
-            color="circleBackground"
+            // color="circleBackground"
           />
           <Box
             sx={{
