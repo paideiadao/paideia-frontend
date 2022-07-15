@@ -2,7 +2,7 @@ import { deviceWrapper } from "@components/utilities/Style";
 import { Box } from "@mui/material";
 import * as React from "react";
 
-const Layout: React.FC<{ width?: string }> = (props) => {
+const Layout: React.FC<{ width?: string | any }> = (props) => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

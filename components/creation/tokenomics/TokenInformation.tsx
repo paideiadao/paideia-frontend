@@ -4,7 +4,7 @@ import { ICreationData, ITokenomics } from "../../../lib/creation/CreationApi";
 import { GlobalContext } from "../../../lib/creation/Context";
 import { IData } from "../../../lib/utilities";
 import { Header, LearnMore, Subheader } from "../utilities/HeaderComponents";
-import { deviceStruct } from "@components/utilities/Style";
+import { deviceStruct, deviceWrapper } from "@components/utilities/Style";
 
 const NewToken: React.FC<IData<ITokenomics>> = (props) => {
   let data = props.data;
@@ -13,7 +13,7 @@ const NewToken: React.FC<IData<ITokenomics>> = (props) => {
       sx={{
         display: "flex",
         alignItems: "center",
-        flexWrap: deviceStruct("wrap", "wrap", "", "", ""),
+        flexWrap: deviceWrapper('wrap', 'nowrap'),
       }}
     >
       <TextField

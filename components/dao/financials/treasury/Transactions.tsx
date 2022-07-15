@@ -3,6 +3,7 @@ import { Box, Button } from "@mui/material";
 import { activities } from "@pages/dao/[id]/activity";
 import * as React from "react";
 import { Subheader } from "@components/creation/utilities/HeaderComponents";
+import { deviceWrapper } from "@components/utilities/Style";
 
 const Transactions: React.FC = () => {
   const transactionActivities = activities.filter(
@@ -12,8 +13,13 @@ const Transactions: React.FC = () => {
     <Box sx={{ width: "100%" }}>
       <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
         <Subheader title="Latest Transactions" />
-        <Button variant="text" sx={{ ml: "auto" }}>
-          View all transactions
+        <Button variant="text" sx={{ ml: "auto" }} size='small'>
+          <Box sx={{display: deviceWrapper('none', 'block')}}>
+            View all transations
+          </Box>
+          <Box sx={{display: deviceWrapper('block', 'none')}}>
+            View all
+          </Box>
         </Button>
       </Box>
       {transactionActivities

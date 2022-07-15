@@ -4,9 +4,10 @@ import * as React from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Collapse from "@mui/material/Collapse";
+import { deviceWrapper } from "@components/utilities/Style";
 
 const FundCard: React.FC<{
-  width: string;
+  width: string | any;
   value: string;
   ticker: string;
   percentage: string;
@@ -16,7 +17,7 @@ const FundCard: React.FC<{
     <Box
       sx={{
         width: props.width,
-        textAlign: "center",
+        textAlign: deviceWrapper('left', "center"),
         backgroundColor: "fileInput.outer",
         m: ".3rem",
         border: "1px solid",
@@ -148,7 +149,7 @@ const Funds: React.FC = () => {
             borderColor: "border.main",
             pt: ".1rem",
             pb: ".1rem",
-            fontSize: ".9rem",
+            fontSize: deviceWrapper('.7rem', ".9rem"),
             fontWeight: 500,
           }}
         >
@@ -160,25 +161,30 @@ const Funds: React.FC = () => {
           ? summaryCards.map((i: IFundCard, c: number) => (
               <FundCard
                 {...i}
-                width="23.3%"
+                width={deviceWrapper('46%', "23.3%")}
                 key={`summary-financial-card-${c}`}
               />
             ))
           : allCards.map((i: IFundCard, c: number) => (
-              <FundCard {...i} width="23.3%" key={`all-financial-card-${c}`} />
+              <FundCard {...i} width={deviceWrapper('46%', "23.3%")} key={`all-financial-card-${c}`} />
             ))}
       </Box>
       <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        <Button onClick={() => setShow(!show)}>
+        <Button onClick={() => setShow(!show)} size='small' endIcon={
+          !show ? 
+          <KeyboardArrowDownIcon /> : 
+          <KeyboardArrowUpIcon />
+
+        }>
           {!show ? (
             <>
               Show other fund sources{" "}
-              <KeyboardArrowDownIcon sx={{ ml: ".5rem" }} />
+              
             </>
           ) : (
             <>
               Hide other fund sources{" "}
-              <KeyboardArrowUpIcon sx={{ ml: ".5rem" }} />
+              
             </>
           )}
         </Button>

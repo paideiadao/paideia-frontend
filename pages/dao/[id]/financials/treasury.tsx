@@ -11,6 +11,7 @@ import Link from "next/link";
 import Funds from "@components/dao/financials/treasury/Funds";
 import Chart from "@components/dao/financials/treasury/Chart";
 import Transactions from "@components/dao/financials/treasury/Transactions";
+import { deviceWrapper } from "@components/utilities/Style";
 
 const TreasuryHeader: React.FC = () => {
   const router = useRouter();
@@ -25,9 +26,15 @@ const TreasuryHeader: React.FC = () => {
             : `/dao/${id}/financials/treasury/send`
         }
       >
-        <Button variant="contained" sx={{ ml: "auto" }}>
-          Send Funds
-          <PaymentsIcon sx={{ ml: ".5rem" }} />
+        <Button variant="contained" sx={{ ml: "auto" }}
+          endIcon={
+          <PaymentsIcon />
+
+          }
+          size='small'
+        >
+          <Box sx={{display: deviceWrapper('none', 'block')}}>Send Funds</Box>
+          <Box sx={{display: deviceWrapper('block', 'none')}}>Send</Box>
         </Button>
       </Link>
     </Box>
@@ -139,15 +146,15 @@ export const TreasuryInfo: React.FC = () => {
 
 const Treasury: React.FC = () => {
   return (
-    <Layout width="96%">
+    <Layout width={deviceWrapper('92%', "96%")}>
       <Box sx={{ width: "100%", display: "flex", alignItems: "flex-start" }}>
-        <Box sx={{ width: "72%" }}>
+        <Box sx={{ width: deviceWrapper('100%', "72%") }}>
           <TreasuryHeader />
           <Funds />
           <Chart />
           <Transactions />
         </Box>
-        <Box sx={{ width: "28%", position: "sticky", top: "1.6rem" }}>
+        <Box sx={{ width: "28%", position: "sticky", top: "1.6rem", display: deviceWrapper('none', 'block') }}>
           <TreasuryInfo />
         </Box>
       </Box>

@@ -26,6 +26,7 @@ const Activity: React.FC<{ i: IActivity; c: number }> = (props) => {
         alignItems: "center",
         fontSize: ".8rem",
         flexWrap: deviceWrapper("wrap", "nowrap"),
+        overflowX: 'hidden'
       }}
     >
       <Box
