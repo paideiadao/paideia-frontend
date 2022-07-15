@@ -18,6 +18,7 @@ import { IFile, ISocialLink } from "@lib/creation/CreationApi";
 import { SocialRow } from "@components/creation/design/Footer";
 import Status from "@components/utilities/Status";
 import Layout from "@components/dao/Layout";
+import { deviceWrapper } from "@components/utilities/Style";
 
 const ProfileEditImage: React.FC = () => {
   const [file, setFile] = React.useState<IFile>({
@@ -54,6 +55,7 @@ const ProfileEditImage: React.FC = () => {
         alignItems: "center",
         pt: "1rem",
         pb: ".5rem",
+        flexDirection: deviceWrapper('column', 'row'),
       }}
     >
       <Badge
@@ -87,7 +89,7 @@ const ProfileEditImage: React.FC = () => {
       >
         <Avatar sx={{ height: "7rem", width: "7rem" }} src={file.url}></Avatar>
       </Badge>
-      <Box sx={{ ml: "1.5rem", width: "65%" }}>
+      <Box sx={{ ml: deviceWrapper('0', "1.5rem"), mt: deviceWrapper('.5rem', '0'), width: deviceWrapper('100%', "65%"), display: deviceWrapper('flex', 'block'), justifyContent: 'center' }}>
         <input
           type="file"
           id="replace-profile-image"
@@ -97,15 +99,19 @@ const ProfileEditImage: React.FC = () => {
         />
         <Button
           variant="outlined"
+          size='small'
+          endIcon={
+          <SwapVertIcon />
+
+          }
           onClick={() => {
             const fileInput = document.getElementById("replace-profile-image");
             fileInput.click();
           }}
         >
           Replace Image
-          <SwapVertIcon sx={{ ml: ".3rem" }} />
         </Button>
-        <Box sx={{ fontSize: ".9rem", color: "text.light" }}>
+        <Box sx={{ fontSize: ".9rem", color: "text.light", display: deviceWrapper('none', 'block') }}>
           Image needs to be at least 256px x 256px. JPEG and PNG files
           supported, less than 3mb.
         </Box>
@@ -142,7 +148,7 @@ const Edit: React.FC<{ params: any }> = (props) => {
 
   return (
     <Layout>
-      <Header title="Edit profile" />
+      <Header title="Edit profile" large/>
       <ProfileEditImage />
       <TextField
         value={value.username}
@@ -218,7 +224,9 @@ const Edit: React.FC<{ params: any }> = (props) => {
           sx={{ width: "49%" }}
           onClick={() => setValue({ ...value, alert: "info" })}
         >
-          Save Changes
+           <Box sx={{display: deviceWrapper('none', 'block')}}>{"Save Changes"}</Box>
+           <Box sx={{display: deviceWrapper('block', 'none')}}>{"Save"}</Box>
+
         </Button>
       </Box>
     </Layout>
