@@ -88,11 +88,6 @@ const accordionObject = [
         body: "Begin testing how the platform works. Test user flows. If smart contracts are ready, use test tokens to try them out. ",
         completed: false,
       },
-      {
-        title: "MVP Launch",
-        body: "Once tested and audited, launch MVP. ",
-        completed: false,
-      },
     ],
   },
   {
