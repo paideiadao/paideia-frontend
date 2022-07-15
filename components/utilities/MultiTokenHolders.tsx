@@ -2,11 +2,12 @@ import WalletSelector from "@components/creation/governance/WalletSelector";
 import BalanceInput from "@components/creation/utilities/BalanceInput";
 import PercentageInput from "@components/creation/utilities/PercentageInput";
 import { ITokenHolder } from "@lib/creation/CreationApi";
-import { Box, Button } from "@mui/material";
+import { Box, Button, IconButton } from "@mui/material";
 import * as React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
+import { deviceWrapper } from "./Style";
 
 interface IMultiTokenHolders {
   tokenHolders: ITokenHolder[];
@@ -20,13 +21,15 @@ const MultiTokenHolders: React.FC<IMultiTokenHolders> = (props) => {
       {props.tokenHolders.map((i: ITokenHolder, c: number) => {
         return (
           <Box
-            sx={{ display: "flex", alignItems: "center", height: "5rem" }}
+            sx={{ display: "flex", alignItems: "center", flexWrap: deviceWrapper('wrap', 'nowrap'), mt: '1rem' }}
             key={`${c}-token-holder`}
           >
             <Box
               sx={{
-                width: "50%",
+                width: deviceWrapper('100%', "50%"),
                 mr: ".5rem",
+
+                mb: deviceWrapper('.75rem', '0'),
                 display: "flex",
                 alignItems: "center",
               }}
@@ -48,8 +51,26 @@ const MultiTokenHolders: React.FC<IMultiTokenHolders> = (props) => {
                   props.set(temp);
                 }}
               />
+              {props.tokenHolders.length > 1 && (
+                <IconButton
+                sx={{display: deviceWrapper('flex', 'none'), ml: '.5rem'}}
+                size='small'
+                >
+<DeleteIcon
+                color='error'
+                
+                onClick={() => {
+                  let temp = [...props.tokenHolders];
+                  temp.splice(c, 1);
+                  props.set(temp);
+                }}
+              />
+                </IconButton>
+              
+            )}
             </Box>
             <BalanceInput
+              width={deviceWrapper('47.25%', '27%')}
               total={props.treasuryAmount}
               remaining={
                 props.treasuryAmount -
@@ -66,6 +87,8 @@ const MultiTokenHolders: React.FC<IMultiTokenHolders> = (props) => {
               }}
             />
             <PercentageInput
+              width={deviceWrapper('47.25%', '23%')}
+
               total={props.treasuryAmount}
               remaining={
                 props.treasuryAmount -
@@ -82,19 +105,20 @@ const MultiTokenHolders: React.FC<IMultiTokenHolders> = (props) => {
               }}
             />
             {props.tokenHolders.length > 1 && (
-              <DeleteIcon
-                style={{
-                  fill: "red",
-                  marginLeft: ".4rem",
-                  cursor: "pointer",
-                  width: "3%",
-                }}
+              <IconButton
+              sx={{display: deviceWrapper('none', 'flex'), ml: '.5rem'}}
+              size='small'
+              >
+          <DeleteIcon
+                color='error'
                 onClick={() => {
                   let temp = [...props.tokenHolders];
                   temp.splice(c, 1);
                   props.set(temp);
                 }}
               />
+              </IconButton>
+              
             )}
           </Box>
         );
@@ -111,6 +135,7 @@ const MultiTokenHolders: React.FC<IMultiTokenHolders> = (props) => {
           variant="text"
           size="small"
           sx={{ mr: 2 }}
+          endIcon={<AddIcon />}
           onClick={() => {
             let temp = [...props.tokenHolders];
             props.set(
@@ -120,10 +145,10 @@ const MultiTokenHolders: React.FC<IMultiTokenHolders> = (props) => {
             );
           }}
         >
-          Add Another <AddIcon />
+          Add Another 
         </Button>
-        <Button variant="text" size="small">
-          Add from file <FileUploadIcon />
+        <Button variant="text" size="small" endIcon={<FileUploadIcon />}>
+          Add from file 
         </Button>
       </Box>
     </>
