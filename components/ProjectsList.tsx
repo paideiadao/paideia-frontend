@@ -13,6 +13,10 @@ import {
   OutlinedInput,
   useMediaQuery,
   IconButton,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Dialog
 } from "@mui/material";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { useTheme } from "@mui/material/styles";
@@ -39,7 +43,7 @@ const DaoCard = ({ dao }) => {
         justifyContent="space-between"
         alignItems="flex-start"
       >
-        <Grid item>
+        <Grid item sx={{ textAlign: 'left' }}>
           {dao?.category && (
 
             <Box sx={{ position: 'absolute', top: '-4px', right: '-6px', fontSize: '12px' }}>
@@ -105,7 +109,11 @@ const DaoCard = ({ dao }) => {
   );
 };
 
-const SortBy: FC = () => {
+interface ISortByProps {
+  sx?: SxProps;
+}
+
+const SortBy: FC<ISortByProps> = ({ sx }) => {
   const [sortOption, setSortOption] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -113,7 +121,7 @@ const SortBy: FC = () => {
   };
 
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth sx={sx}>
       <InputLabel id="sort-select-box-input">Sort By</InputLabel>
       <Select
         labelId="sort-select-box-label"
@@ -168,7 +176,91 @@ interface IProjectListProps {
   sx?: SxProps;
 }
 
+export interface ConfirmationDialogRawProps {
+  id: string;
+  keepMounted: boolean;
+  value: string;
+  open: boolean;
+  onClose: (value?: string) => void;
+}
+
+function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
+  const { onClose, value: valueProp, open, ...other } = props;
+  const [value, setValue] = React.useState(valueProp);
+  const radioGroupRef = React.useRef<HTMLElement>(null);
+
+  React.useEffect(() => {
+    if (!open) {
+      setValue(valueProp);
+    }
+  }, [valueProp, open]);
+
+  const handleEntering = () => {
+    if (radioGroupRef.current != null) {
+      radioGroupRef.current.focus();
+    }
+  };
+
+  const handleCancel = () => {
+    onClose();
+  };
+
+  const handleOk = () => {
+    onClose(value);
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue((event.target as HTMLInputElement).value);
+  };
+
+  return (
+    <Dialog
+      sx={{
+        '& .MuiDialog-paper': {
+          background: 'rgb(14, 20, 33)',
+          width: '100%',
+          maxWidth: '400px',
+          maxHeight: '80vh'
+        }
+      }}
+      
+      maxWidth="xs"
+      TransitionProps={{ onEntering: handleEntering }}
+      open={open}
+      {...other}
+    >
+      <DialogTitle>Filter &amp; Sort</DialogTitle>
+      <DialogContent dividers>
+        <SortBy sx={{ mb: '24px' }} />
+        <FilterOptions />
+      </DialogContent>
+      <DialogActions>
+        <Button autoFocus onClick={handleCancel}>
+          Cancel
+        </Button>
+        <Button onClick={handleOk}>Ok</Button>
+      </DialogActions>
+    </Dialog>
+  );
+}
+
+
 const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
+  const [filterDialogOpen, setFilterDialogOpen] = React.useState(false);
+  const [filterDialogvalue, setFilterDialogValue] = React.useState('Dione');
+
+  const handleDialogClick = () => {
+    setFilterDialogOpen(true);
+  };
+
+  const handleDialogClose = (newValue?: string) => {
+    setFilterDialogOpen(false);
+
+    if (newValue) {
+      setFilterDialogValue(newValue);
+    }
+  };
+
 
   const theme = useTheme();
 
@@ -177,7 +269,7 @@ const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
       <Grid item lg={3} sx={{ pr: '24px', display: { xs: 'none', lg: 'block' } }}>
         <FilterOptions />
       </Grid>
-      <Grid item lg={9} xs={12}>
+      <Grid item lg={9} xs={12}  sx={{ textAlign: 'center' }}>
         {useMediaQuery(theme.breakpoints.up("lg")) ? (
           <Grid container sx={{ mb: '32px' }} spacing={3}>
             <Grid item md={7}>
@@ -198,19 +290,30 @@ const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
               <SearchBar />
             </Grid>
             <Grid item xs="auto">
-              <Button sx={{ height: '100%' }} variant="outlined" aria-label="filter">
+              <Button sx={{ height: '100%' }} variant="outlined" aria-label="filter" onClick={handleDialogClick}>
                 <FilterAltIcon />
               </Button>
+              <ConfirmationDialogRaw
+                id="ringtone-menu"
+                keepMounted
+                open={filterDialogOpen}
+                onClose={handleDialogClose}
+                value={filterDialogvalue}
+              />
             </Grid>
           </Grid>
+
         )}
-        <Grid container spacing={4} columns={{ xs: 1, sm: 2, sm3: 3, md: 3, md2: 4, lg: 3 }}>
+        <Grid container spacing={4} columns={{ xs: 1, sm: 2, sm3: 3, md: 3, md2: 4, lg: 3 }} sx={{ mb: '24px' }}>
           {daos.map((dao, i) => (
             <Grid key={i} item xs={1} sx={{ textAlign: 'center' }}>
               <DaoCard dao={dao} />
             </Grid>
           ))}
         </Grid>
+        <Button variant="contained">
+          Load more...
+        </Button>
       </Grid>
 
     </Grid>
