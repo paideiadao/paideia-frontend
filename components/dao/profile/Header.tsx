@@ -2,7 +2,6 @@ import { Avatar, Box, Button, LinearProgress, Modal } from "@mui/material";
 import * as React from "react";
 import Musk from "@public/profile/musk-full.png";
 import InfoIcon from "@mui/icons-material/Info";
-import EditIcon from "@mui/icons-material/Edit";
 import Link from "next/link";
 import { GlobalContext } from "@lib/AppContext";
 import { modalBackground } from "@components/utilities/modalBackground";
@@ -10,8 +9,9 @@ import {
   Header,
   Subtitle,
 } from "@components/creation/utilities/HeaderComponents";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+
+import { deviceWrapper } from "@components/utilities/Style";
+import EditFollow from "./EditFollow";
 
 interface ILevel {
   name: string;
@@ -50,35 +50,57 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
   const [open, setOpen] = React.useState<boolean>(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [value, setValue] = React.useState<{ followed: boolean }>({
-    followed: props.followed,
-  });
+
   return (
     <Box
       sx={{
-        ml: "1rem",
+        ml: deviceWrapper("0", "1rem"),
         display: "flex",
-        alignItems: "flex-start",
+        alignItems: deviceWrapper("center", "flex-start"),
         mt: ".5rem",
+        flexDirection: deviceWrapper("column", "row"),
       }}
     >
-      <Avatar sx={{ mr: ".5rem", width: "4.5rem", height: "4.5rem" }}>
-        <img src={Musk.src} />
+      <Avatar
+        sx={{
+          mr: deviceWrapper("0", ".5rem"),
+          width: deviceWrapper("8rem", "4.5rem"),
+          height: deviceWrapper("8rem", "4.5rem"),
+        }}
+      >
+        <img src={Musk.src} style={{ width: "100%", height: "100%" }} />
       </Avatar>
+      <Box sx={{ fontSize: "1.3rem", display: deviceWrapper("block", "none") }}>
+        Alone Musk
+      </Box>
+
+      <Box
+        sx={{
+          display: deviceWrapper("block", "none"),
+          mt: ".5rem",
+          mb: "1.5rem",
+        }}
+      >
+        <EditFollow edit={props.edit} followed={props.followed} />
+      </Box>
       <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            width: "72%",
+            width: deviceWrapper("100%", "72%"),
           }}
         >
-          <Box sx={{ fontSize: "1.1rem" }}>Alone Musk</Box>
+          <Box
+            sx={{ fontSize: "1.1rem", display: deviceWrapper("none", "block") }}
+          >
+            Alone Musk
+          </Box>
           <Box
             sx={{
               color: "text.light",
-              fontSize: ".7rem",
+              fontSize: deviceWrapper(".9rem", ".7rem"),
               display: "flex",
               alignItems: "center",
               width: "100%",
@@ -90,15 +112,9 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
             <Box sx={{ ml: "auto" }}>
               <Button
                 onClick={handleOpen}
-                sx={{ fontSize: { xs: ".5rem", s: ".8rem", md: ".8rem" } }}
+                startIcon={<InfoIcon />}
+                size="small"
               >
-                <InfoIcon
-                  color="primary"
-                  sx={{
-                    mr: ".5rem",
-                    fontSize: { xs: ".5rem", s: ".8rem", md: ".8rem" },
-                  }}
-                />
                 Learn More
               </Button>
             </Box>
@@ -114,60 +130,13 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
         </Box>
         <Box
           sx={{
-            display: "flex",
+            display: deviceWrapper("none", "flex"),
             height: "100%",
             alignItems: "center",
             ml: "auto",
           }}
         >
-          {props.edit ? (
-            <Link href={`/dao/${globalContext.api.daoId}/profile/edit`}>
-              <Button
-                variant="contained"
-                sx={{ fontSize: { xs: ".5rem", s: ".8rem", md: ".7rem" } }}
-              >
-                <EditIcon
-                  sx={{
-                    mr: ".5rem",
-                    ml: "-.25rem",
-                    fontSize: { xs: ".5rem", s: ".8rem", md: ".8rem" },
-                  }}
-                />
-                Edit Profile
-              </Button>
-            </Link>
-          ) : (
-            <Button
-              onClick={() => setValue({ ...value, followed: !value.followed })}
-              sx={{
-                color: value.followed ? "error.main" : "text.light",
-                borderColor: value.followed ? "red" : "text.light",
-                fontSize: { xs: ".5rem", s: ".8rem", md: ".8rem" },
-                ":hover": {
-                  borderColor: "red",
-                  color: "red",
-                },
-              }}
-              variant="outlined"
-            >
-              {value.followed ? (
-                <FavoriteIcon
-                  sx={{
-                    mr: ".3rem",
-                    fontSize: { xs: ".5rem", s: ".8rem", md: ".8rem" },
-                  }}
-                />
-              ) : (
-                <FavoriteBorderIcon
-                  sx={{
-                    mr: ".3rem",
-                    fontSize: { xs: ".5rem", s: ".8rem", md: ".8rem" },
-                  }}
-                />
-              )}
-              Follow{value.followed && "ed"}
-            </Button>
-          )}
+          <EditFollow edit={props.edit} followed={props.followed} />
         </Box>
       </Box>
       <Modal open={open} onClose={handleClose}>

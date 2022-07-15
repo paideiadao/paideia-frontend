@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 
-declare module '@mui/material/styles' {
+declare module "@mui/material/styles" {
   interface BreakpointOverrides {
     xs: true;
     sm: true;
@@ -30,52 +30,53 @@ export const mainTheme = createTheme({
       xl: 1536,
     },
   },
-
 });
 
 export const LightTheme = createTheme({
   ...mainTheme,
   palette: {
-    // circle: {
-    //   main: "#00868F",
-    // },
+    circle: {
+      main: "#00868F",
+    },
     error: {
       main: "#F44336",
     },
-    // favoriteBackground: {
-    //   main: "#FEE8E7",
-    // },
+    favoriteBackground: {
+      main: "#FEE8E7",
+    },
     text: {
       primary: "#000000",
       secondary: "#666666",
     },
-    // linkHover: {
-    //   main: "#EBF5F6",
-    // },
-    // tokenAlert: {
-    //   main: "#ed6c02",
-    // },
-    // circleBackground: {
-    //   main: "#EBF6F6",
-    // },
-    // border: {
-    //   main: "#D6D6D6",
-    // },
-    // darkHover: {
-    //   main: "#FFFFFF",
-    // },
-    // backgroundColor: {
-    //   main: "#FFFFFF",
-    // },
+    // @ts-ignore
+    linkHover: {
+      main: "#EBF5F6",
+    },
+    tokenAlert: {
+      main: "#ed6c02",
+    },
+    circleBackground: {
+      main: "#EBF6F6",
+    },
+    border: {
+      main: "#D6D6D6",
+    },
+    darkHover: {
+      main: "#FFFFFF",
+    },
+    backgroundColor: {
+      main: "#FFFFFF",
+    },
     primary: {
       // light: will be calculated from palette.primary.main,
       main: "#00868F",
       light: "#50B6BF",
       dark: "#005962",
       contrastText: "#FFFFFF",
-      // selectedButton: "#E5F3F4",
-      // lightSuccess: "#00A300",
-      // lightOpacity: "#EBF6F6",
+      // @ts-ignore
+      selectedButton: "#E5F3F4",
+      lightSuccess: "#00A300",
+      lightOpacity: "#EBF6F6",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
@@ -86,12 +87,12 @@ export const LightTheme = createTheme({
       // dark: will be calculated from palette.secondary.main,
       contrastText: "#FFFFFF",
     },
-    // fileInput: {
-    //   main: "#F5F5F5",
-    //   outer: "#FFFFFF",
-    //   border: "FFFFFF",
-    //   read: "#F0F5F6",
-    // },
+    fileInput: {
+      main: "#F5F5F5",
+      outer: "#FFFFFF",
+      border: "FFFFFF",
+      read: "#F0F5F6",
+    },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
     // contrastThreshold: 3,
@@ -164,56 +165,57 @@ export const DarkTheme = createTheme({
       primary: "#FFFFFF",
       secondary: "#B8BABE",
     },
-    // circle: {
-    //   main: "#9FD2DB",
-    // },
-    // linkHover: {
-    //   main: "rgba(159, 210, 219, 0.16)",
-    // },
-    // tokenAlert: {
-    //   main: "rgba(255, 167, 38, 1)",
-    // },
-    // favoriteBackground: {
-    //   main: "#FEE8E7",
-    // },
-    // circleBackground: {
-    //   main: "rgba(159, 210, 219, 0.08)",
-    // },
-    // searchIcon: {
-    //   main: "#9FD2DB",
-    // },
-    // alert: {
-    //   main: "linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), #FFA726",
-    // },
-    // darkHover: {
-    //   main: "rgba(17, 24, 39, 0.08)",
-    //   text: "rgba(0, 0, 0, 1)",
-    // },
+    circle: {
+      main: "#9FD2DB",
+    },
+    linkHover: {
+      main: "rgba(159, 210, 219, 0.16)",
+    },
+    tokenAlert: {
+      main: "rgba(255, 167, 38, 1)",
+    },
+    favoriteBackground: {
+      main: "#FEE8E7",
+    },
+    circleBackground: {
+      main: "rgba(159, 210, 219, 0.08)",
+    },
+    searchIcon: {
+      main: "#9FD2DB",
+    },
+    alert: {
+      main: "linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), #FFA726",
+    },
+    darkHover: {
+      main: "rgba(17, 24, 39, 0.08)",
+      text: "rgba(0, 0, 0, 1)",
+    },
     // THIS IS CAUSING AN ERROR WITH <TableCell>
     // "Uncaught TypeError: color.charAt is not a function"
-    // border: {
-    //   main: "rgba(159, 210, 219, 0.2)",
-    // },
-    // fileInput: {
-    //   main: "rgba(45, 51, 64, 1)",
-    //   outer: "rgba(17, 24, 39, 1)",
-    //   border: "rgba(255, 255, 255, 0.12)",
-    //   read: "#1C2735",
-    // },
-    // backgroundColor: {
-    //   main: "rgba(17, 24, 39, 1)",
-    // },
-    // color: {
-    //   main: "#FFFFFF",
-    // },
+    border: {
+      main: "rgba(159, 210, 219, 0.2)",
+    },
+    fileInput: {
+      main: "rgba(45, 51, 64, 1)",
+      outer: "rgba(17, 24, 39, 1)",
+      border: "rgba(255, 255, 255, 0.12)",
+      read: "#1C2735",
+    },
+    backgroundColor: {
+      main: "rgba(17, 24, 39, 1)",
+    },
+    color: {
+      main: "#FFFFFF",
+    },
     primary: {
       // light: will be calculated from palette.primary.main,
       main: "#9FD2DB",
       light: "#D1FFFF",
       dark: "#6FA1A9",
-      // selectedButton: "rgba(2, 136, 209, 0.1)",
-      // lightSuccess: "#66BB6A",
-      // lightOpacity: "rgba(159, 210, 219, 0.08)",
+      // @ts-ignore
+      selectedButton: "rgba(2, 136, 209, 0.1)",
+      lightSuccess: "#66BB6A",
+      lightOpacity: "rgba(159, 210, 219, 0.08)",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
@@ -231,28 +233,28 @@ export const DarkTheme = createTheme({
     // two indexes within its tonal palette.
     // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
-   },
-  // addButton: {
-  //   margin: 0,
-  //   top: "auto",
-  //   right: 20,
-  //   bottom: 20,
-  //   left: "auto",
-  //   position: "fixed",
-  //   color: "primary",
-  //   zIndex: 20,
-  //   backgroundColor: "red",
-  //   "&:hover": {
-  //     backgroundColor: "#FFFF00",
-  //   },
-  // },
+  },
+  addButton: {
+    margin: 0,
+    top: "auto",
+    right: 20,
+    bottom: 20,
+    left: "auto",
+    position: "fixed",
+    color: "primary",
+    zIndex: 20,
+    backgroundColor: "red",
+    "&:hover": {
+      backgroundColor: "#FFFF00",
+    },
+  },
   components: {
     MuiAccordion: {
       styleOverrides: {
         root: {
           backgroundColor: "transparent",
         },
-      }
+      },
     },
     MuiChip: {
       styleOverrides: {
@@ -268,13 +270,14 @@ export const DarkTheme = createTheme({
         },
       },
     },
-    // MuiAccordionSummary: {
-    //   styleOverrides: {
-    //     expandedIconWrapper: {
-    //       backgroundColor: "#0000FF",
-    //     },
-    //   },
-    // },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        // @ts-ignore
+        expandedIconWrapper: {
+          backgroundColor: "#0000FF",
+        },
+      },
+    },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
@@ -300,26 +303,27 @@ export const DarkTheme = createTheme({
         },
       },
     },
-    // MuiCalendarPicker: {
-    //   styleOverrides: {
-    //     root: {
-    //       backgroundColor: "rgba(17, 24, 39, 1)",
-    //       color: "#FFFFFF",
-    //       "&Mui-Typography": {
-    //         color: "#FFFFFF",
-    //       },
-    //     },
-    //   },
-    // },
-    // MuiPickersDay: {
-    //   styleOverrides: {
-    //     root: {
-    //       "&.Mui-selected": {
-    //         backgroundColor: "#9FD2DB",
-    //       },
-    //     },
-    //   },
-    // },
+    // @ts-ignore
+    MuiCalendarPicker: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "rgba(17, 24, 39, 1)",
+          color: "#FFFFFF",
+          "&Mui-Typography": {
+            color: "#FFFFFF",
+          },
+        },
+      },
+    },
+    MuiPickersDay: {
+      styleOverrides: {
+        root: {
+          "&.Mui-selected": {
+            backgroundColor: "#9FD2DB",
+          },
+        },
+      },
+    },
     MuiAlert: {
       styleOverrides: {
         root: {

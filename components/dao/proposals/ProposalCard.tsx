@@ -140,8 +140,8 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
   });
 
   const iconFont = {
-    xs: ".5rem",
-    sm: ".5rem",
+    xs: "1rem",
+    sm: "1rem",
     md: ".8rem",
     lg: ".8rem",
     xl: "1rem",

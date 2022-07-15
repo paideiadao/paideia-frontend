@@ -39,21 +39,21 @@ export interface IFilters {
 }
 
 export const categories = [
-  { icon: <AppsIcon sx={{fontSize: ".9rem" }} />, label: "All" },
+  { icon: <AppsIcon sx={{ fontSize: ".9rem" }} />, label: "All" },
   {
-    icon: <AttachMoneyIcon sx={{fontSize: ".9rem" }} />,
+    icon: <AttachMoneyIcon sx={{ fontSize: ".9rem" }} />,
     label: "Finance",
   },
   {
-    icon: <StarIcon sx={{fontSize: ".9rem" }} />,
+    icon: <StarIcon sx={{ fontSize: ".9rem" }} />,
     label: "Category 2",
   },
   {
-    icon: <StarIcon sx={{fontSize: ".9rem" }} />,
+    icon: <StarIcon sx={{ fontSize: ".9rem" }} />,
     label: "Category 3",
   },
   {
-    icon: <StarIcon sx={{fontSize: ".9rem" }} />,
+    icon: <StarIcon sx={{ fontSize: ".9rem" }} />,
     label: "Category 4",
   },
 ];

@@ -1,13 +1,6 @@
 import React, { FC } from "react";
 import PageHeader from "@components/PageHeader";
-import {
-  Typography,
-  Grid,
-  Container,
-  Box,
-  Divider,
-  Icon,
-} from "@mui/material";
+import { Typography, Grid, Container, Box, Divider, Icon } from "@mui/material";
 import Image from "next/image";
 import Highlights from "@components/Highlights";
 import SectionHeading from "@components/SectionHeading";
@@ -39,63 +32,62 @@ const quotes: IQuotesProps[] = [
 
 const daos = [
   {
-
-    name: 'Swamp Audio',
-    image: '/featured/featured.png',
-    description: 'A layer 1 on chain royalty management platform',
-    link: '/',
-    category: 'Music'
+    name: "Swamp Audio",
+    image: "/featured/featured.png",
+    description: "A layer 1 on chain royalty management platform",
+    link: "/",
+    category: "Music",
   },
   {
-    name: 'Swamp Audio',
-    image: '/featured/featured.png',
-    description: 'A layer 1 on chain royalty management platform',
-    link: '/',
-    category: 'Music'
+    name: "Swamp Audio",
+    image: "/featured/featured.png",
+    description: "A layer 1 on chain royalty management platform",
+    link: "/",
+    category: "Music",
   },
   {
-    name: 'Swamp Audio',
-    image: '/featured/featured.png',
-    description: 'A layer 1 on chain royalty management platform',
-    link: '/',
-    category: 'Music'
+    name: "Swamp Audio",
+    image: "/featured/featured.png",
+    description: "A layer 1 on chain royalty management platform",
+    link: "/",
+    category: "Music",
   },
   {
-    name: 'Swamp Audio',
-    image: '/featured/featured.png',
-    description: 'A layer 1 on chain royalty management platform',
-    link: '/',
-    category: 'Music'
+    name: "Swamp Audio",
+    image: "/featured/featured.png",
+    description: "A layer 1 on chain royalty management platform",
+    link: "/",
+    category: "Music",
   },
   {
-    name: 'Swamp Audio',
-    image: '/featured/featured.png',
-    description: 'A layer 1 on chain royalty management platform',
-    link: '/',
-    category: 'Music'
+    name: "Swamp Audio",
+    image: "/featured/featured.png",
+    description: "A layer 1 on chain royalty management platform",
+    link: "/",
+    category: "Music",
   },
   {
-    name: 'Swamp Audio',
-    image: '/featured/featured.png',
-    description: 'A layer 1 on chain royalty management platform',
-    link: '/',
-    category: 'Music'
+    name: "Swamp Audio",
+    image: "/featured/featured.png",
+    description: "A layer 1 on chain royalty management platform",
+    link: "/",
+    category: "Music",
   },
   {
-    name: 'Swamp Audio',
-    image: '/featured/featured.png',
-    description: 'A layer 1 on chain royalty management platform',
-    link: '/',
-    category: 'Music'
+    name: "Swamp Audio",
+    image: "/featured/featured.png",
+    description: "A layer 1 on chain royalty management platform",
+    link: "/",
+    category: "Music",
   },
   {
-    name: 'Swamp Audio',
-    image: '/featured/featured.png',
-    description: 'A layer 1 on chain royalty management platform',
-    link: '/',
-    category: 'Music'
+    name: "Swamp Audio",
+    image: "/featured/featured.png",
+    description: "A layer 1 on chain royalty management platform",
+    link: "/",
+    category: "Music",
   },
-]
+];
 
 export default function Projects() {
   return (
@@ -122,22 +114,21 @@ export default function Projects() {
             ></SectionHeading>
             <Grid container>
               {quotes.map((quote, i: number) => (
-
-                <Grid key={i} item md={4} sx={{ mb: '80px' }}>
-                  <Typography>
-                    {quote.quote}
-                  </Typography>
-                  <Box >
+                <Grid key={i} item md={4} sx={{ mb: "80px" }}>
+                  <Typography>{quote.quote}</Typography>
+                  <Box>
                     <Divider
                       sx={{
-                        width: '70%',
-                        display: 'inline-block',
-                        verticalAlign: 'middle',
-                        borderColor: '#fff'
+                        width: "70%",
+                        display: "inline-block",
+                        verticalAlign: "middle",
+                        borderColor: "#fff",
                       }}
                     />
                     &nbsp;
-                    <Icon sx={{ verticalAlign: 'middle', fontSize: '20px' }}>add</Icon>
+                    <Icon sx={{ verticalAlign: "middle", fontSize: "20px" }}>
+                      add
+                    </Icon>
                   </Box>
                   <Typography>{quote.author}</Typography>
                 </Grid>

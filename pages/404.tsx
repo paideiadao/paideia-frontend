@@ -10,5 +10,5 @@ export default function Custom404() {
         titleLineTwo="Not Found"
       />
     </>
-  )
+  );
 }
