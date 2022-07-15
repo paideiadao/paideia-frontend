@@ -101,18 +101,18 @@ const accordionObject = [
     panel: "panel4",
     content: [
       {
-        title: "Front- and Back-end consolidation",
-        body: "Teams will collaborate to create the necessary API endpoints and get the front-end functioning",
+        title: "Public MVP Release",
+        body: "Once tests and code audit are complete, launch the MVP of the platform",
         completed: true,
       },
       {
-        title: "Alpha Test",
-        body: "Begin testing how the platform works. Test user flows. If smart contracts are ready, use test tokens to try them out. ",
+        title: "Extra Features",
+        body: "Developers can now start working on additional features outlined in the whitepaper, including new governance structures. ",
         completed: false,
       },
       {
-        title: "MVP Launch",
-        body: "Once tested and audited, launch MVP. ",
+        title: "Token Issuance Development",
+        body: "At MVP, token issuance is only airdrops. Begin adding functions to allow seed funds, adding liquidity to the dex, and other distribution methods. ",
         completed: false,
       },
     ],
@@ -123,18 +123,23 @@ const accordionObject = [
     panel: "panel5",
     content: [
       {
-        title: "Front- and Back-end consolidation",
-        body: "Teams will collaborate to create the necessary API endpoints and get the front-end functioning",
+        title: "Cross-chain functionality",
+        body: "Implement cross-chain functionality between Ergo, Ada, and other UTXO blockchains, to allow DAOs to hold multi-asset treasuries. ",
         completed: true,
       },
       {
-        title: "Alpha Test",
-        body: "Begin testing how the platform works. Test user flows. If smart contracts are ready, use test tokens to try them out. ",
+        title: "Stand-alone tools",
+        body: "Build software that users can run on their local machines so they can easily interact with DAOs without requiring the Paideia website to be live. ",
         completed: false,
       },
       {
-        title: "MVP Launch",
-        body: "Once tested and audited, launch MVP. ",
+        title: "Community Outreach",
+        body: "Potentially utilize funds where possible and explore outreach programs in areas that will benefit most from crypto governance solutions",
+        completed: false,
+      },
+      {
+        title: "Charitible Foundation",
+        body: "Establish a not-for-profit foundation that can educate and empower people in developing nations using the Paideia toolset",
         completed: false,
       },
     ],
