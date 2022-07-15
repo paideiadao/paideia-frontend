@@ -55,7 +55,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 const DarkSwitch: React.FC = () => {
   const globalContext = React.useContext<IThemeContext>(ThemeContext);
   return (
-    <FormGroup sx={{display: deviceWrapper('none', 'block')}}>
+    <FormGroup sx={{ display: deviceWrapper("none", "block") }}>
       <FormControlLabel
         control={
           <MaterialUISwitch

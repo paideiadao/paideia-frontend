@@ -11,7 +11,7 @@ import {
 import { ITokenHolder } from "@lib/creation/CreationApi";
 import LabeledSwitch from "@components/creation/utilities/LabeledSwitch";
 import { deviceWrapper } from "@components/utilities/Style";
-import MultiTokenHolders from '@components/utilities/MultiTokenHolders'
+import MultiTokenHolders from "@components/utilities/MultiTokenHolders";
 
 const Send: React.FC = () => {
   const router = useRouter();
@@ -28,7 +28,7 @@ const Send: React.FC = () => {
   const [recurring, setRecurring] = React.useState<boolean>(false);
   const treasuryAmount = 50000;
   return (
-    <Layout width={deviceWrapper('92%', "60%")}>
+    <Layout width={deviceWrapper("92%", "60%")}>
       <Link
         href={
           id === undefined
@@ -36,13 +36,7 @@ const Send: React.FC = () => {
             : `/dao/${id}/financials/treasury`
         }
       >
-        <Button variant="outlined" size="small"
-          startIcon={
-            <ArrowBackIcon />
-
-
-          }
-        >
+        <Button variant="outlined" size="small" startIcon={<ArrowBackIcon />}>
           Back
         </Button>
       </Link>
@@ -50,14 +44,14 @@ const Send: React.FC = () => {
       <Header title="Send funds from treasury" large />
       <Box sx={{ mt: "1.5rem" }} />
       <CapsInfo title="Sign-up form" mb="0.25rem" />
-      <Box sx={{ color: "text.light", fontSize: ".9rem", mb: '.5rem' }}>
+      <Box sx={{ color: "text.light", fontSize: ".9rem", mb: ".5rem" }}>
         In order to participate on this airdrop, please complete the form below.
       </Box>
       <MultiTokenHolders
-          tokenHolders={data}
-          treasuryAmount={treasuryAmount}
-          set={(newTokenHolders: ITokenHolder[]) => setData(newTokenHolders)}
-        />
+        tokenHolders={data}
+        treasuryAmount={treasuryAmount}
+        set={(newTokenHolders: ITokenHolder[]) => setData(newTokenHolders)}
+      />
 
       <LabeledSwitch
         title="Set as recurring"
@@ -73,10 +67,14 @@ const Send: React.FC = () => {
           width: "100%",
         }}
       >
-        <Button variant="outlined" sx={{ width: "50%", mr: "1rem" }} size='small'>
+        <Button
+          variant="outlined"
+          sx={{ width: "50%", mr: "1rem" }}
+          size="small"
+        >
           Cancel
         </Button>
-        <Button variant="contained" sx={{ width: "50%" }} size='small'>
+        <Button variant="contained" sx={{ width: "50%" }} size="small">
           Send
         </Button>
       </Box>

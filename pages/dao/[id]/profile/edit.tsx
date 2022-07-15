@@ -55,7 +55,7 @@ const ProfileEditImage: React.FC = () => {
         alignItems: "center",
         pt: "1rem",
         pb: ".5rem",
-        flexDirection: deviceWrapper('column', 'row'),
+        flexDirection: deviceWrapper("column", "row"),
       }}
     >
       <Badge
@@ -87,9 +87,23 @@ const ProfileEditImage: React.FC = () => {
           </IconButton>
         }
       >
-        <Avatar sx={{ height: deviceWrapper('8rem', "7rem"), width: deviceWrapper('8rem', "7rem") }} src={file.url}></Avatar>
+        <Avatar
+          sx={{
+            height: deviceWrapper("8rem", "7rem"),
+            width: deviceWrapper("8rem", "7rem"),
+          }}
+          src={file.url}
+        ></Avatar>
       </Badge>
-      <Box sx={{ ml: deviceWrapper('0', "1.5rem"), mt: deviceWrapper('.5rem', '0'), width: deviceWrapper('100%', "65%"), display: deviceWrapper('flex', 'block'), justifyContent: 'center' }}>
+      <Box
+        sx={{
+          ml: deviceWrapper("0", "1.5rem"),
+          mt: deviceWrapper(".5rem", "0"),
+          width: deviceWrapper("100%", "65%"),
+          display: deviceWrapper("flex", "block"),
+          justifyContent: "center",
+        }}
+      >
         <input
           type="file"
           id="replace-profile-image"
@@ -99,11 +113,8 @@ const ProfileEditImage: React.FC = () => {
         />
         <Button
           variant="outlined"
-          size='small'
-          endIcon={
-          <SwapVertIcon />
-
-          }
+          size="small"
+          endIcon={<SwapVertIcon />}
           onClick={() => {
             const fileInput = document.getElementById("replace-profile-image");
             fileInput.click();
@@ -111,7 +122,13 @@ const ProfileEditImage: React.FC = () => {
         >
           Replace Image
         </Button>
-        <Box sx={{ fontSize: ".9rem", color: "text.light", display: deviceWrapper('none', 'block') }}>
+        <Box
+          sx={{
+            fontSize: ".9rem",
+            color: "text.light",
+            display: deviceWrapper("none", "block"),
+          }}
+        >
           Image needs to be at least 256px x 256px. JPEG and PNG files
           supported, less than 3mb.
         </Box>
@@ -148,7 +165,7 @@ const Edit: React.FC<{ params: any }> = (props) => {
 
   return (
     <Layout>
-      <Header title="Edit profile" large/>
+      <Header title="Edit profile" large />
       <ProfileEditImage />
       <TextField
         value={value.username}
@@ -194,11 +211,8 @@ const Edit: React.FC<{ params: any }> = (props) => {
       </Box>
       <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <Button
-          startIcon={
-          <AddIcon />
-
-          }
-          size='small'
+          startIcon={<AddIcon />}
+          size="small"
           onClick={() => {
             let temp = [...value.socialLinks];
             temp.push({
@@ -220,18 +234,23 @@ const Edit: React.FC<{ params: any }> = (props) => {
           mt: "1rem",
         }}
       >
-        <Button variant="outlined" sx={{ width: "49%", mr: ".5rem" }} size="small">
+        <Button
+          variant="outlined"
+          sx={{ width: "49%", mr: ".5rem" }}
+          size="small"
+        >
           Cancel
         </Button>
         <Button
-         size="small"
+          size="small"
           variant="contained"
           sx={{ width: "49%" }}
           onClick={() => setValue({ ...value, alert: "info" })}
         >
-           <Box sx={{display: deviceWrapper('none', 'block')}}>{"Save Changes"}</Box>
-           <Box sx={{display: deviceWrapper('block', 'none')}}>{"Save"}</Box>
-
+          <Box sx={{ display: deviceWrapper("none", "block") }}>
+            {"Save Changes"}
+          </Box>
+          <Box sx={{ display: deviceWrapper("block", "none") }}>{"Save"}</Box>
         </Button>
       </Box>
     </Layout>

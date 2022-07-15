@@ -159,10 +159,7 @@ const Notifications: React.FC<{ params: any }> = (props) => {
   return (
     <Layout>
       <Link href={id === undefined ? "/dao" : `/dao/${id}`}>
-        <Button variant="outlined" size='small' startIcon={
-          <ArrowBackIcon />
-
-        }>
+        <Button variant="outlined" size="small" startIcon={<ArrowBackIcon />}>
           Back
         </Button>
       </Link>
@@ -172,32 +169,33 @@ const Notifications: React.FC<{ params: any }> = (props) => {
           width: "100%",
           display: "flex",
           mt: "1rem",
-          fontSize: deviceWrapper('1.3rem', "1.6rem"),
+          fontSize: deviceWrapper("1.3rem", "1.6rem"),
           alignItems: "center",
         }}
       >
-        <Box sx={{display: deviceWrapper('none', 'block')}}>
-        Notifications (4 new)
-
+        <Box sx={{ display: deviceWrapper("none", "block") }}>
+          Notifications (4 new)
+        </Box>
+        <Box sx={{ display: deviceWrapper("block", "none") }}>
+          Notifications
+        </Box>
+        <Link
+          href={
+            id === undefined
+              ? "/dao/notifications/edit"
+              : `/dao/${id}/notifications/edit`
+          }
+        >
+          <Button
+            sx={{ ml: "auto" }}
+            variant="contained"
+            size="small"
+            endIcon={<SettingsIcon />}
+          >
+            <Box sx={{ display: deviceWrapper("none", "block") }}>
+              Notification Settings
             </Box>
-            <Box sx={{display: deviceWrapper('block', 'none')}}>
-            Notifications
-
-            </Box>
-        <Link href={id === undefined ? '/dao/notifications/edit' : `/dao/${id}/notifications/edit`}>
-          <Button sx={{ ml: "auto" }} variant="contained" size='small' endIcon={
-            <SettingsIcon/>
-
-
-          }>
-            <Box sx={{display: deviceWrapper('none', 'block')}}>
-            Notification Settings
-
-            </Box>
-            <Box sx={{display: deviceWrapper('block', 'none')}}>
-            Settings
-
-            </Box>
+            <Box sx={{ display: deviceWrapper("block", "none") }}>Settings</Box>
           </Button>
         </Link>
       </Box>
@@ -270,7 +268,13 @@ export const Notification: React.FC<{ i: INotification; m?: string }> = (
       }}
     >
       <Avatar src={i.img} sx={{ width: "4rem", height: "4rem" }}></Avatar>
-      <Box sx={{ width: "70%", ml: "1rem", fontSize: deviceWrapper('.8REM', ".9rem") }}>
+      <Box
+        sx={{
+          width: "70%",
+          ml: "1rem",
+          fontSize: deviceWrapper(".8REM", ".9rem"),
+        }}
+      >
         <Box>
           {i.username + " "}
           <Box sx={{ display: "inline", color: "text.light" }}>{i.action}</Box>
@@ -290,7 +294,10 @@ export const Notification: React.FC<{ i: INotification; m?: string }> = (
       </Box>
       {i.isread === 0 && (
         <Box sx={{ ml: "auto" }}>
-          <CircleIcon color="primary" sx={{ fontSize: deviceWrapper('.8rem', "1rem") }} />
+          <CircleIcon
+            color="primary"
+            sx={{ fontSize: deviceWrapper(".8rem", "1rem") }}
+          />
         </Box>
       )}
     </Box>

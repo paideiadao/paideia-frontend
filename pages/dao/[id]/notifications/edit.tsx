@@ -107,9 +107,13 @@ const EditNotifications: React.FC<{ params: any }> = (props) => {
             <FormControlLabel
               disableTypography
               onClick={() => setValue({ ...value, [i.value]: !value[i.value] })}
-              control={<Checkbox checked={value[i.value]} size='small'/>}
+              control={<Checkbox checked={value[i.value]} size="small" />}
               label={i.label}
-              sx={{ mt: ".25rem", mb: ".25rem", fontSize: deviceWrapper('.8rem', '.9rem') }}
+              sx={{
+                mt: ".25rem",
+                mb: ".25rem",
+                fontSize: deviceWrapper(".8rem", ".9rem"),
+              }}
             />
           ))}
         </FormGroup>
@@ -123,20 +127,23 @@ const EditNotifications: React.FC<{ params: any }> = (props) => {
           mt: "1rem",
         }}
       >
-        <Button variant="outlined" sx={{ width: "49%", mr: ".5rem" }}
-          size='small'
-        
+        <Button
+          variant="outlined"
+          sx={{ width: "49%", mr: ".5rem" }}
+          size="small"
         >
           Cancel
         </Button>
         <Button
           variant="contained"
           sx={{ width: "49%" }}
-          size='small'
+          size="small"
           onClick={() => setValue({ ...value, alert: "info" })}
         >
-        <Box sx={{display: deviceWrapper('none', 'block')}}>Save Changes</Box>
-        <Box sx={{display: deviceWrapper('block', 'none')}}>Save</Box>
+          <Box sx={{ display: deviceWrapper("none", "block") }}>
+            Save Changes
+          </Box>
+          <Box sx={{ display: deviceWrapper("block", "none") }}>Save</Box>
         </Button>
       </Box>
       <Status

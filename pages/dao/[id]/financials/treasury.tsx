@@ -26,15 +26,14 @@ const TreasuryHeader: React.FC = () => {
             : `/dao/${id}/financials/treasury/send`
         }
       >
-        <Button variant="contained" sx={{ ml: "auto" }}
-          endIcon={
-          <PaymentsIcon />
-
-          }
-          size='small'
+        <Button
+          variant="contained"
+          sx={{ ml: "auto" }}
+          endIcon={<PaymentsIcon />}
+          size="small"
         >
-          <Box sx={{display: deviceWrapper('none', 'block')}}>Send Funds</Box>
-          <Box sx={{display: deviceWrapper('block', 'none')}}>Send</Box>
+          <Box sx={{ display: deviceWrapper("none", "block") }}>Send Funds</Box>
+          <Box sx={{ display: deviceWrapper("block", "none") }}>Send</Box>
         </Button>
       </Link>
     </Box>
@@ -74,7 +73,6 @@ export const TreasuryInfo: React.FC = () => {
         borderColor: "border.main",
         backgroundColor: "fileInput.outer",
         p: ".5rem",
-        ml: "1.5rem",
         borderRadius: ".3rem",
       }}
     >
@@ -146,15 +144,32 @@ export const TreasuryInfo: React.FC = () => {
 
 const Treasury: React.FC = () => {
   return (
-    <Layout width={deviceWrapper('92%', "96%")}>
+    <Layout width={deviceWrapper("92%", "96%")}>
       <Box sx={{ width: "100%", display: "flex", alignItems: "flex-start" }}>
-        <Box sx={{ width: deviceWrapper('100%', "72%") }}>
+        <Box sx={{ width: deviceWrapper("100%", "72%") }}>
           <TreasuryHeader />
           <Funds />
           <Chart />
           <Transactions />
+          <Box
+            sx={{
+              width: "100%",
+              display: deviceWrapper("block", "none"),
+              mt: "1rem",
+            }}
+          >
+            <TreasuryInfo />
+          </Box>
         </Box>
-        <Box sx={{ width: "28%", position: "sticky", top: "1.6rem", display: deviceWrapper('none', 'block') }}>
+        <Box
+          sx={{
+            width: "28%",
+            position: "sticky",
+            top: "1.6rem",
+            display: deviceWrapper("none", "block"),
+            ml: "1.5rem",
+          }}
+        >
           <TreasuryInfo />
         </Box>
       </Box>

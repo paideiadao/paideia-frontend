@@ -12,12 +12,19 @@ const Layout: React.FC<{ width?: string | any }> = (props) => {
         width: "100%",
         display: "flex",
         justifyContent: "center",
-        pt: { xs: '.5rem', sm: '.5rem', md: ".5rem", lg: "1.5rem" },
+        pt: { xs: ".5rem", sm: ".5rem", md: ".5rem", lg: "1.5rem" },
         pb: "1.5rem",
         minHeight: "calc(100vh - 7.5rem)",
       }}
     >
-      <Box sx={{ width: props.width === undefined ? deviceWrapper('92%', "70%") : props.width }}>
+      <Box
+        sx={{
+          width:
+            props.width === undefined
+              ? deviceWrapper("92%", "70%")
+              : props.width,
+        }}
+      >
         {props.children}
       </Box>
     </Box>

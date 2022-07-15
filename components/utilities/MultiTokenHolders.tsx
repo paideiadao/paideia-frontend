@@ -21,15 +21,20 @@ const MultiTokenHolders: React.FC<IMultiTokenHolders> = (props) => {
       {props.tokenHolders.map((i: ITokenHolder, c: number) => {
         return (
           <Box
-            sx={{ display: "flex", alignItems: "center", flexWrap: deviceWrapper('wrap', 'nowrap'), mt: '1rem' }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: deviceWrapper("wrap", "nowrap"),
+              mt: "1rem",
+            }}
             key={`${c}-token-holder`}
           >
             <Box
               sx={{
-                width: deviceWrapper('100%', "50%"),
+                width: deviceWrapper("100%", "50%"),
                 mr: ".5rem",
 
-                mb: deviceWrapper('.75rem', '0'),
+                mb: deviceWrapper(".75rem", "0"),
                 display: "flex",
                 alignItems: "center",
               }}
@@ -53,24 +58,22 @@ const MultiTokenHolders: React.FC<IMultiTokenHolders> = (props) => {
               />
               {props.tokenHolders.length > 1 && (
                 <IconButton
-                sx={{display: deviceWrapper('flex', 'none'), ml: '.5rem'}}
-                size='small'
+                  sx={{ display: deviceWrapper("flex", "none"), ml: ".5rem" }}
+                  size="small"
                 >
-<DeleteIcon
-                color='error'
-                
-                onClick={() => {
-                  let temp = [...props.tokenHolders];
-                  temp.splice(c, 1);
-                  props.set(temp);
-                }}
-              />
+                  <DeleteIcon
+                    color="error"
+                    onClick={() => {
+                      let temp = [...props.tokenHolders];
+                      temp.splice(c, 1);
+                      props.set(temp);
+                    }}
+                  />
                 </IconButton>
-              
-            )}
+              )}
             </Box>
             <BalanceInput
-              width={deviceWrapper('47.25%', '27%')}
+              width={deviceWrapper("47.25%", "27%")}
               total={props.treasuryAmount}
               remaining={
                 props.treasuryAmount -
@@ -87,8 +90,7 @@ const MultiTokenHolders: React.FC<IMultiTokenHolders> = (props) => {
               }}
             />
             <PercentageInput
-              width={deviceWrapper('47.25%', '23%')}
-
+              width={deviceWrapper("47.25%", "23%")}
               total={props.treasuryAmount}
               remaining={
                 props.treasuryAmount -
@@ -106,19 +108,18 @@ const MultiTokenHolders: React.FC<IMultiTokenHolders> = (props) => {
             />
             {props.tokenHolders.length > 1 && (
               <IconButton
-              sx={{display: deviceWrapper('none', 'flex'), ml: '.5rem'}}
-              size='small'
+                sx={{ display: deviceWrapper("none", "flex"), ml: ".5rem" }}
+                size="small"
               >
-          <DeleteIcon
-                color='error'
-                onClick={() => {
-                  let temp = [...props.tokenHolders];
-                  temp.splice(c, 1);
-                  props.set(temp);
-                }}
-              />
+                <DeleteIcon
+                  color="error"
+                  onClick={() => {
+                    let temp = [...props.tokenHolders];
+                    temp.splice(c, 1);
+                    props.set(temp);
+                  }}
+                />
               </IconButton>
-              
             )}
           </Box>
         );
@@ -145,10 +146,10 @@ const MultiTokenHolders: React.FC<IMultiTokenHolders> = (props) => {
             );
           }}
         >
-          Add Another 
+          Add Another
         </Button>
         <Button variant="text" size="small" endIcon={<FileUploadIcon />}>
-          Add from file 
+          Add from file
         </Button>
       </Box>
     </>

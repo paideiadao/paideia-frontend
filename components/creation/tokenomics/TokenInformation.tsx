@@ -13,7 +13,7 @@ const NewToken: React.FC<IData<ITokenomics>> = (props) => {
       sx={{
         display: "flex",
         alignItems: "center",
-        flexWrap: deviceWrapper('wrap', 'nowrap'),
+        flexWrap: deviceWrapper("wrap", "nowrap"),
       }}
     >
       <TextField

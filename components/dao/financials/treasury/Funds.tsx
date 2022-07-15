@@ -17,7 +17,7 @@ const FundCard: React.FC<{
     <Box
       sx={{
         width: props.width,
-        textAlign: deviceWrapper('left', "center"),
+        textAlign: deviceWrapper("left", "center"),
         backgroundColor: "fileInput.outer",
         m: ".3rem",
         border: "1px solid",
@@ -149,7 +149,7 @@ const Funds: React.FC = () => {
             borderColor: "border.main",
             pt: ".1rem",
             pb: ".1rem",
-            fontSize: deviceWrapper('.7rem', ".9rem"),
+            fontSize: deviceWrapper(".7rem", ".9rem"),
             fontWeight: 500,
           }}
         >
@@ -161,31 +161,28 @@ const Funds: React.FC = () => {
           ? summaryCards.map((i: IFundCard, c: number) => (
               <FundCard
                 {...i}
-                width={deviceWrapper('46%', "23.3%")}
+                width={deviceWrapper("46%", "23.3%")}
                 key={`summary-financial-card-${c}`}
               />
             ))
           : allCards.map((i: IFundCard, c: number) => (
-              <FundCard {...i} width={deviceWrapper('46%', "23.3%")} key={`all-financial-card-${c}`} />
+              <FundCard
+                {...i}
+                width={deviceWrapper("46%", "23.3%")}
+                key={`all-financial-card-${c}`}
+              />
             ))}
       </Box>
       <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        <Button onClick={() => setShow(!show)} size='small' endIcon={
-          !show ? 
-          <KeyboardArrowDownIcon /> : 
-          <KeyboardArrowUpIcon />
-
-        }>
+        <Button
+          onClick={() => setShow(!show)}
+          size="small"
+          endIcon={!show ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
+        >
           {!show ? (
-            <>
-              Show other fund sources{" "}
-              
-            </>
+            <>Show other fund sources </>
           ) : (
-            <>
-              Hide other fund sources{" "}
-              
-            </>
+            <>Hide other fund sources </>
           )}
         </Button>
       </Box>

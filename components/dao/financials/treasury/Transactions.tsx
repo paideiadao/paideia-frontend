@@ -13,13 +13,11 @@ const Transactions: React.FC = () => {
     <Box sx={{ width: "100%" }}>
       <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
         <Subheader title="Latest Transactions" />
-        <Button variant="text" sx={{ ml: "auto" }} size='small'>
-          <Box sx={{display: deviceWrapper('none', 'block')}}>
+        <Button variant="text" sx={{ ml: "auto" }} size="small">
+          <Box sx={{ display: deviceWrapper("none", "block") }}>
             View all transations
           </Box>
-          <Box sx={{display: deviceWrapper('block', 'none')}}>
-            View all
-          </Box>
+          <Box sx={{ display: deviceWrapper("block", "none") }}>View all</Box>
         </Button>
       </Box>
       {transactionActivities
