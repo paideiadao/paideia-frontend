@@ -81,7 +81,7 @@ const accordionObject = [
       {
         title: "Front- and Back-end consolidation",
         body: "Teams will collaborate to create the necessary API endpoints and get the front-end functioning",
-        completed: true,
+        completed: false,
       },
       {
         title: "Alpha Test",
@@ -103,7 +103,7 @@ const accordionObject = [
       {
         title: "Public MVP Release",
         body: "Once tests and code audit are complete, launch the MVP of the platform",
-        completed: true,
+        completed: false,
       },
       {
         title: "Extra Features",
@@ -125,7 +125,7 @@ const accordionObject = [
       {
         title: "Cross-chain functionality",
         body: "Implement cross-chain functionality between Ergo, Ada, and other UTXO blockchains, to allow DAOs to hold multi-asset treasuries. ",
-        completed: true,
+        completed: false,
       },
       {
         title: "Stand-alone tools",
