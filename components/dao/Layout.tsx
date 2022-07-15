@@ -17,7 +17,7 @@ const Layout: React.FC<{ width?: string | any }> = (props) => {
         minHeight: "calc(100vh - 7.5rem)",
       }}
     >
-      <Box sx={{ width: props.width === undefined ? deviceWrapper('94%', "70%") : props.width }}>
+      <Box sx={{ width: props.width === undefined ? deviceWrapper('92%', "70%") : props.width }}>
         {props.children}
       </Box>
     </Box>
