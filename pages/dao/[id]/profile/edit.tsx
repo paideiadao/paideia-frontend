@@ -87,7 +87,7 @@ const ProfileEditImage: React.FC = () => {
           </IconButton>
         }
       >
-        <Avatar sx={{ height: "7rem", width: "7rem" }} src={file.url}></Avatar>
+        <Avatar sx={{ height: deviceWrapper('8rem', "7rem"), width: deviceWrapper('8rem', "7rem") }} src={file.url}></Avatar>
       </Badge>
       <Box sx={{ ml: deviceWrapper('0', "1.5rem"), mt: deviceWrapper('.5rem', '0'), width: deviceWrapper('100%', "65%"), display: deviceWrapper('flex', 'block'), justifyContent: 'center' }}>
         <input
@@ -194,6 +194,11 @@ const Edit: React.FC<{ params: any }> = (props) => {
       </Box>
       <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <Button
+          startIcon={
+          <AddIcon />
+
+          }
+          size='small'
           onClick={() => {
             let temp = [...value.socialLinks];
             temp.push({
@@ -203,7 +208,6 @@ const Edit: React.FC<{ params: any }> = (props) => {
             setValue({ ...value, socialLinks: temp });
           }}
         >
-          <AddIcon sx={{ mr: ".5rem" }} />
           Add {value.socialLinks.length > 0 ? "Another" : ""}
         </Button>
       </Box>
@@ -216,10 +220,11 @@ const Edit: React.FC<{ params: any }> = (props) => {
           mt: "1rem",
         }}
       >
-        <Button variant="outlined" sx={{ width: "49%", mr: ".5rem" }}>
+        <Button variant="outlined" sx={{ width: "49%", mr: ".5rem" }} size="small">
           Cancel
         </Button>
         <Button
+         size="small"
           variant="contained"
           sx={{ width: "49%" }}
           onClick={() => setValue({ ...value, alert: "info" })}
