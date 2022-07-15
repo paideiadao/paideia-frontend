@@ -2,7 +2,7 @@ import "../styles/global.css";
 import { AppProps } from "next/app";
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import * as React from "react";
-import { mainTheme, DarkTheme, LightTheme } from "../theme/theme";
+import { DarkTheme, LightTheme } from "../theme/theme";
 import { ThemeProvider } from "@mui/material/styles";
 import { ThemeContext } from "../lib/ThemeContext";
 import { AppApi } from "../lib/AppApi";
@@ -126,7 +126,7 @@ export async function getServerSideProps(context) {
   let wildcard = context.req.headers.host.split(".")[0];
   let all_ids = ["spreadly", "ergopad"];
 
-  console.log(context.req.headers.host);
+  // console.log(context.req.headers.host);
 
   wildcard =
     all_ids.indexOf(wildcard) > -1

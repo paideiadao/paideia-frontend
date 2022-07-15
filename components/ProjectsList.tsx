@@ -1,6 +1,4 @@
 import React, { FC } from "react";
-
-
 import {
   Grid,
   Typography,
@@ -12,27 +10,23 @@ import {
   InputLabel,
   MenuItem,
   InputAdornment,
-  OutlinedInput
+  OutlinedInput,
+  useMediaQuery,
+  IconButton,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Dialog
 } from "@mui/material";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import { useTheme } from "@mui/material/styles";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import StarIcon from "@mui/icons-material/Star";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { DarkTheme } from "@theme/theme";
 import SearchIcon from '@mui/icons-material/Search';
 import FilterOptions from '@components/FilterOptions'
-
-interface IDaosProps {
-  name: string;
-  image?: string;
-  description: string;
-  link: string;
-  category?: string;
-}
-
-interface IProjectListProps {
-  daos: IDaosProps[];
-  sx?: object;
-}
+import { SxProps } from '@mui/material';
 
 const DaoCard = ({ dao }) => {
   return (
@@ -49,7 +43,7 @@ const DaoCard = ({ dao }) => {
         justifyContent="space-between"
         alignItems="flex-start"
       >
-        <Grid item>
+        <Grid item sx={{ textAlign: 'left' }}>
           {dao?.category && (
 
             <Box sx={{ position: 'absolute', top: '-4px', right: '-6px', fontSize: '12px' }}>
@@ -115,7 +109,11 @@ const DaoCard = ({ dao }) => {
   );
 };
 
-const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
+interface ISortByProps {
+  sx?: SxProps;
+}
+
+const SortBy: FC<ISortByProps> = ({ sx }) => {
   const [sortOption, setSortOption] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -123,56 +121,201 @@ const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
   };
 
   return (
-    <Grid container sx={sx}>
+    <FormControl fullWidth sx={sx}>
+      <InputLabel id="sort-select-box-input">Sort By</InputLabel>
+      <Select
+        labelId="sort-select-box-label"
+        id="sort-select-box"
+        value={sortOption}
+        label="Sort By"
+        onChange={handleChange}
+      >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        <MenuItem value={'oldest'}>Oldest</MenuItem>
+        <MenuItem value={'newest'}>Newest</MenuItem>
+        <MenuItem value={'most members'}>Most Members</MenuItem>
+        <MenuItem value={'least members'}>Least Members</MenuItem>
+      </Select>
+    </FormControl>
+  )
+}
 
-      <Grid item md={3} sx={{ pr: '24px' }}>
+interface ISearchBar {
+  sx?: SxProps;
+}
+
+const SearchBar: FC<ISearchBar> = ({ sx }) => {
+  return (
+    <FormControl fullWidth variant="outlined" sx={sx}>
+      <InputLabel htmlFor="outlined-adornment-search">Search</InputLabel>
+      <OutlinedInput
+        id="outlined-adornment-search"
+        endAdornment={
+          <InputAdornment position="start">
+            <SearchIcon />
+          </InputAdornment>
+        }
+        label="Search"
+      />
+    </FormControl>
+  )
+}
+
+interface IDaosProps {
+  name: string;
+  image?: string;
+  description: string;
+  link: string;
+  category?: string;
+}
+
+interface IProjectListProps {
+  daos: IDaosProps[];
+  sx?: SxProps;
+}
+
+export interface ConfirmationDialogRawProps {
+  id: string;
+  keepMounted: boolean;
+  value: string;
+  open: boolean;
+  onClose: (value?: string) => void;
+}
+
+function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
+  const { onClose, value: valueProp, open, ...other } = props;
+  const [value, setValue] = React.useState(valueProp);
+  const radioGroupRef = React.useRef<HTMLElement>(null);
+
+  React.useEffect(() => {
+    if (!open) {
+      setValue(valueProp);
+    }
+  }, [valueProp, open]);
+
+  const handleEntering = () => {
+    if (radioGroupRef.current != null) {
+      radioGroupRef.current.focus();
+    }
+  };
+
+  const handleCancel = () => {
+    onClose();
+  };
+
+  const handleOk = () => {
+    onClose(value);
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue((event.target as HTMLInputElement).value);
+  };
+
+  return (
+    <Dialog
+      sx={{
+        '& .MuiDialog-paper': {
+          background: 'rgb(14, 20, 33)',
+          width: '100%',
+          maxWidth: '400px',
+          maxHeight: '80vh'
+        }
+      }}
+      
+      maxWidth="xs"
+      TransitionProps={{ onEntering: handleEntering }}
+      open={open}
+      {...other}
+    >
+      <DialogTitle>Filter &amp; Sort</DialogTitle>
+      <DialogContent dividers>
+        <SortBy sx={{ mb: '24px' }} />
+        <FilterOptions />
+      </DialogContent>
+      <DialogActions>
+        <Button autoFocus onClick={handleCancel}>
+          Cancel
+        </Button>
+        <Button onClick={handleOk}>Ok</Button>
+      </DialogActions>
+    </Dialog>
+  );
+}
+
+
+const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
+  const [filterDialogOpen, setFilterDialogOpen] = React.useState(false);
+  const [filterDialogvalue, setFilterDialogValue] = React.useState('Dione');
+
+  const handleDialogClick = () => {
+    setFilterDialogOpen(true);
+  };
+
+  const handleDialogClose = (newValue?: string) => {
+    setFilterDialogOpen(false);
+
+    if (newValue) {
+      setFilterDialogValue(newValue);
+    }
+  };
+
+
+  const theme = useTheme();
+
+  return (
+    <Grid container sx={sx}>
+      <Grid item lg={3} sx={{ pr: '24px', display: { xs: 'none', lg: 'block' } }}>
         <FilterOptions />
       </Grid>
-      <Grid item md={9}>
-        <Grid container sx={{ mb: '32px' }} spacing={3}>
-          <Grid item md={7}>
-            <FormControl fullWidth variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-search">Search</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-search"
-                endAdornment={
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                }
-                label="Search"
+      <Grid item lg={9} xs={12}  sx={{ textAlign: 'center' }}>
+        {useMediaQuery(theme.breakpoints.up("lg")) ? (
+          <Grid container sx={{ mb: '32px' }} spacing={3}>
+            <Grid item md={7}>
+              <SearchBar />
+            </Grid>
+            <Grid item md={5}>
+              <SortBy />
+            </Grid>
+          </Grid>
+        ) : (
+          <Grid
+            container
+            sx={{ mb: '32px' }}
+            spacing={3}
+            direction="row"
+          >
+            <Grid item xs>
+              <SearchBar />
+            </Grid>
+            <Grid item xs="auto">
+              <Button sx={{ height: '100%' }} variant="outlined" aria-label="filter" onClick={handleDialogClick}>
+                <FilterAltIcon />
+              </Button>
+              <ConfirmationDialogRaw
+                id="ringtone-menu"
+                keepMounted
+                open={filterDialogOpen}
+                onClose={handleDialogClose}
+                value={filterDialogvalue}
               />
-            </FormControl>
+            </Grid>
           </Grid>
-          <Grid item md={5}>
-            <FormControl fullWidth>
-              <InputLabel id="sort-select-box-input">Sort By</InputLabel>
-              <Select
-                labelId="sort-select-box-label"
-                id="sort-select-box"
-                value={sortOption}
-                label="Sort By"
-                onChange={handleChange}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={'oldest'}>Oldest</MenuItem>
-                <MenuItem value={'newest'}>Newest</MenuItem>
-                <MenuItem value={'most members'}>Most Members</MenuItem>
-                <MenuItem value={'least members'}>Least Members</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-        </Grid>
-        <Grid container spacing={4}>
+
+        )}
+        <Grid container spacing={4} columns={{ xs: 1, sm: 2, sm3: 3, md: 3, md2: 4, lg: 3 }} sx={{ mb: '24px' }}>
           {daos.map((dao, i) => (
-            <Grid key={i} item xs={12} sm={6} md={4}>
+            <Grid key={i} item xs={1} sx={{ textAlign: 'center' }}>
               <DaoCard dao={dao} />
             </Grid>
           ))}
         </Grid>
+        <Button variant="contained">
+          Load more...
+        </Button>
       </Grid>
+
     </Grid>
   );
 };

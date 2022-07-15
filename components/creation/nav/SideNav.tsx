@@ -5,7 +5,7 @@ import StepSelector, { steps } from "./StepSelector";
 import Help from "./Help";
 import DarkLogo from "@public/logos/dark_logo.svg";
 import LightLogo from "@public/logos/light_logo.svg";
-import { DarkTheme, LightTheme } from "@theme/theme.js";
+import { DarkTheme, LightTheme } from "@theme/theme";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Save from "@mui/icons-material/Save";

@@ -3,9 +3,9 @@ import { Box, CircularProgress } from "@mui/material";
 import * as React from "react";
 import DarkLogo from "../../../public/logos/dark_logo.svg";
 import LightLogo from "../../../public/logos/light_logo.svg";
-import { DarkTheme, LightTheme } from "../../../theme/theme.js";
+import { DarkTheme, LightTheme } from "@theme/theme";
 
-const CreationLoading: React.FC<{ theme: any }> = (props) => {
+const CreationLoading: React.FC = (props) => {
   let themeContext = React.useContext(ThemeContext);
   const [logo, setLogo] = React.useState(
     themeContext.theme === DarkTheme ? LightLogo : DarkLogo
