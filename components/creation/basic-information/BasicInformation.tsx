@@ -27,12 +27,12 @@ const BasicInformation: React.FC = () => {
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
-        color: "primary.text",
+        color: "text.primary",
       }}
     >
       <Box sx={{ textAlign: "left", width: "100%", fontSize: "1.2rem" }}>
         Basic Information
-        <Box sx={{ width: "100%", color: "#C4C4C4", fontSize: ".8rem" }}>
+        <Box sx={{ width: "100%", color: "text.secondary", fontSize: ".8rem" }}>
           Here you will pick your DAO's name, this will determine your DAO's URL
           as shown below and you can also write a short description of what your
           DAO is about.

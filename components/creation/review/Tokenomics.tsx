@@ -66,19 +66,19 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
               }}
             >
               <Box>
-                <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
+                <Box sx={{ fontSize: ".9rem", color: "text.primary" }}>
                   {i.title}
                 </Box>
-                <Box sx={{ fontSize: ".8rem", color: "#C4C4C4" }}>
+                <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
                   {i.subtitle}
                 </Box>
               </Box>
               <Box sx={{ ml: "auto", textAlign: "right" }}>
-                <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
+                <Box sx={{ fontSize: ".9rem", color: "text.primary" }}>
                   {i.balance + " "}
                   {i.tokenTicker}
                 </Box>
-                <Box sx={{ fontSize: ".8rem", color: "#C4C4C4" }}>
+                <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
                   {i.percentage}%
                 </Box>
               </Box>
@@ -101,17 +101,17 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
               }}
             >
               <Box>
-                <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
+                <Box sx={{ fontSize: ".9rem", color: "text.primary" }}>
                   {i.distributionName}
                 </Box>
-                <Box sx={{ fontSize: ".8rem", color: "#C4C4C4" }}>{i.id}</Box>
+                <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>{i.id}</Box>
               </Box>
               <Box sx={{ ml: "auto", textAlign: "right" }}>
-                <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
+                <Box sx={{ fontSize: ".9rem", color: "text.primary" }}>
                   {i.balance + " "}
                   {props.data.tokenTicker}
                 </Box>
-                <Box sx={{ fontSize: ".8rem", color: "#C4C4C4" }}>
+                <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
                   {i.percentage}%
                 </Box>
               </Box>

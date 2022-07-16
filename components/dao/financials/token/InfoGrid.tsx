@@ -51,7 +51,7 @@ const InfoCard: React.FC<IInfoCard> = (props) => {
       <Box
         sx={{
           fontSize: deviceWrapper(".7rem", ".9rem"),
-          color: "#C4C4C4",
+          color: "text.secondary",
           mt: deviceWrapper(".05rem", "0"),
         }}
       >
@@ -85,7 +85,7 @@ const InfoGrid: React.FC = () => {
       widget: (
         <Box
           sx={{
-            color: "#C4C4C4",
+            color: "text.secondary",
             fontSize: deviceWrapper(".8rem", "1rem"),
             fontWeight: 500,
           }}
@@ -116,7 +116,7 @@ const InfoGrid: React.FC = () => {
       widget: (
         <Box
           sx={{
-            color: "#C4C4C4",
+            color: "text.secondary",
             fontSize: deviceWrapper(".8rem", "1rem"),
             fontWeight: 500,
           }}

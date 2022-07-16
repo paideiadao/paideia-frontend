@@ -30,7 +30,7 @@ export const Overview: React.FC = () => {
           </Avatar>
           <Box sx={{ ml: "1rem" }}>
             <Box sx={{ fontSize: "1rem" }}>Alone Musk</Box>
-            <Box sx={{ fontSize: ".8rem", color: "#C4C4C4" }}>
+            <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
               Level 7 | Philosopher
             </Box>
           </Box>
@@ -48,7 +48,7 @@ export const Overview: React.FC = () => {
           <Box
             sx={{
               fontSize: ".8rem",
-              color: "#C4C4C4",
+              color: "text.secondary",
               textAlign: "center",
               borderRight: "1px solid",
               borderRightColor: "border.main",
@@ -62,7 +62,7 @@ export const Overview: React.FC = () => {
             sx={{
               fontSize: ".8rem",
               pl: "1rem",
-              color: "#C4C4C4",
+              color: "text.secondary",
               textAlign: "center",
               borderRight: "1px solid",
               borderRightColor: "border.main",
@@ -76,7 +76,7 @@ export const Overview: React.FC = () => {
             sx={{
               fontSize: ".8rem",
               pl: "1rem",
-              color: "#C4C4C4",
+              color: "text.secondary",
               textAlign: "center",
             }}
           >
@@ -115,7 +115,7 @@ export const State: React.FC = () => {
       }}
     >
       <CapsInfo title="this proposal is in the discussion state" />
-      <Box sx={{ mt: "-.5rem", fontSize: ".9rem", color: "#C4C4C4" }}>
+      <Box sx={{ mt: "-.5rem", fontSize: ".9rem", color: "text.secondary" }}>
         Get feedback from the other members about an idea you have before
         commiting to a full proposal. Discussions can easily be upgraded to
         proposals at any time.

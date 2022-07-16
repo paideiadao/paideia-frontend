@@ -65,7 +65,7 @@ const Footer: React.FC<{context?: IConfigContext}> = (props) => {
         }
       />
       {data.footer.show && (
-        <Box sx={{ width: "100%", color: "primary.text" }}>
+        <Box sx={{ width: "100%", color: "text.primary" }}>
           <TextField
             label="Main text"
             value={data.footer.mainText}
@@ -197,7 +197,7 @@ export const SocialRow: React.FC<{
               }
             }
           }}
-          sx={{ height: "100%", color: "primary.text" }}
+          sx={{ height: "100%", color: "text.primary" }}
           onChange={(e: any) =>
             props.set({ ...props.data, socialNetwork: e.target.value })
           }

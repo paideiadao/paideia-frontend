@@ -174,7 +174,7 @@ const Liquidity: React.FC<{
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <Box sx={{ color: "#C4C4C4" }}>USD</Box>
+                <Box sx={{ color: "text.secondary" }}>USD</Box>
               </InputAdornment>
             ),
           }}
@@ -189,7 +189,7 @@ const Liquidity: React.FC<{
             variant="outlined"
             label="Trading pair"
             value={value.tradingPair}
-            sx={{ height: "100%", color: "primary.text" }}
+            sx={{ height: "100%", color: "text.primary" }}
             onChange={(e: any) =>
               setValue({
                 ...value,
@@ -212,7 +212,7 @@ const Liquidity: React.FC<{
             variant="outlined"
             label="DEX"
             value={value.dex}
-            sx={{ height: "100%", color: "primary.text" }}
+            sx={{ height: "100%", color: "text.primary" }}
             onChange={(e: any) =>
               setValue({
                 ...value,

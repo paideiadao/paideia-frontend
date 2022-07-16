@@ -277,13 +277,13 @@ export const Notification: React.FC<{ i: INotification; m?: string }> = (
       >
         <Box>
           {i.username + " "}
-          <Box sx={{ display: "inline", color: "#C4C4C4" }}>{i.action}</Box>
+          <Box sx={{ display: "inline", color: "text.secondary" }}>{i.action}</Box>
           {" " + i.proposalname}
         </Box>
         <Box
           sx={{
             fontSize: ".7rem",
-            color: "#C4C4C4",
+            color: "text.secondary",
             display: "flex",
             alignItems: "center",
           }}

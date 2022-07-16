@@ -91,7 +91,7 @@ const CreateDiscussion: React.FC = () => {
             </Box>
             <Box sx={{ width: "75%", fontSize: "1.3rem", fontWeight: 400 }}>
               Create a discussion
-              <Box sx={{ fontSize: ".8rem", color: "#C4C4C4" }}>
+              <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
                 Get feedback from other users on a specific subject before
                 creating a full proposal. Discussions can easily be upgraded to
                 proposals at any time.

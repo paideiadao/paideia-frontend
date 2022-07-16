@@ -36,7 +36,7 @@ const MobileWallet: React.FC<{
         />
         <Box sx={{ fontSize: "1.2rem", color: "text.main" }}>
           Mobile Wallet
-          <Box sx={{ fontSize: ".9rem", color: "#C4C4C4", mt: "-.25rem" }}>
+          <Box sx={{ fontSize: ".9rem", color: "text.secondary", mt: "-.25rem" }}>
             Connect by manually adding your wallet address
           </Box>
         </Box>

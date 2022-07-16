@@ -21,7 +21,7 @@ const Nav: React.FC<INav> = (props) => {
         backgroundColor: "backgroundColor.main",
         borderRight: "1px solid",
         borderRightColor: "border.main",
-        color: "primary.text",
+        color: "text.primary",
         borderBottom: "1px solid",
         height: "100vh",
         borderBottomColor: "border.main",

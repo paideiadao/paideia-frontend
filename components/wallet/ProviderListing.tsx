@@ -22,7 +22,7 @@ const ProviderListing: React.FC<{ set: Function }> = (props) => {
           src={Nautilus.src}
           sx={{ height: "2.rem", width: "2.5rem", mr: "1rem" }}
         />
-        <Box sx={{ fontSize: ".9rem", color: "#C4C4C4" }}>
+        <Box sx={{ fontSize: ".9rem", color: "text.secondary" }}>
           <Box
             sx={{
               display: "flex",
@@ -59,7 +59,7 @@ const ProviderListing: React.FC<{ set: Function }> = (props) => {
           src={Ergo.src}
           sx={{ height: "2.rem", width: "2.5rem", mr: "1rem" }}
         />
-        <Box sx={{ fontSize: ".9rem", color: "#C4C4C4" }}>
+        <Box sx={{ fontSize: ".9rem", color: "text.secondary" }}>
           <Box
             sx={{
               display: "flex",

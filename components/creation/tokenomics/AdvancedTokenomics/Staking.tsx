@@ -164,7 +164,7 @@ const Staking: React.FC<{
             variant="outlined"
             label="Emission type"
             value={value.emissionType}
-            sx={{ height: "100%", color: "primary.text" }}
+            sx={{ height: "100%", color: "text.primary" }}
             onChange={(e: any) =>
               setValue({
                 ...value,
@@ -217,7 +217,7 @@ const Staking: React.FC<{
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <Box sx={{ color: "primary.text" }}>%</Box>
+                  <Box sx={{ color: "text.primary" }}>%</Box>
                 </InputAdornment>
               ),
             }}

@@ -37,7 +37,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
           <IconButton
             sx={{
               backgroundColor: "favoriteBackground.main",
-              color: "#C4C4C4",
+              color: "text.secondary",
               p: ".2rem",
               borderRadius: "50%",
               width: "1.5rem",
@@ -88,7 +88,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
               sx={{ width: "4.5rem", height: "4.5rem" }}
             />
             <Box>{props.name}</Box>
-            <Box sx={{ fontSize: ".8rem", color: "#C4C4C4" }}>
+            <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
               Level {props.level} | Philosopher
             </Box>
             <Box
@@ -103,7 +103,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
               <Box
                 sx={{
                   fontSize: ".7rem",
-                  color: "#C4C4C4",
+                  color: "text.secondary",
                   textAlign: "center",
                   pr: "1rem",
 
@@ -120,7 +120,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
                 sx={{
                   fontSize: ".7rem",
                   pl: "1rem",
-                  color: "#C4C4C4",
+                  color: "text.secondary",
                   textAlign: "center",
                   pr: "1rem",
 
@@ -137,7 +137,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
                 sx={{
                   fontSize: ".7rem",
                   pl: "1rem",
-                  color: "#C4C4C4",
+                  color: "text.secondary",
                   textAlign: "center",
                 }}
               >

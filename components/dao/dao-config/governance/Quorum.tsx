@@ -108,7 +108,7 @@ import { FormControl, InputLabel, OutlinedInput, Box, Select, MenuItem, Slider, 
                   height: "100%",
                   width: "90%",
                   backgroundColor: "backgroundColor.main",
-                  color: "primary.text",
+                  color: "text.primary",
                   lineHeight: "350%",
                   textAlign: "center",
                   borderRadius: "0 .3rem .3rem 0",
@@ -123,7 +123,7 @@ import { FormControl, InputLabel, OutlinedInput, Box, Select, MenuItem, Slider, 
                     id="currency-select"
                     variant="outlined"
                     value={data.voteDurationUnits}
-                    sx={{ height: "100%", color: "primary.text" }}
+                    sx={{ height: "100%", color: "text.primary" }}
                     onChange={(e) =>
                       context.api.setData({
                         ...context.api.data,

@@ -64,7 +64,7 @@ const Create: React.FC = () => {
                 sx={{
                   textAlign: "center",
                   fontSize: ".8rem",
-                  color: "#C4C4C4",
+                  color: "text.secondary",
                 }}
               >
                 Provide users with different options to vote on, and the
@@ -111,7 +111,7 @@ const Create: React.FC = () => {
                 sx={{
                   textAlign: "center",
                   fontSize: ".8rem",
-                  color: "#C4C4C4",
+                  color: "text.secondary",
                 }}
               >
                 Get feedback from others on a specific subject before creating a

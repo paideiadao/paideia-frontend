@@ -19,7 +19,7 @@ const CreationLoading: React.FC = (props) => {
     <>
       <Box
         sx={{
-          color: "primary.text",
+          color: "text.primary",
           position: "fixed",
           top: 0,
           left: 0,
@@ -42,7 +42,7 @@ const CreationLoading: React.FC = (props) => {
         sx={{
           mt: "3.5rem",
           height: "calc(100vh - 13.5rem)",
-          color: "primary.text",
+          color: "text.primary",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -60,7 +60,7 @@ const CreationLoading: React.FC = (props) => {
             textAlign: "center",
             fontSize: "1rem",
             mt: ".2rem",
-            color: "#C4C4C4",
+            color: "text.secondary",
           }}
         >
           Setting your DAOs governance structure, minting the token, making it

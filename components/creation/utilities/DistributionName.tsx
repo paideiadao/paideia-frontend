@@ -16,7 +16,7 @@ const DistributionName: React.FC<{
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">
-            <Box sx={{ color: "primary.text", mt: ".1rem" }}>
+            <Box sx={{ color: "text.primary", mt: ".1rem" }}>
               {props.c + 1}.
             </Box>
           </InputAdornment>

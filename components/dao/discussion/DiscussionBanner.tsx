@@ -61,7 +61,7 @@ const DiscussionBanner: React.FC<{
               >
                 <Box sx={{ mt: ".2rem" }}>
                   {props.file.name}
-                  <Box sx={{ color: "#C4C4C4", fontSize: ".9rem" }}>
+                  <Box sx={{ color: "text.secondary", fontSize: ".9rem" }}>
                     {props.file === undefined || props.file === -1
                       ? "File Max size 1Mb. Dimensions 48px by 48px."
                       : bytesToSize(props.file.size)}
@@ -113,7 +113,7 @@ const DiscussionBanner: React.FC<{
             />
             <Box
               sx={{
-                color: "primary.text",
+                color: "text.primary",
                 fontSize: "1rem",
                 textAlign: "center",
                 mt: ".5rem",
@@ -138,7 +138,7 @@ const DiscussionBanner: React.FC<{
                 </Box>
               )}
             </Box>
-            <Box sx={{ color: "#C4C4C4", textAlign: "center" }}>
+            <Box sx={{ color: "text.secondary", textAlign: "center" }}>
               {props.file === undefined || props.file === -1
                 ? "File Max size 1Mb. Dimensions 1200px by 400px."
                 : bytesToSize(props.file.size)}

@@ -293,7 +293,7 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
             zIndex: 1000,
             backgroundColor: "backgroundColor.main",
             borderRight: "1px solid",
-            color: "primary.text",
+            color: "text.primary",
             borderLeft: "1px solid",
             height: "100vh",
             borderColor: "border.main",

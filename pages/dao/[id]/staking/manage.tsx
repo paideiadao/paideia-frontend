@@ -45,7 +45,7 @@ const TokenBanner: React.FC<ITokenBanner> = (props) => {
       <Box
         sx={{
           ml: "auto",
-          color: "#C4C4C4",
+          color: "text.secondary",
           fontSize: ".9rem",
           fontWeight: 500,
         }}

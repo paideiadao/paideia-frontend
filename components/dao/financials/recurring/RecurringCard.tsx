@@ -49,7 +49,7 @@ const RecurringCard: React.FC<IRecurringCard> = (props) => {
         <Box
           sx={{
             fontSize: deviceWrapper(".7rem", ".8rem"),
-            color: "#C4C4C4",
+            color: "text.secondary",
           }}
         >
           {props.address.slice(0, 13) + "....." + props.address.slice(-13)}
@@ -60,7 +60,7 @@ const RecurringCard: React.FC<IRecurringCard> = (props) => {
         <Box
           sx={{
             fontSize: deviceWrapper(".7rem", ".8rem"),
-            color: "#C4C4C4",
+            color: "text.secondary",
           }}
         >
           By: {props.proposalUsername}
@@ -77,7 +77,7 @@ const RecurringCard: React.FC<IRecurringCard> = (props) => {
           <Box
             sx={{
               fontSize: deviceWrapper(".7rem", ".8rem"),
-              color: "#C4C4C4",
+              color: "text.secondary",
             }}
           >
             {dateFormat(props.startDate, "mm/dd/yyyy HH:MM")}
@@ -95,7 +95,7 @@ const RecurringCard: React.FC<IRecurringCard> = (props) => {
           <Box
             sx={{
               fontSize: deviceWrapper(".7rem", ".8rem"),
-              color: "#C4C4C4",
+              color: "text.secondary",
             }}
           >
             {props.paymentErg}
@@ -107,7 +107,7 @@ const RecurringCard: React.FC<IRecurringCard> = (props) => {
         <Box
           sx={{
             fontSize: deviceWrapper(".7rem", ".8rem"),
-            color: "#C4C4C4",
+            color: "text.secondary",
           }}
         >
           {props.paymentErg}

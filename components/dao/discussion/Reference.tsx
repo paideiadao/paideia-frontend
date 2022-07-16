@@ -81,7 +81,7 @@ const Reference: React.FC = () => {
           <Avatar sx={{ width: "2rem", height: "2rem" }}></Avatar>
           <Box sx={{ ml: ".5rem", fontSize: ".9rem" }}>
             {option.proposalName}
-            <Box sx={{ fontSize: ".8rem", fontWeight: 400, color: "#C4C4C4" }}>
+            <Box sx={{ fontSize: ".8rem", fontWeight: 400, color: "text.secondary" }}>
               ID: {option.id}
             </Box>
           </Box>

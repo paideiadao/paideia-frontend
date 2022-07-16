@@ -32,14 +32,14 @@ const FundCard: React.FC<{
           sx={{
             display: "inline",
             ml: ".5rem",
-            color: "#C4C4C4",
+            color: "text.secondary",
             fontSize: ".9rem",
           }}
         >
           {props.ticker}
         </Box>
       </Box>
-      <Box sx={{ fontSize: ".8rem", color: "#C4C4C4" }}>
+      <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
         {props.percentage}% (${props.usd} USD)
       </Box>
     </Box>

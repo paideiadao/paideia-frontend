@@ -59,14 +59,14 @@ export const InfoCard: React.FC<IInfoCard> = (props) => {
         <Box
           sx={{
             fontSize: deviceWrapper(".9rem", "1.3rem"),
-            color: "primary.text",
+            color: "text.primary",
           }}
         >
           {props.value}{" "}
           <Box
             sx={{
               display: "inline",
-              color: "#C4C4C4",
+              color: "text.secondary",
               fontSize: ".9rem",
               fontWeight: 500,
             }}
@@ -75,7 +75,7 @@ export const InfoCard: React.FC<IInfoCard> = (props) => {
           </Box>
         </Box>
         <Box
-          sx={{ color: "#C4C4C4", fontSize: deviceWrapper(".7rem", ".9rem") }}
+          sx={{ color: "text.secondary", fontSize: deviceWrapper(".7rem", ".9rem") }}
         >
           {props.title}
         </Box>

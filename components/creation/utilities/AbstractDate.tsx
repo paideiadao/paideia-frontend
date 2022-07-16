@@ -34,7 +34,7 @@ const AbstractDate: React.FC<{
             <CapsInfo title="Select Date" />
             <Box
               sx={{
-                color: "primary.text",
+                color: "text.primary",
                 display: "flex",
                 mt: "-.6rem",
               }}

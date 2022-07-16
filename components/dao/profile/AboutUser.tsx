@@ -62,7 +62,7 @@ const AboutUser: React.FC = () => {
           <Box
             sx={{
               fontSize: ".7rem",
-              color: "#C4C4C4",
+              color: "text.secondary",
               textAlign: "center",
               borderRight: "1px solid",
               borderRightColor: "border.main",
@@ -76,7 +76,7 @@ const AboutUser: React.FC = () => {
             sx={{
               fontSize: ".7rem",
               pl: ".75rem",
-              color: "#C4C4C4",
+              color: "text.secondary",
               textAlign: "center",
               borderRight: "1px solid",
               borderRightColor: "border.main",
@@ -90,7 +90,7 @@ const AboutUser: React.FC = () => {
             sx={{
               fontSize: ".7rem",
               pl: ".75rem",
-              color: "#C4C4C4",
+              color: "text.secondary",
               textAlign: "center",
             }}
           >

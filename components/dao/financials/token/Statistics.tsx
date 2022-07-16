@@ -91,7 +91,7 @@ const StatisticsCard: React.FC<{ title: string | JSX.Element; c: number }> = (
       }}
     >
       {props.children}
-      <Box sx={{ fontSize: deviceWrapper(".6rem", ".8rem"), color: "#C4C4C4" }}>
+      <Box sx={{ fontSize: deviceWrapper(".6rem", ".8rem"), color: "text.secondary" }}>
         {props.title}
       </Box>
     </Box>
@@ -279,7 +279,7 @@ const Statistics: React.FC = () => {
                   sx={{
                     ml: ".5rem",
                     fontSize: deviceWrapper(".65rem", ".9rem"),
-                    color: "#C4C4C4",
+                    color: "text.secondary",
                     fontWeight: 500,
                   }}
                 >
@@ -300,7 +300,7 @@ const Statistics: React.FC = () => {
                   sx={{
                     ml: ".5rem",
                     fontSize: deviceWrapper(".65rem", ".9rem"),
-                    color: "#C4C4C4",
+                    color: "text.secondary",
                     fontWeight: 500,
                   }}
                 >

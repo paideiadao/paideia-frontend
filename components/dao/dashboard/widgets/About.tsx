@@ -23,7 +23,7 @@ const About: React.FC = () => {
             width: "50%",
             textAlign: "center",
             fontSize: ".7rem",
-            color: "#C4C4C4",
+            color: "text.secondary",
             borderRight: "1px solid",
             borderColor: "border.main",
           }}
@@ -36,7 +36,7 @@ const About: React.FC = () => {
             width: "50%",
             textAlign: "center",
             fontSize: ".7rem",
-            color: "#C4C4C4",
+            color: "text.secondary",
           }}
         >
           Proposals
@@ -46,7 +46,7 @@ const About: React.FC = () => {
       <Box sx={{ width: "100%", fontSize: ".9rem", mt: ".5rem" }}>
         Short bio here...
       </Box>
-      <Box sx={{ fontSize: ".7rem", color: "#C4C4C4", mt: ".5rem" }}>
+      <Box sx={{ fontSize: ".7rem", color: "text.secondary", mt: ".5rem" }}>
         Active since 23 March 2021
       </Box>
     </Paper>

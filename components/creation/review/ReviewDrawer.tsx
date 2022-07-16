@@ -38,7 +38,7 @@ export const Value: React.FC<{
             props.labelWidth,
             props.labelWidth
           ),
-          color: "#C4C4C4",
+          color: "text.secondary",
         }}
       >
         {props.title}
@@ -69,7 +69,7 @@ export const WalletListing: React.FC<{ data: any }> = (props) => {
           </Avatar>
           <Box sx={{ ml: ".5rem" }}>
             <Box sx={{ fontSize: ".9rem" }}>{i.alias}</Box>
-            <Box sx={{ fontSize: ".7rem", color: "#C4C4C4" }}>
+            <Box sx={{ fontSize: ".7rem", color: "text.secondary" }}>
               <Box
                 sx={{
                   display: deviceStruct(
@@ -118,7 +118,7 @@ export const ActiveInactive: React.FC<{ value: boolean }> = (props) => {
       sx={{
         display: "flex",
         alignItems: "center",
-        color: props.value ? "#C4C4C4Success" : "error.main",
+        color: props.value ? "text.secondarySuccess" : "error.main",
         fontSize: ".9rem",
         fontWeight: 550,
       }}
@@ -150,7 +150,7 @@ export const ImageWrapper: React.FC<{
       <Avatar src={props.img}></Avatar>
       <Box sx={{ ml: ".5rem" }}>
         <Box sx={{ fontSize: ".9rem" }}>{props.name}</Box>
-        <Box sx={{ fontSize: ".7rem", color: "#C4C4C4" }}>{props.size}</Box>
+        <Box sx={{ fontSize: ".7rem", color: "text.secondary" }}>{props.size}</Box>
       </Box>
     </Box>
   );

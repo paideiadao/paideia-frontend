@@ -116,7 +116,7 @@ const Discussion: React.FC = () => {
                   display: "flex",
                   alignItems: "center",
                   fontSize: ".9rem",
-                  color: "#C4C4C4",
+                  color: "text.secondary",
                 }}
               >
                 <LanIcon
@@ -131,8 +131,8 @@ const Discussion: React.FC = () => {
                   setValue({ ...value, followed: !value.followed })
                 }
                 sx={{
-                  color: value.followed ? "red" : "#C4C4C4",
-                  borderColor: value.followed ? "red" : "#C4C4C4",
+                  color: value.followed ? "red" : "text.secondary",
+                  borderColor: value.followed ? "red" : "text.secondary",
                   ":hover": {
                     borderColor: "red",
                     color: "red",
@@ -187,7 +187,7 @@ const Discussion: React.FC = () => {
                 display: "flex",
                 alignItems: "center",
                 ml: ".5rem",
-                color: "#C4C4C4",
+                color: "text.secondary",
                 fontSize: ".9rem",
               }}
             >

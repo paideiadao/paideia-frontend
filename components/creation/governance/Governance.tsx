@@ -34,12 +34,12 @@ const Governance: React.FC = () => {
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
-        color: "primary.text",
+        color: "text.primary",
       }}
     >
       <Box sx={{ textAlign: "left", width: "100%", fontSize: "1.2rem" }}>
         Governance and voting configuration
-        <Box sx={{ width: "100%", color: "#C4C4C4", fontSize: ".8rem" }}>
+        <Box sx={{ width: "100%", color: "text.secondary", fontSize: ".8rem" }}>
           You can use the default settings or dive more in deep configure your
           voting system as you wish. You can enable and configure features such
           as "Optimistic governance" or "Quadratic voting" and edit the support
@@ -62,7 +62,7 @@ const Governance: React.FC = () => {
           tooltipText="Content here."
           tooltipLink="/here"
         />
-        <Box sx={{ width: "100%", color: "#C4C4C4", fontSize: ".8rem" }}>
+        <Box sx={{ width: "100%", color: "text.secondary", fontSize: ".8rem" }}>
           If active only whitelisted members will be able to create proposals.
           If proposals are not challenged, they will be approved.
         </Box>
@@ -316,7 +316,7 @@ const Governance: React.FC = () => {
                           height: "100%",
                           width: "90%",
                           backgroundColor: "backgroundColor.main",
-                          color: "primary.text",
+                          color: "text.primary",
                           lineHeight: "350%",
                           textAlign: "center",
                           borderRadius: "0 .3rem .3rem 0",
@@ -331,7 +331,7 @@ const Governance: React.FC = () => {
                             id="currency-select"
                             variant="outlined"
                             value={data.timeToChallengeUnits}
-                            sx={{ height: "100%", color: "primary.text" }}
+                            sx={{ height: "100%", color: "text.primary" }}
                             onChange={(e) =>
                               globalContext.api.setData({
                                 ...globalContext.api.data,
@@ -373,7 +373,7 @@ const Governance: React.FC = () => {
           tooltipLink="/here"
         />
 
-        <Box sx={{ width: "100%", color: "#C4C4C4", fontSize: ".8rem" }}>
+        <Box sx={{ width: "100%", color: "text.secondary", fontSize: ".8rem" }}>
           If active, voting power will not be determined only by the stakeholder
           investment, avoiding whales having too much influence over decisions
         </Box>
@@ -578,7 +578,7 @@ const Governance: React.FC = () => {
                   height: "100%",
                   width: "90%",
                   backgroundColor: "backgroundColor.main",
-                  color: "primary.text",
+                  color: "text.primary",
                   lineHeight: "350%",
                   textAlign: "center",
                   borderRadius: "0 .3rem .3rem 0",
@@ -593,7 +593,7 @@ const Governance: React.FC = () => {
                     id="currency-select"
                     variant="outlined"
                     value={data.voteDurationUnits}
-                    sx={{ height: "100%", color: "primary.text" }}
+                    sx={{ height: "100%", color: "text.primary" }}
                     onChange={(e) =>
                       globalContext.api.setData({
                         ...globalContext.api.data,

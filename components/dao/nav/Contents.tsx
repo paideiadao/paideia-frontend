@@ -97,7 +97,7 @@ const BasicLink: React.FC<{
             alignItems: "center",
             fontSize: ".7rem",
             cursor: "pointer",
-            color: props.selected ? "primary.main" : "primary.text",
+            color: props.selected ? "primary.main" : "text.primary",
             ":hover": {
               backgroundColor: "linkHover.main",
             },
@@ -178,7 +178,7 @@ const DropdownLink: React.FC<{
       disabled={props.disabled}
       sx={{
         backgroundColor: "transparent",
-        color: props.selected ? "primary.main" : "primary.text",
+        color: props.selected ? "primary.main" : "text.primary",
         pl: 0,
         ml: 0,
         mt: ".25rem",
@@ -208,7 +208,7 @@ const DropdownLink: React.FC<{
           >
             <ExpandMoreIcon
               sx={{
-                color: props.selected ? "primary.main" : "primary.text",
+                color: props.selected ? "primary.main" : "text.primary",
               }}
             />
           </Box>
@@ -243,7 +243,7 @@ const DropdownLink: React.FC<{
               fontSize: ".7rem",
               cursor: "pointer",
               width: "100%",
-              color: props.selected ? "primary.main" : "primary.text",
+              color: props.selected ? "primary.main" : "text.primary",
             }}
             onClick={() => props.set(props.title)}
           >
@@ -308,7 +308,7 @@ const DropdownLink: React.FC<{
           </Box>
         </Box>
       </AccordionSummary>
-      <AccordionDetails sx={{ opacity: 1, color: "primary.text", p: 0 }}>
+      <AccordionDetails sx={{ opacity: 1, color: "text.primary", p: 0 }}>
         {props.links}
       </AccordionDetails>
     </Accordion>

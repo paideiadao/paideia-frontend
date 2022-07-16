@@ -8,6 +8,6 @@ export const modalBackground = {
   boxShadow: 24,
   p: "1rem",
   borderRadius: ".3rem",
-  color: "primary.text",
+  color: "text.primary",
   zIndex: 10000,
 };

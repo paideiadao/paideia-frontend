@@ -224,7 +224,7 @@ const BaseComment: React.FC<{
           <Box sx={{ display: "flex", alignItems: "center" }}>
             {props.comment.username}
           </Box>
-          <Box sx={{ ml: "auto", color: "#C4C4C4" }}>
+          <Box sx={{ ml: "auto", color: "text.secondary" }}>
             {dateFormat(props.comment.date, "mmmm dS, yyyy @ h:MM TT")}
           </Box>
         </Box>

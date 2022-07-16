@@ -67,7 +67,7 @@ export const TimeWidget: React.FC<{
         backgroundColor: "fileInput.main",
         borderRadius: ".3rem",
         fontSize: deviceWrapper(".6rem", ".8rem"),
-        color: "#C4C4C4",
+        color: "text.secondary",
         p: ".2rem",
         pt: ".1rem",
         pb: ".1rem",
@@ -111,7 +111,7 @@ const AssetCard: React.FC<IAssetCard> = (props) => {
       <Box>
         {props.amount} {props.ticker}
       </Box>
-      <Box sx={{ fontSize: ".7rem", color: "#C4C4C4" }}>
+      <Box sx={{ fontSize: ".7rem", color: "text.secondary" }}>
         {percentage(props.percentage, 0)} ({props.total})
       </Box>
     </Box>
@@ -166,7 +166,7 @@ const FinancialSummary: React.FC = () => {
             display: "inline",
             ml: ".3rem",
             fontSize: ".8rem",
-            color: "#C4C4C4",
+            color: "text.secondary",
           }}
         >
           (In 8 currencies)

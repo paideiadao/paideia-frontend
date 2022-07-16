@@ -69,7 +69,7 @@ const TopNav: React.FC<INav> = (props) => {
         </IconButton>
         <Box
           sx={{
-            color: "primary.text",
+            color: "text.primary",
             backgroundColor: "backgroundColor.main",
             ml: "auto",
             cursor: "pointer",
@@ -134,7 +134,7 @@ const TopNav: React.FC<INav> = (props) => {
                 }}
               >
                 <Box sx={{ fontSize: ".9rem" }}>Alone Musk</Box>
-                <Box sx={{ color: "#C4C4C4", fontSize: ".7rem" }}>
+                <Box sx={{ color: "text.secondary", fontSize: ".7rem" }}>
                   Lvl 7 | Philosopher
                 </Box>
               </Box>
@@ -221,7 +221,7 @@ const TopNav: React.FC<INav> = (props) => {
             backgroundColor: "backgroundColor.main",
             borderRight: "1px solid",
             borderRightColor: "border.main",
-            color: "primary.text",
+            color: "text.primary",
             borderBottom: "1px solid",
             height: "100vh",
             borderBottomColor: "border.main",

@@ -23,7 +23,7 @@ export const Header: React.FC<{
             ? "1.1rem"
             : "1rem",
         fontWeight: 500,
-        color: "primary.text",
+        color: "text.primary",
       }}
     >
       {props.title}
@@ -44,7 +44,7 @@ export const Header: React.FC<{
               : props.small === undefined
               ? "1.1rem"
               : "1rem",
-          color: "primary.text",
+          color: "text.primary",
           mb: props.mb === undefined ? ".5rem" : props.mb,
         }}
       >
@@ -89,7 +89,7 @@ export const Subtitle: React.FC<{ subtitle: string; small?: boolean }> = (
     <Box
       sx={{
         width: "100%",
-        color: "primary.lightText",
+        color: "text.secondary",
         fontSize: props.small
           ? deviceStruct(".7rem", ".7rem", ".8rem", ".8rem", ".8rem")
           : deviceStruct(".7rem", ".7rem", ".9rem", ".9rem", ".9rem"),
@@ -109,7 +109,7 @@ export const Subheader: React.FC<{
   return (
     <Box
       sx={{
-        color: "primary.text",
+        color: "text.primary",
         fontSize: props.small
           ? deviceStruct(".8rem", ".8rem", ".9rem", ".9rem", ".9rem")
           : deviceStruct("1.05rem", "1.05rem", "1.1rem", "1.1rem", "1.1rem"),
@@ -214,7 +214,7 @@ export const LearnMore: React.FC<{
                   <Box
                     sx={{
                       fontSize: ".9rem",
-                      color: "#C4C4C4",
+                      color: "text.secondary",
                       width: "100%",
                     }}
                   >
