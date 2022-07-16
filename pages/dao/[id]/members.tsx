@@ -19,6 +19,7 @@ import StarIcon from "@mui/icons-material/Star";
 import MemberCard, { IMemberCard } from "@components/dao/members/MemberCard";
 import Musk from "@public/profile/musk-full.png";
 import { paths, props } from "@lib/DaoPaths";
+import { deviceWrapper } from "@components/utilities/Style";
 
 // export const getStaticPaths = paths;
 // export const getStaticProps = props;
@@ -212,7 +213,7 @@ const Members: React.FC = () => {
             ":hover": {
               borderColor: "primary.main",
             },
-            width: "50%",
+            width: deviceWrapper("100%", "50%"),
           }}
         >
           <Box
@@ -240,7 +241,14 @@ const Members: React.FC = () => {
             }
           />
         </Paper>
-        <Box sx={{ width: "25%", ml: "2rem", mr: "2rem" }}>
+        <Box
+          sx={{
+            width: "25%",
+            ml: "2rem",
+            mr: "2rem",
+            display: deviceWrapper("none", "block"),
+          }}
+        >
           <Slider
             step={1}
             value={value}
@@ -252,7 +260,13 @@ const Members: React.FC = () => {
           />
         </Box>
 
-        <FormControl sx={{ width: "25%", ml: "1rem" }}>
+        <FormControl
+          sx={{
+            width: "25%",
+            ml: "1rem",
+            display: deviceWrapper("none", "flex"),
+          }}
+        >
           <InputLabel id="sort-by-select-label">Sort by</InputLabel>
           <Select
             labelId="sort-by-select-label"
@@ -267,7 +281,17 @@ const Members: React.FC = () => {
           </Select>
         </FormControl>
       </Box>
-      <Box sx={{ display: "flex", mt: "1rem" }}>
+      <Box
+        sx={{
+          display: "-webkit-box",
+          alignItems: "center",
+          pt: ".75rem",
+          overflowX: "auto",
+          "::-webkit-scrollbar": {
+            display: "none",
+          },
+        }}
+      >
         {categories.map((i: any, c: number) => (
           <Chip
             {...i}
@@ -310,7 +334,7 @@ const Members: React.FC = () => {
           <MemberCard
             {...i}
             key={"member-card" + c}
-            width={{ sm: "50%", md: "33%", lg: "33%", xl: "25%" }}
+            width={{ xs: "100%", sm: "50%", md: "33%", lg: "33%", xl: "25%" }}
           />
         ))}
       </Box>

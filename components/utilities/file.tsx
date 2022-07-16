@@ -79,7 +79,7 @@ const FileInput: React.FC<{
           </Box>
           <Box
             sx={{
-              color: "text.light",
+              color: "#C4C4C4",
               fontSize: deviceStruct(
                 ".7rem",
                 ".7rem",

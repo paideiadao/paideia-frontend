@@ -29,31 +29,40 @@ const Activity: React.FC<{ i: IActivity; c: number }> = (props) => {
         overflowX: "hidden",
       }}
     >
+      <Avatar
+        sx={{
+          mr: ".5rem",
+          width: "2rem",
+          height: "2rem",
+          display: deviceWrapper("flex", "none"),
+        }}
+        src={props.i.img}
+      ></Avatar>
       <Box
         sx={{
+          width: deviceWrapper("80%", "100%"),
           display: "flex",
-          alignItems: "center",
-          width: deviceWrapper("100%", "80%"),
+          flexDirection: deviceWrapper("column", "row"),
         }}
       >
-        <Avatar
-          sx={{ mr: ".5rem", width: "2rem", height: "2rem" }}
-          src={props.i.img}
-        ></Avatar>
-        <Box>
-          {props.i.name + " "}
-          <Box
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            width: deviceWrapper("100%", "80%"),
+          }}
+        >
+          <Avatar
             sx={{
-              display: "inline",
-              color: "text.light",
-              ml: ".1rem",
-              mr: ".1rem",
+              mr: ".5rem",
+              width: "2rem",
+              height: "2rem",
+              display: deviceWrapper("none", "flex"),
             }}
-          >
-            {props.i.action}
-          </Box>
-          {" " + props.i.value}
-          {props.i.secondary !== undefined && (
+            src={props.i.img}
+          ></Avatar>
+          <Box>
+            {props.i.name + " "}
             <Box
               sx={{
                 display: "inline",
@@ -62,26 +71,40 @@ const Activity: React.FC<{ i: IActivity; c: number }> = (props) => {
                 mr: ".1rem",
               }}
             >
-              {" " + props.i.secondary}
+              {props.i.action}
             </Box>
-          )}
-          {props.i.secondaryValue !== undefined && " " + props.i.secondaryValue}
+            {" " + props.i.value}
+            {props.i.secondary !== undefined && (
+              <Box
+                sx={{
+                  display: "inline",
+                  color: "text.light",
+                  ml: ".1rem",
+                  mr: ".1rem",
+                }}
+              >
+                {" " + props.i.secondary}
+              </Box>
+            )}
+            {props.i.secondaryValue !== undefined &&
+              " " + props.i.secondaryValue}
+          </Box>
         </Box>
-      </Box>
 
-      <Box
-        sx={{
-          ml: deviceWrapper("2.5rem", "auto"),
-          color: "text.light",
-          display: "flex",
-          alignItems: "center",
-          mt: deviceWrapper(".5rem", "0"),
-        }}
-      >
-        <CalendarTodayIcon
-          sx={{ mr: ".5rem", fontSize: deviceWrapper("1rem", "1.5rem") }}
-        />
-        {dateFormat(props.i.date, "mmm dd, yyyy: h:MM")}
+        <Box
+          sx={{
+            ml: deviceWrapper("0", "auto"),
+            color: "text.light",
+            display: "flex",
+            alignItems: "center",
+            mt: deviceWrapper(".0rem", "0"),
+          }}
+        >
+          <CalendarTodayIcon
+            sx={{ mr: ".5rem", fontSize: deviceWrapper("1rem", "1.5rem") }}
+          />
+          {dateFormat(props.i.date, "mmm dd, yyyy: h:MM")}
+        </Box>
       </Box>
     </Box>
   );

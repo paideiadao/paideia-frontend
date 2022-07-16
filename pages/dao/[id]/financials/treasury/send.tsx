@@ -44,7 +44,7 @@ const Send: React.FC = () => {
       <Header title="Send funds from treasury" large />
       <Box sx={{ mt: "1.5rem" }} />
       <CapsInfo title="Sign-up form" mb="0.25rem" />
-      <Box sx={{ color: "text.light", fontSize: ".9rem", mb: ".5rem" }}>
+      <Box sx={{ color: "#C4C4C4", fontSize: ".9rem", mb: ".5rem" }}>
         In order to participate on this airdrop, please complete the form below.
       </Box>
       <MultiTokenHolders

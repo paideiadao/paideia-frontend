@@ -69,7 +69,7 @@ const FileBanner: React.FC<{
                   {props.file.name}
                   <Box
                     sx={{
-                      color: "text.light",
+                      color: "#C4C4C4",
                       fontSize: deviceStruct(
                         ".7rem",
                         ".7rem",
@@ -147,7 +147,7 @@ const FileBanner: React.FC<{
                   </Box>
                 )}
               </Box>
-              <Box sx={{ color: "text.light", textAlign: "center" }}>
+              <Box sx={{ color: "#C4C4C4", textAlign: "center" }}>
                 {props.file === undefined || props.file === -1
                   ? "File Max size 1Mb. Dimensions 1200px by 400px."
                   : bytesToSize(props.file.size)}

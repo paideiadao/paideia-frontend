@@ -17,6 +17,7 @@ import PaideiaLogo from "@public/dao/bio-image/paideia-logo.png";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { paths, props } from "@lib/DaoPaths";
+import { deviceWrapper } from "@components/utilities/Style";
 
 // export const getStaticPaths = paths;
 // export const getStaticProps = props;
@@ -44,11 +45,17 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
       <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
         <CapsInfo
           title={`${props.previous ? "Previously " : ""}Connected Wallet`}
-          mb="0"
+          mb={props.previous ? ".5rem" : "0"}
         />
-        <IconButton onClick={handleClickOpen} sx={{ mr: "-.5rem" }}>
-          <EditIcon sx={{ ml: "auto" }} color="primary" />
-        </IconButton>
+        {!props.previous && (
+          <IconButton
+            onClick={handleClickOpen}
+            sx={{ mr: "-.5rem" }}
+            size="small"
+          >
+            <EditIcon sx={{ ml: "auto" }} color="primary" />
+          </IconButton>
+        )}
       </Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <Avatar
@@ -57,12 +64,21 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
         />
         <Box sx={{ ml: "1rem" }}>
           Nautilus
-          <Box sx={{ fontSize: ".9rem", color: "text.light" }}>
+          <Box
+            sx={{ fontSize: deviceWrapper(".8rem", ".9rem"), color: "#C4C4C4" }}
+          >
             Connected at: {dateFormat(new Date(), "mmm d, yyyy: h:mmTT")}
           </Box>
         </Box>
       </Box>
-      <Box sx={{ display: "flex", alignItems: "center", mt: "1rem" }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: deviceWrapper("flex-start", "center"),
+          mt: "1rem",
+          flexDirection: deviceWrapper("column", "row"),
+        }}
+      >
         <Box>
           <CapsInfo title="Default wallet address" mb=".2rem" />
           <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -70,7 +86,12 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
             {wallet}
           </Box>
         </Box>
-        <Box sx={{ ml: "auto" }}>
+        <Box
+          sx={{
+            ml: deviceWrapper("0", "auto"),
+            mt: deviceWrapper("0.5rem", "0"),
+          }}
+        >
           <Chip
             icon={
               <Avatar
@@ -92,13 +113,12 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
           flexDirection: "column",
         }}
       >
-        <Button onClick={() => setShow(!show)}>
+        <Button
+          onClick={() => setShow(!show)}
+          size="small"
+          endIcon={show ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+        >
           {show ? "Hide" : "Show"} other wallet addresses{" "}
-          {show ? (
-            <KeyboardArrowUpIcon sx={{ ml: ".3rem" }} color="primary" />
-          ) : (
-            <KeyboardArrowDownIcon sx={{ ml: ".3rem" }} color="primary" />
-          )}
         </Button>
         {show && (
           <Box>
@@ -141,9 +161,13 @@ const Wallet: React.FC = () => {
           sx={{ ml: "auto" }}
           variant="contained"
           onClick={handleClickOpen}
+          size="small"
+          endIcon={<AccountBalanceWalletIcon />}
         >
-          Change Wallet
-          <AccountBalanceWalletIcon sx={{ ml: ".5rem" }} />
+          <Box sx={{ display: deviceWrapper("none", "block") }}>
+            Change Wallet
+          </Box>
+          <Box sx={{ display: deviceWrapper("block", "none") }}>Change</Box>
         </Button>
       </Box>
       <TabContext value={value}>

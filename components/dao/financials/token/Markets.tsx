@@ -10,7 +10,6 @@ const columns: GridColDef[] = [
     headerName: "Source",
     width: 125,
     sortable: true,
-    
   },
   {
     field: "pairs",
@@ -107,7 +106,6 @@ const Markets: React.FC = () => {
         columns={columns}
         disableSelectionOnClick
         autoHeight
-
         sx={{
           fontSize: ".8rem",
           "& .MuiDataGrid-cell": {

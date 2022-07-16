@@ -174,7 +174,7 @@ const Liquidity: React.FC<{
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <Box sx={{ color: "text.light" }}>USD</Box>
+                <Box sx={{ color: "#C4C4C4" }}>USD</Box>
               </InputAdornment>
             ),
           }}

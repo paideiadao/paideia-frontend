@@ -71,7 +71,7 @@ const BannerPreview: React.FC<{ data: IFile }> = (props) => {
         >
           <Box sx={{ mt: ".2rem" }}>
             {props.data.file.name}
-            <Box sx={{ color: "text.light", fontSize: ".9rem" }}>
+            <Box sx={{ color: "#C4C4C4", fontSize: ".9rem" }}>
               {props.data.file === undefined || props.data.file === -1
                 ? "File Max size 1Mb. Dimensions 48px by 48px."
                 : bytesToSize(props.data.file.size)}
@@ -89,7 +89,7 @@ export const ShowHide: React.FC<{ value: boolean }> = (props) => {
       sx={{
         display: "flex",
         alignItems: "center",
-        color: props.value ? "text.lightSuccess" : "error.main",
+        color: props.value ? "#C4C4C4Success" : "error.main",
         fontSize: ".9rem",
         fontWeight: 550,
       }}
@@ -168,7 +168,7 @@ export const SocialLinksPreview: React.FC<{ links: ISocialLink[] }> = (
             </Box>
             <Box>
               <Box sx={{ fontSize: ".9rem" }}>{i.address}</Box>
-              <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
+              <Box sx={{ fontSize: ".8rem", color: "#C4C4C4" }}>
                 {i.socialNetwork.charAt(0).toUpperCase() +
                   i.socialNetwork.slice(1)}
               </Box>

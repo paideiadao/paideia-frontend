@@ -52,7 +52,14 @@ const StatisticsRow: React.FC<{ title: string; secondRow?: JSX.Element }> = (
   return (
     <Box sx={{ mt: "1rem" }}>
       {props.title}
-      <Box sx={{ display: "flex", alignItems: "center", mt: ".5rem", flexWrap: deviceWrapper('wrap', 'nowrap') }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          mt: ".5rem",
+          flexWrap: deviceWrapper("wrap", "nowrap"),
+        }}
+      >
         {props.children}
       </Box>
       {props.secondRow}
@@ -60,21 +67,23 @@ const StatisticsRow: React.FC<{ title: string; secondRow?: JSX.Element }> = (
   );
 };
 
-const StatisticsCard: React.FC<{ title: string | JSX.Element, c: number }> = (props) => {
+const StatisticsCard: React.FC<{ title: string | JSX.Element; c: number }> = (
+  props
+) => {
   return (
     <Box
       sx={{
-        width: deviceWrapper('47.5%', "23.2%"),
-        pl: deviceWrapper('.5rem', "1rem"),
+        width: deviceWrapper("47.5%", "23.2%"),
+        pl: deviceWrapper(".5rem", "1rem"),
         pt: ".5rem",
         pb: ".5rem",
-        pr: deviceWrapper('.5rem', "1rem"),
+        pr: deviceWrapper(".5rem", "1rem"),
         backgroundColor: "fileInput.outer",
         border: 1,
         borderColor: "border.main",
         borderRadius: ".4rem",
-        mr: deviceWrapper(props.c % 2 === 0 ? '.75rem' : '0rem' , '1rem'),
-        mt: deviceWrapper(props.c > 1 ? '.75rem' : '0rem' , '1rem'),
+        mr: deviceWrapper(props.c % 2 === 0 ? ".75rem" : "0rem", "1rem"),
+        mt: deviceWrapper(props.c > 1 ? ".75rem" : "0rem", "1rem"),
 
         display: "flex",
         justifyContent: "center",
@@ -82,7 +91,9 @@ const StatisticsCard: React.FC<{ title: string | JSX.Element, c: number }> = (pr
       }}
     >
       {props.children}
-      <Box sx={{ fontSize: deviceWrapper('.6rem', ".8rem"), color: "text.light" }}>{props.title}</Box>
+      <Box sx={{ fontSize: deviceWrapper(".6rem", ".8rem"), color: "#C4C4C4" }}>
+        {props.title}
+      </Box>
     </Box>
   );
 };
@@ -94,19 +105,37 @@ const Statistics: React.FC = () => {
       <Header title={`${ticker} statistics`} />
       <StatisticsRow title={`${ticker} price`}>
         <StatisticsCard title={`Price`} c={0}>
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }} >
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Box sx={{ mr: ".5rem" }}>{data.price}</Box>
             <PerformanceWidget value={0.17} invert />
           </Box>
         </StatisticsCard>
         <StatisticsCard title="Price change" c={1}>
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Box sx={{ mr: ".5rem" }}>{data.priceChange}</Box>
             <PerformanceWidget value={0.17} invert />
           </Box>
         </StatisticsCard>
         <StatisticsCard title="24hr Low / 24hr High" c={2}>
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Box sx={{ mr: ".5rem" }}>
               {data.low} / {data.high}
             </Box>
@@ -121,29 +150,50 @@ const Statistics: React.FC = () => {
             </Box>
           }
         >
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Box sx={{ mr: ".5rem" }}>{data.volume}</Box>
             <PerformanceWidget value={0.21} invert />
           </Box>
         </StatisticsCard>
       </StatisticsRow>
       <StatisticsRow title={`${ticker} market cap`}>
-        <StatisticsCard title={`Market cap`}
-          c={0}
-        
-        >
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}>
+        <StatisticsCard title={`Market cap`} c={0}>
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Box sx={{ mr: ".5rem" }}>{data.marketCap}</Box>
             <PerformanceWidget value={data.marketCapPercentage} invert />
           </Box>
         </StatisticsCard>
         <StatisticsCard title="Volume / Market cap" c={1}>
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Box sx={{ mr: ".5rem" }}>{data.volumeMarketCapRatio}</Box>
           </Box>
         </StatisticsCard>
         <StatisticsCard title="Fully diluted market cap" c={2}>
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Box sx={{ mr: ".5rem" }}>{data.fullyDilutedMarketCap}</Box>
             <PerformanceWidget
               value={data.fullyDilutedMarketCapPercentage}
@@ -154,27 +204,51 @@ const Statistics: React.FC = () => {
       </StatisticsRow>
       <StatisticsRow title={`${ticker} price yesterday`}>
         <StatisticsCard title="Y Low / Y High" c={0}>
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Box sx={{ mr: ".5rem" }}>
               {data.yesterdayLow} / {data.yesterdayHigh}
             </Box>
           </Box>
         </StatisticsCard>
         <StatisticsCard title="Y Open / Y Close" c={1}>
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Box sx={{ mr: ".5rem" }}>
               {data.yesterdayOpen} / {data.yesterdayClose}
             </Box>
           </Box>
         </StatisticsCard>
         <StatisticsCard title="Price change" c={2}>
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Box sx={{ mr: ".5rem" }}>{data.priceChange}</Box>
             <PerformanceWidget value={data.yesterdayChange} invert places={2} />
           </Box>
         </StatisticsCard>
-        <StatisticsCard title="24hr Low / 24hr High"c={3}>
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}>
+        <StatisticsCard title="24hr Low / 24hr High" c={3}>
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Box sx={{ mr: ".5rem" }}>
               {data.low} / {data.high}
             </Box>
@@ -184,17 +258,28 @@ const Statistics: React.FC = () => {
       <StatisticsRow
         title={`${ticker} price history`}
         secondRow={
-          <Box sx={{ width: "100%", display: "flex", mt: ".75rem", flexWrap: deviceWrapper('wrap', 'nowrap') }}>
-            <StatisticsCard title="Alll time high"c={0}>
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              mt: ".75rem",
+              flexWrap: deviceWrapper("wrap", "nowrap"),
+            }}
+          >
+            <StatisticsCard title="Alll time high" c={0}>
               <Box
-                sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}
+                sx={{
+                  fontSize: deviceWrapper(".75rem", "1rem"),
+                  display: "flex",
+                  alignItems: "center",
+                }}
               >
                 {data.allTimeHigh}
                 <Box
                   sx={{
                     ml: ".5rem",
-                    fontSize: deviceWrapper('.65rem', ".9rem"),
-                    color: "text.light",
+                    fontSize: deviceWrapper(".65rem", ".9rem"),
+                    color: "#C4C4C4",
                     fontWeight: 500,
                   }}
                 >
@@ -204,14 +289,18 @@ const Statistics: React.FC = () => {
             </StatisticsCard>
             <StatisticsCard title="All time low" c={1}>
               <Box
-                sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}
+                sx={{
+                  fontSize: deviceWrapper(".75rem", "1rem"),
+                  display: "flex",
+                  alignItems: "center",
+                }}
               >
                 {data.allTimeLow}
                 <Box
                   sx={{
                     ml: ".5rem",
-                    fontSize: deviceWrapper('.65rem', ".9rem"),
-                    color: "text.light",
+                    fontSize: deviceWrapper(".65rem", ".9rem"),
+                    color: "#C4C4C4",
                     fontWeight: 500,
                   }}
                 >
@@ -221,7 +310,11 @@ const Statistics: React.FC = () => {
             </StatisticsCard>
             <StatisticsCard title="ROI" c={2}>
               <Box
-                sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}
+                sx={{
+                  fontSize: deviceWrapper(".75rem", "1rem"),
+                  display: "flex",
+                  alignItems: "center",
+                }}
               >
                 <PerformanceWidget value={data.roi} invert places={2} large />
               </Box>
@@ -230,28 +323,52 @@ const Statistics: React.FC = () => {
         }
       >
         <StatisticsCard title="7d Low / 7d High" c={0}>
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Box sx={{ mr: ".5rem" }}>
               {data.weekLow} / {data.weekHigh}
             </Box>
           </Box>
         </StatisticsCard>
-        <StatisticsCard title="30d Low / 30d High"c={1}>
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}>
+        <StatisticsCard title="30d Low / 30d High" c={1}>
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Box sx={{ mr: ".5rem" }}>
               {data.monthLow} / {data.monthHigh}
             </Box>
           </Box>
         </StatisticsCard>
-        <StatisticsCard title="90d Low / 90d High"c={2}>
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}>
+        <StatisticsCard title="90d Low / 90d High" c={2}>
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Box sx={{ mr: ".5rem" }}>
               {data.threeMonthLow} / {data.threeMonthHigh}
             </Box>
           </Box>
         </StatisticsCard>
-        <StatisticsCard title="52w Low / 52w High"c={3}>
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}>
+        <StatisticsCard title="52w Low / 52w High" c={3}>
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Box sx={{ mr: ".5rem" }}>
               {data.yearLow} / {data.yearHigh}
             </Box>
@@ -259,13 +376,25 @@ const Statistics: React.FC = () => {
         </StatisticsCard>
       </StatisticsRow>
       <StatisticsRow title={`${ticker} supply`}>
-        <StatisticsCard title="Total Supply"c={0}>
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}>
+        <StatisticsCard title="Total Supply" c={0}>
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             {data.totalSupply}
           </Box>
         </StatisticsCard>
-        <StatisticsCard title="Max Supply"c={1}>
-          <Box sx={{ fontSize: deviceWrapper('.75rem', "1rem"), display: "flex", alignItems: "center" }}>
+        <StatisticsCard title="Max Supply" c={1}>
+          <Box
+            sx={{
+              fontSize: deviceWrapper(".75rem", "1rem"),
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             {data.maxSupply}
           </Box>
         </StatisticsCard>

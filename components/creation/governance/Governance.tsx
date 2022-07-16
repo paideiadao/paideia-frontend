@@ -39,7 +39,7 @@ const Governance: React.FC = () => {
     >
       <Box sx={{ textAlign: "left", width: "100%", fontSize: "1.2rem" }}>
         Governance and voting configuration
-        <Box sx={{ width: "100%", color: "text.light", fontSize: ".8rem" }}>
+        <Box sx={{ width: "100%", color: "#C4C4C4", fontSize: ".8rem" }}>
           You can use the default settings or dive more in deep configure your
           voting system as you wish. You can enable and configure features such
           as "Optimistic governance" or "Quadratic voting" and edit the support
@@ -62,7 +62,7 @@ const Governance: React.FC = () => {
           tooltipText="Content here."
           tooltipLink="/here"
         />
-        <Box sx={{ width: "100%", color: "text.light", fontSize: ".8rem" }}>
+        <Box sx={{ width: "100%", color: "#C4C4C4", fontSize: ".8rem" }}>
           If active only whitelisted members will be able to create proposals.
           If proposals are not challenged, they will be approved.
         </Box>
@@ -373,7 +373,7 @@ const Governance: React.FC = () => {
           tooltipLink="/here"
         />
 
-        <Box sx={{ width: "100%", color: "text.light", fontSize: ".8rem" }}>
+        <Box sx={{ width: "100%", color: "#C4C4C4", fontSize: ".8rem" }}>
           If active, voting power will not be determined only by the stakeholder
           investment, avoiding whales having too much influence over decisions
         </Box>

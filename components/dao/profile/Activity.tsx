@@ -32,7 +32,7 @@ const Activity: React.FC = () => {
                 <Box
                   sx={{
                     display: "inline",
-                    color: "text.light",
+                    color: "#C4C4C4",
                     ml: ".1rem",
                     mr: ".1rem",
                   }}
@@ -46,7 +46,7 @@ const Activity: React.FC = () => {
             <Box
               sx={{
                 ml: "auto",
-                color: "text.light",
+                color: "#C4C4C4",
                 display: "flex",
                 alignItems: "center",
               }}

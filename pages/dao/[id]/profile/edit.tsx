@@ -125,7 +125,7 @@ const ProfileEditImage: React.FC = () => {
         <Box
           sx={{
             fontSize: ".9rem",
-            color: "text.light",
+            color: "#C4C4C4",
             display: deviceWrapper("none", "block"),
           }}
         >

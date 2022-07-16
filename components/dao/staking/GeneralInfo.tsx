@@ -14,6 +14,7 @@ import * as React from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { ThemeContext } from "@lib/ThemeContext";
 import { DarkTheme } from "@theme/theme";
+import { deviceWrapper } from "@components/utilities/Style";
 
 export interface IInfoCard {
   title: string;
@@ -21,6 +22,8 @@ export interface IInfoCard {
   last?: boolean;
   ticker?: string;
   dropdown?: boolean;
+  c?: number;
+  full?: boolean;
 }
 
 export const InfoCard: React.FC<IInfoCard> = (props) => {
@@ -37,23 +40,33 @@ export const InfoCard: React.FC<IInfoCard> = (props) => {
         backgroundColor: "fileInput.outer",
         borderColor: "border.main",
         borderRadius: ".3rem",
-        width: "33%",
+        width: deviceWrapper(props.full ? "100%" : "47.25%", "33%"),
         display: "flex",
+        justifyContent: deviceWrapper("flex-start", "center"),
         alignItems: "center",
-        justifyContent: "center",
-        p: "1rem",
+        p: deviceWrapper(".6rem", "1rem"),
         mt: "1rem",
-        mb: "1rem",
-        mr: props.last ? 0 : "1rem",
+        mb: deviceWrapper(props.c === 2 ? "1rem" : "0", "1rem"),
+        mr: props.full
+          ? "0rem"
+          : deviceWrapper(
+              props.c % 2 === 0 ? "1rem" : "0",
+              props.c === 2 ? "0" : "1rem"
+            ),
       }}
     >
-      <Box sx={{ textAlign: "center" }}>
-        <Box sx={{ fontSize: "1.3rem", color: "primary.text" }}>
+      <Box sx={{ textAlign: deviceWrapper("left", "center") }}>
+        <Box
+          sx={{
+            fontSize: deviceWrapper(".9rem", "1.3rem"),
+            color: "primary.text",
+          }}
+        >
           {props.value}{" "}
           <Box
             sx={{
               display: "inline",
-              color: "text.light",
+              color: "#C4C4C4",
               fontSize: ".9rem",
               fontWeight: 500,
             }}
@@ -61,16 +74,25 @@ export const InfoCard: React.FC<IInfoCard> = (props) => {
             {props.ticker}
           </Box>
         </Box>
-        <Box sx={{ color: "text.light", fontSize: ".9rem" }}>{props.title}</Box>
+        <Box
+          sx={{ color: "#C4C4C4", fontSize: deviceWrapper(".7rem", ".9rem") }}
+        >
+          {props.title}
+        </Box>
       </Box>
       {props.dropdown && (
-        <Box sx={{ ml: "1rem", color: "backgroundColor.main" }}>
+        <Box
+          sx={{
+            ml: deviceWrapper("auto", "1rem"),
+            color: "backgroundColor.main",
+          }}
+        >
           <Select
             size="small"
             sx={{
               backgroundColor: "primary.main",
               color: "backgroundColor.main",
-              fontSize: ".9rem",
+              fontSize: deviceWrapper(".8rem", ".9rem"),
               p: "-1rem",
               svg: {
                 fill: themeContext.theme === DarkTheme ? "black" : "white",
@@ -99,10 +121,17 @@ const GeneralInfo: React.FC = () => {
     <Box sx={{ width: "100%", mt: "1rem" }}>
       <Subheader title="General info" />
       <Subtitle subtitle="Staking your tokens will generate new tokens daily based on the APY percentage below." />
-      <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
-        <InfoCard title="Number of Stakers" value="621" />
-        <InfoCard title="DTK tokens staked" value="769,382" />
-        <InfoCard title="Current APY" value="447.42" last />
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          flexWrap: deviceWrapper("wrap", "nowrap"),
+        }}
+      >
+        <InfoCard title="Number of Stakers" value="621" c={0} />
+        <InfoCard title="DTK tokens staked" value="769,382" c={1} />
+        <InfoCard title="Current APY" value="447.42" last c={2} />
       </Box>
     </Box>
   );

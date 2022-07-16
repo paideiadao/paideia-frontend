@@ -272,18 +272,18 @@ export const Notification: React.FC<{ i: INotification; m?: string }> = (
         sx={{
           width: "70%",
           ml: "1rem",
-          fontSize: deviceWrapper(".8REM", ".9rem"),
+          fontSize: deviceWrapper(".7REM", ".9rem"),
         }}
       >
         <Box>
           {i.username + " "}
-          <Box sx={{ display: "inline", color: "text.light" }}>{i.action}</Box>
+          <Box sx={{ display: "inline", color: "#C4C4C4" }}>{i.action}</Box>
           {" " + i.proposalname}
         </Box>
         <Box
           sx={{
             fontSize: ".7rem",
-            color: "text.light",
+            color: "#C4C4C4",
             display: "flex",
             alignItems: "center",
           }}
@@ -296,7 +296,7 @@ export const Notification: React.FC<{ i: INotification; m?: string }> = (
         <Box sx={{ ml: "auto" }}>
           <CircleIcon
             color="primary"
-            sx={{ fontSize: deviceWrapper(".8rem", "1rem") }}
+            sx={{ fontSize: deviceWrapper(".65rem", "1rem") }}
           />
         </Box>
       )}

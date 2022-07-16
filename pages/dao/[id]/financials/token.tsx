@@ -15,7 +15,7 @@ const Token: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
   return (
-    <Layout width={deviceWrapper('92%', "97%")}>
+    <Layout width={deviceWrapper("92%", "97%")}>
       <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
         <Header title="Token Information" large />
         <Link
@@ -28,15 +28,13 @@ const Token: React.FC = () => {
           <Button
             variant="contained"
             sx={{ ml: "auto" }}
-            size='small'
+            size="small"
             endIcon={<LocalFireDepartmentIcon />}
           >
-            <Box sx={{display: deviceWrapper('none', 'block')}}>
+            <Box sx={{ display: deviceWrapper("none", "block") }}>
               Burn Tokens
             </Box>
-            <Box sx={{display: deviceWrapper('block', 'none')}}>
-              Burn
-            </Box>
+            <Box sx={{ display: deviceWrapper("block", "none") }}>Burn</Box>
           </Button>
         </Link>
       </Box>

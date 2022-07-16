@@ -99,7 +99,7 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
           </Box>
           <Box
             sx={{
-              color: "text.light",
+              color: "#C4C4C4",
               fontSize: deviceWrapper(".9rem", ".7rem"),
               display: "flex",
               alignItems: "center",
@@ -123,7 +123,7 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
             <LinearProgress variant="determinate" value={15} />
           </Box>
           <Box sx={{ width: "100%", display: "flex" }}>
-            <Box sx={{ ml: "auto", color: "text.light", fontSize: ".7rem" }}>
+            <Box sx={{ ml: "auto", color: "#C4C4C4", fontSize: ".7rem" }}>
               {350 - 10} PTS till next lvl
             </Box>
           </Box>
@@ -179,7 +179,7 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
                   width: "100%",
                   mt: ".25rem",
                   mb: ".25rem",
-                  color: "text.light",
+                  color: "#C4C4C4",
                   fontSize: ".9rem",
                 }}
               >
@@ -214,7 +214,7 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
                   width: "100%",
                   mt: ".25rem",
                   mb: ".25rem",
-                  color: "text.light",
+                  color: "#C4C4C4",
                   fontSize: ".9rem",
                 }}
               >

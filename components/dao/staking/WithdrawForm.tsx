@@ -8,6 +8,7 @@ import { IWallet } from "@lib/creation/CreationApi";
 import { Box, Button, InputAdornment, TextField, Modal } from "@mui/material";
 import * as React from "react";
 import { modalBackground } from "@components/utilities/modalBackground";
+import { deviceWrapper } from "@components/utilities/Style";
 const WithdrawForm: React.FC = () => {
   const { wallet } = useWallet();
   const [holder, setHolder] = React.useState<IWallet>({
@@ -44,7 +45,7 @@ const WithdrawForm: React.FC = () => {
       <Box sx={{ display: "flex", alignItems: "center", mt: "1rem" }}>
         <TextField
           label="Amount of tokens to stake"
-          sx={{ width: "45%" }}
+          sx={{ width: deviceWrapper("90%", "45%") }}
           size="medium"
           value={value}
           type="number"
@@ -77,13 +78,18 @@ const WithdrawForm: React.FC = () => {
           mt: "2rem",
         }}
       >
-        <Button variant="outlined" sx={{ width: "50%", mr: "1rem" }}>
+        <Button
+          variant="outlined"
+          sx={{ width: "50%", mr: "1rem" }}
+          size="small"
+        >
           Cancel
         </Button>
         <Button
           variant="contained"
           sx={{ width: "50%" }}
           onClick={openWithdraw}
+          size="small"
         >
           Withdraw
         </Button>

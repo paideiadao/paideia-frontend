@@ -17,7 +17,7 @@ export default function Help(props) {
           fontSize: ".7rem",
           fontWeight: 400,
           mb: 2,
-          color: "text.light",
+          color: "#C4C4C4",
         }}
       >
         Learn more about DAOs

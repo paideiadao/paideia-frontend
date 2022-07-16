@@ -60,7 +60,7 @@ const CreationLoading: React.FC = (props) => {
             textAlign: "center",
             fontSize: "1rem",
             mt: ".2rem",
-            color: "text.light",
+            color: "#C4C4C4",
           }}
         >
           Setting your DAOs governance structure, minting the token, making it

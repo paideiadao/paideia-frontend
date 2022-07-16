@@ -69,7 +69,7 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
                 <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
                   {i.title}
                 </Box>
-                <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
+                <Box sx={{ fontSize: ".8rem", color: "#C4C4C4" }}>
                   {i.subtitle}
                 </Box>
               </Box>
@@ -78,7 +78,7 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
                   {i.balance + " "}
                   {i.tokenTicker}
                 </Box>
-                <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
+                <Box sx={{ fontSize: ".8rem", color: "#C4C4C4" }}>
                   {i.percentage}%
                 </Box>
               </Box>
@@ -104,16 +104,14 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
                 <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
                   {i.distributionName}
                 </Box>
-                <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
-                  {i.id}
-                </Box>
+                <Box sx={{ fontSize: ".8rem", color: "#C4C4C4" }}>{i.id}</Box>
               </Box>
               <Box sx={{ ml: "auto", textAlign: "right" }}>
                 <Box sx={{ fontSize: ".9rem", color: "primary.text" }}>
                   {i.balance + " "}
                   {props.data.tokenTicker}
                 </Box>
-                <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
+                <Box sx={{ fontSize: ".8rem", color: "#C4C4C4" }}>
                   {i.percentage}%
                 </Box>
               </Box>

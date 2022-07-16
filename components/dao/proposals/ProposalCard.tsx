@@ -75,7 +75,7 @@ const VoteWidget: React.FC<{
           width: "100%",
           display: "flex",
           alignItems: "center",
-          color: "text.light",
+          color: "#C4C4C4",
           fontSize: "1rem",
         }}
       >
@@ -392,7 +392,7 @@ const CountdownWidget: React.FC<{ date: Date }> = (props) => {
       }}
     >
       {time}
-      <Box sx={{ fontSize: ".7rem", color: "text.light" }}>
+      <Box sx={{ fontSize: ".7rem", color: "#C4C4C4" }}>
         Until proposal passes
       </Box>
     </Box>
@@ -422,7 +422,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
       }
       // passed color??
       case "Passed": {
-        return "text.lightSuccess";
+        return "#C4C4C4Success";
       }
       case "Active": {
         return <VoteWidget yes={props.yes} no={props.no} />;
@@ -431,7 +431,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
         return (
           <Box sx={{ width: "100%", fontSize: footerFont }}>
             Join the Conversation
-            <Box sx={{ fontSize: footerSmallFont, color: "text.light" }}>
+            <Box sx={{ fontSize: footerSmallFont, color: "#C4C4C4" }}>
               {props.comments} comments from {props.users} users
             </Box>
           </Box>
@@ -463,7 +463,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
           <IconButton
             sx={{
               backgroundColor: "favoriteBackground.main",
-              color: "text.light",
+              color: "#C4C4C4",
               p: ".2rem",
               borderRadius: "50%",
               width: "1.5rem",

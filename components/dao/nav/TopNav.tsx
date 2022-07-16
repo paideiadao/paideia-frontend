@@ -134,7 +134,7 @@ const TopNav: React.FC<INav> = (props) => {
                 }}
               >
                 <Box sx={{ fontSize: ".9rem" }}>Alone Musk</Box>
-                <Box sx={{ color: "text.light", fontSize: ".7rem" }}>
+                <Box sx={{ color: "#C4C4C4", fontSize: ".7rem" }}>
                   Lvl 7 | Philosopher
                 </Box>
               </Box>
