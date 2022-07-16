@@ -51,7 +51,7 @@ const BasicInformation: React.FC = () => {
           sx={{
             width: deviceStruct("100%", "100%", "50%", "50%", "50%"),
             mr: deviceStruct("0", "0", ".5rem", ".5rem", ".5rem"),
-            mt: deviceStruct(".5rem", ".5rem", "0", "0", "0"),
+            mt: deviceStruct(".25rem", "1rem", "0", "0", "0"),
           }}
         >
           <TextField
@@ -73,7 +73,7 @@ const BasicInformation: React.FC = () => {
           sx={{
             width: deviceStruct("100%", "100%", "50%", "50%", "50%"),
             mr: deviceStruct("0", "0", ".5rem", ".5rem", ".5rem"),
-            mt: deviceStruct(".5rem", ".5rem", "0", "0", "0"),
+            mt: deviceStruct("1rem", "1rem", "0", "0", "0"),
           }}
         >
           <TextField

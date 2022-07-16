@@ -220,7 +220,7 @@ export const LearnMore: React.FC<{
                   >
                     {props.tooltipText}
                   </Box>
-                  <Box sx={{ width: "100%", mt: ".1rem", display: "flex" }}>
+                  <Box sx={{ width: "100%", display: "flex" }}>
                     <Link href={props.tooltipLink} passHref>
                       <a target="_blank" style={{ textDecoration: "none" }}>
                         <Button size="small">Learn More</Button>
@@ -258,7 +258,7 @@ export const LearnMore: React.FC<{
             left: 0,
             width: "100vw",
             height: "100vh",
-            zIndex: 100,
+            zIndex: 1000,
             backgroundColor: "black",
             opacity: ".8",
           }}

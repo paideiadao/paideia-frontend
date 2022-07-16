@@ -45,7 +45,7 @@ interface IDesign {
   };
 }
 
-interface IBasicInformation {
+export interface IBasicInformation {
   daoName: string;
   daoUrl: string;
   shortDescription: string;
@@ -57,7 +57,7 @@ export interface IWallet {
   img: string;
 }
 
-interface IGovernance {
+export interface IGovernance {
   optimisticGovernance: boolean;
   quadraticVoting: boolean;
   timeToChallenge: number;

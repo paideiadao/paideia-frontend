@@ -421,7 +421,7 @@ const Governance: React.FC = () => {
         />
 
         <Box
-          sx={{ display: "flex", alignItem: "center", mt: ".4rem", pl: "1rem" }}
+          sx={{ display: "flex", alignItem: "center", mt: ".4rem", pl: ".5rem" }}
         >
           <Box
             sx={{
@@ -494,7 +494,7 @@ const Governance: React.FC = () => {
         />
 
         <Box
-          sx={{ display: "flex", alignItem: "center", mt: ".4rem", pl: "1rem" }}
+          sx={{ display: "flex", alignItem: "center", mt: ".4rem", pl: ".5rem" }}
         >
           <Box
             sx={{
