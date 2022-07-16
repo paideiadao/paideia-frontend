@@ -1,3 +1,4 @@
+import { IConfigContext } from "@lib/dao/dao-config/ConfigContext";
 import { Box } from "@mui/material";
 import React from "react";
 import { GlobalContext } from "../../../lib/creation/Context";
@@ -5,8 +6,11 @@ import FileBanner from "../../utilities/FileBanner";
 import { Subheader, Subtitle } from "../utilities/HeaderComponents";
 import LabeledSwitch from "../utilities/LabeledSwitch";
 
-const Banner: React.FC = () => {
-  let globalContext = React.useContext(GlobalContext);
+const Banner: React.FC<{ context?: IConfigContext }> = (props) => {
+  let globalContext =
+    props.context === undefined
+      ? React.useContext(GlobalContext)
+      : props.context;
 
   let data = globalContext.api.data.design;
   let setData = (data: any) => {

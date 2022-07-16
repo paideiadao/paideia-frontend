@@ -30,7 +30,7 @@ export const Overview: React.FC = () => {
           </Avatar>
           <Box sx={{ ml: "1rem" }}>
             <Box sx={{ fontSize: "1rem" }}>Alone Musk</Box>
-            <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
+            <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
               Level 7 | Philosopher
             </Box>
           </Box>
@@ -48,7 +48,7 @@ export const Overview: React.FC = () => {
           <Box
             sx={{
               fontSize: ".8rem",
-              color: "text.light",
+              color: "text.secondary",
               textAlign: "center",
               borderRight: "1px solid",
               borderRightColor: "border.main",
@@ -56,13 +56,13 @@ export const Overview: React.FC = () => {
             }}
           >
             Followers
-            <Box sx={{ color: "text.main", fontSize: "1.4rem" }}>107</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.4rem" }}>107</Box>
           </Box>
           <Box
             sx={{
               fontSize: ".8rem",
               pl: "1rem",
-              color: "text.light",
+              color: "text.secondary",
               textAlign: "center",
               borderRight: "1px solid",
               borderRightColor: "border.main",
@@ -70,18 +70,18 @@ export const Overview: React.FC = () => {
             }}
           >
             Created
-            <Box sx={{ color: "text.main", fontSize: "1.4rem" }}>13</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.4rem" }}>13</Box>
           </Box>
           <Box
             sx={{
               fontSize: ".8rem",
               pl: "1rem",
-              color: "text.light",
+              color: "text.secondary",
               textAlign: "center",
             }}
           >
             Approved
-            <Box sx={{ color: "text.main", fontSize: "1.4rem" }}>7</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.4rem" }}>7</Box>
           </Box>
         </Box>
       </Box>
@@ -115,7 +115,7 @@ export const State: React.FC = () => {
       }}
     >
       <CapsInfo title="this proposal is in the discussion state" />
-      <Box sx={{ mt: "-.5rem", fontSize: ".9rem", color: "text.light" }}>
+      <Box sx={{ mt: "-.5rem", fontSize: ".9rem", color: "text.secondary" }}>
         Get feedback from the other members about an idea you have before
         commiting to a full proposal. Discussions can easily be upgraded to
         proposals at any time.

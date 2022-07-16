@@ -117,7 +117,7 @@ const CreateProposal: React.FC = () => {
           </Box>
           <Box sx={{ width: "75%", fontSize: "1.3rem", fontWeight: 400 }}>
             Create a proposal
-            <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
+            <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
               Provide users with different options to vote on, and the proposal
               will either be approved or declined. Keep in mind, once you create
               a proposal, it can't be edited or deleted.

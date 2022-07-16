@@ -54,7 +54,7 @@ const FileInput: React.FC<{
           />
           <Box
             sx={{
-              color: "primary.text",
+              color: "text.primary",
               fontSize: deviceStruct(".8rem", ".8rem", ".9rem", "1rem", "1rem"),
             }}
           >
@@ -79,7 +79,7 @@ const FileInput: React.FC<{
           </Box>
           <Box
             sx={{
-              color: "text.light",
+              color: "text.secondary",
               fontSize: deviceStruct(
                 ".7rem",
                 ".7rem",

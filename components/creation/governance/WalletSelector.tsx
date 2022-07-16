@@ -69,11 +69,11 @@ const WalletSelector: React.FC<{
                   props.data.img
                 )}
               </Avatar>
-              <Box sx={{ color: "primary.text", fontSize: ".9rem" }}>
-                <Box sx={{ color: "text.main" }}>{props.data.alias}</Box>
+              <Box sx={{ color: "text.primary", fontSize: ".9rem" }}>
+                <Box sx={{ color: "text.primary" }}>{props.data.alias}</Box>
                 <Box
                   sx={{
-                    color: "text.light",
+                    color: "text.secondary",
                     fontSize: ".6rem",
                     mt: "-.3rem",
                   }}
@@ -177,10 +177,10 @@ const WalletSelector: React.FC<{
                     zIndex: 100,
                     p: 1,
                     backgroundColor: "backgroundColor.main",
-                    color: "text.light",
+                    color: "text.secondary",
                     ":hover": {
                       backgroundColor: "darkHover.main",
-                      color: "text.light",
+                      color: "text.secondary",
                     },
                   }}
                   key={`${i.address}-wallet-card`}
@@ -194,7 +194,7 @@ const WalletSelector: React.FC<{
                     <Avatar sx={{ fontSize: ".75rem" }}>{i.img}</Avatar>
                   </Box>
                   <Box>
-                    <Box sx={{ color: "text.main" }}>{i.alias}</Box>
+                    <Box sx={{ color: "text.primary" }}>{i.alias}</Box>
                     <Box sx={{ fontSize: ".6rem" }}>
                       {i.address.slice(0, 18)}......
                       {i.address.substr(i.address.length - 18)}

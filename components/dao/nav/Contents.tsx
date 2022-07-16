@@ -66,8 +66,8 @@ const BasicLink: React.FC<{
       id === undefined
         ? `/dao/financials/token`
         : `/dao/${id}/financials/token`,
-    Distributions:
-      id === undefined ? `/dao/distributions` : `/dao/${id}/distributions`,
+    Distributions: "",
+    //id === undefined ? `/dao/distributions` : `/dao/${id}/distributions`,
     Staking: id === undefined ? `/dao/staking` : `/dao/${id}/staking`,
     Members: id === undefined ? `/dao/members` : `/dao/${id}/members`,
     Activity: id === undefined ? `/dao/activity` : `/dao/${id}/activity`,
@@ -97,7 +97,7 @@ const BasicLink: React.FC<{
             alignItems: "center",
             fontSize: ".7rem",
             cursor: "pointer",
-            color: props.selected ? "primary.main" : "primary.text",
+            color: props.selected ? "primary.main" : "text.primary",
             ":hover": {
               backgroundColor: "linkHover.main",
             },
@@ -171,12 +171,14 @@ const DropdownLink: React.FC<{
   set: Function;
   subSelected: string;
   links: JSX.Element;
+  disabled?: boolean;
 }> = (props) => {
   return (
     <Accordion
+      disabled={props.disabled}
       sx={{
         backgroundColor: "transparent",
-        color: props.selected ? "primary.main" : "primary.text",
+        color: props.selected ? "primary.main" : "text.primary",
         pl: 0,
         ml: 0,
         mt: ".25rem",
@@ -206,7 +208,7 @@ const DropdownLink: React.FC<{
           >
             <ExpandMoreIcon
               sx={{
-                color: props.selected ? "primary.main" : "primary.text",
+                color: props.selected ? "primary.main" : "text.primary",
               }}
             />
           </Box>
@@ -241,7 +243,7 @@ const DropdownLink: React.FC<{
               fontSize: ".7rem",
               cursor: "pointer",
               width: "100%",
-              color: props.selected ? "primary.main" : "primary.text",
+              color: props.selected ? "primary.main" : "text.primary",
             }}
             onClick={() => props.set(props.title)}
           >
@@ -306,7 +308,7 @@ const DropdownLink: React.FC<{
           </Box>
         </Box>
       </AccordionSummary>
-      <AccordionDetails sx={{ opacity: 1, color: "primary.text", p: 0 }}>
+      <AccordionDetails sx={{ opacity: 1, color: "text.primary", p: 0 }}>
         {props.links}
       </AccordionDetails>
     </Accordion>
@@ -381,15 +383,16 @@ const Contents: React.FC<IContents> = (props) => {
     getSubSelected()
   );
   const setWrapper = (v: string) => {
-    console.log(v, "1");
-    setSubSelected(undefined);
-    setSelected(v);
-    if (["Proposals", "Financials", "Settings"].indexOf(v) === -1) {
-      props.setShowMobile(false);
+    console.log(v);
+    if (v !== "Distributions") {
+      setSubSelected(undefined);
+      setSelected(v);
+      if (["Proposals", "Financials", "Settings"].indexOf(v) === -1) {
+        props.setShowMobile(false);
+      }
     }
   };
   const setSubWrapper = (v: string) => {
-    console.log(v, "2");
     setSubSelected(v);
 
     props.setShowMobile(false);
@@ -474,10 +477,10 @@ const Contents: React.FC<IContents> = (props) => {
         </>
       ),
     },
-    {
-      icon: <AutoAwesomeIcon sx={{ opacity: ".8" }} />,
-      label: "Distributions",
-    },
+    // {
+    //   icon: <AutoAwesomeIcon sx={{ opacity: ".8" }} />,
+    //   label: "Distributions",
+    // },
     { icon: <DiamondIcon sx={{ opacity: ".8" }} />, label: "Staking" },
     { icon: <GroupsIcon sx={{ opacity: ".8" }} />, label: "Members" },
     {

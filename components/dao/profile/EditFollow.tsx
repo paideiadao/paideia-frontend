@@ -25,8 +25,8 @@ const EditFollow: React.FC<{ edit: boolean; followed: boolean }> = (props) => {
     <Button
       onClick={() => setValue({ ...value, followed: !value.followed })}
       sx={{
-        color: value.followed ? "error.main" : "text.light",
-        borderColor: value.followed ? "red" : "text.light",
+        color: value.followed ? "error.main" : "text.secondary",
+        borderColor: value.followed ? "red" : "text.secondary",
         fontSize: { xs: ".5rem", s: ".8rem", md: ".8rem" },
         ":hover": {
           borderColor: "red",

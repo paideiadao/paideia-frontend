@@ -82,7 +82,11 @@ const Reference: React.FC = () => {
           <Box sx={{ ml: ".5rem", fontSize: ".9rem" }}>
             {option.proposalName}
             <Box
-              sx={{ fontSize: ".8rem", fontWeight: 400, color: "text.light" }}
+              sx={{
+                fontSize: ".8rem",
+                fontWeight: 400,
+                color: "text.secondary",
+              }}
             >
               ID: {option.id}
             </Box>

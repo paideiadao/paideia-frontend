@@ -19,6 +19,7 @@ import Activity, { IActivity } from "@components/dao/activity/Activity";
 import Musk from "@public/profile/musk-full.png";
 import PaideiaLogo from "@public/dao/bio-image/paideia-logo.png";
 import { paths, props } from "@lib/DaoPaths";
+import { deviceWrapper } from "@components/utilities/Style";
 
 // export const getStaticPaths = paths;
 // export const getStaticProps = props;
@@ -200,7 +201,7 @@ const Activities: React.FC = () => {
             ":hover": {
               borderColor: "primary.main",
             },
-            width: "75%",
+            width: deviceWrapper("100%", "75%"),
           }}
         >
           <Box
@@ -217,7 +218,7 @@ const Activities: React.FC = () => {
             sx={{
               ml: ".5rem",
               fontSize: ".9rem",
-              color: "text.main",
+              color: "text.primary",
               width: "100%",
             }}
             placeholder="Search by keyword or user"
@@ -228,7 +229,13 @@ const Activities: React.FC = () => {
             }
           />
         </Paper>
-        <FormControl sx={{ width: "25%", ml: "1rem" }}>
+        <FormControl
+          sx={{
+            width: "25%",
+            ml: "1rem",
+            display: deviceWrapper("none", "flex"),
+          }}
+        >
           <InputLabel id="sort-by-select-label">Sort by</InputLabel>
           <Select
             labelId="sort-by-select-label"
@@ -243,7 +250,17 @@ const Activities: React.FC = () => {
           </Select>
         </FormControl>
       </Box>
-      <Box sx={{ display: "flex", mt: ".5rem" }}>
+      <Box
+        sx={{
+          display: "-webkit-box",
+          alignItems: "center",
+          pt: ".75rem",
+          overflowX: "auto",
+          "::-webkit-scrollbar": {
+            display: "none",
+          },
+        }}
+      >
         {categories.map((i: any, c: number) => (
           <Chip
             {...i}

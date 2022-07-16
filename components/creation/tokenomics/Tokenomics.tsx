@@ -107,7 +107,7 @@ const Tokenomics: React.FC = () => {
             position: "sticky",
             backgroundColor:
               data.tokenRemaining === 0
-                ? "text.lightSuccess"
+                ? "text.secondarySuccess"
                 : data.tokenRemaining < 0
                 ? "tokenAlert.main"
                 : "primary.main",

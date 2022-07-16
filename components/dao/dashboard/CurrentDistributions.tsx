@@ -83,7 +83,7 @@ const CurrentDistributions: React.FC = () => {
               >
                 <Box>
                   {i.name}
-                  <Box sx={{ fontSize: ".7rem", color: "text.light" }}>
+                  <Box sx={{ fontSize: ".7rem", color: "text.secondary" }}>
                     {dateFormat(i.start, "mmm d, yyyy")} /{" "}
                     {dateFormat(i.end, "mmm d, yyyy")}
                   </Box>
@@ -140,7 +140,7 @@ const CurrentDistributions: React.FC = () => {
               }}
             >
               {i.name}
-              <Box sx={{ fontSize: ".7rem", color: "text.light" }}>
+              <Box sx={{ fontSize: ".7rem", color: "text.secondary" }}>
                 {dateFormat(i.start, "mmm d, yyyy")} /{" "}
                 {dateFormat(i.end, "mmm d, yyyy")}
               </Box>

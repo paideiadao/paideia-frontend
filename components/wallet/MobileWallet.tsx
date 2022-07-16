@@ -34,9 +34,11 @@ const MobileWallet: React.FC<{
           src={ergo.src}
           sx={{ height: "2.5rem", width: "2.5rem", mr: "1rem" }}
         />
-        <Box sx={{ fontSize: "1.2rem", color: "text.main" }}>
+        <Box sx={{ fontSize: "1.2rem", color: "text.primary" }}>
           Mobile Wallet
-          <Box sx={{ fontSize: ".9rem", color: "text.light", mt: "-.25rem" }}>
+          <Box
+            sx={{ fontSize: ".9rem", color: "text.secondary", mt: "-.25rem" }}
+          >
             Connect by manually adding your wallet address
           </Box>
         </Box>

@@ -22,13 +22,13 @@ const ProviderListing: React.FC<{ set: Function }> = (props) => {
           src={Nautilus.src}
           sx={{ height: "2.rem", width: "2.5rem", mr: "1rem" }}
         />
-        <Box sx={{ fontSize: ".9rem", color: "text.light" }}>
+        <Box sx={{ fontSize: ".9rem", color: "text.secondary" }}>
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               fontSize: "1rem",
-              color: "text.main",
+              color: "text.primary",
             }}
           >
             Nautilus
@@ -59,13 +59,13 @@ const ProviderListing: React.FC<{ set: Function }> = (props) => {
           src={Ergo.src}
           sx={{ height: "2.rem", width: "2.5rem", mr: "1rem" }}
         />
-        <Box sx={{ fontSize: ".9rem", color: "text.light" }}>
+        <Box sx={{ fontSize: ".9rem", color: "text.secondary" }}>
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               fontSize: "1rem",
-              color: "text.main",
+              color: "text.primary",
             }}
           >
             Mobile Wallet
