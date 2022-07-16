@@ -25,13 +25,13 @@ export const PerformanceWidget: React.FC<{
           ? "error.main"
           : "primary.lightSuccess",
         borderRadius: ".3rem",
-        fontSize: props.large ? "1rem" : ".9rem",
+        fontSize: props.large ? deviceWrapper('.9rem', "1rem") : deviceWrapper('.8rem', ".9rem") ,
         color: props.invert
           ? props.value <= 0
             ? "error.main"
             : "primary.lightSuccess"
           : "backgroundColor.main",
-        p: ".2rem",
+        p: ".15rem",
       }}
     >
       {props.value > 0 ? (
@@ -56,12 +56,12 @@ export const TimeWidget: React.FC<{
         alignItems: "center",
         backgroundColor: "fileInput.main",
         borderRadius: ".3rem",
-        fontSize: props.small ? ".8rem" : ".9rem",
+        fontSize: props.small ? deviceWrapper('.7rem', ".8rem") : deviceWrapper('.8rem', ".9rem"),
         color: "text.light",
         p: ".2rem",
         pt: ".1rem",
         pb: ".1rem",
-        ml: ".5rem",
+        ml: deviceWrapper('.2rem', ".5rem"),
         border: "1px solid",
         borderColor: "border.main",
       }}
