@@ -2,12 +2,14 @@ import { Header } from "@components/creation/utilities/HeaderComponents";
 import BasicInformation from "@components/dao/dao-config/BasicInformation";
 import Design from "@components/dao/dao-config/Design";
 import Governance from "@components/dao/dao-config/Governance";
+import Termination from "@components/dao/dao-config/Termination";
 import Layout from "@components/dao/Layout";
 import Divider from "@components/utilities/Divider";
+import { deviceWrapper } from "@components/utilities/Style";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import ConfigApi, { IConfigData } from "@lib/dao/dao-config/ConfigApi";
 import { ConfigContext } from "@lib/dao/dao-config/ConfigContext";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import * as React from "react";
 
 const DaoConfig: React.FC = () => {
@@ -81,6 +83,17 @@ const DaoConfig: React.FC = () => {
         <Governance />
         <Divider />
         <Design/>
+        <Divider />
+        <Termination/>
+        <Box sx={{display: 'flex', alignItems: 'center', width: '100%', mt: '1.5rem'}}>
+          <Button sx={{width: '50%', mr: '1rem'}} size='small' variant='outlined'>
+            Cancel
+          </Button>
+          <Button sx={{width: '50%'}} size='small' variant='contained'>
+            <Box sx={{display: deviceWrapper('none', 'block')}}>Submit Proposal</Box>
+            <Box sx={{display: deviceWrapper('block', 'none')}}>Submit</Box>
+          </Button>
+        </Box>
       </Layout>
     </ConfigContext.Provider>
   );

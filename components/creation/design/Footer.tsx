@@ -42,6 +42,7 @@ const Footer: React.FC<{context?: IConfigContext}> = (props) => {
         borderTopColor: "border.main",
         pt: "1rem",
         mt: "1rem",
+        width: '100%'
       }}
     >
       <Box sx={{ width: "100%", mb: "1rem" }}>
@@ -147,7 +148,7 @@ export const SocialRow: React.FC<{
         display: "flex",
         alignItems: "center",
         width: "100%",
-        flexWrap: deviceStruct("wrap", "wrap", "", "", ""),
+        flexWrap: deviceStruct("wrap", "wrap", "nowrap", "nowrap", "nowrap"),
       }}
     >
       <FormControl
@@ -233,19 +234,19 @@ export const SocialRow: React.FC<{
       <Box
         sx={{
           width: "13%",
-          display: deviceStruct("block", "block", "none", "none", "none"),
+          display: deviceStruct("flex", "flex", "none", "none", "none"),
           justifyContent: "center",
         }}
       >
         <IconButton color="error" onClick={() => props.delete()}>
-          <DeleteIcon />
+          <DeleteIcon color='error'/>
         </IconButton>
       </Box>
       <TextField
         label="Address"
         sx={{
-          width: deviceStruct("100%", "100%", "50%", "50%", "50%"),
-          mt: deviceStruct(".5rem", ".5rem", "", "", ""),
+          width: deviceStruct("100%", "100%", "60%", "60%", "60%"),
+          mt: deviceStruct(".5rem", ".5rem", "0", "0", "0"),
         }}
         value={props.data.address}
         onChange={(e: any) =>
@@ -255,12 +256,12 @@ export const SocialRow: React.FC<{
       <Box
         sx={{
           width: "13%",
-          display: deviceStruct("none", "none", "block", "block", "block"),
+          display: deviceStruct("none", "none", "flex", "flex", "flex"),
           justifyContent: "center",
         }}
       >
         <IconButton color="error" onClick={() => props.delete()}>
-          <DeleteIcon />
+          <DeleteIcon  color='error'/>
         </IconButton>
       </Box>
     </Box>

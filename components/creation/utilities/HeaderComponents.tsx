@@ -89,7 +89,7 @@ export const Subtitle: React.FC<{ subtitle: string; small?: boolean }> = (
     <Box
       sx={{
         width: "100%",
-        color: "#C4C4C4",
+        color: "primary.lightText",
         fontSize: props.small
           ? deviceStruct(".7rem", ".7rem", ".8rem", ".8rem", ".8rem")
           : deviceStruct(".7rem", ".7rem", ".9rem", ".9rem", ".9rem"),
