@@ -47,11 +47,19 @@ const ValueLabel: React.FC<{
 }> = (props) => {
   return (
     <Box sx={{ textAlign: "center" }}>
-      <Box sx={{ fontSize: props.small ? ".6rem" : ".8rem", color: "text.secondary" }}>
+      <Box
+        sx={{
+          fontSize: props.small ? ".6rem" : ".8rem",
+          color: "text.secondary",
+        }}
+      >
         {props.label}
       </Box>
       <Box
-        sx={{ fontSize: props.small ? ".9rem" : "1.3rem", color: "text.main" }}
+        sx={{
+          fontSize: props.small ? ".9rem" : "1.3rem",
+          color: "text.primary",
+        }}
       >
         {props.value}
       </Box>

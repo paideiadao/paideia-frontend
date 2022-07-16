@@ -161,9 +161,15 @@ const Nautilus: React.FC<{
               src={nautilus.src}
               sx={{ height: "3rem", width: "3rem", mr: "1rem" }}
             />
-            <Box sx={{ fontSize: "1.2rem", color: "text.main" }}>
+            <Box sx={{ fontSize: "1.2rem", color: "text.primary" }}>
               Nautilus
-              <Box sx={{ fontSize: ".9rem", color: "text.secondary", mt: "-.25rem" }}>
+              <Box
+                sx={{
+                  fontSize: ".9rem",
+                  color: "text.secondary",
+                  mt: "-.25rem",
+                }}
+              >
                 Connect automatically signing with your wallet
               </Box>
             </Box>

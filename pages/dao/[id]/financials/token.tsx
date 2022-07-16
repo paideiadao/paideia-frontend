@@ -15,7 +15,7 @@ const Token: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
   return (
-    <Layout width={deviceWrapper("92%", "97%")}>
+    <Layout width={deviceWrapper("94%", "97%")}>
       <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
         <Header title="Token Information" large />
         <Link

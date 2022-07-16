@@ -77,7 +77,7 @@ export const LightTheme = createTheme({
       selectedButton: "#E5F3F4",
       lightSuccess: "#00A300",
       lightOpacity: "#EBF6F6",
-      lightText: 'blue'
+      lightText: "blue",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },

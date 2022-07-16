@@ -65,7 +65,7 @@ export const CapsInfo: React.FC<{
     <Box
       sx={{
         width: "100%",
-        color: "text.main",
+        color: "text.primary",
         opacity: ".8",
         fontSize:
           props.fontSize === undefined
@@ -204,7 +204,7 @@ export const LearnMore: React.FC<{
                   sx={{
                     p: ".5rem",
                     m: 0,
-                    color: "text.main",
+                    color: "text.primary",
                     width: "25rem",
                     fontSize: "1rem",
                     fontWeight: 400,

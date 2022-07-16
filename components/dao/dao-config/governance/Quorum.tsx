@@ -1,153 +1,170 @@
 import {
-    Header,
-    LearnMore,
-    Subtitle,
-  } from "@components/creation/utilities/HeaderComponents";
-  import LabeledSwitch from "@components/creation/utilities/LabeledSwitch";
+  Header,
+  LearnMore,
+  Subtitle,
+} from "@components/creation/utilities/HeaderComponents";
+import LabeledSwitch from "@components/creation/utilities/LabeledSwitch";
 import { deviceStruct } from "@components/utilities/Style";
-  import {
-    ConfigContext,
-    IConfigContext,
-  } from "@lib/dao/dao-config/ConfigContext";
-import { FormControl, InputLabel, OutlinedInput, Box, Select, MenuItem, Slider, TextField } from "@mui/material";
-  import * as React from "react";
-  
-  const Quorum: React.FC = () => {
-    const context = React.useContext<IConfigContext>(ConfigContext);
-    const data = context.api.data.governance;
-    return (
-      <>
-        <LearnMore
-          title="Quorum"
-          small
-          tooltipTitle={"Title Here"}
-          tooltipText={"Content Here"}
-          tooltipLink="/"
-        />
-        <Box
-          sx={{ display: "flex", alignItem: "center", mt: "1rem", mb: '.5rem', pl: ".5rem" }}
-        >
-          <Box
-            sx={{
-              width: deviceStruct("70%", "70%", "87%", "87%", "87%"),
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <Slider
-              value={data.quorum}
-              min={0}
-              max={100}
-              onChange={(event, newValue) =>
-                context.api.setData({
-                  ...context.api.data,
-                  governance: {
-                    ...data,
-                    quorum: newValue,
-                  },
-                })
-              }
-            />
-          </Box>
-          <Box
-            sx={{
-              width: deviceStruct("30%", "30%", "13%", "13%", "13%"),
-              ml: "1.5rem",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <TextField
-              label="Value"
-              type="number"
-              value={data.quorum}
-              onChange={(e) =>
-                context.api.setData({
-                  ...context.api.data,
-                  governance: {
-                    ...data,
-                    quorum: e.target.value,
-                  },
-                })
-              }
-              InputProps={{
-                inputProps: { min: 0, max: 100 },
-                endAdornment: <Box>%</Box>,
-              }}
-            />
-          </Box>
-        </Box>
-        <Header small title='How long does the voting period last for?'/>
-        <Box sx={{mt: '.75rem'}}/>
+import {
+  ConfigContext,
+  IConfigContext,
+} from "@lib/dao/dao-config/ConfigContext";
+import {
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  Box,
+  Select,
+  MenuItem,
+  Slider,
+  TextField,
+} from "@mui/material";
+import * as React from "react";
 
-        <FormControl
-          sx={{mb: '.5rem', width: deviceStruct("60%", "60%", "30%", "30%", "30%") }}
-          variant="outlined"
+const Quorum: React.FC = () => {
+  const context = React.useContext<IConfigContext>(ConfigContext);
+  const data = context.api.data.governance;
+  return (
+    <>
+      <LearnMore
+        title="Quorum"
+        small
+        tooltipTitle={"Title Here"}
+        tooltipText={"Content Here"}
+        tooltipLink="/"
+      />
+      <Box
+        sx={{
+          display: "flex",
+          alignItem: "center",
+          mt: "1rem",
+          mb: ".5rem",
+          pl: ".5rem",
+        }}
+      >
+        <Box
+          sx={{
+            width: deviceStruct("70%", "70%", "87%", "87%", "87%"),
+            display: "flex",
+            alignItems: "center",
+          }}
         >
-          <InputLabel htmlFor={`challenge-time-input`} shrink>
-            Vote duration
-          </InputLabel>
-          <OutlinedInput
-            notched
-            id={`challenge-time-input`}
+          <Slider
+            value={data.quorum}
+            min={0}
+            max={100}
+            onChange={(event, newValue) =>
+              context.api.setData({
+                ...context.api.data,
+                governance: {
+                  ...data,
+                  quorum: newValue,
+                },
+              })
+            }
+          />
+        </Box>
+        <Box
+          sx={{
+            width: deviceStruct("30%", "30%", "13%", "13%", "13%"),
+            ml: "1.5rem",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <TextField
+            label="Value"
             type="number"
-            value={data.voteDuration === 0 ? "" : data.voteDuration}
+            value={data.quorum}
             onChange={(e) =>
               context.api.setData({
                 ...context.api.data,
                 governance: {
                   ...data,
-                  voteDuration:
-                    e.target.value === "" ? 0 : parseInt(e.target.value),
+                  quorum: e.target.value,
                 },
               })
             }
-            endAdornment={
-              <Box
-                sx={{
-                  height: "100%",
-                  width: "90%",
-                  backgroundColor: "backgroundColor.main",
-                  color: "text.primary",
-                  lineHeight: "350%",
-                  textAlign: "center",
-                  borderRadius: "0 .3rem .3rem 0",
-                  mr: "-.8rem",
-                  ml: ".5rem",
-                  display: "flex",
-                }}
-              >
-                <FormControl fullWidth>
-                  <Select
-                    labelId="currency-select-label"
-                    id="currency-select"
-                    variant="outlined"
-                    value={data.voteDurationUnits}
-                    sx={{ height: "100%", color: "text.primary" }}
-                    onChange={(e) =>
-                      context.api.setData({
-                        ...context.api.data,
-                        governance: {
-                          ...data,
-                          voteDurationUnits: e.target.value,
-                        },
-                      })
-                    }
-                  >
-                    <MenuItem value="minutes">Minutes</MenuItem>
-                    <MenuItem value="hours">Hours</MenuItem>
-                    <MenuItem value="days">Days</MenuItem>
-                    <MenuItem value="weeks">Weeks</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            }
-            label="Vote duration"
+            InputProps={{
+              inputProps: { min: 0, max: 100 },
+              endAdornment: <Box>%</Box>,
+            }}
           />
-        </FormControl>
-      </>
-    );
-  };
-  
-  export default Quorum;
-  
+        </Box>
+      </Box>
+      <Header small title="How long does the voting period last for?" />
+      <Box sx={{ mt: ".75rem" }} />
+
+      <FormControl
+        sx={{
+          mb: ".5rem",
+          width: deviceStruct("60%", "60%", "30%", "30%", "30%"),
+        }}
+        variant="outlined"
+      >
+        <InputLabel htmlFor={`challenge-time-input`} shrink>
+          Vote duration
+        </InputLabel>
+        <OutlinedInput
+          notched
+          id={`challenge-time-input`}
+          type="number"
+          value={data.voteDuration === 0 ? "" : data.voteDuration}
+          onChange={(e) =>
+            context.api.setData({
+              ...context.api.data,
+              governance: {
+                ...data,
+                voteDuration:
+                  e.target.value === "" ? 0 : parseInt(e.target.value),
+              },
+            })
+          }
+          endAdornment={
+            <Box
+              sx={{
+                height: "100%",
+                width: "90%",
+                backgroundColor: "backgroundColor.main",
+                color: "text.primary",
+                lineHeight: "350%",
+                textAlign: "center",
+                borderRadius: "0 .3rem .3rem 0",
+                mr: "-.8rem",
+                ml: ".5rem",
+                display: "flex",
+              }}
+            >
+              <FormControl fullWidth>
+                <Select
+                  labelId="currency-select-label"
+                  id="currency-select"
+                  variant="outlined"
+                  value={data.voteDurationUnits}
+                  sx={{ height: "100%", color: "text.primary" }}
+                  onChange={(e) =>
+                    context.api.setData({
+                      ...context.api.data,
+                      governance: {
+                        ...data,
+                        voteDurationUnits: e.target.value,
+                      },
+                    })
+                  }
+                >
+                  <MenuItem value="minutes">Minutes</MenuItem>
+                  <MenuItem value="hours">Hours</MenuItem>
+                  <MenuItem value="days">Days</MenuItem>
+                  <MenuItem value="weeks">Weeks</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          }
+          label="Vote duration"
+        />
+      </FormControl>
+    </>
+  );
+};
+
+export default Quorum;

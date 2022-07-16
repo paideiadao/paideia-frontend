@@ -4,7 +4,7 @@ import { Typography, Grid, Container, Box, Divider, Icon } from "@mui/material";
 import Image from "next/image";
 import Highlights from "@components/Highlights";
 import SectionHeading from "@components/SectionHeading";
-import ProjectList from '@components/ProjectList';
+import ProjectList from "@components/ProjectList";
 import { DarkTheme } from "@theme/theme";
 
 const articles = [

@@ -6,8 +6,11 @@ import FileBanner from "../../utilities/FileBanner";
 import { Subheader, Subtitle } from "../utilities/HeaderComponents";
 import LabeledSwitch from "../utilities/LabeledSwitch";
 
-const Banner: React.FC<{context?: IConfigContext}> = (props) => {
-  let globalContext = props.context === undefined ? React.useContext(GlobalContext) : props.context;
+const Banner: React.FC<{ context?: IConfigContext }> = (props) => {
+  let globalContext =
+    props.context === undefined
+      ? React.useContext(GlobalContext)
+      : props.context;
 
   let data = globalContext.api.data.design;
   let setData = (data: any) => {

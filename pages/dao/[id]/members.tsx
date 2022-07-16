@@ -230,7 +230,7 @@ const Members: React.FC = () => {
             sx={{
               ml: ".5rem",
               fontSize: ".9rem",
-              color: "text.main",
+              color: "text.primary",
               width: "100%",
             }}
             placeholder="Search member"

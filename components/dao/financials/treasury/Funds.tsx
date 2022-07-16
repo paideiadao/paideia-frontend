@@ -26,7 +26,7 @@ const FundCard: React.FC<{
         p: ".5rem",
       }}
     >
-      <Box sx={{ color: "text.main", fontSize: "1.1rem", fontWeight: 550 }}>
+      <Box sx={{ color: "text.primary", fontSize: "1.1rem", fontWeight: 550 }}>
         {props.value}
         <Box
           sx={{
@@ -141,7 +141,7 @@ const Funds: React.FC = () => {
         <Box
           sx={{
             backgroundColor: "fileInput.main",
-            color: "text.main",
+            color: "text.primary",
             borderRadius: ".2rem",
             ml: "auto",
             p: ".25rem",

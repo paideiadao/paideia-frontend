@@ -104,7 +104,9 @@ const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
                 <Box sx={{ fontSize: ".9rem", color: "text.primary" }}>
                   {i.distributionName}
                 </Box>
-                <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>{i.id}</Box>
+                <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
+                  {i.id}
+                </Box>
               </Box>
               <Box sx={{ ml: "auto", textAlign: "right" }}>
                 <Box sx={{ fontSize: ".9rem", color: "text.primary" }}>

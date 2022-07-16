@@ -75,7 +75,10 @@ export const InfoCard: React.FC<IInfoCard> = (props) => {
           </Box>
         </Box>
         <Box
-          sx={{ color: "text.secondary", fontSize: deviceWrapper(".7rem", ".9rem") }}
+          sx={{
+            color: "text.secondary",
+            fontSize: deviceWrapper(".7rem", ".9rem"),
+          }}
         >
           {props.title}
         </Box>

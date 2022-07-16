@@ -42,12 +42,15 @@ const Governance: React.FC = () => {
       <Divider m=".5rem" />
       <QuadraticVoting />
       <Divider m=".5rem" />
-      <Header
-        title="Configure voting system"
+      <Header title="Configure voting system" />
+      <Support />
+      <Warning
+        title={"Only for single-choice voting"}
+        subtitle={
+          "Support will only apply to single-choice voting. It determines the percentage of users that need to agree for a proposal to be approved. Cant be set to less than 51%."
+        }
       />
-    <Support/>
-    <Warning title={"Only for single-choice voting"} subtitle={"Support will only apply to single-choice voting. It determines the percentage of users that need to agree for a proposal to be approved. Cant be set to less than 51%."}/>
-      <Quorum/>
+      <Quorum />
     </>
   );
 };

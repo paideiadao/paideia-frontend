@@ -82,16 +82,29 @@ const DaoConfig: React.FC = () => {
         <Divider />
         <Governance />
         <Divider />
-        <Design/>
+        <Design />
         <Divider />
-        <Termination/>
-        <Box sx={{display: 'flex', alignItems: 'center', width: '100%', mt: '1.5rem'}}>
-          <Button sx={{width: '50%', mr: '1rem'}} size='small' variant='outlined'>
+        <Termination />
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+            mt: "1.5rem",
+          }}
+        >
+          <Button
+            sx={{ width: "50%", mr: "1rem" }}
+            size="small"
+            variant="outlined"
+          >
             Cancel
           </Button>
-          <Button sx={{width: '50%'}} size='small' variant='contained'>
-            <Box sx={{display: deviceWrapper('none', 'block')}}>Submit Proposal</Box>
-            <Box sx={{display: deviceWrapper('block', 'none')}}>Submit</Box>
+          <Button sx={{ width: "50%" }} size="small" variant="contained">
+            <Box sx={{ display: deviceWrapper("none", "block") }}>
+              Submit Proposal
+            </Box>
+            <Box sx={{ display: deviceWrapper("block", "none") }}>Submit</Box>
           </Button>
         </Box>
       </Layout>

@@ -70,7 +70,7 @@ const AboutUser: React.FC = () => {
             }}
           >
             Followers
-            <Box sx={{ color: "text.main", fontSize: "1.1rem" }}>107</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>107</Box>
           </Box>
           <Box
             sx={{
@@ -84,7 +84,7 @@ const AboutUser: React.FC = () => {
             }}
           >
             Created
-            <Box sx={{ color: "text.main", fontSize: "1.1rem" }}>13</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>13</Box>
           </Box>
           <Box
             sx={{
@@ -95,7 +95,7 @@ const AboutUser: React.FC = () => {
             }}
           >
             Approved
-            <Box sx={{ color: "text.main", fontSize: "1.1rem" }}>7</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>7</Box>
           </Box>
         </Box>
         <Box sx={{ fontSize: ".9rem" }}>Short description here...</Box>

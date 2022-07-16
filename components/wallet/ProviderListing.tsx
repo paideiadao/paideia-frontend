@@ -28,7 +28,7 @@ const ProviderListing: React.FC<{ set: Function }> = (props) => {
               display: "flex",
               alignItems: "center",
               fontSize: "1rem",
-              color: "text.main",
+              color: "text.primary",
             }}
           >
             Nautilus
@@ -65,7 +65,7 @@ const ProviderListing: React.FC<{ set: Function }> = (props) => {
               display: "flex",
               alignItems: "center",
               fontSize: "1rem",
-              color: "text.main",
+              color: "text.primary",
             }}
           >
             Mobile Wallet

@@ -218,7 +218,7 @@ const Activities: React.FC = () => {
             sx={{
               ml: ".5rem",
               fontSize: ".9rem",
-              color: "text.main",
+              color: "text.primary",
               width: "100%",
             }}
             placeholder="Search by keyword or user"

@@ -65,7 +65,10 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
         <Box sx={{ ml: "1rem" }}>
           Nautilus
           <Box
-            sx={{ fontSize: deviceWrapper(".8rem", ".9rem"), color: "text.secondary" }}
+            sx={{
+              fontSize: deviceWrapper(".8rem", ".9rem"),
+              color: "text.secondary",
+            }}
           >
             Connected at: {dateFormat(new Date(), "mmm d, yyyy: h:mmTT")}
           </Box>

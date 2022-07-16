@@ -25,8 +25,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { deviceStruct } from "@components/utilities/Style";
 import { IConfigContext } from "@lib/dao/dao-config/ConfigContext";
 
-const Footer: React.FC<{context?: IConfigContext}> = (props) => {
-  let globalContext = props.context === undefined ? React.useContext(GlobalContext) : props.context;
+const Footer: React.FC<{ context?: IConfigContext }> = (props) => {
+  let globalContext =
+    props.context === undefined
+      ? React.useContext(GlobalContext)
+      : props.context;
 
   let data = globalContext.api.data.design;
   let setData = (data: any) => {
@@ -42,7 +45,7 @@ const Footer: React.FC<{context?: IConfigContext}> = (props) => {
         borderTopColor: "border.main",
         pt: "1rem",
         mt: "1rem",
-        width: '100%'
+        width: "100%",
       }}
     >
       <Box sx={{ width: "100%", mb: "1rem" }}>
@@ -239,7 +242,7 @@ export const SocialRow: React.FC<{
         }}
       >
         <IconButton color="error" onClick={() => props.delete()}>
-          <DeleteIcon color='error'/>
+          <DeleteIcon color="error" />
         </IconButton>
       </Box>
       <TextField
@@ -261,7 +264,7 @@ export const SocialRow: React.FC<{
         }}
       >
         <IconButton color="error" onClick={() => props.delete()}>
-          <DeleteIcon  color='error'/>
+          <DeleteIcon color="error" />
         </IconButton>
       </Box>
     </Box>

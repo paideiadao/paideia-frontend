@@ -138,7 +138,9 @@ const DaoBio: React.FC = () => {
       >
         <Box>
           <Box sx={{ fontSize: ".7rem" }}>{dao.name}</Box>
-          <Box sx={{ fontSize: ".6rem", color: "text.secondary" }}>{dao.url}</Box>
+          <Box sx={{ fontSize: ".6rem", color: "text.secondary" }}>
+            {dao.url}
+          </Box>
         </Box>
         <Box
           sx={{

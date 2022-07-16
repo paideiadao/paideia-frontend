@@ -42,7 +42,13 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
           flexWrap: deviceWrapper("wrap", "nowrap"),
         }}
       >
-        <Box sx={{ width: deviceWrapper("100%", "70%"), p: "1rem" }}>
+        <Box
+          sx={{
+            width: deviceWrapper("100%", "70%"),
+            p: ".75rem",
+            pt: deviceWrapper("0", "1rem"),
+          }}
+        >
           <Link
             href={
               props.edit

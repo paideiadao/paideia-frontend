@@ -31,7 +31,7 @@ const TokenBanner: React.FC<ITokenBanner> = (props) => {
         alignItems: "center",
         fontSize: "1.3rem",
         fontWeight: 500,
-        color: "text.main",
+        color: "text.primary",
         border: "1px solid",
         borderColor: "border.main",
         p: "1rem",
