@@ -25,7 +25,7 @@ export const PerformanceWidget: React.FC<{
           ? "error.main"
           : "primary.lightSuccess",
         borderRadius: ".3rem",
-        fontSize: props.large ? deviceWrapper('.9rem', "1rem") : deviceWrapper('.8rem', ".9rem") ,
+        fontSize: deviceWrapper('.65rem', ".8rem"),
         color: props.invert
           ? props.value <= 0
             ? "error.main"
@@ -35,9 +35,9 @@ export const PerformanceWidget: React.FC<{
       }}
     >
       {props.value > 0 ? (
-        <ArrowUpwardIcon style={{ fontSize: "1rem", marginRight: ".1rem" }} />
+        <ArrowUpwardIcon sx={{ fontSize: deviceWrapper('.8rem', "1rem"), marginRight: ".1rem" }} />
       ) : (
-        <ArrowDownwardIcon style={{ fontSize: "1rem", marginRight: ".1rem" }} />
+        <ArrowDownwardIcon sx={{ fontSize: deviceWrapper('.8rem', "1rem"), marginRight: ".1rem" }} />
       )}
       {percentage(props.value, props.places === undefined ? 0 : props.places)}
     </Box>
@@ -56,7 +56,7 @@ export const TimeWidget: React.FC<{
         alignItems: "center",
         backgroundColor: "fileInput.main",
         borderRadius: ".3rem",
-        fontSize: props.small ? deviceWrapper('.7rem', ".8rem") : deviceWrapper('.8rem', ".9rem"),
+        fontSize: deviceWrapper('.6rem', ".8rem"),
         color: "text.light",
         p: ".2rem",
         pt: ".1rem",

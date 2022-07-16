@@ -38,6 +38,7 @@
     "unsplash-js": "^7.0.15"
   },
   "devDependencies": {
+    "@mui/x-data-grid-pro": "^5.13.1",
     "@types/jquery": "^3.5.14",
     "@types/node": "^17.0.23",
     "@types/react": "^17.0.43",

@@ -18,7 +18,7 @@ const InfoCard: React.FC<IInfoCard> = (props) => {
   return (
     <Box
       sx={{
-        width: deviceWrapper('47.5%', "23.5%"),
+        width: deviceWrapper('47.5%', "23%"),
         p: ".5rem",
         display: "flex",
         alignItems: deviceWrapper('flex-start', "center"),

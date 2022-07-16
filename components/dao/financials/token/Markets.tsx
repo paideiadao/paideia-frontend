@@ -8,18 +8,19 @@ const columns: GridColDef[] = [
   {
     field: "source",
     headerName: "Source",
-    flex: 1,
+    width: 125,
     sortable: true,
+    
   },
   {
     field: "pairs",
     headerName: "Pairs",
-    flex: 1,
+    width: 125,
   },
   {
     field: "price",
     headerName: "Price",
-    flex: 1,
+    width: 125,
     sortable: true,
     align: "left",
     headerAlign: "left",
@@ -29,7 +30,7 @@ const columns: GridColDef[] = [
   {
     field: "volume",
     headerName: "Volume",
-    flex: 1,
+    width: 125,
     sortable: true,
     align: "left",
     headerAlign: "left",
@@ -37,7 +38,7 @@ const columns: GridColDef[] = [
   {
     field: "liquidity",
     headerName: "Liquidity",
-    flex: 1,
+    width: 150,
     sortable: true,
     align: "left",
     headerAlign: "left",
@@ -106,6 +107,7 @@ const Markets: React.FC = () => {
         columns={columns}
         disableSelectionOnClick
         autoHeight
+
         sx={{
           fontSize: ".8rem",
           "& .MuiDataGrid-cell": {
