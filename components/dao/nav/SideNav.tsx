@@ -25,7 +25,8 @@ const Nav: React.FC<INav> = (props) => {
         borderBottom: "1px solid",
         height: "100vh",
         borderBottomColor: "border.main",
-        position: "relative",
+        position: "sticky",
+        top: 0,
         backgroundImage: `url(${
           themeContext.theme === DarkTheme ? DarkFooter.src : LightFooter.src
         })`,
