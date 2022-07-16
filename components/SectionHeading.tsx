@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Grid, Typography, Box } from "@mui/material";
 import SectionTitle from "@components/SectionTitle";
 import Blockquote from "@components/Blockquote";
-import { SxProps } from '@mui/material';
+import { SxProps } from "@mui/material";
 
 interface HeadingProps {
   category?: string;

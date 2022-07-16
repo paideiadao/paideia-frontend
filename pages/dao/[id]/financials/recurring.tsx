@@ -3,6 +3,7 @@ import RecurringCard, {
   IRecurringCard,
 } from "@components/dao/financials/recurring/RecurringCard";
 import Layout from "@components/dao/Layout";
+import { deviceWrapper } from "@components/utilities/Style";
 import { Box } from "@mui/material";
 import * as React from "react";
 import { TreasuryInfo } from "./treasury";
@@ -111,9 +112,9 @@ const recurringPayments: IRecurringCard[] = [
 
 const Recurring: React.FC = () => {
   return (
-    <Layout width="95%">
+    <Layout width={deviceWrapper("92%", "95%")}>
       <Box sx={{ display: "flex", alignItems: "flex-start", width: "100%" }}>
-        <Box sx={{ width: "72%" }}>
+        <Box sx={{ width: deviceWrapper("100%", "72%") }}>
           <Header
             title="Recurring payments"
             large
@@ -123,8 +124,25 @@ const Recurring: React.FC = () => {
           {recurringPayments.map((i: IRecurringCard, c: number) => (
             <RecurringCard key={`recurring-card-${c}`} {...i} />
           ))}
+          <Box
+            sx={{
+              width: "100%",
+              display: deviceWrapper("block", "none"),
+              mt: "1rem",
+            }}
+          >
+            <TreasuryInfo />
+          </Box>
         </Box>
-        <Box sx={{ width: "28%", position: "sticky", top: "1.6rem" }}>
+        <Box
+          sx={{
+            width: "28%",
+            position: "sticky",
+            top: "1.6rem",
+            ml: "1.5rem",
+            display: deviceWrapper("none", "block"),
+          }}
+        >
           <TreasuryInfo />
         </Box>
       </Box>

@@ -97,7 +97,7 @@ const PageHeader: FC<IPageHeader> = ({
             {titleLineTwo}
           </Typography>
           <Grid container wrap="nowrap" spacing={2} sx={{ mb: "120px" }}>
-            {(subTitleOne && subTitleTwo) && (
+            {subTitleOne && subTitleTwo && (
               <>
                 <Grid item>
                   <Box
@@ -125,6 +125,6 @@ const PageHeader: FC<IPageHeader> = ({
       </Grid>
     </Container>
   );
-}
+};
 
 export default PageHeader;

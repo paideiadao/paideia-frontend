@@ -215,7 +215,7 @@ export default function Header() {
                   </Grid>
                 </Grid>
                 <Grid item sx={{ display: { xs: "none", md: "flex" } }}>
-                  <ConnectWallet/>
+                  <ConnectWallet />
                 </Grid>
                 <Grid item sx={{ display: { xs: "flex", md: "none" } }}>
                   <IconButton>
@@ -286,8 +286,8 @@ export default function Header() {
             width: "40px",
             height: "40px",
 
-            top: '14px',
-            right: '24px',
+            top: "14px",
+            right: "24px",
             color: "#fff",
             // focus: 'outline-none',
           }}

@@ -30,7 +30,6 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
       sx={{
         display: "flex",
         alignItems: "flex-start",
-        position: "fixed",
         width: "100vw",
       }}
     >
@@ -38,13 +37,11 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
       <Box
         sx={{
           width: deviceWrapper("100%", "calc(100% - 14.5rem)"),
-          position: "fixed",
           top: "0",
           left: deviceWrapper("0", "14.5rem"),
           pt: "0rem",
           pb: ".5rem",
-          overflowY: "auto",
-          height: "100vh",
+
           zIndex: deviceWrapper("100", "1000"),
         }}
       >

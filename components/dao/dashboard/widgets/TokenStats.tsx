@@ -31,24 +31,24 @@ const TokenStats: React.FC = () => {
             width: "50%",
             textAlign: "center",
             fontSize: ".7rem",
-            color: "text.light",
+            color: "text.secondary",
             borderRight: "1px solid",
             borderColor: "border.main",
           }}
         >
           Ticker
-          <Box sx={{ fontSize: "1.2rem", color: "text.main" }}>PTK</Box>
+          <Box sx={{ fontSize: "1.2rem", color: "text.primary" }}>PTK</Box>
         </Box>
         <Box
           sx={{
             width: "50%",
             textAlign: "center",
             fontSize: ".7rem",
-            color: "text.light",
+            color: "text.secondary",
           }}
         >
           Price
-          <Box sx={{ fontSize: "1.2rem", color: "text.main" }}>$0.1342</Box>
+          <Box sx={{ fontSize: "1.2rem", color: "text.primary" }}>$0.1342</Box>
         </Box>
       </Box>
       <Box
@@ -65,24 +65,26 @@ const TokenStats: React.FC = () => {
             width: "50%",
             textAlign: "center",
             fontSize: ".7rem",
-            color: "text.light",
+            color: "text.secondary",
             borderRight: "1px solid",
             borderColor: "border.main",
           }}
         >
           Market cap
-          <Box sx={{ fontSize: "1rem", color: "text.main" }}>$10,467,400</Box>
+          <Box sx={{ fontSize: "1rem", color: "text.primary" }}>
+            $10,467,400
+          </Box>
         </Box>
         <Box
           sx={{
             width: "50%",
             textAlign: "center",
             fontSize: ".7rem",
-            color: "text.light",
+            color: "text.secondary",
           }}
         >
           Tokens
-          <Box sx={{ fontSize: "1rem", color: "text.main" }}>78,000,000</Box>
+          <Box sx={{ fontSize: "1rem", color: "text.primary" }}>78,000,000</Box>
         </Box>
       </Box>
       <Box

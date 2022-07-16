@@ -63,7 +63,7 @@ export const DistributionCard: React.FC<IDistributionCard> = (props) => {
     >
       <Box sx={{ width: "26%" }}>
         <Box sx={{ fontSize: ".9rem" }}>{props.name}</Box>
-        <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
+        <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
           {dateFormat(props.startDate, "mmmm d, yyyy")} -{" "}
           {dateFormat(props.endDate, "mmmm d, yyyy")}
         </Box>

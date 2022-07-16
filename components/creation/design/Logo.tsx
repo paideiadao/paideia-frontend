@@ -1,11 +1,15 @@
+import { IConfigContext } from "@lib/dao/dao-config/ConfigContext";
 import { Box } from "@mui/material";
 import * as React from "react";
 import { GlobalContext } from "../../../lib/creation/Context";
 import FileInput from "../../utilities/file";
 import { LearnMore, Subheader, Subtitle } from "../utilities/HeaderComponents";
 
-const Logo: React.FC = () => {
-  let globalContext = React.useContext(GlobalContext);
+const Logo: React.FC<{ context?: IConfigContext }> = (props) => {
+  let globalContext =
+    props.context === undefined
+      ? React.useContext(GlobalContext)
+      : props.context;
 
   let data = globalContext.api.data.design;
   let setData = (data: any) => {

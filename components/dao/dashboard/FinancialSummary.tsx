@@ -25,19 +25,29 @@ export const PerformanceWidget: React.FC<{
           ? "error.main"
           : "primary.lightSuccess",
         borderRadius: ".3rem",
-        fontSize: props.large ? "1rem" : ".9rem",
+        fontSize: deviceWrapper(".65rem", ".8rem"),
         color: props.invert
           ? props.value <= 0
             ? "error.main"
             : "primary.lightSuccess"
           : "backgroundColor.main",
-        p: ".2rem",
+        p: ".15rem",
       }}
     >
       {props.value > 0 ? (
-        <ArrowUpwardIcon style={{ fontSize: "1rem", marginRight: ".1rem" }} />
+        <ArrowUpwardIcon
+          sx={{
+            fontSize: deviceWrapper(".8rem", "1rem"),
+            marginRight: ".1rem",
+          }}
+        />
       ) : (
-        <ArrowDownwardIcon style={{ fontSize: "1rem", marginRight: ".1rem" }} />
+        <ArrowDownwardIcon
+          sx={{
+            fontSize: deviceWrapper(".8rem", "1rem"),
+            marginRight: ".1rem",
+          }}
+        />
       )}
       {percentage(props.value, props.places === undefined ? 0 : props.places)}
     </Box>
@@ -56,12 +66,12 @@ export const TimeWidget: React.FC<{
         alignItems: "center",
         backgroundColor: "fileInput.main",
         borderRadius: ".3rem",
-        fontSize: props.small ? ".8rem" : ".9rem",
-        color: "text.light",
+        fontSize: deviceWrapper(".6rem", ".8rem"),
+        color: "text.secondary",
         p: ".2rem",
         pt: ".1rem",
         pb: ".1rem",
-        ml: ".5rem",
+        ml: deviceWrapper(".2rem", ".5rem"),
         border: "1px solid",
         borderColor: "border.main",
       }}
@@ -101,7 +111,7 @@ const AssetCard: React.FC<IAssetCard> = (props) => {
       <Box>
         {props.amount} {props.ticker}
       </Box>
-      <Box sx={{ fontSize: ".7rem", color: "text.light" }}>
+      <Box sx={{ fontSize: ".7rem", color: "text.secondary" }}>
         {percentage(props.percentage, 0)} ({props.total})
       </Box>
     </Box>
@@ -156,7 +166,7 @@ const FinancialSummary: React.FC = () => {
             display: "inline",
             ml: ".3rem",
             fontSize: ".8rem",
-            color: "text.light",
+            color: "text.secondary",
           }}
         >
           (In 8 currencies)

@@ -23,7 +23,7 @@ export const Header: React.FC<{
             ? "1.1rem"
             : "1rem",
         fontWeight: 500,
-        color: "primary.text",
+        color: "text.primary",
       }}
     >
       {props.title}
@@ -44,7 +44,7 @@ export const Header: React.FC<{
               : props.small === undefined
               ? "1.1rem"
               : "1rem",
-          color: "primary.text",
+          color: "text.primary",
           mb: props.mb === undefined ? ".5rem" : props.mb,
         }}
       >
@@ -65,7 +65,7 @@ export const CapsInfo: React.FC<{
     <Box
       sx={{
         width: "100%",
-        color: "text.main",
+        color: "text.primary",
         opacity: ".8",
         fontSize:
           props.fontSize === undefined
@@ -89,7 +89,7 @@ export const Subtitle: React.FC<{ subtitle: string; small?: boolean }> = (
     <Box
       sx={{
         width: "100%",
-        color: "text.light",
+        color: "text.secondary",
         fontSize: props.small
           ? deviceStruct(".7rem", ".7rem", ".8rem", ".8rem", ".8rem")
           : deviceStruct(".7rem", ".7rem", ".9rem", ".9rem", ".9rem"),
@@ -109,7 +109,7 @@ export const Subheader: React.FC<{
   return (
     <Box
       sx={{
-        color: "primary.text",
+        color: "text.primary",
         fontSize: props.small
           ? deviceStruct(".8rem", ".8rem", ".9rem", ".9rem", ".9rem")
           : deviceStruct("1.05rem", "1.05rem", "1.1rem", "1.1rem", "1.1rem"),
@@ -204,7 +204,7 @@ export const LearnMore: React.FC<{
                   sx={{
                     p: ".5rem",
                     m: 0,
-                    color: "text.main",
+                    color: "text.primary",
                     width: "25rem",
                     fontSize: "1rem",
                     fontWeight: 400,
@@ -214,13 +214,13 @@ export const LearnMore: React.FC<{
                   <Box
                     sx={{
                       fontSize: ".9rem",
-                      color: "text.light",
+                      color: "text.secondary",
                       width: "100%",
                     }}
                   >
                     {props.tooltipText}
                   </Box>
-                  <Box sx={{ width: "100%", mt: ".1rem", display: "flex" }}>
+                  <Box sx={{ width: "100%", display: "flex" }}>
                     <Link href={props.tooltipLink} passHref>
                       <a target="_blank" style={{ textDecoration: "none" }}>
                         <Button size="small">Learn More</Button>
@@ -258,7 +258,7 @@ export const LearnMore: React.FC<{
             left: 0,
             width: "100vw",
             height: "100vh",
-            zIndex: 100,
+            zIndex: 1000,
             backgroundColor: "black",
             opacity: ".8",
           }}

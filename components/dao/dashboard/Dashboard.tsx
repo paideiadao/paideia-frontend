@@ -40,7 +40,7 @@ const Dashboard: React.FC = () => {
           alignItems: "flex-start",
         }}
       >
-        <Box sx={{ width: deviceWrapper("100%", "70%"), p: "1rem", pt: 0 }}>
+        <Box sx={{ width: deviceWrapper("100%", "70%"), p: ".5rem", pt: 0 }}>
           <Box
             sx={{
               width: "100%",
@@ -54,12 +54,12 @@ const Dashboard: React.FC = () => {
                 position: "relative",
                 display: "flex",
                 flexDirection: "column",
-                fontSize: "1rem",
+                fontSize: deviceWrapper(".8rem", "1rem"),
                 color: "white",
                 backgroundImage: `url(${AnnouncementBackground.src})`,
                 backgroundSize: "100% 100%",
                 width: deviceWrapper("90%", "60%"),
-                height: "13.5rem",
+                height: "12rem",
                 mr: "1rem",
               }}
             >
@@ -80,7 +80,7 @@ const Dashboard: React.FC = () => {
                     bottom: "1rem",
                     width: "55%",
                     color:
-                      themeContext.theme === LightTheme ? "white" : "black",
+                      themeContext.theme === LightTheme ? "black" : "white",
                   }}
                 >
                   <Box sx={{ mt: "4rem" }}>
@@ -93,11 +93,12 @@ const Dashboard: React.FC = () => {
                       fontSize: ".8rem",
                       mt: ".5rem",
                       color:
-                        themeContext.theme === LightTheme ? "black" : "white",
+                        themeContext.theme === LightTheme ? "white" : "black",
                       backgroundColor: "primary.light",
                     }}
+                    endIcon={<ArrowForwardIcon />}
                   >
-                    Read More <ArrowForwardIcon sx={{ ml: ".3rem" }} />
+                    Read More
                   </Button>
                 </Box>
               </Box>
@@ -108,12 +109,12 @@ const Dashboard: React.FC = () => {
                 flexDirection: "column",
                 pl: "1rem",
                 width: deviceWrapper("90%", "40%"),
-                fontSize: "1rem",
+                fontSize: deviceWrapper(".8rem", "1rem"),
                 color: "white",
                 justifyContent: "flex-start",
                 backgroundImage: `url(${ReadingBackground.src})`,
                 backgroundSize: "100% 100%",
-                height: "12.5rem",
+                height: "11rem",
                 mt: "1.3rem",
                 position: "relative",
               }}
@@ -140,7 +141,7 @@ const Dashboard: React.FC = () => {
                     width: "90%",
                     left: "1rem",
                     color:
-                      themeContext.theme === LightTheme ? "white" : "black",
+                      themeContext.theme === LightTheme ? "black" : "white",
                   }}
                 >
                   <Box sx={{ mt: "3rem" }}>
@@ -153,10 +154,11 @@ const Dashboard: React.FC = () => {
                       fontSize: ".8rem",
                       mt: ".5rem",
                       color:
-                        themeContext.theme === LightTheme ? "black" : "white",
+                        themeContext.theme === LightTheme ? "white" : "black",
                     }}
+                    endIcon={<ArrowForwardIcon />}
                   >
-                    Visit Medium <ArrowForwardIcon sx={{ ml: ".3rem" }} />
+                    Visit Medium
                   </Button>
                 </Box>
               </Box>

@@ -3,7 +3,7 @@ import { ThemeContext, IThemeContext } from "../../lib/ThemeContext";
 import { DarkTheme, LightTheme } from "../../theme/theme";
 import { FormGroup, FormControlLabel, Switch } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { deviceStruct } from "./Style";
+import { deviceStruct, deviceWrapper } from "./Style";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -55,7 +55,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 const DarkSwitch: React.FC = () => {
   const globalContext = React.useContext<IThemeContext>(ThemeContext);
   return (
-    <FormGroup>
+    <FormGroup sx={{ display: deviceWrapper("none", "block") }}>
       <FormControlLabel
         control={
           <MaterialUISwitch

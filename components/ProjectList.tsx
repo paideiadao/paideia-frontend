@@ -16,17 +16,17 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-  Dialog
+  Dialog,
 } from "@mui/material";
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { useTheme } from "@mui/material/styles";
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import StarIcon from "@mui/icons-material/Star";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { DarkTheme } from "@theme/theme";
-import SearchIcon from '@mui/icons-material/Search';
-import FilterOptions from '@components/FilterOptions'
-import { SxProps } from '@mui/material';
+import SearchIcon from "@mui/icons-material/Search";
+import FilterOptions from "@components/FilterOptions";
+import { SxProps } from "@mui/material";
 
 const DaoCard = ({ dao }) => {
   return (
@@ -43,10 +43,16 @@ const DaoCard = ({ dao }) => {
         justifyContent="space-between"
         alignItems="flex-start"
       >
-        <Grid item sx={{ textAlign: 'left' }}>
+        <Grid item sx={{ textAlign: "left" }}>
           {dao?.category && (
-
-            <Box sx={{ position: 'absolute', top: '-4px', right: '-6px', fontSize: '12px' }}>
+            <Box
+              sx={{
+                position: "absolute",
+                top: "-4px",
+                right: "-6px",
+                fontSize: "12px",
+              }}
+            >
               <Chip
                 icon={<StarIcon sx={{ fontSize: 16 }} />}
                 label={dao.category}
@@ -67,22 +73,23 @@ const DaoCard = ({ dao }) => {
             sx={{
               width: 80,
               height: 80,
-              mx: 'auto',
-              mb: '12px',
-              border: '1px solid #000',
-              boxShadow: '0 0 0 2px #666',
+              mx: "auto",
+              mb: "12px",
+              border: "1px solid #000",
+              boxShadow: "0 0 0 2px #666",
             }}
             alt={dao.name}
           />
-          <Typography sx={{
-            fontWeight: "700",
-            lineHeight: "42px",
-            mb: "24px",
-            color: "#fff",
-            fontFamily: '"Space Grotesk", sans-serif',
-            fontSize: "34px",
-            letterSpacing: '0.225543px'
-          }}
+          <Typography
+            sx={{
+              fontWeight: "700",
+              lineHeight: "42px",
+              mb: "24px",
+              color: "#fff",
+              fontFamily: '"Space Grotesk", sans-serif',
+              fontSize: "34px",
+              letterSpacing: "0.225543px",
+            }}
           >
             {dao.name}
           </Typography>
@@ -114,7 +121,7 @@ interface ISortByProps {
 }
 
 const SortBy: FC<ISortByProps> = ({ sx }) => {
-  const [sortOption, setSortOption] = React.useState('');
+  const [sortOption, setSortOption] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
     setSortOption(event.target.value as string);
@@ -133,14 +140,14 @@ const SortBy: FC<ISortByProps> = ({ sx }) => {
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        <MenuItem value={'oldest'}>Oldest</MenuItem>
-        <MenuItem value={'newest'}>Newest</MenuItem>
-        <MenuItem value={'most members'}>Most Members</MenuItem>
-        <MenuItem value={'least members'}>Least Members</MenuItem>
+        <MenuItem value={"oldest"}>Oldest</MenuItem>
+        <MenuItem value={"newest"}>Newest</MenuItem>
+        <MenuItem value={"most members"}>Most Members</MenuItem>
+        <MenuItem value={"least members"}>Least Members</MenuItem>
       </Select>
     </FormControl>
-  )
-}
+  );
+};
 
 interface ISearchBar {
   sx?: SxProps;
@@ -160,8 +167,8 @@ const SearchBar: FC<ISearchBar> = ({ sx }) => {
         label="Search"
       />
     </FormControl>
-  )
-}
+  );
+};
 
 interface IDaosProps {
   name: string;
@@ -216,14 +223,13 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
   return (
     <Dialog
       sx={{
-        '& .MuiDialog-paper': {
-          background: 'rgb(14, 20, 33)',
-          width: '100%',
-          maxWidth: '400px',
-          maxHeight: '80vh'
-        }
+        "& .MuiDialog-paper": {
+          background: "rgb(14, 20, 33)",
+          width: "100%",
+          maxWidth: "400px",
+          maxHeight: "80vh",
+        },
       }}
-      
       maxWidth="xs"
       TransitionProps={{ onEntering: handleEntering }}
       open={open}
@@ -231,7 +237,7 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
     >
       <DialogTitle>Filter &amp; Sort</DialogTitle>
       <DialogContent dividers>
-        <SortBy sx={{ mb: '24px' }} />
+        <SortBy sx={{ mb: "24px" }} />
         <FilterOptions />
       </DialogContent>
       <DialogActions>
@@ -244,10 +250,9 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
   );
 }
 
-
 const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
   const [filterDialogOpen, setFilterDialogOpen] = React.useState(false);
-  const [filterDialogvalue, setFilterDialogValue] = React.useState('Dione');
+  const [filterDialogvalue, setFilterDialogValue] = React.useState("Dione");
 
   const handleDialogClick = () => {
     setFilterDialogOpen(true);
@@ -261,17 +266,20 @@ const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
     }
   };
 
-
   const theme = useTheme();
 
   return (
     <Grid container sx={sx}>
-      <Grid item lg={3} sx={{ pr: '24px', display: { xs: 'none', lg: 'block' } }}>
+      <Grid
+        item
+        lg={3}
+        sx={{ pr: "24px", display: { xs: "none", lg: "block" } }}
+      >
         <FilterOptions />
       </Grid>
-      <Grid item lg={9} xs={12}  sx={{ textAlign: 'center' }}>
+      <Grid item lg={9} xs={12} sx={{ textAlign: "center" }}>
         {useMediaQuery(theme.breakpoints.up("lg")) ? (
-          <Grid container sx={{ mb: '32px' }} spacing={3}>
+          <Grid container sx={{ mb: "32px" }} spacing={3}>
             <Grid item md={7}>
               <SearchBar />
             </Grid>
@@ -280,17 +288,17 @@ const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
             </Grid>
           </Grid>
         ) : (
-          <Grid
-            container
-            sx={{ mb: '32px' }}
-            spacing={3}
-            direction="row"
-          >
+          <Grid container sx={{ mb: "32px" }} spacing={3} direction="row">
             <Grid item xs>
               <SearchBar />
             </Grid>
             <Grid item xs="auto">
-              <Button sx={{ height: '100%' }} variant="outlined" aria-label="filter" onClick={handleDialogClick}>
+              <Button
+                sx={{ height: "100%" }}
+                variant="outlined"
+                aria-label="filter"
+                onClick={handleDialogClick}
+              >
                 <FilterAltIcon />
               </Button>
               <ConfirmationDialogRaw
@@ -302,20 +310,21 @@ const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
               />
             </Grid>
           </Grid>
-
         )}
-        <Grid container spacing={4} columns={{ xs: 1, sm: 2, sm3: 3, md: 3, md2: 4, lg: 3 }} sx={{ mb: '24px' }}>
+        <Grid
+          container
+          spacing={4}
+          columns={{ xs: 1, sm: 2, sm3: 3, md: 3, md2: 4, lg: 3 }}
+          sx={{ mb: "24px" }}
+        >
           {daos.map((dao, i) => (
-            <Grid key={i} item xs={1} sx={{ textAlign: 'center' }}>
+            <Grid key={i} item xs={1} sx={{ textAlign: "center" }}>
               <DaoCard dao={dao} />
             </Grid>
           ))}
         </Grid>
-        <Button variant="contained">
-          Load more...
-        </Button>
+        <Button variant="contained">Load more...</Button>
       </Grid>
-
     </Grid>
   );
 };

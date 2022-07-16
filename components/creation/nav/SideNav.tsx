@@ -59,7 +59,7 @@ export default function Nav(props) {
       </Box>
       <Box
         sx={{
-          position: "fixed",
+          position: "sticky",
           top: "0",
           ml: deviceStruct("0", "0", "15rem", "15rem", "15rem"),
           backgroundColor: "backgroundColor.main",
@@ -83,7 +83,7 @@ export default function Nav(props) {
             pr: 2,
             width: "100%",
             height: "3.5rem",
-            color: "primary.text",
+            color: "text.primary",
           }}
         >
           <Box

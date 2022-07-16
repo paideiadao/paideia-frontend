@@ -19,7 +19,7 @@ const Review: React.FC = () => {
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
-        color: "primary.text",
+        color: "text.primary",
       }}
     >
       <Box>

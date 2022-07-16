@@ -23,9 +23,13 @@ import RedditIcon from "@mui/icons-material/Reddit";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { deviceStruct } from "@components/utilities/Style";
+import { IConfigContext } from "@lib/dao/dao-config/ConfigContext";
 
-const Footer: React.FC = () => {
-  let globalContext = React.useContext(GlobalContext);
+const Footer: React.FC<{ context?: IConfigContext }> = (props) => {
+  let globalContext =
+    props.context === undefined
+      ? React.useContext(GlobalContext)
+      : props.context;
 
   let data = globalContext.api.data.design;
   let setData = (data: any) => {
@@ -41,6 +45,7 @@ const Footer: React.FC = () => {
         borderTopColor: "border.main",
         pt: "1rem",
         mt: "1rem",
+        width: "100%",
       }}
     >
       <Box sx={{ width: "100%", mb: "1rem" }}>
@@ -63,7 +68,7 @@ const Footer: React.FC = () => {
         }
       />
       {data.footer.show && (
-        <Box sx={{ width: "100%", color: "primary.text" }}>
+        <Box sx={{ width: "100%", color: "text.primary" }}>
           <TextField
             label="Main text"
             value={data.footer.mainText}
@@ -146,7 +151,7 @@ export const SocialRow: React.FC<{
         display: "flex",
         alignItems: "center",
         width: "100%",
-        flexWrap: deviceStruct("wrap", "wrap", "", "", ""),
+        flexWrap: deviceStruct("wrap", "wrap", "nowrap", "nowrap", "nowrap"),
       }}
     >
       <FormControl
@@ -195,7 +200,7 @@ export const SocialRow: React.FC<{
               }
             }
           }}
-          sx={{ height: "100%", color: "primary.text" }}
+          sx={{ height: "100%", color: "text.primary" }}
           onChange={(e: any) =>
             props.set({ ...props.data, socialNetwork: e.target.value })
           }
@@ -232,19 +237,19 @@ export const SocialRow: React.FC<{
       <Box
         sx={{
           width: "13%",
-          display: deviceStruct("block", "block", "none", "none", "none"),
+          display: deviceStruct("flex", "flex", "none", "none", "none"),
           justifyContent: "center",
         }}
       >
         <IconButton color="error" onClick={() => props.delete()}>
-          <DeleteIcon />
+          <DeleteIcon color="error" />
         </IconButton>
       </Box>
       <TextField
         label="Address"
         sx={{
-          width: deviceStruct("100%", "100%", "50%", "50%", "50%"),
-          mt: deviceStruct(".5rem", ".5rem", "", "", ""),
+          width: deviceStruct("100%", "100%", "60%", "60%", "60%"),
+          mt: deviceStruct(".5rem", ".5rem", "0", "0", "0"),
         }}
         value={props.data.address}
         onChange={(e: any) =>
@@ -254,12 +259,12 @@ export const SocialRow: React.FC<{
       <Box
         sx={{
           width: "13%",
-          display: deviceStruct("none", "none", "block", "block", "block"),
+          display: deviceStruct("none", "none", "flex", "flex", "flex"),
           justifyContent: "center",
         }}
       >
         <IconButton color="error" onClick={() => props.delete()}>
-          <DeleteIcon />
+          <DeleteIcon color="error" />
         </IconButton>
       </Box>
     </Box>

@@ -23,14 +23,14 @@ function CircularProgressWithLabel(
             variant="determinate"
             {...props}
             size="4rem"
-            sx={{ position: "relative", zIndex: 2 }}
+            sx={{ position: "relative", zIndex: 2, color: "primary.main" }}
             value={props.value * 20}
             // color="circle"
           />
           <CircularProgress
             variant="determinate"
             {...props}
-            sx={{ position: "absolute" }}
+            sx={{ position: "absolute", color: "text.secondary" }}
             size="4rem"
             value={100}
             // color="circleBackground"

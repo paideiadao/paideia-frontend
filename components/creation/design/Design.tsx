@@ -8,7 +8,14 @@ import Banner from "./Banner";
 import Footer from "./Footer";
 import { deviceStruct } from "@components/utilities/Style";
 
-export const themes = [
+interface ITheme {
+  id: number;
+  label: string;
+  colorTop: string;
+  colorBottom: string;
+}
+
+export const themes: ITheme[] = [
   {
     id: 1,
     label: "Paideia/Dark",
@@ -59,6 +66,90 @@ export const themes = [
   },
 ];
 
+export const ThemeCard: React.FC<{
+  set: Function;
+  i: ITheme;
+  theme: number;
+}> = (props) => {
+  return (
+    <Paper
+      onClick={() => props.set(props.i.id)}
+      elevation={0}
+      sx={{
+        width: deviceStruct("44%", "44%", "22%", "22%", "22%"),
+        cursor: "pointer",
+        m: ".5rem",
+        p: props.i.id === props.theme ? ".2rem" : 0,
+        backgroundColor: "transparent",
+        backgroundImage: "none",
+        borderRadius: ".8rem",
+        border: "1px solid",
+        borderColor: props.i.id === props.theme ? "#42A5F5" : "transparent",
+      }}
+    >
+      <Paper
+        elevation={0}
+        sx={{
+          backgroundColor: "fileInput.outer",
+          border: "1px solid",
+          borderColor: "border.main",
+          m: props.i.id === props.theme ? "0rem" : ".2rem",
+          borderRadius: ".6rem",
+        }}
+      >
+        <Box
+          sx={{
+            backgroundColor: props.i.colorBottom,
+            width: "100%",
+            height: "5rem",
+            borderTopLeftRadius: ".6rem",
+            borderTopRightRadius: ".6rem",
+            position: "relative",
+          }}
+        >
+          {props.i.id === props.theme && (
+            <Box sx={{ position: "absolute", bottom: 5, right: 5 }}>
+              <Avatar
+                sx={{
+                  backgroundColor: "fileInput.outer",
+                  border: "1px solid",
+                  borderColor: "#42A5F5",
+                }}
+              >
+                <CheckIcon color="primary" />
+              </Avatar>
+            </Box>
+          )}
+          <Box
+            sx={{
+              width: "100%",
+              height: "100%",
+              backgroundColor: props.i.colorTop,
+              clipPath: "polygon(0 0, 100% 0, 0 100%)",
+              borderTopLeftRadius: ".6rem",
+              borderTopRightRadius: ".6rem",
+            }}
+          ></Box>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "center",
+            pb: "1rem",
+            pt: "1rem",
+            borderTop: "1px solid",
+            borderTopColor: "border.main",
+            fontSize: ".9rem",
+          }}
+        >
+          {props.i.label}
+        </Box>
+      </Paper>
+    </Paper>
+  );
+};
+
 const Design: React.FC = (props) => {
   let globalContext = React.useContext(GlobalContext);
 
@@ -102,83 +193,7 @@ const Design: React.FC = (props) => {
       </Box>
       <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center" }}>
         {themes.map((i: any) => {
-          return (
-            <Paper
-              onClick={() => setTheme(i.id)}
-              elevation={0}
-              sx={{
-                width: deviceStruct("44%", "44%", "22%", "22%", "22%"),
-                cursor: "pointer",
-                m: ".5rem",
-                p: i.id === theme ? ".2rem" : 0,
-                backgroundColor: "transparent",
-                backgroundImage: "none",
-                borderRadius: ".8rem",
-                border: "1px solid",
-                borderColor: i.id === theme ? "#42A5F5" : "transparent",
-              }}
-            >
-              <Paper
-                elevation={0}
-                sx={{
-                  backgroundColor: "fileInput.outer",
-                  border: "1px solid",
-                  borderColor: "border.main",
-                  m: i.id === theme ? "0rem" : ".2rem",
-                  borderRadius: ".6rem",
-                }}
-              >
-                <Box
-                  sx={{
-                    backgroundColor: i.colorBottom,
-                    width: "100%",
-                    height: "5rem",
-                    borderTopLeftRadius: ".6rem",
-                    borderTopRightRadius: ".6rem",
-                    position: "relative",
-                  }}
-                >
-                  {i.id === theme && (
-                    <Box sx={{ position: "absolute", bottom: 5, right: 5 }}>
-                      <Avatar
-                        sx={{
-                          backgroundColor: "fileInput.outer",
-                          border: "1px solid",
-                          borderColor: "#42A5F5",
-                        }}
-                      >
-                        <CheckIcon color="primary" />
-                      </Avatar>
-                    </Box>
-                  )}
-                  <Box
-                    sx={{
-                      width: "100%",
-                      height: "100%",
-                      backgroundColor: i.colorTop,
-                      clipPath: "polygon(0 0, 100% 0, 0 100%)",
-                      borderTopLeftRadius: ".6rem",
-                      borderTopRightRadius: ".6rem",
-                    }}
-                  ></Box>
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    width: "100%",
-                    justifyContent: "center",
-                    pb: "1rem",
-                    pt: "1rem",
-                    borderTop: "1px solid",
-                    borderTopColor: "border.main",
-                    fontSize: ".9rem",
-                  }}
-                >
-                  {i.label}
-                </Box>
-              </Paper>
-            </Paper>
-          );
+          return <ThemeCard set={setTheme} theme={theme} i={i} />;
         })}
       </Box>
       <Logo />
