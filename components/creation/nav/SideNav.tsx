@@ -59,7 +59,7 @@ export default function Nav(props) {
       </Box>
       <Box
         sx={{
-          position: "fixed",
+          position: "sticky",
           top: "0",
           ml: deviceStruct("0", "0", "15rem", "15rem", "15rem"),
           backgroundColor: "backgroundColor.main",
