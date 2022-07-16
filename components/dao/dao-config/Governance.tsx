@@ -48,7 +48,6 @@ const Governance: React.FC = () => {
     <Support/>
     <Warning title={"Only for single-choice voting"} subtitle={"Support will only apply to single-choice voting. It determines the percentage of users that need to agree for a proposal to be approved. Cant be set to less than 51%."}/>
       <Quorum/>
-      <Divider m=".5rem" />
     </>
   );
 };

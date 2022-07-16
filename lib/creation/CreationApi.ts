@@ -31,7 +31,7 @@ export interface IFile {
   url: string;
 }
 
-interface IDesign {
+export interface IDesign {
   theme: number;
   logo: IFile;
   banner: {

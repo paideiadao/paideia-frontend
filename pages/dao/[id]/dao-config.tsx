@@ -1,5 +1,6 @@
 import { Header } from "@components/creation/utilities/HeaderComponents";
 import BasicInformation from "@components/dao/dao-config/BasicInformation";
+import Design from "@components/dao/dao-config/Design";
 import Governance from "@components/dao/dao-config/Governance";
 import Layout from "@components/dao/Layout";
 import Divider from "@components/utilities/Divider";
@@ -36,6 +37,22 @@ const DaoConfig: React.FC = () => {
       currency: "",
       supportNeeded: 50,
     },
+    design: {
+      logo: {
+        url: "",
+        file: undefined,
+      },
+      theme: 1,
+      banner: {
+        show: false,
+        data: { url: "", file: undefined },
+      },
+      footer: {
+        show: false,
+        mainText: "",
+        links: [],
+      },
+    },
   });
 
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
@@ -62,6 +79,8 @@ const DaoConfig: React.FC = () => {
         <BasicInformation />
         <Divider />
         <Governance />
+        <Divider />
+        <Design/>
       </Layout>
     </ConfigContext.Provider>
   );

@@ -1,4 +1,4 @@
-import { IBasicInformation, IGovernance } from "@lib/creation/CreationApi";
+import { IBasicInformation, IDesign, IGovernance } from "@lib/creation/CreationApi";
 import { AbstractApi, IAlert } from "@lib/utilities";
 import { IDiscussion } from "@pages/dao/[id]/discussion/create";
 import { IConfigContext } from "./ConfigContext";
@@ -6,6 +6,7 @@ import { IConfigContext } from "./ConfigContext";
 export interface IConfigData {
   basicInformation: IBasicInformation;
   governance: IGovernance;
+  design: IDesign
 }
 
 export default class ConfigApi extends AbstractApi {

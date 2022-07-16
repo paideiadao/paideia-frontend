@@ -23,9 +23,10 @@ import RedditIcon from "@mui/icons-material/Reddit";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { deviceStruct } from "@components/utilities/Style";
+import { IConfigContext } from "@lib/dao/dao-config/ConfigContext";
 
-const Footer: React.FC = () => {
-  let globalContext = React.useContext(GlobalContext);
+const Footer: React.FC<{context?: IConfigContext}> = (props) => {
+  let globalContext = props.context === undefined ? React.useContext(GlobalContext) : props.context;
 
   let data = globalContext.api.data.design;
   let setData = (data: any) => {
