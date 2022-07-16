@@ -80,7 +80,7 @@ const Dashboard: React.FC = () => {
                     bottom: "1rem",
                     width: "55%",
                     color:
-                      themeContext.theme === LightTheme ? "white" : "black",
+                      themeContext.theme === LightTheme ? "black" : "white",
                   }}
                 >
                   <Box sx={{ mt: "4rem" }}>
@@ -93,7 +93,7 @@ const Dashboard: React.FC = () => {
                       fontSize: ".8rem",
                       mt: ".5rem",
                       color:
-                        themeContext.theme === LightTheme ? "black" : "white",
+                        themeContext.theme === LightTheme ? "white" : "black",
                       backgroundColor: "primary.light",
                     }}
                   >
@@ -140,7 +140,7 @@ const Dashboard: React.FC = () => {
                     width: "90%",
                     left: "1rem",
                     color:
-                      themeContext.theme === LightTheme ? "white" : "black",
+                      themeContext.theme === LightTheme ? "black" : "white",
                   }}
                 >
                   <Box sx={{ mt: "3rem" }}>
@@ -153,7 +153,7 @@ const Dashboard: React.FC = () => {
                       fontSize: ".8rem",
                       mt: ".5rem",
                       color:
-                        themeContext.theme === LightTheme ? "black" : "white",
+                        themeContext.theme === LightTheme ? "white" : "black",
                     }}
                   >
                     Visit Medium <ArrowForwardIcon sx={{ ml: ".3rem" }} />
