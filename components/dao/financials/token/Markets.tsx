@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import * as React from "react";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { currencyFormatter } from "@components/utilities/currency";
+import { deviceWrapper } from "@components/utilities/Style";
 
 const columns: GridColDef[] = [
   {
@@ -107,7 +108,11 @@ const Markets: React.FC = () => {
         disableSelectionOnClick
         autoHeight
         sx={{
-          fontSize: ".8rem", ml: '-1rem', mr: '-1rem', pl: '.5rem', pr: '.25rem',
+          fontSize: ".8rem",
+          ml: deviceWrapper("-1rem", "0"),
+          mr: deviceWrapper("-1rem", "0"),
+          pl: deviceWrapper(".25rem", "0"),
+          pr: deviceWrapper(".25rem", "0"),
           "& .MuiDataGrid-cell": {
             backgroundColor: "fileInput.outer",
             outline: "none",

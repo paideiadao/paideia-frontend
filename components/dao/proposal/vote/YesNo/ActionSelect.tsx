@@ -2,6 +2,7 @@ import {
   Header,
   Subtitle,
 } from "@components/creation/utilities/HeaderComponents";
+import { deviceWrapper } from "@components/utilities/Style";
 import { Box, Button } from "@mui/material";
 import * as React from "react";
 import { IActionType } from "./AddAction";
@@ -19,7 +20,7 @@ const ActionSelection: React.FC<IActionType> = (props) => {
     >
       <Box
         sx={{
-          width: "8%",
+          width: deviceWrapper("20%", "8%"),
           alignItems: "center",
           justifyContent: "center",
           color: "primary.main",

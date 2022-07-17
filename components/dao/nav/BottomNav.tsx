@@ -3,8 +3,11 @@ import * as React from "react";
 import RedditIcon from "@mui/icons-material/Reddit";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { deviceWrapper } from "@components/utilities/Style";
+import { useRouter } from "next/router";
 
 const BottomNav: React.FC = () => {
+  const router = useRouter();
+  console.log(router);
   return (
     <Box
       sx={{
@@ -17,7 +20,13 @@ const BottomNav: React.FC = () => {
         display: "flex",
         alignItems: "center",
         mb: "-1rem",
-        pb: deviceWrapper(".5rem", ".75rem"),
+        pb:
+          router === undefined
+            ? deviceWrapper(".5rem", ".75rem")
+            : router.pathname.includes("notifications") &&
+              !router.pathname.includes("edit")
+            ? "4rem"
+            : deviceWrapper(".5rem", ".75rem"),
         pt: deviceWrapper(".5rem", ".75rem"),
         flexDirection: deviceWrapper("column", "row"),
       }}

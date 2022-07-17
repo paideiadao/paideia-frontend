@@ -17,6 +17,8 @@ import { modalBackground } from "@components/utilities/modalBackground";
 import LoadingButton from "@mui/lab/LoadingButton";
 import PublishIcon from "@mui/icons-material/Publish";
 import { IComment } from "@components/dao/discussion/Comments";
+import Layout from "@components/dao/Layout";
+import { deviceWrapper } from "@components/utilities/Style";
 
 export interface IDiscussion {
   name: string;
@@ -55,28 +57,21 @@ const CreateDiscussion: React.FC = () => {
 
   return (
     <DiscussionContext.Provider value={{ api }}>
-      <Box
-        sx={{
-          p: "1.5rem",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <Box sx={{ width: "70%" }}>
-          <CreateHeader type="discussion" />
+      <Layout>
+      <CreateHeader type="discussion" />
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               width: "100%",
               border: "1px solid",
-              borderColor: "border.main",
-              backgroundColor: "fileInput.outer",
+              borderColor: "primary.main",
+              backgroundColor: "fileInput.main",
               pl: "0",
               borderRadius: ".3rem",
               pt: ".75rem",
-              pb: ".75rem",
+              pb: deviceWrapper("0", ".75rem"),
+              flexDirection: deviceWrapper("column", "row"),
             }}
           >
             <Box
@@ -89,7 +84,8 @@ const CreateDiscussion: React.FC = () => {
             >
               <ChatIcon sx={{ fontSize: "2rem" }} color="primary" />
             </Box>
-            <Box sx={{ width: "75%", fontSize: "1.3rem", fontWeight: 400 }}>
+            <Box sx={{ width: "75%", fontSize: "1.3rem", fontWeight: 400,               textAlign: deviceWrapper("center", "left"),
+ }}>
               Create a discussion
               <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
                 Get feedback from other users on a specific subject before
@@ -98,14 +94,30 @@ const CreateDiscussion: React.FC = () => {
               </Box>
             </Box>
             <Box
-              sx={{ display: "flex", width: "15%", justifyContent: "center" }}
-            >
-              <Link
-                href={id === undefined ? "/dao/create" : `/dao/${id}/create`}
+            sx={{
+              display: "flex",
+              width: deviceWrapper("100%", "15%"),
+              justifyContent: "center",
+            }}
+          >
+            <Link href={id === undefined ? "/dao/create" : `/dao/${id}/create`}>
+              <Button
+                size="small"
+                sx={{
+                  mt: deviceWrapper(".5rem", "0"),
+                  borderTop: deviceWrapper("1px solid", "0"),
+                  borderColor: "border.main",
+                  width: deviceWrapper("100%", "15%"),
+                  pt: deviceWrapper(".5rem", "0"),
+                  pb: deviceWrapper(".5rem", "0"),
+                  borderTopLeftRadius: deviceWrapper("0", ".5rem"),
+                  borderTopRightRadius: deviceWrapper("0", ".5rem"),
+                }}
               >
-                <Button size="small">Change</Button>
-              </Link>
-            </Box>
+                Change
+              </Button>
+            </Link>
+          </Box>
           </Box>
           <Box
             sx={{
@@ -144,8 +156,7 @@ const CreateDiscussion: React.FC = () => {
               </Button>
             </Box>
           </Box>
-        </Box>
-      </Box>
+
       <Modal
         open={publish}
         onClose={() => setPublish(false)}
@@ -187,6 +198,8 @@ const CreateDiscussion: React.FC = () => {
           </Box>
         </Box>
       </Modal>
+      </Layout>
+        
     </DiscussionContext.Provider>
   );
 };

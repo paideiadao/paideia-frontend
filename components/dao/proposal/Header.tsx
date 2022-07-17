@@ -20,8 +20,12 @@ const CreateHeader: React.FC<{ type?: string }> = (props) => {
             id === undefined ? "/dao/proposals/all" : `/dao/${id}/proposals/all`
           }
         >
-          <Button sx={{ mb: "1rem" }}>
-            <ArrowBackIcon sx={{ mr: ".3rem" }} />
+          <Button
+            size="small"
+            sx={{ mb: "1rem" }}
+            startIcon={<ArrowBackIcon />}
+            variant="outlined"
+          >
             Back
           </Button>
         </Link>

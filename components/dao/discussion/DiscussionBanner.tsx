@@ -2,6 +2,7 @@ import { Avatar, Box, Button, Paper } from "@mui/material";
 import ImageIcon from "@mui/icons-material/Image";
 import Image from "next/image";
 import { bytesToSize } from "@lib/creation/Utilities";
+import { deviceWrapper } from "@components/utilities/Style";
 
 const DiscussionBanner: React.FC<{
   file: any;
@@ -14,7 +15,7 @@ const DiscussionBanner: React.FC<{
     <Paper
       elevation={0}
       sx={{
-        p: "1rem",
+        p: deviceWrapper("0", "1rem"),
         backgroundColor: "fileInput.outer",
         border: "1px solid",
         borderColor: "border.main",
@@ -52,16 +53,15 @@ const DiscussionBanner: React.FC<{
               />
               <Box
                 sx={{
-                  height: "3rem",
                   pl: "1rem",
                   pr: "1rem",
                   display: "flex",
                   width: "100%",
                 }}
               >
-                <Box sx={{ mt: ".2rem" }}>
+                <Box sx={{ mt: ".2rem", fontSize: deviceWrapper('.8rem', ".1rem") }}>
                   {props.file.name}
-                  <Box sx={{ color: "text.secondary", fontSize: ".9rem" }}>
+                  <Box sx={{ color: "text.secondary", fontSize: deviceWrapper('.7rem', ".9rem") }}>
                     {props.file === undefined || props.file === -1
                       ? "File Max size 1Mb. Dimensions 48px by 48px."
                       : bytesToSize(props.file.size)}
@@ -72,7 +72,7 @@ const DiscussionBanner: React.FC<{
                   <Button
                     variant="contained"
                     sx={{ mt: ".5rem" }}
-                    size="medium"
+                    size="small"
                     onClick={() => {
                       const fileInput = document.getElementById(props.id);
                       fileInput.click();
@@ -114,7 +114,7 @@ const DiscussionBanner: React.FC<{
             <Box
               sx={{
                 color: "text.primary",
-                fontSize: "1rem",
+                fontSize: deviceWrapper(".8rem", "1rem"),
                 textAlign: "center",
                 mt: ".5rem",
               }}
@@ -138,7 +138,13 @@ const DiscussionBanner: React.FC<{
                 </Box>
               )}
             </Box>
-            <Box sx={{ color: "text.secondary", textAlign: "center" }}>
+            <Box
+              sx={{
+                color: "text.secondary",
+                textAlign: "center",
+                fontSize: deviceWrapper(".7rem", "1rem"),
+              }}
+            >
               {props.file === undefined || props.file === -1
                 ? "File Max size 1Mb. Dimensions 1200px by 400px."
                 : bytesToSize(props.file.size)}

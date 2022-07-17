@@ -320,7 +320,7 @@ const Activities: React.FC = () => {
         .map((i: any, c: number) => {
           return <Activity i={i} c={c} />;
         })}
-        <Fab
+      <Fab
         color="primary"
         sx={{
           position: "fixed",

@@ -2,6 +2,7 @@ import {
   Header,
   LearnMore,
 } from "@components/creation/utilities/HeaderComponents";
+import { deviceWrapper } from "@components/utilities/Style";
 import ProposalContext, {
   IProposalContext,
 } from "@lib/dao/proposal/ProposalContext";
@@ -33,14 +34,23 @@ const GeneralInformation: React.FC = () => {
           display: "flex",
           alignItems: "center",
           mt: "1rem",
+          flexWrap: deviceWrapper("wrap", "nowrap"),
         }}
       >
         <TextField
           value={context.api.value.name}
           label="Proposal name"
-          sx={{ width: "50%", mr: "1rem" }}
+          sx={{
+            width: deviceWrapper("100%", "50%"),
+            mr: deviceWrapper("0", "1rem"),
+          }}
         />
-        <FormControl sx={{ width: "50%" }}>
+        <FormControl
+          sx={{
+            width: deviceWrapper("100%", "50%"),
+            mt: deviceWrapper("1rem", "0"),
+          }}
+        >
           <InputLabel id="category-select-label">Category</InputLabel>
           <Select
             labelId="category-select-label"

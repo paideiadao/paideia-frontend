@@ -21,6 +21,7 @@ import Warning from "@components/utilities/Warning";
 import { IOptimisticGovernance } from "@components/dao/proposal/vote/YesNo/Actions/OptimisticGovernance";
 import { IQuorum } from "@components/dao/proposal/vote/YesNo/Actions/Quorum";
 import { ISendFunds } from "@components/dao/proposal/vote/YesNo/Actions/SendFunds";
+import { deviceWrapper } from "@components/utilities/Style";
 
 export interface IProposalAction {
   name:
@@ -89,7 +90,7 @@ const CreateProposal: React.FC = () => {
 
   return (
     <ProposalContext.Provider value={{ api }}>
-      <Layout width="60%">
+      <Layout width={deviceWrapper("92%", "60%")}>
         <CreateHeader type="proposal" />
         <Box
           sx={{
@@ -97,12 +98,13 @@ const CreateProposal: React.FC = () => {
             alignItems: "center",
             width: "100%",
             border: "1px solid",
-            borderColor: "border.main",
-            backgroundColor: "fileInput.outer",
+            borderColor: "primary.main",
+            backgroundColor: "fileInput.main",
             pl: "0",
             borderRadius: ".3rem",
             pt: ".75rem",
-            pb: ".75rem",
+            pb: deviceWrapper("0", ".75rem"),
+            flexDirection: deviceWrapper("column", "row"),
           }}
         >
           <Box
@@ -115,7 +117,14 @@ const CreateProposal: React.FC = () => {
           >
             <BalanceIcon sx={{ fontSize: "2rem" }} color="primary" />
           </Box>
-          <Box sx={{ width: "75%", fontSize: "1.3rem", fontWeight: 400 }}>
+          <Box
+            sx={{
+              width: "75%",
+              fontSize: "1.3rem",
+              fontWeight: 400,
+              textAlign: deviceWrapper("center", "left"),
+            }}
+          >
             Create a proposal
             <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
               Provide users with different options to vote on, and the proposal
@@ -123,9 +132,29 @@ const CreateProposal: React.FC = () => {
               a proposal, it can't be edited or deleted.
             </Box>
           </Box>
-          <Box sx={{ display: "flex", width: "15%", justifyContent: "center" }}>
+          <Box
+            sx={{
+              display: "flex",
+              width: deviceWrapper("100%", "15%"),
+              justifyContent: "center",
+            }}
+          >
             <Link href={id === undefined ? "/dao/create" : `/dao/${id}/create`}>
-              <Button size="small">Change</Button>
+              <Button
+                size="small"
+                sx={{
+                  mt: deviceWrapper(".5rem", "0"),
+                  borderTop: deviceWrapper("1px solid", "0"),
+                  borderColor: "border.main",
+                  width: deviceWrapper("100%", "15%"),
+                  pt: deviceWrapper(".5rem", "0"),
+                  pb: deviceWrapper(".5rem", "0"),
+                  borderTopLeftRadius: deviceWrapper("0", ".5rem"),
+                  borderTopRightRadius: deviceWrapper("0", ".5rem"),
+                }}
+              >
+                Change
+              </Button>
             </Link>
           </Box>
         </Box>
@@ -160,7 +189,6 @@ const CreateProposal: React.FC = () => {
             alignItems: "center",
             width: "100%",
             mt: "1rem",
-            mb: ".5rem",
           }}
         >
           <Button variant="outlined" sx={{ width: "50%", mr: "1rem" }}>

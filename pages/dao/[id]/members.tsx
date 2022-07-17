@@ -377,7 +377,10 @@ const Members: React.FC = () => {
         >
           <MobileFilters
             close={() => setShowFilters(false)}
-            set={(filters: IFilters, value) => {setFilters(filters); setValue(value)}}
+            set={(filters: IFilters, value) => {
+              setFilters(filters);
+              setValue(value);
+            }}
             filters={filters}
           />
         </Box>
