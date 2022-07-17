@@ -13,7 +13,7 @@ import {
   Avatar,
   Link,
 } from "@mui/material";
-import Image from "next/image";
+
 import WhitepaperQuote from "@components/landing/WhitepaperQuote";
 import SectionHeading from "@components/SectionHeading";
 import RoadmapAccordion from "@components/RoadmapAccordion";
@@ -450,7 +450,7 @@ export default function About() {
                   {examples.map(({ text, icon }, i) => {
                     return (
                       <Grid item md={6} key={i} sx={{ maxWidth: "320px" }}>
-                        <Image src={icon} width={35} height={35} />
+                        <img src={icon} width={35} height={35} />
                         <Typography
                           sx={{
                             fontFamily: '"Space Grotesk", sans-serif',
@@ -526,11 +526,10 @@ export default function About() {
           </Box>
           <Box component="section" id="thesolution">
             <Box sx={{ mb: "48px" }}>
-              <Image
+              <img
                 src="/exclamation.svg"
                 height={266}
                 width={60}
-                layout="fixed"
               />
             </Box>
             <SectionHeading

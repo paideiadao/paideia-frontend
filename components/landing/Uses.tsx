@@ -13,7 +13,7 @@ import SectionTitle from "@components/SectionTitle";
 import Blockquote from "@components/Blockquote";
 import CardSlider from "@components/CardSlider";
 import { DarkTheme } from "@theme/theme";
-import Image from "next/image";
+
 
 const cardTitleStyle = {
   fontSize: "24px",
@@ -47,7 +47,7 @@ const MyCard: FC<MyCardProps> = ({ image, title, body }) => {
       }}
     >
       <CardContent>
-        <Image src={image} width={35} height={35} />
+        <img src={image} width={35} height={35} />
         <Typography sx={cardTitleStyle}>{title}</Typography>
         <Blockquote small>{body}</Blockquote>
       </CardContent>

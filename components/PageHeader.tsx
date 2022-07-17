@@ -44,13 +44,8 @@ const PageHeader: FC<IPageHeader> = ({
           ml: "-24px",
         }}
       >
-        <Image
+        <img
           src={bgUrl}
-          priority
-          layout="fill"
-          objectFit="contain"
-          objectPosition="center top"
-          quality={100}
         />
       </Box>
       <Grid

@@ -8,7 +8,7 @@ import {
   Chip,
   useMediaQuery,
 } from "@mui/material";
-import Image from "next/image";
+
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { DarkTheme, LightTheme } from "@theme/theme";
 import SectionTitle from "@components/SectionTitle";

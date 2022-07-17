@@ -1,7 +1,7 @@
 import { Avatar, Box, Button, Paper } from "@mui/material";
 import { bytesToSize } from "../../lib/creation/Utilities";
 import ImageIcon from "@mui/icons-material/Image";
-import Image from "next/image";
+
 import { deviceStruct } from "./Style";
 
 const FileBanner: React.FC<{
@@ -46,7 +46,7 @@ const FileBanner: React.FC<{
         props.file !== undefined ? (
           <>
             <Box sx={{ width: "100%" }}>
-              <Image
+              <img
                 src={props.fileUrl}
                 alt="Picture of the author"
                 style={{

@@ -10,7 +10,7 @@ import { bytesToSize } from "../../../lib/creation/Utilities";
 import { themes } from "../design/Design";
 import CircleIcon from "@mui/icons-material/Circle";
 import { IFile, ISocialLink } from "../../../lib/creation/CreationApi";
-import Image from "next/image";
+
 import TelegramIcon from "@mui/icons-material/Telegram";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -51,7 +51,7 @@ const BannerPreview: React.FC<{ data: IFile }> = (props) => {
   return (
     props.data.file != null && (
       <Box sx={{ width: "100%" }}>
-        <Image
+        <img
           src={props.data.url}
           alt="Picture of the author"
           style={{
