@@ -62,7 +62,7 @@ const AboutUser: React.FC = () => {
           <Box
             sx={{
               fontSize: ".7rem",
-              color: "text.light",
+              color: "text.secondary",
               textAlign: "center",
               borderRight: "1px solid",
               borderRightColor: "border.main",
@@ -70,13 +70,13 @@ const AboutUser: React.FC = () => {
             }}
           >
             Followers
-            <Box sx={{ color: "text.main", fontSize: "1.1rem" }}>107</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>107</Box>
           </Box>
           <Box
             sx={{
               fontSize: ".7rem",
               pl: ".75rem",
-              color: "text.light",
+              color: "text.secondary",
               textAlign: "center",
               borderRight: "1px solid",
               borderRightColor: "border.main",
@@ -84,18 +84,18 @@ const AboutUser: React.FC = () => {
             }}
           >
             Created
-            <Box sx={{ color: "text.main", fontSize: "1.1rem" }}>13</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>13</Box>
           </Box>
           <Box
             sx={{
               fontSize: ".7rem",
               pl: ".75rem",
-              color: "text.light",
+              color: "text.secondary",
               textAlign: "center",
             }}
           >
             Approved
-            <Box sx={{ color: "text.main", fontSize: "1.1rem" }}>7</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>7</Box>
           </Box>
         </Box>
         <Box sx={{ fontSize: ".9rem" }}>Short description here...</Box>

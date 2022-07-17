@@ -15,6 +15,7 @@ import dateFormat from "dateformat";
 import { paths, props } from "@lib/DaoPaths";
 import { useRouter } from "next/router";
 import Layout from "@components/dao/Layout";
+import { deviceWrapper } from "@components/utilities/Style";
 
 // export const getStaticPaths = paths;
 // export const getStaticProps = props;
@@ -158,8 +159,7 @@ const Notifications: React.FC<{ params: any }> = (props) => {
   return (
     <Layout>
       <Link href={id === undefined ? "/dao" : `/dao/${id}`}>
-        <Button variant="outlined">
-          <ArrowBackIcon sx={{ ml: "-.5rem", mr: ".5rem" }} color="primary" />
+        <Button variant="outlined" size="small" startIcon={<ArrowBackIcon />}>
           Back
         </Button>
       </Link>
@@ -169,22 +169,40 @@ const Notifications: React.FC<{ params: any }> = (props) => {
           width: "100%",
           display: "flex",
           mt: "1rem",
-          fontSize: "1.6rem",
+          fontSize: deviceWrapper("1.3rem", "1.6rem"),
           alignItems: "center",
         }}
       >
-        Notifications (4 new)
-        <Link href={`/dao/${globalContext.api.daoId}/notifications/edit`}>
-          <Button sx={{ ml: "auto" }} variant="contained">
-            Notification Settings{" "}
-            <SettingsIcon sx={{ ml: ".5rem", mr: "0rem" }} />
+        <Box sx={{ display: deviceWrapper("none", "block") }}>
+          Notifications (4 new)
+        </Box>
+        <Box sx={{ display: deviceWrapper("block", "none") }}>
+          Notifications
+        </Box>
+        <Link
+          href={
+            id === undefined
+              ? "/dao/notifications/edit"
+              : `/dao/${id}/notifications/edit`
+          }
+        >
+          <Button
+            sx={{ ml: "auto" }}
+            variant="contained"
+            size="small"
+            endIcon={<SettingsIcon />}
+          >
+            <Box sx={{ display: deviceWrapper("none", "block") }}>
+              Notification Settings
+            </Box>
+            <Box sx={{ display: deviceWrapper("block", "none") }}>Settings</Box>
           </Button>
         </Link>
       </Box>
       <Box sx={{ mt: ".5rem", display: "flex", alignItems: "center" }}>
         <Chip
           label="All"
-          icon={<AppsIcon sx={{ fontSize: "1rem", mr: ".3rem" }} />}
+          icon={<AppsIcon />}
           set={() => {
             setView("All");
           }}
@@ -193,7 +211,7 @@ const Notifications: React.FC<{ params: any }> = (props) => {
         />
         <Chip
           label="Unread"
-          icon={<MarkunreadIcon sx={{ fontSize: "1rem", mr: ".3rem" }} />}
+          icon={<MarkunreadIcon />}
           set={() => {
             setView("Unread");
           }}
@@ -250,16 +268,24 @@ export const Notification: React.FC<{ i: INotification; m?: string }> = (
       }}
     >
       <Avatar src={i.img} sx={{ width: "4rem", height: "4rem" }}></Avatar>
-      <Box sx={{ width: "70%", ml: "1rem", fontSize: ".9rem" }}>
+      <Box
+        sx={{
+          width: "70%",
+          ml: "1rem",
+          fontSize: deviceWrapper(".7REM", ".9rem"),
+        }}
+      >
         <Box>
           {i.username + " "}
-          <Box sx={{ display: "inline", color: "text.light" }}>{i.action}</Box>
+          <Box sx={{ display: "inline", color: "text.secondary" }}>
+            {i.action}
+          </Box>
           {" " + i.proposalname}
         </Box>
         <Box
           sx={{
             fontSize: ".7rem",
-            color: "text.light",
+            color: "text.secondary",
             display: "flex",
             alignItems: "center",
           }}
@@ -270,7 +296,10 @@ export const Notification: React.FC<{ i: INotification; m?: string }> = (
       </Box>
       {i.isread === 0 && (
         <Box sx={{ ml: "auto" }}>
-          <CircleIcon color="primary" sx={{ fontSize: "1rem" }} />
+          <CircleIcon
+            color="primary"
+            sx={{ fontSize: deviceWrapper(".65rem", "1rem") }}
+          />
         </Box>
       )}
     </Box>

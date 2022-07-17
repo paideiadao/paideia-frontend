@@ -87,7 +87,7 @@ const VestingSchedule: React.FC<{
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <Box sx={{ color: "primary.text" }}>%</Box>
+                  <Box sx={{ color: "text.primary" }}>%</Box>
                 </InputAdornment>
               ),
             }}
@@ -102,7 +102,7 @@ const VestingSchedule: React.FC<{
               variant="outlined"
               label="Frequency"
               value={value.frequency}
-              sx={{ height: "100%", color: "primary.text" }}
+              sx={{ height: "100%", color: "text.primary" }}
               onChange={(e: any) =>
                 setValue({
                   ...value,
@@ -168,7 +168,7 @@ const VestingSchedule: React.FC<{
                     height: "100%",
                     width: "60%",
                     backgroundColor: "backgroundColor.main",
-                    color: "primary.text",
+                    color: "text.primary",
                     lineHeight: "350%",
                     textAlign: "center",
                     borderRadius: "0 .3rem .3rem 0",
@@ -182,7 +182,7 @@ const VestingSchedule: React.FC<{
                       id={`vesting-emission-start-date-units-${props.id}`}
                       variant="outlined"
                       value={value.emissionStartDateUnits}
-                      sx={{ height: "100%", color: "primary.text" }}
+                      sx={{ height: "100%", color: "text.primary" }}
                       onChange={(e: any) =>
                         setValue({
                           ...value,
@@ -226,7 +226,7 @@ const VestingSchedule: React.FC<{
                     height: "3.3rem",
                     width: "50%",
                     backgroundColor: "backgroundColor.main",
-                    color: "primary.text",
+                    color: "text.primary",
                     lineHeight: "400%",
                     textAlign: "center",
                     borderRadius: "0 .3rem .3rem 0",
@@ -242,7 +242,7 @@ const VestingSchedule: React.FC<{
                       value={value.emissionLengthUnits}
                       sx={{
                         height: "120%",
-                        color: "primary.text",
+                        color: "text.primary",
                         fontSize: ".9rem",
                       }}
                       onChange={(e: any) =>

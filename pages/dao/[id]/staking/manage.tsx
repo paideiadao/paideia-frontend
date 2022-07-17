@@ -14,6 +14,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import StakingForm from "@components/dao/staking/StakingForm";
 import WithdrawForm from "@components/dao/staking/WithdrawForm";
+import { deviceWrapper } from "@components/utilities/Style";
 
 interface ITokenBanner {
   amount: string;
@@ -30,7 +31,7 @@ const TokenBanner: React.FC<ITokenBanner> = (props) => {
         alignItems: "center",
         fontSize: "1.3rem",
         fontWeight: 500,
-        color: "text.main",
+        color: "text.primary",
         border: "1px solid",
         borderColor: "border.main",
         p: "1rem",
@@ -44,7 +45,7 @@ const TokenBanner: React.FC<ITokenBanner> = (props) => {
       <Box
         sx={{
           ml: "auto",
-          color: "text.light",
+          color: "text.secondary",
           fontSize: ".9rem",
           fontWeight: 500,
         }}
@@ -65,13 +66,14 @@ const ManageStake: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
   return (
-    <Layout width="65%">
+    <Layout width={deviceWrapper("92%", "65%")}>
       <Link href={id === undefined ? "/dao/staking" : `/dao/${id}/staking`}>
-        <Button variant="outlined" size="small" sx={{ mb: "1rem" }}>
-          <ArrowBackIcon
-            sx={{ mr: ".5rem", fontSize: "1.1rem" }}
-            color="primary"
-          />
+        <Button
+          variant="outlined"
+          size="small"
+          sx={{ mb: "1rem" }}
+          startIcon={<ArrowBackIcon />}
+        >
           Back
         </Button>
       </Link>

@@ -77,6 +77,7 @@ export const AddWallet: React.FC = () => {
         addresses: JSON.parse(localStorage.getItem(WALLET_ADDRESS_LIST)),
       });
     }
+    // COMMENTS in addwallet & nautilus
     // refresh connection
     try {
       if (localStorage.getItem(DAPP_CONNECTED) === "true") {

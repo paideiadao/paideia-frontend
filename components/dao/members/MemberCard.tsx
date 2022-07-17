@@ -37,7 +37,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
           <IconButton
             sx={{
               backgroundColor: "favoriteBackground.main",
-              color: "text.light",
+              color: "text.secondary",
               p: ".2rem",
               borderRadius: "50%",
               width: "1.5rem",
@@ -88,7 +88,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
               sx={{ width: "4.5rem", height: "4.5rem" }}
             />
             <Box>{props.name}</Box>
-            <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
+            <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
               Level {props.level} | Philosopher
             </Box>
             <Box
@@ -103,7 +103,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
               <Box
                 sx={{
                   fontSize: ".7rem",
-                  color: "text.light",
+                  color: "text.secondary",
                   textAlign: "center",
                   pr: "1rem",
 
@@ -112,7 +112,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
                 }}
               >
                 Followers
-                <Box sx={{ color: "text.main", fontSize: "1.1rem" }}>
+                <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>
                   {props.followers}
                 </Box>
               </Box>
@@ -120,7 +120,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
                 sx={{
                   fontSize: ".7rem",
                   pl: "1rem",
-                  color: "text.light",
+                  color: "text.secondary",
                   textAlign: "center",
                   pr: "1rem",
 
@@ -129,7 +129,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
                 }}
               >
                 Created
-                <Box sx={{ color: "text.main", fontSize: "1.1rem" }}>
+                <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>
                   {props.created}
                 </Box>
               </Box>
@@ -137,12 +137,12 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
                 sx={{
                   fontSize: ".7rem",
                   pl: "1rem",
-                  color: "text.light",
+                  color: "text.secondary",
                   textAlign: "center",
                 }}
               >
                 Approved
-                <Box sx={{ color: "text.main", fontSize: "1.1rem" }}>
+                <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>
                   {props.approved}
                 </Box>
               </Box>

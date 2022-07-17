@@ -4,9 +4,10 @@ import * as React from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Collapse from "@mui/material/Collapse";
+import { deviceWrapper } from "@components/utilities/Style";
 
 const FundCard: React.FC<{
-  width: string;
+  width: string | any;
   value: string;
   ticker: string;
   percentage: string;
@@ -16,7 +17,7 @@ const FundCard: React.FC<{
     <Box
       sx={{
         width: props.width,
-        textAlign: "center",
+        textAlign: deviceWrapper("left", "center"),
         backgroundColor: "fileInput.outer",
         m: ".3rem",
         border: "1px solid",
@@ -25,20 +26,20 @@ const FundCard: React.FC<{
         p: ".5rem",
       }}
     >
-      <Box sx={{ color: "text.main", fontSize: "1.1rem", fontWeight: 550 }}>
+      <Box sx={{ color: "text.primary", fontSize: "1.1rem", fontWeight: 550 }}>
         {props.value}
         <Box
           sx={{
             display: "inline",
             ml: ".5rem",
-            color: "text.light",
+            color: "text.secondary",
             fontSize: ".9rem",
           }}
         >
           {props.ticker}
         </Box>
       </Box>
-      <Box sx={{ fontSize: ".8rem", color: "text.light" }}>
+      <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
         {props.percentage}% (${props.usd} USD)
       </Box>
     </Box>
@@ -140,7 +141,7 @@ const Funds: React.FC = () => {
         <Box
           sx={{
             backgroundColor: "fileInput.main",
-            color: "text.main",
+            color: "text.primary",
             borderRadius: ".2rem",
             ml: "auto",
             p: ".25rem",
@@ -148,7 +149,7 @@ const Funds: React.FC = () => {
             borderColor: "border.main",
             pt: ".1rem",
             pb: ".1rem",
-            fontSize: ".9rem",
+            fontSize: deviceWrapper(".7rem", ".9rem"),
             fontWeight: 500,
           }}
         >
@@ -160,26 +161,28 @@ const Funds: React.FC = () => {
           ? summaryCards.map((i: IFundCard, c: number) => (
               <FundCard
                 {...i}
-                width="23.3%"
+                width={deviceWrapper("46%", "23.3%")}
                 key={`summary-financial-card-${c}`}
               />
             ))
           : allCards.map((i: IFundCard, c: number) => (
-              <FundCard {...i} width="23.3%" key={`all-financial-card-${c}`} />
+              <FundCard
+                {...i}
+                width={deviceWrapper("46%", "23.3%")}
+                key={`all-financial-card-${c}`}
+              />
             ))}
       </Box>
       <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        <Button onClick={() => setShow(!show)}>
+        <Button
+          onClick={() => setShow(!show)}
+          size="small"
+          endIcon={!show ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
+        >
           {!show ? (
-            <>
-              Show other fund sources{" "}
-              <KeyboardArrowDownIcon sx={{ ml: ".5rem" }} />
-            </>
+            <>Show other fund sources </>
           ) : (
-            <>
-              Hide other fund sources{" "}
-              <KeyboardArrowUpIcon sx={{ ml: ".5rem" }} />
-            </>
+            <>Hide other fund sources </>
           )}
         </Button>
       </Box>

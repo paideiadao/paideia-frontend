@@ -4,20 +4,22 @@ import Alert from "@mui/material/Alert";
 import TextField from "@mui/material/TextField";
 import { GlobalContext } from "../../../lib/creation/Context";
 import { deviceStruct } from "@components/utilities/Style";
+import useDidMountEffect from "@components/utilities/hooks";
 
 const BasicInformation: React.FC = () => {
   let globalContext = React.useContext(GlobalContext);
   let data = globalContext.api.data.basicInformation;
 
-  React.useEffect(() => {
-    let clean = data.daoName.toLowerCase().replaceAll(" ", "");
-    globalContext.api.setData({
-      ...globalContext.api.data,
-      basicInformation: {
-        ...data,
-        daoUrl: clean === "" ? clean : "paideia.im/dao/" + clean,
-      },
-    });
+  useDidMountEffect(() => {
+      let clean = data.daoName.toLowerCase().replaceAll(" ", "");
+      globalContext.api.setData({
+        ...globalContext.api.data,
+        basicInformation: {
+          ...data,
+          daoUrl: clean === "" ? clean : "paideia.im/dao/" + clean,
+        },
+      });
+    
   }, [data.daoName]);
 
   return (
@@ -27,12 +29,12 @@ const BasicInformation: React.FC = () => {
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
-        color: "primary.text",
+        color: "text.primary",
       }}
     >
       <Box sx={{ textAlign: "left", width: "100%", fontSize: "1.2rem" }}>
         Basic Information
-        <Box sx={{ width: "100%", color: "text.light", fontSize: ".8rem" }}>
+        <Box sx={{ width: "100%", color: "text.secondary", fontSize: ".8rem" }}>
           Here you will pick your DAO's name, this will determine your DAO's URL
           as shown below and you can also write a short description of what your
           DAO is about.
@@ -51,7 +53,7 @@ const BasicInformation: React.FC = () => {
           sx={{
             width: deviceStruct("100%", "100%", "50%", "50%", "50%"),
             mr: deviceStruct("0", "0", ".5rem", ".5rem", ".5rem"),
-            mt: deviceStruct(".5rem", ".5rem", "0", "0", "0"),
+            mt: deviceStruct(".25rem", "1rem", "0", "0", "0"),
           }}
         >
           <TextField
@@ -73,7 +75,7 @@ const BasicInformation: React.FC = () => {
           sx={{
             width: deviceStruct("100%", "100%", "50%", "50%", "50%"),
             mr: deviceStruct("0", "0", ".5rem", ".5rem", ".5rem"),
-            mt: deviceStruct(".5rem", ".5rem", "0", "0", "0"),
+            mt: deviceStruct("1rem", "1rem", "0", "0", "0"),
           }}
         >
           <TextField

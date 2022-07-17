@@ -51,7 +51,7 @@ export const TokenomicsRow: React.FC<{
           readOnly: true,
           endAdornment: (
             <InputAdornment position="end">
-              <Box sx={{ color: "primary.text" }}>%</Box>
+              <Box sx={{ color: "text.primary" }}>%</Box>
             </InputAdornment>
           ),
         }}

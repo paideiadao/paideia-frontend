@@ -49,7 +49,7 @@ const GeneralInformation: React.FC = () => {
             variant="outlined"
             label="Discussion category"
             value={value.category}
-            sx={{ height: "100%", color: "primary.text" }}
+            sx={{ height: "100%", color: "text.primary" }}
             onChange={(e: any) =>
               discussionContext.api.setValue({
                 ...value,

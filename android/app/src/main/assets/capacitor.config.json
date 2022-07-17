@@ -2,5 +2,8 @@
 	"appId": "im.paideia.app",
 	"appName": "paideia",
 	"webDir": "out",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"server": {
+		"url": "https://paideia.im"
+	}
 }

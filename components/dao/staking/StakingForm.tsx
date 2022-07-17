@@ -8,6 +8,7 @@ import WalletSelector from "@components/creation/governance/WalletSelector";
 import { useWallet } from "@components/wallet/WalletContext";
 import { IWallet } from "@lib/creation/CreationApi";
 import { modalBackground } from "@components/utilities/modalBackground";
+import { deviceWrapper } from "@components/utilities/Style";
 
 const StakingForm: React.FC = () => {
   const { wallet } = useWallet();
@@ -47,7 +48,7 @@ const StakingForm: React.FC = () => {
       <Box sx={{ display: "flex", alignItems: "center", mt: "1rem" }}>
         <TextField
           label="Amount of tokens to stake"
-          sx={{ width: "45%" }}
+          sx={{ width: deviceWrapper("90%", "45%") }}
           size="medium"
           value={value}
           type="number"
@@ -80,10 +81,19 @@ const StakingForm: React.FC = () => {
           mt: "2rem",
         }}
       >
-        <Button variant="outlined" sx={{ width: "50%", mr: "1rem" }}>
+        <Button
+          variant="outlined"
+          sx={{ width: "50%", mr: "1rem" }}
+          size="small"
+        >
           Cancel
         </Button>
-        <Button variant="contained" sx={{ width: "50%" }} onClick={openStake}>
+        <Button
+          variant="contained"
+          sx={{ width: "50%" }}
+          onClick={openStake}
+          size="small"
+        >
           Stake
         </Button>
       </Box>

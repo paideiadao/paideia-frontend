@@ -65,7 +65,7 @@ export default function StepSelector(props) {
                   sx={{
                     fontSize: ".6rem",
                     fontWeight: 300,
-                    color: "text.light",
+                    color: "text.secondary",
                   }}
                 >
                   {i.label}

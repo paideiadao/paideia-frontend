@@ -10,6 +10,7 @@ import Alert from "@mui/material/Alert";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Status from "@components/utilities/Status";
 import Layout from "@components/dao/Layout";
+import { deviceWrapper } from "@components/utilities/Style";
 
 const notifications = [
   {
@@ -106,9 +107,13 @@ const EditNotifications: React.FC<{ params: any }> = (props) => {
             <FormControlLabel
               disableTypography
               onClick={() => setValue({ ...value, [i.value]: !value[i.value] })}
-              control={<Checkbox checked={value[i.value]} />}
+              control={<Checkbox checked={value[i.value]} size="small" />}
               label={i.label}
-              sx={{ mt: ".25rem", mb: ".25rem" }}
+              sx={{
+                mt: ".25rem",
+                mb: ".25rem",
+                fontSize: deviceWrapper(".8rem", ".9rem"),
+              }}
             />
           ))}
         </FormGroup>
@@ -122,15 +127,23 @@ const EditNotifications: React.FC<{ params: any }> = (props) => {
           mt: "1rem",
         }}
       >
-        <Button variant="outlined" sx={{ width: "49%", mr: ".5rem" }}>
+        <Button
+          variant="outlined"
+          sx={{ width: "49%", mr: ".5rem" }}
+          size="small"
+        >
           Cancel
         </Button>
         <Button
           variant="contained"
           sx={{ width: "49%" }}
+          size="small"
           onClick={() => setValue({ ...value, alert: "info" })}
         >
-          Save Changes
+          <Box sx={{ display: deviceWrapper("none", "block") }}>
+            Save Changes
+          </Box>
+          <Box sx={{ display: deviceWrapper("block", "none") }}>Save</Box>
         </Button>
       </Box>
       <Status
