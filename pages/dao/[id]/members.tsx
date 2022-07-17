@@ -9,6 +9,8 @@ import {
   Select,
   MenuItem,
   SelectChangeEvent,
+  Fab,
+  Slide,
 } from "@mui/material";
 import * as React from "react";
 import SearchIcon from "@mui/icons-material/Search";
@@ -20,10 +22,12 @@ import MemberCard, { IMemberCard } from "@components/dao/members/MemberCard";
 import Musk from "@public/profile/musk-full.png";
 import { paths, props } from "@lib/DaoPaths";
 import { deviceWrapper } from "@components/utilities/Style";
+import MobileFilters from "@components/dao/members/MobileFilters";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 // export const getStaticPaths = paths;
 // export const getStaticProps = props;
-const marks = [
+export const marks = [
   {
     value: 1,
     label: "Level 1",
@@ -157,7 +161,7 @@ const members: IMemberCard[] = [
   },
 ];
 
-const categories = [
+export const categories = [
   { icon: <AppsIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />, label: "All" },
   {
     icon: <StarIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />,
@@ -173,17 +177,21 @@ const categories = [
   },
 ];
 
+export interface IFilters {
+  sortBy: string;
+  search: string;
+  categories: string[];
+}
+
 const Members: React.FC = () => {
-  const [filters, setFilters] = React.useState<{
-    sortBy: string;
-    search: string;
-    categories: string[];
-  }>({
+  const [filters, setFilters] = React.useState<IFilters>({
     search: "",
     sortBy: "",
     categories: ["All"],
   });
   const [value, setValue] = React.useState<number[]>([1, 10]);
+
+  const [showFilters, setShowFilters] = React.useState<boolean>(false);
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
@@ -338,6 +346,42 @@ const Members: React.FC = () => {
           />
         ))}
       </Box>
+      <Fab
+        color="primary"
+        sx={{
+          position: "fixed",
+          bottom: "1rem",
+          right: "1rem",
+          display: deviceWrapper("flex", "none"),
+          zIndex: 999,
+        }}
+        onClick={() => setShowFilters(true)}
+      >
+        <FilterAltIcon />
+      </Fab>
+      <Slide direction="left" in={showFilters} mountOnEnter unmountOnExit>
+        <Box
+          sx={{
+            width: "17rem",
+            zIndex: 1000,
+            backgroundColor: "backgroundColor.main",
+            borderRight: "1px solid",
+            color: "text.primary",
+            borderLeft: "1px solid",
+            height: "100vh",
+            borderColor: "border.main",
+            position: "fixed",
+            top: 0,
+            right: 0,
+          }}
+        >
+          <MobileFilters
+            close={() => setShowFilters(false)}
+            set={(filters: IFilters, value) => {setFilters(filters); setValue(value)}}
+            filters={filters}
+          />
+        </Box>
+      </Slide>
     </Layout>
   );
 };

@@ -107,7 +107,7 @@ const Markets: React.FC = () => {
         disableSelectionOnClick
         autoHeight
         sx={{
-          fontSize: ".8rem",
+          fontSize: ".8rem", ml: '-1rem', mr: '-1rem', pl: '.5rem', pr: '.25rem',
           "& .MuiDataGrid-cell": {
             backgroundColor: "fileInput.outer",
             outline: "none",

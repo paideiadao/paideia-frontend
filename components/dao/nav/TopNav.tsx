@@ -65,7 +65,7 @@ const TopNav: React.FC<INav> = (props) => {
           onClick={() => props.setShowMobile(true)}
           sx={{ display: deviceWrapper("flex", "none") }}
         >
-          <MenuIcon />
+          <MenuIcon color="primary" />
         </IconButton>
         <Box
           sx={{

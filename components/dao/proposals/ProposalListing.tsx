@@ -276,12 +276,11 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
         color="primary"
         sx={{
           position: "fixed",
-          bottom: ".5rem",
-          right: ".5rem",
+          bottom: "1rem",
+          right: "1rem",
           display: deviceWrapper("flex", "none"),
           zIndex: 999,
         }}
-        size="medium"
         onClick={() => setShowFilters(true)}
       >
         <FilterAltIcon />

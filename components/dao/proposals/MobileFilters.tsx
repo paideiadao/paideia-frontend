@@ -17,6 +17,8 @@ import * as React from "react";
 import { categories, IFilters } from "./ProposalListing";
 import CloseIcon from "@mui/icons-material/Close";
 import { deviceWrapper } from "@components/utilities/Style";
+import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
+import { DarkTheme } from "@theme/theme";
 
 interface IMobileFilters {
   filters: IFilters;
@@ -26,6 +28,7 @@ interface IMobileFilters {
 
 const MobileFilters: React.FC<IMobileFilters> = (props) => {
   const [filters, setFilters] = React.useState<IFilters>(props.filters);
+  const themeContext = React.useContext<IThemeContext>(ThemeContext);
   return (
     <Box sx={{ width: "100%", height: "100%", position: "relative" }}>
       <Box
@@ -39,9 +42,12 @@ const MobileFilters: React.FC<IMobileFilters> = (props) => {
           pb: ".5rem",
         }}
       >
-        <Header title="Filters" small />
+        Filters
         <IconButton
-          sx={{ ml: "auto", color: "black" }}
+          sx={{
+            ml: "auto",
+            color: themeContext.theme === DarkTheme ? "black" : "white",
+          }}
           size="small"
           onClick={props.close}
         >
@@ -135,7 +141,7 @@ const MobileFilters: React.FC<IMobileFilters> = (props) => {
       <Box
         sx={{
           position: "absolute",
-          bottom: "0",
+          bottom: "1rem",
           width: "100%",
           display: "flex",
           alignItems: "center",
