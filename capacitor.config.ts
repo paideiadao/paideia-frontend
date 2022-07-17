@@ -5,9 +5,10 @@ const config: CapacitorConfig = {
   appName: 'paideia',
   webDir: 'out',
   bundledWebRuntime: false,
-  "server": {
-    "url": "https://paideia.im"
-  }
+  // "server": {
+  //   "url": "http://localhost:3000"
+  // }
+  // use https://paideia.im for production...
 };
 
 // for web build (use next links) for mobile use mui links
