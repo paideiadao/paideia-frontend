@@ -42,7 +42,7 @@ const CreateDiscussion: React.FC = () => {
     name: "",
     category: "",
     image: {
-      url: DiscussionPlaceholder.src,
+      url: 'https://picsum.photos/1200/300',
       file: undefined,
     },
     references: [],

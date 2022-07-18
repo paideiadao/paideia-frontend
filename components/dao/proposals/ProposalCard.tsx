@@ -1,3 +1,4 @@
+
 import { Box, Badge, Chip, Avatar, IconButton } from "@mui/material";
 import * as React from "react";
 import CircleIcon from "@mui/icons-material/Circle";
@@ -249,7 +250,7 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
   );
 };
 
-const CardContent: React.FC<{ category: string; widget: any }> = (props) => {
+const CardContent: React.FC<{ category: string; widget: any, c: number }> = (props) => {
   const [widget, setWidget] = React.useState<any>(props.widget);
   const [time, setTime] = React.useState<string>("");
   let temp = new Date();
@@ -291,6 +292,7 @@ const CardContent: React.FC<{ category: string; widget: any }> = (props) => {
         mt: ".5rem",
         height: "7rem",
         backgroundColor: "fileInput.outer",
+        backgroundImage: `url(https://picsum.photos/300/200/?random=${props.c})`,
         border: "1px solid",
         borderColor: "border.main",
         borderRadius: ".3rem",
@@ -525,7 +527,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
                 />
               </Box>
             </Box>
-            <CardContent category={props.category} widget={props.widget} />
+            <CardContent category={props.category} widget={props.widget} c={props.c}/>
           </Box>
           <Box sx={{ p: ".5rem", height: "4rem" }}>{getFooter()}</Box>
         </Box>

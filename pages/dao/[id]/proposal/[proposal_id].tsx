@@ -33,7 +33,7 @@ const Proposal: React.FC = () => {
   const [value, setValue] = React.useState<IProposal>({
     name: "",
     image: {
-      url: ProposalPlaceholder.src,
+      url: "https://picsum.photos/800/300",
       file: undefined,
     },
     category: "",
@@ -68,7 +68,7 @@ const Proposal: React.FC = () => {
               width: "100%",
               borderRadius: ".3rem",
               position: "relative",
-              backgroundImage: `url(${DiscussionPlaceholder.src})`,
+              backgroundImage: `url(https://picsum.photos/800/300)`,
               p: "1rem",
               maxHeight: "30rem",
               display: "flex",

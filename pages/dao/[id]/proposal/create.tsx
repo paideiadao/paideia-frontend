@@ -70,7 +70,7 @@ const CreateProposal: React.FC = () => {
   const [value, setValue] = React.useState<IProposal>({
     name: "",
     image: {
-      url: ProposalPlaceholder.src,
+      url: 'https://picsum.photos/800/300',
       file: undefined,
     },
     category: "",

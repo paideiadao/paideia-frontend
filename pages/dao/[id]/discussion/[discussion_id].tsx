@@ -66,7 +66,7 @@ const Discussion: React.FC = () => {
               width: "100%",
               borderRadius: ".3rem",
               position: "relative",
-              backgroundImage: `url(${DiscussionPlaceholder.src})`,
+              backgroundImage: `url(https://picsum.photos/800/300)`,
               p: "1rem",
               maxHeight: "30rem",
               display: "flex",
@@ -83,8 +83,11 @@ const Discussion: React.FC = () => {
                 },
               }}
               size="small"
+              startIcon={
+              <ArrowBackIcon />
+
+              }
             >
-              <ArrowBackIcon sx={{ mr: ".3rem" }} />
               Back
             </Button>
             <Box sx={{ ml: "auto" }}>

@@ -40,16 +40,16 @@ const DiscussionBanner: React.FC<{
         props.fileUrl !== undefined &&
         props.file !== undefined ? (
           <>
-            <Box sx={{ width: "100%" }}>
-              <Image
+            <Box sx={{ width: "100%",}}>
+              <img
                 src={props.fileUrl}
                 alt="Picture of the author"
                 style={{
                   borderTopLeftRadius: ".2rem",
                   borderTopRightRadius: ".3rem",
+                width: '100%',
+
                 }}
-                width="1200rem"
-                height="410rem"
               />
               <Box
                 sx={{
@@ -62,7 +62,7 @@ const DiscussionBanner: React.FC<{
                 <Box
                   sx={{
                     mt: ".2rem",
-                    fontSize: deviceWrapper(".8rem", ".1rem"),
+                    fontSize: deviceWrapper(".8rem", "1rem"),
                   }}
                 >
                   {props.file.name}
@@ -103,15 +103,15 @@ const DiscussionBanner: React.FC<{
           </>
         ) : (
           <Box sx={{ width: "100%" }}>
-            <Image
+            <img
               src={props.fileUrl}
               alt="Banner for the discussion"
               style={{
                 borderTopLeftRadius: ".2rem",
                 borderTopRightRadius: ".3rem",
+                width: '100%',
               }}
-              width="1200rem"
-              height="410rem"
+              
             />
 
             <input
