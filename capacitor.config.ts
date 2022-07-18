@@ -6,7 +6,7 @@ const config: CapacitorConfig = {
   webDir: 'out',
   bundledWebRuntime: false,
   // "server": {
-  //   "url": "http://localhost:3000"
+  //   "url": "http://localhost:3000/"
   // }
   // use https://paideia.im for production...
 };

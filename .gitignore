@@ -14,6 +14,10 @@ package-lock.json
 /.next/
 /out/
 
+# capacitor
+/android/
+/ios/
+
 # production
 /build
 
