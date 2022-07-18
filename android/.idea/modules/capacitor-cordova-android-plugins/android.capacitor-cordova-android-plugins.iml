@@ -34,6 +34,10 @@
       <excludeFolder url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/build" />
     </content>
+    <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins">
+      <excludeFolder url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/build" />
+    </content>
     <orderEntry type="jdk" jdkName="Android API 30 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

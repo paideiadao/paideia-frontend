@@ -178,7 +178,7 @@ const TopNav: React.FC<INav> = (props) => {
                 .map((i: any, c: number) => {
                   return (
                     <Notification
-                    c={c}
+                      c={c}
                       i={i}
                       m={"0"}
                       key={"notification-key-modal-" + c}

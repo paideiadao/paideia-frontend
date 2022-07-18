@@ -59,9 +59,19 @@ const DiscussionBanner: React.FC<{
                   width: "100%",
                 }}
               >
-                <Box sx={{ mt: ".2rem", fontSize: deviceWrapper('.8rem', ".1rem") }}>
+                <Box
+                  sx={{
+                    mt: ".2rem",
+                    fontSize: deviceWrapper(".8rem", ".1rem"),
+                  }}
+                >
                   {props.file.name}
-                  <Box sx={{ color: "text.secondary", fontSize: deviceWrapper('.7rem', ".9rem") }}>
+                  <Box
+                    sx={{
+                      color: "text.secondary",
+                      fontSize: deviceWrapper(".7rem", ".9rem"),
+                    }}
+                  >
                     {props.file === undefined || props.file === -1
                       ? "File Max size 1Mb. Dimensions 48px by 48px."
                       : bytesToSize(props.file.size)}

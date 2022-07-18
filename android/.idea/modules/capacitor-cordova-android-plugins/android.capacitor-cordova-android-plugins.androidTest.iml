@@ -22,12 +22,20 @@
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/build/generated/aidl_source_output_dir/debugAndroidTest/out" />
+    <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/build/generated/aidl_source_output_dir/debugAndroidTest/out" />
+    <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/build/generated/ap_generated_sources/debugAndroidTest/out" />
     <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/build/generated/ap_generated_sources/debugAndroidTest/out" />
     <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/build/generated/renderscript_source_output_dir/debugAndroidTest/out" />
+    <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/build/generated/renderscript_source_output_dir/debugAndroidTest/out" />
+    <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/build/generated/res/resValues/androidTest/debug" />
     <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/build/generated/res/resValues/androidTest/debug" />
     <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/build/generated/res/rs/androidTest/debug" />
+    <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/build/generated/res/rs/androidTest/debug" />
+    <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/build/generated/source/buildConfig/androidTest/debug" />
     <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/build/generated/source/buildConfig/androidTest/debug" />
     <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/src/androidTest" />
+    <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/src/androidTest" />
+    <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/src/androidTestDebug" />
     <content url="file://$MODULE_DIR$/../../../capacitor-cordova-android-plugins/src/androidTestDebug" />
     <orderEntry type="jdk" jdkName="Android API 30 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

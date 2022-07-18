@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7cb2f5c1-7567-43d0-85d0-a8dd6b5286f5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../components/dao/nav/Contents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../components/dao/nav/Contents.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pages/dao/[id]/discussion/[discussion_id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pages/dao/[id]/discussion/[discussion_id].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pages/dao/[id]/proposal/[proposal_id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pages/dao/[id]/proposal/[proposal_id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/dao/discussion/Reference.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../components/dao/discussion/Reference.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pages/dao/[id]/proposal/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pages/dao/[id]/proposal/create.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,6 +18,23 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="android" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />

@@ -5,7 +5,9 @@ import * as React from "react";
 import BalanceIcon from "@mui/icons-material/Balance";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import ProposalContext from "@lib/dao/proposal/ProposalContext";
+import ProposalContext, {
+  IProposalContext,
+} from "@lib/dao/proposal/ProposalContext";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import ProposalApi from "@lib/dao/proposal/ProposalApi";
 import GeneralInformation from "@components/dao/proposal/GeneralInformation";
@@ -23,6 +25,7 @@ import { IQuorum } from "@components/dao/proposal/vote/YesNo/Actions/Quorum";
 import { ISendFunds } from "@components/dao/proposal/vote/YesNo/Actions/SendFunds";
 import { deviceWrapper } from "@components/utilities/Style";
 import { IComment } from "@components/dao/discussion/Comments";
+import Reference from "@components/dao/discussion/Reference";
 
 export interface IProposalAction {
   name:
@@ -59,7 +62,6 @@ export interface IProposal {
   comments?: IComment[];
   attachments?: IFile[];
 }
-
 
 const CreateProposal: React.FC = () => {
   const router = useRouter();
@@ -181,6 +183,8 @@ const CreateProposal: React.FC = () => {
         />
         <GeneralInformation />
         <ProposalImage />
+
+        <Reference context />
         <Box
           sx={{
             width: "100%",

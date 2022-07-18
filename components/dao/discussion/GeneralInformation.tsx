@@ -28,7 +28,6 @@ const GeneralInformation: React.FC = () => {
           display: "flex",
           alignItems: "center",
           flexWrap: deviceWrapper("wrap", "nowrap"),
-
         }}
       >
         <TextField
@@ -40,11 +39,17 @@ const GeneralInformation: React.FC = () => {
               name: e.target.value,
             })
           }
-          sx={{ width: deviceWrapper("100%", "50%"),
-          mr: deviceWrapper("0", "1rem"), }}
+          sx={{
+            width: deviceWrapper("100%", "50%"),
+            mr: deviceWrapper("0", "1rem"),
+          }}
         />
-        <FormControl sx={{ width: deviceWrapper("100%", "50%"),
-            mt: deviceWrapper("1rem", "0"), }}>
+        <FormControl
+          sx={{
+            width: deviceWrapper("100%", "50%"),
+            mt: deviceWrapper("1rem", "0"),
+          }}
+        >
           <InputLabel htmlFor={`new-discussion-category-label`}>
             Discussion category
           </InputLabel>

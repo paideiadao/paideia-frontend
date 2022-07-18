@@ -24,7 +24,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import CircleIcon from "@mui/icons-material/Circle";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import dateFormat from "dateformat";
-import GavelIcon from '@mui/icons-material/Gavel';
+import GavelIcon from "@mui/icons-material/Gavel";
 
 const Proposal: React.FC = () => {
   const themeContext = React.useContext(ThemeContext);
@@ -59,7 +59,8 @@ const Proposal: React.FC = () => {
     setTab(newValue);
   };
 
-  return <Layout width={deviceWrapper("92%", "97%")}>
+  return (
+    <Layout width={deviceWrapper("92%", "97%")}>
       <Box sx={{ width: "100%", display: "flex" }}>
         <Box sx={{ width: "70%" }}>
           <Box
@@ -84,11 +85,7 @@ const Proposal: React.FC = () => {
                 },
               }}
               size="small"
-              startIcon={
-                <ArrowBackIcon />
-
-
-              }
+              startIcon={<ArrowBackIcon />}
             >
               Back
             </Button>
@@ -154,7 +151,11 @@ const Proposal: React.FC = () => {
                 )}
                 Follow{value.followed && "ed"}
               </Button>
-              <Button sx={{ml: '1rem'}} variant='contained' startIcon={<GavelIcon/>}>
+              <Button
+                sx={{ ml: "1rem" }}
+                variant="contained"
+                startIcon={<GavelIcon />}
+              >
                 Vote Now
               </Button>
             </Box>
@@ -255,7 +256,8 @@ const Proposal: React.FC = () => {
           <State />
         </Box>
       </Box>
-  </Layout>;
+    </Layout>
+  );
 };
 
 export default Proposal;

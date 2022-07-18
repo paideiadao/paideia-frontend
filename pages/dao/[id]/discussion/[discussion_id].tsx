@@ -58,7 +58,7 @@ const Discussion: React.FC = () => {
   };
 
   return (
-    <Layout width={deviceWrapper('92%', '97%')}>
+    <Layout width={deviceWrapper("92%", "97%")}>
       <Box sx={{ width: "100%", display: "flex" }}>
         <Box sx={{ width: "70%" }}>
           <Box
