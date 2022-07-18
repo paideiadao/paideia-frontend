@@ -22,6 +22,7 @@ import { IOptimisticGovernance } from "@components/dao/proposal/vote/YesNo/Actio
 import { IQuorum } from "@components/dao/proposal/vote/YesNo/Actions/Quorum";
 import { ISendFunds } from "@components/dao/proposal/vote/YesNo/Actions/SendFunds";
 import { deviceWrapper } from "@components/utilities/Style";
+import { IComment } from "@components/dao/discussion/Comments";
 
 export interface IProposalAction {
   name:
@@ -47,8 +48,18 @@ export interface IProposal {
   category: string;
   content: string;
   votingSystem: "yes/no" | "options" | "unselected";
+  references: IProposal[];
   actions: IProposalAction[];
+  date?: Date;
+  likes?: number;
+  dislikes?: number;
+  followed?: boolean;
+  tags?: any[];
+  userSide?: number;
+  comments?: IComment[];
+  attachments?: IFile[];
 }
+
 
 const CreateProposal: React.FC = () => {
   const router = useRouter();
@@ -63,6 +74,8 @@ const CreateProposal: React.FC = () => {
     category: "",
     content: "",
     votingSystem: "unselected",
+    references: [],
+
     actions: [
       {
         name: undefined,

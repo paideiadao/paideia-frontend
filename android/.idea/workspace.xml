@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7cb2f5c1-7567-43d0-85d0-a8dd6b5286f5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/capacitor.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/capacitor.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../capacitor.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../capacitor.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/App/App/capacitor.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/App/App/capacitor.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/dao/nav/Contents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../components/dao/nav/Contents.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pages/dao/[id]/discussion/[discussion_id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pages/dao/[id]/discussion/[discussion_id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pages/dao/[id]/proposal/[proposal_id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pages/dao/[id]/proposal/[proposal_id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pages/dao/[id]/proposal/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../pages/dao/[id]/proposal/create.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

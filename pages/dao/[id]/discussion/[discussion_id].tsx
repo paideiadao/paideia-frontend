@@ -25,6 +25,8 @@ import DiscussionInfo from "@components/dao/discussion/DiscussionInfo";
 import Comments from "@components/dao/discussion/Comments";
 import DiscussionReferences from "@components/dao/discussion/DiscussionReferences";
 import { paths, props } from "@lib/DiscussionPaths";
+import Layout from "@components/dao/Layout";
+import { deviceWrapper } from "@components/utilities/Style";
 
 const Discussion: React.FC = () => {
   const themeContext = React.useContext(ThemeContext);
@@ -56,8 +58,8 @@ const Discussion: React.FC = () => {
   };
 
   return (
-    <>
-      <Box sx={{ p: "1.5rem", width: "100%", display: "flex" }}>
+    <Layout width={deviceWrapper('92%', '97%')}>
+      <Box sx={{ width: "100%", display: "flex" }}>
         <Box sx={{ width: "70%" }}>
           <Box
             sx={{
@@ -236,7 +238,7 @@ const Discussion: React.FC = () => {
           <State />
         </Box>
       </Box>
-    </>
+    </Layout>
   );
 };
 
