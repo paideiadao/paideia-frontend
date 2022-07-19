@@ -50,7 +50,7 @@ export const Header: React.FC<{
       >
         {props.title}
       </Box>
-      <Subtitle subtitle={props.subtitle} />
+      <Subtitle subtitle={props.subtitle} small={props.small} />
     </Box>
   );
 };

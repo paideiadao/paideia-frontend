@@ -12,6 +12,7 @@ import AttachFileIcon from "@mui/icons-material/AttachFile";
 import TagFacesIcon from "@mui/icons-material/TagFaces";
 import dateFormat from "dateformat";
 import { LikesDislikes } from "../proposals/ProposalCard";
+import { deviceWrapper } from "@components/utilities/Style";
 
 export interface IComment {
   id: number;
@@ -171,6 +172,7 @@ const CommentInput: React.FC<{
             </IconButton>
             <Button
               variant="contained"
+              size='small'
               onClick={() => {
                 props.set({
                   id: props.length + 1,
@@ -217,30 +219,38 @@ const BaseComment: React.FC<{
           fontSize: ".9rem",
         }}
       >
-        <Box sx={{ width: "100%", display: "flex", mr: ".5rem" }}>
-          <Box sx={{ width: "8%", display: "flex", alignItems: "center" }}>
-            <Avatar src={props.comment.img} />
+        <Box sx={{ width: "100%", display: "flex", mr: ".5rem", alignItems: deviceWrapper('center', 'flex-start') }}>
+          <Box sx={{ width: deviceWrapper('14%', "8%"), display: "flex", alignItems: "center", justifyContent: 'center' }}>
+            <Avatar src={props.comment.img} sx={{width: deviceWrapper('1.75rem', '2.5rem'), height: deviceWrapper('1.75rem', '2.5rem')}}/>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{display: deviceWrapper('block', 'none')}}>
+            <Box sx={{ alignItems: "center", fontSize: deviceWrapper('.7rem', '9rem') }}>
+              {props.comment.username}
+            </Box>
+            <Box sx={{ ml: "auto", color: "text.secondary", fontSize: deviceWrapper('.7rem', '9rem') }}>
+              {dateFormat(props.comment.date, "mmmm dS, yyyy @ h:MM TT")}
+            </Box>
+          </Box>
+          <Box sx={{ alignItems: "center", display: deviceWrapper('none', 'flex') }}>
             {props.comment.username}
           </Box>
-          <Box sx={{ ml: "auto", color: "text.secondary" }}>
+          <Box sx={{ ml: "auto", color: "text.secondary", display: deviceWrapper('none', 'flex') }}>
             {dateFormat(props.comment.date, "mmmm dS, yyyy @ h:MM TT")}
           </Box>
         </Box>
         <Box sx={{ width: "100%", display: "flex", mr: ".5rem" }}>
           <Box
-            sx={{ width: "8%", display: "flex", alignItems: "center" }}
+            sx={{ width: deviceWrapper('14.5%', "8%"), display: "flex", alignItems: "center" }}
           ></Box>
-          <Box sx={{ display: "flex", alignItems: "center", width: "92%" }}>
+          <Box sx={{ display: "flex", alignItems: "center", width: "92%", fontSize: deviceWrapper('.8rem', '1rem') }}>
             {props.comment.comment}
           </Box>
         </Box>
         <Box sx={{ display: "flex", width: "100%", mt: ".5rem" }}>
           <Box
-            sx={{ width: "7%", display: "flex", alignItems: "center" }}
+            sx={{ width: deviceWrapper('13.5%', "7%"), display: "flex", alignItems: "center" }}
           ></Box>
-          {!reply && <Button onClick={() => setReply(true)}>Reply</Button>}
+          {!reply && <Button onClick={() => setReply(true)} size='small'>Reply</Button>}
           <Box sx={{ ml: "auto" }}>
             <LikesDislikes
               likes={props.comment.likes}

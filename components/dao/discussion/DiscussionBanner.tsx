@@ -40,15 +40,14 @@ const DiscussionBanner: React.FC<{
         props.fileUrl !== undefined &&
         props.file !== undefined ? (
           <>
-            <Box sx={{ width: "100%",}}>
+            <Box sx={{ width: "100%" }}>
               <img
                 src={props.fileUrl}
                 alt="Picture of the author"
                 style={{
                   borderTopLeftRadius: ".2rem",
                   borderTopRightRadius: ".3rem",
-                width: '100%',
-
+                  width: "100%",
                 }}
               />
               <Box
@@ -109,9 +108,8 @@ const DiscussionBanner: React.FC<{
               style={{
                 borderTopLeftRadius: ".2rem",
                 borderTopRightRadius: ".3rem",
-                width: '100%',
+                width: "100%",
               }}
-              
             />
 
             <input

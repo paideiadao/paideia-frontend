@@ -17,7 +17,14 @@ const CreateHeader: React.FC<{ type?: string }> = (props) => {
       <Box>
         <Link
           href={
-            id === undefined ? "/dao/proposals/all" : `/dao/${id}/proposals/all`
+            router.pathname.includes("discussion") ||
+            router.pathname.includes("proposal")
+              ? id === undefined
+                ? "/dao/create"
+                : `/dao/${id}/create`
+              : id === undefined
+              ? "/dao/proposals/all"
+              : `/dao/${id}/proposals/all`
           }
         >
           <Button

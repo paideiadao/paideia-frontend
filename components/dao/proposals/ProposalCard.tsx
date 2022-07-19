@@ -1,4 +1,3 @@
-
 import { Box, Badge, Chip, Avatar, IconButton } from "@mui/material";
 import * as React from "react";
 import CircleIcon from "@mui/icons-material/Circle";
@@ -141,8 +140,8 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
   });
 
   const iconFont = {
-    xs: "1rem",
-    sm: "1rem",
+    xs: ".9rem",
+    sm: ".9rem",
     md: ".8rem",
     lg: ".8rem",
     xl: "1rem",
@@ -173,7 +172,7 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
               mr: ".1rem",
               fontSize: iconFont,
               cursor: "pointer",
-              ml: ".2rem",
+              ml: ".4rem",
             }}
             onClick={() =>
               setValue({
@@ -207,7 +206,7 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
           <ThumbDownIcon
             sx={{
               mr: ".1rem",
-              ml: ".2rem",
+              ml: ".4rem",
               fontSize: iconFont,
               cursor: "pointer",
               color: "red",
@@ -232,7 +231,7 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
               mr: ".1rem",
               fontSize: iconFont,
               cursor: "pointer",
-              ml: ".2rem",
+              ml: ".4rem",
             }}
             onClick={() =>
               setValue({
@@ -250,7 +249,9 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
   );
 };
 
-const CardContent: React.FC<{ category: string; widget: any, c: number }> = (props) => {
+const CardContent: React.FC<{ category: string; widget: any; c: number }> = (
+  props
+) => {
   const [widget, setWidget] = React.useState<any>(props.widget);
   const [time, setTime] = React.useState<string>("");
   let temp = new Date();
@@ -292,7 +293,10 @@ const CardContent: React.FC<{ category: string; widget: any, c: number }> = (pro
         mt: ".5rem",
         height: "7rem",
         backgroundColor: "fileInput.outer",
-        backgroundImage: `url(https://picsum.photos/300/200/?random=${props.c})`,
+        backgroundImage: deviceWrapper(
+          `url(https://picsum.photos/350/200/?random=${props.c})`,
+          `url(https://picsum.photos/300/200/?random=${props.c})`
+        ),
         border: "1px solid",
         borderColor: "border.main",
         borderRadius: ".3rem",
@@ -527,7 +531,11 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
                 />
               </Box>
             </Box>
-            <CardContent category={props.category} widget={props.widget} c={props.c}/>
+            <CardContent
+              category={props.category}
+              widget={props.widget}
+              c={props.c}
+            />
           </Box>
           <Box sx={{ p: ".5rem", height: "4rem" }}>{getFooter()}</Box>
         </Box>

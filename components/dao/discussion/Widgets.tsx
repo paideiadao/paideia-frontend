@@ -23,7 +23,7 @@ export const Overview: React.FC = () => {
           p: ".5rem",
         }}
       >
-        <CapsInfo title="Discussion by" />
+        <CapsInfo title="Proposal / Discussion by" />
         <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
           <Avatar sx={{ width: "2.5rem", height: "2.5rem" }}>
             <img src={Musk.src} />
@@ -114,7 +114,7 @@ export const State: React.FC = () => {
         p: ".5rem",
       }}
     >
-      <CapsInfo title="this proposal is in the discussion state" />
+      <CapsInfo title="this proposal/discussion is in the discussion state" />
       <Box sx={{ mt: "-.5rem", fontSize: ".9rem", color: "text.secondary" }}>
         Get feedback from the other members about an idea you have before
         commiting to a full proposal. Discussions can easily be upgraded to

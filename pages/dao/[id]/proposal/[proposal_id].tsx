@@ -33,10 +33,10 @@ const Proposal: React.FC = () => {
   const [value, setValue] = React.useState<IProposal>({
     name: "",
     image: {
-      url: "https://picsum.photos/800/300",
+      url: "https://picsum.photos/1200/300",
       file: undefined,
     },
-    category: "",
+    category: "Finance",
     content: "",
     votingSystem: "unselected",
     references: [],
@@ -62,11 +62,11 @@ const Proposal: React.FC = () => {
   return (
     <Layout width={deviceWrapper("92%", "97%")}>
       <Box sx={{ width: "100%", display: "flex" }}>
-        <Box sx={{ width: "70%" }}>
+      <Box sx={{ width: deviceWrapper("100%", "70%") }}>
           <Box
             sx={{
-              width: "100%",
-              borderRadius: ".3rem",
+              width: deviceWrapper("calc(100% + 2rem)", "100%"),
+              borderRadius: deviceWrapper("0", ".3rem"),
               position: "relative",
               backgroundImage: `url(https://picsum.photos/800/300)`,
               p: "1rem",
@@ -74,6 +74,8 @@ const Proposal: React.FC = () => {
               display: "flex",
               alignItems: "flex-start",
               minHeight: "10rem",
+              mt: deviceWrapper("-1rem", "0"),
+              ml: deviceWrapper("-1rem", "0"),
             }}
           >
             <Button
@@ -85,11 +87,15 @@ const Proposal: React.FC = () => {
                 },
               }}
               size="small"
+              onClick={router.back}
+
               startIcon={<ArrowBackIcon />}
             >
               Back
             </Button>
-            <Box sx={{ ml: "auto" }}>
+            <Box sx={{ ml: "auto",                position: deviceWrapper("absolute", "relative"),
+                bottom: deviceWrapper("1rem", "0"),
+                left: deviceWrapper("1rem", "0"), }}>
               {value.tags.map((i: any, c: number) => (
                 <Chip
                   key={"discussion-tag-key-" + c}
@@ -110,11 +116,14 @@ const Proposal: React.FC = () => {
               width: "100%",
               mt: "1rem",
               display: "flex",
+              pb: '1rem',
+              borderBottom: '1px solid',
+              borderColor: 'border.main',
               alignItems: "center",
             }}
           >
             <Box>
-              <Header title="Discussion name" large />
+              <Header title="Proposal name" large />
               <Box
                 sx={{
                   display: "flex",
@@ -127,9 +136,47 @@ const Proposal: React.FC = () => {
                   sx={{ opacity: ".8", fontSize: "1rem", mr: ".3rem" }}
                 />
                 ID: {proposal_id}
+                <Box
+                  sx={{
+                    alignItems: "center",
+                    ml: ".5rem",
+                    color: "text.secondary",
+                    fontSize: ".8rem",
+                    display: deviceWrapper("flex", "none"),
+                  }}
+                >
+                  <CalendarTodayIcon sx={{ mr: ".3rem", fontSize: "1rem" }} />
+                  {dateFormat(value.date, "mmmm dS, yyyy")}
+                </Box>
               </Box>
             </Box>
-            <Box sx={{ ml: "auto" }}>
+            <Box sx={{ ml: "auto", display: 'flex', alignItems: 'center', flexDirection: deviceWrapper('column', 'row') }}>
+            <Box
+                sx={{
+                  color: "primary.main",
+                  alignItems: "center",
+                  fontSize: deviceWrapper(".7rem", ""),
+                  display: deviceWrapper("flex", "none"),
+                }}
+              >
+                <CircleIcon
+                  color="primary"
+                  sx={{ mr: ".3rem", fontSize: ".8rem" }}
+                />
+                Discussion
+              </Box>
+              <Chip
+                label={value.category}
+                variant="outlined"
+                icon={<LocalFireDepartmentIcon sx={{ fontSize: "1.3rem" }} />}
+                sx={{
+                  color: "primary.main",
+                  borderColor: "primary.main",
+                  fontSize: ".8rem",
+                  display: deviceWrapper("flex", "none"),
+                  mt: ".5rem",
+                }}
+              />
               <Button
                 onClick={() =>
                   setValue({ ...value, followed: !value.followed })
@@ -140,20 +187,20 @@ const Proposal: React.FC = () => {
                   ":hover": {
                     borderColor: "red",
                     color: "red",
-                  },
+                  },display: deviceWrapper("none", "flex")
                 }}
                 variant="outlined"
-              >
-                {value.followed ? (
-                  <FavoriteIcon sx={{ mr: ".3rem" }} />
-                ) : (
-                  <FavoriteBorderIcon sx={{ mr: ".3rem" }} />
-                )}
-                Follow{value.followed && "ed"}
-              </Button>
+                size='small'
+              startIcon={
+                value.followed ? <FavoriteIcon /> : <FavoriteBorderIcon />
+              }
+            >
+              Follow{value.followed && "ed"}
+            </Button>
               <Button
-                sx={{ ml: "1rem" }}
+                sx={{ ml: "1rem", display: deviceWrapper("none", "flex") }}
                 variant="contained"
+                size='small'
                 startIcon={<GavelIcon />}
               >
                 Vote Now
@@ -176,13 +223,15 @@ const Proposal: React.FC = () => {
                 color: "primary.main",
                 borderColor: "primary.main",
                 fontSize: ".7rem",
+                display: deviceWrapper("none", "flex"),
+
               }}
             />
             <Box
               sx={{
                 color: "primary.main",
                 ml: ".5rem",
-                display: "flex",
+                display: deviceWrapper("none", "flex"),
                 alignItems: "center",
                 fontSize: ".9rem",
               }}
@@ -193,13 +242,38 @@ const Proposal: React.FC = () => {
               />
               Discussion
             </Box>
+            <Button
+                onClick={() =>
+                  setValue({ ...value, followed: !value.followed })
+                }
+                sx={{
+                  display: deviceWrapper("flex", "none")
+                }}
+                variant="outlined"
+                color={value.followed ? 'success' : 'error'}
+                size='small'
+              startIcon={
+                value.followed ? <FavoriteIcon /> : <FavoriteBorderIcon />
+              }
+            >
+              Follow{value.followed && "ed"}
+            </Button>
+              <Button
+                sx={{ ml: ".5rem", display: deviceWrapper("flex", "none") }}
+                variant="contained"
+                size='small'
+                startIcon={<GavelIcon />}
+              >
+                Vote Now
+              </Button>
             <Box
               sx={{
-                display: "flex",
                 alignItems: "center",
                 ml: ".5rem",
                 color: "text.secondary",
                 fontSize: ".9rem",
+                display: deviceWrapper("none", "flex"),
+
               }}
             >
               <CalendarTodayIcon sx={{ mr: ".3rem", fontSize: "1.2rem" }} />
@@ -212,6 +286,10 @@ const Proposal: React.FC = () => {
                 userSide={value.userSide}
               />
             </Box>
+          </Box>
+          <Box sx={{width: '100%', mt: '1rem', display: deviceWrapper('block', 'none')}}>
+            <Overview />
+            <State />
           </Box>
           <TabContext value={tab}>
             <Box
@@ -246,8 +324,9 @@ const Proposal: React.FC = () => {
         <Box
           sx={{
             width: "30%",
-            display: "flex",
             flexDirection: "column",
+            display: deviceWrapper("none", "flex"),
+
             alignItems: "center",
             ml: "1.5rem",
           }}

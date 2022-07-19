@@ -70,7 +70,7 @@ const CreateProposal: React.FC = () => {
   const [value, setValue] = React.useState<IProposal>({
     name: "",
     image: {
-      url: 'https://picsum.photos/800/300',
+      url: "https://picsum.photos/1200/300",
       file: undefined,
     },
     category: "",
@@ -183,7 +183,7 @@ const CreateProposal: React.FC = () => {
         />
         <GeneralInformation />
         <ProposalImage />
-
+        <Box sx={{ mt: "1.5rem" }} />
         <Reference context />
         <Box
           sx={{
@@ -228,7 +228,9 @@ const CreateProposal: React.FC = () => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box sx={{ ...modalBackground, width: "35rem" }}>
+          <Box
+            sx={{ ...modalBackground, width: deviceWrapper("20rem", "35rem") }}
+          >
             <Box sx={{ fontSize: "1.1rem", fontWeight: 450 }}>
               You are about to publish a proposal
             </Box>
