@@ -25,7 +25,7 @@ const navLinks = [
     position: undefined,
   },
   {
-    name: "Ergo",
+    name: "Ergo Advantage",
     icon: "description",
     link: "ergo-advantage",
     position: undefined,
