@@ -28,32 +28,30 @@ const pages = [
   {
     name: "Home",
     link: "/",
-    disabled: false,
   },
   {
     name: "About",
     link: "/about",
-    disabled: false,
   },
   {
     name: "Education",
     link: "/education",
-    disabled: true,
+    // disabled: true,
   },
   {
     name: "Documentation",
     link: "https://docs.paideia.im",
-    disabled: false,
+    external: true,
   },
   {
     name: "Projects",
     link: "/projects",
-    disabled: true,
+    // disabled: true,
   },
   {
     name: "Blog",
     link: "/blog",
-    disabled: true,
+    // disabled: true,
   },
   {
     name: "Dashboard",
@@ -98,7 +96,8 @@ interface INavItemProps {
   page: {
     name: string;
     link: string;
-    disabled: boolean;
+    disabled?: boolean;
+    external?: boolean;
   };
 }
 
@@ -138,6 +137,7 @@ export default function Header() {
                 color: LightTheme.palette.secondary.main,
               },
             }}
+            target={page.external ? '_blank' : '_self' }
           >
             {page.name}
           </Link>

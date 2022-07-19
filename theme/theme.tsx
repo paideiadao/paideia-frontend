@@ -11,12 +11,36 @@ declare module "@mui/material/styles" {
     lg: true;
     xl: true;
   }
+
+  interface TypographyVariants {
+    p: React.CSSProperties;
+  }
+
+  // allow configuration using `createTheme`
+  interface TypographyVariantsOptions {
+    p?: React.CSSProperties;
+  }
+}
+
+// Update the Typography's variant prop options
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    p: true;
+  }
 }
 
 export const mainTheme = createTheme({
   typography: {
     fontFamily:
       '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif',
+    // @ts-ignore
+    p: {
+      fontSize: '16px',
+      marginBottom: '32px',
+      display: 'block',
+      lineHeight: '24px',
+      letterSpacing: '0.15px',
+    }
   },
   breakpoints: {
     values: {
@@ -191,8 +215,6 @@ export const DarkTheme = createTheme({
       main: "rgba(17, 24, 39, 0.08)",
       text: "rgba(0, 0, 0, 1)",
     },
-    // THIS IS CAUSING AN ERROR WITH <TableCell>
-    // "Uncaught TypeError: color.charAt is not a function"
     border: {
       main: "rgba(159, 210, 219, 0.2)",
     },

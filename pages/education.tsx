@@ -1,44 +1,42 @@
 import React, { FC } from "react";
 import PageHeader from "@components/PageHeader";
 import PageNav from "@components/PageNav";
-import Blockquote from "@components/Blockquote";
 import {
-  Typography,
   Grid,
+  Button,
   Container,
-  Divider,
   Box,
+  Typography,
+  List,
+  ListItem
 } from "@mui/material";
-import Image from "next/image";
 import WhitepaperQuote from "@components/landing/WhitepaperQuote";
 import SectionHeading from "@components/SectionHeading";
+import Blockquote from "@components/Blockquote";
 import RoadmapAccordion from "@components/RoadmapAccordion";
-import CustomTable from "@components/CustomTable";
-import TabsPanel from "@components/TabsPanel";
-import { DarkTheme } from "@theme/theme";
 
 const navLinks = [
   {
     name: "Our Mission",
-    icon: "waving_hand",
+    icon: "flag",
     link: "mission",
     position: undefined,
   },
   {
     name: "Ergo Advantage",
-    icon: "description",
+    icon: "polyline",
     link: "ergo-advantage",
     position: undefined,
   },
   {
     name: "Learn",
-    icon: "warning",
+    icon: "school",
     link: "learn",
     position: undefined,
   },
   {
     name: "FAQ",
-    icon: "emoji_objects",
+    icon: "help_outline",
     link: "faq",
     position: undefined,
   },
@@ -70,40 +68,94 @@ const Education: FC = () => {
 
       <Container sx={{ px: "24px", py: "60px" }} id="navContainer">
         <PageNav navLinks={navLinks}>
-          <Box component="section" id="mission">
-            <Grid container>
-              <Grid item md={7}>
-                <Blockquote small sx={{ mb: "48px" }}>
-                  Paideia is an organization whose purpose is to create a
-                  functional, secure, and well-documented DAO software suite
-                  that supports DAOs as they form and develop. It will make it
-                  easy for anyone to initiate a DAO, distribute tokens using
-                  various methods, create proposals and collect votes. It will
-                  help various organizations share funds in a secure and fair
-                  way.
-                </Blockquote>
-              </Grid>
-              <Grid item md={5}></Grid>
-            </Grid>
-          </Box>
-          <Box component="section" id="ergo-advantage">
-            <WhitepaperQuote sx={{ my: "64px" }} />
-          </Box>
-          <Box component="section" id="learn">
+          <Box component="section" id="mission" sx={{ mb: '240px' }}>
             <SectionHeading
-              category="The Problem"
-              title="Functionality, Security, and Support"
-              sx={{ mb: "120px" }}
-            >
-              People do not join DAOs to create software. They join them to
-              accomplish something in the real world that benefits them or their
-              communities. But, a DAO needs software to enable it to function as
-              a decentralized, autonomous organization. DAOs need an
-              off-the-shelf DAO toolkit, one that provides:
-            </SectionHeading>
+              category="What do we want to achieve?"
+              title="Our Mission"
+              sx={{ mb: "32px" }}
+            />
+            <Typography variant="p">
+              Our mission is to give people the power, knowledge, and motivation to change the way they govern and participate in democratic organizations. We will help people experiment with different methods of governance and work together to create a better future, whatever they envision.
+            </Typography>
+            <Blockquote>
+              Using our tools, individuals who don&apos;t have fair access to financial systems may take control and compete in a society that is imbalanced and stacked against them, without needing the approval of the wealthy or elite. Anyone who wants to engage in a democratic organization with a shared financial treasury can do so using Paideia.
+            </Blockquote>
+            <Typography variant="p">
+              The tools we create will allow anyone to initiate and manage a DAO with no prior knowledge or experience, empowering groups of individuals to pool their wealth and put it toward a common aim.
+            </Typography>
+            <Typography variant="p">
+              Through Paideia, DAOs will be able to:
+              <List dense sx={{
+                pl: '36px',
+                '& li': {
+                  pl: '1em',
+                  position: 'relative',
+                },
+                '& li:before': {
+                  content: '"-"',
+                  position: 'absolute',
+                  left: 0,
+                }
+              }}>
+                <ListItem>
+                  Distribute governance tokens
+                </ListItem>
+                <ListItem>
+                  Raise funds
+                </ListItem>
+                <ListItem>
+                  Manage their treasury
+                </ListItem>
+                <ListItem>
+                  Track member reputation
+                </ListItem>
+                <ListItem>
+                  Provide liquidity
+                </ListItem>
+                <ListItem>
+                  Initiate and manage staking contracts
+                </ListItem>
+                <ListItem>
+                  Create proposals on expenditures or governance
+                </ListItem>
+                <ListItem>
+                  Have a forum for stakeholders to discuss all ideas and proposals
+                </ListItem>
+                <ListItem>
+                  Easily deploy their funds to achieve their goals
+                </ListItem>
+                <ListItem>
+                  Experiment with different types of automated algorithmic democratic processes
+                </ListItem>
+              </List>
+            </Typography>
+            <Button variant="contained">
+              Read Whitepaper
+            </Button>
+          </Box>
+          <Box component="section" id="ergo-advantage" sx={{ mb: '240px' }}>
+            <SectionHeading
+              category="Why on Ergo?"
+              title="The Ergo Advantage"
+              sx={{ mb: "32px" }}
+            />
+            <Typography variant="p">
+              When building a DAO, it should exist on a blockchain with a strong foundation and fundamentals, be inexpensive to operate, be simple to use, and be secure and decentralized. It should resist government intervention and be accessible to anyone in the world, regardless of prohibitive local laws or social status. 
+            </Typography>
+          </Box>
+          <Box component="section" id="learn" sx={{ mb: '240px' }}>
+            <SectionHeading
+              category="Useful Articles"
+              title="Learn About DAO Governance"
+              sx={{ mb: "32px" }}
+            />
           </Box>
           <Box component="section" id="faq">
-            <RoadmapAccordion sx={{ mb: "280px" }} />
+          <SectionHeading
+              category="FAQ"
+              title="Things you might be wondering"
+              sx={{ mb: "32px" }}
+            />
           </Box>
         </PageNav>
       </Container>
