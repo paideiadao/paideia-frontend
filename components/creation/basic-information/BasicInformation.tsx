@@ -11,15 +11,14 @@ const BasicInformation: React.FC = () => {
   let data = creationContext.api.data.basicInformation;
 
   useDidMountEffect(() => {
-      let clean = data.daoName.toLowerCase().replaceAll(" ", "");
-      creationContext.api.setData({
-        ...creationContext.api.data,
-        basicInformation: {
-          ...data,
-          daoUrl: clean === "" ? clean : "paideia.im/dao/" + clean,
-        },
-      });
-    
+    let clean = data.daoName.toLowerCase().replaceAll(" ", "");
+    creationContext.api.setData({
+      ...creationContext.api.data,
+      basicInformation: {
+        ...data,
+        daoUrl: clean === "" ? clean : "paideia.im/dao/" + clean,
+      },
+    });
   }, [data.daoName]);
 
   return (

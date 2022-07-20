@@ -175,11 +175,7 @@ export default function Featured() {
             overflow: "hidden",
           }}
         >
-          <img
-            src="/featured-bg.png"
-            width={2039}
-            height={2116}
-          />
+          <img src="/featured-bg.png" width={2039} height={2116} />
         </Box>
         <Grid container sx={{ mt: { xs: "120px", md: "0" } }}>
           <Grid item md={6}>

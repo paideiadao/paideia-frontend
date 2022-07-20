@@ -100,11 +100,7 @@ export default function Stats() {
           display: { xs: "block", sm: "none" },
         }}
       >
-        <img
-          src="/stats-small.png"
-          width={900}
-          height={2484}
-        />
+        <img src="/stats-small.png" width={900} height={2484} />
       </Box>
       <Grid container>
         <Grid item md={4}>

@@ -14,7 +14,6 @@ import Blockquote from "@components/Blockquote";
 import CardSlider from "@components/CardSlider";
 import { DarkTheme } from "@theme/theme";
 
-
 const cardTitleStyle = {
   fontSize: "24px",
   fontWeight: "700",

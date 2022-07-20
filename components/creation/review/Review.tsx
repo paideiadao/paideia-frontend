@@ -25,7 +25,10 @@ const Review: React.FC = () => {
       <Box>
         <Button
           onClick={() =>
-            creationContext.api.setData({ ...data, navStage: data.navStage - 1 })
+            creationContext.api.setData({
+              ...data,
+              navStage: data.navStage - 1,
+            })
           }
           size="small"
         >

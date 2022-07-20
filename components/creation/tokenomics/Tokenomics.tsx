@@ -1,6 +1,9 @@
 import * as React from "react";
 import { Box, Button, ButtonGroup } from "@mui/material";
-import { CreationContext, ICreationContext } from "../../../lib/creation/Context";
+import {
+  CreationContext,
+  ICreationContext,
+} from "../../../lib/creation/Context";
 import { Header, Subheader } from "../utilities/HeaderComponents";
 import TokenInformation from "./TokenInformation";
 import { ITokenHolder, ITokenomics } from "../../../lib/creation/CreationApi";

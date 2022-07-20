@@ -25,9 +25,7 @@ export default function Hero() {
           ml: "-24px",
         }}
       >
-        <img
-          src="/hero-bg.png"
-        />
+        <img src="/hero-bg.png" />
       </Box>
       <Grid
         container

@@ -533,11 +533,7 @@ export default function About() {
           </Box>
           <Box component="section" id="thesolution">
             <Box sx={{ mb: "48px" }}>
-              <img
-                src="/exclamation.svg"
-                height={266}
-                width={60}
-              />
+              <img src="/exclamation.svg" height={266} width={60} />
             </Box>
             <SectionHeading
               category="The Solution"

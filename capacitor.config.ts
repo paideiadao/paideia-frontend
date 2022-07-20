@@ -1,13 +1,13 @@
-import { CapacitorConfig } from '@capacitor/cli';
+import { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: 'im.paideia.app',
-  appName: 'paideia',
-  webDir: 'out',
+  appId: "im.paideia.app",
+  appName: "paideia",
+  webDir: "out",
   bundledWebRuntime: false,
-  "server": {
-    "url": "https://paideia.im"
-  }
+  server: {
+    url: "https://paideia.im",
+  },
   // use https://paideia.im for production...
 };
 

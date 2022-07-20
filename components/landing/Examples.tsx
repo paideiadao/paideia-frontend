@@ -170,13 +170,7 @@ export default function Examples() {
                     maskImage: "linear-gradient(black 0%, transparent 70%)",
                   }}
                 >
-                  {sizeMd ? null : (
-                    <img
-                      src={image}
-                      width={585}
-                      height={800}
-                    />
-                  )}
+                  {sizeMd ? null : <img src={image} width={585} height={800} />}
                 </Box>
               </TabPanel>
             );
@@ -226,11 +220,7 @@ export default function Examples() {
                     }}
                   >
                     {sizeMd ? (
-                      <img
-                        src={image}
-                        width={width}
-                        height={height}
-                      />
+                      <img src={image} width={width} height={height} />
                     ) : null}
                   </Box>
                 </TabPanel>

@@ -44,9 +44,7 @@ const PageHeader: FC<IPageHeader> = ({
           ml: "-24px",
         }}
       >
-        <img
-          src={bgUrl}
-        />
+        <img src={bgUrl} />
       </Box>
       <Grid
         container

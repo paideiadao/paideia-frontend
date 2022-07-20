@@ -3,7 +3,6 @@ import SectionTitle from "@components/SectionTitle";
 import { DarkTheme } from "@theme/theme";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-
 const perkTitleStyle = {
   fontSize: "24px",
   fontWeight: "700",
@@ -56,9 +55,7 @@ export default function Perks() {
             ml: "-24px",
           }}
         >
-          <img
-            src="/perks-bg.png"
-          />
+          <img src="/perks-bg.png" />
         </Box>
         <Grid container sx={{ pt: "60px", pb: "120px" }}>
           <Grid item md={5}>
