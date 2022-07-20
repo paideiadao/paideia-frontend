@@ -38,9 +38,8 @@ const Dashboard: React.FC = () => {
           width: "100%",
           display: "flex",
           alignItems: "flex-start",
-          pl: deviceWrapper('0', '.5rem'),
-          pr: deviceWrapper('0', '.5rem')
-
+          pl: deviceWrapper("0", ".5rem"),
+          pr: deviceWrapper("0", ".5rem"),
         }}
       >
         <Box sx={{ width: deviceWrapper("100%", "70%"), p: ".5rem", pt: 0 }}>
@@ -188,10 +187,10 @@ const Dashboard: React.FC = () => {
             width: "30%",
             flexDirection: "column",
             justifyContent: "center",
-            position: deviceWrapper('relative', "sticky"),
-            top: deviceWrapper('0', "3.5rem"),
+            position: deviceWrapper("relative", "sticky"),
+            top: deviceWrapper("0", "3.5rem"),
             mr: ".5rem",
-            pl: deviceWrapper('0', ".5rem"),
+            pl: deviceWrapper("0", ".5rem"),
 
             display: deviceWrapper("none", "flex"),
           }}

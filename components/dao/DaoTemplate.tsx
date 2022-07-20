@@ -25,8 +25,8 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
 
   const [showMobile, setShowMobile] = React.useState<boolean>(false);
   React.useEffect(() => {
-    console.log('dao template loaded...')
-  }, [])
+    console.log("dao template loaded...");
+  }, []);
 
   return (
     <Box

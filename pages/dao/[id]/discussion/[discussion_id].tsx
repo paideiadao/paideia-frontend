@@ -25,6 +25,8 @@ import DiscussionInfo from "@components/dao/discussion/DiscussionInfo";
 import Comments from "@components/dao/discussion/Comments";
 import DiscussionReferences from "@components/dao/discussion/DiscussionReferences";
 import { paths, props } from "@lib/DiscussionPaths";
+import Layout from "@components/dao/Layout";
+import { deviceWrapper } from "@components/utilities/Style";
 
 const Discussion: React.FC = () => {
   const themeContext = React.useContext(ThemeContext);
@@ -56,20 +58,22 @@ const Discussion: React.FC = () => {
   };
 
   return (
-    <>
-      <Box sx={{ p: "1.5rem", width: "100%", display: "flex" }}>
-        <Box sx={{ width: "70%" }}>
+    <Layout width={deviceWrapper("92%", "97%")}>
+      <Box sx={{ width: "100%", display: "flex" }}>
+        <Box sx={{ width: deviceWrapper("100%", "70%") }}>
           <Box
             sx={{
-              width: "100%",
-              borderRadius: ".3rem",
+              width: deviceWrapper("calc(100% + 2rem)", "100%"),
+              borderRadius: deviceWrapper("0", ".3rem"),
               position: "relative",
-              backgroundImage: `url(${DiscussionPlaceholder.src})`,
+              backgroundImage: `url(https://picsum.photos/800/300)`,
               p: "1rem",
               maxHeight: "30rem",
               display: "flex",
               alignItems: "flex-start",
               minHeight: "10rem",
+              mt: deviceWrapper("-1rem", "0"),
+              ml: deviceWrapper("-1rem", "0"),
             }}
           >
             <Button
@@ -81,11 +85,20 @@ const Discussion: React.FC = () => {
                 },
               }}
               size="small"
+              startIcon={<ArrowBackIcon />}
+              onClick={router.back}
             >
-              <ArrowBackIcon sx={{ mr: ".3rem" }} />
               Back
             </Button>
-            <Box sx={{ ml: "auto" }}>
+
+            <Box
+              sx={{
+                ml: "auto",
+                position: deviceWrapper("absolute", "relative"),
+                bottom: deviceWrapper("1rem", "0"),
+                left: deviceWrapper("1rem", "0"),
+              }}
+            >
               {value.tags.map((i: any, c: number) => (
                 <Chip
                   key={"discussion-tag-key-" + c}
@@ -107,6 +120,9 @@ const Discussion: React.FC = () => {
               mt: "1rem",
               display: "flex",
               alignItems: "center",
+              pb: "1rem",
+              borderBottom: "1px solid",
+              borderColor: "border.main",
             }}
           >
             <Box>
@@ -115,7 +131,7 @@ const Discussion: React.FC = () => {
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  fontSize: ".9rem",
+                  fontSize: ".8rem",
                   color: "text.secondary",
                 }}
               >
@@ -123,9 +139,55 @@ const Discussion: React.FC = () => {
                   sx={{ opacity: ".8", fontSize: "1rem", mr: ".3rem" }}
                 />
                 ID: {discussion_id}
+                <Box
+                  sx={{
+                    alignItems: "center",
+                    ml: ".5rem",
+                    color: "text.secondary",
+                    fontSize: ".8rem",
+                    display: deviceWrapper("flex", "none"),
+                  }}
+                >
+                  <CalendarTodayIcon sx={{ mr: ".3rem", fontSize: "1rem" }} />
+                  {dateFormat(value.date, "mmmm dS, yyyy")}
+                </Box>
               </Box>
             </Box>
-            <Box sx={{ ml: "auto" }}>
+            <Box
+              sx={{
+                ml: "auto",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-end",
+              }}
+            >
+              <Box
+                sx={{
+                  color: "primary.main",
+                  alignItems: "center",
+                  fontSize: deviceWrapper(".7rem", ""),
+                  display: deviceWrapper("flex", "none"),
+                }}
+              >
+                <CircleIcon
+                  color="primary"
+                  sx={{ mr: ".3rem", fontSize: ".8rem" }}
+                />
+                Discussion
+              </Box>
+              <Chip
+                label={value.category}
+                variant="outlined"
+                icon={<LocalFireDepartmentIcon sx={{ fontSize: "1.3rem" }} />}
+                sx={{
+                  color: "primary.main",
+                  borderColor: "primary.main",
+                  fontSize: ".8rem",
+                  display: deviceWrapper("flex", "none"),
+                  mt: ".5rem",
+                }}
+              />
+
               <Button
                 onClick={() =>
                   setValue({ ...value, followed: !value.followed })
@@ -137,14 +199,14 @@ const Discussion: React.FC = () => {
                     borderColor: "red",
                     color: "red",
                   },
+                  display: deviceWrapper("none", "flex"),
                 }}
                 variant="outlined"
+                size="small"
+                startIcon={
+                  value.followed ? <FavoriteIcon /> : <FavoriteBorderIcon />
+                }
               >
-                {value.followed ? (
-                  <FavoriteIcon sx={{ mr: ".3rem" }} />
-                ) : (
-                  <FavoriteBorderIcon sx={{ mr: ".3rem" }} />
-                )}
                 Follow{value.followed && "ed"}
               </Button>
             </Box>
@@ -160,20 +222,21 @@ const Discussion: React.FC = () => {
             <Chip
               label={value.category}
               variant="outlined"
-              icon={<LocalFireDepartmentIcon sx={{ fontSize: "1rem" }} />}
+              icon={<LocalFireDepartmentIcon sx={{ fontSize: "1.4rem" }} />}
               sx={{
                 color: "primary.main",
                 borderColor: "primary.main",
-                fontSize: ".7rem",
+                fontSize: "1rem",
+                display: deviceWrapper("none", "flex"),
               }}
             />
             <Box
               sx={{
                 color: "primary.main",
                 ml: ".5rem",
-                display: "flex",
                 alignItems: "center",
                 fontSize: ".9rem",
+                display: deviceWrapper("none", "flex"),
               }}
             >
               <CircleIcon
@@ -184,17 +247,45 @@ const Discussion: React.FC = () => {
             </Box>
             <Box
               sx={{
-                display: "flex",
                 alignItems: "center",
                 ml: ".5rem",
                 color: "text.secondary",
                 fontSize: ".9rem",
+                display: deviceWrapper("none", "flex"),
               }}
             >
               <CalendarTodayIcon sx={{ mr: ".3rem", fontSize: "1.2rem" }} />
               {dateFormat(value.date, "mmmm dS, yyyy")}
             </Box>
-            <Box sx={{ ml: "auto" }}>
+            <Box
+              sx={{
+                ml: deviceWrapper("0", "auto"),
+                display: "flex",
+                mt: deviceWrapper(".5rem", "0"),
+              }}
+            >
+              <Button
+                onClick={() =>
+                  setValue({ ...value, followed: !value.followed })
+                }
+                sx={{
+                  color: value.followed ? "red" : "text.secondary",
+                  borderColor: value.followed ? "red" : "text.secondary",
+                  ":hover": {
+                    borderColor: "red",
+                    color: "red",
+                  },
+                  display: deviceWrapper("flex", "none"),
+                  mr: "1rem",
+                }}
+                variant="outlined"
+                size="small"
+                startIcon={
+                  value.followed ? <FavoriteIcon /> : <FavoriteBorderIcon />
+                }
+              >
+                Follow{value.followed && "ed"}
+              </Button>
               <LikesDislikes
                 likes={value.likes}
                 dislikes={value.dislikes}
@@ -202,11 +293,25 @@ const Discussion: React.FC = () => {
               />
             </Box>
           </Box>
+          <Box
+            sx={{
+              width: "100%",
+              mt: "1rem",
+              display: deviceWrapper("block", "none"),
+            }}
+          >
+            <Overview />
+            <State />
+          </Box>
           <TabContext value={tab}>
             <Box
               sx={{ borderBottom: 1, borderColor: "border.main", mt: ".5rem" }}
             >
-              <TabList onChange={handleChange}>
+              <TabList
+                onChange={handleChange}
+                variant="scrollable"
+                scrollButtons="auto"
+              >
                 <Tab label="Discussion Info" value="1" />
                 <Tab label="Comments | 7" value="2" />
                 <Tab label="Referenced | 1" value="3" />
@@ -226,7 +331,7 @@ const Discussion: React.FC = () => {
         <Box
           sx={{
             width: "30%",
-            display: "flex",
+            display: deviceWrapper("none", "flex"),
             flexDirection: "column",
             alignItems: "center",
             ml: "1.5rem",
@@ -236,7 +341,7 @@ const Discussion: React.FC = () => {
           <State />
         </Box>
       </Box>
-    </>
+    </Layout>
   );
 };
 

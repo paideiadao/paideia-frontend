@@ -65,7 +65,7 @@ const TopNav: React.FC<INav> = (props) => {
           onClick={() => props.setShowMobile(true)}
           sx={{ display: deviceWrapper("flex", "none") }}
         >
-          <MenuIcon />
+          <MenuIcon color="primary" />
         </IconButton>
         <Box
           sx={{
@@ -178,6 +178,7 @@ const TopNav: React.FC<INav> = (props) => {
                 .map((i: any, c: number) => {
                   return (
                     <Notification
+                      c={c}
                       i={i}
                       m={"0"}
                       key={"notification-key-modal-" + c}

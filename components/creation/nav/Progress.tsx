@@ -4,7 +4,7 @@ import CircularProgress, {
 } from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
-const CircularProgressWithLabel: React.FC<{value: number}> = (props) => {
+const CircularProgressWithLabel: React.FC<{ value: number }> = (props) => {
   return (
     <Box
       sx={{
@@ -57,6 +57,6 @@ const CircularProgressWithLabel: React.FC<{value: number}> = (props) => {
       </Box>
     </Box>
   );
-}
+};
 
-export default CircularProgressWithLabel
+export default CircularProgressWithLabel;

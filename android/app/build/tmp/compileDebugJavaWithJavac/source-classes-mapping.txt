@@ -1,0 +1,4 @@
+im/paideia/app/BuildConfig.java
+ im.paideia.app.BuildConfig
+im/paideia/app/MainActivity.java
+ im.paideia.app.MainActivity

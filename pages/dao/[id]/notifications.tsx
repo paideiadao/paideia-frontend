@@ -222,14 +222,14 @@ const Notifications: React.FC<{ params: any }> = (props) => {
       <Box
         sx={{
           mt: "1rem",
-          borderBottom: "1px solid",
+          borderBottom: deviceWrapper("none", "1px solid"),
           borderBottomColor: "border.main",
           pb: "1rem",
         }}
       >
         <CapsInfo title="New" />
         {newNotifications.map((i: INotification, c: number) => {
-          return <Notification i={i} />;
+          return <Notification i={i} c={c} />;
         })}
       </Box>
       <Box
@@ -240,31 +240,52 @@ const Notifications: React.FC<{ params: any }> = (props) => {
       >
         <CapsInfo title="Old" />
         {oldNotifications.map((i: INotification, c: number) => {
-          return <Notification i={i} />;
+          return <Notification i={i} c={c} />;
         })}
+      </Box>
+      <Box
+        sx={{
+          position: "fixed",
+          bottom: "0",
+          left: "0",
+          width: "100%",
+          display: deviceWrapper("flex", "none"),
+          alignItems: "center",
+          backgroundColor: "fileInput.main",
+          justifyContent: "center",
+        }}
+      >
+        <Button sx={{ width: "100%", borderRadius: 0, p: ".75rem" }}>
+          Mark all as read
+        </Button>
       </Box>
     </Layout>
   );
 };
 
-export const Notification: React.FC<{ i: INotification; m?: string }> = (
-  props
-) => {
+export const Notification: React.FC<{
+  i: INotification;
+  m?: string;
+  c: number;
+}> = (props) => {
   let i = props.i;
   return (
     <Box
       sx={{
-        mt: props.m === undefined ? ".75rem" : props.m,
-        mb: props.m === undefined ? ".75rem" : props.m,
-        width: "100%",
+        mt: props.m === undefined ? deviceWrapper("0", ".75rem") : props.m,
+        mb: props.m === undefined ? deviceWrapper("0", ".75rem") : props.m,
+        width: deviceWrapper("calc(100% + 2rem)", "100%"),
         display: "flex",
         alignItems: "center",
         p: "1rem",
         backgroundColor: i.isread === 0 ? "fileInput.read" : "fileInput.outer",
-        borderRadius: props.m === undefined ? ".3rem" : "0rem",
-        border: "1px solid",
+        borderRadius:
+          props.m === undefined ? deviceWrapper("0", ".3rem") : "0rem",
+        borderBottom: "1px solid",
+        borderTop: props.c === 0 ? "1px solid" : "0",
         borderColor: "border.main",
         cursor: "pointer",
+        ml: "-1rem",
       }}
     >
       <Avatar src={i.img} sx={{ width: "4rem", height: "4rem" }}></Avatar>

@@ -4,7 +4,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import Tooltip from "@mui/material/Tooltip";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Link from "next/link";
-import { deviceStruct } from "@components/utilities/Style";
+import { deviceStruct, deviceWrapper } from "@components/utilities/Style";
 
 export const Header: React.FC<{
   title: string;
@@ -21,7 +21,7 @@ export const Header: React.FC<{
             ? "1.3rem"
             : props.small === undefined
             ? "1.1rem"
-            : "1rem",
+            : deviceWrapper(".9rem", "1.1rem"),
         fontWeight: 500,
         color: "text.primary",
       }}
@@ -43,14 +43,14 @@ export const Header: React.FC<{
               ? "1.3rem"
               : props.small === undefined
               ? "1.1rem"
-              : "1rem",
+              : deviceWrapper(".9rem", "1.1rem"),
           color: "text.primary",
           mb: props.mb === undefined ? ".5rem" : props.mb,
         }}
       >
         {props.title}
       </Box>
-      <Subtitle subtitle={props.subtitle} />
+      <Subtitle subtitle={props.subtitle} small={props.small} />
     </Box>
   );
 };

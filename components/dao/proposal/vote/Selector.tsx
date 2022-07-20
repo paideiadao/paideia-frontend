@@ -6,6 +6,7 @@ import ListIcon from "@mui/icons-material/List";
 import ProposalContext, {
   IProposalContext,
 } from "@lib/dao/proposal/ProposalContext";
+import { deviceWrapper } from "@components/utilities/Style";
 
 const Selector: React.FC = () => {
   const context = React.useContext<IProposalContext>(ProposalContext);
@@ -16,7 +17,14 @@ const Selector: React.FC = () => {
       votingSystem: value,
     });
   return (
-    <Box sx={{ width: "100%", alignItems: "stretch", display: "flex" }}>
+    <Box
+      sx={{
+        width: "100%",
+        alignItems: "stretch",
+        display: "flex",
+        flexDirection: deviceWrapper("column", "row"),
+      }}
+    >
       <VoteChoice
         icon={<CheckIcon />}
         title="Yes or no"

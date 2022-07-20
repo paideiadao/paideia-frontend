@@ -13,6 +13,7 @@ import Options from "./vote/Options";
 import Selector from "./vote/Selector";
 import YesNo from "./vote/YesNo/YesNo";
 import AddIcon from "@mui/icons-material/Add";
+import { deviceWrapper } from "@components/utilities/Style";
 
 interface IVoteChoice {
   title: string;
@@ -27,8 +28,10 @@ export const VoteChoice: React.FC<IVoteChoice> = (props) => {
       onClick={props.change}
       sx={{
         backgroundColor: "fileInput.outer",
-        width: "50%",
+        width: deviceWrapper("100%", "50%"),
         p: ".5rem",
+        mt: deviceWrapper("1rem", "0"),
+
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",

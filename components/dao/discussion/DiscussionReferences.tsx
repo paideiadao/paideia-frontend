@@ -1,4 +1,5 @@
 import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
+import { deviceWrapper } from "@components/utilities/Style";
 import { Avatar, Box, Button } from "@mui/material";
 import * as React from "react";
 import { LikesDislikes, ProposalStatus } from "../proposals/ProposalCard";
@@ -30,7 +31,7 @@ const references = [
     likes: 485,
     dislikes: 10,
     userSide: 1,
-    id: 1,
+    id: 2,
   },
   {
     img: "",
@@ -39,7 +40,7 @@ const references = [
     likes: 485,
     dislikes: 10,
     userSide: 0,
-    id: 1,
+    id: 3,
   },
 ];
 
@@ -47,8 +48,21 @@ const DiscussionReferences: React.FC = () => {
   const times = 1;
   return (
     <>
-      <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
-        <Box sx={{ display: "flex", alignItems: "center", width: "50%" }}>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          flexWrap: deviceWrapper("wrap", "nowrap"),
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            width: deviceWrapper("100%", "50%"),
+          }}
+        >
           <CapsInfo
             title={`this discussion has been referenced ${times} ${
               times === 1 ? "time" : "times"
@@ -56,7 +70,14 @@ const DiscussionReferences: React.FC = () => {
             mb="0"
           />
         </Box>
-        <Button sx={{ ml: "auto" }} variant="outlined">
+        <Button
+          sx={{
+            ml: deviceWrapper("0", "auto"),
+            mt: deviceWrapper(".5rem", "0"),
+          }}
+          variant="outlined"
+          size="small"
+        >
           Reference this discussion
         </Button>
       </Box>
@@ -84,22 +105,44 @@ const DiscussionCard: React.FC<IReference> = (props) => {
       }}
     >
       <Avatar
-        src={props.img}
-        sx={{ width: "3rem", height: "3rem", ml: ".5rem" }}
+        src={`https://picsum.photos/200/200/?random=${props.id}`}
+        sx={{
+          width: deviceWrapper("2.5rem", "3rem"),
+          height: deviceWrapper("2.5rem", "3rem"),
+          ml: ".5rem",
+        }}
       />
-      <Box sx={{ ml: "1rem" }}>
+      <Box
+        sx={{
+          ml: deviceWrapper(".75rem", "1rem"),
+          fontSize: deviceWrapper(".8rem", "1rem"),
+        }}
+      >
         {props.proposalName}
-        <Box>
+        <Box sx={{ display: deviceWrapper("none", "block") }}>
           <ProposalStatus status={props.proposalStatus} />
         </Box>
       </Box>
-      <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
+      <Box
+        sx={{
+          ml: "auto",
+          display: "flex",
+          alignItems: deviceWrapper("flex-end", "center"),
+          flexDirection: deviceWrapper("column", "row"),
+        }}
+      >
+        <Box sx={{ display: deviceWrapper("block", "none") }}>
+          <ProposalStatus status={props.proposalStatus} />
+        </Box>
         <LikesDislikes
           likes={props.likes}
           dislikes={props.dislikes}
           userSide={props.userSide}
         />
-        <Button sx={{ ml: "1rem" }}>View</Button>
+
+        <Button sx={{ ml: "1rem", display: deviceWrapper("none", "flex") }}>
+          View
+        </Button>
       </Box>
     </Box>
   );

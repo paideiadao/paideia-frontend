@@ -33,6 +33,7 @@ import Treasury from "@pages/dao/[id]/financials/treasury";
 import Send from "@pages/dao/[id]/financials/treasury/send";
 import Burn from "@pages/dao/[id]/financials/token/burn";
 import DaoConfig from "@pages/dao/[id]/dao-config";
+import ProposalAddendum from "@pages/dao/proposal/[proposal_id]/addendum/[addendum_id]";
 
 export const isDao = (Component: any) => {
   return (
@@ -70,6 +71,7 @@ export const isDao = (Component: any) => {
     Component === Treasury ||
     Component === Send ||
     Component === Burn ||
-    Component === DaoConfig
+    Component === DaoConfig ||
+    Component === ProposalAddendum
   );
 };
