@@ -37,7 +37,7 @@ const highlights = [
       "You can share your NFT proceeds by using a DAO to distribute and control raised funds",
     link: "/",
   },
-]
+];
 
 const articles = [
   {
@@ -48,43 +48,50 @@ const articles = [
   },
   {
     name: "How to stake Paideia",
-    description: "Learn everything you need to know about staking Paideia tokens on the platform. ",
+    description:
+      "Learn everything you need to know about staking Paideia tokens on the platform. ",
     link: "/",
     category: "Education",
   },
   {
     name: "Weekly Dev Update",
-    description: "This is the weekly Paideia dev update with all the most interesting info you can even imagine. ",
+    description:
+      "This is the weekly Paideia dev update with all the most interesting info you can even imagine. ",
     link: "/",
     category: "News",
   },
   {
     name: "Weekly Dev Update",
-    description: "This is the weekly Paideia dev update with all the most interesting info you can even imagine. ",
+    description:
+      "This is the weekly Paideia dev update with all the most interesting info you can even imagine. ",
     link: "/",
     category: "News",
   },
   {
     name: "Weekly Dev Update",
-    description: "This is the weekly Paideia dev update with all the most interesting info you can even imagine. ",
+    description:
+      "This is the weekly Paideia dev update with all the most interesting info you can even imagine. ",
     link: "/",
     category: "News",
   },
   {
     name: "Weekly Dev Update",
-    description: "This is the weekly Paideia dev update with all the most interesting info you can even imagine. ",
+    description:
+      "This is the weekly Paideia dev update with all the most interesting info you can even imagine. ",
     link: "/",
     category: "News",
   },
   {
     name: "Weekly Dev Update",
-    description: "This is the weekly Paideia dev update with all the most interesting info you can even imagine. ",
+    description:
+      "This is the weekly Paideia dev update with all the most interesting info you can even imagine. ",
     link: "/",
     category: "News",
   },
   {
     name: "Weekly Dev Update",
-    description: "This is the weekly Paideia dev update with all the most interesting info you can even imagine. ",
+    description:
+      "This is the weekly Paideia dev update with all the most interesting info you can even imagine. ",
     link: "/",
     category: "News",
   },
@@ -101,12 +108,16 @@ const Blog = () => {
         subTitleOne="Don't miss out on any of the latest updates "
         subTitleTwo=" "
       />
-      <Highlights highlights={highlights} title="Featured blog posts" titleSmall="Don't miss these" />
+      <Highlights
+        highlights={highlights}
+        title="Featured blog posts"
+        titleSmall="Don't miss these"
+      />
       <Container sx={{ py: "240px" }}>
         <ArticleList articles={articles} />
       </Container>
     </>
   );
-}
+};
 
 export default Blog;

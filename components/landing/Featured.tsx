@@ -71,13 +71,17 @@ const seconaryFeaturedDaos = [
   },
 ];
 
-const FeaturedCard = ({ dao }: { dao: {
-  title: string;
-  subtitle: string;
-  body: string;
-  members: number;
-  link: string;
-}}) => {
+const FeaturedCard = ({
+  dao,
+}: {
+  dao: {
+    title: string;
+    subtitle: string;
+    body: string;
+    members: number;
+    link: string;
+  };
+}) => {
   return (
     <Box
       sx={{

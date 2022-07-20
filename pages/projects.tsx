@@ -127,7 +127,7 @@ const highlights = [
     link: "/",
     image: "/images/highlight.png",
   },
-]
+];
 
 export default function Projects() {
   return (

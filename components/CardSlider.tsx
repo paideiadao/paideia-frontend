@@ -138,10 +138,11 @@ const CardSlider: FC<SliderProps> = ({
       const mouseMoveHandler = (e: any) => {
         const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
         if (pnProductNav && posRef.current.left && posRef.current) {
-          pnProductNav.scrollLeft = posRef.current.left - (e.clientX - posRef.current.x);
+          pnProductNav.scrollLeft =
+            posRef.current.left - (e.clientX - posRef.current.x);
         }
       };
-    
+
       const mouseUpHandler = (e: any) => {
         const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
         if (pnProductNav) {
@@ -159,18 +160,20 @@ const CardSlider: FC<SliderProps> = ({
 
   const clickLeft = () => {
     const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
-    pnProductNav && pnProductNav.scrollTo({
-      left: scrollPosition - slideDistance,
-      behavior: "smooth",
-    });
+    pnProductNav &&
+      pnProductNav.scrollTo({
+        left: scrollPosition - slideDistance,
+        behavior: "smooth",
+      });
   };
 
   const clickRight = () => {
     const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
-    pnProductNav && pnProductNav.scrollTo({
-      left: scrollPosition + slideDistance,
-      behavior: "smooth",
-    });
+    pnProductNav &&
+      pnProductNav.scrollTo({
+        left: scrollPosition + slideDistance,
+        behavior: "smooth",
+      });
   };
 
   const ButtonBox = () => {

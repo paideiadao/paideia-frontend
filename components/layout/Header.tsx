@@ -137,7 +137,7 @@ export default function Header() {
                 color: LightTheme.palette.secondary.main,
               },
             }}
-            target={page.external ? '_blank' : '_self' }
+            target={page.external ? "_blank" : "_self"}
           >
             {page.name}
           </Link>

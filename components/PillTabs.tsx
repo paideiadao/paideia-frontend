@@ -72,7 +72,7 @@ interface ITab {
   link: string;
 }
 
-export default function PillTabs({ tabs }: { tabs: ITab[]}) {
+export default function PillTabs({ tabs }: { tabs: ITab[] }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: any, newValue: number) => {

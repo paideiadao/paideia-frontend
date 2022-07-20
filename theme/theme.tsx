@@ -23,7 +23,7 @@ declare module "@mui/material/styles" {
 }
 
 // Update the Typography's variant prop options
-declare module '@mui/material/Typography' {
+declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     p: true;
   }
@@ -35,12 +35,12 @@ export const mainTheme = createTheme({
       '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif',
     // @ts-ignore
     p: {
-      fontSize: '16px',
-      marginBottom: '32px',
-      display: 'block',
-      lineHeight: '24px',
-      letterSpacing: '0.15px',
-    }
+      fontSize: "16px",
+      marginBottom: "32px",
+      display: "block",
+      lineHeight: "24px",
+      letterSpacing: "0.15px",
+    },
   },
   breakpoints: {
     values: {

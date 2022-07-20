@@ -22,9 +22,8 @@ interface BlockquoteProps {
 }
 
 const Blockquote: FC<BlockquoteProps> = ({ small, sx, children }) => {
-
   return (
-    <Grid container wrap="nowrap" spacing={2} sx={sx ? sx : { mb: '32px' }}>
+    <Grid container wrap="nowrap" spacing={2} sx={sx ? sx : { mb: "32px" }}>
       <Grid item>
         <Box
           sx={{

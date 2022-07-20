@@ -18,7 +18,11 @@ function csvToArray(str: string, delimiter = ",") {
   // the object passed as an element of the array
   const arr = rows.map(function (row) {
     const values = row.split(delimiter);
-    const el = headers.reduce(function (object: {[index: string]: any}, header, index) {
+    const el = headers.reduce(function (
+      object: { [index: string]: any },
+      header,
+      index
+    ) {
       object[header.trim()] =
         values[index] === undefined
           ? undefined
@@ -26,7 +30,8 @@ function csvToArray(str: string, delimiter = ",") {
           ? parseFloat(values[index].replace("\r", ""))
           : values[index].replace("\r", "");
       return object;
-    }, {});
+    },
+    {});
     return el;
   });
 

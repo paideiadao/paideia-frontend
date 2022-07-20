@@ -19,7 +19,7 @@ import {
   Dialog,
   Card,
   CardContent,
-  CardActionArea
+  CardActionArea,
 } from "@mui/material";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { useTheme } from "@mui/material/styles";
@@ -105,26 +105,26 @@ interface IArticleListProps {
 
 const ArticleCard: FC<IArticleCard> = ({ article }) => {
   const randomInteger = (min: number, max: number) => {
-    return (min + Math.random() * (max - min)).toFixed()
-  }
-  const rand = randomInteger(1, 18)
+    return (min + Math.random() * (max - min)).toFixed();
+  };
+  const rand = randomInteger(1, 18);
   return (
     <Card
       sx={{
-        height: '100%',
-        background: '#111827',
-        border: '1px solid rgba(255, 255, 255, 0.12)',
-        borderRadius: '16px',
+        height: "100%",
+        background: "#111827",
+        border: "1px solid rgba(255, 255, 255, 0.12)",
+        borderRadius: "16px",
       }}
     >
-      <CardActionArea sx={{ height: '100%', verticalAlign: 'top' }}>
-        <CardContent sx={{ padding: 0, minHeight: '357px', height: '100%' }}>
+      <CardActionArea sx={{ height: "100%", verticalAlign: "top" }}>
+        <CardContent sx={{ padding: 0, minHeight: "357px", height: "100%" }}>
           <Box
             sx={{
-              display: 'block',
-              position: 'relative',
-              height: '188px',
-              overflow: 'hidden'
+              display: "block",
+              position: "relative",
+              height: "188px",
+              overflow: "hidden",
             }}
           >
             {article?.image ? (
@@ -134,7 +134,7 @@ const ArticleCard: FC<IArticleCard> = ({ article }) => {
                 layout="fill"
                 sizes="30vw"
                 objectFit="cover"
-              // height={188}
+                // height={188}
               />
             ) : (
               <Image
@@ -143,7 +143,7 @@ const ArticleCard: FC<IArticleCard> = ({ article }) => {
                 layout="fill"
                 sizes="30vw"
                 objectFit="cover"
-              // height={188}
+                // height={188}
               />
             )}
             {article?.category && (
@@ -156,14 +156,14 @@ const ArticleCard: FC<IArticleCard> = ({ article }) => {
                   background: "rgba(17,24,39,0.7)",
                   fontSize: "14px",
                   border: "1px solid #9FD2DB",
-                  position: 'absolute',
-                  bottom: '12px',
-                  left: '12px',
+                  position: "absolute",
+                  bottom: "12px",
+                  left: "12px",
                 }}
               />
             )}
           </Box>
-          <Box sx={{ p: '24px' }}>
+          <Box sx={{ p: "24px" }}>
             <Typography
               sx={{
                 fontWeight: "700",
@@ -186,14 +186,13 @@ const ArticleCard: FC<IArticleCard> = ({ article }) => {
               {article.description}
             </Typography>
           </Box>
-
         </CardContent>
       </CardActionArea>
-    </Card >
+    </Card>
   );
-}
+};
 
-const ArticleCardMemo = memo(ArticleCard)
+const ArticleCardMemo = memo(ArticleCard);
 
 export interface ConfirmationDialogRawProps {
   id: string;
@@ -291,8 +290,8 @@ const ArticleList: FC<IArticleListProps> = ({ articles, sx }) => {
             <SortBy />
           </Grid>
         </Grid>
-        // <FilterChips />
       ) : (
+        // <FilterChips />
         <Grid container sx={{ mb: "32px" }} spacing={3} direction="row">
           <Grid item xs>
             <SearchBar />
@@ -329,10 +328,9 @@ const ArticleList: FC<IArticleListProps> = ({ articles, sx }) => {
           </Grid>
         ))}
       </Grid>
-      <Box sx={{ width: '100%', textAlign: 'center' }}>
+      <Box sx={{ width: "100%", textAlign: "center" }}>
         <Button variant="contained">Load more...</Button>
       </Box>
-
     </Box>
   );
 };

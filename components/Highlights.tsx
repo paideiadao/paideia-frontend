@@ -69,11 +69,11 @@ const CarouselItem: FC<IItemObject> = ({ item }) => {
   const sizeLg = useMediaQuery(theme.breakpoints.up("lg"));
   const sizeXl = useMediaQuery(theme.breakpoints.up("xl"));
   const randomInteger = (min: number, max: number) => {
-    return (min + Math.random() * (max - min)).toFixed()
-  }
-  const rand = randomInteger(1, 18)
+    return (min + Math.random() * (max - min)).toFixed();
+  };
+  const rand = randomInteger(1, 18);
 
-  const image = item?.image ? item.image : `/images/placeholder/${rand}.jpg`
+  const image = item?.image ? item.image : `/images/placeholder/${rand}.jpg`;
 
   const Content = () => {
     return (
@@ -269,13 +269,20 @@ const CarouselItem: FC<IItemObject> = ({ item }) => {
             ></Box>
           </Box>
         </Box>
-        <Box sx={{ pt: "300px", position: "relative", display: "block", maxHeight: '258px' }}>
+        <Box
+          sx={{
+            pt: "300px",
+            position: "relative",
+            display: "block",
+            maxHeight: "258px",
+          }}
+        >
           <Content />
         </Box>
       </Container>
     );
   }
-}
+};
 
 interface IHighlightCarouselProps {
   highlights: IHighlightItem[];
@@ -309,7 +316,7 @@ const HighlightCarousel: FC<IHighlightCarouselProps> = ({ highlights }) => {
       ))}
     </Carousel>
   );
-}
+};
 
 interface IHighlightProps {
   titleSmall?: string;
@@ -317,7 +324,7 @@ interface IHighlightProps {
   highlights: IHighlightItem[];
 }
 
-const Highlights: FC<IHighlightProps> = ({titleSmall, title, highlights}) => {
+const Highlights: FC<IHighlightProps> = ({ titleSmall, title, highlights }) => {
   return (
     <>
       <Container
@@ -329,9 +336,11 @@ const Highlights: FC<IHighlightProps> = ({titleSmall, title, highlights}) => {
       >
         <Grid container sx={{ mt: "120px" }}>
           <Grid item md={6}>
-            <SectionTitle marginBottom="24px">{titleSmall ? titleSmall : 'Featured'}</SectionTitle>
+            <SectionTitle marginBottom="24px">
+              {titleSmall ? titleSmall : "Featured"}
+            </SectionTitle>
             <Typography sx={{ ...titleStyle, mb: "64px" }}>
-            {title ? title : 'You can\'t miss these highlights'}
+              {title ? title : "You can't miss these highlights"}
             </Typography>
           </Grid>
           <Grid item md={6}></Grid>
@@ -340,6 +349,6 @@ const Highlights: FC<IHighlightProps> = ({titleSmall, title, highlights}) => {
       <HighlightCarousel highlights={highlights} />
     </>
   );
-}
+};
 
 export default Highlights;
