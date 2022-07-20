@@ -70,7 +70,7 @@ const Proposal: React.FC = () => {
     ],
   });
 
-  const [tab, setTab] = React.useState("1");
+  const [tab, setTab] = React.useState("0");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setTab(newValue);
@@ -226,11 +226,11 @@ const Proposal: React.FC = () => {
                     setValue({ ...value, followed: !value.followed })
                   }
                   sx={{
-                    color: value.followed ? "red" : "text.secondary",
-                    borderColor: value.followed ? "red" : "text.secondary",
+                    color: value.followed ? "error.light" : "text.secondary",
+                    borderColor: value.followed ? "error.light" : "text.secondary",
                     ":hover": {
-                      borderColor: "red",
-                      color: "red",
+                      borderColor: "error.light",
+                      color: "error.light",
                     },
                     display: deviceWrapper("none", "flex"),
                   }}
@@ -299,10 +299,16 @@ const Proposal: React.FC = () => {
                   setValue({ ...value, followed: !value.followed })
                 }
                 sx={{
+                  color: value.followed ? "error.light" : "text.secondary",
+                  borderColor: value.followed ? "error.light" : "text.secondary",
+                  ":hover": {
+                    borderColor: "error.light",
+                    color: "error.light",
+                  },
                   display: deviceWrapper("flex", "none"),
                 }}
                 variant="outlined"
-                color={value.followed ? "success" : "error"}
+                
                 size="small"
                 startIcon={
                   value.followed ? <FavoriteIcon /> : <FavoriteBorderIcon />

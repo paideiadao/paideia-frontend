@@ -37,7 +37,7 @@ const RecurringCard: React.FC<IRecurringCard> = (props) => {
           sm: ".8rem",
           md: ".9rem",
           lg: ".9rem",
-          xl: "1.1rem",
+          xl: "1rem",
         },
         ":hover": {
           borderColor: "primary.main",
@@ -143,8 +143,7 @@ const RecurringCard: React.FC<IRecurringCard> = (props) => {
       <Button
         endIcon={<DeleteIcon />}
         variant="text"
-        color="error"
-        sx={{ ml: "auto", display: deviceWrapper("none", "flex") }}
+        sx={{ ml: "auto", display: deviceWrapper("none", "flex"), color: 'error.light' }}
         size="small"
       >
         Cancel

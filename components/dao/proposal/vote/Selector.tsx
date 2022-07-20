@@ -22,6 +22,7 @@ const Selector: React.FC = () => {
         width: "100%",
         alignItems: "stretch",
         display: "flex",
+        justifyContent: 'center',
         flexDirection: deviceWrapper("column", "row"),
       }}
     >

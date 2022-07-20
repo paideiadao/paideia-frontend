@@ -193,11 +193,11 @@ const Discussion: React.FC = () => {
                   setValue({ ...value, followed: !value.followed })
                 }
                 sx={{
-                  color: value.followed ? "red" : "text.secondary",
-                  borderColor: value.followed ? "red" : "text.secondary",
+                  color: value.followed ? "error.light" : "text.secondary",
+                  borderColor: value.followed ? "error.light" : "text.secondary",
                   ":hover": {
-                    borderColor: "red",
-                    color: "red",
+                    borderColor: "error.light",
+                    color: "error.light",
                   },
                   display: deviceWrapper("none", "flex"),
                 }}
@@ -269,11 +269,11 @@ const Discussion: React.FC = () => {
                   setValue({ ...value, followed: !value.followed })
                 }
                 sx={{
-                  color: value.followed ? "red" : "text.secondary",
-                  borderColor: value.followed ? "red" : "text.secondary",
+                  color: value.followed ? "error.light" : "text.secondary",
+                  borderColor: value.followed ? "error.light" : "text.secondary",
                   ":hover": {
-                    borderColor: "red",
-                    color: "red",
+                    borderColor: "error.light",
+                    color: "error.light",
                   },
                   display: deviceWrapper("flex", "none"),
                   mr: "1rem",
