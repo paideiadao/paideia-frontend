@@ -1,6 +1,6 @@
 import { Avatar, Box, Button, Paper } from "@mui/material";
 import ImageIcon from "@mui/icons-material/Image";
-import Image from "next/image";
+
 import { bytesToSize } from "@lib/creation/Utilities";
 
 const DiscussionBanner: React.FC<{
@@ -40,7 +40,7 @@ const DiscussionBanner: React.FC<{
         props.file !== undefined ? (
           <>
             <Box sx={{ width: "100%" }}>
-              <Image
+              <img
                 src={props.fileUrl}
                 alt="Picture of the author"
                 style={{
@@ -93,7 +93,7 @@ const DiscussionBanner: React.FC<{
           </>
         ) : (
           <Box sx={{ width: "100%" }}>
-            <Image
+            <img
               src={props.fileUrl}
               alt="Banner for the discussion"
               style={{

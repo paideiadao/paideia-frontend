@@ -10,15 +10,15 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Save from "@mui/icons-material/Save";
 import DarkSwitch from "@components/utilities/DarkSwitch";
-import { GlobalContext } from "@lib/creation/Context";
+import { CreationContext } from "@lib/creation/Context";
 import { ThemeContext } from "@lib/ThemeContext";
 import { deviceStruct } from "@components/utilities/Style";
 
-export default function Nav(props: any) {
-  let globalContext = React.useContext(ThemeContext);
-  let global = React.useContext(GlobalContext);
+export default function Nav(props) {
+  let creationContext = React.useContext(ThemeContext);
+  let global = React.useContext(CreationContext);
 
-  let theme = globalContext.theme;
+  let theme = creationContext.theme;
   const [logo, setLogo] = React.useState(
     theme === DarkTheme ? LightLogo : DarkLogo
   );

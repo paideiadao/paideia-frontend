@@ -9,8 +9,8 @@ import { ITokenomics } from "../../../../lib/creation/CreationApi";
 import dateFormat from "dateformat";
 import { LightTheme } from "../../../../theme/theme";
 import {
-  GlobalContext,
-  IGlobalContext,
+  CreationContext,
+  ICreationContext,
 } from "../../../../lib/creation/Context";
 
 const getEmissionLengthInDays = (length: number, units: string) => {
@@ -201,7 +201,7 @@ const getChartData = (data: any) => {
 };
 
 const Emissions: React.FC<ITokenomics> = (props) => {
-  let globalContext = React.useContext<IGlobalContext>(GlobalContext);
+  let creationContext = React.useContext<ICreationContext>(CreationContext);
   // sort by longest vesting data in the getChartData function
 
   const [chartData, setChartData] = React.useState<any>(
@@ -223,7 +223,7 @@ const Emissions: React.FC<ITokenomics> = (props) => {
       enablePoints={false}
       theme={{
         textColor:
-          globalContext.api.theme === LightTheme
+          creationContext.api.theme === LightTheme
             ? "rgba(0, 0, 0, 0.6)"
             : "rgba(255, 255, 255, 0.7)",
       }}

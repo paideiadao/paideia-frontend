@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">paideia</string>
+    <string name="title_activity_main">paideia</string>
+    <string name="package_name">im.paideia.app</string>
+    <string name="custom_url_scheme">im.paideia.app</string>
+</resources>

@@ -12,7 +12,7 @@ import {
   Box,
   useMediaQuery,
 } from "@mui/material";
-import Image from "next/image";
+
 import SectionTitle from "@components/SectionTitle";
 import { useTheme } from "@mui/material/styles";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -171,9 +171,8 @@ export default function Examples() {
                   }}
                 >
                   {sizeMd ? null : (
-                    <Image
+                    <img
                       src={image}
-                      layout="responsive"
                       width={585}
                       height={800}
                     />
@@ -227,9 +226,8 @@ export default function Examples() {
                     }}
                   >
                     {sizeMd ? (
-                      <Image
+                      <img
                         src={image}
-                        layout="fixed"
                         width={width}
                         height={height}
                       />

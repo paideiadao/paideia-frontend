@@ -5,9 +5,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "npx prettier --write .",
-    "export": "next build && next export"
+    "mobile": "next build && next export && npx cap sync"
   },
   "dependencies": {
+    "@capacitor/android": "^3.6.0",
+    "@capacitor/core": "^3.6.0",
+    "@capacitor/ios": "^3.6.0",
     "@date-io/date-fns": "^2.13.1",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
@@ -38,6 +41,7 @@
     "unsplash-js": "^7.0.15"
   },
   "devDependencies": {
+    "@capacitor/cli": "^3.6.0",
     "@mui/x-data-grid-pro": "^5.13.1",
     "@types/dateformat": "^5.0.0",
     "@types/elliptic": "^6.4.14",

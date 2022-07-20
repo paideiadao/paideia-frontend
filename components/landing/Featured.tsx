@@ -8,7 +8,7 @@ import {
   Chip,
   useMediaQuery,
 } from "@mui/material";
-import Image from "next/image";
+
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { DarkTheme, LightTheme } from "@theme/theme";
 import { useTheme } from "@mui/material/styles";
@@ -175,9 +175,8 @@ export default function Featured() {
             overflow: "hidden",
           }}
         >
-          <Image
+          <img
             src="/featured-bg.png"
-            layout="fixed"
             width={2039}
             height={2116}
           />

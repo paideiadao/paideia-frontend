@@ -7,13 +7,13 @@ import {
 } from "../../../../lib/creation/CreationApi";
 import { percentage } from "../../../../lib/creation/Utilities";
 import {
-  GlobalContext,
-  IGlobalContext,
+  CreationContext,
+  ICreationContext,
 } from "../../../../lib/creation/Context";
 import { LightTheme } from "../../../../theme/theme";
 
 const PieChart: React.FC<ITokenomics> = (props) => {
-  let globalContext = React.useContext<IGlobalContext>(GlobalContext);
+  let creationContext = React.useContext<ICreationContext>(CreationContext);
   let data = props;
   let tokenHolders = data.tokenHolders;
   return (
@@ -51,7 +51,7 @@ const PieChart: React.FC<ITokenomics> = (props) => {
       }}
       arcLinkLabelsSkipAngle={10}
       arcLinkLabelsTextColor={
-        globalContext.api.theme === LightTheme
+        creationContext.api.theme === LightTheme
           ? "rgba(0, 0, 0, 0.6)"
           : "rgba(255, 255, 255, 0.7)"
       }

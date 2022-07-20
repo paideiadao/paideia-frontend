@@ -2,22 +2,24 @@ import * as React from "react";
 import { AlertTitle, Box, Divider } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import TextField from "@mui/material/TextField";
-import { GlobalContext } from "../../../lib/creation/Context";
+import { CreationContext } from "../../../lib/creation/Context";
 import { deviceStruct } from "@components/utilities/Style";
+import useDidMountEffect from "@components/utilities/hooks";
 
 const BasicInformation: React.FC = () => {
-  let globalContext = React.useContext(GlobalContext);
-  let data = globalContext.api.data.basicInformation;
+  let creationContext = React.useContext(CreationContext);
+  let data = creationContext.api.data.basicInformation;
 
-  React.useEffect(() => {
-    let clean = data.daoName.toLowerCase().replaceAll(" ", "");
-    globalContext.api.setData({
-      ...globalContext.api.data,
-      basicInformation: {
-        ...data,
-        daoUrl: clean === "" ? clean : "paideia.im/dao/" + clean,
-      },
-    });
+  useDidMountEffect(() => {
+      let clean = data.daoName.toLowerCase().replaceAll(" ", "");
+      creationContext.api.setData({
+        ...creationContext.api.data,
+        basicInformation: {
+          ...data,
+          daoUrl: clean === "" ? clean : "paideia.im/dao/" + clean,
+        },
+      });
+    
   }, [data.daoName]);
 
   return (
@@ -59,8 +61,8 @@ const BasicInformation: React.FC = () => {
             sx={{ width: "100%" }}
             value={data.daoName}
             onChange={(e) =>
-              globalContext.api.setData({
-                ...globalContext.api.data,
+              creationContext.api.setData({
+                ...creationContext.api.data,
                 basicInformation: {
                   ...data,
                   daoName: e.target.value,
@@ -81,8 +83,8 @@ const BasicInformation: React.FC = () => {
             sx={{ width: "100%" }}
             value={data.daoUrl}
             onChange={(e) =>
-              globalContext.api.setData({
-                ...globalContext.api.data,
+              creationContext.api.setData({
+                ...creationContext.api.data,
                 basicInformation: {
                   ...data,
                   daoUrl: e.target.value,
@@ -114,8 +116,8 @@ const BasicInformation: React.FC = () => {
           multiline
           value={data.shortDescription}
           onChange={(e) =>
-            globalContext.api.setData({
-              ...globalContext.api.data,
+            creationContext.api.setData({
+              ...creationContext.api.data,
               basicInformation: {
                 ...data,
                 shortDescription: e.target.value,

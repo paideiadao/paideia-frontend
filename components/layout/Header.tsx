@@ -10,7 +10,6 @@ import { useMediaQuery } from "@mui/material";
 import Paideia from "@components/svgs/Paideia";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { DarkTheme, LightTheme } from "@theme/theme";
-import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Divider from "@mui/material/Divider";
@@ -22,6 +21,7 @@ import Toolbar from "@mui/material/Toolbar";
 import { PageNavContext } from "@components/Layout";
 import { useRouter } from "next/router";
 import ConnectWallet from "@components/wallet/ConnectWallet";
+import Link from "next/link";
 // import ConnectWallet from "@components/wallet/ConnectWallet";
 
 const pages = [
@@ -125,19 +125,17 @@ export default function Header() {
         ) : (
           <Link
             href={page.link}
-            underline="hover"
-            sx={{
-              color:
-                router.pathname === page.link
-                  ? LightTheme.palette.secondary.main
-                  : "#fff",
-              textDecoration:
-                router.pathname === page.link ? "underline" : "none",
-              "&:hover": {
-                color: LightTheme.palette.secondary.main,
-              },
-            }}
-            target={page.external ? "_blank" : "_self"}
+            // sx={{
+            //   color:
+            //     router.pathname === page.link
+            //       ? LightTheme.palette.secondary.main
+            //       : "#fff",
+            //   textDecoration:
+            //     router.pathname === page.link ? "underline" : "none",
+            //   "&:hover": {
+            //     color: LightTheme.palette.secondary.main,
+            //   },
+            // }}
           >
             {page.name}
           </Link>

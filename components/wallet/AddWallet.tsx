@@ -77,21 +77,22 @@ export const AddWallet: React.FC = () => {
         addresses: JSON.parse(localStorage.getItem(WALLET_ADDRESS_LIST)),
       });
     }
+    // COMMENTS in addwallet & nautilus
     // refresh connection
-    try {
-      if (localStorage.getItem(DAPP_CONNECTED) === "true") {
-        //@ts-ignore
-        window.ergo_check_read_access().then((res) => {
-          if (!res)
-            //@ts-ignore
-            window.ergo_request_read_access().then((res) => {
-              if (!res) clearWallet();
-            });
-        });
-      }
-    } catch (e) {
-      console.log(e);
-    }
+    // try {
+    //   if (localStorage.getItem(DAPP_CONNECTED) === "true") {
+    //     //@ts-ignore
+    //     window.ergo_check_read_access().then((res) => {
+    //       if (!res)
+    //         //@ts-ignore
+    //         window.ergo_request_read_access().then((res) => {
+    //           if (!res) clearWallet();
+    //         });
+    //     });
+    //   }
+    // } catch (e) {
+    //   console.log(e);
+    // }
     setInit(true);
   }, []);
 
@@ -154,23 +155,23 @@ export const AddWallet: React.FC = () => {
    */
   const dAppConnect = async () => {
     setLoading(true);
-    try {
-      //@ts-ignore
-      if (await window.ergo_check_read_access()) {
-        await dAppLoad();
-        setLoading(false);
-        return;
-        //@ts-ignore
-      } else if (await window.ergo_request_read_access()) {
-        await dAppLoad();
-        setLoading(false);
-        return;
-      }
-      setDAppError(true);
-    } catch (e) {
-      setDAppError(true);
-      console.log(e);
-    }
+    // try {
+    //   //@ts-ignore
+    //   if (await window.ergo_check_read_access()) {
+    //     await dAppLoad();
+    //     setLoading(false);
+    //     return;
+    //     //@ts-ignore
+    //   } else if (await window.ergo_request_read_access()) {
+    //     await dAppLoad();
+    //     setLoading(false);
+    //     return;
+    //   }
+    //   setDAppError(true);
+    // } catch (e) {
+    //   setDAppError(true);
+    //   console.log(e);
+    // }
     setLoading(false);
   };
 

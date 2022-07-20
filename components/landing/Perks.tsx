@@ -2,7 +2,7 @@ import { Grid, Container, Box, Typography, Button } from "@mui/material";
 import SectionTitle from "@components/SectionTitle";
 import { DarkTheme } from "@theme/theme";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import Image from "next/image";
+
 
 const perkTitleStyle = {
   fontSize: "24px",
@@ -56,12 +56,8 @@ export default function Perks() {
             ml: "-24px",
           }}
         >
-          <Image
+          <img
             src="/perks-bg.png"
-            layout="fill"
-            objectFit="contain"
-            objectPosition="center top"
-            quality={100}
           />
         </Box>
         <Grid container sx={{ pt: "60px", pb: "120px" }}>
@@ -126,7 +122,7 @@ export default function Perks() {
             sx={{ display: { xs: "none", md: "flex" } }}
           ></Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Image src="/icons/StackIcon.svg" width={35} height={35} />
+            <img src="/icons/StackIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Simple to Use</Typography>
             <Typography component="p" sx={paragraphStyle}>
               The Paideia UX/UI was designed with ease-of-use in mind, removing
@@ -142,7 +138,7 @@ export default function Perks() {
             sx={{ display: { xs: "none", md: "flex" } }}
           ></Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Image src="/icons/CubeIcon.svg" width={35} height={35} />
+            <img src="/icons/CubeIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Secure</Typography>
             <Typography component="p" sx={paragraphStyle}>
               Smart contracts written in Ergoscript maintain secure, predictable
@@ -165,7 +161,7 @@ export default function Perks() {
             sx={{ display: { xs: "none", md: "flex" } }}
           ></Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Image src="/icons/PyramidIcon.svg" width={35} height={35} />
+            <img src="/icons/PyramidIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Flexible</Typography>
             <Typography component="p" sx={paragraphStyle}>
               Not all DAOs have the same needs. Paideia offers various
@@ -181,7 +177,7 @@ export default function Perks() {
             sx={{ display: { xs: "none", md: "flex" } }}
           ></Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Image src="/icons/TokenIcon.svg" width={35} height={35} />
+            <img src="/icons/TokenIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Inexpensive</Typography>
             <Typography component="p" sx={paragraphStyle}>
               Paideia is built on Ergo, so transaction fees are miniscule, and
