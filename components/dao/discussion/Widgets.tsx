@@ -23,7 +23,10 @@ export const Overview: React.FC<{ proposal?: boolean }> = (props) => {
           p: ".5rem",
         }}
       >
-        <CapsInfo title={props.proposal ? "Proposal By" : "Discussion By"} />
+        <CapsInfo
+          title={props.proposal ? "Proposal By" : "Discussion By"}
+          mb={"0"}
+        />
         <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
           <Avatar sx={{ width: "2.5rem", height: "2.5rem" }}>
             <img src={Musk.src} />
@@ -91,11 +94,20 @@ export const Overview: React.FC<{ proposal?: boolean }> = (props) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          pt: ".25rem",
-          pb: ".25rem",
         }}
       >
-        <Button>View Profile</Button>
+        <Button
+          size="small"
+          sx={{
+            width: "100%",
+            borderTopRightRadius: 0,
+            borderTopLeftRadius: 0,
+            pt: ".25rem",
+            pb: ".25rem",
+          }}
+        >
+          View Profile
+        </Button>
       </Box>
     </Box>
   );
@@ -114,7 +126,7 @@ export const State: React.FC = () => {
         p: ".5rem",
       }}
     >
-      <CapsInfo title="this proposal/discussion is in the discussion state" />
+      <CapsInfo title="this proposal is in the discussion state" />
       <Box sx={{ mt: "-.5rem", fontSize: ".9rem", color: "text.secondary" }}>
         Get feedback from the other members about an idea you have before
         commiting to a full proposal. Discussions can easily be upgraded to

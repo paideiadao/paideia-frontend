@@ -12,9 +12,9 @@ const Layout: React.FC<{ width?: string | any }> = (props) => {
         width: "100%",
         display: "flex",
         justifyContent: "center",
-        pt: { xs: ".75rem", sm: ".75rem", md: ".5rem", lg: "1.5rem" },
+        pt: { xs: ".75rem", sm: ".75rem", md: ".5rem", lg: "1rem" },
         pb: "1.5rem",
-        minHeight: "calc(100vh - 7.5rem)",
+        minHeight: "calc(100vh - 7rem)",
       }}
     >
       <Box

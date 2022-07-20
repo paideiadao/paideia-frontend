@@ -31,11 +31,14 @@ import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import ProposalInfo from "@components/dao/proposal/ProposalInfo";
 import Discussion from "@components/dao/proposal/Discussion";
 import Addendums from "@components/dao/proposal/Addendums";
+import VoteWidget from "@components/dao/proposal/VoteWidget";
+import OptionsWidget from "@components/dao/proposal/OptionsWidget";
+import Link from "next/link";
 
 const Proposal: React.FC = () => {
   const themeContext = React.useContext(ThemeContext);
   const router = useRouter();
-  const { proposal_id } = router.query;
+  const { id, proposal_id } = router.query;
   const [value, setValue] = React.useState<IProposal>({
     name: "",
     image: {
@@ -44,7 +47,7 @@ const Proposal: React.FC = () => {
     },
     category: "Finance",
     content: "",
-    votingSystem: "unselected",
+    votingSystem: "yes/no",
     references: [],
     actions: [
       {
@@ -91,19 +94,19 @@ const Proposal: React.FC = () => {
   return (
     <ProposalContext.Provider value={{ api }}>
       <Layout width={deviceWrapper("92%", "97%")}>
-        <Box sx={{ width: "100%", display: "flex" }}>
+        <Box sx={{ width: "100%", display: "flex", alignItems: "flex-start" }}>
           <Box sx={{ width: deviceWrapper("100%", "70%") }}>
             <Box
               sx={{
                 width: deviceWrapper("calc(100% + 2rem)", "100%"),
                 borderRadius: deviceWrapper("0", ".3rem"),
                 position: "relative",
-                backgroundImage: `url(https://picsum.photos/800/300)`,
+                backgroundImage: `url(${value.image.url})`,
                 p: "1rem",
                 maxHeight: "30rem",
                 display: "flex",
                 alignItems: "flex-start",
-                minHeight: "10rem",
+                minHeight: deviceWrapper("8rem", "12rem"),
                 mt: deviceWrapper("-1rem", "0"),
                 ml: deviceWrapper("-1rem", "0"),
               }}
@@ -239,14 +242,22 @@ const Proposal: React.FC = () => {
                 >
                   Follow{value.followed && "ed"}
                 </Button>
-                <Button
-                  sx={{ ml: "1rem", display: deviceWrapper("none", "flex") }}
-                  variant="contained"
-                  size="small"
-                  startIcon={<GavelIcon />}
+                <Link
+                  href={
+                    id === undefined
+                      ? `/dao/proposal/${proposal_id}/vote`
+                      : `/dao/${id}/proposal/${proposal_id}/vote`
+                  }
                 >
-                  Vote Now
-                </Button>
+                  <Button
+                    sx={{ ml: "1rem", display: deviceWrapper("none", "flex") }}
+                    variant="contained"
+                    size="small"
+                    startIcon={<GavelIcon />}
+                  >
+                    Vote Now
+                  </Button>
+                </Link>
               </Box>
             </Box>
             <Box
@@ -335,7 +346,11 @@ const Proposal: React.FC = () => {
               }}
             >
               <Overview proposal />
-              <State />
+              {value.votingSystem === "yes/no" ? (
+                <VoteWidget />
+              ) : (
+                <OptionsWidget />
+              )}
             </Box>
             <TabContext value={tab}>
               <Box
@@ -345,7 +360,11 @@ const Proposal: React.FC = () => {
                   mt: ".5rem",
                 }}
               >
-                <TabList onChange={handleChange}>
+                <TabList
+                  onChange={handleChange}
+                  variant="scrollable"
+                  scrollButtons="auto"
+                >
                   <Tab label="Proposal Info" value="0" />
 
                   <Tab label="Discussion" value="1" />
@@ -374,15 +393,18 @@ const Proposal: React.FC = () => {
           <Box
             sx={{
               width: "30%",
-              flexDirection: "column",
-              display: deviceWrapper("none", "flex"),
-
-              alignItems: "center",
+              position: "sticky",
+              top: deviceWrapper("0", "4.8rem"),
+              display: deviceWrapper("none", "block"),
               ml: "1.5rem",
             }}
           >
             <Overview proposal />
-            <State />
+            {value.votingSystem === "yes/no" ? (
+              <VoteWidget />
+            ) : (
+              <OptionsWidget />
+            )}
           </Box>
         </Box>
       </Layout>

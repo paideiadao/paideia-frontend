@@ -35,7 +35,7 @@ export interface IProposalCard {
   width: any;
 }
 
-const VoteWidget: React.FC<{
+export const VoteWidget: React.FC<{
   yes: number;
   no: number;
 }> = (props) => {
@@ -46,11 +46,11 @@ const VoteWidget: React.FC<{
           display: "flex",
           alignItems: "center",
           width: "100%",
-          color: "primary.lightSuccess",
+          color: "success.light",
         }}
       >
         {percentage(props.yes / (props.yes + props.no), 0)} YES
-        <Box sx={{ ml: "auto", color: "error.main" }}>
+        <Box sx={{ ml: "auto", color: "error.light" }}>
           {percentage(props.no / (props.yes + props.no), 0)} NO
         </Box>
       </Box>
@@ -58,14 +58,14 @@ const VoteWidget: React.FC<{
         <Box
           sx={{
             width: percentage(props.yes / (props.yes + props.no)),
-            backgroundColor: "green",
+            backgroundColor: "success.light",
             height: ".2rem",
           }}
         ></Box>
         <Box
           sx={{
             width: percentage(props.no / (props.yes + props.no)),
-            backgroundColor: "error.main",
+            backgroundColor: "error.light",
             height: ".2rem",
           }}
         ></Box>
@@ -94,16 +94,16 @@ export const ProposalStatus: React.FC<{ status: string }> = (props) => {
       }
       // passed color??
       case "Passed": {
-        return "primary.lightSuccess";
+        return "success.light";
       }
       case "Active": {
-        return "primary.lightSuccess";
+        return "success.light";
       }
       case "Discussion": {
         return "primary.main";
       }
       case "Unchallenged": {
-        return "primary.lightSuccess";
+        return "success.light";
       }
       case "Failed": {
         return "red";
@@ -209,10 +209,12 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
               ml: ".4rem",
               fontSize: iconFont,
               cursor: "pointer",
-              color: "red",
+              color: "error.light",
             }}
           />
-          <span style={{ color: "red" }}>{value.dislikes}</span>
+          <Box sx={{ color: "error.light", display: "inline" }}>
+            {value.dislikes}
+          </Box>
         </>
       ) : (
         <>
@@ -221,11 +223,11 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
               ml: ".2rem",
               mr: ".1rem",
               fontSize: iconFont,
-              color: "primary.lightSuccess",
+              color: "success.light",
               cursor: "pointer",
             }}
           />
-          <Box sx={{ color: "primary.lightSuccess" }}>{value.likes}</Box>
+          <Box sx={{ color: "success.light" }}>{value.likes}</Box>
           <ThumbDownOffAltIcon
             sx={{
               mr: ".1rem",

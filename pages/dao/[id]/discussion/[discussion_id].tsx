@@ -59,7 +59,7 @@ const Discussion: React.FC = () => {
 
   return (
     <Layout width={deviceWrapper("92%", "97%")}>
-      <Box sx={{ width: "100%", display: "flex" }}>
+      <Box sx={{ width: "100%", display: "flex", alignItems: "flex-start" }}>
         <Box sx={{ width: deviceWrapper("100%", "70%") }}>
           <Box
             sx={{
@@ -71,7 +71,7 @@ const Discussion: React.FC = () => {
               maxHeight: "30rem",
               display: "flex",
               alignItems: "flex-start",
-              minHeight: "10rem",
+              minHeight: deviceWrapper("8rem", "12rem"),
               mt: deviceWrapper("-1rem", "0"),
               ml: deviceWrapper("-1rem", "0"),
             }}
@@ -331,9 +331,9 @@ const Discussion: React.FC = () => {
         <Box
           sx={{
             width: "30%",
-            display: deviceWrapper("none", "flex"),
-            flexDirection: "column",
-            alignItems: "center",
+            position: "sticky",
+            top: deviceWrapper("0", "4.8rem"),
+            display: deviceWrapper("none", "block"),
             ml: "1.5rem",
           }}
         >

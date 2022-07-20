@@ -80,6 +80,7 @@ export const TreasuryInfo: React.FC = () => {
         backgroundColor: "fileInput.outer",
         p: ".5rem",
         borderRadius: ".3rem",
+        pb: 0,
       }}
     >
       <CapsInfo title={`${dao} Tokens`} />
@@ -128,10 +129,13 @@ export const TreasuryInfo: React.FC = () => {
 
       <Box
         sx={{
-          width: "100%",
+          width: "calc(100% + 1rem)",
           display: "flex",
           justifyContent: "center",
+          ml: "-.5rem",
+          borderTop: 1,
           mt: "1rem",
+          borderColor: "border.main",
         }}
       >
         <Link
@@ -141,7 +145,17 @@ export const TreasuryInfo: React.FC = () => {
               : `/dao/${id}/financials/token`
           }
         >
-          <Button variant="text">Learn More</Button>
+          <Button
+            variant="text"
+            sx={{
+              width: "100%",
+              borderTopRightRadius: 0,
+              borderTopLeftRadius: 0,
+            }}
+            size="small"
+          >
+            Learn More
+          </Button>
         </Link>
       </Box>
     </Box>
@@ -171,7 +185,7 @@ const Treasury: React.FC = () => {
           sx={{
             width: "28%",
             position: "sticky",
-            top: "1.6rem",
+            top: deviceWrapper("0", "4.8rem"),
             display: deviceWrapper("none", "block"),
             ml: "1.5rem",
           }}
