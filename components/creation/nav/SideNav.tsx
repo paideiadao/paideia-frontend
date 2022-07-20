@@ -14,7 +14,7 @@ import { GlobalContext } from "@lib/creation/Context";
 import { ThemeContext } from "@lib/ThemeContext";
 import { deviceStruct } from "@components/utilities/Style";
 
-export default function Nav(props) {
+export default function Nav(props: any) {
   let globalContext = React.useContext(ThemeContext);
   let global = React.useContext(GlobalContext);
 

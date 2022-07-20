@@ -42,7 +42,13 @@ const listItemStyles = {
   fontSize: "0.875rem",
 };
 
-const firstPages = [
+interface IPage {
+  name: string;
+  link: string;
+  external?: boolean;
+}
+
+const firstPages: IPage[] = [
   {
     name: "Home",
     link: "/",
@@ -58,7 +64,7 @@ const firstPages = [
   },
 ];
 
-const secondPages = [
+const secondPages: IPage[] = [
   {
     name: "Documentation",
     link: "https://docs.paideia.im",
@@ -69,14 +75,14 @@ const secondPages = [
   },
 ];
 
-const thirdPages = [
+const thirdPages: IPage[] = [
   {
     name: "Dashboard",
     link: "/",
   },
 ];
 
-const fourthPages = [];
+const fourthPages: IPage[] = [];
 
 export default function Footer() {
   const linkList = (list: any[]) => {

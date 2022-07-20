@@ -5,7 +5,7 @@ import { paths, props } from "@lib/DaoPaths";
 import { useRouter } from "next/router";
 
 // move dao to a wildcard subdomain
-export default function Dao({ daoData }) {
+export default function Dao() {
   return (
     <>
       <Dashboard />

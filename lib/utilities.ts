@@ -71,6 +71,7 @@ export class AbstractApi {
     current: string = ""
   ): Promise<T | boolean> {
     let self = this;
+    // @ts-ignore
     return await this.request(url, "GET").then((data: T | boolean) => {
       self.showAlert("success", current, action);
       return data;
@@ -87,6 +88,7 @@ export class AbstractApi {
     console.log("here...");
     let self = this;
     return await this.request(url, "POST", body, auth).then(
+      // @ts-ignore
       (data: T | boolean) => {
         self.showAlert("success", current, action);
         return data;
@@ -102,6 +104,7 @@ export class AbstractApi {
   ): Promise<T | boolean> {
     let self = this;
     return await this.request(url, "PATCH").then(
+      // @ts-ignore
       (data: T | boolean) => data,
       self.error
     );
@@ -115,6 +118,7 @@ export class AbstractApi {
   ): Promise<T | boolean> {
     let self = this;
     return await this.request(url, "PUT", body).then(
+      // @ts-ignore
       (data: T | boolean) => data,
       self.error
     );
@@ -128,6 +132,7 @@ export class AbstractApi {
   ): Promise<T | boolean> {
     let self = this;
     return await this.request(url, "DELETE", body).then(
+      // @ts-ignore
       (data: T | boolean) => data,
       self.error
     );
@@ -161,6 +166,7 @@ export class AbstractApi {
         params.append(k, v);
       }
       console.log("skeep");
+      // @ts-ignore
       return await methods[method]("http://localhost:8000/api" + url, params, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("jwt_token_login")}`,
@@ -168,6 +174,7 @@ export class AbstractApi {
         },
       });
     } else {
+      // @ts-ignore
       return await methods[method](
         "http://localhost:8000/api" + url,
         JSON.stringify(body),

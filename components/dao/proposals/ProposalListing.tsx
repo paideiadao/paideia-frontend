@@ -239,7 +239,7 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
           sx={{ width: "100%", flexWrap: "wrap", display: "flex", mt: "1rem" }}
         >
           {props.proposals
-            .sort((a, b) =>
+            .sort((a: any, b: any) =>
               filters.sortBy === ""
                 ? true
                 : filters.sortBy === "Most Recent"

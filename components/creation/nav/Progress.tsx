@@ -61,6 +61,6 @@ function CircularProgressWithLabel(
   );
 }
 
-export default function CircularStatic(props) {
-  return <CircularProgressWithLabel value={props.value} />;
+export default function CircularStatic(value: number) {
+  return <CircularProgressWithLabel value={value} />;
 }

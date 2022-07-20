@@ -94,6 +94,7 @@ const Quorum: React.FC<IProposalAction> = (props) => {
           value={value.quorum}
           min={1}
           max={100}
+          // @ts-ignore
           onChange={(event: Event, newValue: number) =>
             setValue({
               ...value,

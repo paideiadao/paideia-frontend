@@ -15,7 +15,14 @@ import SectionHeading from "@components/SectionHeading";
 import Blockquote from "@components/Blockquote";
 import RoadmapAccordion from "@components/RoadmapAccordion";
 
-const navLinks = [
+interface INavLink {
+  name: string;
+  icon: string;
+  link: string;
+  position: number | undefined;
+}
+
+const navLinks: INavLink[] = [
   {
     name: "Our Mission",
     icon: "flag",

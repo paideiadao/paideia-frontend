@@ -24,10 +24,10 @@ const CardSlider: FC<SliderProps> = ({
   const [slideDistance, setSlideDistance] = useState(460);
 
   const handleScroll = () => {
-    const scroll = document.getElementById(
+    const scroll: HTMLElement | null = document.getElementById(
       uniqueId + "pnProductNav"
-    ).scrollLeft;
-    setScrollPosition(scroll);
+    );
+    scroll && setScrollPosition(scroll.scrollLeft);
   };
 
   const determineOverflow = (content: any, container: any) => {
@@ -60,22 +60,24 @@ const CardSlider: FC<SliderProps> = ({
       uniqueId + "pnArrowContainer"
     );
     let margin = 24;
-    if (!contained) {
+    if (!contained && pnArrowContainer) {
       margin =
         pnArrowContainer.getBoundingClientRect().left +
         (addMargin ? addMargin : 0);
     }
     setMarginLeftCalc({ ...marginLeftCalc, px: margin.toString() + "px" });
-    const containerWidth = document.getElementById("setWidth").offsetWidth;
-    setSlideDistance(containerWidth - margin);
+    const containerWidth = document.getElementById("setWidth");
+    containerWidth && setSlideDistance(containerWidth.offsetWidth - margin);
   };
 
   useEffect(() => {
     const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
-    pnProductNav.addEventListener("scroll", handleScroll);
-    return () => {
-      pnProductNav.removeEventListener("scroll", handleScroll);
-    };
+    if (pnProductNav) {
+      pnProductNav.addEventListener("scroll", handleScroll);
+      return () => {
+        pnProductNav.removeEventListener("scroll", handleScroll);
+      };
+    }
   }, []);
 
   useEffect(() => {
@@ -104,36 +106,24 @@ const CardSlider: FC<SliderProps> = ({
     };
   }, []);
 
-  const [pos, setPos] = useState({
+  interface IPos {
+    left: number | undefined;
+    x: number | undefined;
+  }
+
+  const [pos, setPos] = useState<IPos>({
     left: undefined,
     x: undefined,
   });
 
-  const posRef = useRef({
+  const posRef = useRef<IPos>({
     left: undefined,
     x: undefined,
   });
   posRef.current = pos;
 
-  const mouseMoveHandler = (e: any) => {
-    const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
-    pnProductNav.scrollLeft =
-      posRef.current.left - (e.clientX - posRef.current.x);
-  };
-
-  const mouseUpHandler = (e: any) => {
-    const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
-    pnProductNav.style.cursor = "grab";
-    pnProductNav.style.userSelect = "none";
-    document.removeEventListener("mousemove", mouseMoveHandler);
-    document.removeEventListener("mouseup", mouseUpHandler);
-  };
-
   const handleMouseDown = (e: any) => {
     const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
-    pnProductNav.style.cursor = "grabbing";
-    pnProductNav.style.userSelect = "none";
-
     setPos({
       // The current scroll
       left: scrollPosition,
@@ -141,13 +131,35 @@ const CardSlider: FC<SliderProps> = ({
       x: e.clientX,
     });
 
-    document.addEventListener("mousemove", mouseMoveHandler);
-    document.addEventListener("mouseup", mouseUpHandler);
+    if (pnProductNav) {
+      pnProductNav.style.cursor = "grabbing";
+      pnProductNav.style.userSelect = "none";
+
+      const mouseMoveHandler = (e: any) => {
+        const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
+        if (pnProductNav && posRef.current.left && posRef.current) {
+          pnProductNav.scrollLeft = posRef.current.left - (e.clientX - posRef.current.x);
+        }
+      };
+    
+      const mouseUpHandler = (e: any) => {
+        const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
+        if (pnProductNav) {
+          pnProductNav.style.cursor = "grab";
+          pnProductNav.style.userSelect = "none";
+        }
+        document.removeEventListener("mousemove", mouseMoveHandler);
+        document.removeEventListener("mouseup", mouseUpHandler);
+      };
+
+      document.addEventListener("mousemove", mouseMoveHandler);
+      document.addEventListener("mouseup", mouseUpHandler);
+    }
   };
 
   const clickLeft = () => {
     const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
-    pnProductNav.scrollTo({
+    pnProductNav && pnProductNav.scrollTo({
       left: scrollPosition - slideDistance,
       behavior: "smooth",
     });
@@ -155,7 +167,7 @@ const CardSlider: FC<SliderProps> = ({
 
   const clickRight = () => {
     const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
-    pnProductNav.scrollTo({
+    pnProductNav && pnProductNav.scrollTo({
       left: scrollPosition + slideDistance,
       behavior: "smooth",
     });

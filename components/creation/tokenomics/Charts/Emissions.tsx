@@ -30,7 +30,7 @@ const getEmissionLengthInDays = (length: number, units: string) => {
   }
 };
 
-const frequencyLookup = {
+const frequencyLookup: {[key: string]: number} = {
   daily: 1,
   weekly: 7,
   monthly: 30,
@@ -41,7 +41,7 @@ const getLongestEmission = (data: any) => {
   let temp = data.map((i: any) =>
     getEmissionLengthInDays(i.emissionLength, i.emissionLengthUnits)
   );
-  temp = temp.sort((a, b) => a - b);
+  temp = temp.sort((a: any, b: any) => a - b);
   let max = Math.max(...temp);
 
   return temp[temp.indexOf(max)];
@@ -139,7 +139,7 @@ const getChartData = (data: any) => {
           longestEmission === undefined
             ? []
             : [...Array.from(Array(longestEmission + minDate + 1).keys())]
-                .filter((z: any) => z % frequencyLookup[highestFrequency] === 0)
+                .filter((z: number) => z % frequencyLookup[highestFrequency as keyof typeof frequencyLookup] === 0)
                 .map((j: any, c: number) => {
                   let temp = new Date();
                   temp.setDate(temp.getDate() + j);
@@ -171,7 +171,7 @@ const getChartData = (data: any) => {
               color: colorLookup[c + vestingData.length],
               label: i.distributionName,
               data: [...Array.from(Array(longestPeriod + 1).keys())]
-                .filter((z: any) => z % frequencyLookup[highestFrequency] === 0)
+                .filter((z: number) => z % frequencyLookup[highestFrequency as keyof typeof frequencyLookup] === 0)
                 .map((j: any, c: number) => {
                   let temp = new Date();
                   temp.setDate(temp.getDate() + j);

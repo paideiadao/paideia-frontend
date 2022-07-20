@@ -83,7 +83,7 @@ const BasicLink: React.FC<{
       id === undefined ? `/dao/dao-config` : `/dao/${id}/dao-config`,
   };
   return (
-    <Link href={linkLookup[props.title]}>
+    <Link href={linkLookup[props.title as keyof typeof linkLookup]}>
       <Box
         sx={{
           width: "100%",

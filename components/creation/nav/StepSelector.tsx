@@ -31,7 +31,7 @@ export const steps = [
   },
 ];
 
-export default function StepSelector(props) {
+export default function StepSelector(props: any) {
   return (
     <Box
       sx={{

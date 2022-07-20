@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 
-export default function Help(props) {
+export default function Help() {
   return (
     <Box
       sx={{

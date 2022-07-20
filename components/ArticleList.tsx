@@ -86,18 +86,24 @@ const SearchBar: FC<ISearchBar> = ({ sx }) => {
   );
 };
 
+interface IArticle {
+  name: string;
+  image?: string;
+  description: string;
+  link: string;
+  category?: string;
+}
+
+interface IArticleCard {
+  article: IArticle;
+}
+
 interface IArticleListProps {
-  articles: {
-    name: string;
-    image?: string;
-    description: string;
-    link: string;
-    category?: string;
-  }[];
+  articles: IArticle[];
   sx?: SxProps;
 }
 
-const ArticleCard = ({ article }) => {
+const ArticleCard: FC<IArticleCard> = ({ article }) => {
   const randomInteger = (min: number, max: number) => {
     return (min + Math.random() * (max - min)).toFixed()
   }
@@ -158,29 +164,29 @@ const ArticleCard = ({ article }) => {
             )}
           </Box>
           <Box sx={{ p: '24px' }}>
-          <Typography
-            sx={{
-              fontWeight: "700",
-              lineHeight: "32px",
-              mb: "24px",
-              color: "#fff",
-              fontFamily: '"Space Grotesk", sans-serif',
-              fontSize: "24px",
-              letterSpacing: "0.225543px",
-            }}
-          >
-            {article.name}
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: "16px",
-              mb: "24px",
-            }}
-          >
-            {article.description}
-          </Typography>
+            <Typography
+              sx={{
+                fontWeight: "700",
+                lineHeight: "32px",
+                mb: "24px",
+                color: "#fff",
+                fontFamily: '"Space Grotesk", sans-serif',
+                fontSize: "24px",
+                letterSpacing: "0.225543px",
+              }}
+            >
+              {article.name}
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: "16px",
+                mb: "24px",
+              }}
+            >
+              {article.description}
+            </Typography>
           </Box>
-          
+
         </CardContent>
       </CardActionArea>
     </Card >
@@ -324,9 +330,9 @@ const ArticleList: FC<IArticleListProps> = ({ articles, sx }) => {
         ))}
       </Grid>
       <Box sx={{ width: '100%', textAlign: 'center' }}>
-      <Button variant="contained">Load more...</Button>
+        <Button variant="contained">Load more...</Button>
       </Box>
-      
+
     </Box>
   );
 };

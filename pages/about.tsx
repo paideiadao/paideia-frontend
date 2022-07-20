@@ -25,7 +25,14 @@ import TwitterIcon from "@components/svgs/TwitterIcon";
 import LinkedinIcon from "@components/svgs/LinkedinIcon";
 import { DarkTheme } from "@theme/theme";
 
-const navLinks = [
+interface INavLink {
+  name: string;
+  icon: string;
+  link: string;
+  position: number | undefined;
+}
+
+const navLinks: INavLink[] = [
   {
     name: "Introduction",
     icon: "waving_hand",

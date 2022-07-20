@@ -12,7 +12,22 @@ import { deviceStruct } from "@components/utilities/Style";
 let temp = new Date();
 temp.setDate(temp.getDate() - 30);
 
-export const proposals = [
+export const proposals: {
+  id: number;
+  proposalName: string;
+  status: string;
+  likes: number;
+  dislikes: number;
+  userSide: any;
+  favorited: boolean;
+  category: string;
+  widget: Date | string;
+  yes?: number | undefined;
+  no?: number | undefined;
+  comments?: undefined | number;
+  users?: undefined | number;
+  date?: undefined | Date;
+}[] = [
   {
     id: 1,
     proposalName: "ProposalName 1",

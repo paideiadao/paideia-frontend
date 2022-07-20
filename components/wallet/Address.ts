@@ -2,10 +2,10 @@ import * as blake from "blakejs";
 import * as bs58 from "bs58";
 import * as ec from "elliptic";
 
-const { curve } = ec.ec("secp256k1");
+const { curve } = new ec.ec("secp256k1");
 
-declare const console;
-declare const Buffer;
+declare const console: any;
+declare const Buffer: any;
 
 export enum Network {
   Mainnet = 0 << 4,

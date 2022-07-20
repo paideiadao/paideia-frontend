@@ -58,7 +58,7 @@ const Tokenomics: React.FC = () => {
           : distributions
               .filter((i: any) => i !== undefined)
               .filter((i: any) => i.hasOwnProperty("contingency"))
-              .map((i: ILiquidityInfo) => i.contingency.balance)
+              .map((i: any) => i.contingency.balance)
               .reduce((sum, current) => sum + current, 0)) -
         (distributions.length === 0 || !activateTokenomics
           ? 0

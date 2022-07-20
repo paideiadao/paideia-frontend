@@ -145,7 +145,7 @@ export const AddWallet: React.FC = () => {
     localStorage.setItem(DAPP_CONNECTED, undefined);
   };
 
-  const handleWalletFormChange = (e) => {
+  const handleWalletFormChange = (e: any) => {
     setWalletInput(e.target.value);
   };
 
@@ -205,7 +205,7 @@ export const AddWallet: React.FC = () => {
     }
   };
 
-  const changeWalletAddress = (address) => {
+  const changeWalletAddress = (address: string) => {
     setWallet(address);
     setWalletInput(address);
   };
@@ -326,7 +326,7 @@ export const AddWallet: React.FC = () => {
   );
 };
 
-function isAddressValid(address) {
+function isAddressValid(address: string) {
   try {
     return new Address(address).isValid();
   } catch (_) {

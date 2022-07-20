@@ -28,7 +28,19 @@ import SearchIcon from "@mui/icons-material/Search";
 import FilterOptions from "@components/FilterOptions";
 import { SxProps } from "@mui/material";
 
-const DaoCard = ({ dao }) => {
+interface IDaosProps {
+  name: string;
+  image?: string;
+  description: string;
+  link: string;
+  category?: string;
+}
+
+interface IDaoCard {
+  dao: IDaosProps;
+}
+
+const DaoCard: FC<IDaoCard> = ({ dao }) => {
   return (
     <Box
       sx={{
@@ -169,14 +181,6 @@ const SearchBar: FC<ISearchBar> = ({ sx }) => {
     </FormControl>
   );
 };
-
-interface IDaosProps {
-  name: string;
-  image?: string;
-  description: string;
-  link: string;
-  category?: string;
-}
 
 interface IProjectListProps {
   daos: IDaosProps[];
