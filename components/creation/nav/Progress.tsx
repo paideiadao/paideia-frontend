@@ -4,9 +4,7 @@ import CircularProgress, {
 } from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
-function CircularProgressWithLabel(
-  props: CircularProgressProps & { value: number }
-) {
+const CircularProgressWithLabel: React.FC<{value: number}> = (props) => {
   return (
     <Box
       sx={{
@@ -23,9 +21,9 @@ function CircularProgressWithLabel(
             variant="determinate"
             {...props}
             size="4rem"
-            sx={{ position: "relative", zIndex: 2, color: "primary.main" }}
+            sx={{ position: "relative", zIndex: 2 }}
             value={props.value * 20}
-            // color="circle"
+            color="success"
           />
           <CircularProgress
             variant="determinate"
@@ -61,6 +59,4 @@ function CircularProgressWithLabel(
   );
 }
 
-export default function CircularStatic(value: number) {
-  return <CircularProgressWithLabel value={value} />;
-}
+export default CircularProgressWithLabel
