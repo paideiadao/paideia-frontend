@@ -222,9 +222,8 @@ const Notifications: React.FC<{ params: any }> = (props) => {
       <Box
         sx={{
           mt: "1rem",
-          borderBottom: deviceWrapper("none", "1px solid"),
-          borderBottomColor: "border.main",
           pb: "1rem",
+          width: '100%',
         }}
       >
         <CapsInfo title="New" />
@@ -255,7 +254,7 @@ const Notifications: React.FC<{ params: any }> = (props) => {
           justifyContent: "center",
         }}
       >
-        <Button sx={{ width: "100%", borderRadius: 0, p: ".75rem" }}>
+        <Button sx={{ width: "100%", borderRadius: 0, p: ".75rem" }} size='small'>
           Mark all as read
         </Button>
       </Box>
@@ -281,11 +280,10 @@ export const Notification: React.FC<{
         backgroundColor: i.isread === 0 ? "fileInput.read" : "fileInput.outer",
         borderRadius:
           props.m === undefined ? deviceWrapper("0", ".3rem") : "0rem",
-        borderBottom: "1px solid",
-        borderTop: props.c === 0 ? "1px solid" : "0",
+        border: 1,
         borderColor: "border.main",
         cursor: "pointer",
-        ml: "-1rem",
+        ml: deviceWrapper("-1rem", '0'),
       }}
     >
       <Avatar src={i.img} sx={{ width: "4rem", height: "4rem" }}></Avatar>

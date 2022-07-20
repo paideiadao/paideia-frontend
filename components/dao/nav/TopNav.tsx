@@ -148,7 +148,7 @@ const TopNav: React.FC<INav> = (props) => {
               p: 0,
               width: "30rem",
               right: "-12rem",
-              top: "19rem",
+              top: "17.5rem",
               left: "",
             }}
           >
@@ -188,18 +188,17 @@ const TopNav: React.FC<INav> = (props) => {
             </Box>
             <Box
               sx={{
-                backgroundColor: "fileInput.main",
-                p: ".5rem",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                position: "fixed",
+                bottom: "0",
+                left: "0",
                 width: "100%",
-                borderBottomLeftRadius: ".2rem",
-                borderBottomRightRadius: ".2rem",
-                borderBottom: "1px solid",
-                borderBottomColor: "border.main",
+                display: 'flex',
+                alignItems: "center",
+                backgroundColor: "fileInput.main",
+                justifyContent: "center", borderBottomRightRadius: '.3rem', borderBottomLeftRadius: '.3rem'
               }}
               onClick={handleClose}
+
             >
               <Link
                 href={
@@ -208,8 +207,11 @@ const TopNav: React.FC<INav> = (props) => {
                     : `/dao/${id}/notifications`
                 }
               >
-                <Button size="small">View all</Button>
+                <Button sx={{ width: "100%", borderRadius: 0, p: ".75rem", borderBottomRightRadius: '.3rem', borderBottomLeftRadius: '.3rem' }} size='small'>
+                  View All
+                </Button>              
               </Link>
+              
             </Box>
           </Box>
         </Modal>
