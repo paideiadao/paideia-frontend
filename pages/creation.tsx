@@ -5,7 +5,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { LightTheme, DarkTheme } from "../theme/theme";
 import Button from "@mui/material/Button";
 import BasicInformation from "../components/creation/basic-information/BasicInformation";
-import { GlobalContext } from "../lib/creation/Context";
+import { CreationContext } from "../lib/creation/Context";
 import { CreationApi, ICreationData } from "../lib/creation/CreationApi";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -130,7 +130,7 @@ export default function Creation() {
   const api = new CreationApi(alert, setAlert, theme, setTheme, data, setData);
   console.log(alert);
   return (
-    <GlobalContext.Provider value={{ api }}>
+    <CreationContext.Provider value={{ api }}>
       {data.isPublished === 1 ? (
         <CreationLoading />
       ) : (
@@ -296,6 +296,6 @@ export default function Creation() {
           action={alert.action}
         />
       )}
-    </GlobalContext.Provider>
+    </CreationContext.Provider>
   );
 }

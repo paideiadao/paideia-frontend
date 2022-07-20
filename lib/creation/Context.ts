@@ -2,11 +2,11 @@ import { Theme } from "@mui/material";
 import * as React from "react";
 import { CreationApi } from "./CreationApi";
 
-export interface IGlobalContext {
+export interface ICreationContext {
   api: CreationApi;
 }
 
-export const GlobalContext = React.createContext({
+export const CreationContext = React.createContext({
   api: new CreationApi(undefined, undefined, undefined, undefined, {
     navStage: 0,
     basicInformation: {

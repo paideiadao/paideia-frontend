@@ -3,7 +3,7 @@ import * as React from "react";
 import { Header, LearnMore, Subtitle } from "../utilities/HeaderComponents";
 import CheckIcon from "@mui/icons-material/Check";
 import Logo from "./Logo";
-import { GlobalContext } from "../../../lib/creation/Context";
+import { CreationContext } from "../../../lib/creation/Context";
 import Banner from "./Banner";
 import Footer from "./Footer";
 import { deviceStruct } from "@components/utilities/Style";
@@ -151,14 +151,14 @@ export const ThemeCard: React.FC<{
 };
 
 const Design: React.FC = (props) => {
-  let globalContext = React.useContext(GlobalContext);
+  let creationContext = React.useContext(CreationContext);
 
   const [theme, setTheme] = React.useState<number>(1);
 
-  let data = globalContext.api.data.design;
+  let data = creationContext.api.data.design;
   let setData = (data: any) => {
-    globalContext.api.setData({
-      ...globalContext.api.data,
+    creationContext.api.setData({
+      ...creationContext.api.data,
       design: data,
     });
   };

@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import * as React from "react";
 import { ITokenomics } from "../../../../lib/creation/CreationApi";
-import { GlobalContext } from "../../../../lib/creation/Context";
+import { CreationContext } from "../../../../lib/creation/Context";
 import { IData } from "../../../../lib/utilities";
 import { LearnMore, Subtitle } from "../../utilities/HeaderComponents";
 import LabeledSwitch from "../../utilities/LabeledSwitch";
@@ -9,9 +9,9 @@ import TokenomicSummary from "./TokenomicSummary";
 import { deviceStruct } from "@components/utilities/Style";
 
 const AdvancedTokenomics: React.FC<IData<ITokenomics>> = (props) => {
-  let globalContext = React.useContext(GlobalContext);
+  let creationContext = React.useContext(CreationContext);
   let data = props.data;
-  let globalData = globalContext.api.data;
+  let globalData = creationContext.api.data;
   return (
     <Box sx={{ mt: ".5rem" }}>
       <Box
