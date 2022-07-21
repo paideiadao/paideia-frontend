@@ -1,6 +1,6 @@
 import Progress from "./Progress";
-import * as React from "react";
-import { Box, Divider, Step, StepLabel, Stepper } from "@mui/material";
+import React, { FC } from "react";
+import { Box, Divider, Step, StepLabel, Stepper, Theme } from "@mui/material";
 import StepSelector, { steps } from "./StepSelector";
 import Help from "./Help";
 import DarkLogo from "@public/logos/dark_logo.svg";
@@ -14,7 +14,13 @@ import { CreationContext } from "@lib/creation/Context";
 import { ThemeContext } from "@lib/ThemeContext";
 import { deviceStruct } from "@components/utilities/Style";
 
-export default function Nav(props) {
+interface INavProps {
+  value: number;
+  theme: Theme;
+  setTheme: React.Dispatch<React.SetStateAction<Theme>>;
+}
+
+const Nav: FC<INavProps> = ({ value }) => {
   let creationContext = React.useContext(ThemeContext);
   let global = React.useContext(CreationContext);
 
@@ -51,9 +57,9 @@ export default function Nav(props) {
           ),
         }}
       >
-        <Progress {...props} />
+        <Progress value={value} />
         <Divider sx={{ mt: 2, mb: 1, borderBottomColor: "border.main" }} />
-        <StepSelector {...props} />
+        <StepSelector value={value} />
         <Divider sx={{ mt: 1, mb: 1, borderBottomColor: "border.main" }} />
         <Help />
       </Box>
@@ -169,7 +175,7 @@ export default function Nav(props) {
           }}
         >
           <Stepper
-            activeStep={props.value}
+            activeStep={value}
             connector={
               <Box
                 sx={{
@@ -196,7 +202,7 @@ export default function Nav(props) {
                 }}
               >
                 <StepLabel sx={{ ml: ".1rem" }}>
-                  {c === props.value && (
+                  {c === value && (
                     <Box sx={{ fontSize: ".68rem", width: "5.6rem" }}>
                       {i.title}
                     </Box>
@@ -210,3 +216,5 @@ export default function Nav(props) {
     </>
   );
 }
+
+export default Nav;
