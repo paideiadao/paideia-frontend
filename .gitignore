@@ -11,14 +11,12 @@ package-lock.json
 /coverage
 
 # next.js
-/.next/
-/out/
-/android/
-/ios/
+/.next
+/out
 
 # capacitor
-/android/
-/ios/
+/android
+/ios
 
 # production
 /build
