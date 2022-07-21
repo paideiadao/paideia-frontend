@@ -223,7 +223,7 @@ const Notifications: React.FC<{ params: any }> = (props) => {
         sx={{
           mt: "1rem",
           pb: "1rem",
-          width: '100%',
+          width: "100%",
         }}
       >
         <CapsInfo title="New" />
@@ -254,7 +254,10 @@ const Notifications: React.FC<{ params: any }> = (props) => {
           justifyContent: "center",
         }}
       >
-        <Button sx={{ width: "100%", borderRadius: 0, p: ".75rem" }} size='small'>
+        <Button
+          sx={{ width: "100%", borderRadius: 0, p: ".75rem" }}
+          size="small"
+        >
           Mark all as read
         </Button>
       </Box>
@@ -283,7 +286,7 @@ export const Notification: React.FC<{
         border: 1,
         borderColor: "border.main",
         cursor: "pointer",
-        ml: deviceWrapper("-1rem", '0'),
+        ml: deviceWrapper("-1rem", "0"),
       }}
     >
       <Avatar src={i.img} sx={{ width: "4rem", height: "4rem" }}></Avatar>

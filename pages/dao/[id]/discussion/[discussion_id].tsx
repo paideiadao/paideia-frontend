@@ -194,7 +194,9 @@ const Discussion: React.FC = () => {
                 }
                 sx={{
                   color: value.followed ? "error.light" : "text.secondary",
-                  borderColor: value.followed ? "error.light" : "text.secondary",
+                  borderColor: value.followed
+                    ? "error.light"
+                    : "text.secondary",
                   ":hover": {
                     borderColor: "error.light",
                     color: "error.light",
@@ -270,7 +272,9 @@ const Discussion: React.FC = () => {
                 }
                 sx={{
                   color: value.followed ? "error.light" : "text.secondary",
-                  borderColor: value.followed ? "error.light" : "text.secondary",
+                  borderColor: value.followed
+                    ? "error.light"
+                    : "text.secondary",
                   ":hover": {
                     borderColor: "error.light",
                     color: "error.light",

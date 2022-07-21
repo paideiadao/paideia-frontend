@@ -96,7 +96,6 @@ const TokenStats: React.FC = () => {
           textAlign: "center",
           borderTop: "1px solid",
           borderTopColor: "border.main",
-          
         }}
       >
         <Link
@@ -106,8 +105,18 @@ const TokenStats: React.FC = () => {
               : `/dao/${id}/financials/token`
           }
         >
-          <Button size="small" sx={{width: '100%', pt: ".25rem",
-          pb: ".25rem", borderTopLeftRadius: 0, borderTopRightRadius: 0,}}>Learn More</Button>
+          <Button
+            size="small"
+            sx={{
+              width: "100%",
+              pt: ".25rem",
+              pb: ".25rem",
+              borderTopLeftRadius: 0,
+              borderTopRightRadius: 0,
+            }}
+          >
+            Learn More
+          </Button>
         </Link>
       </Box>
     </Paper>
