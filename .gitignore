@@ -1,6 +1,3 @@
-/ios
-/android
-
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 package-lock.json
@@ -14,14 +11,12 @@ package-lock.json
 /coverage
 
 # next.js
-/.next/
-/out/
-/android/
-/ios/
+/.next
+/out
 
 # capacitor
-/android/
-/ios/
+/android
+/ios
 
 # production
 /build
