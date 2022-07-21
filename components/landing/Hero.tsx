@@ -20,7 +20,7 @@ export default function Hero() {
             sm: "translate(-50%, 0)",
             md: "translate(-50%, 0)",
           },
-          overflow: "hidden",
+          // overflow: "hidden",
           zIndex: "-1",
           ml: "-24px",
         }}
@@ -120,7 +120,7 @@ export default function Hero() {
               fontSize: { xs: "24px", md: "16px" },
             }}
           >
-            <SocialGrid />
+            <SocialGrid hoverColor="#FF8219" />
           </Grid>
         </Grid>
       </Grid>

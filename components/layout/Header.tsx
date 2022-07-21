@@ -19,8 +19,10 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Zoom from "@mui/material/Zoom";
 import Toolbar from "@mui/material/Toolbar";
 import { PageNavContext } from "@components/Layout";
+import { useRouter } from "next/router";
 import ConnectWallet from "@components/wallet/ConnectWallet";
 import Link from "next/link";
+import { Link as MuiLink } from "@mui/material";
 // import ConnectWallet from "@components/wallet/ConnectWallet";
 
 const pages = [
@@ -79,6 +81,7 @@ function ScrollTop(props: Props) {
     if (anchor) {
       anchor.scrollIntoView({
         block: 'center',
+        behavior: 'smooth'
       });
     }
   };
@@ -111,6 +114,8 @@ export default function Header() {
   const { inPageNav } = useContext(PageNavContext);
 
   const NavigationListItem: React.FC<INavItemProps> = ({ size, page }) => {
+    const router = useRouter()
+
     return (
       <Grid item>
         {page.disabled ? (
@@ -126,24 +131,50 @@ export default function Header() {
             {page.name}
           </Typography>
         ) : (
-          <Link
-            href={page.link}
-            // sx={{
-            //   color:
-            //     router.pathname === page.link
-            //       ? LightTheme.palette.secondary.main
-            //       : "#fff",
-            //   textDecoration:
-            //     router.pathname === page.link ? "underline" : "none",
-            //   "&:hover": {
-            //     color: LightTheme.palette.secondary.main,
-            //   },
-            // }}
-          >
-            {page.name}
-          </Link>
-        )}
-      </Grid>
+          page.external ? (
+            <MuiLink
+              href={page.link}
+              target="_blank"
+              sx={{
+                cursor: 'pointer',
+                color: "#fff",
+                textDecoration: "none",
+                "&:hover": {
+                  color: LightTheme.palette.secondary.main,
+                  textDecoration: "none",
+                },
+              }}
+              onClick={() => setNavbarOpen(false)}
+            >
+              {page.name}
+            </MuiLink>
+          ) : (
+            <Link
+              href={page.link}
+            >
+              <Box
+                sx={{
+                  cursor: 'pointer',
+                  color:
+                    router.pathname === page.link
+                      ? LightTheme.palette.secondary.main
+                      : "#fff",
+                  textDecoration:
+                    router.pathname === page.link
+                      ? "underline"
+                      : "none",
+                  "&:hover": {
+                    color: LightTheme.palette.secondary.main,
+                  },
+                }}
+                onClick={() => setNavbarOpen(false)}>
+                {page.name}
+              </Box>
+            </Link>
+          )
+        )
+        }
+      </Grid >
     );
   };
 
@@ -183,6 +214,7 @@ export default function Header() {
               <Link href="/">
                 <Paideia
                   sx={{
+                    cursor: 'pointer',
                     color: DarkTheme.palette.text.primary,
                     fontSize: { xs: "32px", md: "40px" },
                     "&:hover": {
@@ -252,9 +284,8 @@ export default function Header() {
                           borderRadius: "2px",
                           background: "#fff",
                           transition: "transform 100ms ease-in-out",
-                          transform: `${
-                            navbarOpen ? "rotate(45deg)" : "translateY(6px)"
-                          }`,
+                          transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                            }`,
                         }}
                       ></Box>
                       <Box
@@ -265,9 +296,8 @@ export default function Header() {
                           borderRadius: "2px",
                           background: "#fff",
                           transition: "transform 100ms ease-in-out",
-                          transform: `${
-                            navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
-                          }`,
+                          transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                            }`,
                         }}
                       ></Box>
                     </Box>
@@ -311,9 +341,8 @@ export default function Header() {
                 borderRadius: "2px",
                 background: "#fff",
                 transition: "transform 100ms ease-in-out",
-                transform: `${
-                  navbarOpen ? "rotate(45deg)" : "translateY(6px)"
-                }`,
+                transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                  }`,
               }}
             ></Box>
             <Box
@@ -324,9 +353,8 @@ export default function Header() {
                 borderRadius: "2px",
                 background: "#fff",
                 transition: "transform 100ms ease-in-out",
-                transform: `${
-                  navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
-                }`,
+                transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                  }`,
               }}
             ></Box>
           </Box>
@@ -374,7 +402,7 @@ export default function Header() {
               </Grid>
             </Grid>
             <Grid item sx={{ width: "100%" }}>
-              <Button variant="contained" sx={{ width: "100%" }}>
+              <Button variant="contained" sx={{ width: "100%" }} onClick={() => setNavbarOpen(false)}>
                 Create your DAO
               </Button>
             </Grid>

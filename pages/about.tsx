@@ -18,7 +18,7 @@ import SectionHeading from "@components/SectionHeading";
 import RoadmapAccordion from "@components/RoadmapAccordion";
 import CustomTable from "@components/CustomTable";
 import TabsPanel from "@components/TabsPanel";
-// import CardSlider from "@components/CardSlider";
+import CardSlider from "@components/CardSlider";
 import TwitterIcon from "@components/svgs/TwitterIcon";
 import LinkedinIcon from "@components/svgs/LinkedinIcon";
 import { DarkTheme } from "@theme/theme";
@@ -327,7 +327,7 @@ const MyCard: FC<IPersonObj> = ({ person }) => {
                     sx={iconLinkStyles}
                     rel="noreferrer"
                   >
-                    <LinkedinIcon fontSize="inherit" />
+                    <LinkedinIcon sx={{ fontSize: 'inherit' }} />
                   </Link>
                 </Grid>
               ) : null}
@@ -339,7 +339,7 @@ const MyCard: FC<IPersonObj> = ({ person }) => {
                     sx={iconLinkStyles}
                     rel="noreferrer"
                   >
-                    <TwitterIcon fontSize="inherit" />
+                    <TwitterIcon sx={{ fontSize: 'inherit' }} />
                   </Link>
                 </Grid>
               ) : null}
@@ -572,11 +572,11 @@ export default function About() {
               title="Our Team"
               sx={{ mb: "100px" }}
             />
-            {/* <CardSlider uniqueId="team" contained>
+            <CardSlider uniqueId="team" contained>
               {theCards.map((person, i: number) => {
                 return <MyCard key={i} person={person} />;
               })}
-            </CardSlider> */}
+            </CardSlider>
           </Box>
         </PageNav>
       </Container>
