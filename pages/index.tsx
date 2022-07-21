@@ -15,7 +15,7 @@ export default function Home() {
       {/* <Uses /> */}
       {/* <Highlights /> */}
       <Stats />
-      <Featured />
+      {/* <Featured /> */}
     </>
   );
 }

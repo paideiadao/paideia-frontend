@@ -19,7 +19,6 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Zoom from "@mui/material/Zoom";
 import Toolbar from "@mui/material/Toolbar";
 import { PageNavContext } from "@components/Layout";
-import { useRouter } from "next/router";
 import ConnectWallet from "@components/wallet/ConnectWallet";
 import Link from "next/link";
 // import ConnectWallet from "@components/wallet/ConnectWallet";
@@ -60,20 +59,26 @@ const pages = [
   },
 ];
 
-function ScrollTop(props: { children: React.ReactNode }) {
+interface Props {
+  children: React.ReactElement;
+}
+
+function ScrollTop(props: Props) {
   const { children } = props;
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 100,
   });
 
-  const handleClick = () => {
-    const anchor = document.querySelector("#back-to-top-anchor");
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const anchor = (
+      (event.target as HTMLDivElement).ownerDocument || document
+    ).querySelector('#back-to-top-anchor');
 
     if (anchor) {
       anchor.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
+        block: 'center',
       });
     }
   };
@@ -83,7 +88,7 @@ function ScrollTop(props: { children: React.ReactNode }) {
       <Box
         onClick={handleClick}
         role="presentation"
-        sx={{ position: "fixed", bottom: 16, right: 16, zIndex: "10" }}
+        sx={{ position: 'fixed', bottom: 16, right: 16, zIndex: '10' }}
       >
         {children}
       </Box>
@@ -104,8 +109,6 @@ interface INavItemProps {
 export default function Header() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const { inPageNav } = useContext(PageNavContext);
-
-  const router = useRouter();
 
   const NavigationListItem: React.FC<INavItemProps> = ({ size, page }) => {
     return (
