@@ -101,55 +101,61 @@ interface INavItemProps {
   };
 }
 
+const NavigationListItem: React.FC<INavItemProps> = ({ size, page }) => {
+  return (
+    <Grid item>
+      {page.disabled ? (
+        <Typography
+          sx={{
+            fontFamily: ['"Space Grotesk"', "sans-serif"].join(","),
+            fontWeight: "Bold",
+            textTransform: "uppercase",
+            fontSize: `${size}px`,
+            color: "#777",
+          }}
+        >
+          {page.name}
+        </Typography>
+      ) : (
+        <Link
+          href={page.link}
+          // sx={{
+          //   color:
+          //     router.pathname === page.link
+          //       ? LightTheme.palette.secondary.main
+          //       : "#fff",
+          //   textDecoration:
+          //     router.pathname === page.link ? "underline" : "none",
+          //   "&:hover": {
+          //     color: LightTheme.palette.secondary.main,
+          //   },
+          // }}
+        >
+          {page.name}
+        </Link>
+      )}
+    </Grid>
+  );
+};
+
 export default function Header() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const { inPageNav } = useContext(PageNavContext);
 
   const router = useRouter();
 
-  const NavigationListItem: React.FC<INavItemProps> = ({ size, page }) => {
-    return (
-      <Grid item>
-        {page.disabled ? (
-          <Typography
-            sx={{
-              fontFamily: ['"Space Grotesk"', "sans-serif"].join(","),
-              fontWeight: "Bold",
-              textTransform: "uppercase",
-              fontSize: `${size}px`,
-              color: "#777",
-            }}
-          >
-            {page.name}
-          </Typography>
-        ) : (
-          <Link
-            href={page.link}
-            // sx={{
-            //   color:
-            //     router.pathname === page.link
-            //       ? LightTheme.palette.secondary.main
-            //       : "#fff",
-            //   textDecoration:
-            //     router.pathname === page.link ? "underline" : "none",
-            //   "&:hover": {
-            //     color: LightTheme.palette.secondary.main,
-            //   },
-            // }}
-          >
-            {page.name}
-          </Link>
-        )}
-      </Grid>
-    );
-  };
-
+  
+  
+  let trigger = false;
   const checkWide = useMediaQuery("(min-width:1100px)");
+ 
 
-  const trigger = useScrollTrigger({
+  trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
   });
+
+  
 
   return (
     <>

@@ -21,13 +21,16 @@ const Reference: React.FC<{ context?: boolean }> = (props) => {
     <Autocomplete
       multiple
       id="tags-filled"
+      // @ts-ignore
       isOptionEqualToValue={(option: any, temp: string) =>
         references.indexOf(option.id) > -1
       }
       options={proposals || []}
       filterSelectedOptions
+      // @ts-ignore
       value={references}
       sx={{ mt: "1rem" }}
+      // @ts-ignore
       renderTags={(value: readonly string[], getTagProps) =>
         value.map((option: any, c: number) => {
           let temp = proposals.filter((i: any) => i.id === option);
