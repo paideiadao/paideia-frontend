@@ -8,6 +8,13 @@ const statusLookup: IObj<number> = {
   DELETE: 204,
 };
 
+export const clientSideOnly = (func: Function): void => {
+  if (typeof window !== "undefined") {
+    // Client-side-only code
+    func();
+  }
+};
+
 export class AbstractApi {
   alert: any;
   setAlert: Function;

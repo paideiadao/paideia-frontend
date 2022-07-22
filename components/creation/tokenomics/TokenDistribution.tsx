@@ -27,6 +27,7 @@ const TokenDistribution: React.FC<IData<ITokenomics>> = (props) => {
                 backgroundColor:
                   chartView === "pie" ? "primary.selectedButton" : "",
               }}
+              size="small"
               onClick={() => setChartView("pie")}
             >
               Pie
@@ -38,6 +39,7 @@ const TokenDistribution: React.FC<IData<ITokenomics>> = (props) => {
                 backgroundColor:
                   chartView === "emission" ? "primary.selectedButton" : "",
               }}
+              size="small"
               onClick={() => setChartView("emission")}
             >
               Emission
@@ -49,6 +51,7 @@ const TokenDistribution: React.FC<IData<ITokenomics>> = (props) => {
                 backgroundColor:
                   chartView === "table" ? "primary.selectedButton" : "",
               }}
+              size="small"
               onClick={() => setChartView("table")}
             >
               Table

@@ -228,7 +228,7 @@ const TopNav: React.FC<INav> = (props) => {
       <Slide direction="right" in={props.showMobile} mountOnEnter unmountOnExit>
         <Box
           sx={{
-            width: "14rem",
+            width: "16rem",
             zIndex: 1000,
             backgroundColor: "backgroundColor.main",
             borderRight: "1px solid",
@@ -244,7 +244,7 @@ const TopNav: React.FC<INav> = (props) => {
             })`,
             backgroundPosition: "bottom 0px right 0px",
             backgroundRepeat: "no-repeat",
-            backgroundSize: "14rem",
+            backgroundSize: "16rem",
             position: "fixed",
             top: 0,
           }}

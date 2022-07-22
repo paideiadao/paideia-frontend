@@ -327,7 +327,7 @@ const MyCard: FC<IPersonObj> = ({ person }) => {
                     sx={iconLinkStyles}
                     rel="noreferrer"
                   >
-                    <LinkedinIcon sx={{ fontSize: 'inherit' }} />
+                    <LinkedinIcon sx={{ fontSize: "inherit" }} />
                   </Link>
                 </Grid>
               ) : null}
@@ -339,7 +339,7 @@ const MyCard: FC<IPersonObj> = ({ person }) => {
                     sx={iconLinkStyles}
                     rel="noreferrer"
                   >
-                    <TwitterIcon sx={{ fontSize: 'inherit' }} />
+                    <TwitterIcon sx={{ fontSize: "inherit" }} />
                   </Link>
                 </Grid>
               ) : null}

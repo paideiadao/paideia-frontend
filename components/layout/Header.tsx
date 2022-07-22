@@ -76,12 +76,12 @@ function ScrollTop(props: Props) {
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const anchor = (
       (event.target as HTMLDivElement).ownerDocument || document
-    ).querySelector('#back-to-top-anchor');
+    ).querySelector("#back-to-top-anchor");
 
     if (anchor) {
       anchor.scrollIntoView({
-        block: 'center',
-        behavior: 'smooth'
+        block: "center",
+        behavior: "smooth",
       });
     }
   };
@@ -91,7 +91,7 @@ function ScrollTop(props: Props) {
       <Box
         onClick={handleClick}
         role="presentation"
-        sx={{ position: 'fixed', bottom: 16, right: 16, zIndex: '10' }}
+        sx={{ position: "fixed", bottom: 16, right: 16, zIndex: "10" }}
       >
         {children}
       </Box>
@@ -151,7 +151,7 @@ export default function Header() {
   const { inPageNav } = useContext(PageNavContext);
 
   const NavigationListItem: React.FC<INavItemProps> = ({ size, page }) => {
-    const router = useRouter()
+    const router = useRouter();
 
     return (
       <Grid item>
@@ -167,63 +167,54 @@ export default function Header() {
           >
             {page.name}
           </Typography>
-        ) : (
-          page.external ? (
-            <MuiLink
-              href={page.link}
-              target="_blank"
-              sx={{
-                cursor: 'pointer',
-                color: "#fff",
+        ) : page.external ? (
+          <MuiLink
+            href={page.link}
+            target="_blank"
+            sx={{
+              cursor: "pointer",
+              color: "#fff",
+              textDecoration: "none",
+              "&:hover": {
+                color: LightTheme.palette.secondary.main,
                 textDecoration: "none",
+              },
+            }}
+            onClick={() => setNavbarOpen(false)}
+          >
+            {page.name}
+          </MuiLink>
+        ) : (
+          <Link href={page.link}>
+            <Box
+              sx={{
+                cursor: "pointer",
+                color:
+                  router.pathname === page.link
+                    ? LightTheme.palette.secondary.main
+                    : "#fff",
+                textDecoration:
+                  router.pathname === page.link ? "underline" : "none",
                 "&:hover": {
                   color: LightTheme.palette.secondary.main,
-                  textDecoration: "none",
                 },
               }}
               onClick={() => setNavbarOpen(false)}
             >
               {page.name}
-            </MuiLink>
-          ) : (
-            <Link
-              href={page.link}
-            >
-              <Box
-                sx={{
-                  cursor: 'pointer',
-                  color:
-                    router.pathname === page.link
-                      ? LightTheme.palette.secondary.main
-                      : "#fff",
-                  textDecoration:
-                    router.pathname === page.link
-                      ? "underline"
-                      : "none",
-                  "&:hover": {
-                    color: LightTheme.palette.secondary.main,
-                  },
-                }}
-                onClick={() => setNavbarOpen(false)}>
-                {page.name}
-              </Box>
-            </Link>
-          )
-        )
-        }
-      </Grid >
+            </Box>
+          </Link>
+        )}
+      </Grid>
     );
   };
 
   const checkWide = useMediaQuery("(min-width:1100px)");
- 
 
-  trigger = useScrollTrigger({
+  const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
   });
-
-  
 
   return (
     <>
@@ -254,7 +245,7 @@ export default function Header() {
               <Link href="/">
                 <Paideia
                   sx={{
-                    cursor: 'pointer',
+                    cursor: "pointer",
                     color: DarkTheme.palette.text.primary,
                     fontSize: { xs: "32px", md: "40px" },
                     "&:hover": {
@@ -324,8 +315,9 @@ export default function Header() {
                           borderRadius: "2px",
                           background: "#fff",
                           transition: "transform 100ms ease-in-out",
-                          transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"
-                            }`,
+                          transform: `${
+                            navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                          }`,
                         }}
                       ></Box>
                       <Box
@@ -336,8 +328,9 @@ export default function Header() {
                           borderRadius: "2px",
                           background: "#fff",
                           transition: "transform 100ms ease-in-out",
-                          transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
-                            }`,
+                          transform: `${
+                            navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                          }`,
                         }}
                       ></Box>
                     </Box>
@@ -381,8 +374,9 @@ export default function Header() {
                 borderRadius: "2px",
                 background: "#fff",
                 transition: "transform 100ms ease-in-out",
-                transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"
-                  }`,
+                transform: `${
+                  navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                }`,
               }}
             ></Box>
             <Box
@@ -393,8 +387,9 @@ export default function Header() {
                 borderRadius: "2px",
                 background: "#fff",
                 transition: "transform 100ms ease-in-out",
-                transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
-                  }`,
+                transform: `${
+                  navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                }`,
               }}
             ></Box>
           </Box>
@@ -442,7 +437,11 @@ export default function Header() {
               </Grid>
             </Grid>
             <Grid item sx={{ width: "100%" }}>
-              <Button variant="contained" sx={{ width: "100%" }} onClick={() => setNavbarOpen(false)}>
+              <Button
+                variant="contained"
+                sx={{ width: "100%" }}
+                onClick={() => setNavbarOpen(false)}
+              >
                 Create your DAO
               </Button>
             </Grid>

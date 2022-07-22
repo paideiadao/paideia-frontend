@@ -215,6 +215,6 @@ const Nav: FC<INavProps> = ({ value }) => {
       </Box>
     </>
   );
-}
+};
 
 export default Nav;

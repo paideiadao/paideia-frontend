@@ -129,7 +129,8 @@ const CardSlider: FC<SliderProps> = ({
       pnProductNav.style.userSelect = "none";
 
       const mouseMoveHandler = (e: any) => {
-        pnProductNav.scrollLeft = posRef.current.left - (e.clientX - posRef.current.x);
+        pnProductNav.scrollLeft =
+          posRef.current.left - (e.clientX - posRef.current.x);
       };
 
       const mouseUpHandler = (e: any) => {

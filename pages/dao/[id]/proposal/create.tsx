@@ -51,6 +51,7 @@ export interface IProposal {
   image?: IFile; // make optional
   category: string;
   content: string;
+  status: string;
   votingSystem: "yes/no" | "options" | "unselected";
   references: IProposal[];
   actions: IProposalAction[];
@@ -75,6 +76,7 @@ const CreateProposal: React.FC = () => {
       url: "https://picsum.photos/1200/300",
       file: undefined,
     },
+    status: "",
     category: "",
     content: "",
     votingSystem: "unselected",
