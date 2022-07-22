@@ -39,7 +39,7 @@ const PageHeader: FC<IPageHeader> = ({
           minHeight: "600px",
           width: "1716px",
           transform: "translate(-50%, 0)",
-          overflow: "hidden",
+          // overflow: "hidden",
           zIndex: "-1",
           ml: "-24px",
         }}

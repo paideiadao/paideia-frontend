@@ -13,12 +13,10 @@ import {
   Avatar,
   Link,
 } from "@mui/material";
-
 import WhitepaperQuote from "@components/landing/WhitepaperQuote";
 import SectionHeading from "@components/SectionHeading";
 import RoadmapAccordion from "@components/RoadmapAccordion";
 import CustomTable from "@components/CustomTable";
-
 import TabsPanel from "@components/TabsPanel";
 import CardSlider from "@components/CardSlider";
 import TwitterIcon from "@components/svgs/TwitterIcon";
@@ -329,7 +327,7 @@ const MyCard: FC<IPersonObj> = ({ person }) => {
                     sx={iconLinkStyles}
                     rel="noreferrer"
                   >
-                    <LinkedinIcon fontSize="inherit" />
+                    <LinkedinIcon sx={{ fontSize: 'inherit' }} />
                   </Link>
                 </Grid>
               ) : null}
@@ -341,7 +339,7 @@ const MyCard: FC<IPersonObj> = ({ person }) => {
                     sx={iconLinkStyles}
                     rel="noreferrer"
                   >
-                    <TwitterIcon fontSize="inherit" />
+                    <TwitterIcon sx={{ fontSize: 'inherit' }} />
                   </Link>
                 </Grid>
               ) : null}

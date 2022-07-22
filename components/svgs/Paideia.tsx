@@ -1,7 +1,8 @@
+import React, { FC } from 'react';
 import SvgIcon from "@mui/material/SvgIcon";
 import { SxProps } from "@mui/material";
 
-const Paideia: React.FC<{sx?: SxProps}> = ({sx}) => {
+const Paideia: FC<{sx?: SxProps}> = ({sx}) => {
   return (
     <SvgIcon sx={sx}>
       <rect width="3.56138" height="16.1036" rx="0.5" />

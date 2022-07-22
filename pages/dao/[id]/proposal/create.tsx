@@ -48,7 +48,7 @@ export interface IProposalAction {
 export interface IProposal {
   id?: number;
   name: string;
-  image: IFile;
+  image?: IFile; // make optional
   category: string;
   content: string;
   votingSystem: "yes/no" | "options" | "unselected";

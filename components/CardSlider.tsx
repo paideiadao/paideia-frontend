@@ -124,31 +124,17 @@ const CardSlider: FC<SliderProps> = ({
 
   const handleMouseDown = (e: any) => {
     const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
-    setPos({
-      // The current scroll
-      left: scrollPosition,
-      // Get the current mouse position
-      x: e.clientX,
-    });
-
     if (pnProductNav) {
       pnProductNav.style.cursor = "grabbing";
       pnProductNav.style.userSelect = "none";
 
       const mouseMoveHandler = (e: any) => {
-        const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
-        if (pnProductNav && posRef.current.left && posRef.current) {
-          pnProductNav.scrollLeft =
-            posRef.current.left - (e.clientX - posRef.current.x);
-        }
+        pnProductNav.scrollLeft = posRef.current.left - (e.clientX - posRef.current.x);
       };
 
       const mouseUpHandler = (e: any) => {
-        const pnProductNav = document.getElementById(uniqueId + "pnProductNav");
-        if (pnProductNav) {
-          pnProductNav.style.cursor = "grab";
-          pnProductNav.style.userSelect = "none";
-        }
+        pnProductNav.style.cursor = "grab";
+        pnProductNav.style.userSelect = "none";
         document.removeEventListener("mousemove", mouseMoveHandler);
         document.removeEventListener("mouseup", mouseUpHandler);
       };
@@ -156,6 +142,12 @@ const CardSlider: FC<SliderProps> = ({
       document.addEventListener("mousemove", mouseMoveHandler);
       document.addEventListener("mouseup", mouseUpHandler);
     }
+    setPos({
+      // The current scroll
+      left: scrollPosition,
+      // Get the current mouse position
+      x: e.clientX,
+    });
   };
 
   const clickLeft = () => {

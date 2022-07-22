@@ -22,6 +22,7 @@ import { PageNavContext } from "@components/Layout";
 import { useRouter } from "next/router";
 import ConnectWallet from "@components/wallet/ConnectWallet";
 import Link from "next/link";
+import { Link as MuiLink } from "@mui/material";
 // import ConnectWallet from "@components/wallet/ConnectWallet";
 
 const pages = [
@@ -60,20 +61,27 @@ const pages = [
   },
 ];
 
-function ScrollTop(props: { children: React.ReactNode }) {
+interface Props {
+  children: React.ReactElement;
+}
+
+function ScrollTop(props: Props) {
   const { children } = props;
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 100,
   });
 
-  const handleClick = () => {
-    const anchor = document.querySelector("#back-to-top-anchor");
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const anchor = (
+      (event.target as HTMLDivElement).ownerDocument || document
+    ).querySelector('#back-to-top-anchor');
 
     if (anchor) {
       anchor.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
+        block: 'center',
+        behavior: 'smooth'
       });
     }
   };
@@ -83,7 +91,7 @@ function ScrollTop(props: { children: React.ReactNode }) {
       <Box
         onClick={handleClick}
         role="presentation"
-        sx={{ position: "fixed", bottom: 16, right: 16, zIndex: "10" }}
+        sx={{ position: 'fixed', bottom: 16, right: 16, zIndex: '10' }}
       >
         {children}
       </Box>
@@ -142,11 +150,71 @@ export default function Header() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const { inPageNav } = useContext(PageNavContext);
 
-  const router = useRouter();
+  const NavigationListItem: React.FC<INavItemProps> = ({ size, page }) => {
+    const router = useRouter()
 
-  
-  
-  let trigger = false;
+    return (
+      <Grid item>
+        {page.disabled ? (
+          <Typography
+            sx={{
+              fontFamily: ['"Space Grotesk"', "sans-serif"].join(","),
+              fontWeight: "Bold",
+              textTransform: "uppercase",
+              fontSize: `${size}px`,
+              color: "#777",
+            }}
+          >
+            {page.name}
+          </Typography>
+        ) : (
+          page.external ? (
+            <MuiLink
+              href={page.link}
+              target="_blank"
+              sx={{
+                cursor: 'pointer',
+                color: "#fff",
+                textDecoration: "none",
+                "&:hover": {
+                  color: LightTheme.palette.secondary.main,
+                  textDecoration: "none",
+                },
+              }}
+              onClick={() => setNavbarOpen(false)}
+            >
+              {page.name}
+            </MuiLink>
+          ) : (
+            <Link
+              href={page.link}
+            >
+              <Box
+                sx={{
+                  cursor: 'pointer',
+                  color:
+                    router.pathname === page.link
+                      ? LightTheme.palette.secondary.main
+                      : "#fff",
+                  textDecoration:
+                    router.pathname === page.link
+                      ? "underline"
+                      : "none",
+                  "&:hover": {
+                    color: LightTheme.palette.secondary.main,
+                  },
+                }}
+                onClick={() => setNavbarOpen(false)}>
+                {page.name}
+              </Box>
+            </Link>
+          )
+        )
+        }
+      </Grid >
+    );
+  };
+
   const checkWide = useMediaQuery("(min-width:1100px)");
  
 
@@ -186,6 +254,7 @@ export default function Header() {
               <Link href="/">
                 <Paideia
                   sx={{
+                    cursor: 'pointer',
                     color: DarkTheme.palette.text.primary,
                     fontSize: { xs: "32px", md: "40px" },
                     "&:hover": {
@@ -255,9 +324,8 @@ export default function Header() {
                           borderRadius: "2px",
                           background: "#fff",
                           transition: "transform 100ms ease-in-out",
-                          transform: `${
-                            navbarOpen ? "rotate(45deg)" : "translateY(6px)"
-                          }`,
+                          transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                            }`,
                         }}
                       ></Box>
                       <Box
@@ -268,9 +336,8 @@ export default function Header() {
                           borderRadius: "2px",
                           background: "#fff",
                           transition: "transform 100ms ease-in-out",
-                          transform: `${
-                            navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
-                          }`,
+                          transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                            }`,
                         }}
                       ></Box>
                     </Box>
@@ -314,9 +381,8 @@ export default function Header() {
                 borderRadius: "2px",
                 background: "#fff",
                 transition: "transform 100ms ease-in-out",
-                transform: `${
-                  navbarOpen ? "rotate(45deg)" : "translateY(6px)"
-                }`,
+                transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                  }`,
               }}
             ></Box>
             <Box
@@ -327,9 +393,8 @@ export default function Header() {
                 borderRadius: "2px",
                 background: "#fff",
                 transition: "transform 100ms ease-in-out",
-                transform: `${
-                  navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
-                }`,
+                transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                  }`,
               }}
             ></Box>
           </Box>
@@ -377,7 +442,7 @@ export default function Header() {
               </Grid>
             </Grid>
             <Grid item sx={{ width: "100%" }}>
-              <Button variant="contained" sx={{ width: "100%" }}>
+              <Button variant="contained" sx={{ width: "100%" }} onClick={() => setNavbarOpen(false)}>
                 Create your DAO
               </Button>
             </Grid>
