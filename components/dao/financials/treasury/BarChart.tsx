@@ -67,86 +67,78 @@ const BarChart: React.FC = () => {
     setLoaded(true);
   }, []);
   const themeContext = React.useContext<IThemeContext>(ThemeContext);
-  return (
-    loaded && (
-      <ResponsiveBar
-        data={data}
-        keys={["usd"]}
-        indexBy="ticker"
-        margin={{
-          top: 10,
-          right: 15,
-          bottom: 50,
-          left: 35,
-        }}
-        padding={0.3}
-        valueScale={{ type: "linear" }}
-        indexScale={{ type: "band", round: true }}
-        colorBy="indexValue"
-        colors={{ scheme: "dark2" }}
-        borderColor={{
-          from: "color",
-          modifiers: [["darker", 1.6]],
-        }}
-        axisTop={null}
-        axisRight={null}
-        axisBottom={{
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: "Asset",
-          legendPosition: "middle",
-          legendOffset: 32,
-        }}
-        axisLeft={{
-          format: (value) => `${compactCurrencyFormatter(value, 1)}`,
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: "$ Amount",
-          legendPosition: "middle",
-          legendOffset: -40,
-        }}
-        valueFormat={(value) => `${compactCurrencyFormatter(value, 1)}`}
-        labelSkipWidth={12}
-        labelSkipHeight={12}
-        labelTextColor={{
-          from: "color",
-          modifiers: [["darker", 1.6]],
-        }}
-        tooltip={(bar: any) => {
-          return (
-            <Box
-              sx={{
-                backgroundColor: "fileInput.main",
-                color: "text.primary",
-                borderRadius: ".1rem",
-                textAlign: "center",
-                p: 1,
-                m: 1,
-                fontSize: deviceWrapper(".5rem", "2rem"),
-              }}
-            >
-              {bar.data.value + " "}
-              {bar.data.ticker} (${compactCurrencyFormatter(bar.data.usd, 1)})
-            </Box>
-          );
-        }}
-        theme={{
-          textColor:
-            themeContext.theme === LightTheme
-              ? "rgba(0, 0, 0, 0.6)"
-              : "rgba(255, 255, 255, 0.7)",
-        }}
-        role="application"
-        ariaLabel="Nivo bar chart demo"
-        barAriaLabel={function (e) {
-          return (
-            e.id + ": " + e.formattedValue + " in country: " + e.indexValue
-          );
-        }}
-      />
-    )
+  return !loaded ? (
+    <></>
+  ) : (
+    <ResponsiveBar
+      data={data}
+      keys={["usd"]}
+      indexBy="ticker"
+      margin={{
+        top: 10,
+        right: 15,
+        bottom: 50,
+        left: 35,
+      }}
+      padding={0.3}
+      valueScale={{ type: "linear" }}
+      indexScale={{ type: "band", round: true }}
+      colorBy="indexValue"
+      colors={{ scheme: "dark2" }}
+      borderColor={{
+        from: "color",
+        modifiers: [["darker", 1.6]],
+      }}
+      axisTop={null}
+      axisRight={null}
+      axisBottom={{
+        tickSize: 5,
+        tickPadding: 5,
+        tickRotation: 0,
+        legend: "Asset",
+        legendPosition: "middle",
+        legendOffset: 32,
+      }}
+      axisLeft={{
+        format: (value) => `${compactCurrencyFormatter(value, 1)}`,
+        tickSize: 5,
+        tickPadding: 5,
+        tickRotation: 0,
+        legend: "$ Amount",
+        legendPosition: "middle",
+        legendOffset: -40,
+      }}
+      valueFormat={(value) => `${compactCurrencyFormatter(+value, 1)}`}
+      labelTextColor="#ffffff"
+      labelSkipWidth={12}
+      labelSkipHeight={12}
+      tooltip={(bar: any) => {
+        return (
+          <Box
+            sx={{
+              backgroundColor: "fileInput.main",
+              color: "text.primary",
+              borderRadius: ".1rem",
+              textAlign: "center",
+              p: 1,
+              m: 1,
+              fontSize: deviceWrapper(".5rem", ".8rem"),
+            }}
+          >
+            {bar.data.value + " "}
+            {bar.data.ticker} ~ {`${compactCurrencyFormatter(bar.data.usd, 1)}`}
+          </Box>
+        );
+      }}
+      theme={{
+        textColor:
+          themeContext.theme === LightTheme
+            ? "rgba(0, 0, 0, 0.6)"
+            : "rgba(255, 255, 255, 0.7)",
+      }}
+      role="application"
+      ariaLabel="Nivo bar chart demo"
+    />
   );
 };
 

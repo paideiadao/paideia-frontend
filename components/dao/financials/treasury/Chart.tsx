@@ -38,8 +38,8 @@ const Chart: React.FC = () => {
             color="primary"
             onChange={handleView}
           >
-            <ToggleButton value="Historic">Historic</ToggleButton>
             <ToggleButton value="Current">Current</ToggleButton>
+            <ToggleButton value="Historic">Historic</ToggleButton>
           </ToggleButtonGroup>
         </Box>
       </Box>

@@ -33,6 +33,7 @@ export interface IProposalCard {
   users: number;
   date: Date;
   width: any;
+  scrollable?: boolean;
 }
 
 export const VoteWidget: React.FC<{
@@ -458,9 +459,10 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
   return (
     <Box
       sx={{
-        pr: deviceWrapper("0", "1rem"),
+        pr: deviceWrapper("0", props.scrollable ? "0" : "1rem"),
         pt: ".5rem",
         pb: ".5rem",
+        mt: props.scrollable ? ".5rem" : "0",
         minWidth: props.width,
         maxWidth: props.width,
       }}

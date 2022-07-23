@@ -8,6 +8,12 @@ const statusLookup: IObj<number> = {
   DELETE: 204,
 };
 
+export const addDays = (days: number, date: Date = new Date()): Date => {
+  let temp = new Date(date);
+  temp.setDate(temp.getDate() + days);
+  return temp;
+};
+
 export const clientSideOnly = (func: Function): void => {
   if (typeof window !== "undefined") {
     // Client-side-only code

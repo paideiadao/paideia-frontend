@@ -1,13 +1,15 @@
 import React, { FC, useEffect, useState, useRef } from "react";
-import { Button, Container, Box } from "@mui/material";
+import { Button, Container, Box, Fab } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { deviceWrapper } from "./utilities/Style";
 
 interface SliderProps {
   buttonTop?: boolean;
   uniqueId: string;
   addMargin?: number;
   contained?: boolean;
+  header?: JSX.Element;
 }
 
 const CardSlider: FC<SliderProps> = ({
@@ -16,6 +18,7 @@ const CardSlider: FC<SliderProps> = ({
   uniqueId,
   addMargin,
   contained,
+  header,
 }) => {
   const [marginLeftCalc, setMarginLeftCalc] = useState({ px: "0px" });
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -173,24 +176,48 @@ const CardSlider: FC<SliderProps> = ({
     return (
       <Container
         id={uniqueId + "pnArrowContainer"}
-        maxWidth="lg"
-        sx={{ my: "32px" }}
+        // maxWidth="lg"
+        sx={{ my: buttonTop ? "0" : "32px", p: 0 }}
       >
         <Box
           sx={
-            buttonTop ? { display: "flex", justifyContent: "flex-end" } : null
+            buttonTop
+              ? {
+                  display: "flex",
+                  alignItems: "center",
+                  mt: ".75rem",
+                  mb: ".25rem",
+                  ml: deviceWrapper("0", "-1rem"),
+                  mr: deviceWrapper("0", "-1rem"),
+                }
+              : null
           }
         >
-          <Button onClick={clickLeft} disabled={leftDisabled}>
-            <ArrowBackIosIcon />
-          </Button>
-          <Button onClick={clickRight} disabled={rightDisabled}>
+          {header}
+          {/* design change here */}
+          <Fab
+            onClick={clickLeft}
+            disabled={leftDisabled}
+            color="primary"
+            sx={{ mr: ".5rem", zIndex: 1 }}
+            size="small"
+          >
+            <ArrowBackIosIcon sx={{ mr: "-.5rem" }} />
+          </Fab>
+          <Fab
+            onClick={clickRight}
+            disabled={rightDisabled}
+            color="primary"
+            size="small"
+            sx={{zIndex: 1}}
+          >
             <ArrowForwardIosIcon />
-          </Button>
+          </Fab>
         </Box>
       </Container>
     );
   };
+  const temp = buttonTop ? { pl: "0rem" } : {};
 
   return (
     <>
@@ -217,7 +244,7 @@ const CardSlider: FC<SliderProps> = ({
           "&::-webkit-scrollbar": {
             display: "none",
           },
-          maxWidth: "100vw",
+          maxWidth: buttonTop ? "100%" : "100vw",
           ml: contained ? "-24px" : "0",
         }}
         id={uniqueId + "pnProductNav"}
@@ -230,6 +257,7 @@ const CardSlider: FC<SliderProps> = ({
             width: "min-content",
             gap: "24px",
             ...marginLeftCalc,
+            ...temp,
           }}
         >
           {children}

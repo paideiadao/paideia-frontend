@@ -80,7 +80,7 @@ const summaryCards: IFundCard[] = [
   },
 ];
 
-export const allCards: IFundCard[] = [
+const allCards: IFundCard[] = [
   {
     value: "5,482",
     ticker: "SigUSD",
