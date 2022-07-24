@@ -24,7 +24,7 @@ import { initialData } from "./data";
 
 const CandleChart: React.FC = () => {
   const ScaleProvider = discontinuousTimeScaleProviderBuilder().inputDateAccessor(
-    (d) => new Date(d.date)
+    (d: any) => new Date(d.date)
   );
   const height = 700;
   const width = 900;
@@ -115,10 +115,6 @@ const CandleChart: React.FC = () => {
         <ZoomButtons />
         <OHLCTooltip origin={[0, -16]} fontSize={20} />
       </Chart>
-    
-
-
-
       <CrossHairCursor />
     </ChartCanvas>
   );

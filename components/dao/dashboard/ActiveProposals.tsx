@@ -135,7 +135,7 @@ const ActiveProposal: React.FC = () => {
             <Box sx={{ ml: "auto" }}>
               <Link
                 href={
-                  id === undefined ? "/proposals/all" : id + "/proposals/all"
+                  id === undefined ? "dao/proposals/all" : `/dao/${id}/proposals/all`
                 }
               >
                 <Button sx={{ fontSize: ".8rem", mr: "1rem" }} size="small">
