@@ -5,7 +5,7 @@ import CandleChart from "./CandleChart/CandleChart";
 
 const Chart: React.FC = () => {
   const [view, setView] = React.useState("Line");
-  const [loaded, setLoaded] = React.useState<boolean>(false)
+  const [loaded, setLoaded] = React.useState<boolean>(false);
   const handleView = (
     event: React.MouseEvent<HTMLElement>,
     newView: string | null
@@ -17,20 +17,20 @@ const Chart: React.FC = () => {
 
   const content: IObj<JSX.Element> = {
     Line: <>line here</>,
-    Candle: <CandleChart/>
+    Candle: <CandleChart />,
   };
 
   React.useEffect(() => {
-    setLoaded(true)
-  }, [])
+    setLoaded(true);
+  }, []);
   return (
     <Box
       sx={{
         width: "100%",
         fontSize: "1.1rem",
         textAlign: "center",
-        mt: '1rem',
-        mb: '1rem'
+        mt: "1rem",
+        mb: "1rem",
       }}
     >
       <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
@@ -47,7 +47,7 @@ const Chart: React.FC = () => {
           </ToggleButtonGroup>
         </Box>
       </Box>
-      <Box sx={{width: '100%'}}>
+      <Box sx={{ width: "100%" }}>
         {loaded ? content[view] : <>loading here...</>}
       </Box>
     </Box>

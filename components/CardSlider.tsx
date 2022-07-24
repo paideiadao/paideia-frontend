@@ -209,7 +209,7 @@ const CardSlider: FC<SliderProps> = ({
             disabled={rightDisabled}
             color="primary"
             size="small"
-            sx={{zIndex: 1}}
+            sx={{ zIndex: 1 }}
           >
             <ArrowForwardIosIcon />
           </Fab>

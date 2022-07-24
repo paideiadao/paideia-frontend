@@ -14,6 +14,11 @@ tr {
   color: black;
 }
 
+.react-financial-charts canvas, .react-financial-charts svg {
+  top: 0;
+  left: 0;
+}
+
 body {
   overflow-x: hidden;
   /* background-image: url(/main-bg.png); */

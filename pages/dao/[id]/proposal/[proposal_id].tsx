@@ -45,7 +45,7 @@ const Proposal: React.FC = () => {
       url: "https://picsum.photos/1200/300",
       file: undefined,
     },
-    status: 'active',
+    status: "active",
     category: "Finance",
     content: "",
     votingSystem: "yes/no",

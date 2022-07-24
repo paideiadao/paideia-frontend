@@ -18,22 +18,26 @@ import {
   EdgeIndicator,
   MouseCoordinateX,
   MouseCoordinateY,
-  ZoomButtons
+  ZoomButtons,
 } from "react-financial-charts";
 import { initialData } from "./data";
+import { Box } from "@mui/material";
+import { deviceStruct } from "@components/utilities/Style";
+import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
+import { LightTheme } from "@theme/theme";
 
 const CandleChart: React.FC = () => {
-  const ScaleProvider = discontinuousTimeScaleProviderBuilder().inputDateAccessor(
-    (d: any) => new Date(d.date)
-  );
-  const height = 700;
-  const width = 900;
+  const ScaleProvider =
+    discontinuousTimeScaleProviderBuilder().inputDateAccessor(
+      (d: any) => new Date(d.date)
+    );
+  const height = screen.width <= 900 ? 350 : 500;
+  const width = screen.width <= 600 ? 365 : screen.width <= 1200 ? 650 : screen.width <= 1350 ? 900 : screen.width <= 1900 ? 1200 : 1400;
   const margin = { left: 0, right: 48, top: 50, bottom: 24 };
 
 
-  const { data, xScale, xAccessor, displayXAccessor } = ScaleProvider(
-    initialData
-  );
+  const { data, xScale, xAccessor, displayXAccessor } =
+    ScaleProvider(initialData);
   const pricesDisplayFormat = format(".2f");
   const max = xAccessor(data[data.length - 1]);
   const min = xAccessor(data[Math.max(0, data.length - 100)]);
@@ -42,10 +46,17 @@ const CandleChart: React.FC = () => {
   const gridHeight = height - margin.top - margin.bottom;
 
   const barChartHeight = gridHeight / 4;
-  const barChartOrigin = (_: any, h: number) => [0, h - barChartHeight];
+  const barChartOrigin = (_: any, h: number) => [
+    0,
+    h - barChartHeight,
+  ];
   const chartHeight = gridHeight;
+  const yExtents = (data: any) => {
+    return [data.high, data.low];
+  };
 
   const dateTimeFormat = "%d %b";
+  const timeDisplayFormat = timeFormat(dateTimeFormat);
 
   const barChartExtents = (data: any) => {
     return data.volume;
@@ -73,50 +84,54 @@ const CandleChart: React.FC = () => {
     return data.close > data.open ? "#26a69a" : "#ef5350";
   };
 
-  return (
-    <ChartCanvas
-      height={height}
-      ratio={3}
-      width={width}
-      margin={margin}
-      data={data}
-      displayXAccessor={displayXAccessor}
-      seriesName="Data"
-      xScale={xScale}
-      xAccessor={xAccessor}
-      xExtents={xExtents}
-      zoomAnchor={lastVisibleItemBasedZoomAnchor}
-    >
-      <Chart
-        id={2}
-        height={barChartHeight}
-        origin={barChartOrigin}
-        yExtents={barChartExtents}
-      >
-        <BarSeries fillStyle={volumeColor} yAccessor={volumeSeries} />
-      </Chart>
-      <Chart id={3} height={chartHeight} yExtents={candleChartExtents}>
-        <XAxis showGridLines showTickLabel={false} />
-        <YAxis showGridLines tickFormat={pricesDisplayFormat} />
-        <CandlestickSeries />
-        <MouseCoordinateY
-          rectWidth={margin.right}
-          displayFormat={pricesDisplayFormat}
-        />
-        <EdgeIndicator
-          itemType="last"
-          rectWidth={margin.right}
-          fill={openCloseColor}
-          lineStroke={openCloseColor}
-          displayFormat={pricesDisplayFormat}
-          yAccessor={yEdgeIndicator}
-        />
+  const themeContext = React.useContext<IThemeContext>(ThemeContext)
 
-        <ZoomButtons />
-        <OHLCTooltip origin={[0, -16]} fontSize={20} />
-      </Chart>
-      <CrossHairCursor />
-    </ChartCanvas>
+  return (
+    <Box sx={{ width: "100%", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <ChartCanvas
+        height={height}
+        ratio={3}
+        width={width}
+        margin={margin}
+        
+        data={data}
+        displayXAccessor={displayXAccessor}
+        seriesName="Data"
+        xScale={xScale}
+        xAccessor={xAccessor}
+        xExtents={xExtents}
+        zoomAnchor={lastVisibleItemBasedZoomAnchor}
+      >
+        <Chart
+          id={2}
+          height={barChartHeight}
+          origin={barChartOrigin}
+          yExtents={barChartExtents}
+        >
+          <BarSeries fillStyle={volumeColor} yAccessor={volumeSeries} />
+        </Chart>
+        <Chart id={3} height={chartHeight} yExtents={candleChartExtents}>
+          <XAxis showGridLines tickLabelFill={themeContext.theme === LightTheme ? '#333333' : 'white'}/>
+          <YAxis showGridLines tickFormat={pricesDisplayFormat}  tickLabelFill={themeContext.theme === LightTheme ? '#333333' : 'white'}/>
+          <CandlestickSeries />
+          <MouseCoordinateY
+            rectWidth={margin.right}
+            displayFormat={pricesDisplayFormat}
+          />
+          <EdgeIndicator
+            itemType="last"
+            rectWidth={margin.right}
+            fill={openCloseColor}
+            lineStroke={openCloseColor}
+            displayFormat={pricesDisplayFormat}
+            yAccessor={yEdgeIndicator}
+          />
+
+          <OHLCTooltip origin={[0, -16]} fontSize={screen.width <= 900 ? 15 : 20} textFill={themeContext.theme === LightTheme ? '#333333' : 'white'} labelFill="grey"/>
+        </Chart>
+        <CrossHairCursor />
+      </ChartCanvas>
+    </Box>
   );
 };
 

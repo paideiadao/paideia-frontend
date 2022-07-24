@@ -13,11 +13,11 @@ const parseInvestingData = (data: any) => {
       high: parseFloat(item.max),
       low: parseFloat(item.min),
       close: parseFloat(item.close),
-      volume: parseInt(item.volume)
+      volume: parseInt(item.volume),
     });
   });
 
   return response.reverse();
-}
+};
 
 export let initialData = parseInvestingData(intervalNodeData);
