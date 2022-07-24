@@ -22,14 +22,14 @@ export const PerformanceWidget: React.FC<{
         backgroundColor: props.invert
           ? "transparent"
           : props.value <= 0
-          ? "error.main"
-          : "primary.lightSuccess",
+          ? "error.light"
+          : "success.light",
         borderRadius: ".3rem",
         fontSize: deviceWrapper(".65rem", ".8rem"),
         color: props.invert
           ? props.value <= 0
-            ? "error.main"
-            : "primary.lightSuccess"
+            ? "error.light"
+            : "success.light"
           : "backgroundColor.main",
         p: ".15rem",
       }}

@@ -79,13 +79,21 @@ const CandleChart: React.FC = () => {
   const volumeSeries = (data: any) => {
     return data.volume;
   };
-
-  const openCloseColor = (data: any) => {
-    return data.close > data.open ? "#26a69a" : "#ef5350";
-  };
-
   const themeContext = React.useContext<IThemeContext>(ThemeContext)
 
+  const axisStyles = {
+    strokeStyle: themeContext.theme === LightTheme ? "rgba(56, 62, 85, 0.22)" : "rgba(56, 62, 85, 0.5)", // Color.GRAY
+    strokeWidth: 1,
+    tickLabelFill: "#9EAAC7", // Color.LIGHT_GRAY
+    tickStrokeStyle: "#383E55",
+    gridLinesStrokeStyle: themeContext.theme === LightTheme ? "rgba(56, 62, 85, 0.22)" : "rgba(56, 62, 85, 0.5)" // Color.GRAY w Opacity
+  };
+
+
+  const openCloseColor = (d: any) => (d.close > d.open ? "#26a69a" : "#ef5350");
+  const crossHairStyles = {
+    strokeStyle: "#9EAAC7"
+  };
   return (
     <Box sx={{ width: "100%", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <ChartCanvas
@@ -111,8 +119,8 @@ const CandleChart: React.FC = () => {
           <BarSeries fillStyle={volumeColor} yAccessor={volumeSeries} />
         </Chart>
         <Chart id={3} height={chartHeight} yExtents={candleChartExtents}>
-          <XAxis showGridLines tickLabelFill={themeContext.theme === LightTheme ? '#333333' : 'white'}/>
-          <YAxis showGridLines tickFormat={pricesDisplayFormat}  tickLabelFill={themeContext.theme === LightTheme ? '#333333' : 'white'}/>
+          <XAxis showGridLines {...axisStyles} tickLabelFill={themeContext.theme === LightTheme ? '#333333' : 'white'}/>
+          <YAxis showGridLines {...axisStyles} tickFormat={pricesDisplayFormat}  tickLabelFill={themeContext.theme === LightTheme ? '#333333' : 'white'}/>
           <CandlestickSeries />
           <MouseCoordinateY
             rectWidth={margin.right}
@@ -127,9 +135,9 @@ const CandleChart: React.FC = () => {
             yAccessor={yEdgeIndicator}
           />
 
-          <OHLCTooltip origin={[0, -16]} fontSize={screen.width <= 900 ? 15 : 20} textFill={themeContext.theme === LightTheme ? '#333333' : 'white'} labelFill="grey"/>
+          <OHLCTooltip origin={[0, -16]} fontSize={screen.width <= 900 ? 15 : 20} textFill={openCloseColor} labelFill="grey"/>
         </Chart>
-        <CrossHairCursor />
+        <CrossHairCursor {...crossHairStyles}/>
       </ChartCanvas>
     </Box>
   );
