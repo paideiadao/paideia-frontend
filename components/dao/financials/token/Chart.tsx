@@ -2,6 +2,7 @@ import { IObj } from "@lib/utilities";
 import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import * as React from "react";
 import CandleChart from "./CandleChart/CandleChart";
+import LineChart from "./LineChart/LineChart";
 
 const Chart: React.FC = () => {
   const [view, setView] = React.useState("Line");
@@ -16,7 +17,7 @@ const Chart: React.FC = () => {
   };
 
   const content: IObj<JSX.Element> = {
-    Line: <>line here</>,
+    Line: <LineChart/>,
     Candle: <CandleChart />,
   };
 

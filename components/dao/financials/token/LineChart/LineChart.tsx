@@ -14,13 +14,15 @@ import {
   CrossHairCursor,
   EdgeIndicator,
   MouseCoordinateY,
+  AreaSeries,
+  ToolTipText,
 } from "react-financial-charts";
-import { initialData } from "./data";
+import { initialData } from "../CandleChart/data";
 import { Box } from "@mui/material";
 import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
 import { LightTheme } from "@theme/theme";
 
-const CandleChart: React.FC = () => {
+const LineChart: React.FC = () => {
   const ScaleProvider =
     discontinuousTimeScaleProviderBuilder().inputDateAccessor(
       (d: any) => new Date(d.date)
@@ -117,7 +119,8 @@ const CandleChart: React.FC = () => {
         <Chart id={3} height={chartHeight} yExtents={candleChartExtents}>
           <XAxis showGridLines {...axisStyles} tickLabelFill={themeContext.theme === LightTheme ? '#333333' : 'white'}/>
           <YAxis showGridLines {...axisStyles} tickFormat={pricesDisplayFormat}  tickLabelFill={themeContext.theme === LightTheme ? '#333333' : 'white'}/>
-          <CandlestickSeries />
+          {/* @ts-ignore */}
+          <AreaSeries yAccessor={yEdgeIndicator} baseAt={110} fillStyle="rgba(38, 166, 154, 0.1)" strokeWidth={1}/>
           <MouseCoordinateY
             rectWidth={margin.right}
             displayFormat={pricesDisplayFormat}
@@ -130,8 +133,6 @@ const CandleChart: React.FC = () => {
             displayFormat={pricesDisplayFormat}
             yAccessor={yEdgeIndicator}
           />
-
-          <OHLCTooltip origin={[0, -16]} fontSize={screen.width <= 900 ? 15 : 20} textFill={openCloseColor} labelFill="grey"/>
         </Chart>
         <CrossHairCursor {...crossHairStyles}/>
       </ChartCanvas>
@@ -139,4 +140,4 @@ const CandleChart: React.FC = () => {
   );
 };
 
-export default CandleChart;
+export default LineChart;
