@@ -15,6 +15,7 @@ import {
   EdgeIndicator,
   MouseCoordinateY,
   AlternatingFillAreaSeries,
+  SingleValueTooltip,
 } from "react-financial-charts";
 import { initialData } from "./data";
 import { Box } from "@mui/material";
@@ -166,16 +167,19 @@ const ChartBase: React.FC<{view: string, timeView: string}> = (props) => {
             rectWidth={margin.right}
             fill={openCloseColor}
             lineStroke={openCloseColor}
-            displayFormat={pricesDisplayFormat}
+            displayFormat={pricesDisplayFormat} 
             yAccessor={yEdgeIndicator}
           />
-
+          {props.view === 'Line' ? <SingleValueTooltip yLabel='Open' valueFill='blue' yAccessor={(d) => {
+            console.log(d)
+            return d.volume
+          }}/> : 
           <OHLCTooltip
             origin={[0, -16]}
             fontSize={screen.width <= 900 ? 15 : 20}
             textFill={openCloseColor}
             labelFill="grey"
-          />
+          />}
         </Chart>
         <CrossHairCursor {...crossHairStyles} />
       </ChartCanvas>

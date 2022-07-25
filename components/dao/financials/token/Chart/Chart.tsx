@@ -5,6 +5,7 @@ import CandlestickChartIcon from "@mui/icons-material/CandlestickChart";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 import { Header } from "@components/creation/utilities/HeaderComponents";
 import ChartBase from "./ChartBase";
+import { deviceWrapper } from "@components/utilities/Style";
 
 const Chart: React.FC = () => {
   const [view, setView] = React.useState<string>("Line");
@@ -41,9 +42,9 @@ const Chart: React.FC = () => {
         mb: "1rem",
       }}
     >
-      <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
+      <Box sx={{ width: "100%", display: "flex", alignItems: deviceWrapper('flex-start', "center"), flexDirection: deviceWrapper('column', 'row') }}>
         <Header title="Price chart" />
-        <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
+        <Box sx={{ ml: "auto", display: "flex", alignItems: "center", mt: deviceWrapper('.5rem', '0') }}>
           <ToggleButtonGroup
             size="small"
             value={timeView}
