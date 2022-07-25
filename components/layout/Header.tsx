@@ -37,7 +37,7 @@ const pages = [
   {
     name: "Education",
     link: "/education",
-    // disabled: true,
+    disabled: true,
   },
   {
     name: "Documentation",
@@ -47,12 +47,12 @@ const pages = [
   {
     name: "Projects",
     link: "/projects",
-    // disabled: true,
+    disabled: true,
   },
   {
     name: "Blog",
     link: "/blog",
-    // disabled: true,
+    disabled: true,
   },
   {
     name: "Dashboard",

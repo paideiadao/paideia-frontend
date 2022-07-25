@@ -82,9 +82,11 @@ export default function Hero() {
               DAO
             </Typography>
           </Typography>
-          <Link href="/creation">
-            <Button variant="contained">Create your dao</Button>
-          </Link>
+          {/* <Link href="/creation"> */}
+          <Button variant="contained" disabled>
+            Coming Soon
+          </Button>
+          {/* </Link> */}
         </Grid>
         <Grid item>
           <Typography
