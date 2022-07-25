@@ -14,13 +14,14 @@ import {
   CrossHairCursor,
   EdgeIndicator,
   MouseCoordinateY,
+  AlternatingFillAreaSeries,
 } from "react-financial-charts";
 import { initialData } from "./data";
 import { Box } from "@mui/material";
 import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
 import { LightTheme } from "@theme/theme";
 
-const CandleChart: React.FC = () => {
+const ChartBase: React.FC<{view: string, timeView: string}> = (props) => {
   const ScaleProvider =
     discontinuousTimeScaleProviderBuilder().inputDateAccessor(
       (d: any) => new Date(d.date)
@@ -146,7 +147,16 @@ const CandleChart: React.FC = () => {
               themeContext.theme === LightTheme ? "#333333" : "white"
             }
           />
-          <CandlestickSeries />
+          {props.view === 'Candle' ? <CandlestickSeries /> : 
+          <AlternatingFillAreaSeries
+            yAccessor={yEdgeIndicator}
+            baseAt={90}
+            strokeStyle={{ top: "#26a69a", bottom: "#ef5350" }}
+            fillStyle={{
+              top: "rgba(38, 166, 154, 0.1)",
+              bottom: "rgba(239, 83, 80, 0.1)",
+            }}
+          />}
           <MouseCoordinateY
             rectWidth={margin.right}
             displayFormat={pricesDisplayFormat}
@@ -173,4 +183,4 @@ const CandleChart: React.FC = () => {
   );
 };
 
-export default CandleChart;
+export default ChartBase;

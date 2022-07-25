@@ -1,11 +1,10 @@
 import { IObj } from "@lib/utilities";
 import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import * as React from "react";
-import CandleChart from "./CandleChart/CandleChart";
-import LineChart from "./LineChart/LineChart";
 import CandlestickChartIcon from "@mui/icons-material/CandlestickChart";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 import { Header } from "@components/creation/utilities/HeaderComponents";
+import ChartBase from "./ChartBase";
 
 const Chart: React.FC = () => {
   const [view, setView] = React.useState<string>("Line");
@@ -28,10 +27,6 @@ const Chart: React.FC = () => {
     }
   };
 
-  const content: IObj<JSX.Element> = {
-    Line: <LineChart />,
-    Candle: <CandleChart />,
-  };
 
   React.useEffect(() => {
     setLoaded(true);
@@ -87,16 +82,16 @@ const Chart: React.FC = () => {
             onChange={handleView}
           >
             <ToggleButton value="Line" size="small">
-              <ShowChartIcon />
+              <ShowChartIcon  sx={{fontSize: '1.3rem'}}/>
             </ToggleButton>
             <ToggleButton value="Candle" size="small">
-              <CandlestickChartIcon />
+              <CandlestickChartIcon sx={{fontSize: '1.3rem'}}/>
             </ToggleButton>
           </ToggleButtonGroup>
         </Box>
       </Box>
       <Box sx={{ width: "100%" }}>
-        {loaded ? content[view] : <>loading here...</>}
+        {loaded ? <ChartBase view={view} timeView={timeView}/> : <>loading here...</>}
       </Box>
     </Box>
   );
