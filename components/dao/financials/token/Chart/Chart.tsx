@@ -10,7 +10,7 @@ import { initialData } from "./data";
 
 const Chart: React.FC = () => {
   const [view, setView] = React.useState<string>("Line");
-  const [timeView, setTimeView] = React.useState<string>("24h");
+  const [timeView, setTimeView] = React.useState<string>("90d");
   const [loaded, setLoaded] = React.useState<boolean>(false);
   const [data, setData] = React.useState<any[]>(initialData)
   const handleView = (

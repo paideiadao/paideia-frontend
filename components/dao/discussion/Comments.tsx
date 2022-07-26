@@ -216,7 +216,9 @@ const BaseComment: React.FC<{
     (i: IComment) => i.parent === props.comment.id
   );
   const level = props.level;
+  const [show, setShow] = React.useState<boolean>(true)
   const [reply, setReply] = React.useState<boolean>(false);
+  const setShowWrapper = () => setShow(!show) 
   return (
     <>
       <Box
@@ -275,11 +277,13 @@ const BaseComment: React.FC<{
             sx={{
               alignItems: "center",
               display: deviceWrapper("none", "flex"),
+              fontSize: '1.1rem'
             }}
           >
             {props.comment.username}
           </Box>
           <Box
+            onClick={setShowWrapper}
             sx={{
               ml: "auto",
               color: "text.secondary",
@@ -289,7 +293,11 @@ const BaseComment: React.FC<{
             {dateFormat(props.comment.date, "mmmm dS, yyyy @ h:MM TT")}
           </Box>
         </Box>
-        <Box sx={{ width: "100%", display: "flex", mr: ".5rem" }}>
+        <Box sx={{ width: "100%", display: "flex", mr: ".5rem" }}
+            onClick={setShowWrapper}
+        
+        
+        >
           <Box
             sx={{
               width: deviceWrapper("14.5%", "8%"),
@@ -341,7 +349,7 @@ const BaseComment: React.FC<{
           />
         )}
       </Box>
-      {children.length >= 0 &&
+      {children.length >= 0 && show &&
         children.map((i: IComment) => (
           <BaseComment
             key={`child-comment-${level === undefined ? 1 : level + 1}-${

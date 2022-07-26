@@ -151,13 +151,13 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
           }}
         >
           <Header title="How do levels work?" small={screen.width <= 900}/>
-          <Box sx={{ fontSize: deviceWrapper('.6rem', ".9rem"), mt: "1rem" }}>
+          <Box sx={{ fontSize: deviceWrapper('.6rem', ".9rem"), mt: ".5rem" }}>
             We have a level system that easily identifies users that are more
             engaged members of the community. The way it works is straight
             forward. Different actions get you points and each time you reach a
             specific amount of points, you reach a new level.
           </Box>
-          <Box sx={{ mt: "1rem" }}>
+          <Box sx={{ mt: ".5rem" }}>
             <Box
               sx={{
                 display: "flex",
@@ -192,7 +192,7 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
               </Box>
             ))}
           </Box>
-          <Box sx={{ mt: "1rem" }}>
+          <Box sx={{ mt: ".5rem" }}>
             <Box
               sx={{
                 display: "flex",

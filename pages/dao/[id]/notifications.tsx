@@ -16,6 +16,7 @@ import { paths, props } from "@lib/DaoPaths";
 import { useRouter } from "next/router";
 import Layout from "@components/dao/Layout";
 import { deviceWrapper } from "@components/utilities/Style";
+import BackLink from "@components/utilities/BackLink";
 
 // export const getStaticPaths = paths;
 // export const getStaticProps = props;
@@ -158,11 +159,7 @@ const Notifications: React.FC<{ params: any }> = (props) => {
 
   return (
     <Layout>
-      <Link href={id === undefined ? "/dao" : `/dao/${id}`}>
-        <Button variant="outlined" size="small" startIcon={<ArrowBackIcon />}>
-          Back
-        </Button>
-      </Link>
+      <BackLink />
 
       <Box
         sx={{
