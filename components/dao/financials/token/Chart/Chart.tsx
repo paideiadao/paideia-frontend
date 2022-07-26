@@ -6,11 +6,13 @@ import ShowChartIcon from "@mui/icons-material/ShowChart";
 import { Header } from "@components/creation/utilities/HeaderComponents";
 import ChartBase from "./ChartBase";
 import { deviceWrapper } from "@components/utilities/Style";
+import { initialData } from "./data";
 
 const Chart: React.FC = () => {
   const [view, setView] = React.useState<string>("Line");
   const [timeView, setTimeView] = React.useState<string>("24h");
   const [loaded, setLoaded] = React.useState<boolean>(false);
+  const [data, setData] = React.useState<any[]>(initialData)
   const handleView = (
     event: React.MouseEvent<HTMLElement>,
     newView: string | null
@@ -28,10 +30,63 @@ const Chart: React.FC = () => {
     }
   };
 
-
   React.useEffect(() => {
     setLoaded(true);
   }, []);
+
+  React.useEffect(() => {
+    if (initialData.length > 0) {
+      let temp = [...initialData];
+      let tempDate = new Date(temp[temp.length - 1].date)
+      console.log(tempDate)
+      switch (timeView) {
+        case '1h': {
+          tempDate.setHours(tempDate.getHours() - 1);
+          temp = temp.filter((i: any) => {
+            return new Date(i.date) > tempDate
+          })
+        }
+        case '24h': {
+          tempDate.setHours(tempDate.getHours() - 24);
+          temp = temp.filter((i: any) => {
+            return new Date(i.date) > tempDate
+          })
+        }
+        case '7d': {
+          tempDate.setDate(tempDate.getDate() - 7);
+          temp = temp.filter((i: any) => {
+            return new Date(i.date) > tempDate
+          })
+        }
+        case '30d': {
+          tempDate.setDate(tempDate.getDate() - 30);
+          temp = temp.filter((i: any) => {
+            return new Date(i.date) > tempDate
+          })
+        }
+        case '90d': {
+          tempDate.setDate(tempDate.getDate() - 90);
+          temp = temp.filter((i: any) => {
+            return new Date(i.date) > tempDate
+          })
+        }
+        case '1yr': {
+          tempDate.setDate(tempDate.getDate() - 365);
+          temp = temp.filter((i: any) => {
+            return new Date(i.date) > tempDate
+          })
+        }
+        default: {
+          setData(initialData)
+        }
+        console.log(temp)
+        setData(temp)
+  
+      }
+    }
+    
+  }, [timeView])
+
   return (
     <Box
       sx={{
@@ -42,9 +97,23 @@ const Chart: React.FC = () => {
         mb: "1rem",
       }}
     >
-      <Box sx={{ width: "100%", display: "flex", alignItems: deviceWrapper('flex-start', "center"), flexDirection: deviceWrapper('column', 'row') }}>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignItems: deviceWrapper("flex-start", "center"),
+          flexDirection: deviceWrapper("column", "row"),
+        }}
+      >
         <Header title="Price chart" />
-        <Box sx={{ ml: "auto", display: "flex", alignItems: "center", mt: deviceWrapper('.5rem', '0') }}>
+        <Box
+          sx={{
+            ml: "auto",
+            display: "flex",
+            alignItems: "center",
+            mt: deviceWrapper(".5rem", "0"),
+          }}
+        >
           <ToggleButtonGroup
             size="small"
             value={timeView}
@@ -83,16 +152,20 @@ const Chart: React.FC = () => {
             onChange={handleView}
           >
             <ToggleButton value="Line" size="small">
-              <ShowChartIcon  sx={{fontSize: '1.3rem'}}/>
+              <ShowChartIcon sx={{ fontSize: "1.3rem" }} />
             </ToggleButton>
             <ToggleButton value="Candle" size="small">
-              <CandlestickChartIcon sx={{fontSize: '1.3rem'}}/>
+              <CandlestickChartIcon sx={{ fontSize: "1.3rem" }} />
             </ToggleButton>
           </ToggleButtonGroup>
         </Box>
       </Box>
       <Box sx={{ width: "100%" }}>
-        {loaded ? <ChartBase view={view} timeView={timeView}/> : <>loading here...</>}
+        {loaded ? (
+          <ChartBase view={view} timeView={timeView} data={data}/>
+        ) : (
+          <>loading here...</>
+        )}
       </Box>
     </Box>
   );

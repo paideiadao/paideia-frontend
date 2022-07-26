@@ -25,6 +25,10 @@ body {
   /* background-image: url(/main-bg.png); */
 }
 
+.react-financial-charts-tooltip {
+  margin-bottom: 1rem
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

@@ -21,8 +21,10 @@ import { initialData } from "./data";
 import { Box } from "@mui/material";
 import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
 import { LightTheme } from "@theme/theme";
+import { currencyFormatter } from "@components/utilities/currency";
+import dateFormat from "dateformat";
 
-const ChartBase: React.FC<{view: string, timeView: string}> = (props) => {
+const ChartBase: React.FC<{ view: string; timeView: string, data: any }> = (props) => {
   const ScaleProvider =
     discontinuousTimeScaleProviderBuilder().inputDateAccessor(
       (d: any) => new Date(d.date)
@@ -38,10 +40,10 @@ const ChartBase: React.FC<{view: string, timeView: string}> = (props) => {
       : screen.width <= 1900
       ? 1200
       : 1400;
-  const margin = { left: 0, right: 48, top: 50, bottom: 24 };
+  const margin = { left: 0, right: 48, top: props.view === 'Candle' ? 50 : screen.width >= 900 ? 50 : 75, bottom: 24 };
 
   const { data, xScale, xAccessor, displayXAccessor } =
-    ScaleProvider(initialData);
+    ScaleProvider(props.data);
   const pricesDisplayFormat = format(".2f");
   const max = xAccessor(data[data.length - 1]);
   const min = xAccessor(data[Math.max(0, data.length - 100)]);
@@ -100,6 +102,14 @@ const ChartBase: React.FC<{view: string, timeView: string}> = (props) => {
   const crossHairStyles = {
     strokeStyle: "#9EAAC7",
   };
+  // maxes out at 100 data points per period...
+  // to do: financial data
+  // 1HR: 1 data point per minute (60 total)
+  // 24HR: 4 data points per hour (90 total)
+  // 7D: 12 data points per day (84 total)
+  // 30D: 3 data points per day (90 total)
+  // 1y: 8 data points per month (96 total)
+  console.log(props.data[0].open)
   return (
     <Box
       sx={{
@@ -148,16 +158,19 @@ const ChartBase: React.FC<{view: string, timeView: string}> = (props) => {
               themeContext.theme === LightTheme ? "#333333" : "white"
             }
           />
-          {props.view === 'Candle' ? <CandlestickSeries /> : 
-          <AlternatingFillAreaSeries
-            yAccessor={yEdgeIndicator}
-            baseAt={90}
-            strokeStyle={{ top: "#26a69a", bottom: "#ef5350" }}
-            fillStyle={{
-              top: "rgba(38, 166, 154, 0.1)",
-              bottom: "rgba(239, 83, 80, 0.1)",
-            }}
-          />}
+          {props.view === "Candle" ? (
+            <CandlestickSeries />
+          ) : (
+            <AlternatingFillAreaSeries
+              yAccessor={yEdgeIndicator}
+              baseAt={props.data.length === 0 ? 0 : props.data[0].open}
+              strokeStyle={{ top: "#26a69a", bottom: "#ef5350" }}
+              fillStyle={{
+                top: "rgba(38, 166, 154, 0.1)",
+                bottom: "rgba(239, 83, 80, 0.1)",
+              }}
+            />
+          )}
           <MouseCoordinateY
             rectWidth={margin.right}
             displayFormat={pricesDisplayFormat}
@@ -167,19 +180,71 @@ const ChartBase: React.FC<{view: string, timeView: string}> = (props) => {
             rectWidth={margin.right}
             fill={openCloseColor}
             lineStroke={openCloseColor}
-            displayFormat={pricesDisplayFormat} 
+            displayFormat={pricesDisplayFormat}
             yAccessor={yEdgeIndicator}
           />
-          {props.view === 'Line' ? <SingleValueTooltip yLabel='Open' valueFill='blue' yAccessor={(d) => {
-            console.log(d)
-            return d.volume
-          }}/> : 
-          <OHLCTooltip
-            origin={[0, -16]}
-            fontSize={screen.width <= 900 ? 15 : 20}
-            textFill={openCloseColor}
-            labelFill="grey"
-          />}
+          {props.view === "Line" ? (
+            <>
+            <SingleValueTooltip
+              yLabel="Date"
+              valueFill={themeContext.theme === LightTheme ? 'black' : 'white'}
+              labelFill="grey"
+              origin={screen.width >= 900 ? [0, -25] : [0,-45]}
+              //@ts-ignore
+              fontSize={screen.width > 900 ? "1.1rem" : '.9rem'}
+              yAccessor={(d) => {
+                return d.date;
+              }}
+              yDisplayFormat={(value: number) => dateFormat(new Date(value), 'mmm d, yyyy	')}
+            />
+            <SingleValueTooltip
+              yLabel="Price"
+              valueFill={themeContext.theme === LightTheme ? 'black' : 'white'}
+              labelFill="grey"
+              origin={screen.width >= 900 ? [200, -25] : [180,-45]}
+              //@ts-ignore
+              fontSize={screen.width > 900 ? "1.1rem" : '.9rem'}
+              yAccessor={(d) => {
+                return d.open;
+              }}
+              yDisplayFormat={format("$.2f")}
+            />
+            <SingleValueTooltip
+              yLabel="Volume"
+              valueFill={themeContext.theme === LightTheme ? 'black' : 'white'}
+              labelFill="grey"
+              origin={screen.width >= 900 ? [350, -25] : [0,-15]}
+
+              //@ts-ignore
+              fontSize={screen.width > 900 ? "1.1rem" : '.9rem'}
+              yAccessor={(d) => {
+                return d.volume;
+              }}
+              yDisplayFormat={format("$.3~s")}
+            />
+            {/* <SingleValueTooltip
+              yLabel="Volume"
+              valueFill={themeContext.theme === LightTheme ? 'black' : 'white'}
+              labelFill="grey"
+              origin={screen.width >= 900 ? [540, -25] : [180,-15]}
+              //@ts-ignore
+              fontSize={screen.width > 900 ? "1.1rem" : '.9rem'}
+              yAccessor={(d) => {
+                return d.volume;
+              }}
+              yDisplayFormat={format("$.3~s")}
+            /> */}
+            
+            </>
+
+          ) : (
+            <OHLCTooltip
+              origin={[0, -16]}
+              fontSize={screen.width <= 900 ? 15 : 20}
+              textFill={openCloseColor}
+              labelFill="grey"
+            />
+          )}
         </Chart>
         <CrossHairCursor {...crossHairStyles} />
       </ChartCanvas>
