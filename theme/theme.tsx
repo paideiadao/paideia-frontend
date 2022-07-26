@@ -306,11 +306,16 @@ export const DarkTheme = createTheme({
         root: {
           "& .MuiOutlinedInput-notchedOutline": {
             borderColor: "rgba(255, 255, 255, 0.3)",
+            outline: 0
           },
           "&:hover .MuiOutlinedInput-notchedOutline": {
             borderColor: "#9FD2DB",
           },
           color: "FFFFFF",
+          outline: 0, 
+          '& input:focus:focus-visible': {
+            outline: 0
+          }
         },
       },
     },

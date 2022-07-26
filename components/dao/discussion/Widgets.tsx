@@ -2,6 +2,7 @@ import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
 import { Avatar, Box, Button } from "@mui/material";
 import * as React from "react";
 import Musk from "@public/profile/musk-full.png";
+import { deviceWrapper } from "@components/utilities/Style";
 
 export const Overview: React.FC<{ proposal?: boolean }> = (props) => {
   return (
@@ -40,7 +41,7 @@ export const Overview: React.FC<{ proposal?: boolean }> = (props) => {
         </Box>
         <Box
           sx={{
-            display: "flex",
+            display: deviceWrapper("none", "flex"),
             width: "100%",
             alignItems: "center",
             justifyContent: "center",

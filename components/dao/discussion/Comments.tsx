@@ -13,6 +13,9 @@ import TagFacesIcon from "@mui/icons-material/TagFaces";
 import dateFormat from "dateformat";
 import { LikesDislikes } from "../proposals/ProposalCard";
 import { deviceWrapper } from "@components/utilities/Style";
+import { LightTheme } from "@theme/theme";
+import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
+import ReplyIcon from "@mui/icons-material/Reply";
 
 export interface IComment {
   id: number;
@@ -84,6 +87,17 @@ const _comments: IComment[] = [
     img: "",
     comment: "Thanks michael!",
   },
+  {
+    id: 6,
+    parent: 4,
+    userSide: undefined,
+    likes: 7,
+    dislikes: 0,
+    date: new Date(),
+    username: "Hank Moody",
+    img: "",
+    comment: "Agreed, Michael!",
+  },
 ];
 
 const Comments: React.FC<{ title?: string }> = (props) => {
@@ -126,7 +140,7 @@ const CommentInput: React.FC<{
   level?: number;
 }> = (props) => {
   const [value, setValue] = React.useState<string>("");
-
+  const themeContext = React.useContext<IThemeContext>(ThemeContext);
   return (
     <Box
       sx={{
@@ -143,7 +157,10 @@ const CommentInput: React.FC<{
           pl: ".5rem",
           borderRadius: "1px solid",
           border: 1,
-          borderColor: "border.main",
+          borderColor:
+            themeContext.theme === LightTheme
+              ? "border.main"
+              : "fileInput.main",
           pr: "1.5rem",
           mb: "1.5rem",
         }}
@@ -216,9 +233,9 @@ const BaseComment: React.FC<{
     (i: IComment) => i.parent === props.comment.id
   );
   const level = props.level;
-  const [show, setShow] = React.useState<boolean>(true)
+  const [show, setShow] = React.useState<boolean>(false);
   const [reply, setReply] = React.useState<boolean>(false);
-  const setShowWrapper = () => setShow(!show) 
+  const setShowWrapper = () => setShow(!show);
   return (
     <>
       <Box
@@ -235,22 +252,23 @@ const BaseComment: React.FC<{
             width: "100%",
             display: "flex",
             mr: ".5rem",
-            alignItems: deviceWrapper("center", "flex-start"),
+            alignItems: deviceWrapper("center", "center"),
           }}
         >
           <Box
             sx={{
-              width: deviceWrapper("14%", "8%"),
+              width: deviceWrapper("13%", "8%"),
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "flex-start",
+              flexDirection: "column",
             }}
           >
             <Avatar
               src={props.comment.img}
               sx={{
-                width: deviceWrapper("1.75rem", "2.5rem"),
-                height: deviceWrapper("1.75rem", "2.5rem"),
+                width: deviceWrapper("1.75rem", "2.25rem"),
+                height: deviceWrapper("1.75rem", "2.25rem"),
               }}
             />
           </Box>
@@ -277,13 +295,12 @@ const BaseComment: React.FC<{
             sx={{
               alignItems: "center",
               display: deviceWrapper("none", "flex"),
-              fontSize: '1.1rem'
+              fontSize: "1rem",
             }}
           >
             {props.comment.username}
           </Box>
           <Box
-            onClick={setShowWrapper}
             sx={{
               ml: "auto",
               color: "text.secondary",
@@ -293,50 +310,69 @@ const BaseComment: React.FC<{
             {dateFormat(props.comment.date, "mmmm dS, yyyy @ h:MM TT")}
           </Box>
         </Box>
-        <Box sx={{ width: "100%", display: "flex", mr: ".5rem" }}
-            onClick={setShowWrapper}
-        
-        
-        >
+        <Box sx={{ width: "100%", display: "flex", mr: ".5rem" }}>
           <Box
             sx={{
               width: deviceWrapper("14.5%", "8%"),
               display: "flex",
               alignItems: "center",
             }}
-          ></Box>
+          >
+            <Box
+              sx={{
+                width: "50%",
+                height: `calc(100% + ${children.length > 0 ? "2rem" : "0"})`,
+                ml: deviceWrapper("1.3rem", "1.8rem"),
+                display: children.length > 0 && !show ? "block" : "none",
+                borderLeft: 1,
+                borderBottom: 1,
+                borderBottomLeftRadius: "5rem",
+                borderColor: "border.main",
+              }}
+            ></Box>
+          </Box>
           <Box
             sx={{
               display: "flex",
-              alignItems: "center",
+              justifyContent: "center",
               width: "92%",
+              flexDirection: "column",
               fontSize: deviceWrapper(".8rem", "1rem"),
             }}
           >
             {props.comment.comment}
+            <Box sx={{ display: "flex", width: "100%", mt: ".5rem" }}>
+              {!reply && (
+                <Button onClick={() => setReply(true)} size="small">
+                  Reply
+                </Button>
+              )}
+              <Box sx={{ ml: "auto" }}>
+                <LikesDislikes
+                  likes={props.comment.likes}
+                  dislikes={props.comment.dislikes}
+                  userSide={props.comment.userSide}
+                />
+              </Box>
+            </Box>
           </Box>
         </Box>
-        <Box sx={{ display: "flex", width: "100%", mt: ".5rem" }}>
-          <Box
-            sx={{
-              width: deviceWrapper("13.5%", "7%"),
-              display: "flex",
-              alignItems: "center",
-            }}
-          ></Box>
-          {!reply && (
-            <Button onClick={() => setReply(true)} size="small">
-              Reply
-            </Button>
-          )}
-          <Box sx={{ ml: "auto" }}>
-            <LikesDislikes
-              likes={props.comment.likes}
-              dislikes={props.comment.dislikes}
-              userSide={props.comment.userSide}
-            />
-          </Box>
-        </Box>
+        {children.length > 0 && !show && (
+          <Button
+            onClick={() => setShow(true)}
+            size="small"
+            startIcon={
+              <ReplyIcon
+                sx={{
+                  transform: "rotate(-180deg)",
+                  ml: deviceWrapper("3rem", "4rem"),
+                }}
+              />
+            }
+          >
+            View {children.length} {children.length === 1 ? "reply" : "replies"}
+          </Button>
+        )}
         {reply && (
           <CommentInput
             parent={props.comment.id}
@@ -349,7 +385,8 @@ const BaseComment: React.FC<{
           />
         )}
       </Box>
-      {children.length >= 0 && show &&
+      {children.length >= 0 &&
+        show &&
         children.map((i: IComment) => (
           <BaseComment
             key={`child-comment-${level === undefined ? 1 : level + 1}-${

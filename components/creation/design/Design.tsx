@@ -192,8 +192,15 @@ const Design: React.FC = (props) => {
         <Subtitle subtitle="In order to best match your DAO design you can select between four different theme colors and choose if you want a light or dark theme." />
       </Box>
       <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center" }}>
-        {themes.map((i: any) => {
-          return <ThemeCard set={setTheme} theme={theme} i={i} />;
+        {themes.map((i: any, c: number) => {
+          return (
+            <ThemeCard
+              set={setTheme}
+              theme={theme}
+              i={i}
+              key={`theme-card-${c}`}
+            />
+          );
         })}
       </Box>
       <Logo />

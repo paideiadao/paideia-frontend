@@ -5,6 +5,7 @@ import { VoteWidget } from "../proposals/ProposalCard";
 import dateFormat from "dateformat";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { deviceWrapper } from "@components/utilities/Style";
 
 interface ILastVote {
   img: string;
@@ -96,6 +97,7 @@ const _VoteWidget: React.FC = () => {
           borderBottom: "1px solid",
           borderBottomColor: "border.main",
           p: ".5rem",
+          display: deviceWrapper("none", "block"),
         }}
       >
         <CapsInfo title="Last Votes" mb={"0"} />

@@ -12,7 +12,7 @@ const Chart: React.FC = () => {
   const [view, setView] = React.useState<string>("Line");
   const [timeView, setTimeView] = React.useState<string>("90d");
   const [loaded, setLoaded] = React.useState<boolean>(false);
-  const [data, setData] = React.useState<any[]>(initialData)
+  const [data, setData] = React.useState<any[]>(initialData);
   const handleView = (
     event: React.MouseEvent<HTMLElement>,
     newView: string | null
@@ -37,55 +37,54 @@ const Chart: React.FC = () => {
   React.useEffect(() => {
     if (initialData.length > 0) {
       let temp = [...initialData];
-      let tempDate = new Date(temp[temp.length - 1].date)
-      console.log(tempDate)
+      let tempDate = new Date(temp[temp.length - 1].date);
+      console.log(tempDate);
       switch (timeView) {
-        case '1h': {
+        case "1h": {
           tempDate.setHours(tempDate.getHours() - 1);
           temp = temp.filter((i: any) => {
-            return new Date(i.date) > tempDate
-          })
+            return new Date(i.date) > tempDate;
+          });
         }
-        case '24h': {
+        case "24h": {
           tempDate.setHours(tempDate.getHours() - 24);
           temp = temp.filter((i: any) => {
-            return new Date(i.date) > tempDate
-          })
+            return new Date(i.date) > tempDate;
+          });
         }
-        case '7d': {
+        case "7d": {
           tempDate.setDate(tempDate.getDate() - 7);
           temp = temp.filter((i: any) => {
-            return new Date(i.date) > tempDate
-          })
+            return new Date(i.date) > tempDate;
+          });
         }
-        case '30d': {
+        case "30d": {
           tempDate.setDate(tempDate.getDate() - 30);
           temp = temp.filter((i: any) => {
-            return new Date(i.date) > tempDate
-          })
+            return new Date(i.date) > tempDate;
+          });
         }
-        case '90d': {
+        case "90d": {
           tempDate.setDate(tempDate.getDate() - 90);
           temp = temp.filter((i: any) => {
-            return new Date(i.date) > tempDate
-          })
+            return new Date(i.date) > tempDate;
+          });
         }
-        case '1yr': {
+        case "1yr": {
           tempDate.setDate(tempDate.getDate() - 365);
           temp = temp.filter((i: any) => {
-            return new Date(i.date) > tempDate
-          })
+            return new Date(i.date) > tempDate;
+          });
         }
-        default: {
-          setData(initialData)
-        }
-        console.log(temp)
-        setData(temp)
-  
+        default:
+          {
+            setData(initialData);
+          }
+          console.log(temp);
+          setData(temp);
       }
     }
-    
-  }, [timeView])
+  }, [timeView]);
 
   return (
     <Box
@@ -162,7 +161,7 @@ const Chart: React.FC = () => {
       </Box>
       <Box sx={{ width: "100%" }}>
         {loaded ? (
-          <ChartBase view={view} timeView={timeView} data={data}/>
+          <ChartBase view={view} timeView={timeView} data={data} />
         ) : (
           <>loading here...</>
         )}

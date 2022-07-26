@@ -24,7 +24,9 @@ import { LightTheme } from "@theme/theme";
 import { currencyFormatter } from "@components/utilities/currency";
 import dateFormat from "dateformat";
 
-const ChartBase: React.FC<{ view: string; timeView: string, data: any }> = (props) => {
+const ChartBase: React.FC<{ view: string; timeView: string; data: any }> = (
+  props
+) => {
   const ScaleProvider =
     discontinuousTimeScaleProviderBuilder().inputDateAccessor(
       (d: any) => new Date(d.date)
@@ -40,10 +42,16 @@ const ChartBase: React.FC<{ view: string; timeView: string, data: any }> = (prop
       : screen.width <= 1900
       ? 1200
       : 1400;
-  const margin = { left: 0, right: 48, top: props.view === 'Candle' ? 50 : screen.width >= 900 ? 50 : 75, bottom: 24 };
+  const margin = {
+    left: 0,
+    right: 48,
+    top: props.view === "Candle" ? 50 : screen.width >= 900 ? 50 : 75,
+    bottom: 24,
+  };
 
-  const { data, xScale, xAccessor, displayXAccessor } =
-    ScaleProvider(props.data);
+  const { data, xScale, xAccessor, displayXAccessor } = ScaleProvider(
+    props.data
+  );
   const pricesDisplayFormat = format(".2f");
   const max = xAccessor(data[data.length - 1]);
   const min = xAccessor(data[Math.max(0, data.length - 100)]);
@@ -109,7 +117,7 @@ const ChartBase: React.FC<{ view: string; timeView: string, data: any }> = (prop
   // 7D: 12 data points per day (84 total)
   // 30D: 3 data points per day (90 total)
   // 1y: 8 data points per month (96 total)
-  console.log(props.data[0].open)
+  console.log(props.data[0].open);
   return (
     <Box
       sx={{
@@ -185,44 +193,51 @@ const ChartBase: React.FC<{ view: string; timeView: string, data: any }> = (prop
           />
           {props.view === "Line" ? (
             <>
-            <SingleValueTooltip
-              yLabel="Date"
-              valueFill={themeContext.theme === LightTheme ? 'black' : 'white'}
-              labelFill="grey"
-              origin={screen.width >= 900 ? [0, -25] : [0,-45]}
-              //@ts-ignore
-              fontSize={screen.width > 900 ? "1.1rem" : '.9rem'}
-              yAccessor={(d) => {
-                return d.date;
-              }}
-              yDisplayFormat={(value: number) => dateFormat(new Date(value), 'mmm d, yyyy	')}
-            />
-            <SingleValueTooltip
-              yLabel="Price"
-              valueFill={themeContext.theme === LightTheme ? 'black' : 'white'}
-              labelFill="grey"
-              origin={screen.width >= 900 ? [200, -25] : [180,-45]}
-              //@ts-ignore
-              fontSize={screen.width > 900 ? "1.1rem" : '.9rem'}
-              yAccessor={(d) => {
-                return d.open;
-              }}
-              yDisplayFormat={format("$.2f")}
-            />
-            <SingleValueTooltip
-              yLabel="Volume"
-              valueFill={themeContext.theme === LightTheme ? 'black' : 'white'}
-              labelFill="grey"
-              origin={screen.width >= 900 ? [350, -25] : [0,-15]}
-
-              //@ts-ignore
-              fontSize={screen.width > 900 ? "1.1rem" : '.9rem'}
-              yAccessor={(d) => {
-                return d.volume;
-              }}
-              yDisplayFormat={format("$.3~s")}
-            />
-            {/* <SingleValueTooltip
+              <SingleValueTooltip
+                yLabel="Date"
+                valueFill={
+                  themeContext.theme === LightTheme ? "black" : "white"
+                }
+                labelFill="grey"
+                origin={screen.width >= 900 ? [0, -25] : [0, -45]}
+                //@ts-ignore
+                fontSize={screen.width > 900 ? "1.1rem" : ".9rem"}
+                yAccessor={(d) => {
+                  return d.date;
+                }}
+                yDisplayFormat={(value: number) =>
+                  dateFormat(new Date(value), "mmm d, yyyy	")
+                }
+              />
+              <SingleValueTooltip
+                yLabel="Price"
+                valueFill={
+                  themeContext.theme === LightTheme ? "black" : "white"
+                }
+                labelFill="grey"
+                origin={screen.width >= 900 ? [200, -25] : [180, -45]}
+                //@ts-ignore
+                fontSize={screen.width > 900 ? "1.1rem" : ".9rem"}
+                yAccessor={(d) => {
+                  return d.open;
+                }}
+                yDisplayFormat={format("$.2f")}
+              />
+              <SingleValueTooltip
+                yLabel="Volume"
+                valueFill={
+                  themeContext.theme === LightTheme ? "black" : "white"
+                }
+                labelFill="grey"
+                origin={screen.width >= 900 ? [350, -25] : [0, -15]}
+                //@ts-ignore
+                fontSize={screen.width > 900 ? "1.1rem" : ".9rem"}
+                yAccessor={(d) => {
+                  return d.volume;
+                }}
+                yDisplayFormat={format("$.3~s")}
+              />
+              {/* <SingleValueTooltip
               yLabel="Volume"
               valueFill={themeContext.theme === LightTheme ? 'black' : 'white'}
               labelFill="grey"
@@ -234,9 +249,7 @@ const ChartBase: React.FC<{ view: string; timeView: string, data: any }> = (prop
               }}
               yDisplayFormat={format("$.3~s")}
             /> */}
-            
             </>
-
           ) : (
             <OHLCTooltip
               origin={[0, -16]}
