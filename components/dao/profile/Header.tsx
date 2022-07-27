@@ -150,7 +150,7 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
             pb: ".5rem",
           }}
         >
-          <Header title="How do levels work?" small={screen.width <= 900} />
+          <Header title="How do levels work?" />
           <Box sx={{ fontSize: deviceWrapper(".6rem", ".9rem"), mt: ".5rem" }}>
             We have a level system that easily identifies users that are more
             engaged members of the community. The way it works is straight
