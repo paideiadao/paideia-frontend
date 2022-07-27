@@ -1,4 +1,5 @@
 import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
+import { getRandomImage } from "@components/utilities/images";
 import { deviceWrapper } from "@components/utilities/Style";
 import { Avatar, Box, Button } from "@mui/material";
 import * as React from "react";
@@ -105,7 +106,8 @@ const DiscussionCard: React.FC<IReference> = (props) => {
       }}
     >
       <Avatar
-        src={`https://picsum.photos/200/200/?random=${props.id}`}
+        // src={`https://picsum.photos/200/200/?random=${props.id}`}
+        src={getRandomImage()}
         sx={{
           width: deviceWrapper("2.5rem", "3rem"),
           height: deviceWrapper("2.5rem", "3rem"),

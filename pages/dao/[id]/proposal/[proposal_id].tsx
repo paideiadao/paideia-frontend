@@ -34,6 +34,7 @@ import Addendums from "@components/dao/proposal/Addendums";
 import VoteWidget from "@components/dao/proposal/VoteWidget";
 import OptionsWidget from "@components/dao/proposal/OptionsWidget";
 import Link from "next/link";
+import { getRandomImage } from "@components/utilities/images";
 
 const Proposal: React.FC = () => {
   const themeContext = React.useContext(ThemeContext);
@@ -42,7 +43,7 @@ const Proposal: React.FC = () => {
   const [value, setValue] = React.useState<IProposal>({
     name: "",
     image: {
-      url: "https://picsum.photos/1200/300",
+      url: getRandomImage(),
       file: undefined,
     },
     status: "active",

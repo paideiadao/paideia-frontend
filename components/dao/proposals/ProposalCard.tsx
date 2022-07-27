@@ -15,6 +15,7 @@ import Link from "next/link";
 import { GlobalContext } from "@lib/AppContext";
 import { useRouter } from "next/router";
 import { deviceWrapper } from "@components/utilities/Style";
+import { getRandomImage } from "@components/utilities/images";
 
 export interface IProposalCard {
   id: number;
@@ -252,17 +253,13 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
   );
 };
 
-const CardContent: React.FC<{ category: string; widget: any; c: number }> = (
-  props
-) => {
-  const [widget, setWidget] = React.useState<any>(props.widget);
+const CountdownTimer: React.FC<{ widget: any }> = (props) => {
   const [time, setTime] = React.useState<string>("");
   let temp = new Date();
   temp.setDate(temp.getDate() + 30);
   var countDownDate = temp.getTime();
-
   React.useEffect(() => {
-    if (typeof widget === "object") {
+    if (typeof props.widget === "object") {
       var x = setInterval(function () {
         // Get today's date and time
         var now = new Date().getTime();
@@ -288,7 +285,50 @@ const CardContent: React.FC<{ category: string; widget: any; c: number }> = (
         }
       }, 1000);
     }
-  }, []);
+  }, [props.widget]);
+  let widget = props.widget;
+  return (
+    <>
+      <Chip
+        icon={
+          <Box
+            sx={{
+              height: "1rem",
+              width: "1rem",
+              display: "flex",
+              alignItems: "center",
+              color: "white",
+            }}
+          >
+            {typeof widget === "object" ? (
+              <AccessTimeFilledIcon sx={{ fontSize: "1rem" }} />
+            ) : widget === "DAO termination" ? (
+              <DeleteIcon sx={{ fontSize: "1rem" }} />
+            ) : (
+              <LocalFireDepartmentIcon sx={{ fontSize: "1rem" }} />
+            )}
+          </Box>
+        }
+        label={typeof widget === "object" ? time : widget}
+        size="small"
+        sx={{
+          fontSize: ".7rem",
+          color: "backgroundColor.main",
+          backgroundColor:
+            widget === "DAO termination" ? "error.light" : "tokenAlert.main",
+          border: "1px solid",
+          borderColor:
+            widget === "DAO termination" ? "error.light" : "tokenAlert.main",
+        }}
+      />
+    </>
+  );
+};
+
+const CardContent: React.FC<{ category: string; widget: any; c: number }> = (
+  props
+) => {
+  const [widget, setWidget] = React.useState<any>(props.widget);
 
   return (
     <Box
@@ -296,10 +336,13 @@ const CardContent: React.FC<{ category: string; widget: any; c: number }> = (
         mt: ".5rem",
         height: "7rem",
         backgroundColor: "fileInput.outer",
-        backgroundImage: deviceWrapper(
-          `url(https://picsum.photos/350/200/?random=${props.c})`,
-          `url(https://picsum.photos/300/200/?random=${props.c})`
-        ),
+        // backgroundImage: deviceWrapper(
+        //   `url(https://picsum.photos/350/200/?random=${props.c})`,
+        //   `url(https://picsum.photos/300/200/?random=${props.c})`
+        // ),
+        backgroundImage: `url(${getRandomImage()})`,
+        backgroundSize: "100%",
+        width: "100%",
         border: "1px solid",
         borderColor: "border.main",
         borderRadius: ".3rem",
@@ -308,38 +351,7 @@ const CardContent: React.FC<{ category: string; widget: any; c: number }> = (
       }}
     >
       <Box sx={{ position: "absolute", right: ".3rem" }}>
-        <Chip
-          icon={
-            <Box
-              sx={{
-                height: "1rem",
-                width: "1rem",
-                display: "flex",
-                alignItems: "center",
-                color: "white",
-              }}
-            >
-              {typeof widget === "object" ? (
-                <AccessTimeFilledIcon sx={{ fontSize: "1rem" }} />
-              ) : widget === "DAO termination" ? (
-                <DeleteIcon sx={{ fontSize: "1rem" }} />
-              ) : (
-                <LocalFireDepartmentIcon sx={{ fontSize: "1rem" }} />
-              )}
-            </Box>
-          }
-          label={typeof widget === "object" ? time : widget}
-          size="small"
-          sx={{
-            fontSize: ".7rem",
-            color: "backgroundColor.main",
-            backgroundColor:
-              widget === "DAO termination" ? "error.main" : "tokenAlert.main",
-            border: "1px solid",
-            borderColor:
-              widget === "DAO termination" ? "error.main" : "tokenAlert.main",
-          }}
-        />
+        <CountdownTimer widget={props.widget} />
       </Box>
       <Box sx={{ position: "absolute", bottom: ".3rem" }}>
         <Chip

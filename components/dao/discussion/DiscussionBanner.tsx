@@ -101,7 +101,14 @@ const DiscussionBanner: React.FC<{
             />
           </>
         ) : (
-          <Box sx={{ width: "100%" }}>
+          <Box
+            sx={{
+              width: "100%",
+              img: {
+                maxHeight: deviceWrapper("9rem", "11.5rem"),
+              },
+            }}
+          >
             <img
               src={props.fileUrl}
               alt="Banner for the discussion"

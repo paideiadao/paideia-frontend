@@ -27,6 +27,7 @@ import { deviceWrapper } from "@components/utilities/Style";
 import { IComment } from "@components/dao/discussion/Comments";
 import Reference from "@components/dao/discussion/Reference";
 import { IAddendum } from "@components/dao/proposal/Addendums";
+import { getRandomImage } from "@components/utilities/images";
 
 export interface IProposalAction {
   name:
@@ -73,7 +74,7 @@ const CreateProposal: React.FC = () => {
   const [value, setValue] = React.useState<IProposal>({
     name: "",
     image: {
-      url: "https://picsum.photos/1200/300",
+      url: getRandomImage(),
       file: undefined,
     },
     status: "",

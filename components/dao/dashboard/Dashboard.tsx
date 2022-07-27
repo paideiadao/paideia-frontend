@@ -6,7 +6,7 @@ import FinancialSummary from "./FinancialSummary";
 import About from "./widgets/About";
 import TokenStats from "./widgets/TokenStats";
 import ActiveProposals from "./ActiveProposals";
-import AnnouncementBackground from "../../../public/dao/announcement/announcement-background.png";
+import AnnouncementBackground from "@public/dao/announcement/announcement-background.png";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import LightbulbCircleIcon from "@mui/icons-material/LightbulbCircle";
 import ReadingBackground from "../../../public/dao/reading/reading-background.png";

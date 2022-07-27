@@ -27,6 +27,7 @@ import DiscussionReferences from "@components/dao/discussion/DiscussionReference
 import { paths, props } from "@lib/DiscussionPaths";
 import Layout from "@components/dao/Layout";
 import { deviceWrapper } from "@components/utilities/Style";
+import { getRandomImage } from "@components/utilities/images";
 
 const Discussion: React.FC = () => {
   const themeContext = React.useContext(ThemeContext);
@@ -66,7 +67,7 @@ const Discussion: React.FC = () => {
               width: deviceWrapper("calc(100% + 2rem)", "100%"),
               borderRadius: deviceWrapper("0", ".3rem"),
               position: "relative",
-              backgroundImage: `url(https://picsum.photos/800/300)`,
+              backgroundImage: `url(${getRandomImage()})`,
               p: "1rem",
               maxHeight: "30rem",
               display: "flex",

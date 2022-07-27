@@ -19,6 +19,7 @@ import PublishIcon from "@mui/icons-material/Publish";
 import { IComment } from "@components/dao/discussion/Comments";
 import Layout from "@components/dao/Layout";
 import { deviceWrapper } from "@components/utilities/Style";
+import { getRandomImage } from "@components/utilities/images";
 
 export interface IDiscussion {
   name: string;
@@ -42,7 +43,7 @@ const CreateDiscussion: React.FC = () => {
     name: "",
     category: "",
     image: {
-      url: "https://picsum.photos/1200/300",
+      url: getRandomImage(),
       file: undefined,
     },
     references: [],

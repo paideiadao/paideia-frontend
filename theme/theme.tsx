@@ -151,6 +151,24 @@ export const LightTheme = createTheme({
         },
       },
     },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          "& input:focus:focus-visible": {
+            outline: 0,
+          },
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          "& input:focus:focus-visible": {
+            outline: 0,
+          },
+        },
+      },
+    },
     MuiStepIcon: {
       styleOverrides: {
         root: {
@@ -306,16 +324,16 @@ export const DarkTheme = createTheme({
         root: {
           "& .MuiOutlinedInput-notchedOutline": {
             borderColor: "rgba(255, 255, 255, 0.3)",
-            outline: 0
+            outline: 0,
           },
           "&:hover .MuiOutlinedInput-notchedOutline": {
             borderColor: "#9FD2DB",
           },
           color: "FFFFFF",
-          outline: 0, 
-          '& input:focus:focus-visible': {
-            outline: 0
-          }
+          outline: 0,
+          "& input:focus:focus-visible": {
+            outline: 0,
+          },
         },
       },
     },
@@ -348,6 +366,15 @@ export const DarkTheme = createTheme({
         root: {
           "&.Mui-selected": {
             backgroundColor: "#9FD2DB",
+          },
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          "& input:focus:focus-visible": {
+            outline: 0,
           },
         },
       },

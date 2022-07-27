@@ -63,14 +63,16 @@ interface IItemObject {
   item: IHighlightItem;
 }
 
+export const randomInteger = (min: number, max: number) => {
+  return (min + Math.random() * (max - min)).toFixed();
+};
+
 const CarouselItem: FC<IItemObject> = ({ item }) => {
   const theme = useTheme();
   const sizeMd = useMediaQuery(theme.breakpoints.up("md"));
   const sizeLg = useMediaQuery(theme.breakpoints.up("lg"));
   const sizeXl = useMediaQuery(theme.breakpoints.up("xl"));
-  const randomInteger = (min: number, max: number) => {
-    return (min + Math.random() * (max - min)).toFixed();
-  };
+
   const rand = randomInteger(1, 18);
 
   const image = item?.image ? item.image : `/images/placeholder/${rand}.jpg`;

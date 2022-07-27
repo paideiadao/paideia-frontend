@@ -11,7 +11,7 @@ const AbstractDate: React.FC<{
   value: Date;
   setValue: Function;
   label: string;
-  width: string;
+  width: string | any;
   mr?: string;
 }> = (props) => {
   let temp = props;

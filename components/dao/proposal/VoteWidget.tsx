@@ -6,6 +6,7 @@ import dateFormat from "dateformat";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { deviceWrapper } from "@components/utilities/Style";
+import { getRandomImage } from "@components/utilities/images";
 
 interface ILastVote {
   img: string;
@@ -34,7 +35,10 @@ const LastVotes: React.FC = () => {
             }}
             key={`last-vote-${c}`}
           >
-            <Avatar src={`https://picsum.photos/300/200/?random=${c}`} />
+            <Avatar
+              // src={`https://picsum.photos/300/200/?random=${c}`}
+              src={getRandomImage()}
+            />
             <Box sx={{ ml: ".5rem" }}>
               {i.name}
               <Box sx={{ fontSize: ".9rem", color: "text.secondary" }}>
