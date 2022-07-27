@@ -26,6 +26,7 @@
     "@nivo/line": "^0.79.1",
     "@nivo/pie": "^0.79.1",
     "@tinymce/tinymce-react": "^4.1.0",
+    "@types/d": "^1.0.1",
     "axios": "^0.27.2",
     "blakejs": "^1.2.1",
     "bs58": "^5.0.0",
@@ -46,6 +47,8 @@
   "devDependencies": {
     "@capacitor/cli": "^3.6.0",
     "@mui/x-data-grid-pro": "^5.13.1",
+    "@types/d3-format": "^3.0.1",
+    "@types/d3-time-format": "^4.0.0",
     "@types/dateformat": "^5.0.0",
     "@types/elliptic": "^6.4.14",
     "@types/jquery": "^3.5.14",

@@ -10,7 +10,6 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import ProfileHeader from "@components/dao/profile/Header";
 import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
-
 import Proposals from "@components/dao/profile/Proposals";
 import Activity from "@components/dao/profile/Activity";
 import { useRouter } from "next/router";

@@ -9,11 +9,11 @@ import Discussion from "@pages/dao/[id]/discussion/[discussion_id]";
 import Create from "@pages/dao/[id]/create";
 import Vote from "@pages/dao/[id]/proposal/[proposal_id]/votes";
 import CastVote from "@pages/dao/[id]/proposal/[proposal_id]/vote";
-import Member from "@pages/dao/[id]/member/[member_id]";
+// import Member from "@pages/dao/[id]/member/[member_id]";
 import CreateProposal from "@pages/dao/[id]/proposal/create";
 import CreateDiscussion from "@pages/dao/[id]/discussion/create";
 import Dashboard from "@components/dao/dashboard/Dashboard";
-import Profile from "@pages/dao/[id]/profile";
+// import Profile from "@pages/dao/[id]/profile";
 import Notifications from "@pages/dao/[id]/notifications";
 import Dao from "@pages/dao/[id]";
 import Creation from "@pages/creation";
@@ -40,7 +40,7 @@ export const isDao = (Component: any) => {
     Component === Creation ||
     Component === Dao ||
     Component === Notifications ||
-    Component === Profile ||
+    // Component === Profile ||
     Component === Dashboard ||
     Component === Edit ||
     Component === All ||
@@ -52,7 +52,7 @@ export const isDao = (Component: any) => {
     Component === Create ||
     Component === Vote ||
     Component === CastVote ||
-    Component === Member ||
+    // Component === Member ||
     Component === CreateProposal ||
     Component === CreateDiscussion ||
     Component === Past ||
