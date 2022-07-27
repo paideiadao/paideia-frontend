@@ -14,7 +14,7 @@ const ConnectWallet: React.FC = () => {
   return (
     <>
       <AddWallet />
-      <Button variant="contained" disabled onClick={handleClickOpen}>
+      <Button variant="contained" onClick={handleClickOpen}>
         {wallet
           ? wallet.slice(0, 5) + "....." + wallet.slice(-5)
           : "Connect Wallet"}

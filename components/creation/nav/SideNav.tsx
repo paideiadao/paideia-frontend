@@ -103,42 +103,6 @@ const Nav: FC<INavProps> = ({ value }) => {
             <img src={logo.src} />
           </Box>
           <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => global.api.signup("a;654654", "skeep")}
-              // onClick={() => global.api.signup('test', 'test')}
-              sx={{
-                mr: 1,
-                display: deviceStruct(
-                  "none",
-                  "none",
-                  "inherit",
-                  "inherit",
-                  "inherit"
-                ),
-              }}
-            >
-              Signup
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => global.api.login("a;654654", "skeep")}
-              // onClick={() => global.api.signup('test', 'test')}
-              sx={{
-                mr: 1,
-                display: deviceStruct(
-                  "none",
-                  "none",
-                  "inherit",
-                  "inherit",
-                  "inherit"
-                ),
-              }}
-            >
-              Login
-            </Button>
             <DarkSwitch />
             <Button
               variant="outlined"
