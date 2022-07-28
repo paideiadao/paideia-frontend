@@ -59,7 +59,7 @@ export default function App({ Component, pageProps }: AppProps) {
                   ) : (
                     <Component {...pageProps} />
                   )}
-                  {alert.show && (
+                  {/* {alert.show && (
                     <Modal
                       open={alert.show}
                       onClose={() => setAlert({ show: false })}
@@ -79,11 +79,11 @@ export default function App({ Component, pageProps }: AppProps) {
                             mt: "1rem",
                           }}
                         >
-                          <Box sx={{ ml: "auto" }}></Box>
+                          <Box sx={{ ml: "auto" }}>skeep</Box>
                         </Box>
                       </Box>
                     </Modal>
-                  )}
+                  )} */}
                 </GlobalContext.Provider>
               </ThemeContext.Provider>
             </ThemeProvider>

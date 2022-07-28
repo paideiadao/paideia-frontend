@@ -10,7 +10,8 @@ import * as React from "react";
 import nautilus from "@public/icons/nautilus.png";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ClearIcon from "@mui/icons-material/Clear";
-import { WALLET_ADDRESS_LIST } from "./AddWallet";
+import { isAddressValid, WALLET_ADDRESS_LIST } from "./AddWallet";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 
 const Nautilus: React.FC<{
   set: Function;
@@ -23,10 +24,13 @@ const Nautilus: React.FC<{
   setLoading: Function;
   setDAppWallet: Function;
   dAppWallet: any;
+  loading: boolean;
   setdAppAddressTableData: Function;
 }> = (props) => {
   const [wallet, setWallet] = React.useState<string>(props.wallet);
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   React.useEffect(() => {
+    console.log("here");
     const load = async () => {
       props.setLoading(true);
       try {
@@ -35,25 +39,54 @@ const Nautilus: React.FC<{
         //@ts-ignore
         const address_unused = await ergo.get_unused_addresses();
         const addresses = [...address_used, ...address_unused];
-        console.log(addresses);
         const addressData = addresses.map((address, index) => {
           return { id: index, name: address };
         });
-        props.setDAppWallet({
-          ...props.dAppWallet,
-          addresses: addressData,
-        });
-        props.setdAppAddressTableData(addresses);
-        localStorage.setItem(WALLET_ADDRESS_LIST, JSON.stringify(addressData));
+        console.log("skeeeep");
+        const address = addresses.length ? addresses[0] : "";
+
+        globalContext.api
+          .signingMessage(wallet)
+          .then(async (signingMessage: any) => {
+            console.log("data", signingMessage);
+            if (signingMessage !== undefined) {
+              console.log("here under");
+                // @ts-ignore
+                let response = await ergo.auth(
+                  address,
+                  // @ts-ignore
+                  signingMessage.data.signingMessage
+                );
+                response.proof = Buffer.from(response.proof, "hex").toString();
+                console.log(response);
+                console.log("here...");
+                globalContext.api
+                  .signMessage(signingMessage.data.tokenUrl, response)
+                  .then((data) => {
+                    console.log(data)
+                    props.connect();
+                  });
+                await props.connect();
+              
+
+              // // @ts-ignore
+              // localStorage.setItem("jwt_token_login", token.data);
+              // props.setDAppWallet({
+              //   ...props.dAppWallet,
+              //   addresses: addressData,
+              // });
+
+              // props.setdAppAddressTableData(addresses);
+              // localStorage.setItem(WALLET_ADDRESS_LIST, JSON.stringify(addressData));
+            }
+          });
       } catch (e) {
         console.log(e);
+        props.setLoading(false);
       }
-      props.setLoading(false);
     };
-    if (wallet === "" && props.connected) {
-      const connect = async () => await props.connect();
-      connect().then(() => setTimeout(load, 1000));
-    }
+
+    load();
   }, [wallet]);
 
   React.useEffect(() => {
@@ -61,7 +94,7 @@ const Nautilus: React.FC<{
   }, [props.wallet]);
   return (
     <Box sx={{ width: "100%" }}>
-      {props.wallet !== "" ? (
+      {isAddressValid(wallet) && !props.loading ? (
         <>
           <Box
             sx={{
@@ -193,8 +226,9 @@ const Nautilus: React.FC<{
                 color: "primary.main",
               }}
               onClick={() => {
+                props.setLoading(true);
+
                 const load = async () => {
-                  props.setLoading(true);
                   try {
                     //@ts-ignore
                     const address_used = await ergo.get_used_addresses();
@@ -213,7 +247,7 @@ const Nautilus: React.FC<{
                   } catch (e) {
                     console.log(e);
                   }
-                  props.setLoading(false);
+                  // props.setLoading(false);
                 };
                 const connect = async () => await props.connect();
                 connect().then(() => load());

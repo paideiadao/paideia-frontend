@@ -31,6 +31,8 @@ import DarkFooter from "@public/dao/dark-footer.png";
 import DaoBio from "./DaoBio";
 import Contents from "./Contents";
 import CloseIcon from "@mui/icons-material/Close";
+import { useWallet } from "@components/wallet/WalletContext";
+import ConnectWallet from "@components/wallet/ConnectWallet";
 
 export interface INav {
   setShowMobile: (val: boolean) => void;
@@ -44,6 +46,8 @@ const TopNav: React.FC<INav> = (props) => {
   const handleClose = () => setOpen(false);
   const router = useRouter();
   const { id } = router.query;
+  const { wallet } = useWallet();
+  console.log("wallet", wallet);
   const themeContext = React.useContext<IThemeContext>(ThemeContext);
   return (
     <>
@@ -78,7 +82,7 @@ const TopNav: React.FC<INav> = (props) => {
           }}
         >
           <DarkSwitch />
-          {/* <ConnectWallet /> */}
+          <ConnectWallet />
           <Box
             sx={{
               ml: ".5rem",
