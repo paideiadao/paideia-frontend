@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import * as React from "react";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
-function csvToArray(str, delimiter = ",") {
+function csvToArray(str: string, delimiter = ",") {
   // slice from start of text to the first \n index
   // use split to create an array from string by delimiter
   const headers = str.slice(0, str.indexOf("\n")).split(delimiter);
@@ -18,7 +18,11 @@ function csvToArray(str, delimiter = ",") {
   // the object passed as an element of the array
   const arr = rows.map(function (row) {
     const values = row.split(delimiter);
-    const el = headers.reduce(function (object, header, index) {
+    const el = headers.reduce(function (
+      object: { [index: string]: any },
+      header,
+      index
+    ) {
       object[header.trim()] =
         values[index] === undefined
           ? undefined
@@ -26,7 +30,8 @@ function csvToArray(str, delimiter = ",") {
           ? parseFloat(values[index].replace("\r", ""))
           : values[index].replace("\r", "");
       return object;
-    }, {});
+    },
+    {});
     return el;
   });
 

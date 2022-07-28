@@ -4,7 +4,7 @@ import { Box, Button } from "@mui/material";
 import * as React from "react";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import InfoGrid from "@components/dao/financials/token/InfoGrid";
-import Chart from "@components/dao/financials/token/Chart";
+import Chart from "@components/dao/financials/token/Chart/Chart";
 import Statistics from "@components/dao/financials/token/Statistics";
 import Markets from "@components/dao/financials/token/Markets";
 import { useRouter } from "next/router";

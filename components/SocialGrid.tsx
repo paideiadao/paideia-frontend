@@ -1,3 +1,4 @@
+import React, { FC } from "react";
 import { Grid, Link } from "@mui/material";
 import TelegramIcon from "@components/svgs/TelegramIcon";
 import YoutubeIcon from "@components/svgs/YoutubeIcon";
@@ -6,15 +7,19 @@ import TwitterIcon from "@components/svgs/TwitterIcon";
 import DiscordIcon from "@components/svgs/DiscordIcon";
 import { DarkTheme } from "@theme/theme";
 
-const iconLinkStyles = {
-  color: DarkTheme.palette.text.primary,
-  fontSize: "inherit",
-  "&:hover": {
-    color: DarkTheme.palette.primary.main,
-  },
-};
+interface Props {
+  hoverColor?: string;
+}
 
-export default function SocialGrid() {
+const SocialGrid: FC<Props> = ({ hoverColor }) => {
+  const iconLinkStyles = {
+    color: DarkTheme.palette.text.primary,
+    fontSize: "inherit",
+    "&:hover": {
+      color: hoverColor ? hoverColor : DarkTheme.palette.primary.main,
+    },
+  };
+
   return (
     <>
       <Grid item>
@@ -24,7 +29,7 @@ export default function SocialGrid() {
           sx={iconLinkStyles}
           rel="noreferrer"
         >
-          <TelegramIcon fontSize="inherit" />
+          <TelegramIcon sx={{ fontSize: "inherit" }} />
         </Link>
       </Grid>
       <Grid item>
@@ -34,7 +39,7 @@ export default function SocialGrid() {
           sx={iconLinkStyles}
           rel="noreferrer"
         >
-          <DiscordIcon fontSize="inherit" />
+          <DiscordIcon sx={{ fontSize: "inherit" }} />
         </Link>
       </Grid>
       <Grid item>
@@ -44,7 +49,7 @@ export default function SocialGrid() {
           sx={iconLinkStyles}
           rel="noreferrer"
         >
-          <TwitterIcon fontSize="inherit" />
+          <TwitterIcon sx={{ fontSize: "inherit" }} />
         </Link>
       </Grid>
       <Grid item>
@@ -54,7 +59,7 @@ export default function SocialGrid() {
           sx={iconLinkStyles}
           rel="noreferrer"
         >
-          <YoutubeIcon fontSize="inherit" />
+          <YoutubeIcon sx={{ fontSize: "inherit" }} />
         </Link>
       </Grid>
       <Grid item>
@@ -64,9 +69,11 @@ export default function SocialGrid() {
           sx={iconLinkStyles}
           rel="noreferrer"
         > */}
-        <MediumIcon sx={{ color: "#aaa" }} fontSize="inherit" />
+        <MediumIcon sx={{ color: "#aaa", fontSize: "inherit" }} />
         {/*  </Link> */}
       </Grid>
     </>
   );
-}
+};
+
+export default SocialGrid;

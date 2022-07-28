@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import * as React from "react";
 import { ISocialLink } from "../../../lib/creation/CreationApi";
-import { GlobalContext } from "../../../lib/creation/Context";
+import { CreationContext } from "../../../lib/creation/Context";
 import { Subheader, Subtitle } from "../utilities/HeaderComponents";
 import LabeledSwitch from "../utilities/LabeledSwitch";
 import AddIcon from "@mui/icons-material/Add";
@@ -26,15 +26,15 @@ import { deviceStruct } from "@components/utilities/Style";
 import { IConfigContext } from "@lib/dao/dao-config/ConfigContext";
 
 const Footer: React.FC<{ context?: IConfigContext }> = (props) => {
-  let globalContext =
+  let creationContext =
     props.context === undefined
-      ? React.useContext(GlobalContext)
+      ? React.useContext(CreationContext)
       : props.context;
 
-  let data = globalContext.api.data.design;
+  let data = creationContext.api.data.design;
   let setData = (data: any) => {
-    globalContext.api.setData({
-      ...globalContext.api.data,
+    creationContext.api.setData({
+      ...creationContext.api.data,
       design: data,
     });
   };

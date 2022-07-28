@@ -7,7 +7,7 @@ import {
   Container,
   Divider,
 } from "@mui/material";
-import Image from "next/image";
+
 import { DarkTheme } from "@theme/theme";
 import SectionTitle from "@components/SectionTitle";
 
@@ -85,7 +85,7 @@ export default function Stats() {
           display: { xs: "none", sm: "block" },
         }}
       >
-        <Image src="/stats-bg.png" layout="fixed" width={2299} height={2687} />
+        <img src="/stats-bg.png" width={2299} height={2687} />
       </Box>
       <Box
         sx={{
@@ -100,12 +100,7 @@ export default function Stats() {
           display: { xs: "block", sm: "none" },
         }}
       >
-        <Image
-          src="/stats-small.png"
-          layout="fixed"
-          width={900}
-          height={2484}
-        />
+        <img src="/stats-small.png" width={900} height={2484} />
       </Box>
       <Grid container>
         <Grid item md={4}>
@@ -147,7 +142,7 @@ export default function Stats() {
               <Grid item key={i}>
                 <Grid container spacing={2} direction="row">
                   <Grid item>
-                    <Image src={`/stats/${i + 1}.svg`} width={25} height={25} />
+                    <img src={`/stats/${i + 1}.svg`} width={25} height={25} />
                   </Grid>
                   <Grid item>
                     <Typography sx={secondaryTitleStyle}>

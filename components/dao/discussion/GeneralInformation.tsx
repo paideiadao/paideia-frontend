@@ -1,4 +1,5 @@
 import { Header } from "@components/creation/utilities/HeaderComponents";
+import { deviceWrapper } from "@components/utilities/Style";
 import DiscussionContext, {
   IDiscussionContext,
 } from "@lib/dao/discussion/DiscussionContext";
@@ -26,6 +27,7 @@ const GeneralInformation: React.FC = () => {
           mt: "1rem",
           display: "flex",
           alignItems: "center",
+          flexWrap: deviceWrapper("wrap", "nowrap"),
         }}
       >
         <TextField
@@ -37,9 +39,17 @@ const GeneralInformation: React.FC = () => {
               name: e.target.value,
             })
           }
-          sx={{ width: "50%", mr: "1rem" }}
+          sx={{
+            width: deviceWrapper("100%", "50%"),
+            mr: deviceWrapper("0", "1rem"),
+          }}
         />
-        <FormControl sx={{ width: "50%" }}>
+        <FormControl
+          sx={{
+            width: deviceWrapper("100%", "50%"),
+            mt: deviceWrapper("1rem", "0"),
+          }}
+        >
           <InputLabel htmlFor={`new-discussion-category-label`}>
             Discussion category
           </InputLabel>

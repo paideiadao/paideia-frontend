@@ -8,6 +8,22 @@ const statusLookup: IObj<number> = {
   DELETE: 204,
 };
 
+export const addDays = (days: number, date: Date = new Date()): Date => {
+  let temp = new Date(date);
+  temp.setDate(temp.getDate() + days);
+  return temp;
+};
+
+export const clientSideOnly = (func: Function): void => {
+  if (typeof window !== "undefined") {
+    // Client-side-only code
+    func();
+  }
+};
+export interface ISigningMessage {
+  signingMessage: string;
+}
+
 export class AbstractApi {
   alert: any;
   setAlert: Function;
@@ -17,13 +33,29 @@ export class AbstractApi {
     this.setAlert = _setAlert;
   }
 
-  async signup(username: string, password: string) {
-    return await this.post(
-      "/auth/signup",
-      { username, password },
+  async signingMessage(address: string): Promise<any> {
+    console.log("skeep");
+    const data = await this.post<{ data: ISigningMessage }>(
+      "/auth/login",
+      { address },
       "added user.",
-      "",
-      true
+      ""
+    );
+
+    console.log(data);
+    return data;
+  }
+
+  async signMessage(url: string, response: any) {
+    return await this.post<{ data: any }>(url, response, "signed message", "");
+  }
+
+  async mobileLogin(address: string) {
+    return await this.post<{ data: any }>(
+      "/api/auth/login",
+      { address },
+      "added user.",
+      ""
     );
   }
 
@@ -32,8 +64,7 @@ export class AbstractApi {
       "/auth/token",
       { username, password },
       "logged in.",
-      "",
-      true
+      ""
     );
 
     if (res !== false) {
@@ -43,15 +74,17 @@ export class AbstractApi {
     }
   }
 
-  error = (err: any): boolean => {
-    this.setAlert({
-      show: true,
-      value: "error",
-      current: "occured",
-      action: "Unknown error",
-    });
-    return false;
-  };
+  error(err: any): any {
+    console.log(err);
+    if (this !== undefined) {
+      this.setAlert({
+        show: true,
+        value: "error",
+        current: "occured",
+        action: "Unknown error",
+      });
+    }
+  }
 
   showAlert = (value: string, current: string, action: string): boolean => {
     if (action !== "" && action !== undefined) {
@@ -65,13 +98,10 @@ export class AbstractApi {
     return false;
   };
 
-  async get<T>(
-    url: string,
-    action: string,
-    current: string = ""
-  ): Promise<T | boolean> {
+  async get<T>(url: string, action: string, current: string = ""): Promise<T> {
     let self = this;
-    return await this.request(url, "GET").then((data: T | boolean) => {
+    // @ts-ignore
+    return await this.request(url, "GET").then((data: T) => {
       self.showAlert("success", current, action);
       return data;
     }, self.error);
@@ -81,13 +111,13 @@ export class AbstractApi {
     url: string,
     body: any,
     action: string = undefined,
-    current: string = "",
-    auth: boolean = undefined
-  ): Promise<T | boolean> {
+    current: string = ""
+  ): Promise<T> {
     console.log("here...");
     let self = this;
-    return await this.request(url, "POST", body, auth).then(
-      (data: T | boolean) => {
+    return await this.request(url, "POST", body).then(
+      // @ts-ignore
+      (data: T) => {
         self.showAlert("success", current, action);
         return data;
       },
@@ -99,10 +129,11 @@ export class AbstractApi {
     url: string,
     action: string,
     current: string = ""
-  ): Promise<T | boolean> {
+  ): Promise<T> {
     let self = this;
     return await this.request(url, "PATCH").then(
-      (data: T | boolean) => data,
+      // @ts-ignore
+      (data: T) => data,
       self.error
     );
   }
@@ -112,10 +143,11 @@ export class AbstractApi {
     body: any,
     action: string,
     current: string = ""
-  ): Promise<T | boolean> {
+  ): Promise<T> {
     let self = this;
     return await this.request(url, "PUT", body).then(
-      (data: T | boolean) => data,
+      // @ts-ignore
+      (data: T) => data,
       self.error
     );
   }
@@ -125,10 +157,11 @@ export class AbstractApi {
     body: any,
     action: string,
     current: string = ""
-  ): Promise<T | boolean> {
+  ): Promise<T> {
     let self = this;
     return await this.request(url, "DELETE", body).then(
-      (data: T | boolean) => data,
+      // @ts-ignore
+      (data: T) => data,
       self.error
     );
   }
@@ -140,7 +173,7 @@ export class AbstractApi {
     auth?: boolean
   ): Promise<Response> {
     console.log("request here...");
-    const methods = {
+    const methods: IObj<Function> = {
       POST: axios.post,
       GET: axios.get,
       PATCH: axios.patch,
@@ -153,43 +186,24 @@ export class AbstractApi {
         "Content-Type": "application/json",
       },
     };
-    // only for auth... everything else can be passed throught he body
-    if (auth) {
-      const params = new URLSearchParams();
-
-      for (const [k, v] of Object.entries(body)) {
-        params.append(k, v);
-      }
-      console.log("skeep");
-      return await methods[method]("http://localhost:8000/api" + url, params, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt_token_login")}`,
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      });
-    } else {
-      return await methods[method](
-        "http://localhost:8000/api" + url,
-        JSON.stringify(body),
-        defaultOptions
-      );
-    }
+    return await methods[method](
+      "http://localhost:8000/api" + url,
+      body,
+      defaultOptions
+    );
   }
 
-  async request(url: string, method: string, body?: any, auth?: boolean) {
+  async request(url: string, method: string, body?: any) {
     return await new Promise(async (resolve, reject) => {
       try {
         if (body !== undefined) {
-          return await this._request(url, method, body, auth).then(
-            async (res) => {
-              if (res.status !== statusLookup[method]) {
-                resolve("error");
-              } else {
-                console.log(res);
-                resolve(res);
-              }
+          return await this._request(url, method, body).then(async (res) => {
+            if (res.status !== statusLookup[method]) {
+              resolve("error");
+            } else {
+              resolve(res);
             }
-          );
+          });
         } else {
           return await this._request(url, method, body).then(async (res) => {
             if (res.status !== statusLookup[method]) {

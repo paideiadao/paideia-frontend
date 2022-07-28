@@ -26,11 +26,11 @@ const EditFollow: React.FC<{ edit: boolean; followed: boolean }> = (props) => {
       onClick={() => setValue({ ...value, followed: !value.followed })}
       sx={{
         color: value.followed ? "error.main" : "text.secondary",
-        borderColor: value.followed ? "red" : "text.secondary",
+        borderColor: value.followed ? "error.light" : "text.secondary",
         fontSize: { xs: ".5rem", s: ".8rem", md: ".8rem" },
         ":hover": {
-          borderColor: "red",
-          color: "red",
+          borderColor: "error.light",
+          color: "error.light",
         },
       }}
       startIcon={value.followed ? <FavoriteIcon /> : <FavoriteBorderIcon />}

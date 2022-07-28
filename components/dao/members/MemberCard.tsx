@@ -74,8 +74,6 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
         >
           <Box
             sx={{
-              borderBottom: "1px solid",
-              borderBottomColor: "border.main",
               p: ".5rem",
               display: "flex",
               flexDirection: "column",
@@ -150,10 +148,12 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
           </Box>
           <Box
             sx={{
-              p: ".5rem",
+              width: "100%",
               display: "flex",
-              alignItems: "center",
               justifyContent: "center",
+              borderTop: 1,
+              mt: "0rem",
+              borderColor: "border.main",
             }}
           >
             <Link
@@ -163,7 +163,17 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
                   : `/dao/${id}/member/${props.id}`
               }
             >
-              <Button variant="text">View Profile</Button>
+              <Button
+                variant="text"
+                sx={{
+                  width: "100%",
+                  borderTopRightRadius: 0,
+                  borderTopLeftRadius: 0,
+                }}
+                size="small"
+              >
+                View Profile{" "}
+              </Button>
             </Link>
           </Box>
         </Box>

@@ -1,6 +1,6 @@
 import Progress from "./Progress";
-import * as React from "react";
-import { Box, Divider, Step, StepLabel, Stepper } from "@mui/material";
+import React, { FC } from "react";
+import { Box, Divider, Step, StepLabel, Stepper, Theme } from "@mui/material";
 import StepSelector, { steps } from "./StepSelector";
 import Help from "./Help";
 import DarkLogo from "@public/logos/dark_logo.svg";
@@ -10,15 +10,21 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Save from "@mui/icons-material/Save";
 import DarkSwitch from "@components/utilities/DarkSwitch";
-import { GlobalContext } from "@lib/creation/Context";
+import { CreationContext } from "@lib/creation/Context";
 import { ThemeContext } from "@lib/ThemeContext";
 import { deviceStruct } from "@components/utilities/Style";
 
-export default function Nav(props) {
-  let globalContext = React.useContext(ThemeContext);
-  let global = React.useContext(GlobalContext);
+interface INavProps {
+  value: number;
+  theme: Theme;
+  setTheme: React.Dispatch<React.SetStateAction<Theme>>;
+}
 
-  let theme = globalContext.theme;
+const Nav: FC<INavProps> = ({ value }) => {
+  let creationContext = React.useContext(ThemeContext);
+  let global = React.useContext(CreationContext);
+
+  let theme = creationContext.theme;
   const [logo, setLogo] = React.useState(
     theme === DarkTheme ? LightLogo : DarkLogo
   );
@@ -51,9 +57,9 @@ export default function Nav(props) {
           ),
         }}
       >
-        <Progress {...props} />
+        <Progress value={value} />
         <Divider sx={{ mt: 2, mb: 1, borderBottomColor: "border.main" }} />
-        <StepSelector {...props} />
+        <StepSelector value={value} />
         <Divider sx={{ mt: 1, mb: 1, borderBottomColor: "border.main" }} />
         <Help />
       </Box>
@@ -97,42 +103,6 @@ export default function Nav(props) {
             <img src={logo.src} />
           </Box>
           <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => global.api.signup("a;654654", "skeep")}
-              // onClick={() => global.api.signup('test', 'test')}
-              sx={{
-                mr: 1,
-                display: deviceStruct(
-                  "none",
-                  "none",
-                  "inherit",
-                  "inherit",
-                  "inherit"
-                ),
-              }}
-            >
-              Signup
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => global.api.login("a;654654", "skeep")}
-              // onClick={() => global.api.signup('test', 'test')}
-              sx={{
-                mr: 1,
-                display: deviceStruct(
-                  "none",
-                  "none",
-                  "inherit",
-                  "inherit",
-                  "inherit"
-                ),
-              }}
-            >
-              Login
-            </Button>
             <DarkSwitch />
             <Button
               variant="outlined"
@@ -169,7 +139,7 @@ export default function Nav(props) {
           }}
         >
           <Stepper
-            activeStep={props.value}
+            activeStep={value}
             connector={
               <Box
                 sx={{
@@ -196,7 +166,7 @@ export default function Nav(props) {
                 }}
               >
                 <StepLabel sx={{ ml: ".1rem" }}>
-                  {c === props.value && (
+                  {c === value && (
                     <Box sx={{ fontSize: ".68rem", width: "5.6rem" }}>
                       {i.title}
                     </Box>
@@ -209,4 +179,6 @@ export default function Nav(props) {
       </Box>
     </>
   );
-}
+};
+
+export default Nav;

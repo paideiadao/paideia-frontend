@@ -1,7 +1,7 @@
 import { Alert, AlertTitle, Box, Button } from "@mui/material";
 import * as React from "react";
 import { ITokenomics } from "../../../lib/creation/CreationApi";
-import { GlobalContext } from "../../../lib/creation/Context";
+import { CreationContext } from "../../../lib/creation/Context";
 import { IData } from "../../../lib/utilities";
 import WalletSelector from "../governance/WalletSelector";
 import { LearnMore } from "../utilities/HeaderComponents";
@@ -17,7 +17,7 @@ import CsvLoader from "../../utilities/CsvLoader";
 import { deviceStruct } from "@components/utilities/Style";
 
 const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
-  let globalContext = React.useContext(GlobalContext);
+  let creationContext = React.useContext(CreationContext);
   let data = props.data;
 
   React.useEffect(() => {}, [props.data.tokenAmount]);
@@ -159,8 +159,8 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
             sx={{ mr: 2 }}
             onClick={() => {
               let temp = [...data.tokenHolders];
-              globalContext.api.setData({
-                ...globalContext.api.data,
+              creationContext.api.setData({
+                ...creationContext.api.data,
                 tokenomics: {
                   ...data,
                   tokenHolders: temp.concat([
@@ -193,8 +193,8 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                 };
               });
               let temp = [data.tokenHolders];
-              globalContext.api.setData({
-                ...globalContext.api.data,
+              creationContext.api.setData({
+                ...creationContext.api.data,
                 tokenomics: {
                   ...data,
                   tokenHolders: temp.concat(imported),

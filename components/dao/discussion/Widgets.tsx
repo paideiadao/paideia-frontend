@@ -2,8 +2,9 @@ import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
 import { Avatar, Box, Button } from "@mui/material";
 import * as React from "react";
 import Musk from "@public/profile/musk-full.png";
+import { deviceWrapper } from "@components/utilities/Style";
 
-export const Overview: React.FC = () => {
+export const Overview: React.FC<{ proposal?: boolean }> = (props) => {
   return (
     <Box
       sx={{
@@ -23,7 +24,10 @@ export const Overview: React.FC = () => {
           p: ".5rem",
         }}
       >
-        <CapsInfo title="Discussion by" />
+        <CapsInfo
+          title={props.proposal ? "Proposal By" : "Discussion By"}
+          mb={"0"}
+        />
         <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
           <Avatar sx={{ width: "2.5rem", height: "2.5rem" }}>
             <img src={Musk.src} />
@@ -37,7 +41,7 @@ export const Overview: React.FC = () => {
         </Box>
         <Box
           sx={{
-            display: "flex",
+            display: deviceWrapper("none", "flex"),
             width: "100%",
             alignItems: "center",
             justifyContent: "center",
@@ -91,11 +95,20 @@ export const Overview: React.FC = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          pt: ".25rem",
-          pb: ".25rem",
         }}
       >
-        <Button>View Profile</Button>
+        <Button
+          size="small"
+          sx={{
+            width: "100%",
+            borderTopRightRadius: 0,
+            borderTopLeftRadius: 0,
+            pt: ".25rem",
+            pb: ".25rem",
+          }}
+        >
+          View Profile
+        </Button>
       </Box>
     </Box>
   );

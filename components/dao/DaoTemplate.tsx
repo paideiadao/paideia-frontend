@@ -24,13 +24,15 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
   }, [router]);
 
   const [showMobile, setShowMobile] = React.useState<boolean>(false);
+  React.useEffect(() => {
+    console.log("dao template loaded...");
+  }, []);
 
   return (
     <Box
       sx={{
         display: "flex",
         alignItems: "flex-start",
-        width: "100vw",
       }}
     >
       <Nav showMobile={showMobile} setShowMobile={setShowMobile} />
@@ -40,7 +42,7 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
           top: "0",
           left: deviceWrapper("0", "14.5rem"),
           pt: "0rem",
-          pb: ".5rem",
+          pb: "1rem",
 
           zIndex: deviceWrapper("100", "1000"),
         }}

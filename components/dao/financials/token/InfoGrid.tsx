@@ -18,7 +18,7 @@ const InfoCard: React.FC<IInfoCard> = (props) => {
   return (
     <Box
       sx={{
-        width: deviceWrapper("47.5%", "23%"),
+        width: deviceWrapper("47.5%", "23.5%"),
         p: ".5rem",
         display: "flex",
         alignItems: deviceWrapper("flex-start", "center"),
@@ -27,7 +27,10 @@ const InfoCard: React.FC<IInfoCard> = (props) => {
         backgroundColor: "fileInput.outer",
         borderRadius: ".4rem",
         border: 1,
-        ml: deviceWrapper(props.c % 2 === 0 ? "0rem" : ".75rem", "1rem"),
+        ml: deviceWrapper(
+          props.c % 2 === 0 || props.c === 0 ? "0rem" : ".75rem",
+          "1rem"
+        ),
         mt: deviceWrapper(
           props.c > 1 ? "1rem" : "0",
           props.c > 3 ? "1rem" : "0"

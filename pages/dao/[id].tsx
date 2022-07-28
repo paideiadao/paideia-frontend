@@ -5,12 +5,8 @@ import { paths, props } from "@lib/DaoPaths";
 import { useRouter } from "next/router";
 
 // move dao to a wildcard subdomain
-export default function Dao({ daoData }) {
-  return (
-    <>
-      <Dashboard />
-    </>
-  );
+export default function Dao() {
+  return <Dashboard />;
 }
 
 // routing for the dao urls should be dynamic... the routing for the dao pages is contained here.

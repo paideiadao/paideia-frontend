@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import TextField from "@mui/material/TextField";
-import { GlobalContext } from "../../../lib/creation/Context";
+import { CreationContext } from "../../../lib/creation/Context";
 import InfoIcon from "@mui/icons-material/Info";
 import AddIcon from "@mui/icons-material/Add";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
@@ -25,8 +25,8 @@ import { LearnMore } from "../utilities/HeaderComponents";
 import { deviceStruct } from "@components/utilities/Style";
 
 const Governance: React.FC = () => {
-  const globalContext = React.useContext(GlobalContext);
-  let data = globalContext.api.data.governance;
+  const creationContext = React.useContext(CreationContext);
+  let data = creationContext.api.data.governance;
   return (
     <Box
       sx={{
@@ -80,8 +80,8 @@ const Governance: React.FC = () => {
             <Switch
               checked={data.optimisticGovernance}
               onChange={() =>
-                globalContext.api.setData({
-                  ...globalContext.api.data,
+                creationContext.api.setData({
+                  ...creationContext.api.data,
                   governance: {
                     ...data,
                     optimisticGovernance: !data.optimisticGovernance,
@@ -139,8 +139,8 @@ const Governance: React.FC = () => {
                           } else {
                             temp[c] = j;
                           }
-                          globalContext.api.setData({
-                            ...globalContext.api.data,
+                          creationContext.api.setData({
+                            ...creationContext.api.data,
                             governance: {
                               ...data,
                               whitelist: temp,
@@ -163,8 +163,8 @@ const Governance: React.FC = () => {
                         onClick={() => {
                           let temp = [...data.whitelist];
                           temp.splice(c, 1);
-                          globalContext.api.setData({
-                            ...globalContext.api.data,
+                          creationContext.api.setData({
+                            ...creationContext.api.data,
                             governance: {
                               ...data,
                               whitelist: temp,
@@ -197,8 +197,8 @@ const Governance: React.FC = () => {
                 sx={{ mr: 2 }}
                 onClick={() => {
                   let temp = [...data.whitelist];
-                  globalContext.api.setData({
-                    ...globalContext.api.data,
+                  creationContext.api.setData({
+                    ...creationContext.api.data,
                     governance: {
                       ...data,
                       whitelist: temp.concat([
@@ -237,8 +237,8 @@ const Governance: React.FC = () => {
                   type="number"
                   sx={{ width: "100%" }}
                   onChange={(e) =>
-                    globalContext.api.setData({
-                      ...globalContext.api.data,
+                    creationContext.api.setData({
+                      ...creationContext.api.data,
                       governance: {
                         ...data,
                         amount: e.target.value,
@@ -256,8 +256,8 @@ const Governance: React.FC = () => {
                     value={data.currency}
                     label="Currency"
                     onChange={(e) =>
-                      globalContext.api.setData({
-                        ...globalContext.api.data,
+                      creationContext.api.setData({
+                        ...creationContext.api.data,
                         governance: {
                           ...data,
                           currency: e.target.value,
@@ -302,8 +302,8 @@ const Governance: React.FC = () => {
                       data.timeToChallenge === 0 ? "" : data.timeToChallenge
                     }
                     onChange={(e) =>
-                      globalContext.api.setData({
-                        ...globalContext.api.data,
+                      creationContext.api.setData({
+                        ...creationContext.api.data,
                         governance: {
                           ...data,
                           timeToChallenge: e.target.value,
@@ -333,8 +333,8 @@ const Governance: React.FC = () => {
                             value={data.timeToChallengeUnits}
                             sx={{ height: "100%", color: "text.primary" }}
                             onChange={(e) =>
-                              globalContext.api.setData({
-                                ...globalContext.api.data,
+                              creationContext.api.setData({
+                                ...creationContext.api.data,
                                 governance: {
                                   ...data,
                                   timeToChallengeUnits: e.target.value,
@@ -391,8 +391,8 @@ const Governance: React.FC = () => {
             <Switch
               checked={data.quadraticVoting}
               onChange={() =>
-                globalContext.api.setData({
-                  ...globalContext.api.data,
+                creationContext.api.setData({
+                  ...creationContext.api.data,
                   governance: {
                     ...data,
                     quadraticVoting: !data.quadraticVoting,
@@ -440,8 +440,8 @@ const Governance: React.FC = () => {
               min={51}
               max={100}
               onChange={(event, newValue) =>
-                globalContext.api.setData({
-                  ...globalContext.api.data,
+                creationContext.api.setData({
+                  ...creationContext.api.data,
                   governance: {
                     ...data,
                     supportNeeded: newValue,
@@ -463,8 +463,8 @@ const Governance: React.FC = () => {
               type="number"
               value={data.supportNeeded}
               onChange={(e) =>
-                globalContext.api.setData({
-                  ...globalContext.api.data,
+                creationContext.api.setData({
+                  ...creationContext.api.data,
                   governance: {
                     ...data,
                     supportNeeded: e.target.value,
@@ -518,8 +518,8 @@ const Governance: React.FC = () => {
               min={0}
               max={100}
               onChange={(event, newValue) =>
-                globalContext.api.setData({
-                  ...globalContext.api.data,
+                creationContext.api.setData({
+                  ...creationContext.api.data,
                   governance: {
                     ...data,
                     quorum: newValue,
@@ -541,8 +541,8 @@ const Governance: React.FC = () => {
               type="number"
               value={data.quorum}
               onChange={(e) =>
-                globalContext.api.setData({
-                  ...globalContext.api.data,
+                creationContext.api.setData({
+                  ...creationContext.api.data,
                   governance: {
                     ...data,
                     quorum: e.target.value,
@@ -573,8 +573,8 @@ const Governance: React.FC = () => {
             type="number"
             value={data.voteDuration === 0 ? "" : data.voteDuration}
             onChange={(e) =>
-              globalContext.api.setData({
-                ...globalContext.api.data,
+              creationContext.api.setData({
+                ...creationContext.api.data,
                 governance: {
                   ...data,
                   voteDuration:
@@ -605,8 +605,8 @@ const Governance: React.FC = () => {
                     value={data.voteDurationUnits}
                     sx={{ height: "100%", color: "text.primary" }}
                     onChange={(e) =>
-                      globalContext.api.setData({
-                        ...globalContext.api.data,
+                      creationContext.api.setData({
+                        ...creationContext.api.data,
                         governance: {
                           ...data,
                           voteDurationUnits: e.target.value,

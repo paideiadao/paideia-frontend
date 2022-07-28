@@ -1,6 +1,6 @@
 import { Avatar, Box, Button } from "@mui/material";
 import * as React from "react";
-import { GlobalContext } from "../../../lib/creation/Context";
+import { CreationContext } from "../../../lib/creation/Context";
 import CircleIcon from "@mui/icons-material/Circle";
 import PersonIcon from "@mui/icons-material/Person";
 import BasicInformation from "./BasicInformation";
@@ -159,13 +159,13 @@ export const ImageWrapper: React.FC<{
 };
 
 const ReviewDrawer: React.FC = () => {
-  let globalContext = React.useContext(GlobalContext);
-  let data = globalContext.api.data;
+  let creationContext = React.useContext(CreationContext);
+  let data = creationContext.api.data;
   const [expanded, setExpanded] = React.useState<string | false>(false);
 
   const setNavStage = (stage: number) => {
-    globalContext.api.setData({
-      ...globalContext.api.data,
+    creationContext.api.setData({
+      ...creationContext.api.data,
       review: stage,
       navStage: stage,
     });

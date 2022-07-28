@@ -98,7 +98,10 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
               endIcon={<AddIcon />}
               size="small"
             >
-              Create New
+              <Box sx={{ display: deviceWrapper("none", "block") }}>
+                Create New
+              </Box>
+              <Box sx={{ display: deviceWrapper("block", "none") }}>New</Box>
             </Button>
           </Link>
         </Box>
@@ -239,7 +242,7 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
           sx={{ width: "100%", flexWrap: "wrap", display: "flex", mt: "1rem" }}
         >
           {props.proposals
-            .sort((a, b) =>
+            .sort((a: any, b: any) =>
               filters.sortBy === ""
                 ? true
                 : filters.sortBy === "Most Recent"
@@ -276,12 +279,11 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
         color="primary"
         sx={{
           position: "fixed",
-          bottom: ".5rem",
-          right: ".5rem",
+          bottom: "1rem",
+          right: "1rem",
           display: deviceWrapper("flex", "none"),
           zIndex: 999,
         }}
-        size="medium"
         onClick={() => setShowFilters(true)}
       >
         <FilterAltIcon />

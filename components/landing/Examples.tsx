@@ -12,7 +12,7 @@ import {
   Box,
   useMediaQuery,
 } from "@mui/material";
-import Image from "next/image";
+
 import SectionTitle from "@components/SectionTitle";
 import { useTheme } from "@mui/material/styles";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -170,14 +170,7 @@ export default function Examples() {
                     maskImage: "linear-gradient(black 0%, transparent 70%)",
                   }}
                 >
-                  {sizeMd ? null : (
-                    <Image
-                      src={image}
-                      layout="responsive"
-                      width={585}
-                      height={800}
-                    />
-                  )}
+                  {sizeMd ? null : <img src={image} width={585} height={800} />}
                 </Box>
               </TabPanel>
             );
@@ -227,12 +220,7 @@ export default function Examples() {
                     }}
                   >
                     {sizeMd ? (
-                      <Image
-                        src={image}
-                        layout="fixed"
-                        width={width}
-                        height={height}
-                      />
+                      <img src={image} width={width} height={height} />
                     ) : null}
                   </Box>
                 </TabPanel>

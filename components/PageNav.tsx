@@ -282,7 +282,9 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
                   sx={{ background: "#ED7E21", zIndex: "2", ...sliderSx }}
                 ></Box>
               </Grid>
-              <Grid item>{navBarList}</Grid>
+              <Grid item sx={{ maxWidth: "calc(100% - 3px)" }}>
+                {navBarList}
+              </Grid>
             </Grid>
           </Box>
         </Grid>

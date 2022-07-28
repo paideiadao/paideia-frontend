@@ -1,7 +1,7 @@
 import { Alert, Box, Button, AlertTitle, Modal } from "@mui/material";
 import * as React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { GlobalContext } from "../../../lib/creation/Context";
+import { CreationContext } from "../../../lib/creation/Context";
 import { Header } from "../utilities/HeaderComponents";
 import ReviewDrawer from "./ReviewDrawer";
 import { modalBackground } from "../../utilities/modalBackground";
@@ -9,8 +9,8 @@ import Router from "next/router";
 import { deviceStruct } from "@components/utilities/Style";
 
 const Review: React.FC = () => {
-  const globalContext = React.useContext(GlobalContext);
-  let data = globalContext.api.data;
+  const creationContext = React.useContext(CreationContext);
+  let data = creationContext.api.data;
   const [publish, setPublish] = React.useState<boolean>(false);
   return (
     <Box
@@ -25,7 +25,10 @@ const Review: React.FC = () => {
       <Box>
         <Button
           onClick={() =>
-            globalContext.api.setData({ ...data, navStage: data.navStage - 1 })
+            creationContext.api.setData({
+              ...data,
+              navStage: data.navStage - 1,
+            })
           }
           size="small"
         >
@@ -51,7 +54,7 @@ const Review: React.FC = () => {
           sx={{ width: "49%", mr: ".5rem" }}
           variant="outlined"
           onClick={() =>
-            globalContext.api.setData({ ...data, draftModal: true })
+            creationContext.api.setData({ ...data, draftModal: true })
           }
         >
           <Box
@@ -125,12 +128,12 @@ const Review: React.FC = () => {
               </Button>
               <Button
                 onClick={async () => {
-                  globalContext.api.setData({
+                  creationContext.api.setData({
                     ...data,
                     isDraft: 0,
                     isPublished: 1,
                   });
-                  let res = await globalContext.api.createDao(false);
+                  let res = await creationContext.api.createDao(false);
                   if (res !== false) {
                     Router.push(`/dao/${res.data.dao_name.toLowerCase()}`);
                   } else {

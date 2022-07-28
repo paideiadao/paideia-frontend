@@ -31,6 +31,8 @@ import DarkFooter from "@public/dao/dark-footer.png";
 import DaoBio from "./DaoBio";
 import Contents from "./Contents";
 import CloseIcon from "@mui/icons-material/Close";
+import { useWallet } from "@components/wallet/WalletContext";
+import ConnectWallet from "@components/wallet/ConnectWallet";
 
 export interface INav {
   setShowMobile: (val: boolean) => void;
@@ -44,6 +46,8 @@ const TopNav: React.FC<INav> = (props) => {
   const handleClose = () => setOpen(false);
   const router = useRouter();
   const { id } = router.query;
+  const { wallet } = useWallet();
+  console.log("wallet", wallet);
   const themeContext = React.useContext<IThemeContext>(ThemeContext);
   return (
     <>
@@ -65,7 +69,7 @@ const TopNav: React.FC<INav> = (props) => {
           onClick={() => props.setShowMobile(true)}
           sx={{ display: deviceWrapper("flex", "none") }}
         >
-          <MenuIcon />
+          <MenuIcon color="primary" />
         </IconButton>
         <Box
           sx={{
@@ -78,7 +82,7 @@ const TopNav: React.FC<INav> = (props) => {
           }}
         >
           <DarkSwitch />
-          {/* <ConnectWallet /> */}
+          <ConnectWallet />
           <Box
             sx={{
               ml: ".5rem",
@@ -148,7 +152,7 @@ const TopNav: React.FC<INav> = (props) => {
               p: 0,
               width: "30rem",
               right: "-12rem",
-              top: "19rem",
+              top: "17.5rem",
               left: "",
             }}
           >
@@ -178,6 +182,7 @@ const TopNav: React.FC<INav> = (props) => {
                 .map((i: any, c: number) => {
                   return (
                     <Notification
+                      c={c}
                       i={i}
                       m={"0"}
                       key={"notification-key-modal-" + c}
@@ -187,16 +192,16 @@ const TopNav: React.FC<INav> = (props) => {
             </Box>
             <Box
               sx={{
-                backgroundColor: "fileInput.main",
-                p: ".5rem",
+                position: "fixed",
+                bottom: "0",
+                left: "0",
+                width: "100%",
                 display: "flex",
                 alignItems: "center",
+                backgroundColor: "fileInput.main",
                 justifyContent: "center",
-                width: "100%",
-                borderBottomLeftRadius: ".2rem",
-                borderBottomRightRadius: ".2rem",
-                borderBottom: "1px solid",
-                borderBottomColor: "border.main",
+                borderBottomRightRadius: ".3rem",
+                borderBottomLeftRadius: ".3rem",
               }}
               onClick={handleClose}
             >
@@ -207,7 +212,18 @@ const TopNav: React.FC<INav> = (props) => {
                     : `/dao/${id}/notifications`
                 }
               >
-                <Button size="small">View all</Button>
+                <Button
+                  sx={{
+                    width: "100%",
+                    borderRadius: 0,
+                    p: ".75rem",
+                    borderBottomRightRadius: ".3rem",
+                    borderBottomLeftRadius: ".3rem",
+                  }}
+                  size="small"
+                >
+                  View All
+                </Button>
               </Link>
             </Box>
           </Box>
@@ -216,7 +232,7 @@ const TopNav: React.FC<INav> = (props) => {
       <Slide direction="right" in={props.showMobile} mountOnEnter unmountOnExit>
         <Box
           sx={{
-            width: "14rem",
+            width: "16rem",
             zIndex: 1000,
             backgroundColor: "backgroundColor.main",
             borderRight: "1px solid",
@@ -232,7 +248,7 @@ const TopNav: React.FC<INav> = (props) => {
             })`,
             backgroundPosition: "bottom 0px right 0px",
             backgroundRepeat: "no-repeat",
-            backgroundSize: "14rem",
+            backgroundSize: "16rem",
             position: "fixed",
             top: 0,
           }}

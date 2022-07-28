@@ -28,7 +28,7 @@ const Tokenomics: React.FC = () => {
           sx={{
             width: "28%",
             position: "sticky",
-            top: "1.6rem",
+            top: deviceWrapper("0", "4.8rem"),
             ml: "1.5rem",
             display: deviceWrapper("none", "block"),
           }}

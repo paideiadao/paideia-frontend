@@ -8,7 +8,7 @@ import {
   Chip,
   useMediaQuery,
 } from "@mui/material";
-import Image from "next/image";
+
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { DarkTheme, LightTheme } from "@theme/theme";
 import { useTheme } from "@mui/material/styles";
@@ -71,7 +71,17 @@ const seconaryFeaturedDaos = [
   },
 ];
 
-const FeaturedCard = ({ dao }) => {
+const FeaturedCard = ({
+  dao,
+}: {
+  dao: {
+    title: string;
+    subtitle: string;
+    body: string;
+    members: number;
+    link: string;
+  };
+}) => {
   return (
     <Box
       sx={{
@@ -165,12 +175,7 @@ export default function Featured() {
             overflow: "hidden",
           }}
         >
-          <Image
-            src="/featured-bg.png"
-            layout="fixed"
-            width={2039}
-            height={2116}
-          />
+          <img src="/featured-bg.png" width={2039} height={2116} />
         </Box>
         <Grid container sx={{ mt: { xs: "120px", md: "0" } }}>
           <Grid item md={6}>

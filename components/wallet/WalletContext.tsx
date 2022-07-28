@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 const WalletContext = createContext(undefined);
 
 // Template Provider
-const WalletProvider = ({ children }) => {
+const WalletProvider = ({ children }: any) => {
   const [wallet, setWallet] = useState(""); // primary address
   const [dAppWallet, setDAppWallet] = useState({
     connected: false,
@@ -25,7 +25,7 @@ const WalletProvider = ({ children }) => {
 };
 
 // Template Consumer
-const WalletConsumer = ({ children }) => {
+const WalletConsumer = ({ children }: any) => {
   return (
     <WalletContext.Consumer>
       {(context) => {

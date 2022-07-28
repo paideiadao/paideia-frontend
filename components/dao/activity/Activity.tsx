@@ -66,7 +66,7 @@ const Activity: React.FC<{ i: IActivity; c: number }> = (props) => {
             <Box
               sx={{
                 display: "inline",
-                color: "text.light",
+                color: "text.secondary",
                 ml: ".1rem",
                 mr: ".1rem",
               }}
@@ -78,7 +78,7 @@ const Activity: React.FC<{ i: IActivity; c: number }> = (props) => {
               <Box
                 sx={{
                   display: "inline",
-                  color: "text.light",
+                  color: "text.secondary",
                   ml: ".1rem",
                   mr: ".1rem",
                 }}
@@ -94,7 +94,7 @@ const Activity: React.FC<{ i: IActivity; c: number }> = (props) => {
         <Box
           sx={{
             ml: deviceWrapper("0", "auto"),
-            color: "text.light",
+            color: "text.secondary",
             display: "flex",
             alignItems: "center",
             mt: deviceWrapper(".0rem", "0"),

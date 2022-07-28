@@ -146,18 +146,18 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
           sx={{
             ...modalBackground,
             backgroundColor: "fileInput.main",
-            width: "30rem",
+            width: deviceWrapper("18rem", "30rem"),
             pb: ".5rem",
           }}
         >
           <Header title="How do levels work?" />
-          <Box sx={{ fontSize: ".9rem", mt: "1rem" }}>
+          <Box sx={{ fontSize: deviceWrapper(".6rem", ".9rem"), mt: ".5rem" }}>
             We have a level system that easily identifies users that are more
             engaged members of the community. The way it works is straight
             forward. Different actions get you points and each time you reach a
             specific amount of points, you reach a new level.
           </Box>
-          <Box sx={{ mt: "1rem" }}>
+          <Box sx={{ mt: ".5rem" }}>
             <Box
               sx={{
                 display: "flex",
@@ -166,7 +166,7 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
                 mt: ".25rem",
                 mb: ".25rem",
                 color: "text.primary",
-                fontSize: ".9rem",
+                fontSize: deviceWrapper(".6rem", ".9rem"),
               }}
             >
               <Box>Level</Box>
@@ -182,7 +182,7 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
                   mt: ".25rem",
                   mb: ".25rem",
                   color: "text.secondary",
-                  fontSize: ".9rem",
+                  fontSize: deviceWrapper(".6rem", ".9rem"),
                 }}
               >
                 <Box>
@@ -192,7 +192,7 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
               </Box>
             ))}
           </Box>
-          <Box sx={{ mt: "1rem" }}>
+          <Box sx={{ mt: ".5rem" }}>
             <Box
               sx={{
                 display: "flex",
@@ -201,7 +201,7 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
                 mt: ".25rem",
                 mb: ".25rem",
                 color: "text.primary",
-                fontSize: ".9rem",
+                fontSize: deviceWrapper(".6rem", ".9rem"),
               }}
             >
               <Box>Actions</Box>
@@ -217,16 +217,23 @@ const ProfileHeader: React.FC<{ edit?: boolean; followed?: boolean }> = (
                   mt: ".25rem",
                   mb: ".25rem",
                   color: "text.secondary",
-                  fontSize: ".9rem",
+                  fontSize: deviceWrapper(".6rem", ".9rem"),
                 }}
               >
                 <Box>{i.action}</Box>
-                <Box sx={{ ml: "auto" }}>+{i.pointsEarned} points</Box>
+                <Box sx={{ ml: "auto", minWidth: deviceWrapper("30$", "0%") }}>
+                  +{i.pointsEarned} points
+                </Box>
               </Box>
             ))}
           </Box>
           <Box sx={{ width: "100%", display: "flex", mt: ".5rem" }}>
-            <Button variant="text" onClick={handleClose} sx={{ ml: "auto" }}>
+            <Button
+              variant="text"
+              onClick={handleClose}
+              sx={{ ml: "auto" }}
+              size="small"
+            >
               Got it
             </Button>
           </Box>

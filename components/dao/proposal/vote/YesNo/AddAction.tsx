@@ -25,6 +25,7 @@ import VoteDuration from "./Actions/VoteDuration";
 import Support from "./Actions/Support";
 import Quorum from "./Actions/Quorum";
 import OptimisticGovernance from "./Actions/OptimisticGovernance";
+import { deviceWrapper } from "@components/utilities/Style";
 
 export interface IActionType {
   title:
@@ -169,7 +170,7 @@ const AddAction: React.FC<IProposalAction> = (props) => {
           >
             <Box
               sx={{
-                width: "5%",
+                width: deviceWrapper("13%", "5%"),
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",

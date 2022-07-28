@@ -13,19 +13,24 @@ import {
   Avatar,
   Link,
 } from "@mui/material";
-import Image from "next/image";
 import WhitepaperQuote from "@components/landing/WhitepaperQuote";
 import SectionHeading from "@components/SectionHeading";
 import RoadmapAccordion from "@components/RoadmapAccordion";
 import CustomTable from "@components/CustomTable";
-
 import TabsPanel from "@components/TabsPanel";
 import CardSlider from "@components/CardSlider";
 import TwitterIcon from "@components/svgs/TwitterIcon";
 import LinkedinIcon from "@components/svgs/LinkedinIcon";
 import { DarkTheme } from "@theme/theme";
 
-const navLinks = [
+interface INavLink {
+  name: string;
+  icon: string;
+  link: string;
+  position: number | undefined;
+}
+
+const navLinks: INavLink[] = [
   {
     name: "Introduction",
     icon: "waving_hand",
@@ -322,7 +327,7 @@ const MyCard: FC<IPersonObj> = ({ person }) => {
                     sx={iconLinkStyles}
                     rel="noreferrer"
                   >
-                    <LinkedinIcon fontSize="inherit" />
+                    <LinkedinIcon sx={{ fontSize: "inherit" }} />
                   </Link>
                 </Grid>
               ) : null}
@@ -334,7 +339,7 @@ const MyCard: FC<IPersonObj> = ({ person }) => {
                     sx={iconLinkStyles}
                     rel="noreferrer"
                   >
-                    <TwitterIcon fontSize="inherit" />
+                    <TwitterIcon sx={{ fontSize: "inherit" }} />
                   </Link>
                 </Grid>
               ) : null}
@@ -450,7 +455,7 @@ export default function About() {
                   {examples.map(({ text, icon }, i) => {
                     return (
                       <Grid item md={6} key={i} sx={{ maxWidth: "320px" }}>
-                        <Image src={icon} width={35} height={35} />
+                        <img src={icon} width={35} height={35} />
                         <Typography
                           sx={{
                             fontFamily: '"Space Grotesk", sans-serif',
@@ -526,12 +531,7 @@ export default function About() {
           </Box>
           <Box component="section" id="thesolution">
             <Box sx={{ mb: "48px" }}>
-              <Image
-                src="/exclamation.svg"
-                height={266}
-                width={60}
-                layout="fixed"
-              />
+              <img src="/exclamation.svg" height={266} width={60} />
             </Box>
             <SectionHeading
               category="The Solution"

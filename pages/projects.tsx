@@ -89,6 +89,46 @@ const daos = [
   },
 ];
 
+const highlights = [
+  {
+    label: "Gaming",
+    title: "Using paideia in the gaming world",
+    content: `ErgoGames.io took root in the idea that the Ergo Blockchain has tremendous potential to become a leading layer-1 solution, and that blockchain-based games will play an integral role in the network's growth.`,
+    link: "/",
+    image: "/images/highlight.png",
+  },
+  {
+    label: "Art Media",
+    title: "Teams of artists can combine forces",
+    content:
+      "You can share your NFT proceeds by using a DAO to distribute and control raised funds",
+    link: "/",
+    image: "/images/highlight.png",
+  },
+  {
+    label: "Music DAOs",
+    title: "Want to collaborate with other musicians? ",
+    content: "Do it with Paideia",
+    link: "/",
+    image: "/images/highlight.png",
+  },
+  {
+    label: "Music DAOs",
+    title: "Want to collaborate with other musicians? ",
+    content: "Do it with Paideia",
+    link: "/",
+    image: "/images/highlight.png",
+  },
+  {
+    label: "Art Media",
+    title: "Teams of artists can combine forces",
+    content:
+      "You can share your NFT proceeds by using a DAO to distribute and control raised funds",
+    link: "/",
+    image: "/images/highlight.png",
+  },
+];
+
 export default function Projects() {
   return (
     <>
@@ -101,7 +141,7 @@ export default function Projects() {
         subTitleTwo="Paideia and new ones coming soon. "
       />
 
-      <Highlights />
+      <Highlights highlights={highlights} />
 
       <Container sx={{ py: "240px" }}>
         <Grid container>

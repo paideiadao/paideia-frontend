@@ -6,7 +6,7 @@ import FinancialSummary from "./FinancialSummary";
 import About from "./widgets/About";
 import TokenStats from "./widgets/TokenStats";
 import ActiveProposals from "./ActiveProposals";
-import AnnouncementBackground from "../../../public/dao/announcement/announcement-background.png";
+import AnnouncementBackground from "@public/dao/announcement/announcement-background.png";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import LightbulbCircleIcon from "@mui/icons-material/LightbulbCircle";
 import ReadingBackground from "../../../public/dao/reading/reading-background.png";
@@ -38,6 +38,8 @@ const Dashboard: React.FC = () => {
           width: "100%",
           display: "flex",
           alignItems: "flex-start",
+          pl: deviceWrapper("0", ".5rem"),
+          pr: deviceWrapper("0", ".5rem"),
         }}
       >
         <Box sx={{ width: deviceWrapper("100%", "70%"), p: ".5rem", pt: 0 }}>
@@ -185,9 +187,11 @@ const Dashboard: React.FC = () => {
             width: "30%",
             flexDirection: "column",
             justifyContent: "center",
-            position: "sticky",
-            top: ".2rem",
+            position: deviceWrapper("relative", "sticky"),
+            top: deviceWrapper("0", "3.5rem"),
             mr: ".5rem",
+            pl: deviceWrapper("0", ".5rem"),
+
             display: deviceWrapper("none", "flex"),
           }}
         >

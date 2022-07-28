@@ -6,7 +6,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 const BackLink: React.FC = () => {
   const router = useRouter();
   return (
-    <Button variant="outlined" onClick={() => router.back()}>
+    <Button variant="outlined" onClick={() => router.back()} size="small">
       <ArrowBackIcon sx={{ mr: ".5rem", fontSize: "1rem" }} />
       Back
     </Button>

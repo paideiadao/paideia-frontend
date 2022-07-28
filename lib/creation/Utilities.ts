@@ -63,7 +63,7 @@ export function checkCompleteness(_data: ICreationData): boolean {
   }
 }
 
-export function bytesToSize(bytes) {
+export function bytesToSize(bytes: any) {
   var sizes = ["Bytes", "KB", "MB", "GB", "TB"];
   if (bytes == 0) return "0 Byte";
   var i = Math.floor(Math.log(bytes) / Math.log(1024));

@@ -15,6 +15,7 @@ import Link from "next/link";
 import { GlobalContext } from "@lib/AppContext";
 import { useRouter } from "next/router";
 import { deviceWrapper } from "@components/utilities/Style";
+import { getRandomImage } from "@components/utilities/images";
 
 export interface IProposalCard {
   id: number;
@@ -33,9 +34,10 @@ export interface IProposalCard {
   users: number;
   date: Date;
   width: any;
+  scrollable?: boolean;
 }
 
-const VoteWidget: React.FC<{
+export const VoteWidget: React.FC<{
   yes: number;
   no: number;
 }> = (props) => {
@@ -46,11 +48,11 @@ const VoteWidget: React.FC<{
           display: "flex",
           alignItems: "center",
           width: "100%",
-          color: "primary.lightSuccess",
+          color: "success.light",
         }}
       >
         {percentage(props.yes / (props.yes + props.no), 0)} YES
-        <Box sx={{ ml: "auto", color: "error.main" }}>
+        <Box sx={{ ml: "auto", color: "error.light" }}>
           {percentage(props.no / (props.yes + props.no), 0)} NO
         </Box>
       </Box>
@@ -58,14 +60,14 @@ const VoteWidget: React.FC<{
         <Box
           sx={{
             width: percentage(props.yes / (props.yes + props.no)),
-            backgroundColor: "green",
+            backgroundColor: "success.light",
             height: ".2rem",
           }}
         ></Box>
         <Box
           sx={{
             width: percentage(props.no / (props.yes + props.no)),
-            backgroundColor: "error.main",
+            backgroundColor: "error.light",
             height: ".2rem",
           }}
         ></Box>
@@ -94,16 +96,16 @@ export const ProposalStatus: React.FC<{ status: string }> = (props) => {
       }
       // passed color??
       case "Passed": {
-        return "primary.lightSuccess";
+        return "success.light";
       }
       case "Active": {
-        return "primary.lightSuccess";
+        return "success.light";
       }
       case "Discussion": {
         return "primary.main";
       }
       case "Unchallenged": {
-        return "primary.lightSuccess";
+        return "success.light";
       }
       case "Failed": {
         return "red";
@@ -140,8 +142,8 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
   });
 
   const iconFont = {
-    xs: "1rem",
-    sm: "1rem",
+    xs: ".9rem",
+    sm: ".9rem",
     md: ".8rem",
     lg: ".8rem",
     xl: "1rem",
@@ -172,7 +174,7 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
               mr: ".1rem",
               fontSize: iconFont,
               cursor: "pointer",
-              ml: ".2rem",
+              ml: ".4rem",
             }}
             onClick={() =>
               setValue({
@@ -206,13 +208,15 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
           <ThumbDownIcon
             sx={{
               mr: ".1rem",
-              ml: ".2rem",
+              ml: ".4rem",
               fontSize: iconFont,
               cursor: "pointer",
-              color: "red",
+              color: "error.light",
             }}
           />
-          <span style={{ color: "red" }}>{value.dislikes}</span>
+          <Box sx={{ color: "error.light", display: "inline" }}>
+            {value.dislikes}
+          </Box>
         </>
       ) : (
         <>
@@ -221,17 +225,17 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
               ml: ".2rem",
               mr: ".1rem",
               fontSize: iconFont,
-              color: "primary.lightSuccess",
+              color: "success.light",
               cursor: "pointer",
             }}
           />
-          <Box sx={{ color: "primary.lightSuccess" }}>{value.likes}</Box>
+          <Box sx={{ color: "success.light" }}>{value.likes}</Box>
           <ThumbDownOffAltIcon
             sx={{
               mr: ".1rem",
               fontSize: iconFont,
               cursor: "pointer",
-              ml: ".2rem",
+              ml: ".4rem",
             }}
             onClick={() =>
               setValue({
@@ -249,15 +253,13 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
   );
 };
 
-const CardContent: React.FC<{ category: string; widget: any }> = (props) => {
-  const [widget, setWidget] = React.useState<any>(props.widget);
+const CountdownTimer: React.FC<{ widget: any }> = (props) => {
   const [time, setTime] = React.useState<string>("");
   let temp = new Date();
   temp.setDate(temp.getDate() + 30);
   var countDownDate = temp.getTime();
-
   React.useEffect(() => {
-    if (typeof widget === "object") {
+    if (typeof props.widget === "object") {
       var x = setInterval(function () {
         // Get today's date and time
         var now = new Date().getTime();
@@ -283,7 +285,50 @@ const CardContent: React.FC<{ category: string; widget: any }> = (props) => {
         }
       }, 1000);
     }
-  }, []);
+  }, [props.widget]);
+  let widget = props.widget;
+  return (
+    <>
+      <Chip
+        icon={
+          <Box
+            sx={{
+              height: "1rem",
+              width: "1rem",
+              display: "flex",
+              alignItems: "center",
+              color: "white",
+            }}
+          >
+            {typeof widget === "object" ? (
+              <AccessTimeFilledIcon sx={{ fontSize: "1rem" }} />
+            ) : widget === "DAO termination" ? (
+              <DeleteIcon sx={{ fontSize: "1rem" }} />
+            ) : (
+              <LocalFireDepartmentIcon sx={{ fontSize: "1rem" }} />
+            )}
+          </Box>
+        }
+        label={typeof widget === "object" ? time : widget}
+        size="small"
+        sx={{
+          fontSize: ".7rem",
+          color: "backgroundColor.main",
+          backgroundColor:
+            widget === "DAO termination" ? "error.light" : "tokenAlert.main",
+          border: "1px solid",
+          borderColor:
+            widget === "DAO termination" ? "error.light" : "tokenAlert.main",
+        }}
+      />
+    </>
+  );
+};
+
+const CardContent: React.FC<{ category: string; widget: any; c: number }> = (
+  props
+) => {
+  const [widget, setWidget] = React.useState<any>(props.widget);
 
   return (
     <Box
@@ -291,6 +336,13 @@ const CardContent: React.FC<{ category: string; widget: any }> = (props) => {
         mt: ".5rem",
         height: "7rem",
         backgroundColor: "fileInput.outer",
+        // backgroundImage: deviceWrapper(
+        //   `url(https://picsum.photos/350/200/?random=${props.c})`,
+        //   `url(https://picsum.photos/300/200/?random=${props.c})`
+        // ),
+        backgroundImage: `url(${getRandomImage()})`,
+        backgroundSize: "100%",
+        width: "100%",
         border: "1px solid",
         borderColor: "border.main",
         borderRadius: ".3rem",
@@ -299,38 +351,7 @@ const CardContent: React.FC<{ category: string; widget: any }> = (props) => {
       }}
     >
       <Box sx={{ position: "absolute", right: ".3rem" }}>
-        <Chip
-          icon={
-            <Box
-              sx={{
-                height: "1rem",
-                width: "1rem",
-                display: "flex",
-                alignItems: "center",
-                color: "white",
-              }}
-            >
-              {typeof widget === "object" ? (
-                <AccessTimeFilledIcon sx={{ fontSize: "1rem" }} />
-              ) : widget === "DAO termination" ? (
-                <DeleteIcon sx={{ fontSize: "1rem" }} />
-              ) : (
-                <LocalFireDepartmentIcon sx={{ fontSize: "1rem" }} />
-              )}
-            </Box>
-          }
-          label={typeof widget === "object" ? time : widget}
-          size="small"
-          sx={{
-            fontSize: ".7rem",
-            color: "backgroundColor.main",
-            backgroundColor:
-              widget === "DAO termination" ? "error.main" : "tokenAlert.main",
-            border: "1px solid",
-            borderColor:
-              widget === "DAO termination" ? "error.main" : "tokenAlert.main",
-          }}
-        />
+        <CountdownTimer widget={props.widget} />
       </Box>
       <Box sx={{ position: "absolute", bottom: ".3rem" }}>
         <Chip
@@ -450,9 +471,10 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
   return (
     <Box
       sx={{
-        pr: deviceWrapper("0", "1rem"),
+        pr: deviceWrapper("0", props.scrollable ? "0" : "1rem"),
         pt: ".5rem",
         pb: ".5rem",
+        mt: props.scrollable ? ".5rem" : "0",
         minWidth: props.width,
         maxWidth: props.width,
       }}
@@ -525,7 +547,11 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
                 />
               </Box>
             </Box>
-            <CardContent category={props.category} widget={props.widget} />
+            <CardContent
+              category={props.category}
+              widget={props.widget}
+              c={props.c}
+            />
           </Box>
           <Box sx={{ p: ".5rem", height: "4rem" }}>{getFooter()}</Box>
         </Box>

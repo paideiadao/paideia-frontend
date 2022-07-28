@@ -65,7 +65,14 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default function PillTabs({ tabs }) {
+interface ITab {
+  label: string;
+  title: string;
+  content: string;
+  link: string;
+}
+
+export default function PillTabs({ tabs }: { tabs: ITab[] }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: any, newValue: number) => {
@@ -80,16 +87,16 @@ export default function PillTabs({ tabs }) {
           onChange={handleChange}
           aria-label="DAO Samples"
         >
-          {tabs.map(({ label }, i: number) => (
-            <StyledTab label={label} key={i} />
+          {tabs.map((tab: ITab, i: number) => (
+            <StyledTab label={tab.label} key={i} />
           ))}
         </StyledTabs>
       </Box>
-      {tabs.map(({ title, content, link }, i: number) => (
+      {tabs.map((tab: ITab, i: number) => (
         <TabPanel value={value} index={i} key={i}>
-          <Typography>{title}</Typography>
-          <Typography>{content}</Typography>
-          <Button href={link}>Learn More</Button>
+          <Typography>{tab.title}</Typography>
+          <Typography>{tab.content}</Typography>
+          <Button href={tab.link}>Learn More</Button>
         </TabPanel>
       ))}
     </Box>

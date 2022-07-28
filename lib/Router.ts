@@ -7,13 +7,13 @@ import EditNotifications from "@pages/dao/[id]/notifications/edit";
 import Proposal from "@pages/dao/[id]/proposal/[proposal_id]";
 import Discussion from "@pages/dao/[id]/discussion/[discussion_id]";
 import Create from "@pages/dao/[id]/create";
-import Vote from "@pages/dao/[id]/proposal/[proposal_id]/vote";
-import CastVote from "@pages/dao/[id]/proposal/[proposal_id]/cast-vote";
-import Member from "@pages/dao/[id]/member/[member_id]";
+import Vote from "@pages/dao/[id]/proposal/[proposal_id]/votes";
+import CastVote from "@pages/dao/[id]/proposal/[proposal_id]/vote";
+// import Member from "@pages/dao/[id]/member/[member_id]";
 import CreateProposal from "@pages/dao/[id]/proposal/create";
 import CreateDiscussion from "@pages/dao/[id]/discussion/create";
 import Dashboard from "@components/dao/dashboard/Dashboard";
-import Profile from "@pages/dao/[id]/profile";
+// import Profile from "@pages/dao/[id]/profile";
 import Notifications from "@pages/dao/[id]/notifications";
 import Dao from "@pages/dao/[id]";
 import Creation from "@pages/creation";
@@ -33,13 +33,14 @@ import Treasury from "@pages/dao/[id]/financials/treasury";
 import Send from "@pages/dao/[id]/financials/treasury/send";
 import Burn from "@pages/dao/[id]/financials/token/burn";
 import DaoConfig from "@pages/dao/[id]/dao-config";
+import ProposalAddendum from "@pages/dao/proposal/[proposal_id]/addendum/[addendum_id]";
 
 export const isDao = (Component: any) => {
   return (
     Component === Creation ||
     Component === Dao ||
     Component === Notifications ||
-    Component === Profile ||
+    // Component === Profile ||
     Component === Dashboard ||
     Component === Edit ||
     Component === All ||
@@ -51,7 +52,7 @@ export const isDao = (Component: any) => {
     Component === Create ||
     Component === Vote ||
     Component === CastVote ||
-    Component === Member ||
+    // Component === Member ||
     Component === CreateProposal ||
     Component === CreateDiscussion ||
     Component === Past ||
@@ -70,6 +71,7 @@ export const isDao = (Component: any) => {
     Component === Treasury ||
     Component === Send ||
     Component === Burn ||
-    Component === DaoConfig
+    Component === DaoConfig ||
+    Component === ProposalAddendum
   );
 };

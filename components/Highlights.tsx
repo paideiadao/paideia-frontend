@@ -1,3 +1,4 @@
+import React, { FC } from "react";
 import {
   Typography,
   Grid,
@@ -8,7 +9,7 @@ import {
   Chip,
   useMediaQuery,
 } from "@mui/material";
-import Image from "next/image";
+
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { DarkTheme, LightTheme } from "@theme/theme";
 import SectionTitle from "@components/SectionTitle";
@@ -50,87 +51,38 @@ const paragraphStyle = {
   mb: "16px",
 };
 
-function Example(props: any) {
-  var items = [
-    {
-      label: "Gaming",
-      title: "Using paideia in the gaming world",
-      content: `ErgoGames.io took root in the idea that the Ergo Blockchain has tremendous potential to become a leading layer-1 solution, and that blockchain-based games will play an integral role in the network's growth.`,
-      link: "/",
-      image: "/images/highlight.png",
-    },
-    {
-      label: "Art Media",
-      title: "Teams of artists can combine forces",
-      content:
-        "You can share your NFT proceeds by using a DAO to distribute and control raised funds",
-      link: "/",
-      image: "/images/highlight.png",
-    },
-    {
-      label: "Music DAOs",
-      title: "Want to collaborate with other musicians? ",
-      content: "Do it with Paideia",
-      link: "/",
-      image: "/images/highlight.png",
-    },
-    {
-      label: "Music DAOs",
-      title: "Want to collaborate with other musicians? ",
-      content: "Do it with Paideia",
-      link: "/",
-      image: "/images/highlight.png",
-    },
-    {
-      label: "Art Media",
-      title: "Teams of artists can combine forces",
-      content:
-        "You can share your NFT proceeds by using a DAO to distribute and control raised funds",
-      link: "/",
-      image: "/images/highlight.png",
-    },
-  ];
-  const theme = useTheme();
-
-  return (
-    <Carousel
-      autoPlay={true}
-      animation="slide"
-      height={useMediaQuery(theme.breakpoints.up("md")) ? "558px" : undefined}
-      navButtonsAlwaysVisible={
-        useMediaQuery(theme.breakpoints.up("md")) ? true : false
-      }
-      navButtonsProps={{
-        style: {
-          backgroundColor: LightTheme.palette.primary.main,
-          // borderRadius: 0
-        },
-      }}
-      sx={{
-        zIndex: "2",
-        maxWidth: "xl",
-        mx: "auto",
-      }}
-    >
-      {items.map((item, i) => (
-        <Item key={i} item={item} />
-      ))}
-    </Carousel>
-  );
+interface IHighlightItem {
+  label: string;
+  title: string;
+  content: string;
+  link: string;
+  image?: string;
 }
 
-function Item(props: any) {
+interface IItemObject {
+  item: IHighlightItem;
+}
+
+export const randomInteger = (min: number, max: number) => {
+  return (min + Math.random() * (max - min)).toFixed();
+};
+
+const CarouselItem: FC<IItemObject> = ({ item }) => {
   const theme = useTheme();
   const sizeMd = useMediaQuery(theme.breakpoints.up("md"));
   const sizeLg = useMediaQuery(theme.breakpoints.up("lg"));
   const sizeXl = useMediaQuery(theme.breakpoints.up("xl"));
 
+  const rand = randomInteger(1, 18);
+
+  const image = item?.image ? item.image : `/images/placeholder/${rand}.jpg`;
+
   const Content = () => {
     return (
       <>
-        <Typography sx={secondaryTitleStyle}>{props.item.title}</Typography>
-        <Typography sx={paragraphStyle}>{props.item.content}</Typography>
-        <Button href={props.item.link} endIcon={<ArrowForwardIcon />}>
+        <Typography sx={secondaryTitleStyle}>{item.title}</Typography>
+        <Typography sx={paragraphStyle}>{item.content}</Typography>
+        <Button href={item.link} endIcon={<ArrowForwardIcon />}>
           Check it out
         </Button>
       </>
@@ -164,7 +116,7 @@ function Item(props: any) {
             >
               <Box
                 sx={{
-                  backgroundImage: `url(${props.item.image})`,
+                  backgroundImage: `url(${image})`,
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
                   backgroundPosition: "center center",
@@ -218,7 +170,7 @@ function Item(props: any) {
             >
               <Box
                 sx={{
-                  backgroundImage: `url(${props.item.image})`,
+                  backgroundImage: `url(${image})`,
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
                   backgroundPosition: "center center",
@@ -260,7 +212,7 @@ function Item(props: any) {
         <Grid item md={6}>
           <Box
             sx={{
-              backgroundImage: `url(${props.item.image})`,
+              backgroundImage: `url(${image})`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
               backgroundPosition: "center center",
@@ -300,7 +252,7 @@ function Item(props: any) {
         >
           <Box
             sx={{
-              backgroundImage: `url(${props.item.image})`,
+              backgroundImage: `url(${image})`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
               backgroundPosition: "center center",
@@ -319,15 +271,62 @@ function Item(props: any) {
             ></Box>
           </Box>
         </Box>
-        <Box sx={{ pt: "300px", position: "relative", display: "block" }}>
+        <Box
+          sx={{
+            pt: "300px",
+            position: "relative",
+            display: "block",
+            maxHeight: "258px",
+          }}
+        >
           <Content />
         </Box>
       </Container>
     );
   }
+};
+
+interface IHighlightCarouselProps {
+  highlights: IHighlightItem[];
 }
 
-export default function Highlights() {
+const HighlightCarousel: FC<IHighlightCarouselProps> = ({ highlights }) => {
+  const theme = useTheme();
+
+  return (
+    <Carousel
+      autoPlay={false}
+      animation="slide"
+      height={useMediaQuery(theme.breakpoints.up("md")) ? "558px" : "558px"}
+      navButtonsAlwaysVisible={
+        useMediaQuery(theme.breakpoints.up("md")) ? true : false
+      }
+      navButtonsProps={{
+        style: {
+          backgroundColor: LightTheme.palette.primary.main,
+          // borderRadius: 0
+        },
+      }}
+      sx={{
+        zIndex: "2",
+        maxWidth: "xl",
+        mx: "auto",
+      }}
+    >
+      {highlights.map((item: IHighlightItem, i: number) => (
+        <CarouselItem key={i} item={item} />
+      ))}
+    </Carousel>
+  );
+};
+
+interface IHighlightProps {
+  titleSmall?: string;
+  title?: string;
+  highlights: IHighlightItem[];
+}
+
+const Highlights: FC<IHighlightProps> = ({ titleSmall, title, highlights }) => {
   return (
     <>
       <Container
@@ -339,15 +338,19 @@ export default function Highlights() {
       >
         <Grid container sx={{ mt: "120px" }}>
           <Grid item md={6}>
-            <SectionTitle marginBottom="24px">Featured</SectionTitle>
+            <SectionTitle marginBottom="24px">
+              {titleSmall ? titleSmall : "Featured"}
+            </SectionTitle>
             <Typography sx={{ ...titleStyle, mb: "64px" }}>
-              You can&apos;t miss these highlights
+              {title ? title : "You can't miss these highlights"}
             </Typography>
           </Grid>
           <Grid item md={6}></Grid>
         </Grid>
       </Container>
-      <Example />
+      <HighlightCarousel highlights={highlights} />
     </>
   );
-}
+};
+
+export default Highlights;

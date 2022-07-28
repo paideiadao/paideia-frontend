@@ -8,14 +8,30 @@ body {
   font-size: 18px;
 }
 
+tr {
+  text-align: left;
+  font-size: 0.9rem;
+  color: black;
+}
+
+.react-financial-charts canvas,
+.react-financial-charts svg {
+  top: 0;
+  left: 0;
+}
+
 body {
   overflow-x: hidden;
   /* background-image: url(/main-bg.png); */
 }
 
+.react-financial-charts-tooltip {
+  margin-bottom: 1rem;
+}
+
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   padding: 0px;
 }
 

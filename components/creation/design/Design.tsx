@@ -3,7 +3,7 @@ import * as React from "react";
 import { Header, LearnMore, Subtitle } from "../utilities/HeaderComponents";
 import CheckIcon from "@mui/icons-material/Check";
 import Logo from "./Logo";
-import { GlobalContext } from "../../../lib/creation/Context";
+import { CreationContext } from "../../../lib/creation/Context";
 import Banner from "./Banner";
 import Footer from "./Footer";
 import { deviceStruct } from "@components/utilities/Style";
@@ -151,14 +151,14 @@ export const ThemeCard: React.FC<{
 };
 
 const Design: React.FC = (props) => {
-  let globalContext = React.useContext(GlobalContext);
+  let creationContext = React.useContext(CreationContext);
 
   const [theme, setTheme] = React.useState<number>(1);
 
-  let data = globalContext.api.data.design;
+  let data = creationContext.api.data.design;
   let setData = (data: any) => {
-    globalContext.api.setData({
-      ...globalContext.api.data,
+    creationContext.api.setData({
+      ...creationContext.api.data,
       design: data,
     });
   };
@@ -192,8 +192,15 @@ const Design: React.FC = (props) => {
         <Subtitle subtitle="In order to best match your DAO design you can select between four different theme colors and choose if you want a light or dark theme." />
       </Box>
       <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center" }}>
-        {themes.map((i: any) => {
-          return <ThemeCard set={setTheme} theme={theme} i={i} />;
+        {themes.map((i: any, c: number) => {
+          return (
+            <ThemeCard
+              set={setTheme}
+              theme={theme}
+              i={i}
+              key={`theme-card-${c}`}
+            />
+          );
         })}
       </Box>
       <Logo />

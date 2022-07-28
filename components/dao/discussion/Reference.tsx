@@ -1,6 +1,9 @@
 import DiscussionContext, {
   IDiscussionContext,
 } from "@lib/dao/discussion/DiscussionContext";
+import ProposalContext, {
+  IProposalContext,
+} from "@lib/dao/proposal/ProposalContext";
 import { Autocomplete, Avatar, Box, Chip, TextField } from "@mui/material";
 import * as React from "react";
 import { proposals } from "../dashboard/ActiveProposals";
@@ -8,21 +11,26 @@ import { proposals } from "../dashboard/ActiveProposals";
 // proposal or discussion
 // abstract: img, name, id
 
-const Reference: React.FC = () => {
-  const context = React.useContext<IDiscussionContext>(DiscussionContext);
-  const value = context.api.value;
-  console.log(value.references);
+const Reference: React.FC<{ context?: boolean }> = (props) => {
+  const context =
+    props.context === undefined
+      ? React.useContext<IDiscussionContext>(DiscussionContext)
+      : React.useContext<IProposalContext>(ProposalContext);
+  const references = context.api.value.references;
   return (
     <Autocomplete
       multiple
       id="tags-filled"
+      // @ts-ignore
       isOptionEqualToValue={(option: any, temp: string) =>
-        value.references.indexOf(option.id) > -1
+        references.indexOf(option.id) > -1
       }
       options={proposals || []}
       filterSelectedOptions
-      value={value.references}
+      // @ts-ignore
+      value={references}
       sx={{ mt: "1rem" }}
+      // @ts-ignore
       renderTags={(value: readonly string[], getTagProps) =>
         value.map((option: any, c: number) => {
           let temp = proposals.filter((i: any) => i.id === option);
@@ -54,7 +62,7 @@ const Reference: React.FC = () => {
         details?: string
       ) => {
         console.log(reason, event.target);
-        context.api.setValue({ ...value, references: _value });
+        context.api.setValue({ ...context.api.value, references: _value });
       }}
       getOptionLabel={(option: any) => option.id.toString()}
       renderOption={(props, option: any) => (
@@ -62,7 +70,7 @@ const Reference: React.FC = () => {
         <li
           {...props}
           onClick={() => {
-            let temp = [...value.references];
+            let temp = [...references];
             let index = temp.indexOf(option.id);
 
             if (index > -1) {
@@ -72,7 +80,7 @@ const Reference: React.FC = () => {
             }
 
             context.api.setValue({
-              ...value,
+              ...context.api.value,
               references: temp,
             });
           }}
@@ -97,6 +105,12 @@ const Reference: React.FC = () => {
         <TextField
           {...params}
           variant="outlined"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          // InputProps={{
+          //   notched: true
+          // }}
           label="Reference an existing proposal or discussion"
           placeholder="Search for proposal"
         />

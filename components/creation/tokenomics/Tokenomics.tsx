@@ -1,6 +1,9 @@
 import * as React from "react";
 import { Box, Button, ButtonGroup } from "@mui/material";
-import { GlobalContext, IGlobalContext } from "../../../lib/creation/Context";
+import {
+  CreationContext,
+  ICreationContext,
+} from "../../../lib/creation/Context";
 import { Header, Subheader } from "../utilities/HeaderComponents";
 import TokenInformation from "./TokenInformation";
 import { ITokenHolder, ITokenomics } from "../../../lib/creation/CreationApi";
@@ -18,11 +21,11 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { deviceStruct } from "@components/utilities/Style";
 
 const Tokenomics: React.FC = () => {
-  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
-  let data = globalContext.api.data.tokenomics;
+  const creationContext = React.useContext<ICreationContext>(CreationContext);
+  let data = creationContext.api.data.tokenomics;
   const set = (tokenomicsData: ITokenomics) => {
-    globalContext.api.setData({
-      ...globalContext.api.data,
+    creationContext.api.setData({
+      ...creationContext.api.data,
       tokenomics: {
         ...tokenomicsData,
       },
@@ -43,7 +46,7 @@ const Tokenomics: React.FC = () => {
 
   React.useEffect(() => {
     set({
-      ...globalContext.api.data.tokenomics,
+      ...creationContext.api.data.tokenomics,
       tokenRemaining:
         tokenAmount -
         (activateTokenomics
@@ -58,7 +61,7 @@ const Tokenomics: React.FC = () => {
           : distributions
               .filter((i: any) => i !== undefined)
               .filter((i: any) => i.hasOwnProperty("contingency"))
-              .map((i: ILiquidityInfo) => i.contingency.balance)
+              .map((i: any) => i.contingency.balance)
               .reduce((sum, current) => sum + current, 0)) -
         (distributions.length === 0 || !activateTokenomics
           ? 0
@@ -71,10 +74,10 @@ const Tokenomics: React.FC = () => {
 
   React.useEffect(() => {
     set({
-      ...globalContext.api.data.tokenomics,
+      ...creationContext.api.data.tokenomics,
       tokenHolders: activateTokenomics
-        ? globalContext.api.data.tokenomics.tokenHolders
-        : globalContext.api.data.tokenomics.tokenHolders.map(
+        ? creationContext.api.data.tokenomics.tokenHolders
+        : creationContext.api.data.tokenomics.tokenHolders.map(
             (i: ITokenHolder) => {
               return {
                 ...i,
@@ -83,8 +86,8 @@ const Tokenomics: React.FC = () => {
             }
           ),
       distributions: !activateTokenomics
-        ? globalContext.api.data.tokenomics.distributions
-        : globalContext.api.data.tokenomics.distributions.map((i: any) => {
+        ? creationContext.api.data.tokenomics.distributions
+        : creationContext.api.data.tokenomics.distributions.map((i: any) => {
             return {
               ...i,
               balance: percentageToBalance(tokenAmount, i.percentage / 100),

@@ -1,7 +1,6 @@
+import React from "react";
 import "../styles/global.css";
 import { AppProps } from "next/app";
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
-import * as React from "react";
 import { DarkTheme, LightTheme } from "../theme/theme";
 import { ThemeProvider } from "@mui/material/styles";
 import { ThemeContext } from "../lib/ThemeContext";
@@ -60,7 +59,7 @@ export default function App({ Component, pageProps }: AppProps) {
                   ) : (
                     <Component {...pageProps} />
                   )}
-                  {alert.show && (
+                  {/* {alert.show && (
                     <Modal
                       open={alert.show}
                       onClose={() => setAlert({ show: false })}
@@ -80,11 +79,11 @@ export default function App({ Component, pageProps }: AppProps) {
                             mt: "1rem",
                           }}
                         >
-                          <Box sx={{ ml: "auto" }}></Box>
+                          <Box sx={{ ml: "auto" }}>skeep</Box>
                         </Box>
                       </Box>
                     </Modal>
-                  )}
+                  )} */}
                 </GlobalContext.Provider>
               </ThemeContext.Provider>
             </ThemeProvider>
@@ -119,20 +118,20 @@ export default function App({ Component, pageProps }: AppProps) {
 //   };
 // };
 
-export async function getServerSideProps(context) {
-  // possibilities
-  // paideia.im
-  // {dao_name}.paideia.im
-  let wildcard = context.req.headers.host.split(".")[0];
-  let all_ids = ["spreadly", "ergopad"];
+// export async function getServerSideProps(context: any) {
+//   // possibilities
+//   // paideia.im
+//   // {dao_name}.paideia.im
+//   let wildcard = context.req.headers.host.split(".")[0];
+//   let all_ids = ["spreadly", "ergopad"];
 
-  // console.log(context.req.headers.host);
+//   // console.log(context.req.headers.host);
 
-  wildcard =
-    all_ids.indexOf(wildcard) > -1
-      ? wildcard != "localhost:3000"
-        ? wildcard
-        : "home"
-      : "home";
-  return { props: { wildcard } };
-}
+//   wildcard =
+//     all_ids.indexOf(wildcard) > -1
+//       ? wildcard != "localhost:3000"
+//         ? wildcard
+//         : "home"
+//       : "home";
+//   return { props: { wildcard } };
+// }

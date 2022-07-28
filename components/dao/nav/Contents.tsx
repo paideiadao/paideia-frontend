@@ -83,7 +83,7 @@ const BasicLink: React.FC<{
       id === undefined ? `/dao/dao-config` : `/dao/${id}/dao-config`,
   };
   return (
-    <Link href={linkLookup[props.title]}>
+    <Link href={linkLookup[props.title as keyof typeof linkLookup]}>
       <Box
         sx={{
           width: "100%",
@@ -527,7 +527,7 @@ const Contents: React.FC<IContents> = (props) => {
       sx={{
         width: "100%",
         mb: "1rem",
-        height: "85%",
+        height: "75%",
         overflowY: "auto",
         overflowX: "hidden",
       }}

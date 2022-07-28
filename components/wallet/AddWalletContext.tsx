@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 const AddWalletContext = createContext(undefined);
 
 // Template Provider
-const AddWalletProvider = ({ children }) => {
+const AddWalletProvider = ({ children }: any) => {
   const [addWalletOpen, setAddWalletOpen] = useState(false);
 
   // Context values passed to consumer
@@ -21,7 +21,7 @@ const AddWalletProvider = ({ children }) => {
 };
 
 // Template Consumer
-const AddWalletConsumer = ({ children }) => {
+const AddWalletConsumer = ({ children }: any) => {
   return (
     <AddWalletContext.Consumer>
       {(context) => {

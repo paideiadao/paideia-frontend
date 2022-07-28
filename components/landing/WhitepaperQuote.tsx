@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import { Grid, Container, Box, Typography, Button } from "@mui/material";
 import { DarkTheme } from "@theme/theme";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForward";
-import Image from "next/image";
 
 interface PerkProps {
   sx?: object;
@@ -32,13 +31,7 @@ const Perks: FC<PerkProps> = ({ sx }) => {
             display: { xs: "none", sm: "block" },
           }}
         >
-          <Image
-            src="/quote-bg.png"
-            layout="fill"
-            objectFit="contain"
-            objectPosition="center top"
-            quality={100}
-          />
+          <img src="/quote-bg.png" />
         </Box>
         <Box
           sx={{
@@ -54,13 +47,7 @@ const Perks: FC<PerkProps> = ({ sx }) => {
             display: { xs: "block", sm: "none" },
           }}
         >
-          <Image
-            src="/quote-small.png"
-            layout="fill"
-            objectFit="contain"
-            objectPosition="center top"
-            quality={100}
-          />
+          <img src="/quote-small.png" />
         </Box>
         <Grid container sx={{ pt: "120px", pb: "40px" }}>
           <Grid item md={3}></Grid>

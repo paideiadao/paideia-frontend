@@ -7,12 +7,28 @@ import ProposalCard from "../proposals/ProposalCard";
 import useDidMountEffect from "@components/utilities/hooks";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { deviceStruct } from "@components/utilities/Style";
+import { deviceStruct, deviceWrapper } from "@components/utilities/Style";
+import CardSlider from "@components/CardSlider";
 
 let temp = new Date();
 temp.setDate(temp.getDate() - 30);
 
-export const proposals = [
+export const proposals: {
+  id: number;
+  proposalName: string;
+  status: string;
+  likes: number;
+  dislikes: number;
+  userSide: any;
+  favorited: boolean;
+  category: string;
+  widget: Date | string;
+  yes?: number | undefined;
+  no?: number | undefined;
+  comments?: undefined | number;
+  users?: undefined | number;
+  date?: undefined | Date;
+}[] = [
   {
     id: 1,
     proposalName: "ProposalName 1",
@@ -103,60 +119,45 @@ const ActiveProposal: React.FC = () => {
 
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          width: "100%",
-          mt: "1rem",
-        }}
-      >
-        <Subheader title="Active proposals" small bold />
-        <Box sx={{ ml: "auto" }}>
-          <Link
-            href={id === undefined ? "/proposals/all" : id + "/proposals/all"}
+      <CardSlider
+        uniqueId="uses"
+        addMargin={0}
+        buttonTop
+        header={
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              width: deviceWrapper("80%", "90%"),
+            }}
           >
-            <Button sx={{ fontSize: ".8rem" }} size="small">
-              View All
-            </Button>
-          </Link>
-          <IconButton
-            size="small"
-            disabled={slide <= 1}
-            onClick={decrementSlide}
-            sx={{ backgroundColor: "fileInput.main", mr: ".5rem" }}
-          >
-            <ChevronLeftIcon />
-          </IconButton>
-          <IconButton
-            size="small"
-            sx={{ backgroundColor: "fileInput.main" }}
-            onClick={incrementSlide}
-            disabled={slide >= proposals.length}
-          >
-            <ChevronRightIcon />
-          </IconButton>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          mt: ".5rem",
-          overflowX: "hidden",
-          pt: ".75rem",
-          width: "100%",
-        }}
+            <Subheader title="Active proposals" small bold />
+            <Box sx={{ ml: "auto" }}>
+              <Link
+                href={
+                  id === undefined
+                    ? "dao/proposals/all"
+                    : `/dao/${id}/proposals/all`
+                }
+              >
+                <Button sx={{ fontSize: ".8rem", mr: "1rem" }} size="small">
+                  View All
+                </Button>
+              </Link>
+            </Box>
+          </Box>
+        }
       >
         {proposals.map((i: any, c: number) => (
           <ProposalCard
             {...i}
             c={c}
+            scrollable
             key={"proposal-card-key-" + c}
-            width={deviceStruct("92%", "92%", "45%", "33%", "33%")}
+            width={deviceStruct("25%", "25%", "35%", "23%", "23%")}
           />
         ))}
-      </Box>
+      </CardSlider>
     </>
   );
 };

@@ -10,13 +10,13 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import ProfileHeader from "@components/dao/profile/Header";
 import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
-
 import Proposals from "@components/dao/profile/Proposals";
 import Activity from "@components/dao/profile/Activity";
 import { useRouter } from "next/router";
 import Layout from "../Layout";
 import { deviceWrapper } from "@components/utilities/Style";
 import AboutUser from "./AboutUser";
+import BackLink from "@components/utilities/BackLink";
 
 const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
   props
@@ -49,25 +49,7 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
             pt: deviceWrapper("0", "1rem"),
           }}
         >
-          <Link
-            href={
-              props.edit
-                ? id === undefined
-                  ? "/dao"
-                  : `/dao/${id}`
-                : id === undefined
-                ? `/dao/members`
-                : `/dao/${id}/members`
-            }
-          >
-            <Button
-              variant="outlined"
-              size="small"
-              startIcon={<ArrowBackIcon />}
-            >
-              Back
-            </Button>
-          </Link>
+          <BackLink />
           <ProfileHeader edit={props.edit} followed={props.followed} />
           <Box sx={{ width: "100%", display: deviceWrapper("block", "none") }}>
             <AboutUser />

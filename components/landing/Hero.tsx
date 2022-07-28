@@ -1,9 +1,8 @@
-import { Typography, Grid, Box, Button, Container } from "@mui/material";
-import Image from "next/image";
+import { Typography, Grid, Box, Button, Container, Link } from "@mui/material";
+
 import { DarkTheme } from "@theme/theme";
 import SectionTitle from "@components/SectionTitle";
 import SocialGrid from "@components/SocialGrid";
-import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -21,18 +20,12 @@ export default function Hero() {
             sm: "translate(-50%, 0)",
             md: "translate(-50%, 0)",
           },
-          overflow: "hidden",
+          // overflow: "hidden",
           zIndex: "-1",
           ml: "-24px",
         }}
       >
-        <Image
-          src="/hero-bg.png"
-          layout="fill"
-          objectFit="contain"
-          objectPosition="center top"
-          quality={100}
-        />
+        <img src="/hero-bg.png" />
       </Box>
       <Grid
         container
@@ -89,9 +82,11 @@ export default function Hero() {
               DAO
             </Typography>
           </Typography>
-          <Link href="/creation">
-            <Button variant="contained">Create your dao</Button>
-          </Link>
+          {/* <Link href="/creation"> */}
+          <Button variant="contained" disabled>
+            Coming Soon
+          </Button>
+          {/* </Link> */}
         </Grid>
         <Grid item>
           <Typography
@@ -127,7 +122,7 @@ export default function Hero() {
               fontSize: { xs: "24px", md: "16px" },
             }}
           >
-            <SocialGrid />
+            <SocialGrid hoverColor="#FF8219" />
           </Grid>
         </Grid>
       </Grid>

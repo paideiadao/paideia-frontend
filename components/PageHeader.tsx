@@ -39,19 +39,12 @@ const PageHeader: FC<IPageHeader> = ({
           minHeight: "600px",
           width: "1716px",
           transform: "translate(-50%, 0)",
-          overflow: "hidden",
+          // overflow: "hidden",
           zIndex: "-1",
           ml: "-24px",
         }}
       >
-        <Image
-          src={bgUrl}
-          priority
-          layout="fill"
-          objectFit="contain"
-          objectPosition="center top"
-          quality={100}
-        />
+        <img src={bgUrl} />
       </Box>
       <Grid
         container

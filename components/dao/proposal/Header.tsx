@@ -17,11 +17,22 @@ const CreateHeader: React.FC<{ type?: string }> = (props) => {
       <Box>
         <Link
           href={
-            id === undefined ? "/dao/proposals/all" : `/dao/${id}/proposals/all`
+            router.pathname.includes("discussion") ||
+            router.pathname.includes("proposal")
+              ? id === undefined
+                ? "/dao/create"
+                : `/dao/${id}/create`
+              : id === undefined
+              ? "/dao/proposals/all"
+              : `/dao/${id}/proposals/all`
           }
         >
-          <Button sx={{ mb: "1rem" }}>
-            <ArrowBackIcon sx={{ mr: ".3rem" }} />
+          <Button
+            size="small"
+            sx={{ mb: "1rem" }}
+            startIcon={<ArrowBackIcon />}
+            variant="outlined"
+          >
             Back
           </Button>
         </Link>
