@@ -241,11 +241,11 @@ const Education: FC = () => {
     <>
       <PageHeader
         bgUrl="/about-header-bg.png"
-        sectionTitle="About"
-        titleLineOne="What Is"
-        titleLineTwo="Paideia&lt;"
-        subTitleOne="A Web3 DAO Management"
-        subTitleTwo="Software Suite"
+        sectionTitle="Education"
+        titleLineOne="Learning"
+        titleLineTwo="Together&lt;"
+        subTitleOne="Everything you need to know about creating your"
+        subTitleTwo="DAOs on Paideia, and more. "
       />
 
       <Container sx={{ px: "24px", py: "60px" }} id="navContainer">
