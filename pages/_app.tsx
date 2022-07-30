@@ -16,14 +16,14 @@ import { isDao } from "@lib/Router";
 import { WalletProvider } from "@components/wallet/WalletContext";
 import { AddWalletProvider } from "@components/wallet/AddWalletContext";
 import { IAlert } from "@lib/utilities";
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from "framer-motion";
 import { Box } from "@material-ui/core";
 
 const variants = {
   hidden: { opacity: 0, x: -200, y: 0 },
   enter: { opacity: 1, x: 0, y: 0 },
   exit: { opacity: 0, x: 0, y: -100 },
-}
+};
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
@@ -97,15 +97,13 @@ export default function App({ Component, pageProps }: AppProps) {
             <ThemeProvider theme={DarkTheme}>
               <CssBaseline />
               <Layout>
-                <AnimatePresence
-                  exitBeforeEnter
-                >
+                <AnimatePresence exitBeforeEnter>
                   <motion.main
                     variants={variants}
                     initial="hidden"
                     animate="enter"
                     exit="exit"
-                    transition={{ type: 'linear' }}
+                    transition={{ type: "linear" }}
                     className=""
                     key={router.route}
                   >

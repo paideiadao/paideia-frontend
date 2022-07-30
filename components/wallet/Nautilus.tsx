@@ -31,7 +31,9 @@ const Nautilus: React.FC<{
   const { wallet, setWallet, loggedIn, setLoggedIn } = useWallet();
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [changeLoading, setChangeLoading] = React.useState<number>(undefined);
-  const [runLoad, setRunLoad] = React.useState<boolean>(!isAddressValid(wallet))
+  const [runLoad, setRunLoad] = React.useState<boolean>(
+    !isAddressValid(wallet)
+  );
   React.useEffect(() => {
     const wrapper = async () => {
       props.setLoading(true);
@@ -43,7 +45,7 @@ const Nautilus: React.FC<{
   }, []);
 
   useDidMountEffect(() => {
-    console.log(loggedIn, 'here', props.addresses)
+    console.log(loggedIn, "here", props.addresses);
     if (props.addresses.length > 0 && runLoad) {
       const load = async () => {
         props.setLoading(true);
@@ -59,10 +61,15 @@ const Nautilus: React.FC<{
           // const address = addresses.length ? addresses[0].trim() : "";
 
           if (isAddressValid(wallet)) {
-              setRunLoad(false)
+            setRunLoad(false);
 
             await globalContext.api
-              .signingMessage(wallet, props.addresses.length === 0 ? undefined : props.addresses.map((i: any) => i.name))
+              .signingMessage(
+                wallet,
+                props.addresses.length === 0
+                  ? undefined
+                  : props.addresses.map((i: any) => i.name)
+              )
               .then(async (signingMessage: any) => {
                 if (signingMessage !== undefined) {
                   // @ts-ignore
@@ -81,8 +88,8 @@ const Nautilus: React.FC<{
                         "jwt_token_login",
                         data.data.access_token
                       );
-                      console.log(data)
-                      setWallet(signingMessage.data.address)
+                      console.log(data);
+                      setWallet(signingMessage.data.address);
                       setLoggedIn(true);
                       setChangeLoading(undefined);
 
@@ -117,7 +124,7 @@ const Nautilus: React.FC<{
     }
   }, [props.connected]);
 
-  console.log('accounts', props.addresses)
+  console.log("accounts", props.addresses);
   return (
     <Box sx={{ width: "100%" }}>
       {props.connected || changeLoading !== undefined ? (
@@ -166,84 +173,89 @@ const Nautilus: React.FC<{
           >
             {props.addresses !== undefined &&
               props.addresses.map((i: any, c: number) => {
-                console.log(i, c)
-                return i.name !== undefined && (
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      width: "100%",
-                      fontSize: ".7rem",
-                      pl: ".5rem",
-                      mt: ".5rem",
-                      pb: ".5rem",
-                      borderBottom:
-                        c === props.addresses.length - 1 ? 0 : "1px solid",
-                      borderBottomColor: "border.main",
-                    }}
-                    key={`${i.name}-address-selector-${c}`}
-                  >
-                    {i.name}
-                    {changeLoading === c ? (
-                      <LoadingButton
-                        color="primary"
-                        loading
-                        variant="contained"
-                        sx={{ ml: "auto", mr: ".5rem" }}
-                      >
-                        Active
-                      </LoadingButton>
-                    ) : (
-                      <Button
-                        sx={{ ml: "auto", mr: ".5rem" }}
-                        variant="contained"
-                        color={wallet === i.name ? "success" : "primary"}
-                        size="small"
-                        onClick={async () => {
-                          try {
-                            setChangeLoading(c);
-                            setLoggedIn(false);
-                            await globalContext.api
-                              .signingMessage(i.name)
-                              .then(async (signingMessage: any) => {
-                                if (signingMessage !== undefined) {
-                                  // @ts-ignore
-                                  let response = await ergo.auth(
-                                    i.name,
+                console.log(i, c);
+                return (
+                  i.name !== undefined && (
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        width: "100%",
+                        fontSize: ".7rem",
+                        pl: ".5rem",
+                        mt: ".5rem",
+                        pb: ".5rem",
+                        borderBottom:
+                          c === props.addresses.length - 1 ? 0 : "1px solid",
+                        borderBottomColor: "border.main",
+                      }}
+                      key={`${i.name}-address-selector-${c}`}
+                    >
+                      {i.name}
+                      {changeLoading === c ? (
+                        <LoadingButton
+                          color="primary"
+                          loading
+                          variant="contained"
+                          sx={{ ml: "auto", mr: ".5rem" }}
+                        >
+                          Active
+                        </LoadingButton>
+                      ) : (
+                        <Button
+                          sx={{ ml: "auto", mr: ".5rem" }}
+                          variant="contained"
+                          color={wallet === i.name ? "success" : "primary"}
+                          size="small"
+                          onClick={async () => {
+                            try {
+                              setChangeLoading(c);
+                              setLoggedIn(false);
+                              await globalContext.api
+                                .signingMessage(i.name)
+                                .then(async (signingMessage: any) => {
+                                  if (signingMessage !== undefined) {
                                     // @ts-ignore
-                                    signingMessage.data.signingMessage
-                                  );
-                                  response.proof = Buffer.from(
-                                    response.proof,
-                                    "hex"
-                                  ).toString("base64");
-                                  globalContext.api
-                                    .signMessage(signingMessage.data.tokenUrl, {
-                                      ...response,
-                                      previous_wallet_address: wallet,
-                                    })
-                                    .then((data) => {
-                                      localStorage.setItem(
-                                        "jwt_token_login",
-                                        data.data.access_token
-                                      );
-                                      setLoggedIn(true);
-                                      setChangeLoading(undefined);
+                                    let response = await ergo.auth(
+                                      i.name,
+                                      // @ts-ignore
+                                      signingMessage.data.signingMessage
+                                    );
+                                    response.proof = Buffer.from(
+                                      response.proof,
+                                      "hex"
+                                    ).toString("base64");
+                                    globalContext.api
+                                      .signMessage(
+                                        signingMessage.data.tokenUrl,
+                                        {
+                                          ...response,
+                                          previous_wallet_address: wallet,
+                                        }
+                                      )
+                                      .then((data) => {
+                                        localStorage.setItem(
+                                          "jwt_token_login",
+                                          data.data.access_token
+                                        );
+                                        setLoggedIn(true);
+                                        setChangeLoading(undefined);
 
-                                      props.setLoading(false);
-                                      setWallet(i.name);
-                                    });
-                                }
-                              });
-                          } catch (e) {
-                            setChangeLoading(undefined);
-                          }
-                        }}
-                      >
-                        {wallet === i.name ? "Active" : "Choose"}
-                      </Button>
-                    )}
-                  </Box>
+                                        props.setLoading(false);
+                                        setWallet(i.name);
+                                      });
+                                  }
+                                });
+                            } catch (e) {
+                              setChangeLoading(undefined);
+                            }
+                          }}
+                        >
+                          {wallet === i.name ? "Active" : "Choose"}
+                        </Button>
+                      )}
+                    </Box>
+                  )
                 );
               })}
           </Box>

@@ -6,7 +6,7 @@ import SocialGrid from "@components/SocialGrid";
 
 export default function Hero() {
   return (
-    <Container sx={{ flexGrow: 1, px: "24px", mt: "-64px", pt: '15px' }}>
+    <Container sx={{ flexGrow: 1, px: "24px", mt: "-64px", pt: "15px" }}>
       <Box
         sx={{
           position: "absolute",

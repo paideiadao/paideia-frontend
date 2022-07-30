@@ -66,7 +66,7 @@ export class AbstractApi {
 
   async mobileLogin(address: string) {
     return await this.post<{ data: any }>(
-      "/api/auth/login",
+      "/auth/login",
       { address },
       "added user.",
       ""

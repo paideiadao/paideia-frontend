@@ -216,7 +216,7 @@ const AddAction: React.FC<IProposalAction> = (props) => {
               .map((i: IActionType, c: number) => {
                 return (
                   <ActionSelect
-                    key={`proposal-action-${c}`}
+                    key={`proposal-action-${c}-${i.title}`}
                     {...i}
                     select={() => {
                       let temp = [...context.api.value.actions];

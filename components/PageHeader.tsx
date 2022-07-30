@@ -31,7 +31,7 @@ const PageHeader: FC<IPageHeader> = ({
   titleLineTwo,
   subTitleOne,
   subTitleTwo,
-  imgPositionSx
+  imgPositionSx,
 }) => {
   return (
     <>
@@ -47,12 +47,12 @@ const PageHeader: FC<IPageHeader> = ({
           // overflow: "hidden",
           zIndex: "-1",
           ml: "-24px",
-          ...imgPositionSx
+          ...imgPositionSx,
         }}
       >
         <Image src={bgUrl} layout="fill" priority />
       </Box>
-      <Container sx={{ px: "24px", mt: '-64px', pt: '64px', }}>
+      <Container sx={{ px: "24px", mt: "-64px", pt: "64px" }}>
         <Grid
           container
           sx={{

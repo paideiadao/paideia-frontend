@@ -334,9 +334,21 @@ export const DarkTheme = createTheme({
           "& input:focus:focus-visible": {
             outline: 0,
           },
+          "& textarea:focus:focus-visible": {
+            outline: 0,
+          },
         },
       },
     },
+    // MuiInputBase: {
+    //   styleOverrides: {
+    //     root: {
+    //       "& input:focus:focus-visible": {
+    //         outline: 0,
+    //       },
+    //     }
+    //   }
+    // },
     MuiSwitch: {
       styleOverrides: {
         root: {

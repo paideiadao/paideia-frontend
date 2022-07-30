@@ -107,11 +107,11 @@ const Blog = () => {
         titleLineTwo="Articles"
         subTitleOne="Don't miss out on any of the latest updates "
         subTitleTwo=" "
-        imgPositionSx={{ 
-          width: '2648px',
-          height: '1809px',
-          left: 'calc(50% + 200px)'
-         }}
+        imgPositionSx={{
+          width: "2648px",
+          height: "1809px",
+          left: "calc(50% + 200px)",
+        }}
       />
       <Highlights
         highlights={highlights}

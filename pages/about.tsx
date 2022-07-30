@@ -420,7 +420,7 @@ export default function About() {
         titleLineTwo="Paideia&lt;"
         subTitleOne="A Web3 DAO Management"
         subTitleTwo="Software Suite"
-        imgPositionSx={{ top: '200px', }}
+        imgPositionSx={{ top: "200px" }}
       />
 
       <Container sx={{ px: "24px", py: "60px" }} id="navContainer">

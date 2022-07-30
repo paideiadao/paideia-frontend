@@ -62,7 +62,7 @@ const AddWallet: React.FC = () => {
     //@ts-ignore
     // load primary address
     if (localStorage.getItem(WALLET_ADDRESS)) {
-      console.log('wallet address here', localStorage.getItem(WALLET_ADDRESS))
+      console.log("wallet address here", localStorage.getItem(WALLET_ADDRESS));
       setWallet(localStorage.getItem(WALLET_ADDRESS));
       setWalletInput(localStorage.getItem(WALLET_ADDRESS));
     }
@@ -101,6 +101,9 @@ const AddWallet: React.FC = () => {
               setDAppWallet({
                 addresses: addressData,
                 connected: true,
+              });
+              window.addEventListener("ergo_wallet_disconnected", () => {
+                clearWallet();
               });
             });
           } else {
@@ -159,8 +162,8 @@ const AddWallet: React.FC = () => {
   const clearWallet = () => {
     // clear state and local storage
     localStorage.setItem(WALLET_ADDRESS, "");
-    localStorage.setItem(WALLET_ADDRESS_LIST, "");
-    localStorage.setItem(DAPP_CONNECTED, "");
+    localStorage.setItem(WALLET_ADDRESS_LIST, "[]");
+    localStorage.setItem(DAPP_CONNECTED, "false");
     setWalletInput("");
     setWallet("");
     // clear dApp state
@@ -203,7 +206,7 @@ const AddWallet: React.FC = () => {
       const address_unused = await ergo.get_unused_addresses();
       const addresses = [...address_used, ...address_unused];
       // use the first used address if available or the first unused one if not as default
-      // when a user hits the signing request, it should be a list of addresses that they have connected. 
+      // when a user hits the signing request, it should be a list of addresses that they have connected.
       // If one of them has an account, then you login using that method... don't default to 0
       const address = addresses.length ? addresses[0] : "";
 
@@ -282,7 +285,11 @@ const AddWallet: React.FC = () => {
 
   return (
     <>
-      <Dialog open={addWalletOpen} onClose={() => setAddWalletOpen(false)}>
+      <Dialog
+        open={addWalletOpen}
+        onClose={() => setAddWalletOpen(false)}
+        PaperProps={{ sx: { maxWidth: "38rem" } }}
+      >
         <DialogTitle sx={{ backgroundColor: "fileInput.main" }}>
           Connect Wallet
         </DialogTitle>
@@ -349,7 +356,10 @@ const AddWallet: React.FC = () => {
             )} */}
             {view === "mobile" && (
               <Button
-                onClick={handleClose}
+                onClick={async () => {
+                  await globalContext.api.mobileLogin(wallet);
+                  handleSubmitWallet();
+                }}
                 disabled={walletInput === ""}
                 variant="contained"
               >
