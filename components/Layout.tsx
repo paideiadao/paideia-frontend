@@ -19,24 +19,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <title>Paideia | DAO Toolkit</title>
       </Head>
       <PageNavContext.Provider value={{ inPageNav, setInPageNav }}>
-        <Grid
-          sx={{
-            display: "flex",
-            alignContent: "space-between",
-            flexDirection: "column",
-            minHeight: "100vh",
-          }}
-        >
-          <Grid item>
-            <Header />
-          </Grid>
-          <Grid item sx={{ flexGrow: 1 }}>
-            {children}
-          </Grid>
-          <Grid item>
-            <Footer />
-          </Grid>
-        </Grid>
+        <Header />
+        {children}
+        <Footer />
       </PageNavContext.Provider>
     </>
   );
