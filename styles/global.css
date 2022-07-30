@@ -59,10 +59,12 @@ body {
 
 a {
   text-decoration: none;
+  color: #FF8219;
 }
 
 a:hover {
   text-decoration: underline;
+  color: #FF8219;
 }
 
 img {

@@ -109,43 +109,6 @@ interface INavItemProps {
   };
 }
 
-const NavigationListItem: React.FC<INavItemProps> = ({ size, page }) => {
-  return (
-    <Grid item>
-      {page.disabled ? (
-        <Typography
-          sx={{
-            fontFamily: ['"Space Grotesk"', "sans-serif"].join(","),
-            fontWeight: "Bold",
-            textTransform: "uppercase",
-            fontSize: `${size}px`,
-            color: "#777",
-          }}
-        >
-          {page.name}
-        </Typography>
-      ) : (
-        <Link
-          href={page.link}
-          // sx={{
-          //   color:
-          //     router.pathname === page.link
-          //       ? LightTheme.palette.secondary.main
-          //       : "#fff",
-          //   textDecoration:
-          //     router.pathname === page.link ? "underline" : "none",
-          //   "&:hover": {
-          //     color: LightTheme.palette.secondary.main,
-          //   },
-          // }}
-        >
-          {page.name}
-        </Link>
-      )}
-    </Grid>
-  );
-};
-
 export default function Header() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const { inPageNav } = useContext(PageNavContext);

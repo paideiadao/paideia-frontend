@@ -140,9 +140,7 @@ export default function Projects() {
         subTitleOne="Find all the projects launched on"
         subTitleTwo="Paideia and new ones coming soon. "
       />
-
       <Highlights highlights={highlights} />
-
       <Container sx={{ py: "240px" }}>
         <Grid container>
           <Grid item md={3}></Grid>
