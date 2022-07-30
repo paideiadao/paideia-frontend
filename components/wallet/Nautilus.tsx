@@ -31,6 +31,7 @@ const Nautilus: React.FC<{
   const { wallet, setWallet, loggedIn, setLoggedIn } = useWallet();
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [changeLoading, setChangeLoading] = React.useState<number>(undefined);
+  const [runLoad, setRunLoad] = React.useState<boolean>(!isAddressValid(wallet))
   React.useEffect(() => {
     const wrapper = async () => {
       props.setLoading(true);
@@ -42,7 +43,8 @@ const Nautilus: React.FC<{
   }, []);
 
   useDidMountEffect(() => {
-    if (!props.connected) {
+    console.log(loggedIn, 'here', props.addresses)
+    if (props.addresses.length > 0 && runLoad) {
       const load = async () => {
         props.setLoading(true);
         try {
@@ -57,13 +59,15 @@ const Nautilus: React.FC<{
           // const address = addresses.length ? addresses[0].trim() : "";
 
           if (isAddressValid(wallet)) {
+              setRunLoad(false)
+
             await globalContext.api
-              .signingMessage(wallet)
+              .signingMessage(wallet, props.addresses.length === 0 ? undefined : props.addresses.map((i: any) => i.name))
               .then(async (signingMessage: any) => {
                 if (signingMessage !== undefined) {
                   // @ts-ignore
                   let response = await ergo.auth(
-                    wallet,
+                    signingMessage.data.address,
                     // @ts-ignore
                     signingMessage.data.signingMessage
                   );
@@ -77,6 +81,8 @@ const Nautilus: React.FC<{
                         "jwt_token_login",
                         data.data.access_token
                       );
+                      console.log(data)
+                      setWallet(signingMessage.data.address)
                       setLoggedIn(true);
                       setChangeLoading(undefined);
 
@@ -98,7 +104,7 @@ const Nautilus: React.FC<{
       };
       load();
     }
-  }, [wallet]);
+  }, [props.addresses]);
 
   React.useEffect(() => {
     if (
@@ -111,6 +117,7 @@ const Nautilus: React.FC<{
     }
   }, [props.connected]);
 
+  console.log('accounts', props.addresses)
   return (
     <Box sx={{ width: "100%" }}>
       {props.connected || changeLoading !== undefined ? (
@@ -159,7 +166,8 @@ const Nautilus: React.FC<{
           >
             {props.addresses !== undefined &&
               props.addresses.map((i: any, c: number) => {
-                return (
+                console.log(i, c)
+                return i.name !== undefined && (
                   <Box
                     sx={{
                       display: "flex",
@@ -173,7 +181,7 @@ const Nautilus: React.FC<{
                         c === props.addresses.length - 1 ? 0 : "1px solid",
                       borderBottomColor: "border.main",
                     }}
-                    key={`${i.name}-address-selector`}
+                    key={`${i.name}-address-selector-${c}`}
                   >
                     {i.name}
                     {changeLoading === c ? (

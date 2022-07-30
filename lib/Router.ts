@@ -34,13 +34,15 @@ import Send from "@pages/dao/[id]/financials/treasury/send";
 import Burn from "@pages/dao/[id]/financials/token/burn";
 import DaoConfig from "@pages/dao/[id]/dao-config";
 import ProposalAddendum from "@pages/dao/proposal/[proposal_id]/addendum/[addendum_id]";
+import Profile from "@pages/dao/[id]/profile";
+import Member from "@pages/dao/[id]/member/[member_id]";
 
 export const isDao = (Component: any) => {
   return (
     Component === Creation ||
     Component === Dao ||
     Component === Notifications ||
-    // Component === Profile ||
+    Component === Profile ||
     Component === Dashboard ||
     Component === Edit ||
     Component === All ||
@@ -52,7 +54,7 @@ export const isDao = (Component: any) => {
     Component === Create ||
     Component === Vote ||
     Component === CastVote ||
-    // Component === Member ||
+    Component === Member ||
     Component === CreateProposal ||
     Component === CreateDiscussion ||
     Component === Past ||

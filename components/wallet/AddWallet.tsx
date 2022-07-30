@@ -62,6 +62,7 @@ const AddWallet: React.FC = () => {
     //@ts-ignore
     // load primary address
     if (localStorage.getItem(WALLET_ADDRESS)) {
+      console.log('wallet address here', localStorage.getItem(WALLET_ADDRESS))
       setWallet(localStorage.getItem(WALLET_ADDRESS));
       setWalletInput(localStorage.getItem(WALLET_ADDRESS));
     }
@@ -90,12 +91,15 @@ const AddWallet: React.FC = () => {
               const address_unused = await context.get_unused_addresses();
               const addresses = [...address_used, ...address_unused];
               const address = addresses.length > 0 ? addresses[0] : "";
-              if (!isAddressValid(wallet) && addresses.indexOf(wallet) == -1) {
-                setWallet(address);
-                setWalletInput(address);
-              }
+              // if (!isAddressValid(wallet) && addresses.indexOf(wallet) == -1) {
+              //   setWallet(address);
+              //   setWalletInput(address);
+              // }
+              const addressData = addresses.map((address, index) => {
+                return { id: index, name: address };
+              });
               setDAppWallet({
-                addresses: addresses,
+                addresses: addressData,
                 connected: true,
               });
             });
@@ -199,6 +203,8 @@ const AddWallet: React.FC = () => {
       const address_unused = await ergo.get_unused_addresses();
       const addresses = [...address_used, ...address_unused];
       // use the first used address if available or the first unused one if not as default
+      // when a user hits the signing request, it should be a list of addresses that they have connected. 
+      // If one of them has an account, then you login using that method... don't default to 0
       const address = addresses.length ? addresses[0] : "";
 
       if (!isAddressValid(wallet) && addresses.indexOf(wallet) == -1) {

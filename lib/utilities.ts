@@ -39,10 +39,10 @@ export class AbstractApi {
     this.setAlert = _setAlert;
   }
 
-  async signingMessage(address: string): Promise<any> {
+  async signingMessage(address: string, addresses?: string[]): Promise<any> {
     const data = await this.post<{ data: ISigningMessage }>(
       "/auth/login",
-      { address },
+      { address: address, addresses: addresses },
       "added user.",
       ""
     );

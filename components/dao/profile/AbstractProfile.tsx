@@ -33,7 +33,7 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
   const { id } = router.query;
 
   return (
-    <Layout width="100%">
+    <Layout width="98%">
       <Box
         sx={{
           display: "flex",
@@ -46,10 +46,11 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
           sx={{
             width: deviceWrapper("100%", "70%"),
             p: ".75rem",
-            pt: deviceWrapper("0", "1rem"),
+            pt: deviceWrapper("0", ".5rem"),
           }}
         >
           <BackLink />
+          <Box sx={{mt: '1rem'}}/>
           <ProfileHeader edit={props.edit} followed={props.followed} />
           <Box sx={{ width: "100%", display: deviceWrapper("block", "none") }}>
             <AboutUser />

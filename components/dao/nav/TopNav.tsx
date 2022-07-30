@@ -83,10 +83,9 @@ const TopNav: React.FC<INav> = (props) => {
           }}
         >
           <DarkSwitch />
-          {true ? (
-            <ConnectWallet />
-          ) : (
-            <>
+          {isAddressValid(wallet) &&
+          
+          <>
               <Box
                 sx={{
                   ml: ".5rem",
@@ -151,8 +150,9 @@ const TopNav: React.FC<INav> = (props) => {
                   </Box>
                 </Box>
               </Link>
-            </>
-          )}
+            </>}
+            <ConnectWallet show={!isAddressValid(wallet)}/>
+            
         </Box>
         <Modal open={open} onClose={handleClose}>
           <Box
