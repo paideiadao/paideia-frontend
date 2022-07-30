@@ -133,15 +133,56 @@ export default function Projects() {
   return (
     <>
       <PageHeader
-        bgUrl="/about-header-bg.png"
+        bgUrl="/backgrounds/projects-bg.png"
         sectionTitle="Projects"
         titleLineOne="Projects"
         titleLineTwo="In Paideia&lt;"
         subTitleOne="Find all the projects launched on"
         subTitleTwo="Paideia and new ones coming soon. "
+        imgPositionSx={{
+          width: '1792px',
+          height: '2184px',
+          left: 'calc(50% - 900px)',
+          transform: 'translate(-50%,0)',
+          top: '-130px',
+        }}
       />
+      <Box sx={{ position: 'relative' }}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "-600px",
+            left: "calc(50% + 900px)",
+            height: "2184px",
+            width: "1792px",
+            transform: "translate(-50%, 0)",
+            // overflow: "hidden",
+            zIndex: "-1",
+            ml: "-24px",
+          }}
+        >
+          <Image src="/backgrounds/green-blob.png" layout="fill" priority />
+        </Box>
+      </Box>
       <Highlights highlights={highlights} />
       <Container sx={{ py: "240px" }}>
+      <Box sx={{ position: 'relative' }}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "-100px",
+            left: "calc(50% + 140px)",
+            height: "881px",
+            width: "1379px",
+            transform: "translate(-50%, 0)",
+            // overflow: "hidden",
+            zIndex: "-1",
+            ml: "-24px",
+          }}
+        >
+          <Image src="/backgrounds/feedback-blob.png" layout="fill" priority />
+        </Box>
+      </Box>
         <Grid container>
           <Grid item md={3}></Grid>
           <Grid item md={9}>
@@ -189,6 +230,24 @@ export default function Projects() {
         </Grid>
         <ProjectList daos={daos} />
       </Container>
+
+      <Box sx={{ position: 'relative' }}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "-1335px",
+            left: "calc(50% - 200px)",
+            height: "1335px",
+            width: "2648px",
+            transform: "translate(-50%, 0)",
+            // overflow: "hidden",
+            zIndex: "-1",
+            ml: "-24px",
+          }}
+        >
+          <Image src="/backgrounds/projects-bottom.png" layout="fill" priority />
+        </Box>
+      </Box>
     </>
   );
 }

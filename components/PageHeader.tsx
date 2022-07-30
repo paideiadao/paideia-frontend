@@ -3,6 +3,7 @@ import { Typography, Grid, Box, Container } from "@mui/material";
 import Image from "next/image";
 import { DarkTheme } from "@theme/theme";
 import SectionTitle from "@components/SectionTitle";
+import { SxProps } from "@mui/material";
 
 const paragraphStyle = {
   fontWeight: "400",
@@ -19,7 +20,7 @@ interface IPageHeader {
   titleLineTwo: string;
   subTitleOne?: string;
   subTitleTwo?: string;
-  imgPositionSx?: {};
+  imgPositionSx?: SxProps;
 }
 
 const PageHeader: FC<IPageHeader> = ({
