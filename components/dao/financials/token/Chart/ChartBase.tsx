@@ -117,7 +117,6 @@ const ChartBase: React.FC<{ view: string; timeView: string; data: any }> = (
   // 7D: 12 data points per day (84 total)
   // 30D: 3 data points per day (90 total)
   // 1y: 8 data points per month (96 total)
-  console.log(props.data[0].open);
   return (
     <Box
       sx={{

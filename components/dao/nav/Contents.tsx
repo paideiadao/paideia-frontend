@@ -383,7 +383,6 @@ const Contents: React.FC<IContents> = (props) => {
     getSubSelected()
   );
   const setWrapper = (v: string) => {
-    console.log(v);
     if (v !== "Distributions") {
       setSubSelected(undefined);
       setSelected(v);

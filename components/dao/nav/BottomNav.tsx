@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 
 const BottomNav: React.FC = () => {
   const router = useRouter();
-  console.log(router);
   return (
     <Box
       sx={{

@@ -33,6 +33,7 @@ import Contents from "./Contents";
 import CloseIcon from "@mui/icons-material/Close";
 import { useWallet } from "@components/wallet/WalletContext";
 import ConnectWallet from "@components/wallet/ConnectWallet";
+import { isAddressValid } from "@components/wallet/AddWallet";
 
 export interface INav {
   setShowMobile: (val: boolean) => void;
@@ -47,8 +48,8 @@ const TopNav: React.FC<INav> = (props) => {
   const router = useRouter();
   const { id } = router.query;
   const { wallet } = useWallet();
-  console.log("wallet", wallet);
   const themeContext = React.useContext<IThemeContext>(ThemeContext);
+
   return (
     <>
       <Box
@@ -82,68 +83,76 @@ const TopNav: React.FC<INav> = (props) => {
           }}
         >
           <DarkSwitch />
-          <ConnectWallet />
-          <Box
-            sx={{
-              ml: ".5rem",
-              mr: ".5rem",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <Link
-              href={
-                id === undefined
-                  ? "/dao/notifications"
-                  : `/dao/${id}/notifications`
-              }
-            >
-              <IconButton sx={{ display: deviceWrapper("flex", "none") }}>
-                <Badge badgeContent={1} color="primary">
-                  <NotificationsIcon
-                    sx={{
-                      fontSize: "1.1rem",
-                      opacity:
-                        globalContext.api.theme === DarkTheme ? "1" : ".5",
-                    }}
-                  />
-                </Badge>
-              </IconButton>
-            </Link>
-
-            <IconButton
-              onClick={handleOpen}
-              sx={{ display: deviceWrapper("none", "flex") }}
-            >
-              <Badge badgeContent={1} color="primary">
-                <NotificationsIcon
-                  sx={{
-                    fontSize: "1.1rem",
-                    opacity: globalContext.api.theme === DarkTheme ? "1" : ".5",
-                  }}
-                />
-              </Badge>
-            </IconButton>
-          </Box>
-          <Link href={id === undefined ? "/dao/profile" : `/dao/${id}/profile`}>
-            <Box sx={{ ml: "1rem", display: "flex", alignItems: "center" }}>
-              <Avatar sx={{ mr: ".5rem" }}>
-                <img src={Musk.src} />
-              </Avatar>
+          {true ? (
+            <ConnectWallet />
+          ) : (
+            <>
               <Box
                 sx={{
-                  display: deviceWrapper("none", "flex"),
-                  flexDirection: "column",
-                  justifyContent: "center",
+                  ml: ".5rem",
+                  mr: ".5rem",
+                  display: "flex",
+                  alignItems: "center",
                 }}
               >
-                <Box sx={{ fontSize: ".9rem" }}>Alone Musk</Box>
-                <Box sx={{ color: "text.secondary", fontSize: ".7rem" }}>
-                  Lvl 7 | Philosopher
-                </Box>
+                <Link
+                  href={
+                    id === undefined
+                      ? "/dao/notifications"
+                      : `/dao/${id}/notifications`
+                  }
+                >
+                  <IconButton sx={{ display: deviceWrapper("flex", "none") }}>
+                    <Badge badgeContent={1} color="primary">
+                      <NotificationsIcon
+                        sx={{
+                          fontSize: "1.1rem",
+                          opacity:
+                            globalContext.api.theme === DarkTheme ? "1" : ".5",
+                        }}
+                      />
+                    </Badge>
+                  </IconButton>
+                </Link>
+
+                <IconButton
+                  onClick={handleOpen}
+                  sx={{ display: deviceWrapper("none", "flex") }}
+                >
+                  <Badge badgeContent={1} color="primary">
+                    <NotificationsIcon
+                      sx={{
+                        fontSize: "1.1rem",
+                        opacity:
+                          globalContext.api.theme === DarkTheme ? "1" : ".5",
+                      }}
+                    />
+                  </Badge>
+                </IconButton>
               </Box>
-            </Box>
-          </Link>
+              <Link
+                href={id === undefined ? "/dao/profile" : `/dao/${id}/profile`}
+              >
+                <Box sx={{ ml: "1rem", display: "flex", alignItems: "center" }}>
+                  <Avatar sx={{ mr: ".5rem" }}>
+                    <img src={Musk.src} />
+                  </Avatar>
+                  <Box
+                    sx={{
+                      display: deviceWrapper("none", "flex"),
+                      flexDirection: "column",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Box sx={{ fontSize: ".9rem" }}>Alone Musk</Box>
+                    <Box sx={{ color: "text.secondary", fontSize: ".7rem" }}>
+                      Lvl 7 | Philosopher
+                    </Box>
+                  </Box>
+                </Box>
+              </Link>
+            </>
+          )}
         </Box>
         <Modal open={open} onClose={handleClose}>
           <Box

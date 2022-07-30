@@ -17,7 +17,6 @@ const StakingForm: React.FC = () => {
     address: wallet,
     img: "",
   });
-  console.log(wallet, holder);
   const ticker = "DTK",
     available = "32,661";
   const [value, setValue] = React.useState<number>(100);

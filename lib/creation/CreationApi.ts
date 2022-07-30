@@ -134,7 +134,6 @@ export class CreationApi extends AbstractApi {
   // create data checking for the dao paths
   async createDao(draft: boolean = true): Promise<any> {
     const data = this.cleanData(this.data, draft);
-    console.log(data);
     let res = await this.post<any>("/dao", data);
     return res;
   }
