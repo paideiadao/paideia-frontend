@@ -25,6 +25,12 @@ const variants = {
   exit: { opacity: 0, x: 0, y: -100 },
 };
 
+const daoVariants = {
+  hidden: { opacity: 0, x: 0, y: -200 },
+  enter: { opacity: 1, x: 0, y: 0 },
+  exit: { opacity: 0, x: 0, y: -100 },
+};
+
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
   const [alert, setAlert] = React.useState<IAlert>({
@@ -60,7 +66,19 @@ export default function App({ Component, pageProps }: AppProps) {
                 <GlobalContext.Provider value={{ api }}>
                   {Component !== Creation ? (
                     <DaoTemplate subdomain="">
-                      <Component {...pageProps} />
+                      <AnimatePresence exitBeforeEnter>
+                        <motion.main
+                          variants={daoVariants}
+                          initial="hidden"
+                          animate="enter"
+                          exit="exit"
+                          transition={{ type: "linear" }}
+                          className=""
+                          key={router.route}
+                        >
+                          <Component {...pageProps} />
+                        </motion.main>
+                      </AnimatePresence>
                     </DaoTemplate>
                   ) : (
                     <Component {...pageProps} />
