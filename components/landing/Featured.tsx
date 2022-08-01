@@ -179,7 +179,7 @@ export default function Featured() {
         </Box>
         <Grid container sx={{ mt: { xs: "120px", md: "0" } }}>
           <Grid item md={6}>
-            <SectionTitle marginBottom="24px">Sponsored DAOs</SectionTitle>
+            <SectionTitle sx={{ mb: '24px' }}>Sponsored DAOs</SectionTitle>
             <Typography sx={{ ...titleStyle, mb: "64px" }}>
               Don&apos;t miss out on these projects
             </Typography>

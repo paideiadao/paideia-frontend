@@ -229,7 +229,7 @@ export default function Examples() {
           </Grid>
           <Grid item xs={12} md={6} sx={{ minHeight: "600px" }}>
             <Box sx={{ position: "relative" }}>
-              <SectionTitle marginBottom="64px">Examples</SectionTitle>
+              <SectionTitle sx={{ mb: '64px' }}>Examples</SectionTitle>
               <Box sx={{ width: "100%", maxWidth: "500px" }}>
                 <Box>
                   <StyledTabs
