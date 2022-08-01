@@ -127,7 +127,6 @@ export default function Creation() {
   }, [alert]);
 
   const api = new CreationApi(alert, setAlert, theme, setTheme, data, setData);
-  console.log(alert);
   return (
     <CreationContext.Provider value={{ api }}>
       {data.isPublished === 1 ? (

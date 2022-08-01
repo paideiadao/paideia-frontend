@@ -34,8 +34,8 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
     <Box
       sx={{
         p: "1rem",
-        pt: ".25rem",
-        pb: ".25rem",
+        pt: ".75rem",
+        pb: ".5rem",
         backgroundColor: "fileInput.outer",
         border: "1px solid",
         borderColor: "border.main",
@@ -47,7 +47,7 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
           title={`${props.previous ? "Previously " : ""}Connected Wallet`}
           mb={props.previous ? ".5rem" : "0"}
         />
-        {!props.previous && (
+        {/* {!props.previous && (
           <IconButton
             onClick={handleClickOpen}
             sx={{ mr: "-.5rem" }}
@@ -55,7 +55,7 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
           >
             <EditIcon sx={{ ml: "auto" }} color="primary" />
           </IconButton>
-        )}
+        )} */}
       </Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <Avatar
@@ -83,7 +83,7 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
         }}
       >
         <Box>
-          <CapsInfo title="Default wallet address" mb=".2rem" />
+          <CapsInfo title="Primary wallet address" mb=".2rem" />
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <CheckCircle color="success" sx={{ mr: ".5rem" }} />
             {wallet}
@@ -108,7 +108,7 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
       </Box>
       <Box
         sx={{
-          display: "flex",
+          display: props.previous ? 'none' : "flex",
           justifyContent: "center",
           width: "100%",
           mt: "1rem",
@@ -124,15 +124,15 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
           {show ? "Hide" : "Show"} other wallet addresses{" "}
         </Button>
         {show && (
-          <Box>
+          <Box sx={{width: '100%'}}>
             {dAppWallet.addresses
-              .filter((i: string) => i !== wallet)
-              .map((i: string, c: number) => (
+              .filter((i: any) => i.name !== wallet)
+              .map((i: any, c: number) => (
                 <Box
                   key={`other-wallet-addresses-key-${c}`}
-                  sx={{ mt: ".5rem", mb: ".5rem" }}
+                  sx={{ mt: ".5rem", mb: ".5rem", textAlign: 'left', width: '100%' }}
                 >
-                  {i}
+                  {i.name}
                 </Box>
               ))}
           </Box>

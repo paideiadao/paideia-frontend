@@ -32,7 +32,6 @@ import { getRandomImage } from "@components/utilities/images";
 const Discussion: React.FC = () => {
   const themeContext = React.useContext(ThemeContext);
   const router = useRouter();
-  console.log(router);
   const { discussion_id } = router.query;
 
   // replace comments with global state.... duh

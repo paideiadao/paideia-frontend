@@ -1,3 +1,4 @@
+import React from "react";
 import { createContext, useContext, useState } from "react";
 
 // The Context
@@ -6,6 +7,7 @@ const WalletContext = createContext(undefined);
 // Template Provider
 const WalletProvider = ({ children }: any) => {
   const [wallet, setWallet] = useState(""); // primary address
+  const [loggedIn, setLoggedIn] = React.useState<boolean>(false);
   const [dAppWallet, setDAppWallet] = useState({
     connected: false,
     addresses: [],
@@ -17,6 +19,8 @@ const WalletProvider = ({ children }: any) => {
     dAppWallet,
     setWallet, // <------ Expose Setter to Consumer
     setDAppWallet,
+    loggedIn,
+    setLoggedIn,
   };
 
   return (

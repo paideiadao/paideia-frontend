@@ -38,7 +38,6 @@ const Chart: React.FC = () => {
     if (initialData.length > 0) {
       let temp = [...initialData];
       let tempDate = new Date(temp[temp.length - 1].date);
-      console.log(tempDate);
       switch (timeView) {
         case "1h": {
           tempDate.setHours(tempDate.getHours() - 1);
@@ -80,7 +79,6 @@ const Chart: React.FC = () => {
           {
             setData(initialData);
           }
-          console.log(temp);
           setData(temp);
       }
     }

@@ -95,7 +95,6 @@ const DaoBio: React.FC = () => {
   });
 
   const setDaoWrapper = (dao: IDao) => {
-    console.log(dao);
     setId(dao.id);
     setDao(dao);
     setDropdown(false);

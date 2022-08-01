@@ -12,14 +12,15 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ClearIcon from "@mui/icons-material/Clear";
 import { isAddressValid, WALLET_ADDRESS_LIST } from "./AddWallet";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
+import { useWallet } from "./WalletContext";
+import useDidMountEffect from "@components/utilities/hooks";
+import { LoadingButton } from "@mui/lab";
 
 const Nautilus: React.FC<{
   set: Function;
   connect: Function;
-  wallet: string;
   connected: boolean;
   addresses: any[];
-  setWallet: Function;
   load: Function;
   setLoading: Function;
   setDAppWallet: Function;
@@ -27,74 +28,99 @@ const Nautilus: React.FC<{
   loading: boolean;
   setdAppAddressTableData: Function;
 }> = (props) => {
-  const [wallet, setWallet] = React.useState<string>(props.wallet);
+  const { wallet, setWallet, loggedIn, setLoggedIn } = useWallet();
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
+  const [changeLoading, setChangeLoading] = React.useState<number>(undefined);
+  const [runLoad, setRunLoad] = React.useState<boolean>(!isAddressValid(wallet))
   React.useEffect(() => {
-    console.log("here");
-    const load = async () => {
+    const wrapper = async () => {
       props.setLoading(true);
-      try {
-        //@ts-ignore
-        const address_used = await ergo.get_used_addresses();
-        //@ts-ignore
-        const address_unused = await ergo.get_unused_addresses();
-        const addresses = [...address_used, ...address_unused];
-        const addressData = addresses.map((address, index) => {
-          return { id: index, name: address };
-        });
-        console.log("skeeeep");
-        const address = addresses.length ? addresses[0] : "";
-
-        globalContext.api
-          .signingMessage(wallet)
-          .then(async (signingMessage: any) => {
-            console.log("data", signingMessage);
-            if (signingMessage !== undefined) {
-              console.log("here under");
-                // @ts-ignore
-                let response = await ergo.auth(
-                  address,
-                  // @ts-ignore
-                  signingMessage.data.signingMessage
-                );
-                response.proof = Buffer.from(response.proof, "hex").toString();
-                console.log(response);
-                console.log("here...");
-                globalContext.api
-                  .signMessage(signingMessage.data.tokenUrl, response)
-                  .then((data) => {
-                    console.log(data)
-                    props.connect();
-                  });
-                await props.connect();
-              
-
-              // // @ts-ignore
-              // localStorage.setItem("jwt_token_login", token.data);
-              // props.setDAppWallet({
-              //   ...props.dAppWallet,
-              //   addresses: addressData,
-              // });
-
-              // props.setdAppAddressTableData(addresses);
-              // localStorage.setItem(WALLET_ADDRESS_LIST, JSON.stringify(addressData));
-            }
-          });
-      } catch (e) {
-        console.log(e);
-        props.setLoading(false);
-      }
+      await props.connect();
+      await props.load();
+      props.setLoading(false);
     };
+    wrapper();
+  }, []);
 
-    load();
-  }, [wallet]);
+  useDidMountEffect(() => {
+    console.log(loggedIn, 'here', props.addresses)
+    if (props.addresses.length > 0 && runLoad) {
+      const load = async () => {
+        props.setLoading(true);
+        try {
+          // //@ts-ignore
+          // const address_used = await ergo.get_used_addresses();
+          // //@ts-ignore
+          // const address_unused = await ergo.get_unused_addresses();
+          // const addresses = [...address_used, ...address_unused];
+          // const addressData = addresses.map((address, index) => {
+          //   return { id: index, name: address };
+          // });
+          // const address = addresses.length ? addresses[0].trim() : "";
+
+          if (isAddressValid(wallet)) {
+              setRunLoad(false)
+
+            await globalContext.api
+              .signingMessage(wallet, props.addresses.length === 0 ? undefined : props.addresses.map((i: any) => i.name))
+              .then(async (signingMessage: any) => {
+                if (signingMessage !== undefined) {
+                  // @ts-ignore
+                  let response = await ergo.auth(
+                    signingMessage.data.address,
+                    // @ts-ignore
+                    signingMessage.data.signingMessage
+                  );
+                  response.proof = Buffer.from(response.proof, "hex").toString(
+                    "base64"
+                  );
+                  globalContext.api
+                    .signMessage(signingMessage.data.tokenUrl, response)
+                    .then((data) => {
+                      localStorage.setItem(
+                        "jwt_token_login",
+                        data.data.access_token
+                      );
+                      console.log(data)
+                      setWallet(signingMessage.data.address)
+                      setLoggedIn(true);
+                      setChangeLoading(undefined);
+
+                      props.setLoading(false);
+                    });
+                }
+              });
+          }
+        } catch (e) {
+          console.log(e);
+          props.setDAppWallet({
+            connected: false,
+            addresses: [],
+          });
+          setWallet("");
+          setChangeLoading(undefined);
+          props.setLoading(false);
+        }
+      };
+      load();
+    }
+  }, [props.addresses]);
 
   React.useEffect(() => {
-    setWallet(props.wallet);
-  }, [props.wallet]);
+    if (
+      props.connected &&
+      props.addresses.length > 0 &&
+      (localStorage.getItem("jwt_token_login") === "" ||
+        localStorage.getItem("jwt_token_login") === null)
+    ) {
+      setChangeLoading(0);
+    }
+  }, [props.connected]);
+
+  console.log('accounts', props.addresses)
   return (
     <Box sx={{ width: "100%" }}>
-      {isAddressValid(wallet) && !props.loading ? (
+      {props.connected || changeLoading !== undefined ? (
         <>
           <Box
             sx={{
@@ -140,8 +166,8 @@ const Nautilus: React.FC<{
           >
             {props.addresses !== undefined &&
               props.addresses.map((i: any, c: number) => {
-                console.log(i);
-                return (
+                console.log(i, c)
+                return i.name !== undefined && (
                   <Box
                     sx={{
                       display: "flex",
@@ -155,21 +181,68 @@ const Nautilus: React.FC<{
                         c === props.addresses.length - 1 ? 0 : "1px solid",
                       borderBottomColor: "border.main",
                     }}
-                    key={`${i.name}-address-selector`}
+                    key={`${i.name}-address-selector-${c}`}
                   >
                     {i.name}
-                    <Button
-                      sx={{ ml: "auto", mr: ".5rem" }}
-                      variant="contained"
-                      color={wallet === i.name ? "success" : "primary"}
-                      size="small"
-                      onClick={() => {
-                        setWallet(i.name);
-                        props.setWallet(i.name);
-                      }}
-                    >
-                      {wallet === i.name ? "Active" : "Choose"}
-                    </Button>
+                    {changeLoading === c ? (
+                      <LoadingButton
+                        color="primary"
+                        loading
+                        variant="contained"
+                        sx={{ ml: "auto", mr: ".5rem" }}
+                      >
+                        Active
+                      </LoadingButton>
+                    ) : (
+                      <Button
+                        sx={{ ml: "auto", mr: ".5rem" }}
+                        variant="contained"
+                        color={wallet === i.name ? "success" : "primary"}
+                        size="small"
+                        onClick={async () => {
+                          try {
+                            setChangeLoading(c);
+                            setLoggedIn(false);
+                            await globalContext.api
+                              .signingMessage(i.name)
+                              .then(async (signingMessage: any) => {
+                                if (signingMessage !== undefined) {
+                                  // @ts-ignore
+                                  let response = await ergo.auth(
+                                    i.name,
+                                    // @ts-ignore
+                                    signingMessage.data.signingMessage
+                                  );
+                                  response.proof = Buffer.from(
+                                    response.proof,
+                                    "hex"
+                                  ).toString("base64");
+                                  globalContext.api
+                                    .signMessage(signingMessage.data.tokenUrl, {
+                                      ...response,
+                                      previous_wallet_address: wallet,
+                                    })
+                                    .then((data) => {
+                                      localStorage.setItem(
+                                        "jwt_token_login",
+                                        data.data.access_token
+                                      );
+                                      setLoggedIn(true);
+                                      setChangeLoading(undefined);
+
+                                      props.setLoading(false);
+                                      setWallet(i.name);
+                                    });
+                                }
+                              });
+                          } catch (e) {
+                            setChangeLoading(undefined);
+                          }
+                        }}
+                      >
+                        {wallet === i.name ? "Active" : "Choose"}
+                      </Button>
+                    )}
                   </Box>
                 );
               })}
@@ -226,31 +299,29 @@ const Nautilus: React.FC<{
                 color: "primary.main",
               }}
               onClick={() => {
-                props.setLoading(true);
-
-                const load = async () => {
-                  try {
-                    //@ts-ignore
-                    const address_used = await ergo.get_used_addresses();
-                    //@ts-ignore
-                    const address_unused = await ergo.get_unused_addresses();
-                    const addresses = [...address_used, ...address_unused];
-                    console.log(addresses);
-                    const addressData = addresses.map((address, index) => {
-                      return { id: index, name: address };
-                    });
-                    props.setDAppWallet({
-                      ...props.dAppWallet,
-                      addresses: addressData,
-                    });
-                    props.setdAppAddressTableData(addressData);
-                  } catch (e) {
-                    console.log(e);
-                  }
-                  // props.setLoading(false);
-                };
-                const connect = async () => await props.connect();
-                connect().then(() => load());
+                // props.setLoading(true);
+                // const load = async () => {
+                //   try {
+                //     //@ts-ignore
+                //     // const address_used = await ergo.get_used_addresses();
+                //     // //@ts-ignore
+                //     // const address_unused = await ergo.get_unused_addresses();
+                //     // const addresses = [...address_used, ...address_unused];
+                //     // const addressData = addresses.map((address, index) => {
+                //     //   return { id: index, name: address };
+                //     // });
+                //     // props.setDAppWallet({
+                //     //   ...props.dAppWallet,
+                //     //   addresses: addressData,
+                //     // });
+                //     // props.setdAppAddressTableData(addressData);
+                //   } catch (e) {
+                //     console.log(e);
+                //   }
+                //   // props.setLoading(false);
+                // };
+                // const connect = async () => await props.connect();
+                // connect().then(() => load());
               }}
             >
               click here

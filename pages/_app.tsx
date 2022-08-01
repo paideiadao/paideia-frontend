@@ -15,9 +15,8 @@ import { useRouter } from "next/router";
 import { isDao } from "@lib/Router";
 import { WalletProvider } from "@components/wallet/WalletContext";
 import { AddWalletProvider } from "@components/wallet/AddWalletContext";
-import { Box, Modal } from "@mui/material";
-import { modalBackground } from "@components/utilities/modalBackground";
 import { IAlert } from "@lib/utilities";
+import { AnimatePresence } from 'framer-motion';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
@@ -90,9 +89,13 @@ export default function App({ Component, pageProps }: AppProps) {
           ) : (
             <ThemeProvider theme={DarkTheme}>
               <CssBaseline />
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
+              <AnimatePresence
+                exitBeforeEnter
+              >
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              </AnimatePresence>
             </ThemeProvider>
           )}
         </WalletProvider>

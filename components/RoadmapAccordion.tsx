@@ -148,7 +148,7 @@ interface IAccordion {
 const RoadmapAccordion: FC<IAccordion> = ({ sx }) => {
   return (
     <Box sx={sx}>
-      <SectionTitle marginBottom="120px">Roadmap</SectionTitle>
+      <SectionTitle sx={{ mb: '120px' }}>Roadmap</SectionTitle>
       {accordionObject.map((item, i) => {
         return (
           <MuiAccordion

@@ -51,9 +51,7 @@ const Reference: React.FC<{ context?: boolean }> = (props) => {
         event: React.SyntheticEvent,
         _value: string,
         reason: string
-      ) => {
-        console.log(event, _value);
-      }}
+      ) => {}}
       // @ts-ignore
       onChange={(
         event: React.SyntheticEvent,

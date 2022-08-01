@@ -1,3 +1,4 @@
+import { useRadioGroup } from "@mui/material";
 import axios from "axios";
 
 const statusLookup: IObj<number> = {
@@ -7,6 +8,11 @@ const statusLookup: IObj<number> = {
   PUT: 200,
   DELETE: 204,
 };
+
+interface IUpdateUser {
+  alias?: string;
+  primary_wallet_address?: string;
+}
 
 export const addDays = (days: number, date: Date = new Date()): Date => {
   let temp = new Date(date);
@@ -33,11 +39,10 @@ export class AbstractApi {
     this.setAlert = _setAlert;
   }
 
-  async signingMessage(address: string): Promise<any> {
-    console.log("skeep");
+  async signingMessage(address: string, addresses?: string[]): Promise<any> {
     const data = await this.post<{ data: ISigningMessage }>(
       "/auth/login",
-      { address },
+      { address: address, addresses: addresses },
       "added user.",
       ""
     );
@@ -48,6 +53,15 @@ export class AbstractApi {
 
   async signMessage(url: string, response: any) {
     return await this.post<{ data: any }>(url, response, "signed message", "");
+  }
+
+  async updateUser(address: string, user: IUpdateUser) {
+    return await this.put<{ data: any }>(
+      `/users/${address}`,
+      user,
+      "updated address",
+      ""
+    );
   }
 
   async mobileLogin(address: string) {
@@ -113,7 +127,6 @@ export class AbstractApi {
     action: string = undefined,
     current: string = ""
   ): Promise<T> {
-    console.log("here...");
     let self = this;
     return await this.request(url, "POST", body).then(
       // @ts-ignore
@@ -172,7 +185,6 @@ export class AbstractApi {
     body?: IObj<any>,
     auth?: boolean
   ): Promise<Response> {
-    console.log("request here...");
     const methods: IObj<Function> = {
       POST: axios.post,
       GET: axios.get,
@@ -184,10 +196,12 @@ export class AbstractApi {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt_token_login")}`,
         "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true,
       },
     };
+    url = url.includes("8000/api") ? url.split("8000/api")[1] : url;
     return await methods[method](
-      "http://localhost:8000/api" + url,
+      url.slice(0, 4) === "http" ? url : "http://localhost:8000/api" + url,
       body,
       defaultOptions
     );

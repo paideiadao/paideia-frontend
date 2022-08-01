@@ -231,7 +231,6 @@ const data = [
 const StackedAreaChart: React.FC = () => {
   const themeContext = React.useContext<IThemeContext>(ThemeContext);
 
-  console.log(data);
   const [loaded, setLoaded] = React.useState<boolean>(false);
   React.useEffect(() => {
     setLoaded(true);
@@ -302,7 +301,6 @@ const StackedAreaChart: React.FC = () => {
       }}
       useMesh={true}
       // tooltip={point => {
-      //   console.log(point)
       //   return <Box>
       //     Here
       //   </Box>

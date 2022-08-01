@@ -13,20 +13,16 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
   const api = globalContext.api;
 
   React.useEffect(() => {
-    console.log("skeep");
     const getData = async () => await api.getDaos();
     getData().then((data) => console.log(data));
   }, []);
 
   React.useEffect(() => {
-    console.log(router.query.id);
     api.setDaoId(router.query.id);
   }, [router]);
 
   const [showMobile, setShowMobile] = React.useState<boolean>(false);
-  React.useEffect(() => {
-    console.log("dao template loaded...");
-  }, []);
+  React.useEffect(() => {}, []);
 
   return (
     <Box

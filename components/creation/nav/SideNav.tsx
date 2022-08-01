@@ -13,6 +13,7 @@ import DarkSwitch from "@components/utilities/DarkSwitch";
 import { CreationContext } from "@lib/creation/Context";
 import { ThemeContext } from "@lib/ThemeContext";
 import { deviceStruct } from "@components/utilities/Style";
+import { useWallet } from "@components/wallet/WalletContext";
 
 interface INavProps {
   value: number;

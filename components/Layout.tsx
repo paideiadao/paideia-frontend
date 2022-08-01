@@ -2,14 +2,22 @@ import React, { useState, createContext } from "react";
 import Head from "next/head";
 import Header from "@components/layout/Header";
 import Footer from "@components/layout/Footer";
-import Grid from "@mui/material/Grid";
+import { motion } from 'framer-motion';
+import { useRouter } from "next/router";
 
 interface IContextProps {
   inPageNav: boolean;
   setInPageNav: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const variants = {
+  hidden: { opacity: 0, x: -200, y: 0 },
+  enter: { opacity: 1, x: 0, y: 0 },
+  exit: { opacity: 0, x: 0, y: -100 },
+}
+
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter();
   const [inPageNav, setInPageNav] = useState(false);
 
   return (
@@ -19,24 +27,19 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <title>Paideia | DAO Toolkit</title>
       </Head>
       <PageNavContext.Provider value={{ inPageNav, setInPageNav }}>
-        <Grid
-          sx={{
-            display: "flex",
-            alignContent: "space-between",
-            flexDirection: "column",
-            minHeight: "100vh",
-          }}
+        <Header />
+        <motion.main
+          variants={variants}
+          initial="hidden"
+          animate="enter"
+          exit="exit"
+          transition={{ type: 'linear' }}
+          className=""
+          key={router.route}
         >
-          <Grid item>
-            <Header />
-          </Grid>
-          <Grid item sx={{ flexGrow: 1 }}>
-            {children}
-          </Grid>
-          <Grid item>
-            <Footer />
-          </Grid>
-        </Grid>
+          {children}
+          <Footer />
+        </motion.main>
       </PageNavContext.Provider>
     </>
   );

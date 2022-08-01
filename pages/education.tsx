@@ -12,9 +12,14 @@ import {
   Card,
   CardActionArea,
   CardContent,
-  Chip
+  Chip,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Link
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
+import ExpandMore from "@mui/icons-material/ExpandMore";
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import SectionHeading from "@components/SectionHeading";
 import Blockquote from "@components/Blockquote";
@@ -96,6 +101,29 @@ const articles = [
   },
 ]
 
+const faqQuestions = [
+  {
+    question: 'What is a DAO? ',
+    answer: 'When users initiate a DAO, they will be asked to choose from some structural pre-sets. DAOscan encounter issues with scalability and resilience, and there are different approaches to solve these problems.',
+  },
+  {
+    question: 'How do DAOs work? ',
+    answer: 'When users initiate a DAO, they will be asked to choose from some structural pre-sets. DAOscan encounter issues with scalability and resilience, and there are different approaches to solve these problems.',
+  },
+  {
+    question: 'Who would use a DAO? ',
+    answer: 'When users initiate a DAO, they will be asked to choose from some structural pre-sets. DAOscan encounter issues with scalability and resilience, and there are different approaches to solve these problems.',
+  },
+  {
+    question: 'Why would someone use Paideia? ',
+    answer: 'When users initiate a DAO, they will be asked to choose from some structural pre-sets. DAOscan encounter issues with scalability and resilience, and there are different approaches to solve these problems.',
+  },
+  {
+    question: 'Where do you get Paideia tokens? ',
+    answer: <><Link href="https://app.ergodex.io" target="_blank">Ergodex</Link> is the best place to get Paideia tokens. </>,
+  },
+]
+
 interface IArticle {
   name: string;
   image?: string;
@@ -129,8 +157,8 @@ const ArticleCard: FC<IArticleCard> = ({ article }) => {
           <Grid
             container
             sx={{
-              flexDirection: { xs: 'column', sm: 'row' }, 
-              alignItems: { sm: 'center' }, 
+              flexDirection: { xs: 'column', sm: 'row' },
+              alignItems: { sm: 'center' },
             }}
           >
             <Grid item sm={4}>
@@ -139,7 +167,7 @@ const ArticleCard: FC<IArticleCard> = ({ article }) => {
                   display: "block",
                   position: "relative",
                   overflow: "hidden",
-                  height: { xs: '240px', sm: '282px' }, 
+                  height: { xs: '240px', sm: '282px' },
                 }}
               >
                 {article?.image ? (
@@ -237,6 +265,12 @@ interface IPersonObj {
 }
 
 const Education: FC = () => {
+  const [expanded, setExpanded] = React.useState<string | false>(false);
+
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false);
+    };
   return (
     <>
       <PageHeader
@@ -390,8 +424,50 @@ const Education: FC = () => {
             <SectionHeading
               category="FAQ"
               title="Things you might be wondering"
-              sx={{ mb: "32px" }}
+              sx={{ mb: "32px", maxWidth: '550px' }}
             />
+            <Box sx={{ maxWidth: '662px' }}>
+              {faqQuestions.map(({ question, answer }, i) => {
+                return (
+                  <Accordion
+                    key={('panel' + i.toString())}
+                    expanded={expanded === ('panel' + i.toString())}
+                    onChange={handleChange(('panel' + i.toString()))}
+                    sx={{
+                      background: 'none',
+                      mb: '16px',
+                      border: '1px solid rgba(255, 255, 255, 0.23)',
+                    }}
+                  >
+                    <AccordionSummary
+                      expandIcon={<ExpandMore />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                      sx={{
+                        '& p': {
+                          fontFamily: '"Space Grotesk", sans-serif',
+                          fontWeight: "600",
+                          fontSize: "24px",
+                          lineHeight: '32px',
+                        },
+                      }}
+                    >
+                      <Typography>{question}</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails
+                      sx={{
+                        borderTop: '1px solid rgba(255, 255, 255, 0.23)',
+                        p: '16px',
+                      }}
+                    >
+                      <Typography>
+                        {answer}
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                )
+              })}
+            </Box>
           </Box>
         </PageNav>
       </Container>
