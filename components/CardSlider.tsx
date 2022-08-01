@@ -177,7 +177,10 @@ const CardSlider: FC<SliderProps> = ({
       <Container
         id={uniqueId + "pnArrowContainer"}
         // maxWidth="lg"
-        sx={{ my: buttonTop ? "0" : "32px", p: 0 }}
+        sx={{ 
+          my: buttonTop ? "0" : "32px", 
+          p: 0
+        }}
       >
         <Box
           sx={
@@ -190,7 +193,9 @@ const CardSlider: FC<SliderProps> = ({
                   ml: deviceWrapper("0", "-1rem"),
                   mr: deviceWrapper("0", "-1rem"),
                 }
-              : null
+              : {
+                mx: { xs: '24px', sm: '0px' },
+              }
           }
         >
           {header}
@@ -226,7 +231,7 @@ const CardSlider: FC<SliderProps> = ({
         id="setWidth"
         sx={{ zIndex: "1", width: "100vw" }}
       ></Container>
-      {buttonTop ? <ButtonBox /> : null}
+      {buttonTop && <ButtonBox />}
       <Box
         sx={{
           /* Make this scrollable when needed */
@@ -263,7 +268,7 @@ const CardSlider: FC<SliderProps> = ({
           {children}
         </Box>
       </Box>
-      {buttonTop ? null : <ButtonBox />}
+      {!buttonTop && <ButtonBox />}
     </>
   );
 };

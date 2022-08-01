@@ -15,7 +15,8 @@ import {
   Chip,
   Accordion,
   AccordionSummary,
-  AccordionDetails
+  AccordionDetails,
+  Link
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import ExpandMore from "@mui/icons-material/ExpandMore";
@@ -119,7 +120,7 @@ const faqQuestions = [
   },
   {
     question: 'Where do you get Paideia tokens? ',
-    answer: <><a href="https://app.ergodex.io" target="_blank">Ergodex</a> is the best place to get Paideia tokens. </>,
+    answer: <><Link href="https://app.ergodex.io" target="_blank">Ergodex</Link> is the best place to get Paideia tokens. </>,
   },
 ]
 

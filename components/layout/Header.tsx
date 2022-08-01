@@ -40,11 +40,6 @@ const pages = [
     // disabled: true,
   },
   {
-    name: "Documentation",
-    link: "https://docs.paideia.im",
-    external: true,
-  },
-  {
     name: "Projects",
     link: "/projects",
     // disabled: true,

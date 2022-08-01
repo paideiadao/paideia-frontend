@@ -48,7 +48,7 @@ const MyCard: FC<MyCardProps> = ({ image, title, body }) => {
       <CardContent>
         <img src={image} width={35} height={35} />
         <Typography sx={cardTitleStyle}>{title}</Typography>
-        <Blockquote small>{body}</Blockquote>
+        <Blockquote small sx={{ mb: '0px', }}>{body}</Blockquote>
       </CardContent>
     </Card>
   );
@@ -56,14 +56,9 @@ const MyCard: FC<MyCardProps> = ({ image, title, body }) => {
 
 const theCards = [
   {
-    title: "Blockchain Development Teams",
-    body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
+    title: "Existing DAOs",
+    body: "DAOs with existing tokens can use Paideia. Just put in the token ID when creating a DAO on the platform. ",
     image: "/icons/HandshakeIcon.svg",
-  },
-  {
-    title: "Blockchain Development Teams",
-    body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
-    image: "/icons/DevIcon.svg",
   },
   {
     title: "Investor Groups",
@@ -76,19 +71,19 @@ const theCards = [
     image: "/icons/DevIcon.svg",
   },
   {
-    title: "Blockchain Development Teams",
-    body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
-    image: "/icons/DevIcon.svg",
+    title: "Startups",
+    body: "Paideia allows startups to raise funds on chain, and manage the treasury with a group of executives. Investors can follow the process through blockchain transparency. ",
+    image: "/icons/FingerSnapIcon.svg",
   },
   {
-    title: "Blockchain Development Teams",
-    body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
-    image: "/icons/DevIcon.svg",
+    title: "Blockchain Projects",
+    body: "Rugpull resistance is built in because investors have a say in how the treasury is spent.",
+    image: "/icons/CubesIcon.svg",
   },
   {
-    title: "Blockchain Development Teams",
+    title: "P2E Gaming Guilds",
     body: "Crowdsource funding for a project, and launch a DAO to manage the treasury. Give contributors a say in the direction of project development.",
-    image: "/icons/DevIcon.svg",
+    image: "/icons/GamingIcon.svg",
   },
 ];
 

@@ -4,12 +4,8 @@ import Box from "@mui/material/Box";
 import { DarkTheme, LightTheme } from "@theme/theme";
 import Paideia from "@components/svgs/Paideia";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import TelegramIcon from "@components/svgs/TelegramIcon";
-import YoutubeIcon from "@components/svgs/YoutubeIcon";
-import MediumIcon from "@components/svgs/MediumIcon";
-import TwitterIcon from "@components/svgs/TwitterIcon";
-import DiscordIcon from "@components/svgs/DiscordIcon";
+import Link from "next/link";
+import { Link as MuiLink } from "@mui/material";
 import SocialGrid from "@components/SocialGrid";
 
 const titleFont = {
@@ -23,23 +19,14 @@ const titleFont = {
 
 const linkStyles = {
   color: DarkTheme.palette.text.primary,
+  cursor: "pointer",
   textDecoration: "none",
   "&:hover": {
     textDecoration: "underline",
     color: DarkTheme.palette.primary.main,
   },
-};
-
-const iconLinkStyles = {
-  color: DarkTheme.palette.text.primary,
-  "&:hover": {
-    color: DarkTheme.palette.primary.main,
-  },
-};
-
-const listItemStyles = {
-  pb: "6px",
-  fontSize: "0.875rem",
+  fontSize: "16px",
+  lineHeight: '28px',
 };
 
 interface IPage {
@@ -55,27 +42,31 @@ const firstPages: IPage[] = [
   },
   {
     name: "About",
-    link: "/",
+    link: "/about",
   },
   {
     name: "Blog",
-    link: "/",
-    external: true,
+    link: "/blog",
   },
 ];
 
 const secondPages: IPage[] = [
   {
-    name: "Documentation",
+    name: "White Paper",
     link: "https://docs.paideia.im",
+    external: true,
   },
   {
     name: "Education",
-    link: "/",
+    link: "/education",
   },
 ];
 
 const thirdPages: IPage[] = [
+  {
+    name: "Projects",
+    link: "/projects"
+  },
   {
     name: "Dashboard",
     link: "/",
@@ -85,18 +76,25 @@ const thirdPages: IPage[] = [
 const fourthPages: IPage[] = [];
 
 export default function Footer() {
-  const linkList = (list: any[]) => {
+  const linkList = (list: IPage[]) => {
     return list.map((page, i) => (
-      <Typography key={page.name + i + "links"} sx={listItemStyles}>
-        <Link
+      page.external ? (
+        <MuiLink
           href={page.link}
+          target="_blank"
           sx={linkStyles}
-          target={page?.external ? "_blank" : ""}
-          rel="noreferrer"
         >
           {page.name}
+        </MuiLink>
+      ) : (
+        <Link href={page.link}>
+          <Box
+            sx={linkStyles}
+          >
+            {page.name}
+          </Box>
         </Link>
-      </Typography>
+      )
     ));
   };
 
@@ -157,12 +155,26 @@ export default function Footer() {
           </Grid>
           <Grid item>
             <Typography sx={{ fontSize: "0.75rem" }}>
-              <Link href="/" sx={linkStyles}>
-                Terms
+              <Link href="/">
+                <Box
+                  sx={{
+                    ...linkStyles,
+                    display: 'inline-block',
+                  }}
+                >
+                  Terms
+                </Box>
               </Link>{" "}
               ·{" "}
-              <Link href="/" sx={linkStyles}>
-                Privacy Policy
+              <Link href="/">
+                <Box
+                  sx={{
+                    ...linkStyles,
+                    display: 'inline-block',
+                  }}
+                >
+                  Privacy Policy
+                </Box>
               </Link>
             </Typography>
           </Grid>
