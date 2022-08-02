@@ -83,11 +83,12 @@ export default function Footer() {
           href={page.link}
           target="_blank"
           sx={linkStyles}
+          key={i}
         >
           {page.name}
         </MuiLink>
       ) : (
-        <Link href={page.link}>
+        <Link href={page.link} key={i}>
           <Box
             sx={linkStyles}
           >
@@ -154,7 +155,6 @@ export default function Footer() {
             </Typography>
           </Grid>
           <Grid item>
-            <Typography sx={{ fontSize: "0.75rem" }}>
               <Link href="/">
                 <Box
                   sx={{
@@ -176,7 +176,6 @@ export default function Footer() {
                   Privacy Policy
                 </Box>
               </Link>
-            </Typography>
           </Grid>
         </Grid>
       </Container>

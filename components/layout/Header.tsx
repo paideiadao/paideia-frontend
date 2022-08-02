@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import SvgIcon from "@mui/material/SvgIcon";
 import Button from "@mui/material/Button";
 import { useMediaQuery } from "@mui/material";
 import Paideia from "@components/svgs/Paideia";
@@ -201,16 +202,19 @@ export default function Header() {
               }}
             >
               <Link href="/">
-                <Paideia
-                  sx={{
-                    cursor: "pointer",
-                    color: DarkTheme.palette.text.primary,
-                    fontSize: { xs: "32px", md: "40px" },
-                    "&:hover": {
-                      color: LightTheme.palette.secondary.main,
-                    },
-                  }}
-                />
+                <SvgIcon sx={{
+                  cursor: "pointer",
+                  color: DarkTheme.palette.text.primary,
+                  fontSize: { xs: "32px", md: "40px" },
+                  "&:hover": {
+                    color: LightTheme.palette.secondary.main,
+                  },
+                }}>
+                  <rect width="3.56138" height="16.1036" rx="0.5" />
+                  <rect x="12.6965" y="7.89648" width="3.56138" height="16.1036" rx="0.5" />
+                  <rect x="6.34839" width="3.56138" height="9.75509" rx="0.5" />
+                  <rect x="6.34839" y="14.2446" width="3.56138" height="9.75509" rx="0.5" />
+                </SvgIcon>
               </Link>
             </Grid>
             <Grid item>
@@ -273,9 +277,8 @@ export default function Header() {
                           borderRadius: "2px",
                           background: "#fff",
                           transition: "transform 100ms ease-in-out",
-                          transform: `${
-                            navbarOpen ? "rotate(45deg)" : "translateY(6px)"
-                          }`,
+                          transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                            }`,
                         }}
                       ></Box>
                       <Box
@@ -286,9 +289,8 @@ export default function Header() {
                           borderRadius: "2px",
                           background: "#fff",
                           transition: "transform 100ms ease-in-out",
-                          transform: `${
-                            navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
-                          }`,
+                          transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                            }`,
                         }}
                       ></Box>
                     </Box>
@@ -332,9 +334,8 @@ export default function Header() {
                 borderRadius: "2px",
                 background: "#fff",
                 transition: "transform 100ms ease-in-out",
-                transform: `${
-                  navbarOpen ? "rotate(45deg)" : "translateY(6px)"
-                }`,
+                transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                  }`,
               }}
             ></Box>
             <Box
@@ -345,9 +346,8 @@ export default function Header() {
                 borderRadius: "2px",
                 background: "#fff",
                 transition: "transform 100ms ease-in-out",
-                transform: `${
-                  navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
-                }`,
+                transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                  }`,
               }}
             ></Box>
           </Box>
