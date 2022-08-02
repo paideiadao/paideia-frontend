@@ -351,7 +351,7 @@ const Education: FC = () => {
                   </ListItem>
                 </List>
               </Typography>
-              <Button variant="contained">Read Whitepaper</Button>
+              <Button href="https://docs.paideia.im" target="_blank" variant="contained">Read Whitepaper</Button>
             </Box>
           </Box>
           <Box component="section" id="ergo-advantage" sx={{ mb: "240px" }}>

@@ -210,7 +210,7 @@ export default function Featured() {
           </Grid>
           <Grid item md={6}></Grid>
           <Grid item md={12}>
-            <Button variant="contained" sx={{}}>
+            <Button href="/projects" variant="contained" sx={{}}>
               All Projects
             </Button>
           </Grid>

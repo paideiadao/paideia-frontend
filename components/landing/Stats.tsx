@@ -230,8 +230,8 @@ export default function Stats() {
                 </Typography>
               </Grid>
             </Grid>
-            <Button disabled variant="contained" sx={{}}>
-              Coming Soon
+            <Button variant="contained" sx={{}}>
+              Create Your DAO
             </Button>
           </Box>
         </Grid>
