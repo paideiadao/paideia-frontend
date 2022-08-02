@@ -477,11 +477,11 @@ export default function About() {
           <Box component="section" id="whitepaper">
             <WhitepaperQuote sx={{ my: "64px" }} />
           </Box>
-          <Box component="section" id="theproblem">
+          <Box component="section" id="theproblem" sx={{ display: 'block' }}>
             <SectionHeading
               category="The Problem"
-              title="Functionality, Security, and Support"
-              sx={{ mb: "120px" }}
+              title="Functionali&shy;ty, Security, and Support"
+              sx={{ mb: "120px", display: 'block' }}
             >
               People do not join DAOs to create software. They join them to
               accomplish something in the real world that benefits them or their
@@ -496,19 +496,19 @@ export default function About() {
                   {problems.map(({ num, title, body }, i) => {
                     return (
                       <Grid item key={i}>
-                        <Grid container>
-                          <Grid item xs={4}>
+                        <Grid container sx={{ flexDirection: { xs: 'column', sm: 'row' }}}>
+                          <Grid item sm={4}>
                             <Typography
                               sx={{
                                 fontFamily: '"Viga", sans-serif',
-                                fontSize: "100px",
+                                fontSize: {xs: '60px', sm: "100px" },
                                 lineHeight: "100px",
                               }}
                             >
                               {num}&#47;
                             </Typography>
                           </Grid>
-                          <Grid item xs={8}>
+                          <Grid item sm={8}>
                             <Typography
                               sx={{
                                 fontFamily: '"Space Grotesk", sans-serif',
@@ -518,7 +518,7 @@ export default function About() {
                             >
                               {title}
                             </Typography>
-                            <Divider sx={{ my: "12px" }} />
+                            <Divider sx={{ my: "12px", borderColor: 'rgba(255, 255, 255, 1)' }} />
                             <Typography>{body}</Typography>
                           </Grid>
                         </Grid>

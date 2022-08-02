@@ -21,6 +21,7 @@ tr {
 }
 
 body {
+  overflow-y: overlay;
   overflow-x: hidden;
   /* background-image: url(/main-bg.png); */
 }
@@ -30,27 +31,29 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-  padding: 0px;
+  background-color: transparent;
+  width: 14px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  border-radius: 0.3rem;
+  background-color: transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #003940;
-  border-radius: 0.3rem;
-  border: 1px solid;
-  border-color: black;
+  background: #004b53;
+  border-radius: 20px;
+  border: 3px solid transparent;
+  background-clip: content-box;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #004b53;
+  background: #006772;
+  border-radius: 20px;
+  border: 3px solid transparent;
+  background-clip: content-box;
 }
 
 * {
