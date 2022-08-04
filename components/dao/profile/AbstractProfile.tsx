@@ -50,7 +50,7 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
           }}
         >
           <BackLink />
-          <Box sx={{mt: '1rem'}}/>
+          <Box sx={{ mt: "1rem" }} />
           <ProfileHeader edit={props.edit} followed={props.followed} />
           <Box sx={{ width: "100%", display: deviceWrapper("block", "none") }}>
             <AboutUser />

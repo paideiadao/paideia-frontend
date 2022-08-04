@@ -34,6 +34,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useWallet } from "@components/wallet/WalletContext";
 import ConnectWallet from "@components/wallet/ConnectWallet";
 import { isAddressValid } from "@components/wallet/AddWallet";
+import { ProfilePopup } from "./Popups";
 
 export interface INav {
   setShowMobile: (val: boolean) => void;
@@ -45,6 +46,10 @@ const TopNav: React.FC<INav> = (props) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [openProfile, setOpenProfile] = React.useState(false);
+  const handleOpenProfile = () => setOpenProfile(true);
+  const handleCloseProfile = () => setOpenProfile(false);
   const router = useRouter();
   const { id } = router.query;
   const { wallet } = useWallet();
@@ -82,10 +87,9 @@ const TopNav: React.FC<INav> = (props) => {
             alignItems: "center",
           }}
         >
-          <DarkSwitch />
-          {isAddressValid(wallet) &&
-          
-          <>
+          {/* <DarkSwitch /> */}
+          {isAddressValid(wallet) && (
+            <>
               <Box
                 sx={{
                   ml: ".5rem",
@@ -129,31 +133,40 @@ const TopNav: React.FC<INav> = (props) => {
                   </Badge>
                 </IconButton>
               </Box>
-              <Link
+              {/* <Link
                 href={id === undefined ? "/dao/profile" : `/dao/${id}/profile`}
+              > */}
+              <Box
+                sx={{
+                  ml: "1rem",
+                  display: "flex",
+                  alignItems: "center",
+                  cursor: "pointer",
+                }}
+                onClick={handleOpenProfile}
               >
-                <Box sx={{ ml: "1rem", display: "flex", alignItems: "center" }}>
-                  <Avatar sx={{ mr: ".5rem" }}>
-                    <img src={Musk.src} />
-                  </Avatar>
-                  <Box
-                    sx={{
-                      display: deviceWrapper("none", "flex"),
-                      flexDirection: "column",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Box sx={{ fontSize: ".9rem" }}>Alone Musk</Box>
-                    <Box sx={{ color: "text.secondary", fontSize: ".7rem" }}>
-                      Lvl 7 | Philosopher
-                    </Box>
+                <Avatar sx={{ mr: ".5rem" }}>
+                  <img src={Musk.src} />
+                </Avatar>
+                <Box
+                  sx={{
+                    display: deviceWrapper("none", "flex"),
+                    flexDirection: "column",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Box sx={{ fontSize: ".9rem" }}>Alone Musk</Box>
+                  <Box sx={{ color: "text.secondary", fontSize: ".7rem" }}>
+                    Lvl 7 | Philosopher
                   </Box>
                 </Box>
-              </Link>
-            </>}
-            <ConnectWallet show={!isAddressValid(wallet)}/>
-            
+              </Box>
+              {/* </Link> */}
+            </>
+          )}
+          <ConnectWallet show={!isAddressValid(wallet)} />
         </Box>
+        <ProfilePopup open={openProfile} close={handleCloseProfile} />
         <Modal open={open} onClose={handleClose}>
           <Box
             sx={{

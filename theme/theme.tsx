@@ -63,7 +63,8 @@ export const LightTheme = createTheme({
       main: "#00868F",
     },
     error: {
-      main: "#F44336",
+      main: "#ef5350",
+      light: '#ef5350'
     },
     favoriteBackground: {
       main: "#FEE8E7",
@@ -104,6 +105,10 @@ export const LightTheme = createTheme({
       lightText: "blue",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
+    },
+    success: {
+      main: '#2E7D32',
+      
     },
     secondary: {
       main: "#FF8219",
@@ -202,7 +207,8 @@ export const DarkTheme = createTheme({
       paper: "#0E1421",
     },
     error: {
-      main: "#F44336",
+      main: "#ef5350",
+      light: '#ef5350'
     },
     text: {
       primary: "#FFFFFF",
@@ -260,6 +266,10 @@ export const DarkTheme = createTheme({
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
+    success: {
+      main: '#66BB6A',
+
+    }, 
     secondary: {
       light: "#FFCF7E",
       main: "#FC9E4F",
@@ -334,9 +344,21 @@ export const DarkTheme = createTheme({
           "& input:focus:focus-visible": {
             outline: 0,
           },
+          "& textarea:focus:focus-visible": {
+            outline: 0,
+          },
         },
       },
     },
+    // MuiInputBase: {
+    //   styleOverrides: {
+    //     root: {
+    //       "& input:focus:focus-visible": {
+    //         outline: 0,
+    //       },
+    //     }
+    //   }
+    // },
     MuiSwitch: {
       styleOverrides: {
         root: {
