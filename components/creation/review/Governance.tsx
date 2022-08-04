@@ -108,7 +108,7 @@ const Governance: React.FC<{
             mt: ".5rem",
           }}
         >
-          <Button onClick={() => props.edit(1)}>
+          <Button onClick={() => props.edit(2)}>
             Edit Section
             <EditIcon sx={{ ml: ".5rem" }} />
           </Button>

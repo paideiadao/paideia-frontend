@@ -171,6 +171,9 @@ export const LightTheme = createTheme({
           "& input:focus:focus-visible": {
             outline: 0,
           },
+          "& textarea:focus:focus-visible": {
+            outline: 0,
+          },
         },
       },
     },

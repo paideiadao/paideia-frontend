@@ -87,7 +87,7 @@ const Nautilus: React.FC<{
                     .then((data) => {
                       localStorage.setItem(
                         "jwt_token_login",
-                        data.data.access_tokena
+                        data.data.access_token
                       );
                       setWallet(signingMessage.data.address);
                       localStorage.setItem(WALLET_ADDRESS, signingMessage.data.address)

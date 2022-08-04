@@ -6,7 +6,6 @@ import {
 } from "../../../lib/creation/Context";
 import { Header, Subheader } from "../utilities/HeaderComponents";
 import TokenInformation from "./TokenInformation";
-import { ITokenHolder, ITokenomics } from "../../../lib/creation/CreationApi";
 import TokenSymbol from "./TokenSymbol";
 import TokenHolders from "./TokenHolders";
 import AdvancedTokenomics from "./AdvancedTokenomics/AdvancedTokenomics";
@@ -19,6 +18,7 @@ import {
 } from "../../../lib/creation/Utilities";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { deviceStruct } from "@components/utilities/Style";
+import { ITokenHolder, ITokenomics } from "@lib/creation/Interfaces";
 
 const Tokenomics: React.FC = () => {
   const creationContext = React.useContext<ICreationContext>(CreationContext);
@@ -36,13 +36,6 @@ const Tokenomics: React.FC = () => {
   let tokenHolders = data.tokenHolders;
   let distributions = data.distributions;
   let activateTokenomics = data.activateTokenomics;
-  /*
-    Discuss with nico
-    - All drafts popup / page
-    - indicators on top nav bar for which draft you're using
-    - Auto save feature for user
-
-  */
 
   React.useEffect(() => {
     set({

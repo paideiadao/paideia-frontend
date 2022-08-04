@@ -130,12 +130,13 @@ const Review: React.FC = () => {
                 onClick={async () => {
                   creationContext.api.setData({
                     ...data,
-                    isDraft: 0,
-                    isPublished: 1,
+                    // isDraft: 0,
+                    // isPublished: 1,
                   });
                   let res = await creationContext.api.createDao(false);
                   if (res !== false) {
-                    Router.push(`/dao/${res.data.dao_name.toLowerCase()}`);
+                    console.log('res', res)
+                    // Router.push(`/dao/${res.data.dao_name.toLowerCase()}`);
                   } else {
                     console.log("error here..");
                   }
