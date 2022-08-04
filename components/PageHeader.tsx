@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Typography, Grid, Box, Container } from "@mui/material";
+import { Typography, Grid, Box, Container, useMediaQuery } from "@mui/material";
 import Image from "next/image";
 import { DarkTheme } from "@theme/theme";
 import SectionTitle from "@components/SectionTitle";
@@ -21,6 +21,7 @@ interface IPageHeader {
   subTitleOne?: string;
   subTitleTwo?: string;
   imgPositionSx?: SxProps;
+  mobileSx?: SxProps;
 }
 
 const PageHeader: FC<IPageHeader> = ({
@@ -31,27 +32,42 @@ const PageHeader: FC<IPageHeader> = ({
   titleLineTwo,
   subTitleOne,
   subTitleTwo,
-  imgPositionSx
+  imgPositionSx,
+  mobileSx
 }) => {
+  const isSmall = useMediaQuery(DarkTheme.breakpoints.down('sm'))
   return (
     <>
-      <Box
-        sx={{
-          position: "absolute",
-          top: "0",
-          left: "50%",
-          height: { xs: "100vh", md: "1261px" },
-          minHeight: "600px",
-          width: "1716px",
-          transform: "translate(-50%, 0)",
-          // overflow: "hidden",
-          zIndex: "-1",
-          ml: "-24px",
-          ...imgPositionSx
-        }}
-      >
-        <Image src={bgUrl} layout="fill" priority />
-      </Box>
+      {(isSmall && mobileBgUrl) ? (
+        <Box
+          sx={{
+            position: "absolute",
+            top: "0",
+            left: "50%",
+            transform: "translate(-50%, 0)",
+            zIndex: "-1",
+            ml: "-24px",
+            ...mobileSx,
+          }}
+        >
+          <Image src={mobileBgUrl} layout="fill" priority />
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            position: "absolute",
+            top: "0",
+            left: "50%",
+            transform: "translate(-50%, 0)",
+            zIndex: "-1",
+            ml: "-24px",
+            ...imgPositionSx,
+          }}
+        >
+          <Image src={bgUrl} layout="fill" priority />
+        </Box>
+      )}
+
       <Container sx={{ px: "24px", mt: '-64px', pt: '64px', }}>
         <Grid
           container

@@ -143,25 +143,32 @@ export default function Projects() {
     <>
       <PageHeader
         bgUrl="/backgrounds/projects-bg.png"
-        sectionTitle="Projects"
-        titleLineOne="Projects"
-        titleLineTwo="In Paideia&lt;"
-        subTitleOne="Find all the projects launched on"
-        subTitleTwo="Paideia and new ones coming soon. "
         imgPositionSx={{
           width: '1792px',
           height: '2184px',
           left: 'calc(50% - 900px)',
           transform: 'translate(-50%,0)',
-          top: '-130px',
+          top: '-500px',
         }}
+        mobileBgUrl="/backgrounds/projects-bg.png"
+        mobileSx={{
+          width: '1344px',
+          height: '1638px',
+          left: '-200px',
+          top: '-100px',
+        }}
+        sectionTitle="Projects"
+        titleLineOne="Projects"
+        titleLineTwo="In Paideia&lt;"
+        subTitleOne="Find all the projects launched on"
+        subTitleTwo="Paideia and new ones coming soon. "
       />
       <Box sx={{ position: 'relative' }}>
         <Box
           sx={{
             position: "absolute",
             top: "-600px",
-            left: "calc(50% + 900px)",
+            left: "calc(50% + 700px)",
             height: "2184px",
             width: "1792px",
             transform: "translate(-50%, 0)",
