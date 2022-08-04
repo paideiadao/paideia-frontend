@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IObj } from "./Interfaces";
+import { IObj } from "@lib/Interfaces";
 
 const statusLookup: IObj<number> = {
   GET: 200,

@@ -9,10 +9,10 @@ import {
   TextField,
 } from "@mui/material";
 import * as React from "react";
-import { ISocialLink } from "../../../lib/creation/CreationApi";
-import { CreationContext } from "../../../lib/creation/Context";
-import { Subheader, Subtitle } from "../utilities/HeaderComponents";
-import LabeledSwitch from "../utilities/LabeledSwitch";
+import { ISocialLink } from "@lib/creation/Interfaces";
+import { CreationContext } from "@lib/creation/Context";
+import { Subheader, Subtitle } from "@components/creation/utilities/HeaderComponents";
+import LabeledSwitch from "@components/creation/utilities/LabeledSwitch";
 import AddIcon from "@mui/icons-material/Add";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import InstagramIcon from "@mui/icons-material/Instagram";

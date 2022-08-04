@@ -9,8 +9,8 @@ import * as React from "react";
 import {
   ITokenHolder,
   ITokenomics,
-} from "../../../../lib/creation/CreationApi";
-import { IData } from "../../../../lib/utilities";
+} from "@lib/creation/Interfaces";
+import { IData } from "@lib/Interfaces";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { CapsInfo, Header, LearnMore } from "../../utilities/HeaderComponents";
 import BalanceInput from "../../utilities/BalanceInput";

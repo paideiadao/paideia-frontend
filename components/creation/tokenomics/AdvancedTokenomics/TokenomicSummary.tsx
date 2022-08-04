@@ -3,8 +3,8 @@ import * as React from "react";
 import {
   ITokenHolder,
   ITokenomics,
-} from "../../../../lib/creation/CreationApi";
-import { IData } from "../../../../lib/utilities";
+} from "@lib/creation/Interfaces";
+import { IData } from "@lib/Interfaces";
 import { Subheader } from "../../utilities/HeaderComponents";
 import InfoIcon from "@mui/icons-material/Info";
 import { percentage } from "../../../../lib/creation/Utilities";

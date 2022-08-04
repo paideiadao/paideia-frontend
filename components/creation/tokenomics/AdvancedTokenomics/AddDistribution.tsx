@@ -1,7 +1,7 @@
 import { Box, InputAdornment, TextField } from "@mui/material";
 import * as React from "react";
-import { ITokenomics } from "../../../../lib/creation/CreationApi";
-import { IData } from "../../../../lib/utilities";
+import { ITokenomics } from "@lib/creation/Interfaces";
+import { IData } from "@lib/Interfaces";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import Treasury from "./Treasury";
 import CancelIcon from "@mui/icons-material/Cancel";

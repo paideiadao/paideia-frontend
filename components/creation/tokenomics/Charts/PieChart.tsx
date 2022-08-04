@@ -4,7 +4,7 @@ import * as React from "react";
 import {
   ITokenHolder,
   ITokenomics,
-} from "../../../../lib/creation/CreationApi";
+} from "@lib/creation/Interfaces";
 import { percentage } from "../../../../lib/creation/Utilities";
 import {
   CreationContext,

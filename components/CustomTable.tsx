@@ -8,7 +8,7 @@ import {
   TableContainer,
   useMediaQuery,
 } from "@mui/material";
-import { IObj } from "@lib/utilities";
+import { IObj } from "@lib/Interfaces";
 
 interface HeadingData {
   id: string;

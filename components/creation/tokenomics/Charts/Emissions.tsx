@@ -5,7 +5,7 @@
 import { Box } from "@mui/material";
 import { ResponsiveLine } from "@nivo/line";
 import * as React from "react";
-import { ITokenomics } from "../../../../lib/creation/CreationApi";
+import { ITokenomics } from "@lib/creation/Interfaces";
 import dateFormat from "dateformat";
 import { LightTheme } from "../../../../theme/theme";
 import {

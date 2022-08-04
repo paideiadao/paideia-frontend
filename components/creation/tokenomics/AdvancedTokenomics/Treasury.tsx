@@ -1,6 +1,6 @@
 import * as React from "react";
-import { ITokenomics } from "../../../../lib/creation/CreationApi";
-import { IData } from "../../../../lib/utilities";
+import { ITokenomics } from "@lib/creation/Interfaces";
+import { IData } from "@lib/Interfaces";
 import { Box, InputAdornment, TextField } from "@mui/material";
 import { CapsInfo, Header, Subheader } from "../../utilities/HeaderComponents";
 import DeleteIcon from "@mui/icons-material/Delete";

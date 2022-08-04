@@ -1,7 +1,7 @@
 import { Theme } from "@mui/material";
 
-import { AbstractApi } from "../utilities";
-import { ICreationData, ISocialLink, ITokenHolder } from "./Interfaces";
+import { AbstractApi } from "@lib/utilities";
+import { ICreationData, ISocialLink, ITokenHolder } from "@lib/creation/Interfaces";
 
 export class CreationApi {
   api: AbstractApi
