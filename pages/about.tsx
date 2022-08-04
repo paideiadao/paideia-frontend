@@ -414,13 +414,19 @@ export default function About() {
   return (
     <>
       <PageHeader
-        bgUrl="/about-header-bg.png"
+        bgUrl="/backgrounds/about-header-bg.png"
         sectionTitle="About"
         titleLineOne="What Is"
         titleLineTwo="Paideia&lt;"
         subTitleOne="A Web3 DAO Management"
         subTitleTwo="Software Suite"
-        imgPositionSx={{ top: "200px" }}
+        imgPositionSx={{ 
+          top: '200px',
+          width: '1716px',
+          height: '1224px',
+          left: '50%',
+          transform: 'translate(-50%,0)',
+        }}
       />
 
       <Container sx={{ px: "24px", py: "60px" }} id="navContainer">
