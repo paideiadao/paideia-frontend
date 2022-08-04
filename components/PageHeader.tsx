@@ -67,8 +67,8 @@ const PageHeader: FC<IPageHeader> = ({
           <Image src={bgUrl} layout="fill" priority />
         </Box>
       )}
-
       <Container sx={{ px: "24px", mt: '-64px', pt: '64px', }}>
+
         <Grid
           container
           sx={{

@@ -17,9 +17,9 @@ import Nautilus from "./Nautilus";
 import MobileWallet from "./MobileWallet";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 
-const WALLET_ADDRESS = "wallet_address";
+export const WALLET_ADDRESS = "wallet_address";
 export const WALLET_ADDRESS_LIST = "wallet_address_list";
-const DAPP_CONNECTED = "dapp_connected";
+export const DAPP_CONNECTED = "dapp_connected";
 
 /**
  * Note on es-lint disable line:
@@ -59,10 +59,13 @@ const AddWallet: React.FC = () => {
   );
 
   React.useEffect(() => {
+    window.addEventListener("ergo_wallet_disconnected", () => {
+      clearWallet();
+    });
     //@ts-ignore
     // load primary address
     if (localStorage.getItem(WALLET_ADDRESS)) {
-      console.log('wallet address here', localStorage.getItem(WALLET_ADDRESS))
+      console.log("wallet address here", localStorage.getItem(WALLET_ADDRESS));
       setWallet(localStorage.getItem(WALLET_ADDRESS));
       setWalletInput(localStorage.getItem(WALLET_ADDRESS));
     }
@@ -102,6 +105,7 @@ const AddWallet: React.FC = () => {
                 addresses: addressData,
                 connected: true,
               });
+              
             });
           } else {
           }
@@ -159,11 +163,13 @@ const AddWallet: React.FC = () => {
   const clearWallet = () => {
     // clear state and local storage
     localStorage.setItem(WALLET_ADDRESS, "");
-    localStorage.setItem(WALLET_ADDRESS_LIST, "");
-    localStorage.setItem(DAPP_CONNECTED, "");
+    localStorage.setItem(WALLET_ADDRESS_LIST, "[]");
+    localStorage.setItem(DAPP_CONNECTED, "false");
+    localStorage.setItem("jwt_token_login", '')
     setWalletInput("");
     setWallet("");
     // clear dApp state
+    setView('listing')
     setDAppError(false);
     setDAppWallet({
       connected: false,
@@ -203,18 +209,14 @@ const AddWallet: React.FC = () => {
       const address_unused = await ergo.get_unused_addresses();
       const addresses = [...address_used, ...address_unused];
       // use the first used address if available or the first unused one if not as default
-      // when a user hits the signing request, it should be a list of addresses that they have connected. 
+      // when a user hits the signing request, it should be a list of addresses that they have connected.
       // If one of them has an account, then you login using that method... don't default to 0
       const address = addresses.length ? addresses[0] : "";
-
-      if (!isAddressValid(wallet) && addresses.indexOf(wallet) == -1) {
-        setWallet(address);
-        setWalletInput(address);
-      }
 
       const addressData = addresses.map((address, index) => {
         return { id: index, name: address };
       });
+      setWallet(address)
       // // update dApp state
       setDAppWallet({
         connected: true,
@@ -242,12 +244,8 @@ const AddWallet: React.FC = () => {
       const addressData = addresses.map((address, index) => {
         return { id: index, name: address };
       });
-      const address = addresses.length > 0 ? addresses[0] : [];
-
-      if (!isAddressValid(wallet) && addresses.indexOf(wallet) == -1) {
-        setWallet(address);
-        setWalletInput(address);
-      }
+      const address = addresses.length > 0 ? addresses[0] : '';
+      setWallet(address)
       setDAppWallet({
         addresses: addressData,
         connected: true,
@@ -282,7 +280,11 @@ const AddWallet: React.FC = () => {
 
   return (
     <>
-      <Dialog open={addWalletOpen} onClose={() => setAddWalletOpen(false)}>
+      <Dialog
+        open={addWalletOpen}
+        onClose={() => setAddWalletOpen(false)}
+        PaperProps={{ sx: { maxWidth: "38rem" } }}
+      >
         <DialogTitle sx={{ backgroundColor: "fileInput.main" }}>
           Connect Wallet
         </DialogTitle>
@@ -306,6 +308,7 @@ const AddWallet: React.FC = () => {
               dAppWallet={dAppWallet}
               loading={loading}
               setdAppAddressTableData={setdAppAddressTableData}
+              clear={clearWallet}
             />
           ) : (
             <MobileWallet
@@ -330,26 +333,28 @@ const AddWallet: React.FC = () => {
           </Button>
 
           <Box sx={{ ml: "auto" }}>
-            {loading && view !== "listing" && !loggedIn && (
-              <CircularProgress size="1.5rem" />
-            )}
-            {/* {isAddressValid(wallet) && (
+            {isAddressValid(wallet) && (
               <Button
                 color="error"
                 variant="outlined"
                 sx={{ mr: view === "mobile" ? ".5rem" : 0 }}
                 onClick={() => {
-                  // setWallet("");
-
-                  // clearWallet();
+                  clearWallet();
                 }}
               >
                 Disconnect
               </Button>
-            )} */}
+            )}
             {view === "mobile" && (
               <Button
-                onClick={handleClose}
+                onClick={async () => {
+                  // add try catch here...
+                  console.log(walletInput, 'walletInput')
+                  let res = await globalContext.api.mobileLogin(walletInput);
+                  console.log('res', res)
+                  globalContext.api.webSocket(res.data.verificationId)
+                  handleSubmitWallet();
+                }}
                 disabled={walletInput === ""}
                 variant="contained"
               >

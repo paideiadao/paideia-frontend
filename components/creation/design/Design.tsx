@@ -7,70 +7,61 @@ import { CreationContext } from "../../../lib/creation/Context";
 import Banner from "./Banner";
 import Footer from "./Footer";
 import { deviceStruct } from "@components/utilities/Style";
+import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
+import { DarkTheme } from "@theme/theme";
 
 interface ITheme {
   id: number;
   label: string;
   colorTop: string;
   colorBottom: string;
+  colorTopDark: string;
+  colorBottomDark: string;
 }
 
 export const themes: ITheme[] = [
   {
     id: 1,
-    label: "Paideia/Dark",
+    label: "Paideia",
     colorTop: "#9FD2DB",
     colorBottom: "#111827",
+    colorTopDark: '#', 
+    colorBottomDark: '#9FD2DB'
   },
   {
     id: 2,
     label: "Paideia/Light",
     colorTop: "#23B5CF",
     colorBottom: "#FFFFFF",
+    colorTopDark: '', 
+    colorBottomDark: ''
   },
   {
     id: 3,
     label: "Purple/Dark",
     colorTop: "#9EA0FF",
     colorBottom: "#111827",
+    colorTopDark: '', 
+    colorBottomDark: ''
   },
   {
     id: 4,
     label: "Purple/Light",
     colorTop: "#6365EF",
     colorBottom: "#FFFFFF",
-  },
-  {
-    id: 5,
-    label: "Teal/Dark",
-    colorTop: "#82C1FF",
-    colorBottom: "#111827",
-  },
-  {
-    id: 6,
-    label: "Teal/Light",
-    colorTop: "#1976D2",
-    colorBottom: "#FFFFFF",
-  },
-  {
-    id: 7,
-    label: "Pink/Dark",
-    colorTop: "#EA79BD",
-    colorBottom: "#111827",
-  },
-  {
-    id: 8,
-    label: "Pink/Light",
-    colorTop: "#C22985",
-    colorBottom: "#FFFFFF",
+    colorTopDark: '', 
+    colorBottomDark: ''
   },
 ];
 
-export const ThemeCard: React.FC<{
+interface IThemeCard {
   set: Function;
   i: ITheme;
   theme: number;
-}> = (props) => {
+}
+
+export const ThemeCard: React.FC<IThemeCard> = (props) => {
+  const themeContext = React.useContext<IThemeContext>(ThemeContext);
   return (
     <Paper
       onClick={() => props.set(props.i.id)}
@@ -99,7 +90,7 @@ export const ThemeCard: React.FC<{
       >
         <Box
           sx={{
-            backgroundColor: props.i.colorBottom,
+            backgroundColor: themeContext.theme === DarkTheme ? props.i.colorBottomDark : props.i.colorBottom,
             width: "100%",
             height: "5rem",
             borderTopLeftRadius: ".6rem",
@@ -124,7 +115,7 @@ export const ThemeCard: React.FC<{
             sx={{
               width: "100%",
               height: "100%",
-              backgroundColor: props.i.colorTop,
+              backgroundColor: themeContext.theme === DarkTheme ? props.i.colorTopDark : props.i.colorTop,
               clipPath: "polygon(0 0, 100% 0, 0 100%)",
               borderTopLeftRadius: ".6rem",
               borderTopRightRadius: ".6rem",

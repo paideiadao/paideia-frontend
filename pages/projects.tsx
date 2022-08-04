@@ -163,7 +163,7 @@ export default function Projects() {
         subTitleOne="Find all the projects launched on"
         subTitleTwo="Paideia and new ones coming soon. "
       />
-      <Box sx={{ position: 'relative' }}>
+      <Box sx={{ position: "relative" }}>
         <Box
           sx={{
             position: "absolute",
@@ -196,7 +196,11 @@ export default function Projects() {
               ml: "-24px",
             }}
           >
-            <Image src="/backgrounds/feedback-blob.png" layout="fill" priority />
+            <Image
+              src="/backgrounds/feedback-blob.png"
+              layout="fill"
+              priority
+            />
           </Box>
         </Box>
         <Grid container>
@@ -286,7 +290,11 @@ export default function Projects() {
             ml: "-24px",
           }}
         >
-          <Image src="/backgrounds/projects-bottom.png" layout="fill" priority />
+          <Image
+            src="/backgrounds/projects-bottom.png"
+            layout="fill"
+            priority
+          />
         </Box>
       </Box>
     </>

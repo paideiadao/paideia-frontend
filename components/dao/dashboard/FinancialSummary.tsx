@@ -23,13 +23,13 @@ export const PerformanceWidget: React.FC<{
           ? "transparent"
           : props.value <= 0
           ? "error.light"
-          : "success.light",
+          : "success.main",
         borderRadius: ".3rem",
         fontSize: deviceWrapper(".65rem", ".8rem"),
         color: props.invert
           ? props.value <= 0
             ? "error.light"
-            : "success.light"
+            : "success.main"
           : "backgroundColor.main",
         p: ".15rem",
       }}
