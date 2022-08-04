@@ -108,7 +108,7 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
       </Box>
       <Box
         sx={{
-          display: props.previous ? 'none' : "flex",
+          display: props.previous ? "none" : "flex",
           justifyContent: "center",
           width: "100%",
           mt: "1rem",
@@ -124,13 +124,18 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
           {show ? "Hide" : "Show"} other wallet addresses{" "}
         </Button>
         {show && (
-          <Box sx={{width: '100%'}}>
+          <Box sx={{ width: "100%" }}>
             {dAppWallet.addresses
               .filter((i: any) => i.name !== wallet)
               .map((i: any, c: number) => (
                 <Box
                   key={`other-wallet-addresses-key-${c}`}
-                  sx={{ mt: ".5rem", mb: ".5rem", textAlign: 'left', width: '100%' }}
+                  sx={{
+                    mt: ".5rem",
+                    mb: ".5rem",
+                    textAlign: "left",
+                    width: "100%",
+                  }}
                 >
                   {i.name}
                 </Box>
