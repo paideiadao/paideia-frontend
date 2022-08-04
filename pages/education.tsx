@@ -286,12 +286,22 @@ const Education: FC = () => {
   return (
     <>
       <PageHeader
-        bgUrl="/about-header-bg.png"
+        bgUrl="/backgrounds/education-bg.png"
+        mobileBgUrl="/backgrounds/education-small.png"
         sectionTitle="Education"
         titleLineOne="Learning"
         titleLineTwo="Together&lt;"
         subTitleOne="Everything you need to know about creating your"
         subTitleTwo="DAOs on Paideia, and more. "
+        imgPositionSx={{
+          width: '2340px',
+          height: '2134px',
+          left: 'calc(50% + 600px)',
+        }}
+        mobileSx={{
+          width: '600px',
+          height: '1660px',
+        }}
       />
 
       <Container sx={{ px: "24px", py: "60px" }} id="navContainer">
