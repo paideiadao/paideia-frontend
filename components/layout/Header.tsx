@@ -184,6 +184,7 @@ export default function Header() {
         sx={{
           zIndex: "24",
           backdropFilter: `${trigger ? "blur(25px)" : ""}`,
+          background: `${trigger ? "linear-gradient(130.4deg, rgba(7, 10, 17, 0.6) 14.89%, rgba(7, 10, 17, 0.3) 87.67%)" : ""}`,
         }}
       >
         <Container sx={{ px: "24px" }}>
