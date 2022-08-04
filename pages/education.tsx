@@ -288,7 +288,7 @@ const Education: FC = () => {
         }}
         mobileSx={{
           width: '600px',
-          height: '1660px',
+          height: '1574px',
         }}
       />
 
@@ -364,7 +364,22 @@ const Education: FC = () => {
               <Button href="https://docs.paideia.im" target="_blank" variant="contained">Read Whitepaper</Button>
             </Box>
           </Box>
-          <Box component="section" id="ergo-advantage" sx={{ mb: "240px" }}>
+          <Box component="section" id="ergo-advantage" sx={{ mb: "240px", position: 'relative' }}>
+            <Box
+              sx={{
+                position: "absolute",
+                top: "-1000px",
+                left: { xs: "calc(50% - 350px)", md: "calc(50% - 700px)" },
+                width: "1412px",
+                height: "2687px",
+                transform: "translate(-50%, 0)",
+                // overflow: "hidden",
+                zIndex: "-1",
+                ml: "-24px",
+              }}
+            >
+              <Image src="/backgrounds/green-blob-left.png" layout="fill" />
+            </Box>
             <SectionHeading
               category="Why on Ergo?"
               title="The Ergo Advantage"
@@ -420,7 +435,7 @@ const Education: FC = () => {
               </Typography>
             </Box>
           </Box>
-          <Box component="section" id="learn" sx={{ mb: "240px" }}>
+          <Box component="section" id="learn" sx={{ mb: "240px", position: 'relative', }}>
             <SectionHeading
               category="Useful Articles"
               title="Learn About DAOs"
@@ -430,7 +445,22 @@ const Education: FC = () => {
               <ArticleCardMemo article={article} key={i} />
             ))}
           </Box>
-          <Box component="section" id="faq">
+          <Box component="section" id="faq" sx={{ position: 'relative', }}>
+            <Box
+              sx={{
+                position: "absolute",
+                top: "-800px",
+                left: { xs: "calc(50% + 50px)", md: "calc(50% - 350px)" },
+                width: "2224px",
+                height: "1333px",
+                transform: "translate(-50%, 0)",
+                // overflow: "hidden",
+                zIndex: "-1",
+                ml: "-24px",
+              }}
+            >
+              <Image src="/backgrounds/cube.png" layout="fill" />
+            </Box>
             <SectionHeading
               category="FAQ"
               title="Things you might be wondering"
@@ -480,6 +510,12 @@ const Education: FC = () => {
             </Box>
           </Box>
         </PageNav>
+      </Container>
+      <Container sx={{ px: "24px", py: "60px", position: 'relative' }}>
+        <Image src='/cta-banner.png' width={1152} height={215} layout="responsive" />
+        <Box sx={{ position: 'absolute', top: '150px', left: '35%' }}>
+          More Questions? Join us on Discord or Telegram
+        </Box>
       </Container>
     </>
   );

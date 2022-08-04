@@ -22,6 +22,7 @@ import CardSlider from "@components/CardSlider";
 import TwitterIcon from "@components/svgs/TwitterIcon";
 import LinkedinIcon from "@components/svgs/LinkedinIcon";
 import { DarkTheme } from "@theme/theme";
+import Image from "next/image";
 
 interface INavLink {
   name: string;
@@ -288,13 +289,14 @@ const MyCard: FC<IPersonObj> = ({ person }) => {
   return (
     <Card
       sx={{
-        background: "rgba(255, 255, 255, 0.02)",
+        // background: "rgba(255, 255, 255, 0.02)",
         width: "196px",
         maxWidth: "calc(100vw - 48px)",
         whiteSpace: "normal",
-        borderRadius: "10px",
-        border: "1px solid rgba(255, 255, 255, 0.12)",
+        // borderRadius: "10px",
+        // border: "1px solid rgba(255, 255, 255, 0.12)",
       }}
+      className="border-grad"
     >
       <CardContent sx={{ height: "100%" }}>
         <Grid
@@ -420,7 +422,7 @@ export default function About() {
         titleLineTwo="Paideia&lt;"
         subTitleOne="A Web3 DAO Management"
         subTitleTwo="Software Suite"
-        imgPositionSx={{ 
+        imgPositionSx={{
           top: '200px',
           width: '1716px',
           height: '1224px',
@@ -484,6 +486,23 @@ export default function About() {
             <WhitepaperQuote sx={{ my: "64px" }} />
           </Box>
           <Box component="section" id="theproblem" sx={{ display: 'block' }}>
+            <Box sx={{ position: 'relative' }}>
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "0",
+                  left: { xs: '40%', md: "calc(50% - 700px)" },
+                  height: "1713px",
+                  width: "1213px",
+                  transform: { xs: "translate(-70%, 0)", sm: "translate(-80%, 0)", md: "translate(-50%, 0)" },
+                  // overflow: "hidden",
+                  zIndex: "-1",
+                  ml: "-24px",
+                }}
+              >
+                <Image src="/backgrounds/face-bg.png" layout="fill" priority />
+              </Box>
+            </Box>
             <SectionHeading
               category="The Problem"
               title="Functionali&shy;ty, Security, and Support"
@@ -502,12 +521,12 @@ export default function About() {
                   {problems.map(({ num, title, body }, i) => {
                     return (
                       <Grid item key={i}>
-                        <Grid container sx={{ flexDirection: { xs: 'column', sm: 'row' }}}>
+                        <Grid container sx={{ flexDirection: { xs: 'column', sm: 'row' } }}>
                           <Grid item sm={4}>
                             <Typography
                               sx={{
                                 fontFamily: '"Viga", sans-serif',
-                                fontSize: {xs: '60px', sm: "100px" },
+                                fontSize: { xs: '60px', sm: "100px" },
                                 lineHeight: "100px",
                               }}
                             >
@@ -556,6 +575,23 @@ export default function About() {
             </SectionHeading>
           </Box>
           <Box component="section" id="roadmap">
+            <Box sx={{ position: 'relative' }}>
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: { xs: "-1500px", md: "-500px", },
+                  left: { xs: '50%', md: "calc(50% + 700px)" },
+                  width: "1827px",
+                  height: "2527px",
+                  transform: { xs: "translate(-20%, 0)", md: "translate(-50%, 0)" },
+                  // overflow: "hidden",
+                  zIndex: "-1",
+                  ml: "-24px",
+                }}
+              >
+                <Image src="/backgrounds/orange-blob.png" layout="fill" priority />
+              </Box>
+            </Box>
             <RoadmapAccordion sx={{ mb: "280px" }} />
           </Box>
           <Box component="section" id="tokenomics">
@@ -585,8 +621,26 @@ export default function About() {
               })}
             </CardSlider>
           </Box>
+          
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: "0px",
+            left: "50%",
+            width: "2160px",
+            transform: "translate(-50%, 0)",
+            zIndex: "-8",
+            ml: "-24px",
+            maxHeight: "calc(100% + 400px)",
+            overflow: "visible",
+          }}
+        >
+          <img src="/featured-bg.png" width={2039} height={2116} />
+        </Box>
+      
         </PageNav>
       </Container>
+      
     </>
   );
 }
