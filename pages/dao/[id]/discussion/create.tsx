@@ -4,13 +4,11 @@ import * as React from "react";
 import ChatIcon from "@mui/icons-material/Chat";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { IFile } from "@lib/creation/CreationApi";
 import { IProposal } from "../proposal/create";
 import GeneralInformation from "@components/dao/discussion/GeneralInformation";
 import DiscussionApi from "@lib/dao/discussion/DiscussionApi";
 import DiscussionContext from "@lib/dao/discussion/DiscussionContext";
 import DiscussionImage from "@components/dao/discussion/DiscussionImage";
-import DiscussionPlaceholder from "@public/dao/discussion-banner-placeholder.png";
 import Reference from "@components/dao/discussion/Reference";
 import Content from "@components/dao/discussion/Content";
 import { modalBackground } from "@components/utilities/modalBackground";
@@ -20,6 +18,7 @@ import { IComment } from "@components/dao/discussion/Comments";
 import Layout from "@components/dao/Layout";
 import { deviceWrapper } from "@components/utilities/Style";
 import { getRandomImage } from "@components/utilities/images";
+import { IFile } from "@lib/creation/Interfaces";
 
 export interface IDiscussion {
   name: string;

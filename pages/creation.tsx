@@ -26,7 +26,7 @@ export let colorLookup = {
 };
 
 export default function Creation() {
-  const globalContext = React.useContext<IGlobalContext>(GlobalContext)
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [alert, setAlert] = React.useState({
     show: false,
     value: "",

@@ -135,7 +135,7 @@ const Review: React.FC = () => {
                   });
                   let res = await creationContext.api.createDao(false);
                   if (res !== false) {
-                    console.log('res', res)
+                    console.log("res", res);
                     // Router.push(`/dao/${res.data.dao_name.toLowerCase()}`);
                   } else {
                     console.log("error here..");

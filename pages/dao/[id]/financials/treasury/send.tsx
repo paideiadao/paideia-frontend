@@ -8,7 +8,7 @@ import {
   CapsInfo,
   Header,
 } from "@components/creation/utilities/HeaderComponents";
-import { ITokenHolder } from "@lib/creation/CreationApi";
+import { ITokenHolder } from "@lib/creation/Interfaces";
 import LabeledSwitch from "@components/creation/utilities/LabeledSwitch";
 import { deviceWrapper } from "@components/utilities/Style";
 import MultiTokenHolders from "@components/utilities/MultiTokenHolders";

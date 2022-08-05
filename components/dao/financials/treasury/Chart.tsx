@@ -1,5 +1,5 @@
 import { deviceWrapper } from "@components/utilities/Style";
-import { IObj } from "@lib/utilities";
+import { IObj } from "@lib/Interfaces";
 import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import * as React from "react";
 import BarChart from "./BarChart";

@@ -5,7 +5,7 @@ import {
 import ProposalContext, {
   IProposalContext,
 } from "@lib/dao/proposal/ProposalContext";
-import { IObj } from "@lib/utilities";
+import { IObj } from "@lib/Interfaces";
 import { Box, Button } from "@mui/material";
 import { IProposalAction } from "@pages/dao/[id]/proposal/create";
 import * as React from "react";

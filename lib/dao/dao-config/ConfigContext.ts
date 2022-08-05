@@ -1,5 +1,3 @@
-import { IBasicInformation } from "@lib/creation/CreationApi";
-import { Theme } from "@mui/material";
 import * as React from "react";
 import ConfigApi from "./ConfigApi";
 

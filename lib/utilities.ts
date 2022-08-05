@@ -39,22 +39,21 @@ export class AbstractApi {
     this.setAlert = _setAlert;
   }
 
-
   webSocket(request_id: string) {
-    const ws = new WebSocket(`ws://localhost:8000/api/auth/ws/${request_id}`)
+    const ws = new WebSocket(`ws://localhost:8000/api/auth/ws/${request_id}`);
     ws.onmessage = (event) => {
       try {
-        console.log('WS:', event)
+        console.log("WS:", event);
       } catch (e) {
-        console.log(e)
-      } 
-    }
+        console.log(e);
+      }
+    };
   }
 
   async signingMessage(address: string, addresses?: string[]): Promise<any> {
     const data = await this.post<{ data: ISigningMessage }>(
       "/auth/login",
-      { address: address === '' ? undefined : address, addresses: addresses },
+      { address: address === "" ? undefined : address, addresses: addresses },
       "added user.",
       ""
     );
@@ -244,7 +243,4 @@ export class AbstractApi {
       defaultOptions
     );
   }
-
-  
 }
-

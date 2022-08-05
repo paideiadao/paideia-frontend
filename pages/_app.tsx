@@ -15,9 +15,9 @@ import { useRouter } from "next/router";
 import { isDao } from "@lib/Router";
 import { WalletProvider } from "@components/wallet/WalletContext";
 import { AddWalletProvider } from "@components/wallet/AddWalletContext";
-import { IAlert } from "@lib/utilities";
 import { AnimatePresence, motion } from "framer-motion";
 import { Box } from "@material-ui/core";
+import { IAlert } from "@lib/Interfaces";
 
 const variants = {
   hidden: { opacity: 0, x: -200, y: 0 },
@@ -114,9 +114,7 @@ export default function App({ Component, pageProps }: AppProps) {
           ) : (
             <ThemeProvider theme={DarkTheme}>
               <CssBaseline />
-              <AnimatePresence
-                exitBeforeEnter
-              >
+              <AnimatePresence exitBeforeEnter>
                 <Layout>
                   <Component {...pageProps} />
                 </Layout>

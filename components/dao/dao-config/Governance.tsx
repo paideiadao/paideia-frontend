@@ -1,27 +1,10 @@
-import {
-  Header,
-  LearnMore,
-  Subtitle,
-} from "@components/creation/utilities/HeaderComponents";
-import LabeledSwitch from "@components/creation/utilities/LabeledSwitch";
+import { Header } from "@components/creation/utilities/HeaderComponents";
 import Divider from "@components/utilities/Divider";
-import MultiWalletSelector from "@components/utilities/MultiWalletSelector";
-import { deviceStruct } from "@components/utilities/Style";
 import Warning from "@components/utilities/Warning";
-import { IWallet } from "@lib/creation/CreationApi";
 import {
   ConfigContext,
   IConfigContext,
 } from "@lib/dao/dao-config/ConfigContext";
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  OutlinedInput,
-  Select,
-  TextField,
-} from "@mui/material";
 import * as React from "react";
 import OptimisticGovernance from "./governance/OptimisticGovernance";
 import QuadraticVoting from "./governance/QuadraticVoting";

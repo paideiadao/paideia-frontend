@@ -5,7 +5,7 @@ import {
 import LabeledSwitch from "@components/creation/utilities/LabeledSwitch";
 import MultiWalletSelector from "@components/utilities/MultiWalletSelector";
 import { deviceStruct } from "@components/utilities/Style";
-import { IWallet } from "@lib/creation/CreationApi";
+import { IWallet } from "@lib/creation/Interfaces";
 import {
   ConfigContext,
   IConfigContext,

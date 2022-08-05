@@ -48,7 +48,9 @@ const MyCard: FC<MyCardProps> = ({ image, title, body }) => {
       <CardContent>
         <img src={image} width={35} height={35} />
         <Typography sx={cardTitleStyle}>{title}</Typography>
-        <Blockquote small sx={{ mb: '0px', }}>{body}</Blockquote>
+        <Blockquote small sx={{ mb: "0px" }}>
+          {body}
+        </Blockquote>
       </CardContent>
     </Card>
   );

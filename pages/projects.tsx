@@ -1,14 +1,14 @@
 import React, { FC } from "react";
 import PageHeader from "@components/PageHeader";
-import { 
-  Typography, 
-  Grid, 
-  Container, 
-  Box, 
-  Divider, 
+import {
+  Typography,
+  Grid,
+  Container,
+  Box,
+  Divider,
   Icon,
-  Button
- } from "@mui/material";
+  Button,
+} from "@mui/material";
 import Image from "next/image";
 import Highlights from "@components/Highlights";
 import SectionHeading from "@components/SectionHeading";
@@ -144,18 +144,18 @@ export default function Projects() {
       <PageHeader
         bgUrl="/backgrounds/projects-bg.png"
         imgPositionSx={{
-          width: '1792px',
-          height: '2184px',
-          left: 'calc(50% - 900px)',
-          transform: 'translate(-50%,0)',
-          top: '-500px',
+          width: "1792px",
+          height: "2184px",
+          left: "calc(50% - 900px)",
+          transform: "translate(-50%,0)",
+          top: "-500px",
         }}
         mobileBgUrl="/backgrounds/projects-bg.png"
         mobileSx={{
-          width: '1344px',
-          height: '1638px',
-          left: '-200px',
-          top: '-100px',
+          width: "1344px",
+          height: "1638px",
+          left: "-200px",
+          top: "-100px",
         }}
         sectionTitle="Projects"
         titleLineOne="Projects"
@@ -182,7 +182,7 @@ export default function Projects() {
       </Box>
       <Highlights highlights={highlights} />
       <Container sx={{ py: "240px" }}>
-        <Box sx={{ position: 'relative' }}>
+        <Box sx={{ position: "relative" }}>
           <Box
             sx={{
               position: "absolute",
@@ -253,30 +253,28 @@ export default function Projects() {
 
       <Container sx={{ pb: "280px" }}>
         <Grid container>
+          <Grid item md={6}></Grid>
           <Grid item md={6}>
-
-          </Grid>
-          <Grid item md={6}>
-            <SectionTitle sx={{ mb: '24px' }}>Feeling Good?</SectionTitle>
-            <Typography sx={{
-              fontSize: "60px",
-              fontWeight: "400",
-              lineHeight: "116.7%",
-              textTransform: "uppercase",
-              fontFamily: '"Viga", sans-serif',
-              mb: "28px",
-              textShadow: '0px 2px 2px rgba(0, 0, 0, 0.6)'
-            }}>
+            <SectionTitle sx={{ mb: "24px" }}>Feeling Good?</SectionTitle>
+            <Typography
+              sx={{
+                fontSize: "60px",
+                fontWeight: "400",
+                lineHeight: "116.7%",
+                textTransform: "uppercase",
+                fontFamily: '"Viga", sans-serif',
+                mb: "28px",
+                textShadow: "0px 2px 2px rgba(0, 0, 0, 0.6)",
+              }}
+            >
               Get Started
             </Typography>
-            <Button variant="contained">
-              Create Your DAO
-            </Button>
+            <Button variant="contained">Create Your DAO</Button>
           </Grid>
         </Grid>
       </Container>
 
-      <Box sx={{ position: 'relative' }}>
+      <Box sx={{ position: "relative" }}>
         <Box
           sx={{
             position: "absolute",

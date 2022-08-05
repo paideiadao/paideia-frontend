@@ -7,18 +7,16 @@ import {
   IconButton,
   TextField,
 } from "@mui/material";
-import { GetStaticPaths, GetStaticProps } from "next/types";
 import * as React from "react";
 import Musk from "../../../../public/profile/musk-full.png";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-import { IFile, ISocialLink } from "@lib/creation/CreationApi";
 import { SocialRow } from "@components/creation/design/Footer";
-import Status from "@components/utilities/Status";
 import Layout from "@components/dao/Layout";
 import { deviceWrapper } from "@components/utilities/Style";
+import { IFile, ISocialLink } from "@lib/creation/Interfaces";
 
 const ProfileEditImage: React.FC = () => {
   const [file, setFile] = React.useState<IFile>({

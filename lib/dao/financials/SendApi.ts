@@ -1,4 +1,4 @@
-import { ITokenHolder } from "@lib/creation/CreationApi";
+import { ITokenHolder } from "@lib/creation/Interfaces";
 import { AbstractApi } from "@lib/utilities";
 // import { IProposal } from "@pages/dao/[id]/proposal/create";
 

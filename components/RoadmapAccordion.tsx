@@ -148,7 +148,7 @@ interface IAccordion {
 const RoadmapAccordion: FC<IAccordion> = ({ sx }) => {
   return (
     <Box sx={sx}>
-      <SectionTitle sx={{ mb: '120px' }}>Roadmap</SectionTitle>
+      <SectionTitle sx={{ mb: "120px" }}>Roadmap</SectionTitle>
       {accordionObject.map((item, i) => {
         return (
           <MuiAccordion
@@ -205,7 +205,7 @@ const RoadmapAccordion: FC<IAccordion> = ({ sx }) => {
                       display: "none",
                     },
                   },
-                  p: { xs: 0, sm: '6px 16px' },
+                  p: { xs: 0, sm: "6px 16px" },
                 }}
               >
                 {item.content.map((time, i) => {
@@ -232,7 +232,7 @@ const RoadmapAccordion: FC<IAccordion> = ({ sx }) => {
                           color: time.completed
                             ? "rgba(255, 255, 255, 0.7)"
                             : "#fff",
-                          p: { xs: '6px 0px 6px 16px', sm: '6px 16px' },
+                          p: { xs: "6px 0px 6px 16px", sm: "6px 16px" },
                         }}
                       >
                         <Grid

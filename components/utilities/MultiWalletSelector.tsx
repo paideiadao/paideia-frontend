@@ -1,5 +1,5 @@
 import { deviceStruct } from "@components/utilities/Style";
-import { IWallet } from "@lib/creation/CreationApi";
+import { IWallet } from "@lib/creation/Interfaces";
 import { Box, Button, IconButton } from "@mui/material";
 import * as React from "react";
 import WalletSelector from "../creation/governance/WalletSelector";

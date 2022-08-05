@@ -9,7 +9,11 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
 import ThemeToggle from "./ThemeToggle";
-import { DAPP_CONNECTED, WALLET_ADDRESS, WALLET_ADDRESS_LIST } from "@components/wallet/AddWallet";
+import {
+  DAPP_CONNECTED,
+  WALLET_ADDRESS,
+  WALLET_ADDRESS_LIST,
+} from "@components/wallet/AddWallet";
 import { useWallet } from "@components/wallet/WalletContext";
 
 interface IProfilePopup {
@@ -92,7 +96,7 @@ const rows: IProfilePopupRow[] = [
 ];
 
 export const ProfilePopup: React.FC<IProfilePopup> = (props) => {
-  const {setWallet} = useWallet();
+  const { setWallet } = useWallet();
   return (
     <Modal open={props.open} onClose={props.close}>
       <Box
@@ -147,13 +151,12 @@ export const ProfilePopup: React.FC<IProfilePopup> = (props) => {
             }}
             size="small"
             onClick={() => {
-
               localStorage.setItem(WALLET_ADDRESS, "");
               localStorage.setItem(WALLET_ADDRESS_LIST, "[]");
               localStorage.setItem(DAPP_CONNECTED, "false");
-              localStorage.setItem("jwt_token_login", '')
-              setWallet('')
-              props.close()
+              localStorage.setItem("jwt_token_login", "");
+              setWallet("");
+              props.close();
             }}
           >
             Disconnect wallet

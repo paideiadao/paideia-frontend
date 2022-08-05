@@ -7,7 +7,7 @@ import {
   LearnMore,
   Subtitle,
 } from "@components/creation/utilities/HeaderComponents";
-import { IDesign } from "@lib/creation/CreationApi";
+import { IDesign } from "@lib/creation/Interfaces";
 import {
   ConfigContext,
   IConfigContext,

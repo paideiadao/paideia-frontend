@@ -197,7 +197,11 @@ export default function Perks() {
             sx={{ display: { xs: "none", md: "flex" } }}
           ></Grid>
           <Grid item xs={12} sm={12} md={3}>
-            <Button href="/education" variant="outlined" endIcon={<ArrowForwardIcon />}>
+            <Button
+              href="/education"
+              variant="outlined"
+              endIcon={<ArrowForwardIcon />}
+            >
               Learn More
             </Button>
           </Grid>

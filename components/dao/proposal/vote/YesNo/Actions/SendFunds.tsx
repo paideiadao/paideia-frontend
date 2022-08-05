@@ -1,13 +1,10 @@
-import WalletSelector from "@components/creation/governance/WalletSelector";
-import BalanceInput from "@components/creation/utilities/BalanceInput";
 import {
   CapsInfo,
   Header,
 } from "@components/creation/utilities/HeaderComponents";
 import LabeledSwitch from "@components/creation/utilities/LabeledSwitch";
-import PercentageInput from "@components/creation/utilities/PercentageInput";
 import MultiTokenHolders from "@components/utilities/MultiTokenHolders";
-import { ITokenHolder, IWallet } from "@lib/creation/CreationApi";
+import { ITokenHolder } from "@lib/creation/Interfaces";
 import ProposalContext, {
   IProposalContext,
 } from "@lib/dao/proposal/ProposalContext";

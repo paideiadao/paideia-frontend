@@ -2,7 +2,7 @@ import { Box, TextField, Button, Modal } from "@mui/material";
 import * as React from "react";
 import { Header } from "@components/creation/utilities/HeaderComponents";
 import LabeledSwitch from "@components/creation/utilities/LabeledSwitch";
-import { IObj } from "@lib/utilities";
+import { IObj } from "@lib/Interfaces";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";

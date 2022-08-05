@@ -10,7 +10,11 @@ import * as React from "react";
 import nautilus from "@public/icons/nautilus.png";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ClearIcon from "@mui/icons-material/Clear";
-import { isAddressValid, WALLET_ADDRESS, WALLET_ADDRESS_LIST } from "./AddWallet";
+import {
+  isAddressValid,
+  WALLET_ADDRESS,
+  WALLET_ADDRESS_LIST,
+} from "./AddWallet";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import { useWallet } from "./WalletContext";
 import useDidMountEffect from "@components/utilities/hooks";
@@ -60,44 +64,46 @@ const Nautilus: React.FC<{
           // });
           // const address = addresses.length ? addresses[0].trim() : "";
 
+          await globalContext.api
+            .signingMessage(
+              wallet,
+              props.addresses.length === 0
+                ? undefined
+                : props.addresses.map((i: any) => i.name)
+            )
+            .then(async (signingMessage: any) => {
+              setRunLoad(false);
 
-            await globalContext.api
-              .signingMessage(
-                wallet,
-                props.addresses.length === 0
-                  ? undefined
-                  : props.addresses.map((i: any) => i.name)
-              )
-              .then(async (signingMessage: any) => {
-                setRunLoad(false);
-
-                if (signingMessage !== undefined) {
-                  setWallet(signingMessage.data.address)
+              if (signingMessage !== undefined) {
+                setWallet(signingMessage.data.address);
+                // @ts-ignore
+                let response = await ergo.auth(
+                  signingMessage.data.address,
                   // @ts-ignore
-                  let response = await ergo.auth(
-                    signingMessage.data.address,
-                    // @ts-ignore
-                    signingMessage.data.signingMessage
-                  );
-                  response.proof = Buffer.from(response.proof, "hex").toString(
-                    "base64"
-                  );
-                  globalContext.api
-                    .signMessage(signingMessage.data.tokenUrl, response)
-                    .then((data) => {
-                      localStorage.setItem(
-                        "jwt_token_login",
-                        data.data.access_token
-                      );
-                      setWallet(signingMessage.data.address);
-                      localStorage.setItem(WALLET_ADDRESS, signingMessage.data.address)
-                      setLoggedIn(true);
-                      setChangeLoading(undefined);
+                  signingMessage.data.signingMessage
+                );
+                response.proof = Buffer.from(response.proof, "hex").toString(
+                  "base64"
+                );
+                globalContext.api
+                  .signMessage(signingMessage.data.tokenUrl, response)
+                  .then((data) => {
+                    localStorage.setItem(
+                      "jwt_token_login",
+                      data.data.access_token
+                    );
+                    setWallet(signingMessage.data.address);
+                    localStorage.setItem(
+                      WALLET_ADDRESS,
+                      signingMessage.data.address
+                    );
+                    setLoggedIn(true);
+                    setChangeLoading(undefined);
 
-                      props.setLoading(false);
-                    });
-                }
-              });
+                    props.setLoading(false);
+                  });
+              }
+            });
         } catch (e) {
           console.log(e);
           props.setDAppWallet({
@@ -128,41 +134,42 @@ const Nautilus: React.FC<{
     <Box sx={{ width: "100%" }}>
       {props.connected || changeLoading !== undefined ? (
         <>
+          {isAddressValid(wallet) && (
+            <>
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "1.5rem",
+                  mt: "1rem",
+                }}
+              >
+                <CheckCircleIcon
+                  color="primary"
+                  sx={{ fontSize: "3rem", mr: "1rem" }}
+                />
+                Wallet successfully connected!
+              </Box>
+              <Box sx={{ mt: ".5rem", fontSize: ".9rem", mb: ".5rem" }}>
+                Select which address you want to use as as the default.
+              </Box>
+              <TextField
+                label="Default Wallet Address"
+                sx={{ width: "100%", mt: ".75rem" }}
+                value={wallet}
+                disabled
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      {wallet !== "" && <CheckCircleIcon color="success" />}
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </>
+          )}
 
-        {isAddressValid(wallet) && <>
-        <Box
-            sx={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              fontSize: "1.5rem",
-              mt: "1rem",
-            }}
-          >
-            <CheckCircleIcon
-              color="primary"
-              sx={{ fontSize: "3rem", mr: "1rem" }}
-            />
-            Wallet successfully connected!
-          </Box>
-          <Box sx={{ mt: ".5rem", fontSize: ".9rem", mb: ".5rem" }}>
-            Select which address you want to use as as the default.
-          </Box>
-          <TextField
-            label="Default Wallet Address"
-            sx={{ width: "100%", mt: ".75rem" }}
-            value={wallet}
-            disabled
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  {wallet !== "" && <CheckCircleIcon color="success" />}
-                </InputAdornment>
-              ),
-            }}
-          />
-        </>}
-         
           <Box
             sx={{
               width: "100%",
@@ -194,7 +201,8 @@ const Nautilus: React.FC<{
                       key={`${i.name}-address-selector-${c}`}
                     >
                       {i.name}
-                      {changeLoading === c || (!loggedIn && changeLoading === c) ? (
+                      {changeLoading === c ||
+                      (!loggedIn && changeLoading === c) ? (
                         <LoadingButton
                           color="primary"
                           loading
@@ -210,54 +218,60 @@ const Nautilus: React.FC<{
                           color={wallet === i.name ? "success" : "primary"}
                           size="small"
                           onClick={async () => {
-                            if (wallet !== i.name) {{
-                              try {
-                                setChangeLoading(c);
-                                setLoggedIn(false);
-                                await globalContext.api
-                                  .signingMessage(i.name)
-                                  .then(async (signingMessage: any) => {
-                                    if (signingMessage !== undefined) {
-                                      // @ts-ignore
-                                      let response = await ergo.auth(
-                                        i.name,
+                            if (wallet !== i.name) {
+                              {
+                                try {
+                                  setChangeLoading(c);
+                                  setLoggedIn(false);
+                                  await globalContext.api
+                                    .signingMessage(i.name)
+                                    .then(async (signingMessage: any) => {
+                                      if (signingMessage !== undefined) {
                                         // @ts-ignore
-                                        signingMessage.data.signingMessage
-                                      );
-                                      response.proof = Buffer.from(
-                                        response.proof,
-                                        "hex"
-                                      ).toString("base64");
-                                      globalContext.api
-                                        .signMessage(
-                                          signingMessage.data.tokenUrl,
-                                          {
-                                            ...response,
-                                            previous_wallet_address: wallet === '' || wallet === undefined ? undefined : wallet,
-                                          }
-                                        )
-                                        .then((data) => {
-                                          localStorage.setItem(
-                                            "jwt_token_login",
-                                            data.data.access_token
-                                          );
-                                          setLoggedIn(true);
-                                          setChangeLoading(undefined);
-  
-                                          props.setLoading(false);
-                                          setWallet(i.name);
-                                        }).catch((e: any) => {
-                                          console.log(e);
-                                          setChangeLoading(undefined)
-                                          props.clear()
-                                        });
-                                    }
-                                  });
-                              } catch (e) {
-                                setChangeLoading(undefined);
+                                        let response = await ergo.auth(
+                                          i.name,
+                                          // @ts-ignore
+                                          signingMessage.data.signingMessage
+                                        );
+                                        response.proof = Buffer.from(
+                                          response.proof,
+                                          "hex"
+                                        ).toString("base64");
+                                        globalContext.api
+                                          .signMessage(
+                                            signingMessage.data.tokenUrl,
+                                            {
+                                              ...response,
+                                              previous_wallet_address:
+                                                wallet === "" ||
+                                                wallet === undefined
+                                                  ? undefined
+                                                  : wallet,
+                                            }
+                                          )
+                                          .then((data) => {
+                                            localStorage.setItem(
+                                              "jwt_token_login",
+                                              data.data.access_token
+                                            );
+                                            setLoggedIn(true);
+                                            setChangeLoading(undefined);
+
+                                            props.setLoading(false);
+                                            setWallet(i.name);
+                                          })
+                                          .catch((e: any) => {
+                                            console.log(e);
+                                            setChangeLoading(undefined);
+                                            props.clear();
+                                          });
+                                      }
+                                    });
+                                } catch (e) {
+                                  setChangeLoading(undefined);
+                                }
                               }
-                            }}
- 
+                            }
                           }}
                         >
                           {wallet === i.name ? "Active" : "Choose"}
@@ -320,72 +334,71 @@ const Nautilus: React.FC<{
                 color: "primary.main",
               }}
               onClick={async () => {
-                await props.connect()
-                  const load = async () => {
-                    props.setLoading(true);
-                    try {
-                      // //@ts-ignore
-                      // const address_used = await ergo.get_used_addresses();
-                      // //@ts-ignore
-                      // const address_unused = await ergo.get_unused_addresses();
-                      // const addresses = [...address_used, ...address_unused];
-                      // const addressData = addresses.map((address, index) => {
-                      //   return { id: index, name: address };
-                      // });
-                      // const address = addresses.length ? addresses[0].trim() : "";
-            
-            
-                        await globalContext.api
-                          .signingMessage(
-                            wallet,
-                            props.addresses.length === 0
-                              ? undefined
-                              : props.addresses.map((i: any) => i.name)
-                          )
-                          .then(async (signingMessage: any) => {
-            
-                            if (signingMessage !== undefined) {
-                              setWallet(signingMessage.data.address)
-                              // @ts-ignore
-                              let response = await ergo.auth(
-                                signingMessage.data.address,
-                                // @ts-ignore
-                                signingMessage.data.signingMessage
+                await props.connect();
+                const load = async () => {
+                  props.setLoading(true);
+                  try {
+                    // //@ts-ignore
+                    // const address_used = await ergo.get_used_addresses();
+                    // //@ts-ignore
+                    // const address_unused = await ergo.get_unused_addresses();
+                    // const addresses = [...address_used, ...address_unused];
+                    // const addressData = addresses.map((address, index) => {
+                    //   return { id: index, name: address };
+                    // });
+                    // const address = addresses.length ? addresses[0].trim() : "";
+
+                    await globalContext.api
+                      .signingMessage(
+                        wallet,
+                        props.addresses.length === 0
+                          ? undefined
+                          : props.addresses.map((i: any) => i.name)
+                      )
+                      .then(async (signingMessage: any) => {
+                        if (signingMessage !== undefined) {
+                          setWallet(signingMessage.data.address);
+                          // @ts-ignore
+                          let response = await ergo.auth(
+                            signingMessage.data.address,
+                            // @ts-ignore
+                            signingMessage.data.signingMessage
+                          );
+                          response.proof = Buffer.from(
+                            response.proof,
+                            "hex"
+                          ).toString("base64");
+                          globalContext.api
+                            .signMessage(signingMessage.data.tokenUrl, response)
+                            .then((data) => {
+                              localStorage.setItem(
+                                "jwt_token_login",
+                                data.data.access_tokena
                               );
-                              response.proof = Buffer.from(response.proof, "hex").toString(
-                                "base64"
+                              setWallet(signingMessage.data.address);
+                              localStorage.setItem(
+                                WALLET_ADDRESS,
+                                signingMessage.data.address
                               );
-                              globalContext.api
-                                .signMessage(signingMessage.data.tokenUrl, response)
-                                .then((data) => {
-                                  localStorage.setItem(
-                                    "jwt_token_login",
-                                    data.data.access_tokena
-                                  );
-                                  setWallet(signingMessage.data.address);
-                                  localStorage.setItem(WALLET_ADDRESS, signingMessage.data.address)
-                                  setLoggedIn(true);
-                                  setChangeLoading(undefined);
-            
-                                  props.setLoading(false);
-                                });
-                            }
-                          });
-                    } catch (e) {
-                      console.log(e);
-                      props.setDAppWallet({
-                        connected: false,
-                        addresses: [],
+                              setLoggedIn(true);
+                              setChangeLoading(undefined);
+
+                              props.setLoading(false);
+                            });
+                        }
                       });
-                      setWallet("");
-                      setChangeLoading(undefined);
-                      props.setLoading(false);
-                    }
-                  };
-                  setTimeout(async () => await load(), 4000)
-
-                  
-
+                  } catch (e) {
+                    console.log(e);
+                    props.setDAppWallet({
+                      connected: false,
+                      addresses: [],
+                    });
+                    setWallet("");
+                    setChangeLoading(undefined);
+                    props.setLoading(false);
+                  }
+                };
+                setTimeout(async () => await load(), 4000);
               }}
             >
               click here

@@ -1,19 +1,14 @@
 import { Box } from "@mui/material";
 import { ResponsivePie } from "@nivo/pie";
 import * as React from "react";
-import {
-  ITokenHolder,
-  ITokenomics,
-} from "@lib/creation/Interfaces";
+import { ITokenHolder, ITokenomics } from "@lib/creation/Interfaces";
 import { percentage } from "../../../../lib/creation/Utilities";
-import {
-  CreationContext,
-  ICreationContext,
-} from "../../../../lib/creation/Context";
+
 import { LightTheme } from "../../../../theme/theme";
+import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
 
 const PieChart: React.FC<ITokenomics> = (props) => {
-  let creationContext = React.useContext<ICreationContext>(CreationContext);
+  let themeContext = React.useContext<IThemeContext>(ThemeContext);
   let data = props;
   let tokenHolders = data.tokenHolders;
   return (
@@ -51,7 +46,7 @@ const PieChart: React.FC<ITokenomics> = (props) => {
       }}
       arcLinkLabelsSkipAngle={10}
       arcLinkLabelsTextColor={
-        creationContext.api.theme === LightTheme
+        themeContext.theme === LightTheme
           ? "rgba(0, 0, 0, 0.6)"
           : "rgba(255, 255, 255, 0.7)"
       }

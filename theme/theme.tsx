@@ -64,7 +64,7 @@ export const LightTheme = createTheme({
     },
     error: {
       main: "#ef5350",
-      light: '#ef5350'
+      light: "#ef5350",
     },
     favoriteBackground: {
       main: "#FEE8E7",
@@ -107,8 +107,7 @@ export const LightTheme = createTheme({
       // contrastText: will be calculated to contrast with palette.primary.main
     },
     success: {
-      main: '#2E7D32',
-      
+      main: "#2E7D32",
     },
     secondary: {
       main: "#FF8219",
@@ -211,7 +210,7 @@ export const DarkTheme = createTheme({
     },
     error: {
       main: "#ef5350",
-      light: '#ef5350'
+      light: "#ef5350",
     },
     text: {
       primary: "#FFFFFF",
@@ -270,9 +269,8 @@ export const DarkTheme = createTheme({
       // contrastText: will be calculated to contrast with palette.primary.main
     },
     success: {
-      main: '#66BB6A',
-
-    }, 
+      main: "#66BB6A",
+    },
     secondary: {
       light: "#FFCF7E",
       main: "#FC9E4F",

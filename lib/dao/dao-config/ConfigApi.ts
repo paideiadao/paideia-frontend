@@ -1,9 +1,10 @@
 import {
   IBasicInformation,
-  IDesign,
   IGovernance,
-} from "@lib/creation/CreationApi";
-import { AbstractApi, IAlert } from "@lib/utilities";
+  IDesign,
+} from "@lib/creation/Interfaces";
+import { IAlert } from "@lib/Interfaces";
+import { AbstractApi } from "@lib/utilities";
 import { IDiscussion } from "@pages/dao/[id]/discussion/create";
 import { IConfigContext } from "./ConfigContext";
 

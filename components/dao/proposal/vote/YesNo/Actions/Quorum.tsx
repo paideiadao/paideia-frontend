@@ -2,9 +2,6 @@ import {
   CapsInfo,
   Header,
 } from "@components/creation/utilities/HeaderComponents";
-import LabeledSwitch from "@components/creation/utilities/LabeledSwitch";
-import MultiWalletSelector from "@components/utilities/MultiWalletSelector";
-import { IWallet } from "@lib/creation/CreationApi";
 import ProposalContext, {
   IProposalContext,
 } from "@lib/dao/proposal/ProposalContext";

@@ -1,18 +1,18 @@
 import { Theme } from "@mui/material";
 
 import { AbstractApi } from "@lib/utilities";
-import { ICreationData, ISocialLink, ITokenHolder } from "@lib/creation/Interfaces";
+import {
+  ICreationData,
+  ISocialLink,
+  ITokenHolder,
+} from "@lib/creation/Interfaces";
 
 export class CreationApi {
-  api: AbstractApi
+  api: AbstractApi;
   data: ICreationData;
   setData: Function;
 
-  constructor(
-    api: AbstractApi,
-    data: ICreationData,
-    setData: Function
-  ) {
+  constructor(api: AbstractApi, data: ICreationData, setData: Function) {
     this.api = api;
     this.data = data;
     this.setData = setData;
@@ -42,7 +42,9 @@ export class CreationApi {
         amount: data.governance.amount === "" ? 0 : data.governance.amount,
         currency: data.governance.currency,
         support_needed: data.governance.supportNeeded,
-        governance_whitelist: data.governance.whitelist.map((i: any) => i.address),
+        governance_whitelist: data.governance.whitelist.map(
+          (i: any) => i.address
+        ),
       },
       tokenomics: {
         type: data.tokenomics.type,

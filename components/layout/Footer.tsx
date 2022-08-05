@@ -26,7 +26,7 @@ const linkStyles = {
     color: DarkTheme.palette.primary.main,
   },
   fontSize: "16px",
-  lineHeight: '28px',
+  lineHeight: "28px",
 };
 
 interface IPage {
@@ -65,7 +65,7 @@ const secondPages: IPage[] = [
 const thirdPages: IPage[] = [
   {
     name: "Projects",
-    link: "/projects"
+    link: "/projects",
   },
   {
     name: "Dashboard",
@@ -77,26 +77,17 @@ const fourthPages: IPage[] = [];
 
 export default function Footer() {
   const linkList = (list: IPage[]) => {
-    return list.map((page, i) => (
+    return list.map((page, i) =>
       page.external ? (
-        <MuiLink
-          href={page.link}
-          target="_blank"
-          sx={linkStyles}
-          key={i}
-        >
+        <MuiLink href={page.link} target="_blank" sx={linkStyles} key={i}>
           {page.name}
         </MuiLink>
       ) : (
         <Link href={page.link} key={i}>
-          <Box
-            sx={linkStyles}
-          >
-            {page.name}
-          </Box>
+          <Box sx={linkStyles}>{page.name}</Box>
         </Link>
       )
-    ));
+    );
   };
 
   return (
@@ -155,27 +146,27 @@ export default function Footer() {
             </Typography>
           </Grid>
           <Grid item>
-              <Link href="/">
-                <Box
-                  sx={{
-                    ...linkStyles,
-                    display: 'inline-block',
-                  }}
-                >
-                  Terms
-                </Box>
-              </Link>{" "}
-              ·{" "}
-              <Link href="/">
-                <Box
-                  sx={{
-                    ...linkStyles,
-                    display: 'inline-block',
-                  }}
-                >
-                  Privacy Policy
-                </Box>
-              </Link>
+            <Link href="/">
+              <Box
+                sx={{
+                  ...linkStyles,
+                  display: "inline-block",
+                }}
+              >
+                Terms
+              </Box>
+            </Link>{" "}
+            ·{" "}
+            <Link href="/">
+              <Box
+                sx={{
+                  ...linkStyles,
+                  display: "inline-block",
+                }}
+              >
+                Privacy Policy
+              </Box>
+            </Link>
           </Grid>
         </Grid>
       </Container>

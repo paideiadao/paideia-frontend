@@ -25,32 +25,32 @@ export const themes: ITheme[] = [
     label: "Paideia",
     primary: "#00868F",
     secondary: "#FF8219",
-    secondaryDark: '#FC9E4F', 
-    primaryDark: '#9FD2DB'
+    secondaryDark: "#FC9E4F",
+    primaryDark: "#9FD2DB",
   },
   {
     id: 2,
     label: "Electric Violet",
     primary: "#57e9a3",
     secondary: "#c7a3f0",
-    primaryDark: '#00a068', 
-    secondaryDark: '#c655ff'
+    primaryDark: "#00a068",
+    secondaryDark: "#c655ff",
   },
   {
     id: 3,
     label: "Autumn Leaves",
     primary: "#a09ef4",
     secondary: "#e3c880",
-    primaryDark: '#825cff', 
-    secondaryDark: '#e2903f'
+    primaryDark: "#825cff",
+    secondaryDark: "#e2903f",
   },
   {
     id: 4,
     label: "Oceanic",
     primary: "#ff79ba",
     secondary: "#90eeff",
-    primaryDark: '#c43b62', 
-    secondaryDark: '#2c9ec1'
+    primaryDark: "#c43b62",
+    secondaryDark: "#2c9ec1",
   },
 ];
 
@@ -90,7 +90,10 @@ export const ThemeCard: React.FC<IThemeCard> = (props) => {
       >
         <Box
           sx={{
-            backgroundColor: themeContext.theme === DarkTheme ? props.i.secondaryDark : props.i.secondary,
+            backgroundColor:
+              themeContext.theme === DarkTheme
+                ? props.i.secondaryDark
+                : props.i.secondary,
             width: "100%",
             height: "5rem",
             borderTopLeftRadius: ".6rem",
@@ -115,7 +118,10 @@ export const ThemeCard: React.FC<IThemeCard> = (props) => {
             sx={{
               width: "100%",
               height: "100%",
-              backgroundColor: themeContext.theme === DarkTheme ? props.i.primaryDark : props.i.primary,
+              backgroundColor:
+                themeContext.theme === DarkTheme
+                  ? props.i.primaryDark
+                  : props.i.primary,
               clipPath: "polygon(0 0, 100% 0, 0 100%)",
               borderTopLeftRadius: ".6rem",
               borderTopRightRadius: ".6rem",

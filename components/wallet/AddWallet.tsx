@@ -105,7 +105,6 @@ const AddWallet: React.FC = () => {
                 addresses: addressData,
                 connected: true,
               });
-              
             });
           } else {
           }
@@ -165,11 +164,11 @@ const AddWallet: React.FC = () => {
     localStorage.setItem(WALLET_ADDRESS, "");
     localStorage.setItem(WALLET_ADDRESS_LIST, "[]");
     localStorage.setItem(DAPP_CONNECTED, "false");
-    localStorage.setItem("jwt_token_login", '')
+    localStorage.setItem("jwt_token_login", "");
     setWalletInput("");
     setWallet("");
     // clear dApp state
-    setView('listing')
+    setView("listing");
     setDAppError(false);
     setDAppWallet({
       connected: false,
@@ -216,7 +215,7 @@ const AddWallet: React.FC = () => {
       const addressData = addresses.map((address, index) => {
         return { id: index, name: address };
       });
-      setWallet(address)
+      setWallet(address);
       // // update dApp state
       setDAppWallet({
         connected: true,
@@ -244,8 +243,8 @@ const AddWallet: React.FC = () => {
       const addressData = addresses.map((address, index) => {
         return { id: index, name: address };
       });
-      const address = addresses.length > 0 ? addresses[0] : '';
-      setWallet(address)
+      const address = addresses.length > 0 ? addresses[0] : "";
+      setWallet(address);
       setDAppWallet({
         addresses: addressData,
         connected: true,
@@ -349,10 +348,10 @@ const AddWallet: React.FC = () => {
               <Button
                 onClick={async () => {
                   // add try catch here...
-                  console.log(walletInput, 'walletInput')
+                  console.log(walletInput, "walletInput");
                   let res = await globalContext.api.mobileLogin(walletInput);
-                  console.log('res', res)
-                  globalContext.api.webSocket(res.data.verificationId)
+                  console.log("res", res);
+                  globalContext.api.webSocket(res.data.verificationId);
                   handleSubmitWallet();
                 }}
                 disabled={walletInput === ""}
