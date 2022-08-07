@@ -57,6 +57,7 @@ export interface IProposal {
   references: IProposal[];
   actions: IProposalAction[];
   date?: Date;
+  createdDate?: Date;
   likes?: number;
   dislikes?: number;
   followed?: boolean;

@@ -12,6 +12,7 @@ export const Header: React.FC<{
   small?: boolean;
   large?: boolean;
   mb?: string | any;
+  bold?: boolean
 }> = (props) => {
   return props.subtitle === undefined ? (
     <Box
@@ -22,7 +23,7 @@ export const Header: React.FC<{
             : props.small === undefined
             ? "1.1rem"
             : deviceWrapper(".9rem", "1.1rem"),
-        fontWeight: 500,
+        fontWeight: props.bold ? 550 : 500,
         color: "text.primary",
       }}
     >

@@ -75,7 +75,7 @@ export const VoteWidget: React.FC<{
       <Box
         sx={{
           width: "100%",
-          display: "flex",
+          display: deviceWrapper("none", "flex"),
           alignItems: "center",
           color: "text.secondary",
           fontSize: "1rem",
