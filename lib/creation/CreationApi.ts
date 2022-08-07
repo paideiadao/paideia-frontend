@@ -5,6 +5,7 @@ import {
   ICreationData,
   ISocialLink,
   ITokenHolder,
+  IWallet,
 } from "@lib/creation/Interfaces";
 
 export class CreationApi {
@@ -43,7 +44,7 @@ export class CreationApi {
         currency: data.governance.currency,
         support_needed: data.governance.supportNeeded,
         governance_whitelist: data.governance.whitelist.map(
-          (i: any) => i.address
+          (i: IWallet) => i.address
         ),
       },
       tokenomics: {
@@ -56,7 +57,11 @@ export class CreationApi {
         token_remaining: data.tokenomics.tokenRemaining,
         is_activated: data.tokenomics.activateTokenomics,
         token_holders: data.tokenomics.tokenHolders.map((i: ITokenHolder) => {
-          return { user_id: 1, percentage: i.percentage, balance: i.balance };
+          return {
+            address: i.address,
+            percentage: i.percentage,
+            balance: i.balance,
+          };
         }),
         /// MVP does not include distributions...
         distributions: [],
@@ -75,7 +80,7 @@ export class CreationApi {
       is_draft: draft ? 1 : 0,
       is_published: draft ? 0 : 1,
       nav_stage: data.navStage,
-      is_review: data.review,
+      is_review: data.review != null,
     };
   }
 }

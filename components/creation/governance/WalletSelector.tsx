@@ -6,6 +6,7 @@ import { walletStruct } from "../../../lib/creation/Constants";
 import ClearIcon from "@mui/icons-material/Clear";
 import PersonIcon from "@mui/icons-material/Person";
 import { deviceStruct } from "@components/utilities/Style";
+import { isAddressValid } from "@components/wallet/AddWallet";
 
 const WalletSelector: React.FC<{
   data: {
@@ -21,7 +22,14 @@ const WalletSelector: React.FC<{
 }> = (props) => {
   const [focused, setFocused] = React.useState<boolean>(false);
   const [search, setSearch] = React.useState<string>("");
-
+  React.useEffect(() => {
+    if (isAddressValid(search)) {
+      props.set({
+        ...props.data,
+        address: search,
+      });
+    }
+  }, [search]);
   return (
     <Box
       sx={{
