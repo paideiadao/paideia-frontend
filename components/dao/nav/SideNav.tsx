@@ -13,7 +13,6 @@ import { INav } from "./TopNav";
 
 const Nav: React.FC<INav> = (props) => {
   const themeContext = React.useContext<IThemeContext>(ThemeContext);
-
   return (
     <Box
       sx={{
@@ -36,7 +35,7 @@ const Nav: React.FC<INav> = (props) => {
         display: deviceWrapper("none", "block"),
       }}
     >
-      <DaoBio />
+      <DaoBio setShowMobile={props.setShowMobile}/>
       <Contents setShowMobile={props.setShowMobile} />
       {/* <Footer /> */}
     </Box>

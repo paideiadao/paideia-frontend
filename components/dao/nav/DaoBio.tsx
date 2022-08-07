@@ -26,6 +26,8 @@ import Azorus from "@public/icons/azorus.png";
 import ErgoLend from "@public/icons/ergolend.png";
 import Swamp from "@public/icons/swamp.png";
 import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
+import { ISideNavComponent } from "./Contents";
+import useDidMountEffect from "@components/utilities/hooks";
 
 export interface IDao {
   name: string;
@@ -80,7 +82,7 @@ const daos: IDao[] = [
   // },
 ];
 
-const DaoBio: React.FC = () => {
+const DaoBio: React.FC<ISideNavComponent> = (props) => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [dropdown, setDropdown] = React.useState<boolean>(false);
   const [search, setSearch] = React.useState<string>("");
@@ -93,12 +95,14 @@ const DaoBio: React.FC = () => {
     href: "",
     img: PaideiaLogo.src,
   });
-
   const setDaoWrapper = (dao: IDao) => {
+    props.setShowMobile(false)
     setId(dao.id);
     setDao(dao);
-    setDropdown(false);
+    setDropdown(false); 
+
   };
+
 
   return (
     <Box
@@ -233,7 +237,9 @@ const DaoBio: React.FC = () => {
                 .map((d: any, c: number) => (
                   <DaoSelect
                     data={d}
-                    set={setDaoWrapper}
+                    set={(val: IDao) => 
+                      setDaoWrapper(val)
+                    }
                     key={`dao-select-key-${c}`}
                     selected={id === d.id}
                   />

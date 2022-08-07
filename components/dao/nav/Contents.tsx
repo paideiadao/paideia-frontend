@@ -318,11 +318,11 @@ const DropdownLink: React.FC<{
 // change to accordion.... still use list structure, but change components
 // accordion should go inside a scollable wrapper.
 
-interface IContents {
+export interface ISideNavComponent {
   setShowMobile: (val: boolean) => void;
 }
 
-const Contents: React.FC<IContents> = (props) => {
+const Contents: React.FC<ISideNavComponent> = (props) => {
   const router = useRouter();
   const path = router.asPath;
 
