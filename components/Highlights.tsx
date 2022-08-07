@@ -24,7 +24,7 @@ const titleStyle = {
   color: DarkTheme.palette.text.primary,
   textTransform: "uppercase",
   fontFamily: '"Viga", sans-serif',
-  textShadow: '0px 2px 2px rgba(0, 0, 0, 0.6)'
+  textShadow: "0px 2px 2px rgba(0, 0, 0, 0.6)",
 };
 
 const secondaryTitleStyle = {
@@ -338,7 +338,7 @@ const Highlights: FC<IHighlightProps> = ({ titleSmall, title, highlights }) => {
       >
         <Grid container sx={{ mt: "120px" }}>
           <Grid item md={6}>
-            <SectionTitle sx={{ mb: '24px' }}>
+            <SectionTitle sx={{ mb: "24px" }}>
               {titleSmall ? titleSmall : "Featured"}
             </SectionTitle>
             <Typography sx={{ ...titleStyle, mb: "64px" }}>

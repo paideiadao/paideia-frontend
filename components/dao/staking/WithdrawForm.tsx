@@ -4,7 +4,7 @@ import {
   Subtitle,
 } from "@components/creation/utilities/HeaderComponents";
 import { useWallet } from "@components/wallet/WalletContext";
-import { IWallet } from "@lib/creation/CreationApi";
+import { IWallet } from "@lib/creation/Interfaces";
 import { Box, Button, InputAdornment, TextField, Modal } from "@mui/material";
 import * as React from "react";
 import { modalBackground } from "@components/utilities/modalBackground";

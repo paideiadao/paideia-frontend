@@ -4,7 +4,8 @@ import {
 } from "@components/creation/utilities/HeaderComponents";
 import LabeledSwitch from "@components/creation/utilities/LabeledSwitch";
 import MultiWalletSelector from "@components/utilities/MultiWalletSelector";
-import { IWallet } from "@lib/creation/CreationApi";
+import { IWallet } from "@lib/creation/Interfaces";
+
 import ProposalContext, {
   IProposalContext,
 } from "@lib/dao/proposal/ProposalContext";

@@ -9,9 +9,6 @@ export interface ICreationContext {
 export const CreationContext = React.createContext({
   api: new CreationApi(
     undefined,
-    undefined,
-    undefined,
-    undefined,
     {
       navStage: 0,
       basicInformation: {

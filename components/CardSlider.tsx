@@ -177,9 +177,9 @@ const CardSlider: FC<SliderProps> = ({
       <Container
         id={uniqueId + "pnArrowContainer"}
         // maxWidth="lg"
-        sx={{ 
-          my: buttonTop ? "0" : "32px", 
-          p: 0
+        sx={{
+          my: buttonTop ? "0" : "32px",
+          p: 0,
         }}
       >
         <Box
@@ -194,8 +194,8 @@ const CardSlider: FC<SliderProps> = ({
                   mr: deviceWrapper("0", "-1rem"),
                 }
               : {
-                mx: { xs: '24px', sm: '0px' },
-              }
+                  mx: { xs: "24px", sm: "0px" },
+                }
           }
         >
           {header}

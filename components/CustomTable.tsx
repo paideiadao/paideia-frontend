@@ -8,7 +8,7 @@ import {
   TableContainer,
   useMediaQuery,
 } from "@mui/material";
-import { IObj } from "@lib/utilities";
+import { IObj } from "@lib/Interfaces";
 
 interface HeadingData {
   id: string;
@@ -56,7 +56,7 @@ const CustomTable: FC<ITableProps> = ({ rows, heading }): JSX.Element => {
         <TableHead>
           <TableRow
             sx={{
-              background: "rgba(255, 255, 255, 0.09)",
+              background: "rgba(30, 36, 49, 0.7)",
               borderBottom: "1px solid rgba(255, 255, 255, 0.12) !important",
             }}
           >
@@ -83,10 +83,10 @@ const CustomTable: FC<ITableProps> = ({ rows, heading }): JSX.Element => {
               <TableRow
                 key={i}
                 sx={{
-                  background: "rgba(255, 255, 255, 0.05)",
+                  background: "rgba(19,26,39,0.7)",
                   borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
                   "&:nth-of-type(odd)": {
-                    background: "rgba(255, 255, 255, 0.02)",
+                    background: "rgba(10,18,31,0.7)",
                   },
                   // hide last border
                   "&:last-child td, &:last-child th": {

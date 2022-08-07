@@ -102,22 +102,23 @@ const Blog = () => {
     <>
       <PageHeader
         bgUrl="/backgrounds/blog-bg.png"
+        imgPositionSx={{
+          width: "2233px",
+          height: "1627px",
+          left: "calc(50% + 400px)",
+        }}
         mobileBgUrl="/backgrounds/blog-mobile.png"
         mobileSx={{
-          width: '1019px',
-          height: '1203px',
-          left: 'calc(50% + 300px)',
+          width: "1019px",
+          height: "1203px",
+          top: "-100px",
+          left: "calc(50% + 300px)",
         }}
         sectionTitle="Blog"
         titleLineOne="Our Latest"
         titleLineTwo="Articles"
         subTitleOne="Don't miss out on any of the latest updates "
         subTitleTwo=" "
-        imgPositionSx={{
-          width: '2648px',
-          height: '1809px',
-          left: 'calc(50% + 200px)'
-        }}
       />
       <Highlights
         highlights={highlights}

@@ -40,7 +40,7 @@ export default function Hero() {
         }}
       >
         <Grid item>
-          <SectionTitle sx={{ mb: '80px' }}>
+          <SectionTitle sx={{ mb: "80px" }}>
             A Web3 DAO Management Software Suite
           </SectionTitle>
           <Typography

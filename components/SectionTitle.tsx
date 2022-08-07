@@ -4,18 +4,12 @@ import SquareIcon from "@mui/icons-material/Square";
 import { SxProps } from "@mui/material";
 
 interface SectionTitleProps {
-  sx? : SxProps;
+  sx?: SxProps;
 }
 
 const SectionTitle: FC<SectionTitleProps> = ({ children, sx }) => {
   return (
-    <Grid
-      container
-      spacing={1}
-      direction="row"
-      alignItems="flex-start"
-      sx={sx}
-    >
+    <Grid container spacing={1} direction="row" alignItems="flex-start" sx={sx}>
       <Grid item sx={{ fontSize: "13px" }}>
         <SquareIcon fontSize="inherit" />
       </Grid>

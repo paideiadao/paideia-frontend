@@ -1,10 +1,9 @@
 import { Box } from "@mui/material";
 import * as React from "react";
-import { ITokenomics } from "../../../../lib/creation/CreationApi";
+import { ITokenomics } from "@lib/creation/Interfaces";
 import { CreationContext } from "../../../../lib/creation/Context";
-import { IData } from "../../../../lib/utilities";
+import { IData } from "@lib/Interfaces";
 import { LearnMore, Subtitle } from "../../utilities/HeaderComponents";
-import LabeledSwitch from "../../utilities/LabeledSwitch";
 import TokenomicSummary from "./TokenomicSummary";
 import { deviceStruct } from "@components/utilities/Style";
 

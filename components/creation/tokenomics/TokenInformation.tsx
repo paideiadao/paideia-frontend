@@ -1,8 +1,8 @@
 import { Box, Button, ButtonGroup, TextField } from "@mui/material";
 import * as React from "react";
-import { ICreationData, ITokenomics } from "../../../lib/creation/CreationApi";
+import { ICreationData, ITokenomics } from "@lib/creation/Interfaces";
 import { CreationContext } from "../../../lib/creation/Context";
-import { IData } from "../../../lib/utilities";
+import { IData } from "@lib/Interfaces";
 import { Header, LearnMore, Subheader } from "../utilities/HeaderComponents";
 import { deviceStruct, deviceWrapper } from "@components/utilities/Style";
 

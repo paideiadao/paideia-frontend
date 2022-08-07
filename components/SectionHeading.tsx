@@ -34,9 +34,9 @@ const SectionHeading: FC<HeadingProps> = ({
             lineHeight: "116.7%",
             textTransform: "uppercase",
             fontFamily: '"Viga", sans-serif',
-            textShadow: '0px 2px 2px rgba(0, 0, 0, 0.6)',
-            overflowWrap: 'break-word',
-            hyphens: 'manual'
+            textShadow: "0px 2px 2px rgba(0, 0, 0, 0.6)",
+            overflowWrap: "break-word",
+            hyphens: "manual",
           }}
         >
           {title}

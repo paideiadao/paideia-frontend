@@ -6,11 +6,10 @@ import { Accordion, Box, Button, Typography } from "@mui/material";
 import { Value, ImageWrapper } from "./ReviewDrawer";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import EditIcon from "@mui/icons-material/Edit";
-import { bytesToSize } from "../../../lib/creation/Utilities";
+import { bytesToSize } from "@lib/creation/Utilities";
 import { themes } from "../design/Design";
 import CircleIcon from "@mui/icons-material/Circle";
-import { IFile, ISocialLink } from "../../../lib/creation/CreationApi";
-
+import { IFile, ISocialLink } from "@lib/creation/Interfaces";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";

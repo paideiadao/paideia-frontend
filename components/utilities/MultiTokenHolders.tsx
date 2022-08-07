@@ -1,7 +1,7 @@
 import WalletSelector from "@components/creation/governance/WalletSelector";
 import BalanceInput from "@components/creation/utilities/BalanceInput";
 import PercentageInput from "@components/creation/utilities/PercentageInput";
-import { ITokenHolder } from "@lib/creation/CreationApi";
+import { ITokenHolder } from "@lib/creation/Interfaces";
 import { Box, Button, IconButton } from "@mui/material";
 import * as React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";

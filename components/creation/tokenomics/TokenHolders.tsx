@@ -1,8 +1,8 @@
 import { Alert, AlertTitle, Box, Button } from "@mui/material";
 import * as React from "react";
-import { ITokenomics } from "../../../lib/creation/CreationApi";
+import { ITokenomics } from "@lib/creation/Interfaces";
 import { CreationContext } from "../../../lib/creation/Context";
-import { IData } from "../../../lib/utilities";
+import { IData } from "@lib/Interfaces";
 import WalletSelector from "../governance/WalletSelector";
 import { LearnMore } from "../utilities/HeaderComponents";
 import AddIcon from "@mui/icons-material/Add";

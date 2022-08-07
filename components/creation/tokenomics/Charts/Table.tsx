@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { ITokenomics } from "../../../../lib/creation/CreationApi";
+import { ITokenomics } from "@lib/creation/Interfaces";
 import { Box } from "@mui/material";
 
 const PaideiaTable: React.FC<ITokenomics> = (props) => {

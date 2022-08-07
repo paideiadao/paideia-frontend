@@ -12,8 +12,8 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import EditIcon from "@mui/icons-material/Edit";
 import { bytesToSize, percentage } from "../../../lib/creation/Utilities";
-import { ITokenHolder, ITokenomics } from "../../../lib/creation/CreationApi";
 import { deviceStruct } from "@components/utilities/Style";
+import { ITokenomics, ITokenHolder } from "@lib/creation/Interfaces";
 
 const DistributionListing: React.FC<{ data: ITokenomics }> = (props) => {
   let tokenHolderBalance = props.data.tokenHolders
@@ -209,7 +209,7 @@ const Tokenomics: React.FC<{
             mt: ".5rem",
           }}
         >
-          <Button onClick={() => props.edit(2)}>
+          <Button onClick={() => props.edit(1)}>
             Edit Section
             <EditIcon sx={{ ml: ".5rem" }} />
           </Button>

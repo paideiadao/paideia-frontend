@@ -184,6 +184,11 @@ export default function Header() {
         sx={{
           zIndex: "24",
           backdropFilter: `${trigger ? "blur(25px)" : ""}`,
+          background: `${
+            trigger
+              ? "linear-gradient(130.4deg, rgba(7, 10, 17, 0.6) 14.89%, rgba(7, 10, 17, 0.3) 87.67%)"
+              : ""
+          }`,
         }}
       >
         <Container sx={{ px: "24px" }}>
@@ -202,18 +207,32 @@ export default function Header() {
               }}
             >
               <Link href="/">
-                <SvgIcon sx={{
-                  cursor: "pointer",
-                  color: DarkTheme.palette.text.primary,
-                  fontSize: { xs: "32px", md: "40px" },
-                  "&:hover": {
-                    color: LightTheme.palette.secondary.main,
-                  },
-                }}>
+                <SvgIcon
+                  sx={{
+                    cursor: "pointer",
+                    color: DarkTheme.palette.text.primary,
+                    fontSize: { xs: "32px", md: "40px" },
+                    "&:hover": {
+                      color: LightTheme.palette.secondary.main,
+                    },
+                  }}
+                >
                   <rect width="3.56138" height="16.1036" rx="0.5" />
-                  <rect x="12.6965" y="7.89648" width="3.56138" height="16.1036" rx="0.5" />
+                  <rect
+                    x="12.6965"
+                    y="7.89648"
+                    width="3.56138"
+                    height="16.1036"
+                    rx="0.5"
+                  />
                   <rect x="6.34839" width="3.56138" height="9.75509" rx="0.5" />
-                  <rect x="6.34839" y="14.2446" width="3.56138" height="9.75509" rx="0.5" />
+                  <rect
+                    x="6.34839"
+                    y="14.2446"
+                    width="3.56138"
+                    height="9.75509"
+                    rx="0.5"
+                  />
                 </SvgIcon>
               </Link>
             </Grid>
@@ -277,8 +296,9 @@ export default function Header() {
                           borderRadius: "2px",
                           background: "#fff",
                           transition: "transform 100ms ease-in-out",
-                          transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"
-                            }`,
+                          transform: `${
+                            navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                          }`,
                         }}
                       ></Box>
                       <Box
@@ -289,8 +309,9 @@ export default function Header() {
                           borderRadius: "2px",
                           background: "#fff",
                           transition: "transform 100ms ease-in-out",
-                          transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
-                            }`,
+                          transform: `${
+                            navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                          }`,
                         }}
                       ></Box>
                     </Box>
@@ -334,8 +355,9 @@ export default function Header() {
                 borderRadius: "2px",
                 background: "#fff",
                 transition: "transform 100ms ease-in-out",
-                transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"
-                  }`,
+                transform: `${
+                  navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                }`,
               }}
             ></Box>
             <Box
@@ -346,8 +368,9 @@ export default function Header() {
                 borderRadius: "2px",
                 background: "#fff",
                 transition: "transform 100ms ease-in-out",
-                transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
-                  }`,
+                transform: `${
+                  navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                }`,
               }}
             ></Box>
           </Box>

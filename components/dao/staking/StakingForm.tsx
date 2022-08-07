@@ -6,7 +6,7 @@ import {
 } from "@components/creation/utilities/HeaderComponents";
 import WalletSelector from "@components/creation/governance/WalletSelector";
 import { useWallet } from "@components/wallet/WalletContext";
-import { IWallet } from "@lib/creation/CreationApi";
+import { IWallet } from "@lib/creation/Interfaces";
 import { modalBackground } from "@components/utilities/modalBackground";
 import { deviceWrapper } from "@components/utilities/Style";
 

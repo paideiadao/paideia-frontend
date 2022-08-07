@@ -11,7 +11,6 @@ import ProposalContext, {
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import ProposalApi from "@lib/dao/proposal/ProposalApi";
 import GeneralInformation from "@components/dao/proposal/GeneralInformation";
-import { IFile } from "@lib/creation/CreationApi";
 import ProposalPlaceholder from "@public/dao/discussion-banner-placeholder.png";
 import ProposalImage from "@components/dao/proposal/ProposalImage";
 import ProposalVote from "@components/dao/proposal/ProposalVote";
@@ -28,6 +27,7 @@ import { IComment } from "@components/dao/discussion/Comments";
 import Reference from "@components/dao/discussion/Reference";
 import { IAddendum } from "@components/dao/proposal/Addendums";
 import { getRandomImage } from "@components/utilities/images";
+import { IFile } from "@lib/creation/Interfaces";
 
 export interface IProposalAction {
   name:

@@ -13,44 +13,44 @@ import { DarkTheme } from "@theme/theme";
 interface ITheme {
   id: number;
   label: string;
-  colorTop: string;
-  colorBottom: string;
-  colorTopDark: string;
-  colorBottomDark: string;
+  primary: string;
+  secondary: string;
+  primaryDark: string;
+  secondaryDark: string;
 }
 
 export const themes: ITheme[] = [
   {
     id: 1,
     label: "Paideia",
-    colorTop: "#9FD2DB",
-    colorBottom: "#111827",
-    colorTopDark: '#', 
-    colorBottomDark: '#9FD2DB'
+    primary: "#00868F",
+    secondary: "#FF8219",
+    secondaryDark: "#FC9E4F",
+    primaryDark: "#9FD2DB",
   },
   {
     id: 2,
-    label: "Paideia/Light",
-    colorTop: "#23B5CF",
-    colorBottom: "#FFFFFF",
-    colorTopDark: '', 
-    colorBottomDark: ''
+    label: "Electric Violet",
+    primary: "#57e9a3",
+    secondary: "#c7a3f0",
+    primaryDark: "#00a068",
+    secondaryDark: "#c655ff",
   },
   {
     id: 3,
-    label: "Purple/Dark",
-    colorTop: "#9EA0FF",
-    colorBottom: "#111827",
-    colorTopDark: '', 
-    colorBottomDark: ''
+    label: "Autumn Leaves",
+    primary: "#a09ef4",
+    secondary: "#e3c880",
+    primaryDark: "#825cff",
+    secondaryDark: "#e2903f",
   },
   {
     id: 4,
-    label: "Purple/Light",
-    colorTop: "#6365EF",
-    colorBottom: "#FFFFFF",
-    colorTopDark: '', 
-    colorBottomDark: ''
+    label: "Oceanic",
+    primary: "#ff79ba",
+    secondary: "#90eeff",
+    primaryDark: "#c43b62",
+    secondaryDark: "#2c9ec1",
   },
 ];
 
@@ -90,7 +90,10 @@ export const ThemeCard: React.FC<IThemeCard> = (props) => {
       >
         <Box
           sx={{
-            backgroundColor: themeContext.theme === DarkTheme ? props.i.colorBottomDark : props.i.colorBottom,
+            backgroundColor:
+              themeContext.theme === DarkTheme
+                ? props.i.secondaryDark
+                : props.i.secondary,
             width: "100%",
             height: "5rem",
             borderTopLeftRadius: ".6rem",
@@ -115,7 +118,10 @@ export const ThemeCard: React.FC<IThemeCard> = (props) => {
             sx={{
               width: "100%",
               height: "100%",
-              backgroundColor: themeContext.theme === DarkTheme ? props.i.colorTopDark : props.i.colorTop,
+              backgroundColor:
+                themeContext.theme === DarkTheme
+                  ? props.i.primaryDark
+                  : props.i.primary,
               clipPath: "polygon(0 0, 100% 0, 0 100%)",
               borderTopLeftRadius: ".6rem",
               borderTopRightRadius: ".6rem",

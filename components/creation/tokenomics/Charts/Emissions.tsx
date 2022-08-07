@@ -5,13 +5,14 @@
 import { Box } from "@mui/material";
 import { ResponsiveLine } from "@nivo/line";
 import * as React from "react";
-import { ITokenomics } from "../../../../lib/creation/CreationApi";
+import { ITokenomics } from "@lib/creation/Interfaces";
 import dateFormat from "dateformat";
 import { LightTheme } from "../../../../theme/theme";
 import {
   CreationContext,
   ICreationContext,
 } from "../../../../lib/creation/Context";
+import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
 
 const getEmissionLengthInDays = (length: number, units: string) => {
   switch (units) {
@@ -203,7 +204,7 @@ const getChartData = (data: any) => {
 const Emissions: React.FC<ITokenomics> = (props) => {
   let creationContext = React.useContext<ICreationContext>(CreationContext);
   // sort by longest vesting data in the getChartData function
-
+  const themeContext = React.useContext<IThemeContext>(ThemeContext);
   const [chartData, setChartData] = React.useState<any>(
     getChartData(props.distributions.filter((i: any) => i !== undefined))
   );
@@ -223,7 +224,7 @@ const Emissions: React.FC<ITokenomics> = (props) => {
       enablePoints={false}
       theme={{
         textColor:
-          creationContext.api.theme === LightTheme
+          themeContext.theme === LightTheme
             ? "rgba(0, 0, 0, 0.6)"
             : "rgba(255, 255, 255, 0.7)",
       }}

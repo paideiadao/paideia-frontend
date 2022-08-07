@@ -1,5 +1,5 @@
-import { useRadioGroup } from "@mui/material";
 import axios from "axios";
+import { IObj } from "@lib/Interfaces";
 
 const statusLookup: IObj<number> = {
   GET: 200,
@@ -39,22 +39,21 @@ export class AbstractApi {
     this.setAlert = _setAlert;
   }
 
-
   webSocket(request_id: string) {
-    const ws = new WebSocket(`ws://localhost:8000/ws/${request_id}`)
+    const ws = new WebSocket(`ws://localhost:8000/api/auth/ws/${request_id}`);
     ws.onmessage = (event) => {
       try {
-        console.log('WS:', event)
+        console.log("WS:", event);
       } catch (e) {
-        console.log(e)
-      } 
-    }
+        console.log(e);
+      }
+    };
   }
 
   async signingMessage(address: string, addresses?: string[]): Promise<any> {
     const data = await this.post<{ data: ISigningMessage }>(
       "/auth/login",
-      { address: address === '' ? undefined : address, addresses: addresses },
+      { address: address === "" ? undefined : address, addresses: addresses },
       "added user.",
       ""
     );
@@ -190,6 +189,33 @@ export class AbstractApi {
     );
   }
 
+  async request(url: string, method: string, body?: any) {
+    return await new Promise(async (resolve, reject) => {
+      try {
+        if (body !== undefined) {
+          return await this._request(url, method, body).then(async (res) => {
+            if (res.status !== statusLookup[method]) {
+              resolve("error");
+            } else {
+              resolve(res);
+            }
+          });
+        } else {
+          return await this._request(url, method, body).then(async (res) => {
+            if (res.status !== statusLookup[method]) {
+              resolve(undefined);
+            } else {
+              resolve(res);
+            }
+          });
+        }
+      } catch (err) {
+        console.log("err", err);
+        return reject(err);
+      }
+    });
+  }
+
   async _request(
     url: string,
     method: string,
@@ -217,46 +243,4 @@ export class AbstractApi {
       defaultOptions
     );
   }
-
-  async request(url: string, method: string, body?: any) {
-    return await new Promise(async (resolve, reject) => {
-      try {
-        if (body !== undefined) {
-          return await this._request(url, method, body).then(async (res) => {
-            if (res.status !== statusLookup[method]) {
-              resolve("error");
-            } else {
-              resolve(res);
-            }
-          });
-        } else {
-          return await this._request(url, method, body).then(async (res) => {
-            if (res.status !== statusLookup[method]) {
-              resolve(undefined);
-            } else {
-              resolve(res);
-            }
-          });
-        }
-      } catch (err) {
-        console.log("err", err);
-        return reject(err);
-      }
-    });
-  }
-}
-
-export interface IData<T> {
-  data: T;
-  setData: Function;
-}
-
-export interface IObj<TValue> {
-  [id: string]: TValue;
-}
-
-export interface IAlert {
-  show: boolean;
-  header?: string;
-  content?: string | JSX.Element;
 }

@@ -5,7 +5,7 @@ import { LightTheme, DarkTheme } from "@theme/theme";
 import Button from "@mui/material/Button";
 import BasicInformation from "@components/creation/basic-information/BasicInformation";
 import { CreationContext } from "@lib/creation/Context";
-import { CreationApi, ICreationData } from "../lib/creation/CreationApi";
+import { CreationApi } from "../lib/creation/CreationApi";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { checkCompleteness } from "@lib/creation/Utilities";
@@ -17,6 +17,8 @@ import CreationLoading from "@components/creation/loading/CreationLoading";
 import { modalBackground } from "@components/utilities/modalBackground";
 import Status from "@components/utilities/Status";
 import { deviceStruct } from "@components/utilities/Style";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
+import { ICreationData } from "@lib/creation/Interfaces";
 
 export let colorLookup = {
   light: "#FFFFFF",
@@ -24,6 +26,7 @@ export let colorLookup = {
 };
 
 export default function Creation() {
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [alert, setAlert] = React.useState({
     show: false,
     value: "",
@@ -126,7 +129,7 @@ export default function Creation() {
     }
   }, [alert]);
 
-  const api = new CreationApi(alert, setAlert, theme, setTheme, data, setData);
+  const api = new CreationApi(globalContext.api, data, setData);
   return (
     <CreationContext.Provider value={{ api }}>
       {data.isPublished === 1 ? (
