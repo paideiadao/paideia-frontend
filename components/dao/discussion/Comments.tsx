@@ -145,7 +145,7 @@ const CommentInput: React.FC<{
   return (
     <Box
       sx={{
-        pl: props.level === undefined ? "0rem" : `${props.level * .45}rem`,
+        pl: props.level === undefined ? "0rem" : `${.45}rem`,
         mt: props.level === undefined ? 0 : ".5rem",
       }}
     >
