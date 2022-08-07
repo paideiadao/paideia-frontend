@@ -18,7 +18,6 @@ const Details: React.FC = () => {
     var x = setInterval(function () {
       // Get today's date and time
       let now = new Date().getTime();
-      console.log("here");
       // Find the distance between now and the count down date
       var distance = proposalContext.api.value.date.getTime() - now;
 
@@ -29,9 +28,7 @@ const Details: React.FC = () => {
       );
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      console.log("fuck");
       // Display the result in the element with id="demo"
-      console.log(days + "d " + hours + "h " + minutes + "m " + seconds + "s ");
       setTime(days + "d " + hours + "h " + minutes + "m " + seconds + "s ");
 
       // If the count down is finished, write some text
@@ -41,7 +38,6 @@ const Details: React.FC = () => {
       }
     }, 1000);
   }, []);
-  console.log(time);
   return (
     <>
       <Overview proposal />

@@ -279,7 +279,7 @@ const TopNav: React.FC<INav> = (props) => {
             {/* <IconButton onClick={props.hide} sx={{right: '.5rem', top: '.5rem', position: 'absolute'}}>
           <CloseIcon/>
         </IconButton> */}
-            <DaoBio setShowMobile={props.setShowMobile}/>
+            <DaoBio setShowMobile={props.setShowMobile} />
             <Contents setShowMobile={props.setShowMobile} />
           </Box>
 

@@ -22,9 +22,9 @@ const BottomNav: React.FC = () => {
         pb:
           router === undefined
             ? deviceWrapper(".5rem", ".75rem")
-            : router.pathname.includes("notifications") &&
-              !router.pathname.includes("edit")
-            ? "4rem"
+            : (router.pathname.includes("notifications") &&
+              !router.pathname.includes("edit"))
+            ? deviceWrapper("4rem", '.75rem') : router.pathname.includes('proposal/') ? deviceWrapper('3rem', '.75rem')
             : deviceWrapper(".5rem", ".75rem"),
         pt: deviceWrapper(".5rem", ".75rem"),
         flexDirection: deviceWrapper("column", "row"),

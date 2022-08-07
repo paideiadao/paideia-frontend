@@ -4,7 +4,7 @@ import * as React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 interface IBackLink {
-  variant: "outlined" | "contained" | "text";
+  variant?: "outlined" | "contained" | "text";
 }
 
 const BackLink: React.FC<IBackLink> = (props) => {

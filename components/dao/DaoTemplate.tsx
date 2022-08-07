@@ -28,7 +28,7 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
       sx={{
         display: "flex",
         alignItems: "flex-start",
-      }} 
+      }}
     >
       <Nav showMobile={showMobile} setShowMobile={setShowMobile} />
       <Box

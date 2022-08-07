@@ -105,18 +105,21 @@ const Proposal: React.FC = () => {
   return (
     <ProposalContext.Provider value={{ api }}>
       <Layout width={deviceWrapper("92%", "97%")}>
-        <Box sx={{ width: "100%", display: "flex", alignItems: "flex-start" }}>
+        <Box sx={{ width: "100%", display: "flex", alignItems: "flex-start", pb: '3rem' }}>
           <Box sx={{ width: deviceWrapper("100%", "70%") }}>
             <Box
               sx={{
                 width: deviceWrapper("calc(100% + 2rem)", "100%"),
                 borderRadius: deviceWrapper("0", ".3rem"),
                 position: "relative",
-                backgroundImage: deviceWrapper(`linear-gradient(
+                backgroundImage: deviceWrapper(
+                  `linear-gradient(
                   to bottom, transparent, ${
                     themeContext.theme === DarkTheme ? "black" : "white"
                   }
-                ), url(${value.image.url})`, `url(${value.image.url})`),
+                ), url(${value.image.url})`,
+                  `url(${value.image.url})`
+                ),
                 p: ".75rem",
                 maxHeight: "30rem",
                 display: "flex",
@@ -126,7 +129,7 @@ const Proposal: React.FC = () => {
                 ml: deviceWrapper("-1rem", "0"),
               }}
             >
-              <BackLink variant="contained" />url(${value.image.url})
+              <BackLink variant="contained" />
               <Box
                 sx={{
                   position: "absolute",
@@ -428,7 +431,23 @@ const Proposal: React.FC = () => {
             )}
           </Box>
         </Box>
+        <Button
+        size="small"
+        startIcon={<GavelIcon />}
+        sx={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          display: deviceWrapper("flex", "none"),
+          borderRadius: 0,
+        }}
+        variant="contained"
+      >
+        Vote Now
+      </Button>
       </Layout>
+
     </ProposalContext.Provider>
   );
 };

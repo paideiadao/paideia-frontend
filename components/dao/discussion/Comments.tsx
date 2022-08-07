@@ -27,7 +27,7 @@ export interface IComment {
   comment: string;
   userSide: number;
   parent: number;
-  show?: boolean
+  show?: boolean;
 }
 
 const _comments: IComment[] = [
@@ -145,7 +145,7 @@ const CommentInput: React.FC<{
   return (
     <Box
       sx={{
-        pl: props.level === undefined ? "0rem" : `${.45}rem`,
+        pl: props.level === undefined ? "0rem" : `${0.45}rem`,
         mt: props.level === undefined ? 0 : ".5rem",
       }}
     >
@@ -167,7 +167,14 @@ const CommentInput: React.FC<{
         }}
       >
         <InputBase
-          sx={{ ml: ".25rem", flex: 1, pb: "1rem", width: "100%", pt: ".5rem", fontSize: deviceWrapper(".8rem", "1rem") }}
+          sx={{
+            ml: ".25rem",
+            flex: 1,
+            pb: "1rem",
+            width: "100%",
+            pt: ".5rem",
+            fontSize: deviceWrapper(".8rem", "1rem"),
+          }}
           placeholder="Type something to leave a comment"
           multiline
           value={value}
@@ -319,28 +326,27 @@ const BaseComment: React.FC<{
             borderColor: "border.main",
           }}
         >
-          
           <Box
             sx={{
               display: "flex",
               justifyContent: "center",
-              width: deviceWrapper("96%", '98.5%'),
+              width: deviceWrapper("96%", "98.5%"),
               flexDirection: "column",
               fontSize: deviceWrapper(".8rem", "1rem"),
               borderColor: "border.main",
-              ml: '.5rem',
+              ml: ".5rem",
               mr: 0,
-              mt: '.25rem'
+              mt: ".25rem",
             }}
           >
             {props.comment.comment}
             <Box sx={{ display: "flex", width: "100%", mt: ".5rem", pr: 0 }}>
-            {children.length > 0 && !show && (
+              {children.length > 0 && !show && (
                 <Button
                   onClick={() => setShow(true)}
                   size="small"
-                  variant='outlined'
-                  sx={{mr: '.5rem'}}
+                  variant="outlined"
+                  sx={{ mr: ".5rem" }}
                   startIcon={
                     <ReplyIcon
                       sx={{
@@ -349,11 +355,16 @@ const BaseComment: React.FC<{
                     />
                   }
                 >
-                  View {children.length} {children.length === 1 ? "reply" : "replies"}
+                  View {children.length}{" "}
+                  {children.length === 1 ? "reply" : "replies"}
                 </Button>
               )}
               {!reply && (
-                <Button onClick={() => setReply(true)} size="small" variant='text'>
+                <Button
+                  onClick={() => setReply(true)}
+                  size="small"
+                  variant="text"
+                >
                   Reply
                 </Button>
               )}
@@ -367,17 +378,17 @@ const BaseComment: React.FC<{
             </Box>
           </Box>
           {reply && (
-          <CommentInput
-            parent={props.comment.id}
-            length={props.data.length}
-            set={(newComment: IComment) => {
-              props.set(newComment);
-              setShow(true)
-              setReply(false);
-            }}
-            level={level === undefined ? 1 : level + 1}
-          />
-        )}
+            <CommentInput
+              parent={props.comment.id}
+              length={props.data.length}
+              set={(newComment: IComment) => {
+                props.set(newComment);
+                setShow(true);
+                setReply(false);
+              }}
+              level={level === undefined ? 1 : level + 1}
+            />
+          )}
           <Box>
             {children.length >= 0 &&
               show &&
@@ -394,10 +405,7 @@ const BaseComment: React.FC<{
               ))}
           </Box>
         </Box>
-        
-        
       </Box>
-      
     </>
   );
 };

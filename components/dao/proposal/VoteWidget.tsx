@@ -99,7 +99,8 @@ const _VoteWidget: React.FC = () => {
             sx={{
               display: deviceWrapper("flex", "none"),
               ml: "auto",
-              width: "30%",
+              whiteSpace: 'no-wrap',
+              minWidth: 'max-content'
             }}
             size="small"
           >

@@ -65,7 +65,6 @@ const AddWallet: React.FC = () => {
     //@ts-ignore
     // load primary address
     if (localStorage.getItem(WALLET_ADDRESS)) {
-      console.log("wallet address here", localStorage.getItem(WALLET_ADDRESS));
       setWallet(localStorage.getItem(WALLET_ADDRESS));
       setWalletInput(localStorage.getItem(WALLET_ADDRESS));
     }
@@ -348,7 +347,6 @@ const AddWallet: React.FC = () => {
               <Button
                 onClick={async () => {
                   // add try catch here...
-                  console.log(walletInput, "walletInput");
                   let res = await globalContext.api.mobileLogin(walletInput);
                   console.log("res", res);
                   globalContext.api.webSocket(res.data.verificationId);

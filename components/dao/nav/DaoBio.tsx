@@ -96,13 +96,11 @@ const DaoBio: React.FC<ISideNavComponent> = (props) => {
     img: PaideiaLogo.src,
   });
   const setDaoWrapper = (dao: IDao) => {
-    props.setShowMobile(false)
+    props.setShowMobile(false);
     setId(dao.id);
     setDao(dao);
-    setDropdown(false); 
-
+    setDropdown(false);
   };
-
 
   return (
     <Box
@@ -237,9 +235,7 @@ const DaoBio: React.FC<ISideNavComponent> = (props) => {
                 .map((d: any, c: number) => (
                   <DaoSelect
                     data={d}
-                    set={(val: IDao) => 
-                      setDaoWrapper(val)
-                    }
+                    set={(val: IDao) => setDaoWrapper(val)}
                     key={`dao-select-key-${c}`}
                     selected={id === d.id}
                   />

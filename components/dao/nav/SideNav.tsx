@@ -35,7 +35,7 @@ const Nav: React.FC<INav> = (props) => {
         display: deviceWrapper("none", "block"),
       }}
     >
-      <DaoBio setShowMobile={props.setShowMobile}/>
+      <DaoBio setShowMobile={props.setShowMobile} />
       <Contents setShowMobile={props.setShowMobile} />
       {/* <Footer /> */}
     </Box>

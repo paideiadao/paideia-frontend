@@ -126,38 +126,3 @@ export default function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const paths = [{ params: { id: "spreadly" } }, { params: { id: "ergopad" } }];
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// };
-
-// export const getStaticProps: GetStaticProps = async ({ params }) => {
-//   const daoData = { params };
-//   return {
-//     props: {
-//       params,
-//     },
-//   };
-// };
-
-// export async function getServerSideProps(context: any) {
-//   // possibilities
-//   // paideia.im
-//   // {dao_name}.paideia.im
-//   let wildcard = context.req.headers.host.split(".")[0];
-//   let all_ids = ["spreadly", "ergopad"];
-
-//   // console.log(context.req.headers.host);
-
-//   wildcard =
-//     all_ids.indexOf(wildcard) > -1
-//       ? wildcard != "localhost:3000"
-//         ? wildcard
-//         : "home"
-//       : "home";
-//   return { props: { wildcard } };
-// }
