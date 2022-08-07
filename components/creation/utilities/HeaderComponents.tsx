@@ -12,7 +12,7 @@ export const Header: React.FC<{
   small?: boolean;
   large?: boolean;
   mb?: string | any;
-  bold?: boolean
+  bold?: boolean;
 }> = (props) => {
   return props.subtitle === undefined ? (
     <Box

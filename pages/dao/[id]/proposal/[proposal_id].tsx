@@ -38,10 +38,10 @@ import { getRandomImage } from "@components/utilities/images";
 import BackLink from "@components/utilities/BackLink";
 import Details from "@components/dao/proposal/Details";
 
-const endDate = new Date()
+const endDate = new Date();
 endDate.setDate(endDate.getDate() + 10);
 
-const startDate = new Date()
+const startDate = new Date();
 startDate.setDate(startDate.getDate() - 10);
 
 const Proposal: React.FC = () => {
@@ -112,9 +112,11 @@ const Proposal: React.FC = () => {
                 width: deviceWrapper("calc(100% + 2rem)", "100%"),
                 borderRadius: deviceWrapper("0", ".3rem"),
                 position: "relative",
-                backgroundImage: `linear-gradient(
-                  to bottom, transparent, ${themeContext.theme === DarkTheme ? 'black' : 'white'}
-                ), url(${value.image.url})`,
+                backgroundImage: deviceWrapper(`linear-gradient(
+                  to bottom, transparent, ${
+                    themeContext.theme === DarkTheme ? "black" : "white"
+                  }
+                ), url(${value.image.url})`, `url(${value.image.url})`),
                 p: ".75rem",
                 maxHeight: "30rem",
                 display: "flex",
@@ -124,7 +126,7 @@ const Proposal: React.FC = () => {
                 ml: deviceWrapper("-1rem", "0"),
               }}
             >
-              <BackLink variant="contained" />
+              <BackLink variant="contained" />url(${value.image.url})
               <Box
                 sx={{
                   position: "absolute",
@@ -161,44 +163,45 @@ const Proposal: React.FC = () => {
                   alignItems: "center",
                 }}
               >
-                                <Header title="Proposal name" large bold />
-                <Box sx={{display: 'flex', alignItems: 'center'}}>
-                <Chip
-                  label={"Discussion"}
-                  variant="outlined"
-                  icon={
-                    <CircleIcon
-                      color="primary"
-                      sx={{ mr: ".3rem", fontSize: ".7rem" }}
-                    />
-                  }
-                  sx={{
-                    color: "primary.main",
-                    borderColor: "primary.main",
-                    fontSize: ".7rem",
-                    display: "flex",
-                    p: "0rem",
-                    height: "1.4rem",
-                    backgroundColor: "background.default",
-                    mr: ".5rem",
-                  }}
-                />
-                <Chip
-                  label={value.category}
-                  variant="outlined"
-                  icon={<LocalFireDepartmentIcon sx={{ fontSize: ".9rem" }} />}
-                  sx={{
-                    color: "primary.main",
-                    borderColor: "primary.main",
-                    fontSize: ".7rem",
-                    display: "flex",
-                    p: "0rem",
-                    height: "1.4rem",
-                    backgroundColor: "background.default",
-                  }}
-                />
+                <Header title="Proposal name" large bold />
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <Chip
+                    label={"Discussion"}
+                    variant="outlined"
+                    icon={
+                      <CircleIcon
+                        color="primary"
+                        sx={{ mr: ".3rem", fontSize: ".7rem" }}
+                      />
+                    }
+                    sx={{
+                      color: "primary.main",
+                      borderColor: "primary.main",
+                      fontSize: ".7rem",
+                      display: "flex",
+                      p: "0rem",
+                      height: "1.4rem",
+                      backgroundColor: "background.default",
+                      mr: ".5rem",
+                    }}
+                  />
+                  <Chip
+                    label={value.category}
+                    variant="outlined"
+                    icon={
+                      <LocalFireDepartmentIcon sx={{ fontSize: ".9rem" }} />
+                    }
+                    sx={{
+                      color: "primary.main",
+                      borderColor: "primary.main",
+                      fontSize: ".7rem",
+                      display: "flex",
+                      p: "0rem",
+                      height: "1.4rem",
+                      backgroundColor: "background.default",
+                    }}
+                  />
                 </Box>
- 
               </Box>
               <Box
                 sx={{

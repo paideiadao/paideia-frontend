@@ -8,7 +8,7 @@ import dateFormat from "dateformat";
 import ProposalContext, {
   IProposalContext,
 } from "@lib/dao/proposal/ProposalContext";
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 const Details: React.FC = () => {
   const proposalContext = React.useContext<IProposalContext>(ProposalContext);
@@ -16,32 +16,32 @@ const Details: React.FC = () => {
 
   React.useEffect(() => {
     var x = setInterval(function () {
-        // Get today's date and time
-        let now = new Date().getTime()
-        console.log('here')
-        // Find the distance between now and the count down date
-        var distance = proposalContext.api.value.date.getTime() - now;
+      // Get today's date and time
+      let now = new Date().getTime();
+      console.log("here");
+      // Find the distance between now and the count down date
+      var distance = proposalContext.api.value.date.getTime() - now;
 
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            console.log('fuck')
-        // Display the result in the element with id="demo"
-        console.log(days + "d " + hours + "h " + minutes + "m " + seconds + "s ")
-        setTime(days + "d " + hours + "h " + minutes + "m " + seconds + "s ");
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      console.log("fuck");
+      // Display the result in the element with id="demo"
+      console.log(days + "d " + hours + "h " + minutes + "m " + seconds + "s ");
+      setTime(days + "d " + hours + "h " + minutes + "m " + seconds + "s ");
 
-        // If the count down is finished, write some text
-        if (distance < 0) {
-          clearInterval(x);
-          setTime("EXPIRED");
-        }
-      }, 1000);
-  }, [])
-  console.log(time)
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        setTime("EXPIRED");
+      }
+    }, 1000);
+  }, []);
+  console.log(time);
   return (
     <>
       <Overview proposal />
