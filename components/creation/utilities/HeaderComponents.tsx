@@ -132,7 +132,7 @@ export const LearnMore: React.FC<{
   title: string;
   small?: boolean;
   light?: boolean;
-  tooltipTitle: string;
+  tooltipTitle?: string;
   tooltipText: string;
   toolTipSteps?: ITooltipSteps[];
   tooltipLink?: string;

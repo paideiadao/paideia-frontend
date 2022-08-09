@@ -32,9 +32,9 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
     >
       <LearnMore
         title="Token Holders"
-        tooltipTitle="Title Here"
-        tooltipText="Content here."
-        tooltipLink="/here"
+        tooltipTitle="Initial distribution"
+        tooltipText="Select who receives tokens when the DAO is created. It is important to distribute enough tokens so that DAO voting can take place, but you don't have to distribute all of them now. Whatever percent of total tokens is leftover will be sent to the DAO treasury. "
+        // tooltipLink="/here"
       />
       <Box
         sx={{

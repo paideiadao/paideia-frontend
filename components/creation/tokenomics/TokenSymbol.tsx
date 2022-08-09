@@ -52,7 +52,7 @@ const TokenSymbol: React.FC<IData<ITokenomics>> = (props) => {
         title="Token symbol"
         small={true}
         tooltipTitle="Upload token symbol"
-        tooltipText="Upload a square .svg or transparent .png file for best results"
+        tooltipText="Upload a square .svg or .png file for best results. This can be the same that is used later as the platform logo. "
         // tooltipLink="/here"
       />
       <FileInput
