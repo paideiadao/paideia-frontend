@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, TextField } from "@mui/material";
+import { Box, Button, ButtonGroup, TextField, Grid } from "@mui/material";
 import * as React from "react";
 import { ICreationData, ITokenomics } from "@lib/creation/Interfaces";
 import { CreationContext } from "../../../lib/creation/Context";
@@ -9,68 +9,56 @@ import { deviceStruct, deviceWrapper } from "@components/utilities/Style";
 const NewToken: React.FC<IData<ITokenomics>> = (props) => {
   let data = props.data;
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        flexWrap: deviceWrapper("wrap", "nowrap"),
-      }}
-    >
-      <TextField
-        value={data.tokenName}
-        sx={{
-          width: deviceStruct("100%", "100%", "50%", "50%", "50%"),
-          mt: "1rem",
-          pr: ".5rem",
-        }}
-        label="Token name"
-        onChange={(e) =>
-          props.setData({
-            ...data,
-            tokenName: e.target.value,
-          })
-        }
-      />
-      <TextField
-        value={data.tokenTicker}
-        sx={{
-          width: deviceStruct("50%", "50%", "25%", "25%", "25%"),
-          mt: "1rem",
-          pr: ".5rem",
-        }}
-        label="Token ticker"
-        onChange={(e) =>
-          props.setData({
-            ...data,
-            tokenTicker: e.target.value,
-          })
-        }
-      />
-      <TextField
-        value={data.tokenAmount === 0 ? "" : data.tokenAmount}
-        sx={{
-          width: deviceStruct("50%", "50%", "25%", "25%", "25%"),
-          mt: "1rem",
-          pr: ".5rem",
-        }}
-        label="Token amount"
-        type="number"
-        onChange={(e) =>
-          props.setData({
-            ...data,
-            tokenAmount: e.target.value === "" ? 0 : parseInt(e.target.value),
-          })
-        }
-      />
-    </Box>
+    <Grid container spacing={2} direction={{ xs: "column", md: "row" }}>
+      <Grid item md={6}>
+        <TextField
+          value={data.tokenName}
+          sx={{ width: '100%' }}
+          label="Token name"
+          onChange={(e) =>
+            props.setData({
+              ...data,
+              tokenName: e.target.value,
+            })
+          }
+        />
+      </Grid>
+      <Grid item md={3}>
+        <TextField
+          value={data.tokenTicker}
+          sx={{ width: '100%' }}
+          label="Token ticker"
+          onChange={(e) =>
+            props.setData({
+              ...data,
+              tokenTicker: e.target.value,
+            })
+          }
+        />
+      </Grid>
+      <Grid item md={3}>
+        <TextField
+          value={data.tokenAmount === 0 ? "" : data.tokenAmount}
+          sx={{ width: '100%' }}
+          label="Token amount"
+          type="number"
+          onChange={(e) =>
+            props.setData({
+              ...data,
+              tokenAmount: e.target.value === "" ? 0 : parseInt(e.target.value),
+            })
+          }
+        />
+      </Grid>
+    </Grid>
   );
 };
 
 const ExistingToken: React.FC<IData<ITokenomics>> = (props) => {
   let data = props.data;
   return (
-    <>
-      <Box sx={{ width: "100%", mt: "1rem", mb: "1rem" }}>
+    <Grid container spacing={2} direction={{ xs: "column", md: "row" }}>
+      <Grid item md={12}>
         <TextField
           value={data.tokenId}
           sx={{ width: "100%" }}
@@ -82,36 +70,34 @@ const ExistingToken: React.FC<IData<ITokenomics>> = (props) => {
             })
           }
         />
-      </Box>
-      <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
-        <Box sx={{ width: "50%", mr: ".5rem" }}>
-          <TextField
-            value={data.tokenName}
-            sx={{ width: "100%" }}
-            label="Token name"
-            onChange={(e) =>
-              props.setData({
-                ...data,
-                tokenName: e.target.value,
-              })
-            }
-          />
-        </Box>
-        <Box sx={{ width: "50%" }}>
-          <TextField
-            value={data.tokenTicker}
-            sx={{ width: "100%" }}
-            label="Token ticker"
-            onChange={(e) =>
-              props.setData({
-                ...data,
-                tokenTicker: e.target.value,
-              })
-            }
-          />
-        </Box>
-      </Box>
-    </>
+      </Grid>
+      <Grid item md={6}>
+        <TextField
+          value={data.tokenName}
+          sx={{ width: "100%" }}
+          label="Token name"
+          onChange={(e) =>
+            props.setData({
+              ...data,
+              tokenName: e.target.value,
+            })
+          }
+        />
+      </Grid>
+      <Grid item md={6}>
+        <TextField
+          value={data.tokenTicker}
+          sx={{ width: "100%" }}
+          label="Token ticker"
+          onChange={(e) =>
+            props.setData({
+              ...data,
+              tokenTicker: e.target.value,
+            })
+          }
+        />
+      </Grid>
+    </Grid>
   );
 };
 
@@ -131,8 +117,14 @@ const TokenInformation: React.FC<IData<ITokenomics>> = (props) => {
 
   return (
     <Box>
-      <Subheader title="Token information" />
-      <ButtonGroup variant="outlined" sx={{ width: "100%", mt: ".5rem" }}>
+      <LearnMore
+        title="Token information"
+        // small
+        tooltipTitle="Token Information"
+        tooltipText="If using an existing token, double check the token ID using ergo explorer. Once set, this cannot be changed. The token you choose will be the governance token for the DAO you create. "
+      // tooltipLink="/here"
+      />
+      <ButtonGroup variant="outlined" sx={{ width: "100%", mt: ".5rem", mb: '24px', }}>
         <Button
           sx={{
             width: "50%",

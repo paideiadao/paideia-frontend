@@ -1,10 +1,9 @@
-import { Avatar, Box, Button, Paper } from "@mui/material";
+// import { Avatar, Box, Button, Paper } from "@mui/material";
 import * as React from "react";
 import { ITokenomics } from "@lib/creation/Interfaces";
-import { bytesToSize } from "../../../lib/creation/Utilities";
 import { IData } from "@lib/Interfaces";
-import FileInput from "../../utilities/file";
-import { LearnMore } from "../utilities/HeaderComponents";
+import FileInput from "@components/utilities/file";
+import { LearnMore } from "@components/creation/utilities/HeaderComponents";
 
 const TokenSymbol: React.FC<IData<ITokenomics>> = (props) => {
   const [url, setUrl] = React.useState<any>(props.data.tokenImage.url);
@@ -52,9 +51,9 @@ const TokenSymbol: React.FC<IData<ITokenomics>> = (props) => {
       <LearnMore
         title="Token symbol"
         small={true}
-        tooltipTitle="Title Here"
-        tooltipText="Content here."
-        tooltipLink="/here"
+        tooltipTitle="Upload token symbol"
+        tooltipText="Upload a square .svg or transparent .png file for best results"
+        // tooltipLink="/here"
       />
       <FileInput
         file={
