@@ -16,9 +16,9 @@ const QuadraticVoting: React.FC = () => {
     <>
       <LearnMore
         title="Quadratic voting"
-        tooltipTitle={"Title Here"}
-        tooltipText={"Content Here"}
-        tooltipLink="/"
+        tooltipTitle="Quadratic Voting"
+        tooltipText="This counting method attempts to give less weight to votes from large holders, AKA whales. 10 votes from 10 addresses will count for more than 10 votes from one address. "
+        tooltipLink="https://wtfisqf.com/"
       />
       <Subtitle subtitle="If active, voting power will not be determined only by the stakeholder investment, preventing whales from having too much influence over decisions." />
       <LabeledSwitch

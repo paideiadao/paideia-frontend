@@ -1,6 +1,6 @@
 import { LearnMore } from "@components/creation/utilities/HeaderComponents";
 import DiscussionContext from "@lib/dao/discussion/DiscussionContext";
-import { Box } from "@mui/material";
+import { Typography } from "@mui/material";
 import * as React from "react";
 import DiscussionBanner from "./DiscussionBanner";
 
@@ -53,13 +53,15 @@ const DiscussionImage: React.FC = () => {
 
   return (
     <>
-      <LearnMore
-        small
-        title="Discussion image"
-        tooltipText="Content Here"
-        tooltipTitle="Title Here"
-        tooltipLink="/here"
-      />
+      <Typography
+        sx={{
+          mt: '20px',
+          mb: '12px',
+          fontSize: '0.9rem',
+        }}
+      >
+        Discussion image
+      </Typography>
       <DiscussionBanner
         file={data === undefined ? "" : data.file}
         fileUrl={data === undefined ? "" : data.url}
