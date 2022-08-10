@@ -173,6 +173,7 @@ const Governance: React.FC = () => {
                         }}
                       >
                         <DeleteIcon
+                          color="error"
                           style={{
                             cursor: "pointer",
                           }}

@@ -23,7 +23,7 @@ export class AppApi extends AbstractApi {
   }
 
   async getDaos(): Promise<any> {
-    let res = await this.get<any>("/dao", "");
+    let res = await this.get<any>("/dao");
     return res;
   }
 }

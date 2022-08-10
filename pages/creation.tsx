@@ -116,6 +116,10 @@ export default function Creation() {
   }, []);
 
   React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [data.navStage]);
+
+  React.useEffect(() => {
     let temp = theme === LightTheme ? "light" : "dark";
     localStorage.setItem("theme", temp);
   }, [theme]);

@@ -134,12 +134,15 @@ const Review: React.FC = () => {
                     isPublished: 1,
                   });
                   let res = await creationContext.api.createDao(false);
-                  if (res !== false) {
-                    console.log("res", res);
+                  if (res) {
                     Router.push(`/dao/${res.data.dao_name.toLowerCase()}`);
                   } else {
-                    console.log("error here..");
+                    creationContext.api.api.error(
+                      "Connection issue, please submit again."
+                    );
+                    console.log("error here..", res);
                   }
+                  console.log("res", res);
                 }}
               >
                 Publish DAO

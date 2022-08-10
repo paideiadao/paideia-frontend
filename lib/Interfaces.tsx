@@ -6,9 +6,3 @@ export interface IData<T> {
 export interface IObj<TValue> {
   [id: string]: TValue;
 }
-
-export interface IAlert {
-  show: boolean;
-  header?: string;
-  content?: string | JSX.Element;
-}

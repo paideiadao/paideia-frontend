@@ -16,8 +16,7 @@ import { isDao } from "@lib/Router";
 import { WalletProvider } from "@components/wallet/WalletContext";
 import { AddWalletProvider } from "@components/wallet/AddWalletContext";
 import { AnimatePresence, motion } from "framer-motion";
-import { Box } from "@material-ui/core";
-import { IAlert } from "@lib/Interfaces";
+import AbstractAlert, { IAlerts } from "@components/utilities/Alert";
 
 const variants = {
   hidden: { opacity: 0, x: -200, y: 0 },
@@ -33,9 +32,7 @@ const daoVariants = {
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
-  const [alert, setAlert] = React.useState<IAlert>({
-    show: false,
-  });
+  const [alert, setAlert] = React.useState<IAlerts[]>([]);
   const router = useRouter();
   const [daoId, setDaoId] = React.useState<any>(router.query.id);
 
@@ -59,11 +56,11 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <AddWalletProvider>
         <WalletProvider>
-          {isDao(Component) ? (
-            <ThemeProvider theme={theme}>
-              <ThemeContext.Provider value={{ theme, setTheme }}>
-                <CssBaseline />
-                <GlobalContext.Provider value={{ api }}>
+          <GlobalContext.Provider value={{ api }}>
+            {isDao(Component) ? (
+              <ThemeProvider theme={theme}>
+                <ThemeContext.Provider value={{ theme, setTheme }}>
+                  <CssBaseline />
                   {Component !== Creation ? (
                     <DaoTemplate subdomain="">
                       <AnimatePresence exitBeforeEnter>
@@ -83,44 +80,28 @@ export default function App({ Component, pageProps }: AppProps) {
                   ) : (
                     <Component {...pageProps} />
                   )}
-                  {/* {alert.show && (
-                    <Modal
-                      open={alert.show}
-                      onClose={() => setAlert({ show: false })}
-                    >
-                      <Box sx={{ ...modalBackground, width: "35rem" }}>
-                        <Box sx={{ fontSize: "1.1rem", fontWeight: 450 }}>
-                          {alert.header}
-                        </Box>
-                        <Box sx={{ mt: "1rem", fontSize: ".9rem" }}>
-                          {alert.content}
-                        </Box>
-                        <Box
-                          sx={{
-                            width: "100%",
-                            display: "flex",
-                            alignItems: "center",
-                            mt: "1rem",
-                          }}
-                        >
-                          <Box sx={{ ml: "auto" }}>skeep</Box>
-                        </Box>
-                      </Box>
-                    </Modal>
-                  )} */}
-                </GlobalContext.Provider>
-              </ThemeContext.Provider>
-            </ThemeProvider>
-          ) : (
-            <ThemeProvider theme={DarkTheme}>
-              <CssBaseline />
-              <AnimatePresence exitBeforeEnter>
-                <Layout>
-                  <Component {...pageProps} />
-                </Layout>
-              </AnimatePresence>
-            </ThemeProvider>
-          )}
+                </ThemeContext.Provider>
+              </ThemeProvider>
+            ) : (
+              <ThemeProvider theme={DarkTheme}>
+                <CssBaseline />
+                <AnimatePresence exitBeforeEnter>
+                  <Layout>
+                    <Component {...pageProps} />
+                  </Layout>
+                </AnimatePresence>
+              </ThemeProvider>
+            )}
+            <AbstractAlert
+              alerts={alert}
+              set={(val: IAlerts[]) => setAlert(val)}
+              close={(c: number) => {
+                let temp = [...alert];
+                temp.splice(c, 1);
+                setAlert(temp);
+              }}
+            />
+          </GlobalContext.Provider>
         </WalletProvider>
       </AddWalletProvider>
     </>

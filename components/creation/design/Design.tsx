@@ -10,7 +10,7 @@ import { deviceStruct } from "@components/utilities/Style";
 import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
 import { DarkTheme } from "@theme/theme";
 
-interface ITheme {
+export interface ITheme {
   id: number;
   label: string;
   primary: string;

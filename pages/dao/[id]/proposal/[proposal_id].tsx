@@ -105,7 +105,14 @@ const Proposal: React.FC = () => {
   return (
     <ProposalContext.Provider value={{ api }}>
       <Layout width={deviceWrapper("92%", "97%")}>
-        <Box sx={{ width: "100%", display: "flex", alignItems: "flex-start", pb: '3rem' }}>
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            alignItems: "flex-start",
+            pb: "3rem",
+          }}
+        >
           <Box sx={{ width: deviceWrapper("100%", "70%") }}>
             <Box
               sx={{
@@ -432,22 +439,21 @@ const Proposal: React.FC = () => {
           </Box>
         </Box>
         <Button
-        size="small"
-        startIcon={<GavelIcon />}
-        sx={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          display: deviceWrapper("flex", "none"),
-          borderRadius: 0,
-        }}
-        variant="contained"
-      >
-        Vote Now
-      </Button>
+          size="small"
+          startIcon={<GavelIcon />}
+          sx={{
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            display: deviceWrapper("flex", "none"),
+            borderRadius: 0,
+          }}
+          variant="contained"
+        >
+          Vote Now
+        </Button>
       </Layout>
-
     </ProposalContext.Provider>
   );
 };

@@ -53,7 +53,7 @@ const pages = [
   {
     name: "Dashboard",
     link: "/dashboard",
-    disabled: true,
+    // disabled: true,
   },
 ];
 
@@ -260,7 +260,7 @@ export default function Header() {
                   </Grid>
                 </Grid>
                 <Grid item sx={{ display: { xs: "none", md: "flex" } }}>
-                  <ConnectWallet />
+                  <ConnectWallet show />
                 </Grid>
                 <Grid item sx={{ display: { xs: "flex", md: "none" } }}>
                   <IconButton>
