@@ -28,9 +28,9 @@ const OptimisticGovernance: React.FC = () => {
     <>
       <LearnMore
         title="Optimistic governance"
-        tooltipTitle={"Title Here"}
-        tooltipText={"Content Here"}
-        tooltipLink="/"
+        tooltipTitle="Optimistic Governance"
+        tooltipText="Choose this option if you'd like to whitelist individual wallets so that only those wallets can make proposals. All proposals will pass, unless a DAO member challenges that proposal. Choosing this option means that proposals will require collateral, and if the proposal is successfully challenged, IE DAO members vote it down after someone challenges it, that collateral is lost and distributed to the voters. This prevents corrupt individuals from draining the DAO or behaving in a way that is not in members' best interestes. Optimistic governance can make the DAO more agile and focused, as there is less engagement required from most members. "
+        tooltipLink="https://docs.paideia.im/governance-structures#_yj9ebg49un1g"
       />
       <Subtitle subtitle="If active, only whitelisted members will be able to create proposals. If a proposal is not challenged, they will be approved." />
       <LabeledSwitch
@@ -50,12 +50,11 @@ const OptimisticGovernance: React.FC = () => {
       {data.optimisticGovernance && (
         <>
           <LearnMore
-            small
-            title="White listed members"
-            tooltipTitle={"Title Here"}
-            tooltipText={"Content Here"}
-            tooltipLink="/"
-          />
+              title="White listed members"
+              // tooltipTitle="Whitelisted Members"
+              tooltipText="These will be the only addresses that can submit proposals for this DAO. All members will be able to challenge proposals, but not all members will be able to submit. Make sure you add a few addresses. Too few will represent a significant centralization of control. "
+              // tooltipLink="/here"
+            />
           <MultiWalletSelector
             wallets={data.whitelist}
             set={(value: IWallet[]) =>
@@ -69,12 +68,12 @@ const OptimisticGovernance: React.FC = () => {
             }
           />
           <LearnMore
-            small
-            title="Collateral"
-            tooltipTitle={"Title Here"}
-            tooltipText={"Content Here"}
-            tooltipLink="/"
-          />
+              small
+              title="Collateral"
+              // tooltipTitle="Title Here"
+              tooltipText="All proposals in Optimistic Governance require collateral. If the proposal is challenged, and is then voted down, the collateral is distributed to those who voted. A challenger must also submit equal collateral. If the challenge does not pass, and DAO members vote to pass the proposal, the challenger's collateral is distributed to voters. "
+              // tooltipLink="/here"
+            />
           <Box
             sx={{
               width: "100%",
@@ -125,12 +124,12 @@ const OptimisticGovernance: React.FC = () => {
             </Box>
           </Box>
           <LearnMore
-            small
-            title="Time to challenge a proposal"
-            tooltipTitle="Title Here"
-            tooltipText="Content here."
-            tooltipLink="/here"
-          />
+              small
+              title="Time to challenge a proposal"
+              // tooltipTitle="Title Here"
+              tooltipText="All proposals pass in Optimistic Governance, unless challenged. DAO members need enough time to assess each proposal to make sure it's agreeable. This is the length of time each proposal can be challenged before it passes. "
+              // tooltipLink="/here"
+            />
 
           <Box
             sx={{

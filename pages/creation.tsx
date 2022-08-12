@@ -143,7 +143,7 @@ export default function Creation() {
           />
           <Box
             sx={{
-              ml: deviceStruct("0", "0", "15rem", "15rem", "15rem"),
+              ml: { xs: 0, md: '15rem' },
               // mt: deviceStruct("6rem", "6rem", "3.5rem", "3.5rem", "3.5rem"),
               width: deviceStruct(
                 "100%",
@@ -152,12 +152,13 @@ export default function Creation() {
                 "calc(100% - 15rem)",
                 "calc(100% - 15rem)"
               ),
-              pt: deviceStruct(".25rem", ".25rem", "1rem", "1.5rem", "1.5rem"),
+              px: '16px',
+              pt: deviceStruct(".75rem", ".75rem", "1rem", "1.5rem", "1.5rem"),
               display: "flex",
               flexDirection: "column",
               height: "calc(100% - 3rem)",
               pb: deviceStruct(".5rem", ".5rem", "1rem", "1.5rem", "1.5rem"),
-              overflowY: "scroll",
+              // overflowY: "scroll",
             }}
           >
             <Box

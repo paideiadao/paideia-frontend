@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AlertTitle, Box, Divider } from "@mui/material";
+import { AlertTitle, Box, Divider, Grid } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import TextField from "@mui/material/TextField";
 import { CreationContext } from "../../../lib/creation/Context";
@@ -24,14 +24,14 @@ const BasicInformation: React.FC = () => {
   return (
     <Box
       sx={{
-        width: deviceStruct("93%", "93%", "70%", "70%", "70%"),
+        width: deviceStruct("100%", "100%", "70%", "70%", "70%"),
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
         color: "text.primary",
       }}
     >
-      <Box sx={{ textAlign: "left", width: "100%", fontSize: "1.2rem" }}>
+      <Box sx={{ textAlign: "left", width: "100%", fontSize: "1.2rem", mb: '16px' }}>
         Basic Information
         <Box sx={{ width: "100%", color: "text.secondary", fontSize: ".8rem" }}>
           Here you will pick your DAO's name, this will determine your DAO's URL
@@ -39,22 +39,12 @@ const BasicInformation: React.FC = () => {
           DAO is about.
         </Box>
       </Box>
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          mt: 2,
-          flexDirection: deviceStruct("column", "column", "row", "row", "row"),
-        }}
+      <Grid
+        container
+        spacing={2}
+        direction={{ xs: "column", md: "row" }}
       >
-        <Box
-          sx={{
-            width: deviceStruct("100%", "100%", "50%", "50%", "50%"),
-            mr: deviceStruct("0", "0", ".5rem", ".5rem", ".5rem"),
-            mt: deviceStruct(".25rem", "1rem", "0", "0", "0"),
-          }}
-        >
+        <Grid item md={6}>
           <TextField
             label="DAO Name"
             sx={{ width: "100%" }}
@@ -69,14 +59,8 @@ const BasicInformation: React.FC = () => {
               })
             }
           />
-        </Box>
-        <Box
-          sx={{
-            width: deviceStruct("100%", "100%", "50%", "50%", "50%"),
-            mr: deviceStruct("0", "0", ".5rem", ".5rem", ".5rem"),
-            mt: deviceStruct("1rem", "1rem", "0", "0", "0"),
-          }}
-        >
+        </Grid>
+        <Grid item md={6}>
           <TextField
             label="DAO URL"
             sx={{ width: "100%" }}
@@ -91,9 +75,8 @@ const BasicInformation: React.FC = () => {
               })
             }
           />
-        </Box>
-      </Box>
-
+        </Grid>
+      </Grid>
       <Box sx={{ width: "100%", mt: 2 }}>
         <Alert severity="warning" color="warning" sx={{ fontSize: ".8rem" }}>
           <AlertTitle sx={{ fontSize: ".9rem" }}>
