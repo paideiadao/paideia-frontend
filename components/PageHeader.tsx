@@ -22,6 +22,7 @@ interface IPageHeader {
   subTitleTwo?: string;
   imgPositionSx?: SxProps;
   mobileSx?: SxProps;
+  sx?: SxProps;
 }
 
 const PageHeader: FC<IPageHeader> = ({
@@ -34,11 +35,13 @@ const PageHeader: FC<IPageHeader> = ({
   subTitleTwo,
   imgPositionSx,
   mobileSx,
+  sx
 }) => {
   const isSmall = useMediaQuery(DarkTheme.breakpoints.down("sm"));
   return (
     <>
-      {isSmall && mobileBgUrl ? (
+      <Container sx={sx}>
+        {isSmall && mobileBgUrl ? (
         <Box
           sx={{
             position: "absolute",
@@ -67,7 +70,6 @@ const PageHeader: FC<IPageHeader> = ({
           <Image src={bgUrl} layout="fill" priority />
         </Box>
       )}
-      <Container sx={{ px: "24px", mt: "-64px", pt: "64px" }}>
         <Grid
           container
           sx={{

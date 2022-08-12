@@ -18,7 +18,6 @@ import SocialGrid from "@components/SocialGrid";
 import Fab from "@mui/material/Fab";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Zoom from "@mui/material/Zoom";
-import Toolbar from "@mui/material/Toolbar";
 import { PageNavContext } from "@components/Layout";
 import { useRouter } from "next/router";
 import ConnectWallet from "@components/wallet/ConnectWallet";
@@ -191,7 +190,8 @@ export default function Header() {
           }`,
         }}
       >
-        <Container sx={{ px: "24px" }}>
+        
+        <Container>
           <Grid
             container
             justifyContent="space-between"
@@ -322,7 +322,7 @@ export default function Header() {
           </Grid>
         </Container>
       </AppBar>
-      <Toolbar id="back-to-top-anchor" />
+      <div id="back-to-top-anchor" />
       <Fade in={navbarOpen} style={{ transitionDuration: "400ms" }}>
         <Box
           sx={{
