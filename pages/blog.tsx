@@ -9,7 +9,6 @@ const highlights = [
     title: "Using paideia in the gaming world",
     content: `ErgoGames.io took root in the idea that the Ergo Blockchain has tremendous potential to become a leading layer-1 solution, and that blockchain-based games will play an integral role in the network's growth.`,
     link: "/",
-    image: "/images/highlight.png",
   },
   {
     label: "Art Media",
