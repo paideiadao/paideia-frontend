@@ -430,8 +430,7 @@ export default function About() {
           transform: "translate(-50%,0)",
         }}
       />
-
-      <Container sx={{ px: "24px", py: "60px" }} id="navContainer">
+      <Container id="navContainer">
         <PageNav navLinks={navLinks}>
           <Box component="section" id="introduction">
             <Grid container>

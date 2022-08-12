@@ -4,6 +4,7 @@ import Header from "@components/layout/Header";
 import Footer from "@components/layout/Footer";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
+import { Box } from "@mui/material";
 
 interface IContextProps {
   inPageNav: boolean;
@@ -37,8 +38,19 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           className=""
           key={router.route}
         >
-          {children}
-          <Footer />
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              minHeight: '100vh',
+              pt: '90px', // give space for floating navbar
+            }}
+          >
+            <Box sx={{ flexGrow: '1' }}>
+              {children}
+            </Box>
+            <Footer />
+          </Box>
         </motion.main>
       </PageNavContext.Provider>
     </>
