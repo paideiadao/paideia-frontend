@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, Button, InputAdornment, TextField, Modal } from "@mui/material";
+import { Box, Button, InputAdornment, TextField } from "@mui/material";
 import {
   CapsInfo,
   Subtitle,
@@ -7,7 +7,6 @@ import {
 import WalletSelector from "@components/creation/governance/WalletSelector";
 import { useWallet } from "@components/wallet/WalletContext";
 import { IWallet } from "@lib/creation/Interfaces";
-import { modalBackground } from "@components/utilities/modalBackground";
 import { deviceWrapper } from "@components/utilities/Style";
 
 const StakingForm: React.FC = () => {
@@ -96,18 +95,6 @@ const StakingForm: React.FC = () => {
           Stake
         </Button>
       </Box>
-      {/* <Modal open={stake} onClose={closeStake}>
-        <Box
-          sx={{
-            ...modalBackground,
-            backgroundColor: "fileInput.main",
-            width: "30rem",
-            pb: ".5rem",
-          }}
-        >
-          Stake Confirm Here...
-        </Box>
-      </Modal> */}
     </Box>
   );
 };

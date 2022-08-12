@@ -54,12 +54,13 @@ export default function App({ Component, pageProps }: AppProps) {
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes"
         />
       </Head>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+
       <AddWalletProvider>
         <WalletProvider>
           <GlobalContext.Provider value={{ api }}>
             {isDao(Component) ? (
               <ThemeProvider theme={theme}>
-                <ThemeContext.Provider value={{ theme, setTheme }}>
                   <CssBaseline />
                   {Component !== Creation ? (
                     <DaoTemplate subdomain="">
@@ -80,7 +81,6 @@ export default function App({ Component, pageProps }: AppProps) {
                   ) : (
                     <Component {...pageProps} />
                   )}
-                </ThemeContext.Provider>
               </ThemeProvider>
             ) : (
               <ThemeProvider theme={DarkTheme}>
@@ -104,6 +104,8 @@ export default function App({ Component, pageProps }: AppProps) {
           </GlobalContext.Provider>
         </WalletProvider>
       </AddWalletProvider>
+      </ThemeContext.Provider>
+
     </>
   );
 }

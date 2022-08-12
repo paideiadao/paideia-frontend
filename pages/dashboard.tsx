@@ -1,8 +1,15 @@
+import { DaoSelector } from "@components/dao/nav/DaoBio";
+import { InfoCard } from "@components/dao/staking/GeneralInfo";
+import StakingForm from "@components/dao/staking/StakingForm";
+import WithdrawForm from "@components/dao/staking/WithdrawForm";
 import PageHeader from "@components/PageHeader";
 import SectionHeading from "@components/SectionHeading";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box, Container, Tab, Typography } from "@mui/material";
 import * as React from "react";
+import { StakingActivity } from "./dao/[id]/staking";
+import GeneralInfo from "@components/dao/staking/GeneralInfo";
+import YourStaking from "@components/dao/staking/YourStaking";
 
 type DashboardTabs =
   | "Stake Tokens"
@@ -18,6 +25,8 @@ const Dashboard: React.FC = () => {
   ) => {
     setValue(newValue);
   };
+  const ticker = "DTK";
+
   return (
     <>
       <PageHeader
@@ -38,7 +47,7 @@ const Dashboard: React.FC = () => {
           height: "1574px",
         }}
       />
-      <Container sx={{ pb: "30rem" }}>
+      <Container>
         <Box sx={{ maxWidth: { sm: "90%", md: "760px" }, mx: "auto" }}>
           <SectionHeading
             category="Manage"
@@ -50,6 +59,9 @@ const Dashboard: React.FC = () => {
             connected wallet is a member of. Manage your stake and redeem tokens
             all in one place.
           </Typography>
+          <DaoSelector redirect={false} />
+          <GeneralInfo/>
+          <YourStaking/>
           <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
               <TabList onChange={handleChange}>
@@ -60,16 +72,14 @@ const Dashboard: React.FC = () => {
               </TabList>
             </Box>
             <TabPanel value="Stake Tokens">
-
+              <StakingForm />
             </TabPanel>
             <TabPanel value="Withdraw Tokens">
-
+              <WithdrawForm />
             </TabPanel>
-            <TabPanel value="Redeem Tokens">
-
-            </TabPanel>
+            <TabPanel value="Redeem Tokens"></TabPanel>
             <TabPanel value="Activity">
-                
+              <StakingActivity />
             </TabPanel>
           </TabContext>
         </Box>

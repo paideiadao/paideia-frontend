@@ -47,7 +47,7 @@ export const InfoCard: React.FC<IInfoCard> = (props) => {
         p: deviceWrapper(".6rem", "1rem"),
         mt: "1rem",
         mb: deviceWrapper(props.c === 2 ? "1rem" : "0", "1rem"),
-        mr: props.full
+        mr: props.full || props.last
           ? "0rem"
           : deviceWrapper(
               props.c % 2 === 0 ? "1rem" : "0",
@@ -99,6 +99,7 @@ export const InfoCard: React.FC<IInfoCard> = (props) => {
               p: "-1rem",
               svg: {
                 fill: themeContext.theme === DarkTheme ? "black" : "white",
+
               },
             }}
             notched
@@ -107,7 +108,7 @@ export const InfoCard: React.FC<IInfoCard> = (props) => {
             value={time}
             onChange={handleChange}
           >
-            <MenuItem value="24hrs">24hrs</MenuItem>
+            <MenuItem value="24hrs">24h</MenuItem>
             <MenuItem value="1d">1d</MenuItem>
             <MenuItem value="1w">1w</MenuItem>
             <MenuItem value="1m">1m</MenuItem>
@@ -133,7 +134,7 @@ const GeneralInfo: React.FC = () => {
         }}
       >
         <InfoCard title="Number of Stakers" value="621" c={0} />
-        <InfoCard title="DTK tokens staked" value="769,382" c={1} />
+        <InfoCard title="PTK tokens staked" value="769,382" c={1} />
         <InfoCard title="Current APY" value="447.42" last c={2} />
       </Box>
     </Box>

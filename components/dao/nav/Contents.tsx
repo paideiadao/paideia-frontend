@@ -319,7 +319,7 @@ const DropdownLink: React.FC<{
 // accordion should go inside a scollable wrapper.
 
 export interface ISideNavComponent {
-  setShowMobile: (val: boolean) => void;
+  setShowMobile?: (val: boolean) => void;
 }
 
 const Contents: React.FC<ISideNavComponent> = (props) => {
