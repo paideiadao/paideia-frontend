@@ -33,6 +33,17 @@ import { IQuadradicVoting } from "@components/dao/proposal/vote/YesNo/Actions/Qu
 import { IDaoDescription } from "@components/dao/proposal/vote/YesNo/Actions/DaoDescription";
 import { IVoteDuration } from "@components/dao/proposal/vote/YesNo/Actions/VoteDuration";
 import { ISupport } from "@components/dao/proposal/vote/YesNo/Actions/Support";
+import { OptionType } from "@components/dao/proposal/vote/Options/OptionSystemSelector";
+
+export type ActionType =
+  | IOptimisticGovernance
+  | IQuorum
+  | ISendFunds
+  | ILiquidityPool
+  | IQuadradicVoting
+  | IDaoDescription
+  | IVoteDuration
+  | ISupport;
 
 export interface IProposalAction {
   name:
@@ -46,42 +57,20 @@ export interface IProposalAction {
     | "Quorum"
     | "Optimistic governance"
     | undefined;
-  data:
-    | IOptimisticGovernance
-    | IQuorum
-    | ISendFunds
-    | ILiquidityPool
-    | IQuadradicVoting
-    | IDaoDescription
-    | IVoteDuration
-    | ISupport;
+  icon?: React.ReactNode;
+  description?: string;
+  data: ActionType;
   close?: () => void;
   c?: number;
+  options?: IProposalOption[];
 }
 
-export interface IDraggableProposalAction {
-  name:
-    | "Custom action"
-    | "Send funds"
-    | "Create liquidity pool"
-    | "Change DAO's description"
-    | "Quadratic voting"
-    | "Vote duration"
-    | "Support"
-    | "Quorum"
-    | "Optimistic governance"
-    | undefined;
-  data:
-    | IOptimisticGovernance
-    | IQuorum
-    | ISendFunds
-    | ILiquidityPool
-    | IQuadradicVoting
-    | IDaoDescription
-    | IVoteDuration
-    | ISupport;
-  close?: () => void;
-  c?: number;
+export interface IProposalOption {
+  name: string;
+  description: string;
+  data: ActionType;
+  rank: number;
+  default?: boolean;
 }
 
 export interface IProposal {
@@ -94,7 +83,6 @@ export interface IProposal {
   votingSystem: "yes/no" | "options" | "unselected";
   references: IProposal[];
   actions: IProposalAction[];
-  draggableAction: IDraggableProposalAction[];
   date?: Date;
   createdDate?: Date;
   likes?: number;
@@ -105,6 +93,7 @@ export interface IProposal {
   comments?: IComment[];
   attachments?: IFile[];
   addendums: IAddendum[];
+  optionType: OptionType;
 }
 
 const CreateProposal: React.FC = () => {
@@ -121,8 +110,8 @@ const CreateProposal: React.FC = () => {
     category: "",
     content: "",
     votingSystem: "unselected",
+    optionType: "one-option",
     references: [],
-    draggableAction: [],
     actions: [
       {
         name: undefined,

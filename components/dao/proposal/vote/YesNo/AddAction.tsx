@@ -6,6 +6,7 @@ import QuadraticVoting from "./Actions/QuadraticVoting";
 import {
   CapsInfo,
   Header,
+  Subtitle,
 } from "@components/creation/utilities/HeaderComponents";
 import { IProposalAction } from "@pages/dao/[id]/proposal/create";
 import SearchIcon from "@mui/icons-material/Search";
@@ -221,6 +222,27 @@ const AddAction: React.FC<IProposalAction> = (props) => {
                     select={() => {
                       let temp = [...context.api.value.actions];
                       temp[props.c].name = i.title;
+                      if (context.api.value.votingSystem === "options") {
+                        temp[props.c].icon = i.icon;
+                        temp[props.c].description = i.subtitle;
+                        temp[props.c].options = [
+                          {
+                            name: "",
+                            description: "",
+                            data: undefined,
+                            rank: 1,
+                          },
+                          {
+                            name: "Decline proposal",
+                            description:
+                              "If you do not agree with any of the provided options, choose this one.",
+                            data: undefined,
+                            rank: 2,
+                            default: true,
+                          },
+                        ];
+                      }
+                      console.log(temp);
                       context.api.setValue({
                         ...context.api.value,
                         actions: temp,
@@ -266,17 +288,57 @@ const AddAction: React.FC<IProposalAction> = (props) => {
         </Box>
       ) : (
         <>
-          <CancelIcon
-            sx={{
-              position: "absolute",
-              top: "1rem",
-              right: "1rem",
-              cursor: "pointer",
-            }}
-            color="error"
-            onClick={() => props.close()}
-          />
-          {renderDisplay(props.name, props)}
+          {props.options === undefined && (
+            <CancelIcon
+              sx={{
+                position: "absolute",
+                top: "1rem",
+                right: "1rem",
+                cursor: "pointer",
+              }}
+              color="error"
+              onClick={() => props.close()}
+            />
+          )}
+          {props.options !== undefined && props.name !== undefined ? (
+            <Box
+              sx={{
+                width: "100%",
+                alignItems: "center",
+                display: "flex",
+                pt: ".75rem",
+                backgroundColor: "primary.lightOpacity",
+                border: 1,
+                borderColor: "primary.main",
+                borderRadius: ".3rem",
+                pb: ".75rem",
+              }}
+            >
+              <Box
+                sx={{
+                  width: deviceWrapper("20%", "8%"),
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "primary.main",
+                  display: "flex",
+                }}
+              >
+                {props.icon}
+              </Box>
+              <Box sx={{ width: "80%", alignItems: "center" }}>
+                <Header title={props.name} small mb="0" />
+                <Subtitle subtitle={props.description} small />
+              </Box>
+              <Button
+                sx={{ ml: "auto", mr: "1rem" }}
+                onClick={() => props.close()}
+              >
+                Change
+              </Button>
+            </Box>
+          ) : (
+            renderDisplay(props.name, props)
+          )}
         </>
       )}
     </Box>
