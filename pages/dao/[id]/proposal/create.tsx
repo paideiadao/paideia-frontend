@@ -32,6 +32,7 @@ import { ILiquidityPool } from "@components/dao/proposal/vote/YesNo/Actions/Liqu
 import { IQuadradicVoting } from "@components/dao/proposal/vote/YesNo/Actions/QuadraticVoting";
 import { IDaoDescription } from "@components/dao/proposal/vote/YesNo/Actions/DaoDescription";
 import { IVoteDuration } from "@components/dao/proposal/vote/YesNo/Actions/VoteDuration";
+import { ISupport } from "@components/dao/proposal/vote/YesNo/Actions/Support";
 
 export interface IProposalAction {
   name:
@@ -52,7 +53,8 @@ export interface IProposalAction {
     | ILiquidityPool
     | IQuadradicVoting
     | IDaoDescription
-    | IVoteDuration;
+    | IVoteDuration
+    | ISupport;
   close?: () => void;
   c?: number;
 }

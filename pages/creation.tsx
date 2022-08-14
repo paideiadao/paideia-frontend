@@ -186,6 +186,7 @@ export default function Creation() {
                 <Button
                   variant="contained"
                   color="primary"
+                  size="small"
                   onClick={() => setData({ ...data, navStage: 4 })}
                   sx={{ ml: 1 }}
                 >
@@ -208,9 +209,16 @@ export default function Creation() {
                     <Button
                       variant="outlined"
                       color="primary"
+                      size="small"
                       startIcon={<ArrowBackIcon />}
                       sx={{
-                        width: deviceStruct("90%", "90%", "10%", "10%", "10%"),
+                        width: deviceStruct(
+                          "90%",
+                          "90%",
+                          "fit-content",
+                          "fit-content",
+                          "fit-content"
+                        ),
                         mr: ".5rem",
                         ml: ".5rem",
                       }}
@@ -226,8 +234,15 @@ export default function Creation() {
                     disabled={checkCompleteness(data)}
                     color="primary"
                     endIcon={<ArrowForwardIcon />}
+                    size="small"
                     sx={{
-                      width: deviceStruct("90%", "90%", "10%", "10%", "10%"),
+                      width: deviceStruct(
+                        "90%",
+                        "90%",
+                        "fit-content",
+                        "fit-content",
+                        "fit-content"
+                      ),
                       mr: data.navStage > 0 ? ".5rem" : "0",
                     }}
                     onClick={() =>

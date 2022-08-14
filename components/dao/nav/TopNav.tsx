@@ -142,6 +142,7 @@ const TopNav: React.FC<INav> = (props) => {
                   display: "flex",
                   alignItems: "center",
                   cursor: "pointer",
+                  mr: ".5rem",
                 }}
                 onClick={handleOpenProfile}
               >

@@ -480,18 +480,7 @@ const Governance: React.FC = () => {
             />
           </Box>
         </Box>
-        <Box sx={{ width: "100%", mt: 2 }}>
-          <Alert severity="warning" color="warning" sx={{ fontSize: ".8rem" }}>
-            <AlertTitle sx={{ fontSize: ".9rem" }}>
-              Only for single-choice voting
-            </AlertTitle>
-            <Box sx={{ ml: "-1.75rem" }}>
-              Support will only apply to single-choice voting. It determines the
-              percentage of users that need to agree for a proposal to be
-              approved. Can't be set to less than 51%
-            </Box>
-          </Alert>
-        </Box>
+        <Box sx={{ width: "100%", mt: 2 }}></Box>
         <LearnMore
           small
           title="Quorum"
