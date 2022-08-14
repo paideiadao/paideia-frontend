@@ -59,6 +59,31 @@ export interface IProposalAction {
   c?: number;
 }
 
+export interface IDraggableProposalAction {
+  name:
+    | "Custom action"
+    | "Send funds"
+    | "Create liquidity pool"
+    | "Change DAO's description"
+    | "Quadratic voting"
+    | "Vote duration"
+    | "Support"
+    | "Quorum"
+    | "Optimistic governance"
+    | undefined;
+  data:
+    | IOptimisticGovernance
+    | IQuorum
+    | ISendFunds
+    | ILiquidityPool
+    | IQuadradicVoting
+    | IDaoDescription
+    | IVoteDuration
+    | ISupport;
+  close?: () => void;
+  c?: number;
+}
+
 export interface IProposal {
   id?: number;
   name: string;
@@ -69,6 +94,7 @@ export interface IProposal {
   votingSystem: "yes/no" | "options" | "unselected";
   references: IProposal[];
   actions: IProposalAction[];
+  draggableAction: IDraggableProposalAction[];
   date?: Date;
   createdDate?: Date;
   likes?: number;
@@ -96,7 +122,7 @@ const CreateProposal: React.FC = () => {
     content: "",
     votingSystem: "unselected",
     references: [],
-
+    draggableAction: [],
     actions: [
       {
         name: undefined,

@@ -9,7 +9,6 @@ import {
 } from "@components/creation/utilities/HeaderComponents";
 import { IProposalAction } from "@pages/dao/[id]/proposal/create";
 import SearchIcon from "@mui/icons-material/Search";
-import ActionSelect from "./ActionSelect";
 import ProposalContext, {
   IProposalContext,
 } from "@lib/dao/proposal/ProposalContext";
@@ -26,6 +25,7 @@ import Support from "./Actions/Support";
 import Quorum from "./Actions/Quorum";
 import OptimisticGovernance from "./Actions/OptimisticGovernance";
 import { deviceWrapper } from "@components/utilities/Style";
+import ActionSelect from "./ActionSelect";
 
 export interface IActionType {
   title:

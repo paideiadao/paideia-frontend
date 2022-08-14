@@ -9,11 +9,11 @@ import { IObj } from "@lib/Interfaces";
 import { Box, Button } from "@mui/material";
 import { IProposalAction } from "@pages/dao/[id]/proposal/create";
 import * as React from "react";
-import Options from "./vote/Options";
 import Selector from "./vote/Selector";
 import YesNo from "./vote/YesNo/YesNo";
 import AddIcon from "@mui/icons-material/Add";
 import { deviceWrapper } from "@components/utilities/Style";
+import Options from "./vote/Options/Options";
 
 interface IVoteChoice {
   title: string;
