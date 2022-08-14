@@ -91,7 +91,7 @@ const WalletSelector: React.FC<{
                       display: deviceStruct(
                         "none",
                         "none",
-                        "block",
+                        "none",
                         "block",
                         "block"
                       ),
@@ -100,9 +100,9 @@ const WalletSelector: React.FC<{
                     {props.data.address !== undefined &&
                       `${props.data.address.slice(
                         0,
-                        18
+                        14
                       )}....${props.data.address.slice(
-                        props.data.address.length - 18,
+                        props.data.address.length - 14,
                         props.data.address.length
                       )}`}
                   </Box>
@@ -120,9 +120,9 @@ const WalletSelector: React.FC<{
                     {props.data.address !== undefined &&
                       `${props.data.address.slice(
                         0,
-                        13
+                        11
                       )}...${props.data.address.slice(
-                        props.data.address.length - 13,
+                        props.data.address.length - 11,
                         props.data.address.length
                       )}`}
                   </Box>

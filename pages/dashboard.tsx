@@ -60,8 +60,8 @@ const Dashboard: React.FC = () => {
             all in one place.
           </Typography>
           <DaoSelector redirect={false} />
-          <GeneralInfo/>
-          <YourStaking/>
+          <GeneralInfo />
+          <YourStaking />
           <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
               <TabList onChange={handleChange}>

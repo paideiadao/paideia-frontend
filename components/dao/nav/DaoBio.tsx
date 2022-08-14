@@ -156,7 +156,7 @@ export const DaoSelector: React.FC<IDaoSelector> = (props) => {
               mt: ".5rem",
               mb: ".5rem",
               mr: ".5rem",
-              backgroundColor: 'transparent'
+              backgroundColor: "transparent",
             }}
           >
             <img src={dao.img} />

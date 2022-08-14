@@ -55,12 +55,11 @@ export default function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <ThemeContext.Provider value={{ theme, setTheme }}>
-
-      <AddWalletProvider>
-        <WalletProvider>
-          <GlobalContext.Provider value={{ api }}>
-            {isDao(Component) ? (
-              <ThemeProvider theme={theme}>
+        <AddWalletProvider>
+          <WalletProvider>
+            <GlobalContext.Provider value={{ api }}>
+              {isDao(Component) ? (
+                <ThemeProvider theme={theme}>
                   <CssBaseline />
                   {Component !== Creation ? (
                     <DaoTemplate subdomain="">
@@ -81,31 +80,30 @@ export default function App({ Component, pageProps }: AppProps) {
                   ) : (
                     <Component {...pageProps} />
                   )}
-              </ThemeProvider>
-            ) : (
-              <ThemeProvider theme={DarkTheme}>
-                <CssBaseline />
-                <AnimatePresence exitBeforeEnter>
-                  <Layout>
-                    <Component {...pageProps} />
-                  </Layout>
-                </AnimatePresence>
-              </ThemeProvider>
-            )}
-            <AbstractAlert
-              alerts={alert}
-              set={(val: IAlerts[]) => setAlert(val)}
-              close={(c: number) => {
-                let temp = [...alert];
-                temp.splice(c, 1);
-                setAlert(temp);
-              }}
-            />
-          </GlobalContext.Provider>
-        </WalletProvider>
-      </AddWalletProvider>
+                </ThemeProvider>
+              ) : (
+                <ThemeProvider theme={DarkTheme}>
+                  <CssBaseline />
+                  <AnimatePresence exitBeforeEnter>
+                    <Layout>
+                      <Component {...pageProps} />
+                    </Layout>
+                  </AnimatePresence>
+                </ThemeProvider>
+              )}
+              <AbstractAlert
+                alerts={alert}
+                set={(val: IAlerts[]) => setAlert(val)}
+                close={(c: number) => {
+                  let temp = [...alert];
+                  temp.splice(c, 1);
+                  setAlert(temp);
+                }}
+              />
+            </GlobalContext.Provider>
+          </WalletProvider>
+        </AddWalletProvider>
       </ThemeContext.Provider>
-
     </>
   );
 }

@@ -6,10 +6,11 @@ const BalanceInput: React.FC<{
   total: number;
   remaining: number;
   balance: number;
-  value: any;
+  value?: any;
   set: Function;
   width?: string | any;
   mt?: string | any;
+  balanceOnly?: boolean;
 }> = (props) => {
   return (
     <TextField
@@ -19,18 +20,30 @@ const BalanceInput: React.FC<{
         mr: ".5rem",
         mt: props.mt !== undefined ? props.mt : 0,
       }}
+      error={props.remaining < 0}
       onChange={(e: any) => {
-        let temp = { ...props.value };
-        let balance = parseFloat(e.target.value);
-        balance = isNaN(balance) ? 0 : balance;
-        let percentage = balanceToPercentage(props.total, balance);
-        if (balance < 0) {
-          balance = 0;
+        if (props.balanceOnly) {
+          props.set(parseFloat(e.target.value));
+        } else {
+          let temp = { ...props.value };
+          let balance = parseFloat(e.target.value);
+          balance = isNaN(balance) ? 0 : balance;
+          let percentage = balanceToPercentage(props.total, balance);
+          if (balance < 0) {
+            balance = 0;
+          }
+          temp.balance = balance;
+          temp.percentage = percentage;
+          props.set(temp);
         }
-        temp.balance = balance;
-        temp.percentage = percentage;
-        props.set(temp);
       }}
+      helperText={
+        props.balanceOnly
+          ? props.remaining > 0
+            ? `${props.remaining} tokens remaining`
+            : "Not enough tokens in treasury"
+          : false
+      }
       type="number"
       label="Balance"
     />

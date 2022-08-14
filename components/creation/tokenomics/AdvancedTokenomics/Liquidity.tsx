@@ -23,6 +23,9 @@ import Alert from "@mui/material/Alert";
 import AbstractDate from "../../utilities/AbstractDate";
 import useDidMountEffect from "../../../utilities/hooks";
 import DistributionName from "../../utilities/DistributionName";
+import TokenPrice from "@components/creation/utilities/TokenPrice";
+import TradingPairs from "@components/creation/utilities/TradingPairs";
+import DexSelector from "@components/creation/utilities/DexSelector";
 
 export interface ILiquidityInfo {
   distributionName: string;
@@ -60,7 +63,7 @@ const Liquidity: React.FC<{
       data.distributions[props.c] === undefined
         ? `${data.tokenTicker.toLowerCase()}/erg`
         : temp.tradingPair,
-    dex: data.distributions[props.c] === undefined ? "ergodex" : temp.dex,
+    dex: data.distributions[props.c] === undefined ? "spectrum" : temp.dex,
     liquidityStartDate:
       data.distributions[props.c] === undefined
         ? start
@@ -163,66 +166,22 @@ const Liquidity: React.FC<{
       </Box>
       <Box sx={{ width: "100%", pl: "1rem", pr: "1rem" }}>
         <CapsInfo title="Configuration" />
-        <TextField
-          value={value.tokenPrice === undefined ? "" : value.tokenPrice}
-          type="number"
-          sx={{ width: "32%", mr: ".5rem" }}
-          onChange={(e: any) => {
-            setValue({ ...value, tokenPrice: parseFloat(e.target.value) });
-          }}
-          label="Token Price"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <Box sx={{ color: "text.secondary" }}>USD</Box>
-              </InputAdornment>
-            ),
-          }}
+        <TokenPrice
+          price={value.tokenPrice}
+          set={(val: number) => setValue({ ...value, tokenPrice: val })}
+          ticker="USD"
         />
-        <FormControl sx={{ width: "32%", mr: ".5rem" }}>
-          <InputLabel htmlFor={`trading-pair-label-${props.c}`} shrink>
-            Trading Pair
-          </InputLabel>
-          <Select
-            labelId={`trading-pair-label-${props.c}`}
-            id={`trading-pair-${props.c}`}
-            variant="outlined"
-            label="Trading pair"
-            value={value.tradingPair}
-            sx={{ height: "100%", color: "text.primary" }}
-            onChange={(e: any) =>
-              setValue({
-                ...value,
-                tradingPair: e.target.value,
-              })
-            }
-          >
-            <MenuItem value={`${data.tokenTicker.toLowerCase()}/erg`}>
-              {data.tokenTicker.toUpperCase()}/ERG
-            </MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl sx={{ width: "32%" }}>
-          <InputLabel htmlFor={`dex-label-${props.c}`} shrink>
-            DEX
-          </InputLabel>
-          <Select
-            labelId={`dex-label-${props.c}`}
-            id={`dex-${props.c}`}
-            variant="outlined"
-            label="DEX"
-            value={value.dex}
-            sx={{ height: "100%", color: "text.primary" }}
-            onChange={(e: any) =>
-              setValue({
-                ...value,
-                tradingPair: e.target.value,
-              })
-            }
-          >
-            <MenuItem value="ergodex">Ergodex</MenuItem>
-          </Select>
-        </FormControl>
+        <TradingPairs
+          tradingPair={value.tradingPair}
+          tokenTicker={data.tokenTicker}
+          set={(val: string) => setValue({ ...value, tradingPair: val })}
+          c={props.c}
+        />
+        <DexSelector
+          c={props.c}
+          dex={value.dex}
+          set={(val: string) => setValue({ ...value, dex: val })}
+        />
       </Box>
       <Box
         sx={{

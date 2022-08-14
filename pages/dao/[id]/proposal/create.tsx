@@ -28,6 +28,10 @@ import Reference from "@components/dao/discussion/Reference";
 import { IAddendum } from "@components/dao/proposal/Addendums";
 import { getRandomImage } from "@components/utilities/images";
 import { IFile } from "@lib/creation/Interfaces";
+import { ILiquidityPool } from "@components/dao/proposal/vote/YesNo/Actions/LiquidityPool";
+import { IQuadradicVoting } from "@components/dao/proposal/vote/YesNo/Actions/QuadraticVoting";
+import { IDaoDescription } from "@components/dao/proposal/vote/YesNo/Actions/DaoDescription";
+import { IVoteDuration } from "@components/dao/proposal/vote/YesNo/Actions/VoteDuration";
 
 export interface IProposalAction {
   name:
@@ -41,7 +45,14 @@ export interface IProposalAction {
     | "Quorum"
     | "Optimistic governance"
     | undefined;
-  data: IOptimisticGovernance | IQuorum | ISendFunds;
+  data:
+    | IOptimisticGovernance
+    | IQuorum
+    | ISendFunds
+    | ILiquidityPool
+    | IQuadradicVoting
+    | IDaoDescription
+    | IVoteDuration;
   close?: () => void;
   c?: number;
 }

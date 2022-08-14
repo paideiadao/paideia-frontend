@@ -199,7 +199,6 @@ const Tokenomics: React.FC = () => {
             Token Holders
           </Button>
           <Button
-            disabled
             sx={{
               width: "50%",
               fontSize: ".8rem",

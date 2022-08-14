@@ -47,12 +47,13 @@ export const InfoCard: React.FC<IInfoCard> = (props) => {
         p: deviceWrapper(".6rem", "1rem"),
         mt: "1rem",
         mb: deviceWrapper(props.c === 2 ? "1rem" : "0", "1rem"),
-        mr: props.full || props.last
-          ? "0rem"
-          : deviceWrapper(
-              props.c % 2 === 0 ? "1rem" : "0",
-              props.c === 2 ? "0" : "1rem"
-            ),
+        mr:
+          props.full || props.last
+            ? "0rem"
+            : deviceWrapper(
+                props.c % 2 === 0 ? "1rem" : "0",
+                props.c === 2 ? "0" : "1rem"
+              ),
       }}
     >
       <Box sx={{ textAlign: deviceWrapper("left", "center") }}>
@@ -99,7 +100,6 @@ export const InfoCard: React.FC<IInfoCard> = (props) => {
               p: "-1rem",
               svg: {
                 fill: themeContext.theme === DarkTheme ? "black" : "white",
-
               },
             }}
             notched
