@@ -27,6 +27,7 @@ import Quorum from "./Actions/Quorum";
 import OptimisticGovernance from "./Actions/OptimisticGovernance";
 import { deviceWrapper } from "@components/utilities/Style";
 import ActionSelect from "./ActionSelect";
+import { getData } from "../Options/DraggableContext";
 
 export interface IActionType {
   title:
@@ -225,14 +226,7 @@ const AddAction: React.FC<IProposalAction> = (props) => {
                       if (context.api.value.votingSystem === "options") {
                         temp[props.c].icon = i.icon;
                         temp[props.c].description = i.subtitle;
-                        temp[props.c].options = [
-                          {
-                            name: "",
-                            description: "",
-                            data: undefined,
-                            rank: 1,
-                          },
-                        ];
+                        temp[props.c].options = null;
                       }
                       console.log(temp);
                       context.api.setValue({

@@ -18,6 +18,7 @@ interface IDraggableHeader {
   items: IProposalOption[];
   item: IProposalOption;
   compact: boolean;
+  remove?: () => void;
 }
 
 export const DraggableHeader: React.FC<IDraggableHeader> = (props) => {
@@ -47,10 +48,11 @@ export const DraggableHeader: React.FC<IDraggableHeader> = (props) => {
             : "Drag options to change their order, this is how they will appear in the proposal."}
         </Box>
       </Box>
-      {!props.compact && (
+      {(!props.compact || props.index === -1) && (
         <IconButton
           sx={{ ml: "auto", color: "error.light" }}
           disabled={props.items.length === 1 || props.item.default}
+          onClick={props.remove}
         >
           <Delete />
         </IconButton>
@@ -63,6 +65,8 @@ interface IDraggableCard {
   item: IProposalOption;
   index: number;
   items: IProposalOption[];
+  set?: (val: IProposalOption[]) => void;
+  content?: React.ReactNode;
 }
 
 const DraggableCard: React.FC<IDraggableCard> = (props) => {
@@ -72,13 +76,13 @@ const DraggableCard: React.FC<IDraggableCard> = (props) => {
     <>
       <Box
         sx={{
-          mt: ".25rem",
           borderTop: 1,
           borderColor: "border.main",
           width: "calc(100% + 1.5rem)",
           ml: "-.75rem",
           px: ".5rem",
-          py: ".25rem",
+          py: ".55rem",
+          mt: ".55rem",
           // height: props.compact ? '0rem' : '100%',
           // display: props.compact ? 'none' : 'block',
         }}
@@ -88,36 +92,46 @@ const DraggableCard: React.FC<IDraggableCard> = (props) => {
         <TextField
           value={props.item.name}
           label="Option name"
+          key={"option-name-" + props.index}
           sx={{ width: "100%" }}
           InputProps={{ readOnly: props.item.default }}
           onChange={(e) => {
-            let tempActions = context.api.value.actions[0];
             let tempItems = [...props.items];
             tempItems[props.index].name = e.target.value;
-            tempActions.options = tempItems;
-            context.api.setValue({
-              ...context.api.value,
-              actions: [tempActions],
-            });
+            props.set(tempItems);
           }}
         />
         <TextField
           value={props.item.description}
           label="Option description"
+          key={"option-description-" + props.index}
           sx={{ width: "100%", mt: ".75rem" }}
           InputProps={{ readOnly: props.item.default }}
           onChange={(e) => {
-            let tempActions = context.api.value.actions[0];
             let tempItems = [...props.items];
             tempItems[props.index].description = e.target.value;
-            tempActions.options = tempItems;
-            context.api.setValue({
-              ...context.api.value,
-              actions: [tempActions],
-            });
+            props.set(tempItems);
           }}
         />
       </Box>
+      {!props.item.default && (
+        <Box
+          sx={{
+            mt: ".25rem",
+            borderTop: 1,
+            borderColor: "border.main",
+            width: "calc(100% + 1.5rem)",
+            ml: "-.75rem",
+            px: ".5rem",
+            py: ".55rem",
+            // height: props.compact ? '0rem' : '100%',
+            // display: props.compact ? 'none' : 'block',
+          }}
+        >
+          <CapsInfo title="Configuration" />
+          {props.content}
+        </Box>
+      )}
     </>
   );
 };

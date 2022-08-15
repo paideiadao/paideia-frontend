@@ -3,6 +3,7 @@ import ProposalContext, {
 } from "@lib/dao/proposal/ProposalContext";
 import { Box, Button, IconButton } from "@mui/material";
 import {
+  ActionType,
   IProposalAction,
   IProposalOption,
 } from "@pages/dao/[id]/proposal/create";
@@ -21,6 +22,7 @@ import useDidMountEffect from "@components/utilities/hooks";
 import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
 import DraggableCard, { DraggableHeader } from "./DraggableContent";
 import { Add } from "@mui/icons-material";
+import DaoDescription from "./Actions/DaoDescription";
 
 // fake data generator
 const getItems = (count: any) =>
@@ -34,7 +36,7 @@ const reorder = (
   list: IProposalOption[],
   startIndex: number,
   endIndex: number
-) => {
+): IProposalOption[] => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
@@ -73,12 +75,30 @@ const getListStyle = (
   borderRadius: ".3rem",
 });
 
+export const getData = (name: string): ActionType => {
+  console.log("name", name);
+  if (name === "Change DAO's description") {
+    return {
+      shortDescription: "",
+    };
+  } else {
+    return undefined;
+  }
+};
+
 const DraggableContext: React.FC<{ name: string }> = (props) => {
   const context = React.useContext<IProposalContext>(ProposalContext);
   const [compact, setCompact] = React.useState<boolean>(false);
   const [items, setItems] = React.useState<IProposalOption[]>(
-    context.api.value.actions[0].options === undefined
-      ? []
+    context.api.value.actions[0].options == null
+      ? [
+          {
+            name: "",
+            description: "",
+            data: getData(props.name),
+            rank: 1,
+          },
+        ]
       : context.api.value.actions[0].options.sort((a, b) => a.rank - b.rank)
   );
 
@@ -98,17 +118,40 @@ const DraggableContext: React.FC<{ name: string }> = (props) => {
     setItems(tempItems);
   };
 
-  useDidMountEffect(() => {
-    if (context.api.value.actions.length > 0) {
-      setItems(context.api.value.actions[0].options);
+  const getContent = (
+    item: IProposalOption,
+    index: number
+  ): React.ReactNode => {
+    if (item.data === undefined) {
+      return undefined;
     }
-  }, [context.api.value.actions]);
+    if (props.name === "Change DAO's description") {
+      return (
+        <DaoDescription
+          set={(val: string) => {
+            let tempItems = [...items];
+          //@ts-ignore
+          tempItems[index].data.shortDescription = val;
+          setItems(tempItems)
+          }}
+          //@ts-ignore
+          shortDescription={item.data.shortDescription}
+        />
+      );
+    } else {
+      return <>{props.name}...</>;
+    }
+  };
 
   useDidMountEffect(() => {
-    if (context.api.value.actions.length > 0) {
-      setItems(context.api.value.actions[0].options);
-    }
-  }, [context.api.value.actions]);
+    let tempActions = context.api.value.actions[0];
+    let tempItems = [...items];
+    tempActions.options = tempItems;
+    context.api.setValue({
+      ...context.api.value,
+      actions: [tempActions],
+    });
+  }, [items]);
 
   const compactContainerStyle = {
     border: 1,
@@ -170,11 +213,18 @@ const DraggableContext: React.FC<{ name: string }> = (props) => {
                               index={index}
                               items={items}
                               snapshot={snapshot}
+                              remove={() => {
+                                let tempItems = [...items];
+                                tempItems.splice(index, 1);
+                                setItems(tempItems);
+                              }}
                             />
                             <DraggableCard
+                              set={(val: IProposalOption[]) => setItems(val)}
                               item={item}
                               index={index}
                               items={items}
+                              content={getContent(item, index)}
                             />
                           </Box>
                         );
@@ -192,18 +242,14 @@ const DraggableContext: React.FC<{ name: string }> = (props) => {
             startIcon={<Add />}
             size="small"
             onClick={() => {
-              let temp = [...context.api.value.actions];
-              temp[0].options.push({
+              let temp = [...items];
+              temp.push({
                 name: "",
                 description: "",
-                data: undefined,
-                rank: temp[0].options.length + 1,
+                data: getData(props.name),
+                rank: items.length + 1,
               });
-              console.log(temp);
-              context.api.setValue({
-                ...context.api.value,
-                actions: temp,
-              });
+              setItems(temp);
             }}
           >
             Add Another

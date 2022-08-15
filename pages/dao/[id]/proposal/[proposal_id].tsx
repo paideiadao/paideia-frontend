@@ -65,6 +65,7 @@ const Proposal: React.FC = () => {
         data: undefined,
       },
     ],
+    optionType: undefined,
     tags: ["Controversial"],
     followed: false,
     dislikes: 31,
