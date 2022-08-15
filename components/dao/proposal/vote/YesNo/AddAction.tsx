@@ -232,14 +232,6 @@ const AddAction: React.FC<IProposalAction> = (props) => {
                             data: undefined,
                             rank: 1,
                           },
-                          {
-                            name: "Decline proposal",
-                            description:
-                              "If you do not agree with any of the provided options, choose this one.",
-                            data: undefined,
-                            rank: 2,
-                            default: true,
-                          },
                         ];
                       }
                       console.log(temp);

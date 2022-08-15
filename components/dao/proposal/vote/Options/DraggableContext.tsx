@@ -52,12 +52,14 @@ const getItemStyle = (
 
   // styles we need to apply on draggables
   ...draggableStyle,
-  backgroundColor: isDragging ? "primary.light" : "fileInput.outer",
-  color: isDragging ? "background.default" : "text.primary",
+  backgroundColor: "fileInput.outer",
+  color: "text.primary",
   borderRadius: ".3rem",
-  px: compact ? ".75rem" : 0,
-  py: compact ? ".75rem" : 0,
-  mb: compact ? ".5rem" : 0,
+  my: "1rem",
+  border: 1,
+  borderColor: isDragging ? "primary.main" : "border.main",
+  px: ".75rem",
+  py: ".5rem",
 });
 
 const getListStyle = (
@@ -65,9 +67,7 @@ const getListStyle = (
   compact: boolean,
   items: IProposalOption[]
 ) => ({
-  backgroundColor: isDraggingOver
-    ? "primary.lightOpacity"
-    : "background.default",
+  backgroundColor: "background.default",
   padding: ".5rem",
   width: "100%",
   borderRadius: ".3rem",
@@ -110,17 +110,23 @@ const DraggableContext: React.FC<{ name: string }> = (props) => {
     }
   }, [context.api.value.actions]);
 
-  const compactContainerStyle = compact
-    ? {
-      }
-    : {
-        border: 1,
-        borderColor: "border.main",
-        borderRadius: ".3rem",
-        px: ".75rem",
-        py: ".5rem",
-        my: ".75rem",
-      };
+  const compactContainerStyle = {
+    border: 1,
+    borderColor: "border.main",
+    borderRadius: ".3rem",
+    px: ".75rem",
+    py: ".5rem",
+    my: ".75rem",
+  };
+
+  const declineProposal: IProposalOption = {
+    name: "Decline proposal",
+    description:
+      "If you do not agree with any of the provided options, choose this one.",
+    data: undefined,
+    rank: 2,
+    default: true,
+  };
   return (
     props.name !== undefined &&
     items !== undefined && (
@@ -128,8 +134,8 @@ const DraggableContext: React.FC<{ name: string }> = (props) => {
         <DragDropContext
           onDragEnd={onDragEnd}
           onBeforeDragStart={() => {
-            setCompact(true)}}
-
+            setCompact(true);
+          }}
         >
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
@@ -139,33 +145,24 @@ const DraggableContext: React.FC<{ name: string }> = (props) => {
                 sx={getListStyle(snapshot.isDraggingOver, compact, items)}
               >
                 {items.map((item: IProposalOption, index: number) => (
-                  <Box
-                    sx={{
-                      ...compactContainerStyle,
-                    }}
-                  >
-                <>
-                <Draggable
-                      key={item.name === "" ? `temp-index-${index}` : item.name}
-                      draggableId={
-                        item.name === "" ? `temp-index-${index}` : item.name
-                      }
+                  <>
+                    <Draggable
+                      key={`temp-index-${index}`}
+                      draggableId={`temp-index-${index}`}
                       index={index}
-                      isDragDisabled={item.default || items.length < 3}
+                      isDragDisabled={items.length < 1}
                     >
                       {(_provided, snapshot) => {
-                        console.log(provided.placeholder)
                         return (
                           <Box
                             ref={_provided.innerRef}
                             {..._provided.draggableProps}
                             {..._provided.dragHandleProps}
-                            // sx={getItemStyle(
-                            //   snapshot.isDragging,
-                            //   provided.draggableProps.style,
-                            //   compact
-                            // )}
-                            // sx={{backgroundColor: 'pink',minHeight: compact ? '3rem' : '3rem', maxHeight: compact ? '5rem' : '4rem'}}
+                            sx={getItemStyle(
+                              snapshot.isDragging,
+                              _provided.draggableProps.style,
+                              compact
+                            )}
                           >
                             <DraggableHeader
                               compact={compact}
@@ -174,24 +171,18 @@ const DraggableContext: React.FC<{ name: string }> = (props) => {
                               items={items}
                               snapshot={snapshot}
                             />
-                            {provided.placeholder}
-
+                            <DraggableCard
+                              item={item}
+                              index={index}
+                              items={items}
+                            />
                           </Box>
                         );
                       }}
                     </Draggable>
-
-                    {/* <DraggableCard
-                      compact={compact}
-                      item={item}
-                      index={index}
-                      items={items}
-                    /> */}
-                </>
-                    
-                </Box>
+                  </>
                 ))}
-
+                {provided.placeholder}
               </Box>
             )}
           </Droppable>
@@ -202,11 +193,11 @@ const DraggableContext: React.FC<{ name: string }> = (props) => {
             size="small"
             onClick={() => {
               let temp = [...context.api.value.actions];
-              temp[0].options.splice(temp[0].options.length - 2, 0, {
+              temp[0].options.push({
                 name: "",
                 description: "",
                 data: undefined,
-                rank: temp[0].options.length - 1,
+                rank: temp[0].options.length + 1,
               });
               console.log(temp);
               context.api.setValue({
@@ -217,6 +208,15 @@ const DraggableContext: React.FC<{ name: string }> = (props) => {
           >
             Add Another
           </Button>
+        </Box>
+        <Box sx={{ ...getItemStyle(false, {}, compact), mx: ".5rem" }}>
+          <DraggableHeader
+            item={declineProposal}
+            index={-1}
+            items={items}
+            compact={compact}
+          />
+          <DraggableCard item={declineProposal} index={-1} items={items} />
         </Box>
       </>
     )
