@@ -23,6 +23,8 @@ import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
 import DraggableCard, { DraggableHeader } from "./DraggableContent";
 import { Add } from "@mui/icons-material";
 import DaoDescription from "./Actions/DaoDescription";
+import SendFunds from "./Actions/SendFunds";
+import { ISendFunds } from "../YesNo/Actions/SendFunds";
 
 // fake data generator
 const getItems = (count: any) =>
@@ -70,7 +72,7 @@ const getListStyle = (
   items: IProposalOption[]
 ) => ({
   backgroundColor: "background.default",
-  padding: ".5rem",
+  py: ".5rem",
   width: "100%",
   borderRadius: ".3rem",
 });
@@ -81,25 +83,22 @@ export const getData = (name: string): ActionType => {
     return {
       shortDescription: "",
     };
-  } else {
-    return undefined;
+  } else if (name === 'Send funds') {
+    return {
+      tokenHolders: [
+        { alias: "", address: "", img: "", balance: 0, percentage: 0 },
+      ],
+      recurring: false
+    };
   }
 };
 
 const DraggableContext: React.FC<{ name: string }> = (props) => {
   const context = React.useContext<IProposalContext>(ProposalContext);
   const [compact, setCompact] = React.useState<boolean>(false);
+  console.log(context.api.value.actions[0].options, 'here...')
   const [items, setItems] = React.useState<IProposalOption[]>(
-    context.api.value.actions[0].options == null
-      ? [
-          {
-            name: "",
-            description: "",
-            data: getData(props.name),
-            rank: 1,
-          },
-        ]
-      : context.api.value.actions[0].options.sort((a, b) => a.rank - b.rank)
+    context.api.value.actions[0].options
   );
 
   const onDragEnd = (result: DropResult, provided: ResponderProvided) => {
@@ -125,17 +124,33 @@ const DraggableContext: React.FC<{ name: string }> = (props) => {
     if (item.data === undefined) {
       return undefined;
     }
+    console.log(props.name)
     if (props.name === "Change DAO's description") {
       return (
         <DaoDescription
           set={(val: string) => {
             let tempItems = [...items];
-          //@ts-ignore
-          tempItems[index].data.shortDescription = val;
-          setItems(tempItems)
+            //@ts-ignore
+            tempItems[index].data.shortDescription = val;
+            setItems(tempItems);
           }}
           //@ts-ignore
           shortDescription={item.data.shortDescription}
+        />
+      );
+    } else if (props.name === "Send funds") {
+      return (
+        <SendFunds
+          set={(val: ISendFunds) => {
+            let tempItems = [...items];
+            //@ts-ignore
+            tempItems[index].data = val;
+            setItems(tempItems);
+          }}
+          //@ts-ignore
+          tokenHolders={item.data.tokenHolders}
+          //@ts-ignore
+          recurring={item.data.recurring}
         />
       );
     } else {
@@ -143,9 +158,21 @@ const DraggableContext: React.FC<{ name: string }> = (props) => {
     }
   };
 
+  React.useEffect(() => {
+    if (items === undefined) {
+      setItems(context.api.value.actions[0].options)
+    }
+  }, [context.api.value.actions])
+
+
+  useDidMountEffect(() => {
+      console.log('here...')
+      setItems(context.api.value.actions[0].options)
+  }, [props.name])
+
   useDidMountEffect(() => {
     let tempActions = context.api.value.actions[0];
-    let tempItems = [...items];
+    let tempItems = items === undefined ? [] : [...items];
     tempActions.options = tempItems;
     context.api.setValue({
       ...context.api.value,

@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import * as React from "react";
 
-const RecurringForm: React.FC = () => {
+const RecurringForm: React.FC<{ context?: boolean }> = (props) => {
   const sendContext = React.useContext<ISendContext>(SendContext);
   // const firstPayment = sendContext.api.value.firstPayment;
   // const frequency = sendContext.api.value.firstPayment;

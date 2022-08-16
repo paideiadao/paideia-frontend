@@ -140,7 +140,7 @@ const CreateProposal: React.FC = () => {
 
   return (
     <ProposalContext.Provider value={{ api }}>
-      <Layout width={deviceWrapper("92%", "60%")}>
+      <Layout width={deviceWrapper("94%", "60%")}>
         <CreateHeader type="proposal" />
         <Box
           sx={{
