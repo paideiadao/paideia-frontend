@@ -48,7 +48,7 @@ const MyCard: FC<MyCardProps> = ({ image, title, body }) => {
       <CardContent>
         <img src={image} width={35} height={35} />
         <Typography sx={cardTitleStyle}>{title}</Typography>
-        <Blockquote small sx={{ mb: "0px" }}>
+        <Blockquote small noIndent sx={{ mb: "0px" }}>
           {body}
         </Blockquote>
       </CardContent>
@@ -114,7 +114,7 @@ export default function Uses() {
                 </Typography>
               </Grid>
               <Grid item>
-                <Blockquote small>
+                <Blockquote noIndent small>
                   There are a lot of ways to use a DAO. Here are just a few
                   examples of the types of organizations that could launch a DAO
                   on Paideia.

@@ -18,17 +18,19 @@ const blockquoteStyle = {
 
 interface BlockquoteProps {
   small?: boolean;
+  noIndent?: boolean;
   sx?: SxProps;
 }
 
-const Blockquote: FC<BlockquoteProps> = ({ small, sx, children }) => {
+const Blockquote: FC<BlockquoteProps> = ({ small, noIndent, sx, children }) => {
   return (
-    <Grid container wrap="nowrap" spacing={2} sx={sx ? sx : { mb: "32px" }}>
+    <Box sx={sx ? sx : { mb: "32px" }}>
+    <Grid container wrap="nowrap" spacing={2}>
       <Grid item>
         <Box
           sx={{
             mt: "3px",
-            ml: small ? "0" : "36px",
+            ml: noIndent ? "0" : "36px",
             width: "8px",
             height: "95%",
             background:
@@ -42,6 +44,7 @@ const Blockquote: FC<BlockquoteProps> = ({ small, sx, children }) => {
         </Typography>
       </Grid>
     </Grid>
+    </Box>
   );
 };
 
