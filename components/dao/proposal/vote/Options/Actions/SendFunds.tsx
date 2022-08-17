@@ -1,9 +1,7 @@
 import LabeledSwitch from "@components/creation/utilities/LabeledSwitch";
 import MultiTokenHolders from "@components/utilities/MultiTokenHolders";
 import { ITokenHolder } from "@lib/creation/Interfaces";
-import { TextField } from "@mui/material";
 import * as React from "react";
-import { IDaoDescription } from "../../YesNo/Actions/DaoDescription";
 import { ISendFunds } from "../../YesNo/Actions/SendFunds";
 
 interface IwSendFunds extends ISendFunds {

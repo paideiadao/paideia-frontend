@@ -25,6 +25,22 @@ import { Add } from "@mui/icons-material";
 import DaoDescription from "./Actions/DaoDescription";
 import SendFunds from "./Actions/SendFunds";
 import { ISendFunds } from "../YesNo/Actions/SendFunds";
+import {
+  defaultLiquidityPoolData,
+  ILiquidityPool,
+} from "../YesNo/Actions/LiquidityPool";
+import LiquidityPool from "./Actions/LiqudityPool";
+import { IDaoDescription } from "../YesNo/Actions/DaoDescription";
+import QuadraticVoting from "./Actions/QuadraticVoting";
+import { IQuadradicVoting } from "../YesNo/Actions/QuadraticVoting";
+import VoteDuration from "./Actions/VoteDuration";
+import { IVoteDuration } from "../YesNo/Actions/VoteDuration";
+import { ISupport } from "../YesNo/Actions/Support";
+import Support from "./Actions/Support";
+import Quorum from "./Actions/Quorum";
+import { IQuorum } from "../YesNo/Actions/Quorum";
+import { defaultOptimisticGovernanceData, IOptimisticGovernance } from "../YesNo/Actions/OptimisticGovernance";
+import OptimisticGovernance from "./Actions/OptimisticGovernance";
 
 // fake data generator
 const getItems = (count: any) =>
@@ -78,25 +94,44 @@ const getListStyle = (
 });
 
 export const getData = (name: string): ActionType => {
-  console.log("name", name);
   if (name === "Change DAO's description") {
     return {
       shortDescription: "",
     };
-  } else if (name === 'Send funds') {
+  } else if (name === "Send funds") {
     return {
       tokenHolders: [
         { alias: "", address: "", img: "", balance: 0, percentage: 0 },
       ],
-      recurring: false
+      recurring: false,
     };
+  } else if (name === "Create liquidity pool") {
+    return defaultLiquidityPoolData;
+  } else if (name === "Quadratic voting") {
+    return {
+      isActive: false,
+    };
+  } else if (name === "Vote duration") {
+    return {
+      voteDuration: 0,
+      voteDurationUnits: "weeks",
+    };
+  } else if (name === "Support") {
+    return {
+      supportNeeded: 51,
+    };
+  } else if (name === "Quorum") {
+    return {
+      quorum: 4,
+    };
+  } else if (name === "Optimistic governance") {
+    return defaultOptimisticGovernanceData;
   }
 };
 
 const DraggableContext: React.FC<{ name: string }> = (props) => {
   const context = React.useContext<IProposalContext>(ProposalContext);
   const [compact, setCompact] = React.useState<boolean>(false);
-  console.log(context.api.value.actions[0].options, 'here...')
   const [items, setItems] = React.useState<IProposalOption[]>(
     context.api.value.actions[0].options
   );
@@ -124,18 +159,15 @@ const DraggableContext: React.FC<{ name: string }> = (props) => {
     if (item.data === undefined) {
       return undefined;
     }
-    console.log(props.name)
     if (props.name === "Change DAO's description") {
       return (
         <DaoDescription
           set={(val: string) => {
             let tempItems = [...items];
-            //@ts-ignore
-            tempItems[index].data.shortDescription = val;
+            (tempItems[index].data as IDaoDescription).shortDescription = val;
             setItems(tempItems);
           }}
-          //@ts-ignore
-          shortDescription={item.data.shortDescription}
+          shortDescription={(item.data as IDaoDescription).shortDescription}
         />
       );
     } else if (props.name === "Send funds") {
@@ -143,14 +175,87 @@ const DraggableContext: React.FC<{ name: string }> = (props) => {
         <SendFunds
           set={(val: ISendFunds) => {
             let tempItems = [...items];
-            //@ts-ignore
             tempItems[index].data = val;
             setItems(tempItems);
           }}
-          //@ts-ignore
-          tokenHolders={item.data.tokenHolders}
-          //@ts-ignore
-          recurring={item.data.recurring}
+          tokenHolders={(item.data as ISendFunds).tokenHolders}
+          recurring={(item.data as ISendFunds).recurring}
+        />
+      );
+    } else if (props.name === "Create liquidity pool") {
+      return (
+        <LiquidityPool
+          set={(val: ILiquidityPool) => {
+            let tempItems = [...items];
+            tempItems[index].data = val;
+            setItems(tempItems);
+          }}
+          isNew={(item.data as ILiquidityPool).isNew}
+          tokenPrice={(item.data as ILiquidityPool).tokenPrice}
+          tradingPair={(item.data as ILiquidityPool).tradingPair}
+          dex={(item.data as ILiquidityPool).dex}
+          startDate={(item.data as ILiquidityPool).startDate}
+          treasuryAmount={(item.data as ILiquidityPool).treasuryAmount}
+          balance={(item.data as ILiquidityPool).balance}
+          contingency={(item.data as ILiquidityPool).contingency}
+        />
+      );
+    } else if (props.name === "Quadratic voting") {
+      return (
+        <QuadraticVoting
+          set={(val: IQuadradicVoting) => {
+            let tempItems = [...items];
+            tempItems[index].data = val;
+            setItems(tempItems);
+          }}
+          isActive={(item.data as IQuadradicVoting).isActive}
+        />
+      );
+    } else if (props.name === "Vote duration") {
+      return (
+        <VoteDuration
+          set={(val: IVoteDuration) => {
+            let tempItems = [...items];
+            tempItems[index].data = val;
+            setItems(tempItems);
+          }}
+          voteDuration={(item.data as IVoteDuration).voteDuration}
+          voteDurationUnits={(item.data as IVoteDuration).voteDurationUnits}
+        />
+      );
+    } else if (props.name === "Support") {
+      return (
+        <Support
+          set={(val: ISupport) => {
+            let tempItems = [...items];
+            tempItems[index].data = val;
+            setItems(tempItems);
+          }}
+          supportNeeded={(item.data as ISupport).supportNeeded}
+        />
+      );
+    } else if (props.name === "Quorum") {
+      return (
+        <Quorum
+          set={(val: IQuorum) => {
+            let tempItems = [...items];
+            tempItems[index].data = val;
+            setItems(tempItems);
+          }}
+          quorum={(item.data as IQuorum).quorum}
+        />
+      );
+    } else if (props.name === "Optimistic governance") {
+      return (
+        <OptimisticGovernance
+          set={(val: IOptimisticGovernance) => {
+            let tempItems = [...items];
+            tempItems[index].data = val;
+            setItems(tempItems);
+          }}
+          wallets={(item.data as IOptimisticGovernance).wallets}
+          activated={(item.data as IOptimisticGovernance).activated}
+
         />
       );
     } else {
@@ -160,15 +265,13 @@ const DraggableContext: React.FC<{ name: string }> = (props) => {
 
   React.useEffect(() => {
     if (items === undefined) {
-      setItems(context.api.value.actions[0].options)
+      setItems(context.api.value.actions[0].options);
     }
-  }, [context.api.value.actions])
-
+  }, [context.api.value.actions]);
 
   useDidMountEffect(() => {
-      console.log('here...')
-      setItems(context.api.value.actions[0].options)
-  }, [props.name])
+    setItems(context.api.value.actions[0].options);
+  }, [props.name]);
 
   useDidMountEffect(() => {
     let tempActions = context.api.value.actions[0];

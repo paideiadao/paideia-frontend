@@ -13,6 +13,7 @@ export const Header: React.FC<{
   large?: boolean;
   mb?: string | any;
   bold?: boolean;
+  mt?: string | any;
 }> = (props) => {
   return props.subtitle === undefined ? (
     <Box
@@ -33,7 +34,7 @@ export const Header: React.FC<{
     <Box
       sx={{
         width: "100%",
-        mt: ".5rem",
+        mt: props.mt === undefined ? ".5rem" : props.mt,
         mb: ".5rem",
       }}
     >

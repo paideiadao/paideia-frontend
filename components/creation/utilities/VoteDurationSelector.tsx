@@ -21,7 +21,7 @@ interface IVoteDurationSelector {
 const VoteDurationSelector: React.FC<IVoteDurationSelector> = (props) => {
   return (
     <FormControl
-      sx={{ m: 1, width: deviceStruct("60%", "60%", "30%", "30%", "30%") }}
+      sx={{ m: 1, width: deviceStruct("60%", "60%", "35%", "37%", "30%") }}
       variant="outlined"
     >
       <InputLabel htmlFor={`challenge-time-input`} shrink>

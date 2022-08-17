@@ -48,7 +48,7 @@ export const DraggableHeader: React.FC<IDraggableHeader> = (props) => {
             : "Drag options to change their order, this is how they will appear in the proposal."}
         </Box>
       </Box>
-      {(!props.compact || props.index === -1) && (
+      {
         <IconButton
           sx={{ ml: "auto", color: "error.light" }}
           disabled={props.items.length === 1 || props.item.default}
@@ -56,7 +56,7 @@ export const DraggableHeader: React.FC<IDraggableHeader> = (props) => {
         >
           <Delete />
         </IconButton>
-      )}
+      }
     </Box>
   );
 };

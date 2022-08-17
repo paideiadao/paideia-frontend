@@ -17,6 +17,7 @@ import AbstractDate from "@components/creation/utilities/AbstractDate";
 import { deviceWrapper } from "@components/utilities/Style";
 import BalanceInput from "@components/creation/utilities/BalanceInput";
 import ContingencyFund from "@components/creation/utilities/ContingencyFund";
+import LiquidityPool from "../../Options/Actions/LiqudityPool";
 
 export interface ILiquidityPool {
   isNew: boolean;
@@ -34,26 +35,28 @@ export interface IContingency {
   balance: number;
 }
 
-const tempDate = new Date();
+export const tokenTicker = "PTK";
+export const tempDate = new Date();
 tempDate.setDate(tempDate.getDate() + 10);
 
-const LiquidityPool: React.FC<IProposalAction> = (props) => {
-  const context = React.useContext<IProposalContext>(ProposalContext);
-  const tokenTicker = "PTK";
-
-  const [value, setValue] = React.useState<ILiquidityPool>({
-    isNew: true,
-    tokenPrice: 0,
-    tradingPair: tokenTicker.toLowerCase() + "/erg",
-    dex: "spectrum",
-    startDate: tempDate,
-    treasuryAmount: 50000,
+export const defaultLiquidityPoolData: ILiquidityPool = {
+  isNew: true,
+  tokenPrice: 0,
+  tradingPair: tokenTicker.toLowerCase() + "/erg",
+  dex: "spectrum",
+  startDate: tempDate,
+  treasuryAmount: 50000,
+  balance: 0,
+  contingency: {
     balance: 0,
-    contingency: {
-      balance: 0,
-      percentage: 0,
-    },
-  });
+    percentage: 0,
+  },
+};
+
+const LiquidityPoolAction: React.FC<IProposalAction> = (props) => {
+  const context = React.useContext<IProposalContext>(ProposalContext);
+
+  const [value, setValue] = React.useState<ILiquidityPool>();
 
   React.useEffect(() => {
     const temp = [...context.api.value.actions];
@@ -83,6 +86,19 @@ const LiquidityPool: React.FC<IProposalAction> = (props) => {
         }}
       />
       <CapsInfo title="Configuration" mb=".5rem" />
+      <LiquidityPool
+        set={(val: ILiquidityPool) => {
+          setValue(val);
+        }}
+        isNew={value.isNew}
+        tokenPrice={value.tokenPrice}
+        tradingPair={value.tradingPair}
+        dex={value.dex}
+        startDate={value.startDate}
+        treasuryAmount={value.treasuryAmount}
+        balance={value.balance}
+        contingency={value.contingency}
+      />
       <ButtonGroup variant="outlined" sx={{ width: "100%", mt: ".5rem" }}>
         <Button
           sx={{
@@ -167,4 +183,4 @@ const LiquidityPool: React.FC<IProposalAction> = (props) => {
   );
 };
 
-export default LiquidityPool;
+export default LiquidityPoolAction;

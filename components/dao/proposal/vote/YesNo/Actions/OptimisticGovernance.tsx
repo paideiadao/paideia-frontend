@@ -15,21 +15,18 @@ import * as React from "react";
 import Layout from "./Layout";
 
 export interface IOptimisticGovernance {
-  actionName: string;
-  actionDescription: string;
   activated: boolean;
   wallets: IWallet[];
 }
 
+export const defaultOptimisticGovernanceData = {
+  activated: true,
+  wallets: [{ alias: "", address: "", img: "" }],
+}
+
 const OptimisticGovernance: React.FC<IProposalAction> = (props) => {
   const context = React.useContext<IProposalContext>(ProposalContext);
-  const [value, setValue] = React.useState<IOptimisticGovernance>({
-    actionName: "Optimistic governance",
-    actionDescription:
-      "Turn on or off optimistic governance and or edit the whitelisted members",
-    activated: true,
-    wallets: [{ alias: "", address: "", img: "" }],
-  });
+  const [value, setValue] = React.useState<IOptimisticGovernance>(defaultOptimisticGovernanceData);
 
   React.useEffect(() => {
     const temp = [...context.api.value.actions];
@@ -61,7 +58,7 @@ const OptimisticGovernance: React.FC<IProposalAction> = (props) => {
       <TextField
         sx={{ width: "100%", mt: "1rem" }}
         label="Action name"
-        value={value.actionName}
+        value={"Optimistic governance"}
         InputProps={{
           readOnly: true,
         }}
@@ -69,7 +66,7 @@ const OptimisticGovernance: React.FC<IProposalAction> = (props) => {
       <TextField
         sx={{ width: "100%", mt: "1rem" }}
         label="Action descriptions"
-        value={value.actionName}
+        value={"Turn on or off optimistic governance and or edit the whitelisted members"}
         InputProps={{
           readOnly: true,
         }}
@@ -85,24 +82,7 @@ const OptimisticGovernance: React.FC<IProposalAction> = (props) => {
         }}
       />
       <CapsInfo title="Configuration" mb="-1rem" />
-      <LabeledSwitch
-        title="Optimistic governance"
-        subtitle="All proposals are passed by default, unless challenged."
-        value={value.activated}
-        onChange={() => setValue({ ...value, activated: !value.activated })}
-      />
-      {value.activated && (
-        <MultiWalletSelector
-          wallets={value.wallets}
-          set={(wallets: IWallet[]) =>
-            setValue({
-              ...value,
-              wallets: wallets,
-            })
-          }
-        />
-      )}
-      <Box sx={{ mb: ".5rem" }} />
+
     </Layout>
   );
 };

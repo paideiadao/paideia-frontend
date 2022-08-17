@@ -235,7 +235,6 @@ const AddAction: React.FC<IProposalAction> = (props) => {
                           },
                         ];
                       }
-                      console.log(temp);
                       context.api.setValue({
                         ...context.api.value,
                         actions: temp,
@@ -285,8 +284,8 @@ const AddAction: React.FC<IProposalAction> = (props) => {
             <CancelIcon
               sx={{
                 position: "absolute",
-                top: "1rem",
-                right: "1rem",
+                top: ".65rem",
+                right: ".5rem",
                 cursor: "pointer",
               }}
               color="error"
@@ -299,7 +298,7 @@ const AddAction: React.FC<IProposalAction> = (props) => {
                 width: "100%",
                 alignItems: "center",
                 display: "flex",
-                pt: ".75rem",
+                pt: ".5rem",
                 backgroundColor: "primary.lightOpacity",
                 border: 1,
                 borderColor: "primary.main",

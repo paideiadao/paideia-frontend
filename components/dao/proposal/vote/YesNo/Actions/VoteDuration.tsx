@@ -59,7 +59,6 @@ const VoteDuration: React.FC<IProposalAction> = (props) => {
           setValue({ ...value, voteDurationUnits: val })
         }
       />
-      <Box sx={{ pb: ".5rem" }} />
     </Layout>
   );
 };
