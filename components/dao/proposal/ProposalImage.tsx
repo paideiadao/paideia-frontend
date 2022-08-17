@@ -2,7 +2,7 @@ import { LearnMore } from "@components/creation/utilities/HeaderComponents";
 import ProposalContext, {
   IProposalContext,
 } from "@lib/dao/proposal/ProposalContext";
-import { Box } from "@mui/material";
+import { Typography } from "@mui/material";
 import * as React from "react";
 import DiscussionBanner from "../discussion/DiscussionBanner";
 
@@ -55,13 +55,15 @@ const ProposalImage: React.FC = () => {
 
   return (
     <>
-      <LearnMore
-        small
-        title="Proposal image"
-        tooltipText="Content Here"
-        tooltipTitle="Title Here"
-        tooltipLink="/here"
-      />
+      <Typography
+        sx={{
+          mt: '20px',
+          mb: '12px',
+          fontSize: '0.9rem',
+        }}
+      >
+        Proposal Image
+      </Typography>
       <DiscussionBanner
         file={data === undefined ? "" : data.file}
         fileUrl={data === undefined ? "" : data.url}

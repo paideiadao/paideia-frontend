@@ -26,9 +26,15 @@ const listItemSx = {
   },
 };
 
-interface IPageNav {
-  navLinks: any[];
+export interface INavLink {
+  name: string;
+  icon?: string;
+  link: string;
+  position: number | undefined;
+}
 
+interface IPageNav {
+  navLinks: INavLink[];
   children: React.ReactNode;
 }
 
@@ -209,9 +215,11 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
             scrollToHeading(position);
           }}
         >
-          <ListItemIcon>
-            <Icon>{icon}</Icon>
-          </ListItemIcon>
+          {icon && (
+            <ListItemIcon>
+              <Icon>{icon}</Icon>
+            </ListItemIcon>
+          )}
           <ListItemText
             primary={name}
             sx={{
@@ -233,7 +241,7 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
         <ListItem
           key={i}
           button
-          sx={listItemSx}
+          sx={{ ...listItemSx }}
           onClick={() => {
             scrollToHeading(position);
             setPageNavOpen(!pageNavOpen);
@@ -249,9 +257,11 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
               },
             }}
           />
-          <ListItemIcon sx={{ justifyContent: "flex-end" }}>
-            <Icon>{icon}</Icon>
-          </ListItemIcon>
+          {icon && (
+            <ListItemIcon sx={{ justifyContent: "flex-end" }}>
+              <Icon>{icon}</Icon>
+            </ListItemIcon>
+          )}
         </ListItem>
       ))}
     </List>
@@ -265,7 +275,7 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
             sx={{
               position: "sticky",
               top: 100,
-              background: "rgba(0, 0, 0, 0.1)",
+              background: "linear-gradient(130.4deg, rgba(7, 10, 17, 0.4) 14.89%, rgba(7, 10, 17, 0.2) 87.67%)",
               backdropFilter: "blur(5px)",
               borderRadius: "12px",
               zIndex: 3,
@@ -282,7 +292,7 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
                   sx={{ background: "#ED7E21", zIndex: "2", ...sliderSx }}
                 ></Box>
               </Grid>
-              <Grid item sx={{ maxWidth: "calc(100% - 3px)" }}>
+              <Grid item sx={{ maxWidth: "calc(100% - 3px)", flexGrow: 1 }}>
                 {navBarList}
               </Grid>
             </Grid>

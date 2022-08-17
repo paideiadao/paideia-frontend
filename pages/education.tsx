@@ -17,6 +17,8 @@ import {
   AccordionSummary,
   AccordionDetails,
   Link,
+  useMediaQuery,
+  IconButton
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import ExpandMore from "@mui/icons-material/ExpandMore";
@@ -24,6 +26,9 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import SectionHeading from "@components/SectionHeading";
 import Blockquote from "@components/Blockquote";
 import Image from "next/image";
+import { DarkTheme } from '@theme/theme';
+import DiscordIcon from '@components/svgs/DiscordIcon';
+import TelegramIcon from '@components/svgs/TelegramIcon';
 
 interface INavLink {
   name: string;
@@ -290,6 +295,8 @@ const Education: FC = () => {
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
     };
+
+  const isMobile = useMediaQuery(DarkTheme.breakpoints.down("sm"));
   return (
     <>
       <PageHeader
@@ -562,14 +569,68 @@ const Education: FC = () => {
         </PageNav>
       </Container>
       <Container sx={{ px: "24px", py: "60px", position: "relative" }}>
-        <Image
-          src="/cta-banner.png"
-          width={1152}
-          height={215}
-          layout="responsive"
-        />
-        <Box sx={{ position: "absolute", top: "150px", left: "35%" }}>
-          More Questions? Join us on Discord or Telegram
+        {isMobile ? (
+          <Image
+            src="/cta-mobile.png"
+            width={374}
+            height={205}
+            layout="responsive"
+          />
+        ) : (
+          <Image
+            src="/cta-banner.png"
+            width={1152}
+            height={215}
+            layout="responsive"
+          />
+        )}
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            textAlign: 'center',
+          }}
+        >
+              <Typography
+                sx={{
+                  fontFamily: '"Space Grotesk", sans-serif',
+                  fontWeight: "600",
+                  fontSize: "34px",
+                  lineHeight: "42px",
+                  mb: '12px',
+                }}
+              >
+                Any other questions?
+              </Typography>
+              <IconButton
+                href="https://discord.gg/J3KDrtCFEn"
+                target="_blank"
+                sx={{
+                  color: '#fff',
+                  background: '#007A99',
+                  '&:hover': {
+                    background: '#00566B'
+                  },
+                  mr: '24px',
+                }}
+              >
+                <DiscordIcon />
+              </IconButton>
+              <IconButton
+                href="https://t.me/paideiaDAO"
+                target="_blank"
+                sx={{
+                  color: '#fff',
+                  background: '#007A99',
+                  '&:hover': {
+                    background: '#00566B'
+                  }
+                }}
+              >
+                <TelegramIcon />
+              </IconButton>
         </Box>
       </Container>
     </>

@@ -6,7 +6,7 @@ import ProposalContext, {
   IProposalContext,
 } from "@lib/dao/proposal/ProposalContext";
 import { IObj } from "@lib/Interfaces";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { IProposalAction } from "@pages/dao/[id]/proposal/create";
 import * as React from "react";
 import Selector from "./vote/Selector";
@@ -62,12 +62,15 @@ const ProposalVote: React.FC = () => {
   const votingSystem = context.api.value.votingSystem;
   return (
     <>
-      <LearnMore
-        title={"Voting system"}
-        tooltipTitle={"Title here"}
-        tooltipText={"Content here"}
-        tooltipLink="/here"
-      />
+      <Typography
+        sx={{
+          mt: '20px',
+          mb: '12px',
+          fontSize: '1.1rem',
+        }}
+      >
+        Voting system
+      </Typography>
       {content[votingSystem]}
       {context.api.value.actions.filter(
         (i: IProposalAction) => i.name === undefined

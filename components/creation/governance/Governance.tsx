@@ -59,9 +59,9 @@ const Governance: React.FC = () => {
       >
         <LearnMore
           title="Optimistic governance"
-          tooltipTitle="Title Here"
-          tooltipText="Content here."
-          tooltipLink="/here"
+          tooltipTitle="Optimistic Governance"
+          tooltipText="Choose this option if you'd like to whitelist individual wallets so that only those wallets can make proposals. All proposals will pass, unless a DAO member challenges that proposal. Choosing this option means that proposals will require collateral, and if the proposal is successfully challenged, IE DAO members vote it down after someone challenges it, that collateral is lost and distributed to the voters. This prevents corrupt individuals from draining the DAO or behaving in a way that is not in members' best interestes. Optimistic governance can make the DAO more agile and focused, as there is less engagement required from most members. "
+          tooltipLink="https://docs.paideia.im/governance-structures#_yj9ebg49un1g"
         />
         <Box sx={{ width: "100%", color: "text.secondary", fontSize: ".8rem" }}>
           If active only whitelisted members will be able to create proposals.
@@ -96,9 +96,9 @@ const Governance: React.FC = () => {
           <>
             <LearnMore
               title="White listed members"
-              tooltipTitle="Title Here"
-              tooltipText="Content here."
-              tooltipLink="/here"
+              // tooltipTitle="Whitelisted Members"
+              tooltipText="These will be the only addresses that can submit proposals for this DAO. All members will be able to challenge proposals, but not all members will be able to submit. Make sure you add a few addresses. Too few will represent a significant centralization of control. "
+            // tooltipLink="/here"
             />
 
             <Box
@@ -219,9 +219,9 @@ const Governance: React.FC = () => {
             <LearnMore
               small
               title="Collateral"
-              tooltipTitle="Title Here"
-              tooltipText="Content here."
-              tooltipLink="/here"
+              // tooltipTitle="Title Here"
+              tooltipText="All proposals in Optimistic Governance require collateral. If the proposal is challenged, and is then voted down, the collateral is distributed to those who voted. A challenger must also submit equal collateral. If the challenge does not pass, and DAO members vote to pass the proposal, the challenger's collateral is distributed to voters. "
+            // tooltipLink="/here"
             />
 
             <Box
@@ -276,9 +276,9 @@ const Governance: React.FC = () => {
             <LearnMore
               small
               title="Time to challenge a proposal"
-              tooltipTitle="Title Here"
-              tooltipText="Content here."
-              tooltipLink="/here"
+              // tooltipTitle="Title Here"
+              tooltipText="All proposals pass in Optimistic Governance, unless challenged. DAO members need enough time to assess each proposal to make sure it's agreeable. This is the length of time each proposal can be challenged before it passes. "
+            // tooltipLink="/here"
             />
 
             <Box
@@ -370,9 +370,9 @@ const Governance: React.FC = () => {
       >
         <LearnMore
           title="Quadratic voting"
-          tooltipTitle="Title Here"
-          tooltipText="Content here."
-          tooltipLink="/here"
+          tooltipTitle="Quadratic Voting"
+          tooltipText="This counting method attempts to give less weight to votes from large holders, AKA whales. 10 votes from 10 addresses will count for more than 10 votes from one address. "
+          tooltipLink="https://wtfisqf.com/"
         />
 
         <Box sx={{ width: "100%", color: "text.secondary", fontSize: ".8rem" }}>
@@ -417,9 +417,9 @@ const Governance: React.FC = () => {
         <LearnMore
           small
           title="Support needed on single choice voting"
-          tooltipTitle="Title Here"
-          tooltipText="Content here."
-          tooltipLink="/here"
+          //tooltipTitle="Title Here"
+          tooltipText="Allows you to require more votes in favor to pass proposals. For example, if you set this to 60%, and 100 votes are cast, 60 votes in favor would be required for a proposal to pass. "
+        //tooltipLink="/here"
         />
 
         <Box
@@ -484,9 +484,9 @@ const Governance: React.FC = () => {
         <LearnMore
           small
           title="Quorum"
-          tooltipTitle="Title Here"
-          tooltipText="Content here."
-          tooltipLink="/here"
+          // tooltipTitle="Title Here"
+          tooltipText="Do not set this too high. Quorum means the number of voters required for any vote to pass. If you have 1000 vote tokens distributed, and quorum is set to 50%, at least 500 votes must be cast before any proposal passes. If you have many inactive members, it could mean the DAO can no longer pass any proposals. Be cautious with this setting. "
+        // tooltipLink="/here"
         />
 
         <Box

@@ -91,7 +91,7 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #004b53;
+  background-color: rgba(0,75,83,0.6);
   border-radius: 20px;
   border: 3px solid transparent;
   background-clip: content-box;
@@ -107,16 +107,6 @@ body {
 
 * {
   box-sizing: border-box;
-}
-
-a {
-  text-decoration: none;
-  color: #ff8219;
-}
-
-a:hover {
-  text-decoration: underline;
-  color: #ff8219;
 }
 
 img {

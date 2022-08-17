@@ -182,9 +182,9 @@ const Design: React.FC = (props) => {
       <Box sx={{ width: "100%", mb: "1rem" }}>
         <LearnMore
           title="Theme"
-          tooltipTitle="Title Here"
-          tooltipText="Content here."
-          tooltipLink="/here"
+          // tooltipTitle="Title Here"
+          tooltipText="Choose the color scheme that will appear on your DAO's dashboard for all users"
+          // tooltipLink="/here"
         />
         <Subtitle subtitle="In order to best match your DAO design you can select between four different theme colors and choose if you want a light or dark theme." />
       </Box>
