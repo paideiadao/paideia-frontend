@@ -327,7 +327,7 @@ const Education: FC = () => {
               sx={{ mb: "32px" }}
             />
             <Box sx={{ maxWidth: "760px", mx: "auto" }}>
-              <Typography variant="p">
+              <Typography variant="body2">
                 Our mission is to give people the power, knowledge, and
                 motivation to change the way they govern and participate in
                 democratic organizations. We will help people experiment with
@@ -342,12 +342,12 @@ const Education: FC = () => {
                 a democratic organization with a shared financial treasury can
                 do so using Paideia.
               </Blockquote>
-              <Typography variant="p">
+              <Typography variant="body2">
                 The tools we create will allow anyone to initiate and manage a
                 DAO with no prior knowledge or experience, empowering groups of
                 individuals to pool their wealth and put it toward a common aim.
               </Typography>
-              <Typography variant="p">
+              <Typography variant="body2">
                 Through Paideia, DAOs will be able to:
                 <List
                   dense
@@ -422,7 +422,7 @@ const Education: FC = () => {
               sx={{ mb: "32px" }}
             />
             <Box sx={{ maxWidth: "760px", mx: "auto" }}>
-              <Typography variant="p" sx={{ mb: "64px" }}>
+              <Typography variant="body2" sx={{ mb: "64px" }}>
                 When building a DAO, it should exist on a blockchain with a
                 strong foundation and fundamentals, be inexpensive to operate,
                 be simple to use, and be secure and decentralized. It should
@@ -464,7 +464,7 @@ const Education: FC = () => {
                   );
                 })}
               </Grid>
-              <Typography variant="p">
+              <Typography variant="body2">
                 We feel that Ergo satisfies those criteria and we feel building
                 this software on Ergo first is the appropriate choice. Paideia
                 will never be designed to be exclusive to Ergo, and will accept
@@ -472,7 +472,7 @@ const Education: FC = () => {
                 Ergo first and always strive to follow the fundamental
                 philosophies therein.
               </Typography>
-              <Typography variant="p">
+              <Typography variant="body2">
                 Ergo does not have expensive gas fees like Ethereum. It is fair
                 launched, highly decentralized, and based on the original UTXO
                 model of Bitcoin
@@ -482,7 +482,7 @@ const Education: FC = () => {
                 as NIPoPoWs, soft forks for code-based changes, and an
                 efficient, ASIC resistant proof of work algorithm.
               </Blockquote>
-              <Typography variant="p">
+              <Typography variant="body2">
                 It avoids cloning the EVM and solidity code, and rather uses a
                 well-conceived Scala-based programming language called
                 Ergoscript, which provides a much safer and more robust platform

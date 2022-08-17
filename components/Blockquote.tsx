@@ -39,7 +39,7 @@ const Blockquote: FC<BlockquoteProps> = ({ small, noIndent, sx, children }) => {
         ></Box>
       </Grid>
       <Grid item zeroMinWidth>
-        <Typography sx={small ? paragraphStyle : blockquoteStyle}>
+        <Typography sx={small ? {} : blockquoteStyle} variant='body1'>
           {children}
         </Typography>
       </Grid>
