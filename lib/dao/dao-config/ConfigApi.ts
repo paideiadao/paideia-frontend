@@ -1,9 +1,9 @@
+import { IAlerts } from "@components/utilities/Alert";
 import {
   IBasicInformation,
   IGovernance,
   IDesign,
 } from "@lib/creation/Interfaces";
-import { IAlert } from "@lib/Interfaces";
 import { AbstractApi } from "@lib/utilities";
 import { IDiscussion } from "@pages/dao/[id]/discussion/create";
 import { IConfigContext } from "./ConfigContext";
@@ -19,7 +19,7 @@ export default class ConfigApi extends AbstractApi {
   setData: Function;
 
   constructor(
-    alert: IAlert,
+    alert: IAlerts[],
     setAlert: Function,
     data: IConfigData,
     setData: Function

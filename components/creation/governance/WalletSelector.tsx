@@ -6,6 +6,7 @@ import { walletStruct } from "../../../lib/creation/Constants";
 import ClearIcon from "@mui/icons-material/Clear";
 import PersonIcon from "@mui/icons-material/Person";
 import { deviceStruct } from "@components/utilities/Style";
+import { isAddressValid } from "@components/wallet/AddWallet";
 
 const WalletSelector: React.FC<{
   data: {
@@ -21,7 +22,14 @@ const WalletSelector: React.FC<{
 }> = (props) => {
   const [focused, setFocused] = React.useState<boolean>(false);
   const [search, setSearch] = React.useState<string>("");
-
+  React.useEffect(() => {
+    if (isAddressValid(search)) {
+      props.set({
+        ...props.data,
+        address: search,
+      });
+    }
+  }, [search]);
   return (
     <Box
       sx={{
@@ -83,7 +91,7 @@ const WalletSelector: React.FC<{
                       display: deviceStruct(
                         "none",
                         "none",
-                        "block",
+                        "none",
                         "block",
                         "block"
                       ),
@@ -92,9 +100,9 @@ const WalletSelector: React.FC<{
                     {props.data.address !== undefined &&
                       `${props.data.address.slice(
                         0,
-                        18
+                        14
                       )}....${props.data.address.slice(
-                        props.data.address.length - 18,
+                        props.data.address.length - 14,
                         props.data.address.length
                       )}`}
                   </Box>
@@ -112,9 +120,9 @@ const WalletSelector: React.FC<{
                     {props.data.address !== undefined &&
                       `${props.data.address.slice(
                         0,
-                        13
+                        11
                       )}...${props.data.address.slice(
-                        props.data.address.length - 13,
+                        props.data.address.length - 11,
                         props.data.address.length
                       )}`}
                   </Box>

@@ -7,7 +7,7 @@ import { Value, ImageWrapper } from "./ReviewDrawer";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import EditIcon from "@mui/icons-material/Edit";
 import { bytesToSize } from "@lib/creation/Utilities";
-import { themes } from "../design/Design";
+import { ITheme, themes } from "../design/Design";
 import CircleIcon from "@mui/icons-material/Circle";
 import { IFile, ISocialLink } from "@lib/creation/Interfaces";
 import TelegramIcon from "@mui/icons-material/Telegram";
@@ -17,15 +17,21 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import RedditIcon from "@mui/icons-material/Reddit";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
+import { LightTheme } from "@theme/theme";
 
-const ThemeIndicator: React.FC<{ theme: any }> = (props) => {
+const ThemeIndicator: React.FC<{ theme: ITheme }> = (props) => {
+  const themeContext = React.useContext<IThemeContext>(ThemeContext);
   return (
     <>
       <Box
         sx={{
-          backgroundColor: props.theme.colorBottom,
           width: "2rem",
           height: "2rem",
+          backgroundColor:
+            themeContext.theme === LightTheme
+              ? props.theme.secondary
+              : props.theme.secondaryDark,
           borderRadius: "50%",
           position: "relative",
           mr: ".5rem",
@@ -35,7 +41,10 @@ const ThemeIndicator: React.FC<{ theme: any }> = (props) => {
           sx={{
             width: "100%",
             height: "100%",
-            backgroundColor: props.theme.colorTop,
+            backgroundColor:
+              themeContext.theme === LightTheme
+                ? props.theme.primary
+                : props.theme.primaryDark,
             clipPath: "polygon(0 0, 100% 0, 0 100%)",
             borderRadius: "50%",
           }}

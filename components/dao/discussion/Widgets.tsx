@@ -41,7 +41,7 @@ export const Overview: React.FC<{ proposal?: boolean }> = (props) => {
         </Box>
         <Box
           sx={{
-            display: deviceWrapper("none", "flex"),
+            display: "flex",
             width: "100%",
             alignItems: "center",
             justifyContent: "center",

@@ -20,13 +20,12 @@ const CircularProgressWithLabel: React.FC<{ value: number }> = ({ value }) => {
           <CircularProgress
             variant="determinate"
             size="4rem"
-            sx={{ position: "relative", zIndex: 2 }}
+            sx={{ position: "relative", zIndex: 2, color: "primary.main" }}
             value={value * 20}
-            color="success"
           />
           <CircularProgress
             variant="determinate"
-            sx={{ position: "absolute", color: "text.secondary" }}
+            sx={{ position: "absolute", color: "primary.main", opacity: ".08" }}
             size="4rem"
             value={100}
             // color="circleBackground"

@@ -11,11 +11,24 @@ import { deviceWrapper } from "@components/utilities/Style";
 const Selector: React.FC = () => {
   const context = React.useContext<IProposalContext>(ProposalContext);
 
-  const wrapper = (value: "yes/no" | "options" | "unselected") =>
+  const wrapper = (value: "yes/no" | "options" | "unselected") => {
+    let temp =
+      value === "options"
+        ? {
+            actions: [
+              {
+                name: undefined,
+                data: undefined,
+              },
+            ],
+          }
+        : {};
     context.api.setValue({
       ...context.api.value,
       votingSystem: value,
+      ...temp,
     });
+  };
   return (
     <Box
       sx={{

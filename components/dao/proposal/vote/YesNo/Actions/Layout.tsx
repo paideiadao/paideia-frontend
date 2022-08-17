@@ -3,7 +3,9 @@ import * as React from "react";
 
 const Layout: React.FC = (props) => {
   return (
-    <Box sx={{ pl: ".5rem", pr: ".5rem", width: "100%" }}>{props.children}</Box>
+    <Box sx={{ pl: ".65rem", pr: ".65rem", width: "100%", pb: ".25rem" }}>
+      {props.children}
+    </Box>
   );
 };
 

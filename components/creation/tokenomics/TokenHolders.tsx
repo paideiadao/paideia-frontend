@@ -60,7 +60,7 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
             >
               <Box
                 sx={{
-                  width: deviceStruct("100%", "100%", "50%", "50%", "50%"),
+                  width: { sm: "100%", md: "46%" },
                   mr: ".5rem",
                   display: "flex",
                   alignItems: "center",
@@ -86,11 +86,11 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                 {data.tokenHolders.length > 1 && screen.width <= 900 && (
                   <DeleteIcon
                     style={{
-                      fill: "red",
                       marginLeft: ".4rem",
                       cursor: "pointer",
                       width: "10%",
                     }}
+                    color="error"
                     onClick={() => {
                       let temp = [...data.tokenHolders];
                       temp.splice(c, 1);
@@ -104,8 +104,8 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                 remaining={data.tokenRemaining}
                 balance={data.tokenHolders[c].balance}
                 value={data.tokenHolders[c]}
-                mt={deviceStruct(".5rem", ".5rem", "0", "0", "0")}
-                width={deviceStruct("48%", "48%", "23%", "23%", "23%")}
+                mt={{ sm: ".5rem", md: "0" }}
+                width={{ sm: "48%", md: "23%" }}
                 set={(newValue: any) => {
                   let temp = [...data.tokenHolders];
                   temp[c] = { ...newValue };
@@ -113,8 +113,8 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                 }}
               />
               <PercentageInput
-                width={deviceStruct("48%", "48%", "23%", "23%", "23%")}
-                mt={deviceStruct(".5rem", ".5rem", "0", "0", "0")}
+                width={{ sm: "48%", md: "23%" }}
+                mt={{ sm: ".5rem", md: "0" }}
                 total={data.tokenAmount}
                 remaining={data.tokenRemaining}
                 percentage={data.tokenHolders[c].percentage}
@@ -125,14 +125,14 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
                   props.setData({ ...props.data, tokenHolders: temp });
                 }}
               />
-              {data.tokenHolders.length > 1 && screen.width > 900 && (
+              {data.tokenHolders.length > 1 && screen.width >= 900 && (
                 <DeleteIcon
                   style={{
-                    fill: "red",
                     marginLeft: ".4rem",
                     cursor: "pointer",
                     width: "3%",
                   }}
+                  color="error"
                   onClick={() => {
                     let temp = [...data.tokenHolders];
                     temp.splice(c, 1);

@@ -19,7 +19,7 @@ import Activity, { IActivity } from "@components/dao/activity/Activity";
 import { ThemeContext } from "@lib/ThemeContext";
 import { LightTheme } from "@theme/theme";
 
-const StakingActivity: React.FC = () => {
+export const StakingActivity: React.FC = () => {
   const stakingActivities = activities.filter(
     (i: IActivity) => i.category === "Staking"
   );

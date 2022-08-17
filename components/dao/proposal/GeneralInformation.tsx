@@ -25,6 +25,13 @@ const GeneralInformation: React.FC = () => {
       category: event.target.value,
     });
   };
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    context.api.setValue({
+      ...context.api.value,
+      name: event.target.value,
+    });
+  };
   return (
     <>
       <Header title="Proposal general information" />
@@ -40,6 +47,7 @@ const GeneralInformation: React.FC = () => {
         <TextField
           value={context.api.value.name}
           label="Proposal name"
+          onChange={handleNameChange}
           sx={{
             width: deviceWrapper("100%", "50%"),
             mr: deviceWrapper("0", "1rem"),

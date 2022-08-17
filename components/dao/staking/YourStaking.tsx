@@ -5,7 +5,7 @@ import * as React from "react";
 import { InfoCard } from "./GeneralInfo";
 
 const YourStaking: React.FC = () => {
-  const ticker = "DTK";
+  const ticker = "PTK";
   return (
     <Box>
       <Subheader title="Your staking" />
@@ -23,8 +23,7 @@ const YourStaking: React.FC = () => {
           c={2}
           full
           value={`≈3,661`}
-          ticker={`${ticker}`}
-          title={`Tokens you will earn`}
+          title={`Earned tokens`}
           dropdown
           last
         />

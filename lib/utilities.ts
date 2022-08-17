@@ -1,5 +1,6 @@
 import axios from "axios";
 import { IObj } from "@lib/Interfaces";
+import { IAlerts, ValidAlert } from "@components/utilities/Alert";
 
 const statusLookup: IObj<number> = {
   GET: 200,
@@ -31,10 +32,10 @@ export interface ISigningMessage {
 }
 
 export class AbstractApi {
-  alert: any;
+  alert: IAlerts[];
   setAlert: Function;
 
-  constructor(_alert: any, _setAlert: Function) {
+  constructor(_alert: IAlerts[], _setAlert: Function) {
     this.alert = _alert;
     this.setAlert = _setAlert;
   }
@@ -101,32 +102,31 @@ export class AbstractApi {
   error(err: any): any {
     console.log(err);
     if (this !== undefined) {
-      this.setAlert({
-        show: true,
-        value: "error",
-        current: "occured",
-        action: "Unknown error",
+      let temp = [...this.alert];
+      temp.push({
+        content: err,
+        severity: "error",
       });
+      this.setAlert(temp);
     }
   }
 
-  showAlert = (value: string, current: string, action: string): boolean => {
-    if (action !== "" && action !== undefined) {
-      this.setAlert({
-        show: true,
-        value: value,
-        current: current,
-        action: action,
+  showAlert = (content: string, severity: ValidAlert): boolean => {
+    if (content !== "" && content !== undefined) {
+      let temp = [...this.alert];
+      temp.push({
+        content: content,
+        severity: severity,
       });
+      this.setAlert(temp);
     }
     return false;
   };
 
-  async get<T>(url: string, action: string, current: string = ""): Promise<T> {
+  async get<T>(url: string): Promise<T> {
     let self = this;
     // @ts-ignore
     return await this.request(url, "GET").then((data: T) => {
-      self.showAlert("success", current, action);
       return data;
     }, self.error);
   }
@@ -141,7 +141,6 @@ export class AbstractApi {
     return await this.request(url, "POST", body).then(
       // @ts-ignore
       (data: T) => {
-        self.showAlert("success", current, action);
         return data;
       },
       self.error
