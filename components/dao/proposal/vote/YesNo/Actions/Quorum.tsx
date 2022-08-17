@@ -8,20 +8,16 @@ import ProposalContext, {
 import { Box, Slider, TextField } from "@mui/material";
 import { IProposalAction } from "@pages/dao/[id]/proposal/create";
 import * as React from "react";
+import Quorum from "../../Options/Actions/Quorum";
 import Layout from "./Layout";
 
 export interface IQuorum {
-  actionName: string;
-  actionDescription: string;
   quorum: number;
 }
 
-const Quorum: React.FC<IProposalAction> = (props) => {
+const QuorumAction: React.FC<IProposalAction> = (props) => {
   const context = React.useContext<IProposalContext>(ProposalContext);
   const [value, setValue] = React.useState<IQuorum>({
-    actionName: "Optimistic governance",
-    actionDescription:
-      "Turn on or off optimistic governance and or edit the whitelisted members",
     quorum: 4,
   });
 
@@ -55,7 +51,7 @@ const Quorum: React.FC<IProposalAction> = (props) => {
       <TextField
         sx={{ width: "100%", mt: "1rem" }}
         label="Action name"
-        value={value.actionName}
+        value={"Optimistic governance"}
         InputProps={{
           readOnly: true,
         }}
@@ -63,7 +59,9 @@ const Quorum: React.FC<IProposalAction> = (props) => {
       <TextField
         sx={{ width: "100%", mt: "1rem" }}
         label="Action descriptions"
-        value={value.actionName}
+        value={
+          "Turn on or off optimistic governance and or edit the whitelisted members"
+        }
         InputProps={{
           readOnly: true,
         }}
@@ -79,47 +77,9 @@ const Quorum: React.FC<IProposalAction> = (props) => {
         }}
       />
       <CapsInfo title="Configuration" mb="-1rem" />
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          mt: "1rem",
-        }}
-      >
-        <Slider
-          value={value.quorum}
-          min={1}
-          max={100}
-          // @ts-ignore
-          onChange={(event: Event, newValue: number) =>
-            setValue({
-              ...value,
-              quorum: newValue,
-            })
-          }
-        />
-        <TextField
-          label="Value"
-          type="number"
-          value={value.quorum}
-          onChange={(e) =>
-            setValue({
-              ...value,
-              quorum: parseFloat(e.target.value),
-            })
-          }
-          sx={{ width: "15%", ml: "1rem" }}
-          InputProps={{
-            inputProps: { min: 51, max: 100 },
-            endAdornment: <Box>%</Box>,
-          }}
-        />
-      </Box>
-
-      <Box sx={{ mb: ".5rem" }} />
+      <Quorum set={(val: IQuorum) => setValue(val)} {...value} />
     </Layout>
   );
 };
 
-export default Quorum;
+export default QuorumAction;

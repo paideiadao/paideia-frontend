@@ -9,11 +9,11 @@ import { IObj } from "@lib/Interfaces";
 import { Box, Button, Typography } from "@mui/material";
 import { IProposalAction } from "@pages/dao/[id]/proposal/create";
 import * as React from "react";
-import Options from "./vote/Options";
 import Selector from "./vote/Selector";
 import YesNo from "./vote/YesNo/YesNo";
 import AddIcon from "@mui/icons-material/Add";
 import { deviceWrapper } from "@components/utilities/Style";
+import Options from "./vote/Options/Options";
 
 interface IVoteChoice {
   title: string;
@@ -34,7 +34,7 @@ export const VoteChoice: React.FC<IVoteChoice> = (props) => {
 
         display: "flex",
         alignItems: "center",
-        justifyContent: "flex-start",
+        justifyContent: "center",
         borderRadius: ".3rem",
         cursor: "pointer",
         border: 1,
@@ -74,34 +74,35 @@ const ProposalVote: React.FC = () => {
       {content[votingSystem]}
       {context.api.value.actions.filter(
         (i: IProposalAction) => i.name === undefined
-      ).length === 0 && (
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            mt: ".5rem",
-          }}
-        >
-          <Button
-            endIcon={<AddIcon />}
-            onClick={() => {
-              const temp = [...context.api.value.actions];
-              temp.push({
-                name: undefined,
-                data: undefined,
-              });
-              context.api.setValue({
-                ...context.api.value,
-                actions: temp,
-              });
+      ).length === 0 &&
+        context.api.value.votingSystem === "yes/no" && (
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              mt: ".5rem",
             }}
           >
-            Add Another Action
-          </Button>
-        </Box>
-      )}
+            <Button
+              endIcon={<AddIcon />}
+              onClick={() => {
+                const temp = [...context.api.value.actions];
+                temp.push({
+                  name: undefined,
+                  data: undefined,
+                });
+                context.api.setValue({
+                  ...context.api.value,
+                  actions: temp,
+                });
+              }}
+            >
+              Add Another Action
+            </Button>
+          </Box>
+        )}
     </>
   );
 };

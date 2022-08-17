@@ -49,7 +49,7 @@ const Activity: React.FC<{ i: IActivity; c: number }> = (props) => {
           sx={{
             display: "flex",
             alignItems: "center",
-            width: deviceWrapper("100%", "80%"),
+            width: deviceWrapper("100%", "65%"),
           }}
         >
           <Avatar

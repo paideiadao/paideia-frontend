@@ -26,6 +26,8 @@ import Azorus from "@public/icons/azorus.png";
 import ErgoLend from "@public/icons/ergolend.png";
 import Swamp from "@public/icons/swamp.png";
 import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
+import { ISideNavComponent } from "./Contents";
+import useDidMountEffect from "@components/utilities/hooks";
 
 export interface IDao {
   name: string;
@@ -80,26 +82,7 @@ const daos: IDao[] = [
   // },
 ];
 
-const DaoBio: React.FC = () => {
-  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
-  const [dropdown, setDropdown] = React.useState<boolean>(false);
-  const [search, setSearch] = React.useState<string>("");
-
-  const [id, setId] = React.useState<number>(1);
-  const [dao, setDao] = React.useState<IDao>({
-    id: 1,
-    name: "Paideia",
-    url: "paideia.im/dao",
-    href: "",
-    img: PaideiaLogo.src,
-  });
-
-  const setDaoWrapper = (dao: IDao) => {
-    setId(dao.id);
-    setDao(dao);
-    setDropdown(false);
-  };
-
+const DaoBio: React.FC<ISideNavComponent> = (props) => {
   return (
     <Box
       sx={{
@@ -112,13 +95,43 @@ const DaoBio: React.FC = () => {
         flexDirection: "column",
         p: ".75rem",
         pt: "0rem",
-        position: "relative",
         zIndex: 100,
       }}
     >
       <Avatar sx={{ width: "4rem", height: "4rem", mt: ".5rem", mb: ".5rem" }}>
         <img src={PaideiaLogo.src} />
       </Avatar>
+      <DaoSelector {...props} />
+    </Box>
+  );
+};
+
+interface IDaoSelector extends ISideNavComponent {
+  redirect?: boolean;
+}
+
+export const DaoSelector: React.FC<IDaoSelector> = (props) => {
+  const [dropdown, setDropdown] = React.useState<boolean>(false);
+  const [search, setSearch] = React.useState<string>("");
+
+  const [id, setId] = React.useState<number>(1);
+  const [dao, setDao] = React.useState<IDao>({
+    id: 1,
+    name: "Paideia",
+    url: "paideia.im/dao",
+    href: "",
+    img: PaideiaLogo.src,
+  });
+  const setDaoWrapper = (dao: IDao) => {
+    if (props.setShowMobile !== undefined) {
+      props.setShowMobile(false);
+    }
+    setId(dao.id);
+    setDao(dao);
+    setDropdown(false);
+  };
+  return (
+    <Box sx={{ width: "100%", position: "relative" }}>
       <Box
         sx={{
           width: "100%",
@@ -135,6 +148,20 @@ const DaoBio: React.FC = () => {
         }}
         onClick={() => setDropdown(true)}
       >
+        {props.redirect === false && (
+          <Avatar
+            sx={{
+              width: "2rem",
+              height: "2rem",
+              mt: ".5rem",
+              mb: ".5rem",
+              mr: ".5rem",
+              backgroundColor: "transparent",
+            }}
+          >
+            <img src={dao.img} />
+          </Avatar>
+        )}
         <Box>
           <Box sx={{ fontSize: ".7rem" }}>{dao.name}</Box>
           <Box sx={{ fontSize: ".6rem", color: "text.secondary" }}>
@@ -163,10 +190,10 @@ const DaoBio: React.FC = () => {
           <Box
             sx={{
               position: "absolute",
-              width: "89.5%",
+              width: "100%",
               backgroundColor: "fileInput.main",
               // bottom: "-7rem",
-              top: "5rem",
+              top: "0rem",
               display: "flex",
               alignItems: "flex-start",
               zIndex: 100,
@@ -233,9 +260,10 @@ const DaoBio: React.FC = () => {
                 .map((d: any, c: number) => (
                   <DaoSelect
                     data={d}
-                    set={setDaoWrapper}
+                    set={(val: IDao) => setDaoWrapper(val)}
                     key={`dao-select-key-${c}`}
                     selected={id === d.id}
+                    redirect={props.redirect}
                   />
                 ))}{" "}
             </Box>
@@ -259,46 +287,50 @@ const DaoBio: React.FC = () => {
   );
 };
 
-const DaoSelect: React.FC<{ set: Function; selected: boolean; data: IDao }> = (
-  props
-) => {
-  return (
-    <Link href={`/dao/${props.data.href}`}>
-      <Box
-        sx={{
-          pl: ".5rem",
-          pt: ".25rem",
-          pb: ".25rem",
-          mb: ".5rem",
-          width: "100%",
-          cursor: "pointer",
-          borderRadius: ".3rem",
-          display: "flex",
-          alignItems: "center",
-          backgroundColor: props.selected
-            ? "primary.lightOpacity"
-            : "fileInput.main",
-          pr: ".25rem",
-        }}
-        onClick={() => props.set(props.data)}
-      >
-        <Avatar
-          src={props.data.img}
-          sx={{ width: "1.5rem", height: "1.5rem" }}
-        />
-        <Box sx={{ fontSize: ".7rem", ml: ".5rem" }}>
-          {props.data.name}
-          <Box sx={{ fontSize: ".6rem", color: "text.secondary" }}>
-            {props.data.url}
-          </Box>
+interface IDaoSelect extends IDaoSelector {
+  set: Function;
+  selected: boolean;
+  data: IDao;
+}
+
+const DaoSelect: React.FC<IDaoSelect> = (props) => {
+  const content = (
+    <Box
+      sx={{
+        pl: ".5rem",
+        pt: ".25rem",
+        pb: ".25rem",
+        mb: ".5rem",
+        width: "100%",
+        cursor: "pointer",
+        borderRadius: ".3rem",
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: props.selected
+          ? "primary.lightOpacity"
+          : "fileInput.main",
+        pr: ".25rem",
+      }}
+      onClick={() => props.set(props.data)}
+    >
+      <Avatar src={props.data.img} sx={{ width: "1.5rem", height: "1.5rem" }} />
+      <Box sx={{ fontSize: ".7rem", ml: ".5rem" }}>
+        {props.data.name}
+        <Box sx={{ fontSize: ".6rem", color: "text.secondary" }}>
+          {props.data.url}
         </Box>
-        {props.selected && (
-          <Box sx={{ ml: "auto" }}>
-            <CheckIcon sx={{ fontSize: "1rem" }} color="primary" />
-          </Box>
-        )}
       </Box>
-    </Link>
+      {props.selected && (
+        <Box sx={{ ml: "auto" }}>
+          <CheckIcon sx={{ fontSize: "1rem" }} color="primary" />
+        </Box>
+      )}
+    </Box>
+  );
+  return props.redirect === undefined ? (
+    <Link href={`/dao/${props.data.href}`}>{content}</Link>
+  ) : (
+    content
   );
 };
 

@@ -75,7 +75,7 @@ export const VoteWidget: React.FC<{
       <Box
         sx={{
           width: "100%",
-          display: "flex",
+          display: deviceWrapper("none", "flex"),
           alignItems: "center",
           color: "text.secondary",
           fontSize: "1rem",
@@ -424,15 +424,15 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
   const [favorited, setFavorited] = React.useState<boolean>(props.favorited);
   const getFooter = () => {
     const footerFont = {
-      xs: ".7rem",
-      sm: ".7rem",
+      xs: "1rem",
+      sm: "1rem",
       md: ".8rem",
       lg: ".9rem",
       xl: "1rem",
     };
     const footerSmallFont = {
-      xs: ".5rem",
-      sm: ".5rem",
+      xs: ".8rem",
+      sm: ".8rem",
       md: ".65rem",
       lg: ".7rem",
       xl: ".8rem",
@@ -553,7 +553,16 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
               c={props.c}
             />
           </Box>
-          <Box sx={{ p: ".5rem", height: "4rem" }}>{getFooter()}</Box>
+          <Box
+            sx={{
+              p: ".5rem",
+              height: "4rem",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            {getFooter()}
+          </Box>
         </Box>
       </Badge>
     </Box>

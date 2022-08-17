@@ -23,6 +23,7 @@ import FormControl from "@mui/material/FormControl";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { LearnMore } from "../utilities/HeaderComponents";
 import { deviceStruct } from "@components/utilities/Style";
+import VoteDurationSelector from "../utilities/VoteDurationSelector";
 
 const Governance: React.FC = () => {
   const creationContext = React.useContext(CreationContext);
@@ -173,6 +174,7 @@ const Governance: React.FC = () => {
                         }}
                       >
                         <DeleteIcon
+                          color="error"
                           style={{
                             cursor: "pointer",
                           }}
@@ -478,18 +480,7 @@ const Governance: React.FC = () => {
             />
           </Box>
         </Box>
-        <Box sx={{ width: "100%", mt: 2 }}>
-          <Alert severity="warning" color="warning" sx={{ fontSize: ".8rem" }}>
-            <AlertTitle sx={{ fontSize: ".9rem" }}>
-              Only for single-choice voting
-            </AlertTitle>
-            <Box sx={{ ml: "-1.75rem" }}>
-              Support will only apply to single-choice voting. It determines the
-              percentage of users that need to agree for a proposal to be
-              approved. Can't be set to less than 51%
-            </Box>
-          </Alert>
-        </Box>
+        <Box sx={{ width: "100%", mt: 2 }}></Box>
         <LearnMore
           small
           title="Quorum"
@@ -559,72 +550,28 @@ const Governance: React.FC = () => {
         <Box sx={{ fontSize: ".9rem", fontWeight: 410, mb: "1rem", ml: 1 }}>
           How long does the voting period last for?
         </Box>
-
-        <FormControl
-          sx={{ m: 1, width: deviceStruct("60%", "60%", "30%", "30%", "30%") }}
-          variant="outlined"
-        >
-          <InputLabel htmlFor={`challenge-time-input`} shrink>
-            Vote duration
-          </InputLabel>
-          <OutlinedInput
-            notched
-            id={`challenge-time-input`}
-            type="number"
-            value={data.voteDuration === 0 ? "" : data.voteDuration}
-            onChange={(e) =>
-              creationContext.api.setData({
-                ...creationContext.api.data,
-                governance: {
-                  ...data,
-                  voteDuration:
-                    e.target.value === "" ? 0 : parseInt(e.target.value),
-                },
-              })
-            }
-            endAdornment={
-              <Box
-                sx={{
-                  height: "100%",
-                  width: "90%",
-                  backgroundColor: "backgroundColor.main",
-                  color: "text.primary",
-                  lineHeight: "350%",
-                  textAlign: "center",
-                  borderRadius: "0 .3rem .3rem 0",
-                  mr: "-.8rem",
-                  ml: ".5rem",
-                  display: "flex",
-                }}
-              >
-                <FormControl fullWidth>
-                  <Select
-                    labelId="currency-select-label"
-                    id="currency-select"
-                    variant="outlined"
-                    value={data.voteDurationUnits}
-                    sx={{ height: "100%", color: "text.primary" }}
-                    onChange={(e) =>
-                      creationContext.api.setData({
-                        ...creationContext.api.data,
-                        governance: {
-                          ...data,
-                          voteDurationUnits: e.target.value,
-                        },
-                      })
-                    }
-                  >
-                    <MenuItem value="minutes">Minutes</MenuItem>
-                    <MenuItem value="hours">Hours</MenuItem>
-                    <MenuItem value="days">Days</MenuItem>
-                    <MenuItem value="weeks">Weeks</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            }
-            label="Vote duration"
-          />
-        </FormControl>
+        <VoteDurationSelector
+          voteDuration={data.voteDuration}
+          set={(val: number) =>
+            creationContext.api.setData({
+              ...creationContext.api.data,
+              governance: {
+                ...data,
+                voteDuration: val,
+              },
+            })
+          }
+          voteDurationUnits={data.voteDurationUnits}
+          setUnits={(val: string) =>
+            creationContext.api.setData({
+              ...creationContext.api.data,
+              governance: {
+                ...data,
+                voteDurationUnits: val,
+              },
+            })
+          }
+        />
       </Box>
     </Box>
   );

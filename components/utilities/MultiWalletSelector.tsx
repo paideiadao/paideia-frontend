@@ -77,6 +77,7 @@ const MultiWalletSelector: React.FC<IMultiWalletSelector> = (props) => {
                   }}
                 >
                   <DeleteIcon
+                    color="error"
                     style={{
                       cursor: "pointer",
                     }}

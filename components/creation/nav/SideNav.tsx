@@ -14,6 +14,7 @@ import { CreationContext } from "@lib/creation/Context";
 import { ThemeContext } from "@lib/ThemeContext";
 import { deviceStruct } from "@components/utilities/Style";
 import { useWallet } from "@components/wallet/WalletContext";
+import ThemeToggle from "@components/dao/nav/ThemeToggle";
 
 interface INavProps {
   value: number;
@@ -104,7 +105,9 @@ const Nav: FC<INavProps> = ({ value }) => {
             <img src={logo.src} />
           </Box>
           <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
-            <DarkSwitch />
+            <Box sx={{ width: "180px" }}>
+              <ThemeToggle />
+            </Box>
             <Button
               variant="outlined"
               color="error"

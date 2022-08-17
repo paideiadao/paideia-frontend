@@ -142,6 +142,7 @@ const TopNav: React.FC<INav> = (props) => {
                   display: "flex",
                   alignItems: "center",
                   cursor: "pointer",
+                  mr: ".5rem",
                 }}
                 onClick={handleOpenProfile}
               >
@@ -279,7 +280,7 @@ const TopNav: React.FC<INav> = (props) => {
             {/* <IconButton onClick={props.hide} sx={{right: '.5rem', top: '.5rem', position: 'absolute'}}>
           <CloseIcon/>
         </IconButton> */}
-            <DaoBio />
+            <DaoBio setShowMobile={props.setShowMobile} />
             <Contents setShowMobile={props.setShowMobile} />
           </Box>
 

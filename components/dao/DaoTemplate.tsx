@@ -22,7 +22,6 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
   }, [router]);
 
   const [showMobile, setShowMobile] = React.useState<boolean>(false);
-  React.useEffect(() => {}, []);
 
   return (
     <Box

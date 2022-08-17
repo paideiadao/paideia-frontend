@@ -77,29 +77,43 @@ const _VoteWidget: React.FC = () => {
     <Box
       sx={{
         backgroundColor: "fileInput.outer",
-        border: "1px solid",
-        borderColor: "border.main",
+        border: deviceWrapper("0", "1px solid"),
+        borderColor: deviceWrapper("none", "border.main"),
         borderRadius: ".3rem",
-        width: "100%",
+        width: deviceWrapper("calc(100% + 1.5rem)", "100%"),
         mb: "1rem",
+        ml: deviceWrapper("-.75rem", "0"),
       }}
     >
       <Box
         sx={{
           width: "100%",
-          borderBottom: "1px solid",
-          borderBottomColor: "border.main",
+          borderBottom: deviceWrapper("0", "1px solid"),
+          borderBottomColor: deviceWrapper("none", "border.main"),
           p: ".5rem",
         }}
       >
-        <CapsInfo title="Votes | 206" mb={"0"} />
+        <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
+          <CapsInfo title="Votes | 206" mb={"0"} />
+          <Button
+            sx={{
+              display: deviceWrapper("flex", "none"),
+              ml: "auto",
+              whiteSpace: "no-wrap",
+              minWidth: "max-content",
+            }}
+            size="small"
+          >
+            View All
+          </Button>
+        </Box>
         <VoteWidget yes={160} no={46} />
       </Box>
       <Box
         sx={{
           width: "100%",
-          borderBottom: "1px solid",
-          borderBottomColor: "border.main",
+          borderBottom: deviceWrapper("0", "1px solid"),
+          borderBottomColor: deviceWrapper("none", "border.main"),
           p: ".5rem",
           display: deviceWrapper("none", "block"),
         }}
@@ -110,7 +124,7 @@ const _VoteWidget: React.FC = () => {
       <Box
         sx={{
           width: "100%",
-          display: "flex",
+          display: deviceWrapper("none", "flex"),
           alignItems: "center",
           justifyContent: "center",
         }}

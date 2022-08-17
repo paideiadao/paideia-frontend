@@ -43,7 +43,7 @@ const Send: React.FC = () => {
   React.useEffect(() => {
     if (globalContext.api !== undefined) {
       api.alert = globalContext.api.alert;
-      api.alert = globalContext.api.setAlert;
+      api.setAlert = globalContext.api.setAlert;
     }
   }, [globalContext.api]);
 

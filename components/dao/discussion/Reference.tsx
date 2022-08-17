@@ -59,7 +59,6 @@ const Reference: React.FC<{ context?: boolean }> = (props) => {
         reason: string,
         details?: string
       ) => {
-        console.log(reason, event.target);
         context.api.setValue({ ...context.api.value, references: _value });
       }}
       getOptionLabel={(option: any) => option.id.toString()}

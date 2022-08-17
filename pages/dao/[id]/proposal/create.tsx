@@ -28,6 +28,22 @@ import Reference from "@components/dao/discussion/Reference";
 import { IAddendum } from "@components/dao/proposal/Addendums";
 import { getRandomImage } from "@components/utilities/images";
 import { IFile } from "@lib/creation/Interfaces";
+import { ILiquidityPool } from "@components/dao/proposal/vote/YesNo/Actions/LiquidityPool";
+import { IQuadradicVoting } from "@components/dao/proposal/vote/YesNo/Actions/QuadraticVoting";
+import { IDaoDescription } from "@components/dao/proposal/vote/YesNo/Actions/DaoDescription";
+import { IVoteDuration } from "@components/dao/proposal/vote/YesNo/Actions/VoteDuration";
+import { ISupport } from "@components/dao/proposal/vote/YesNo/Actions/Support";
+import { OptionType } from "@components/dao/proposal/vote/Options/OptionSystemSelector";
+
+export type ActionType =
+  | IOptimisticGovernance
+  | IQuorum
+  | ISendFunds
+  | ILiquidityPool
+  | IQuadradicVoting
+  | IDaoDescription
+  | IVoteDuration
+  | ISupport;
 
 export interface IProposalAction {
   name:
@@ -41,9 +57,20 @@ export interface IProposalAction {
     | "Quorum"
     | "Optimistic governance"
     | undefined;
-  data: IOptimisticGovernance | IQuorum | ISendFunds;
+  icon?: React.ReactNode;
+  description?: string;
+  data: ActionType;
   close?: () => void;
   c?: number;
+  options?: IProposalOption[];
+}
+
+export interface IProposalOption {
+  name: string;
+  description: string;
+  data: ActionType;
+  rank: number;
+  default?: boolean;
 }
 
 export interface IProposal {
@@ -57,6 +84,7 @@ export interface IProposal {
   references: IProposal[];
   actions: IProposalAction[];
   date?: Date;
+  createdDate?: Date;
   likes?: number;
   dislikes?: number;
   followed?: boolean;
@@ -65,6 +93,7 @@ export interface IProposal {
   comments?: IComment[];
   attachments?: IFile[];
   addendums: IAddendum[];
+  optionType: OptionType;
 }
 
 const CreateProposal: React.FC = () => {
@@ -81,8 +110,8 @@ const CreateProposal: React.FC = () => {
     category: "",
     content: "",
     votingSystem: "unselected",
+    optionType: "one-option",
     references: [],
-
     actions: [
       {
         name: undefined,
@@ -111,7 +140,7 @@ const CreateProposal: React.FC = () => {
 
   return (
     <ProposalContext.Provider value={{ api }}>
-      <Layout width={deviceWrapper("92%", "60%")}>
+      <Layout width={deviceWrapper("94%", "60%")}>
         <CreateHeader type="proposal" />
         <Box
           sx={{

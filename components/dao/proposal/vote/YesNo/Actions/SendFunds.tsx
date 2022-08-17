@@ -50,7 +50,7 @@ const SendFunds: React.FC<IProposalAction> = (props) => {
           ml: "-.5rem",
           borderBottom: 1,
           borderColor: "border.main",
-          mt: "1rem",
+          mt: ".5rem",
           mb: "1rem",
         }}
       />

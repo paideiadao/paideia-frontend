@@ -24,6 +24,7 @@ export const VotingChoice: React.FC<IVotingChoice> = (props) => {
         p: ".5rem",
         display: "flex",
         alignItems: "center",
+        backgroundColor: "primary.lightOpacity",
       }}
     >
       <Box
