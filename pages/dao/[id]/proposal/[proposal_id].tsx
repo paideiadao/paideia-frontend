@@ -89,19 +89,7 @@ const Proposal: React.FC = () => {
   };
 
   const context = React.useContext<IGlobalContext>(GlobalContext);
-  const api = new ProposalApi(
-    context.api === undefined ? undefined : context.api.alert,
-    context.api === undefined ? undefined : context.api.setAlert,
-    value,
-    setValue
-  );
-
-  React.useEffect(() => {
-    if (context.api !== undefined) {
-      api.alert = context.api.alert;
-      api.setAlert = context.api.setAlert;
-    }
-  }, [context.api]);
+  const api = new ProposalApi(context.api, value, setValue);
 
   return (
     <ProposalContext.Provider value={{ api }}>

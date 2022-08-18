@@ -19,6 +19,7 @@ import Layout from "@components/dao/Layout";
 import { deviceWrapper } from "@components/utilities/Style";
 import { getRandomImage } from "@components/utilities/images";
 import { IFile } from "@lib/creation/Interfaces";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 
 export interface IDiscussion {
   name: string;
@@ -50,10 +51,10 @@ const CreateDiscussion: React.FC = () => {
   });
   const [publish, setPublish] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
-
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const router = useRouter();
   const { id } = router.query;
-  const api = new DiscussionApi(alert, setAlert, value, setValue);
+  const api = new DiscussionApi(globalContext.api, value, setValue);
 
   return (
     <DiscussionContext.Provider value={{ api }}>

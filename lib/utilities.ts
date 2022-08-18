@@ -32,13 +32,8 @@ export interface ISigningMessage {
 }
 
 export class AbstractApi {
-  alert: IAlerts[];
-  setAlert: Function;
-
-  constructor(_alert: IAlerts[], _setAlert: Function) {
-    this.alert = _alert;
-    this.setAlert = _setAlert;
-  }
+  alert: IAlerts[] = [];
+  setAlert: (val: IAlerts[]) => void = undefined;
 
   webSocket(request_id: string) {
     const ws = new WebSocket(`ws://localhost:8000/api/auth/ws/${request_id}`);

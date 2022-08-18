@@ -38,14 +38,7 @@ const Send: React.FC = () => {
   });
   const treasuryAmount = 50000;
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
-  const api = new SendApi(undefined, undefined, value, setValue);
-
-  React.useEffect(() => {
-    if (globalContext.api !== undefined) {
-      api.alert = globalContext.api.alert;
-      api.setAlert = globalContext.api.setAlert;
-    }
-  }, [globalContext.api]);
+  const api = new SendApi(globalContext.api, value, setValue);
 
   return (
     <SendContext.Provider value={{ api }}>

@@ -57,9 +57,9 @@ const ProposalImage: React.FC = () => {
     <>
       <Typography
         sx={{
-          mt: '20px',
-          mb: '12px',
-          fontSize: '0.9rem',
+          mt: "20px",
+          mb: "12px",
+          fontSize: "0.9rem",
         }}
       >
         Proposal Image

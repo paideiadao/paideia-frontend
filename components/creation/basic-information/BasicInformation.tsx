@@ -31,7 +31,14 @@ const BasicInformation: React.FC = () => {
         color: "text.primary",
       }}
     >
-      <Box sx={{ textAlign: "left", width: "100%", fontSize: "1.2rem", mb: '16px' }}>
+      <Box
+        sx={{
+          textAlign: "left",
+          width: "100%",
+          fontSize: "1.2rem",
+          mb: "16px",
+        }}
+      >
         Basic Information
         <Box sx={{ width: "100%", color: "text.secondary", fontSize: ".8rem" }}>
           Here you will pick your DAO's name, this will determine your DAO's URL
@@ -39,11 +46,7 @@ const BasicInformation: React.FC = () => {
           DAO is about.
         </Box>
       </Box>
-      <Grid
-        container
-        spacing={2}
-        direction={{ xs: "column", md: "row" }}
-      >
+      <Grid container spacing={2} direction={{ xs: "column", md: "row" }}>
         <Grid item md={6}>
           <TextField
             label="DAO Name"

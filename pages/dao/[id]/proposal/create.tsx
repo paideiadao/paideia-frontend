@@ -121,19 +121,7 @@ const CreateProposal: React.FC = () => {
     addendums: [],
   });
   const context = React.useContext<IGlobalContext>(GlobalContext);
-  const api = new ProposalApi(
-    context.api === undefined ? undefined : context.api.alert,
-    context.api === undefined ? undefined : context.api.setAlert,
-    value,
-    setValue
-  );
-
-  React.useEffect(() => {
-    if (context.api !== undefined) {
-      api.alert = context.api.alert;
-      api.setAlert = context.api.setAlert;
-    }
-  }, [context.api]);
+  const api = new ProposalApi(context.api, value, setValue);
 
   const [publish, setPublish] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
@@ -250,7 +238,6 @@ const CreateProposal: React.FC = () => {
             variant="contained"
             sx={{ width: "50%" }}
             onClick={() => {
-              console.log(value, "call api here...");
               setPublish(true);
             }}
           >
