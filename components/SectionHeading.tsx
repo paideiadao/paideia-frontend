@@ -46,7 +46,7 @@ const SectionHeading: FC<HeadingProps> = ({
         <Grid item>
           <Grid container>
             <Grid item md={8}>
-              <Blockquote small>{children}</Blockquote>
+              <Blockquote small noIndent>{children}</Blockquote>
             </Grid>
             <Grid item md={4}></Grid>
           </Grid>

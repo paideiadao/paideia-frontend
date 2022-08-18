@@ -26,11 +26,11 @@ const Support: React.FC = () => {
   return (
     <>
       <LearnMore
-        title="Support needed on single choice voting"
         small
-        tooltipTitle={"Title Here"}
-        tooltipText={"Content Here"}
-        tooltipLink="/"
+        title="Support needed on single choice voting"
+        //tooltipTitle="Title Here"
+        tooltipText="Allows you to require more votes in favor to pass proposals. For example, if you set this to 60%, and 100 votes are cast, 60 votes in favor would be required for a proposal to pass. "
+      //tooltipLink="/here"
       />
       <Box
         sx={{

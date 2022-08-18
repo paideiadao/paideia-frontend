@@ -45,12 +45,12 @@ export default function Perks() {
         <Box
           sx={{
             position: "absolute",
-            top: "45%",
+            top: "200px",
             left: "35%",
             height: "730px",
             width: "1467px",
             transform: "translate(-50%, 0)",
-            overflow: "hidden",
+            overflow: "visible",
             zIndex: "-1",
             ml: "-24px",
           }}

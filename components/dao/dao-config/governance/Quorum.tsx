@@ -27,11 +27,11 @@ const Quorum: React.FC = () => {
   return (
     <>
       <LearnMore
-        title="Quorum"
         small
-        tooltipTitle={"Title Here"}
-        tooltipText={"Content Here"}
-        tooltipLink="/"
+        title="Quorum"
+        // tooltipTitle="Title Here"
+        tooltipText="Do not set this too high. Quorum means the number of voters required for any vote to pass. If you have 1000 vote tokens distributed, and quorum is set to 50%, at least 500 votes must be cast before any proposal passes. If you have many inactive members, it could mean the DAO can no longer pass any proposals. Be cautious with this setting. "
+      // tooltipLink="/here"
       />
       <Box
         sx={{
