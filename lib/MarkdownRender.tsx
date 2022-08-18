@@ -44,10 +44,11 @@ const MarkdownRender = (props: { description: string }) => {
             disablePadding
             sx={{
               pl: "40px",
-              fontSize: "1rem",
+              pb: '32px',
+              fontSize: "0.9rem",
               lineHeight: 1.5,
               letterSpacing: "0.0225em",
-              listStyleType: "circle",
+              listStyleType: "disc",
               "& li": {
                 display: 'list-item',
                 pl: 0,
@@ -60,14 +61,20 @@ const MarkdownRender = (props: { description: string }) => {
             disablePadding
             sx={{
               pl: "40px",
-              fontSize: "1rem",
+              fontSize: "0.9rem",
               lineHeight: 1.5,
               letterSpacing: "0.0225em",
-              listStyleType: "disc",
+              listStyleType: "circle",
               "& li": {
                 display: 'list-item',
                 pl: 0,
               },
+              "& li:first-child": {
+                pt: '8px',
+              },
+              "& li:last-child": {
+                pb: 0,
+              } 
             }}
             {...props} />
         ),
@@ -80,8 +87,8 @@ const MarkdownRender = (props: { description: string }) => {
             sx={{
               pl: "40px",
               mb: '32px',
-              fontSize: "16px",
-              lineHeight: "24px",
+              fontSize: "0.9rem",
+              lineHeight: 1.5,
               letterSpacing: "0.0225em",
               listStyleType: "decimal",
               "& li": {
@@ -97,14 +104,20 @@ const MarkdownRender = (props: { description: string }) => {
             disablePadding
             sx={{
               pl: "40px",
-              fontSize: "16px",
-              lineHeight: "24px",
+              fontSize: "0.9rem",
+              lineHeight: 1.5,
               letterSpacing: "0.0225em",
               listStyleType: "upper-alpha",
               "& li": {
                 display: 'list-item',
                 pl: 0,
               },
+              "& li:first-child": {
+                pt: '8px',
+              },
+              "& li:last-child": {
+                pb: 0,
+              } 
             }}
             {...props} />
         ),
