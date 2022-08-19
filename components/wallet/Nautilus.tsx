@@ -66,16 +66,12 @@ const Nautilus: React.FC<{
 
           await globalContext.api
             .signingMessage(
-              wallet,
-              props.addresses.length === 0
-                ? undefined
-                : props.addresses.map((i: any) => i.name)
+              props.addresses.map((i: any) => i.name)
             )
             .then(async (signingMessage: any) => {
               setRunLoad(false);
 
               if (signingMessage !== undefined) {
-                setWallet(signingMessage.data.address);
                 // @ts-ignore
                 let response = await ergo.auth(
                   signingMessage.data.address,
@@ -88,6 +84,7 @@ const Nautilus: React.FC<{
                 globalContext.api
                   .signMessage(signingMessage.data.tokenUrl, response)
                   .then((data) => {
+
                     localStorage.setItem(
                       "jwt_token_login",
                       data.data.access_token
@@ -224,7 +221,7 @@ const Nautilus: React.FC<{
                                   setChangeLoading(c);
                                   setLoggedIn(false);
                                   await globalContext.api
-                                    .signingMessage(i.name)
+                                    .changeAddress(i.name)
                                     .then(async (signingMessage: any) => {
                                       if (signingMessage !== undefined) {
                                         // @ts-ignore
@@ -250,6 +247,7 @@ const Nautilus: React.FC<{
                                             }
                                           )
                                           .then((data) => {
+                                            console.log('data here...', data)
                                             localStorage.setItem(
                                               "jwt_token_login",
                                               data.data.access_token
@@ -350,14 +348,10 @@ const Nautilus: React.FC<{
 
                     await globalContext.api
                       .signingMessage(
-                        wallet,
-                        props.addresses.length === 0
-                          ? undefined
-                          : props.addresses.map((i: any) => i.name)
+                        props.addresses.map((i: any) => i.name)
                       )
                       .then(async (signingMessage: any) => {
                         if (signingMessage !== undefined) {
-                          setWallet(signingMessage.data.address);
                           // @ts-ignore
                           let response = await ergo.auth(
                             signingMessage.data.address,
@@ -373,7 +367,7 @@ const Nautilus: React.FC<{
                             .then((data) => {
                               localStorage.setItem(
                                 "jwt_token_login",
-                                data.data.access_tokena
+                                data.data.access_token
                               );
                               setWallet(signingMessage.data.address);
                               localStorage.setItem(

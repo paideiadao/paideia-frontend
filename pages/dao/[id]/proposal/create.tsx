@@ -73,6 +73,8 @@ export interface IProposalOption {
   default?: boolean;
 }
 
+export type VotingType = "yes/no" | "options" | "unselected"
+
 export interface IProposal {
   id?: number;
   name: string;
@@ -80,8 +82,8 @@ export interface IProposal {
   category: string;
   content: string;
   status: string;
-  votingSystem: "yes/no" | "options" | "unselected";
-  references: IProposal[];
+  votingSystem: VotingType;
+  references: number[];
   actions: IProposalAction[];
   date?: Date;
   createdDate?: Date;
@@ -238,6 +240,7 @@ const CreateProposal: React.FC = () => {
             variant="contained"
             sx={{ width: "50%" }}
             onClick={() => {
+              api.create();
               setPublish(true);
             }}
           >

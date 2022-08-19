@@ -31,6 +31,10 @@ export interface ISigningMessage {
   signingMessage: string;
 }
 
+export interface ILoginResponse {
+  access_token: string;
+}
+
 export class AbstractApi {
   alert: IAlerts[] = [];
   setAlert: (val: IAlerts[]) => void = undefined;
@@ -46,10 +50,10 @@ export class AbstractApi {
     };
   }
 
-  async signingMessage(address: string, addresses?: string[]): Promise<any> {
+  async signingMessage(addresses: string[]): Promise<any> {
     const data = await this.post<{ data: ISigningMessage }>(
       "/auth/login",
-      { address: address === "" ? undefined : address, addresses: addresses },
+      { addresses },
       "added user.",
       ""
     );
@@ -57,8 +61,17 @@ export class AbstractApi {
     return data;
   }
 
+  async changeAddress(address: string): Promise<any> {
+    const data = await this.post<{ data: ISigningMessage }>(
+      "/users/change_primary_address",
+      { address: address },
+    );
+
+    return data;
+  }
+
   async signMessage(url: string, response: any) {
-    return await this.post<{ data: any }>(url, response, "signed message", "");
+    return await this.post<{ data: ILoginResponse }>(url, response, "signed message", "");
   }
 
   async updateUser(address: string, user: IUpdateUser) {
