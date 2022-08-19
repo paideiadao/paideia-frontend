@@ -214,7 +214,7 @@ const AddWallet: React.FC = () => {
       const addressData = addresses.map((address, index) => {
         return { id: index, name: address };
       });
-      setWallet(address);
+      // setWallet(address);
       // // update dApp state
       setDAppWallet({
         connected: true,
@@ -243,7 +243,7 @@ const AddWallet: React.FC = () => {
         return { id: index, name: address };
       });
       const address = addresses.length > 0 ? addresses[0] : "";
-      setWallet(address);
+      // setWallet(address);
       setDAppWallet({
         addresses: addressData,
         connected: true,

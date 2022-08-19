@@ -129,9 +129,8 @@ const Nautilus: React.FC<{
 
   return (
     <Box sx={{ width: "100%" }}>
-      {props.connected || changeLoading !== undefined ? (
+      {isAddressValid(wallet) ? 
         <>
-          {isAddressValid(wallet) && (
             <>
               <Box
                 sx={{
@@ -165,7 +164,7 @@ const Nautilus: React.FC<{
                 }}
               />
             </>
-          )}
+          
 
           <Box
             sx={{
@@ -178,7 +177,7 @@ const Nautilus: React.FC<{
               overflowY: "auto",
             }}
           >
-            {props.addresses !== undefined &&
+            {
               props.addresses.map((i: any, c: number) => {
                 return (
                   i.name !== undefined && (
@@ -281,7 +280,7 @@ const Nautilus: React.FC<{
               })}
           </Box>
         </>
-      ) : (
+       : (
         <>
           <Box
             sx={{
