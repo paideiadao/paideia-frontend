@@ -25,7 +25,7 @@ export interface IDiscussion {
   name: string;
   category: string;
   image?: IFile;
-  references: IProposal[];
+  references: number[];
   content: string;
   date?: Date;
   likes?: number;
@@ -38,7 +38,6 @@ export interface IDiscussion {
 }
 
 const CreateDiscussion: React.FC = () => {
-  const [alert, setAlert] = React.useState({ show: false });
   const [value, setValue] = React.useState<IDiscussion>({
     name: "",
     category: "",
@@ -156,10 +155,7 @@ const CreateDiscussion: React.FC = () => {
             <Button
               variant="contained"
               sx={{ width: "50%" }}
-              onClick={() => {
-                console.log(value, "call api here...");
-                setPublish(true);
-              }}
+              onClick={() => setPublish(true)}
             >
               Publish
             </Button>
@@ -197,7 +193,32 @@ const CreateDiscussion: React.FC = () => {
                   </Button>
                 )}
                 <LoadingButton
-                  onClick={() => (loading ? null : setLoading(true))}
+                  onClick={async () => {
+                    if (!loading) {
+                      setLoading(true);
+                      try {
+                        let res = await api.create();
+                        if (res.status == 200) {
+                          router.push(
+                            `/dao/${id === undefined ? "" : id}/discussion/${
+                              res.data.id
+                            }`
+                          );
+                        } else {
+                          api.api.showAlert(
+                            "Error adding discussion. Please try again.",
+                            "error"
+                          );
+                        }
+                      } catch {
+                        api.api.showAlert(
+                          "Unknown error adding discussion. Please try again.",
+                          "error"
+                        );
+                      }
+                      
+                    }
+                  }}
                   startIcon={<PublishIcon />}
                   loading={loading}
                   loadingPosition="start"

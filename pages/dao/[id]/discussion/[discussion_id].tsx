@@ -1,4 +1,4 @@
-import { Box, Button, Chip } from "@mui/material";
+import { Box, Button, Chip, Skeleton } from "@mui/material";
 import { GetStaticPaths, GetStaticProps } from "next/types";
 import * as React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -24,15 +24,16 @@ import TabPanel from "@mui/lab/TabPanel";
 import DiscussionInfo from "@components/dao/discussion/DiscussionInfo";
 import Comments from "@components/dao/discussion/Comments";
 import DiscussionReferences from "@components/dao/discussion/DiscussionReferences";
-import { paths, props } from "@lib/DiscussionPaths";
 import Layout from "@components/dao/Layout";
 import { deviceWrapper } from "@components/utilities/Style";
 import { getRandomImage } from "@components/utilities/images";
+import useSWR from "swr";
+import { attrOrUndefined, fetcher, getBaseUrl } from "@lib/utilities";
 
 const Discussion: React.FC = () => {
   const themeContext = React.useContext(ThemeContext);
   const router = useRouter();
-  const { discussion_id } = router.query;
+  const { discussion_id, id } = router.query;
 
   // replace comments with global state.... duh
   // major to do... needed for api
@@ -57,7 +58,22 @@ const Discussion: React.FC = () => {
     setTab(newValue);
   };
 
-  return (
+  const { data, error } = useSWR(
+      discussion_id !== undefined ? `${getBaseUrl()}/proposals/${discussion_id}` : null,
+      fetcher
+  );
+  if (error) {
+    router.push('/404');
+  }
+ 
+
+  if (data !== undefined) {
+    if (data.is_proposal) {
+      router.push('/404');
+    }
+  }
+
+  return data !== undefined && (
     <Layout width={deviceWrapper("92%", "97%")}>
       <Box sx={{ width: "100%", display: "flex", alignItems: "flex-start" }}>
         <Box sx={{ width: deviceWrapper("100%", "70%") }}>
@@ -126,7 +142,7 @@ const Discussion: React.FC = () => {
             }}
           >
             <Box>
-              <Header title="Discussion name" large />
+              <Header title={attrOrUndefined(data, 'name')} large/>
               <Box
                 sx={{
                   display: "flex",
@@ -135,22 +151,27 @@ const Discussion: React.FC = () => {
                   color: "text.secondary",
                 }}
               >
-                <LanIcon
-                  sx={{ opacity: ".8", fontSize: "1rem", mr: ".3rem" }}
-                />
-                ID: {discussion_id}
-                <Box
-                  sx={{
-                    alignItems: "center",
-                    ml: ".5rem",
-                    color: "text.secondary",
-                    fontSize: ".8rem",
-                    display: deviceWrapper("flex", "none"),
-                  }}
-                >
-                  <CalendarTodayIcon sx={{ mr: ".3rem", fontSize: "1rem" }} />
-                  {dateFormat(value.date, "mmmm dS, yyyy")}
-                </Box>
+                {
+                  data === undefined ? <Skeleton animation='wave' height='1.2rem' width='3rem'/> : <>
+                    <LanIcon
+                    sx={{ opacity: ".8", fontSize: "1rem", mr: ".3rem" }}
+                  />
+                  ID: {data.id}
+                  <Box
+                    sx={{
+                      alignItems: "center",
+                      ml: ".5rem",
+                      color: "text.secondary",
+                      fontSize: ".8rem",
+                      display: deviceWrapper("flex", "none"),
+                    }}
+                  >
+                    <CalendarTodayIcon sx={{ mr: ".3rem", fontSize: "1rem" }} />
+                    {dateFormat(attrOrUndefined(data, 'date'), "mmmm dS, yyyy")}
+                  </Box>
+                  </>
+                }
+                
               </Box>
             </Box>
             <Box
@@ -221,8 +242,9 @@ const Discussion: React.FC = () => {
               alignItems: "center",
             }}
           >
+            {data === undefined  ? <Skeleton animation='wave' height='1.2rem' width='100%'/> : <> 
             <Chip
-              label={value.category}
+              label={data.category}
               variant="outlined"
               icon={<LocalFireDepartmentIcon sx={{ fontSize: "1.4rem" }} />}
               sx={{
@@ -257,7 +279,7 @@ const Discussion: React.FC = () => {
               }}
             >
               <CalendarTodayIcon sx={{ mr: ".3rem", fontSize: "1.2rem" }} />
-              {dateFormat(value.date, "mmmm dS, yyyy")}
+              {dateFormat(data.date, "mmmm dS, yyyy")}
             </Box>
             <Box
               sx={{
@@ -270,6 +292,7 @@ const Discussion: React.FC = () => {
                 onClick={() =>
                   setValue({ ...value, followed: !value.followed })
                 }
+                disabled={data === undefined}
                 sx={{
                   color: value.followed ? "error.light" : "text.secondary",
                   borderColor: value.followed
@@ -291,11 +314,14 @@ const Discussion: React.FC = () => {
                 Follow{value.followed && "ed"}
               </Button>
               <LikesDislikes
-                likes={value.likes}
-                dislikes={value.dislikes}
-                userSide={value.userSide}
+                likes={data.likes.length}
+                dislikes={data.dislikes.length}
+                userSide={undefined}
               />
             </Box>
+            
+            </>}
+
           </Box>
           <Box
             sx={{
@@ -322,13 +348,13 @@ const Discussion: React.FC = () => {
               </TabList>
             </Box>
             <TabPanel value="1" sx={{ pl: 0, pr: 0 }}>
-              <DiscussionInfo />
+              <DiscussionInfo data={data}/>
             </TabPanel>
             <TabPanel value="2" sx={{ pl: 0, pr: 0 }}>
-              <Comments />
+              <Comments data={attrOrUndefined(data, 'comments')}/>
             </TabPanel>
             <TabPanel value="3" sx={{ pl: 0, pr: 0 }}>
-              <DiscussionReferences />
+              <DiscussionReferences data={attrOrUndefined(data, 'references')}/>
             </TabPanel>
           </TabContext>
         </Box>
@@ -350,7 +376,3 @@ const Discussion: React.FC = () => {
 };
 
 export default Discussion;
-
-// clean up paths...
-// export const getStaticPaths = paths;
-// export const getStaticProps = props;

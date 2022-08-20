@@ -79,47 +79,7 @@ const AddWallet: React.FC = () => {
         addresses: JSON.parse(localStorage.getItem(WALLET_ADDRESS_LIST)),
       });
     }
-    // refresh connection
-    try {
-      if (localStorage.getItem(DAPP_CONNECTED) === "true") {
-        // @ts-ignore
-        ergoConnector.nautilus.connect().then((access_granted: any) => {
-          if (access_granted) {
-            // @ts-ignore
-            ergoConnector.nautilus.getContext().then(async (context: any) => {
-              //@ts-ignore
-              const address_used = await context.get_used_addresses();
-              //@ts-ignore
-              const address_unused = await context.get_unused_addresses();
-              const addresses = [...address_used, ...address_unused];
-              const address = addresses.length > 0 ? addresses[0] : "";
-              // if (!isAddressValid(wallet) && addresses.indexOf(wallet) == -1) {
-              //   setWallet(address);
-              //   setWalletInput(address);
-              // }
-              const addressData = addresses.map((address, index) => {
-                return { id: index, name: address };
-              });
-              setDAppWallet({
-                addresses: addressData,
-                connected: true,
-              });
-            });
-          } else {
-          }
-        });
-        // //@ts-ignore
-        // window.ergo_check_read_access().then((res) => {
-        //   if (!res)
-        //     //@ts-ignore
-        //     window.ergo_request_read_access().then((res) => {
-        //       if (!res) clearWallet();
-        //     });
-        // });
-      }
-    } catch (e) {
-      console.log(e);
-    }
+
     setInit(true);
   }, []);
 

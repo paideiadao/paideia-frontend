@@ -96,6 +96,7 @@ const Create: React.FC = () => {
               display: "flex",
               alignItems: "center",
               flexDirection: "column",
+              justifyContent: "center",
               ":hover": {
                 borderColor: "primary.main",
               },

@@ -56,7 +56,9 @@ export const defaultLiquidityPoolData: ILiquidityPool = {
 const LiquidityPoolAction: React.FC<IProposalAction> = (props) => {
   const context = React.useContext<IProposalContext>(ProposalContext);
 
-  const [value, setValue] = React.useState<ILiquidityPool>(defaultLiquidityPoolData);
+  const [value, setValue] = React.useState<ILiquidityPool>(
+    defaultLiquidityPoolData
+  );
 
   React.useEffect(() => {
     const temp = [...context.api.value.actions];

@@ -10,10 +10,39 @@ const statusLookup: IObj<number> = {
   DELETE: 204,
 };
 
+export const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+
 interface IUpdateUser {
   alias?: string;
   primary_wallet_address?: string;
 }
+
+export const attrOrUndefined = (
+  data: IObj<any>,
+  attr: string,
+  extraAttr: string = undefined
+): any => {
+  try {
+    if (data === undefined) {
+      return undefined;
+    } else if (extraAttr !== undefined) {
+      let temp: IObj<any> = data[attr];
+      return temp[extraAttr];
+    } else {
+      return data[attr];
+    }
+  } catch (e) {
+    return undefined;
+  }
+};
+
+export const getDaoPath = (id: number, path: string) => {
+  return `/dao/${id === undefined ? "" : id}${path}`;
+};
+
+export const getBaseUrl = () => {
+  return "http://localhost:8000/api";
+};
 
 export const addDays = (days: number, date: Date = new Date()): Date => {
   let temp = new Date(date);
@@ -64,14 +93,19 @@ export class AbstractApi {
   async changeAddress(address: string): Promise<any> {
     const data = await this.post<{ data: ISigningMessage }>(
       "/users/change_primary_address",
-      { address: address },
+      { address: address }
     );
 
     return data;
   }
 
   async signMessage(url: string, response: any) {
-    return await this.post<{ data: ILoginResponse }>(url, response, "signed message", "");
+    return await this.post<{ data: ILoginResponse }>(
+      url,
+      response,
+      "signed message",
+      ""
+    );
   }
 
   async updateUser(address: string, user: IUpdateUser) {

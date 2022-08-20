@@ -101,8 +101,8 @@ const _comments: IComment[] = [
   },
 ];
 
-const Comments: React.FC<{ title?: string }> = (props) => {
-  const [comments, setComments] = React.useState<IComment[]>(_comments);
+const Comments: React.FC<{ title?: string, data: IComment[] }> = (props) => {
+  const [comments, setComments] = React.useState<IComment[]>(props.data);
   const setCommentsWrapper = (newComment: IComment) =>
     setComments([...comments, newComment]);
   return (
@@ -117,7 +117,7 @@ const Comments: React.FC<{ title?: string }> = (props) => {
       <CapsInfo
         title={props.title === undefined ? "All comments" : props.title}
       />
-      {comments
+      {comments === undefined ? <>Loading here...</> : comments
         .sort((a: IComment, b: IComment) => b.date.getTime() - a.date.getTime())
         .filter((i: IComment) => i.parent == null)
         .map((i: any) => {

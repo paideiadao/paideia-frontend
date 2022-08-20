@@ -4,6 +4,7 @@ import { deviceWrapper } from "@components/utilities/Style";
 import { Avatar, Box, Button } from "@mui/material";
 import * as React from "react";
 import { LikesDislikes, ProposalStatus } from "../proposals/ProposalCard";
+import { IDataComponent } from "./DiscussionInfo";
 
 interface IReference {
   img: string;
@@ -45,9 +46,8 @@ const references = [
   },
 ];
 
-const DiscussionReferences: React.FC = () => {
-  const times = 1;
-  return (
+const DiscussionReferences: React.FC<IDataComponent> = (props) => {
+  return props.data === undefined ? <>Loading Here...</> : (
     <>
       <Box
         sx={{
@@ -65,8 +65,8 @@ const DiscussionReferences: React.FC = () => {
           }}
         >
           <CapsInfo
-            title={`this discussion has been referenced ${times} ${
-              times === 1 ? "time" : "times"
+            title={`this discussion has been referenced ${props.data.length} ${
+              props.data.length === 1 ? "time" : "times"
             }`}
             mb="0"
           />

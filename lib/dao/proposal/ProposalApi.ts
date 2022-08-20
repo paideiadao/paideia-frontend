@@ -1,20 +1,25 @@
 import { AppApi } from "@lib/AppApi";
 import { AbstractApi } from "@lib/utilities";
-import { ActionType, IProposal, IProposalAction, VotingType } from "@pages/dao/[id]/proposal/create";
+import {
+  ActionType,
+  IProposal,
+  IProposalAction,
+  VotingType,
+} from "@pages/dao/[id]/proposal/create";
 
-interface IProposalEndpointBody {
-  dao_id: number,
-  user_id: number,
-  name: string,
-  image_url: string,
-  category: string
-  content: string
-  voting_system: VotingType
-  references: number[],
-  actions: ActionType[]
-  tags: string[],
-  attachments: string[],
-  is_proposal: boolean
+export interface IProposalEndpointBody {
+  dao_id: number;
+  user_id: number;
+  name: string;
+  image_url: string;
+  category: string;
+  content: string;
+  voting_system?: VotingType;
+  references: number[];
+  actions?: ActionType[];
+  tags?: string[];
+  attachments: string[];
+  is_proposal: boolean;
 }
 
 export default class ProposalApi extends AbstractApi {
@@ -30,7 +35,7 @@ export default class ProposalApi extends AbstractApi {
   }
 
   validData(): Boolean {
-    return true
+    return true;
   }
 
   cleanData(): IProposalEndpointBody {
@@ -38,7 +43,7 @@ export default class ProposalApi extends AbstractApi {
       dao_id: 1,
       user_id: 1,
       name: this.value.name,
-      image_url: '',
+      image_url: "",
       category: this.value.category,
       content: this.value.content,
       voting_system: this.value.votingSystem,
@@ -46,16 +51,13 @@ export default class ProposalApi extends AbstractApi {
       actions: this.value.actions.map((i: IProposalAction) => i.data),
       tags: [],
       attachments: [],
-      is_proposal: true
-      
-    }
+      is_proposal: true,
+    };
   }
 
   create(): Promise<any> | void {
-    const data = this.cleanData()
-    console.log(this.value)
-    return this.post('/proposals', data)
-
-
+    const data = this.cleanData();
+    console.log(this.value);
+    return this.post("/proposals", data);
   }
 }

@@ -1,4 +1,11 @@
-import { Box, Button, Typography, useMediaQuery, Grid } from "@mui/material";
+import {
+  Box,
+  Button,
+  Typography,
+  useMediaQuery,
+  Grid,
+  Skeleton,
+} from "@mui/material";
 import * as React from "react";
 import InfoIcon from "@mui/icons-material/Info";
 import Tooltip from "@mui/material/Tooltip";
@@ -28,7 +35,11 @@ export const Header: React.FC<{
         color: "text.primary",
       }}
     >
-      {props.title}
+      {props.title === undefined ? (
+        <Skeleton animation="wave" height="1.6rem" width="6rem" />
+      ) : (
+        props.title
+      )}
     </Box>
   ) : (
     <Box
@@ -38,7 +49,7 @@ export const Header: React.FC<{
         mb: ".5rem",
       }}
     >
-      <Box
+      <Typography
         sx={{
           fontSize:
             props.large === true
@@ -50,8 +61,12 @@ export const Header: React.FC<{
           mb: props.mb === undefined ? ".5rem" : props.mb,
         }}
       >
-        {props.title}
-      </Box>
+        {props.title === undefined ? (
+          <Skeleton animation="wave" height="1.6rem" width="5rem" />
+        ) : (
+          props.title
+        )}
+      </Typography>
       <Subtitle subtitle={props.subtitle} small={props.small} />
     </Box>
   );

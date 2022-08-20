@@ -73,7 +73,7 @@ export interface IProposalOption {
   default?: boolean;
 }
 
-export type VotingType = "yes/no" | "options" | "unselected"
+export type VotingType = "yes/no" | "options" | "unselected";
 
 export interface IProposal {
   id?: number;
@@ -130,7 +130,7 @@ const CreateProposal: React.FC = () => {
 
   return (
     <ProposalContext.Provider value={{ api }}>
-      <Layout width={deviceWrapper("94%", "60%")}>
+      <Layout>
         <CreateHeader type="proposal" />
         <Box
           sx={{
