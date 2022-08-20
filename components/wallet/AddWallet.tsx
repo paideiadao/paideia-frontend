@@ -48,8 +48,6 @@ const AddWallet: React.FC = () => {
    * dAppAddressTableData: list available addresses from wallet
    */
   const [loading, setLoading] = React.useState(false);
-  const [dAppError, setDAppError] = React.useState(false);
-  const [dAppAddressTableData, setdAppAddressTableData] = React.useState([]); // table data
   const [view, setView] = React.useState<string>(
     wallet !== "" && !dAppWallet.connected
       ? "mobile"
@@ -57,6 +55,8 @@ const AddWallet: React.FC = () => {
       ? "nautilus"
       : "listing"
   );
+
+
 
   React.useEffect(() => {
     window.addEventListener("ergo_wallet_disconnected", () => {
@@ -101,17 +101,10 @@ const AddWallet: React.FC = () => {
     if (init) localStorage.setItem(WALLET_ADDRESS, wallet);
   }, [wallet, init]);
 
-  const handleClose = () => {
-    // reset unsaved changes
-    handleSubmitWallet();
-    setDAppError(false);
-  };
-
   const handleSubmitWallet = () => {
     // add read only wallet
     setWallet(walletInput);
     // clear dApp state
-    setDAppError(false);
     setDAppWallet({
       connected: false,
       addresses: [],
@@ -128,7 +121,6 @@ const AddWallet: React.FC = () => {
     setWallet("");
     // clear dApp state
     setView("listing");
-    setDAppError(false);
     setDAppWallet({
       connected: false,
       addresses: [],
@@ -147,13 +139,15 @@ const AddWallet: React.FC = () => {
         return;
         //@ts-ignore
       } else if (await window.ergo_request_read_access()) {
-        await dAppLoad();
-        setLoading(false);
-        return;
+        //@ts-ignore
+        if (await window.ergo_check_read_access()) {
+          await dAppLoad();
+          setLoading(false);
+          return;
+        }
+        
       }
-      setDAppError(true);
     } catch (e) {
-      setDAppError(true);
       console.log(e);
     }
     setLoading(false);
@@ -169,49 +163,56 @@ const AddWallet: React.FC = () => {
       // use the first used address if available or the first unused one if not as default
       // when a user hits the signing request, it should be a list of addresses that they have connected.
       // If one of them has an account, then you login using that method... don't default to 0
-      const address = addresses.length ? addresses[0] : "";
 
       const addressData = addresses.map((address, index) => {
         return { id: index, name: address };
       });
+
+      await globalContext.api
+            .signingMessage(addresses)
+            .then(async (signingMessage: any) => {
+              
+              if (signingMessage !== undefined) {
+                setLoading(true);
+
+                // @ts-ignore
+                let response = await ergo.auth(
+                  signingMessage.data.address,
+                  // @ts-ignore
+                  signingMessage.data.signingMessage
+                );
+                response.proof = Buffer.from(response.proof, "hex").toString(
+                  "base64"
+                );
+                globalContext.api
+                  .signMessage(signingMessage.data.tokenUrl, response)
+                  .then((data) => {
+                    localStorage.setItem(
+                      "jwt_token_login",
+                      data.data.access_token
+                    );
+                    setWallet(signingMessage.data.address);
+                    localStorage.setItem(
+                      WALLET_ADDRESS,
+                      signingMessage.data.address
+                    );
+
+                  });
+              }
+            });
       // setWallet(address);
       // // update dApp state
       setDAppWallet({
         connected: true,
         addresses: addressData,
       });
-      setDAppError(false);
     } catch (e) {
       console.log(e);
-      // update dApp state
-      setDAppWallet({
-        connected: false,
-        addresses: [],
-      });
-      setDAppError(true);
-    }
-  };
+      setLoading(false);
 
-  let loadAddresses = async () => {
-    try {
-      //@ts-ignore
-      const address_used = await ergo.get_used_addresses();
-      //@ts-ignore
-      const address_unused = await ergo.get_unused_addresses();
-      const addresses = [...address_used, ...address_unused];
-      const addressData = addresses.map((address, index) => {
-        return { id: index, name: address };
-      });
-      const address = addresses.length > 0 ? addresses[0] : "";
-      // setWallet(address);
-      setDAppWallet({
-        addresses: addressData,
-        connected: true,
-      });
-    } catch (e) {
-      console.log(e);
     }
     setLoading(false);
+
   };
 
   React.useEffect(() => {
@@ -260,12 +261,10 @@ const AddWallet: React.FC = () => {
               connect={dAppConnect}
               connected={dAppWallet.connected}
               addresses={dAppWallet.addresses}
-              load={loadAddresses}
               setLoading={setLoading}
               setDAppWallet={setDAppWallet}
               dAppWallet={dAppWallet}
               loading={loading}
-              setdAppAddressTableData={setdAppAddressTableData}
               clear={clearWallet}
             />
           ) : (
@@ -291,7 +290,8 @@ const AddWallet: React.FC = () => {
           </Button>
 
           <Box sx={{ ml: "auto" }}>
-            {isAddressValid(wallet) && (
+            {loading && <CircularProgress color='primary' size='small'/>}
+            {dAppWallet.connected && (
               <Button
                 color="error"
                 variant="outlined"
