@@ -52,7 +52,7 @@ const TextEditor: React.FC<{
 
   return (
     <Editor
-      apiKey="z575wana8isszbqidxprdk233mmp4cra8rapgzfak98yy1u9"
+      apiKey=""
       // initialValue={props.initial}
       init={{
         height: props.height == null ? "50vh" : props.height,
