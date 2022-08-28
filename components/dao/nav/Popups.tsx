@@ -155,6 +155,8 @@ export const ProfilePopup: React.FC<IProfilePopup> = (props) => {
               localStorage.setItem(WALLET_ADDRESS_LIST, "[]");
               localStorage.setItem(DAPP_CONNECTED, "false");
               localStorage.setItem("jwt_token_login", "");
+              localStorage.setItem("user_id", "");
+
               setWallet("");
               setDAppWallet({
                 connected: false,

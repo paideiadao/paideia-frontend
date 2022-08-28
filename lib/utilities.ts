@@ -62,6 +62,7 @@ export interface ISigningMessage {
 
 export interface ILoginResponse {
   access_token: string;
+  id: string
 }
 
 export class AbstractApi {

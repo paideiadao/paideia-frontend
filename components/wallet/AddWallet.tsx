@@ -117,6 +117,7 @@ const AddWallet: React.FC = () => {
     localStorage.setItem(WALLET_ADDRESS_LIST, "[]");
     localStorage.setItem(DAPP_CONNECTED, "false");
     localStorage.setItem("jwt_token_login", "");
+    localStorage.setItem("user_id", "");
     setWalletInput("");
     setWallet("");
     // clear dApp state
@@ -190,6 +191,10 @@ const AddWallet: React.FC = () => {
                     localStorage.setItem(
                       "jwt_token_login",
                       data.data.access_token
+                    );
+                    localStorage.setItem(
+                      "user_id",
+                      data.data.id
                     );
                     setWallet(signingMessage.data.address);
                     localStorage.setItem(

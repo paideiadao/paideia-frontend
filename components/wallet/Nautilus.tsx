@@ -43,7 +43,9 @@ const Nautilus: React.FC<{
       await props.connect();
       props.setLoading(false);
     };
-    wrapper();
+    if (!dAppWallet.connected) {
+      wrapper();
+    }
   }, []);
 
   return (
@@ -166,6 +168,10 @@ const Nautilus: React.FC<{
                                           localStorage.setItem(
                                             "jwt_token_login",
                                             data.data.access_token
+                                          );
+                                          localStorage.setItem(
+                                            "user_id",
+                                            data.data.id
                                           );
                                           props.setLoading(false);
                                           setWallet(i.name);
