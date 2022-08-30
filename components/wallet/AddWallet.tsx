@@ -56,8 +56,6 @@ const AddWallet: React.FC = () => {
       : "listing"
   );
 
-
-
   React.useEffect(() => {
     window.addEventListener("ergo_wallet_disconnected", () => {
       clearWallet();
@@ -118,6 +116,7 @@ const AddWallet: React.FC = () => {
     localStorage.setItem(DAPP_CONNECTED, "false");
     localStorage.setItem("jwt_token_login", "");
     localStorage.setItem("user_id", "");
+    localStorage.setItem("alias", "");
     setWalletInput("");
     setWallet("");
     // clear dApp state
@@ -146,7 +145,6 @@ const AddWallet: React.FC = () => {
           setLoading(false);
           return;
         }
-        
       }
     } catch (e) {
       console.log(e);
@@ -170,41 +168,34 @@ const AddWallet: React.FC = () => {
       });
 
       await globalContext.api
-            .signingMessage(addresses)
-            .then(async (signingMessage: any) => {
-              
-              if (signingMessage !== undefined) {
-                setLoading(true);
+        .signingMessage(addresses)
+        .then(async (signingMessage: any) => {
+          if (signingMessage !== undefined) {
+            setLoading(true);
 
-                // @ts-ignore
-                let response = await ergo.auth(
-                  signingMessage.data.address,
-                  // @ts-ignore
-                  signingMessage.data.signingMessage
+            // @ts-ignore
+            let response = await ergo.auth(
+              signingMessage.data.address,
+              // @ts-ignore
+              signingMessage.data.signingMessage
+            );
+            response.proof = Buffer.from(response.proof, "hex").toString(
+              "base64"
+            );
+            globalContext.api
+              .signMessage(signingMessage.data.tokenUrl, response)
+              .then((data) => {
+                localStorage.setItem("jwt_token_login", data.data.access_token);
+                localStorage.setItem("user_id", data.data.id);
+                localStorage.setItem("alias", data.data.alias);
+                setWallet(signingMessage.data.address);
+                localStorage.setItem(
+                  WALLET_ADDRESS,
+                  signingMessage.data.address
                 );
-                response.proof = Buffer.from(response.proof, "hex").toString(
-                  "base64"
-                );
-                globalContext.api
-                  .signMessage(signingMessage.data.tokenUrl, response)
-                  .then((data) => {
-                    localStorage.setItem(
-                      "jwt_token_login",
-                      data.data.access_token
-                    );
-                    localStorage.setItem(
-                      "user_id",
-                      data.data.id
-                    );
-                    setWallet(signingMessage.data.address);
-                    localStorage.setItem(
-                      WALLET_ADDRESS,
-                      signingMessage.data.address
-                    );
-
-                  });
-              }
-            });
+              });
+          }
+        });
       // setWallet(address);
       // // update dApp state
       setDAppWallet({
@@ -214,10 +205,8 @@ const AddWallet: React.FC = () => {
     } catch (e) {
       console.log(e);
       setLoading(false);
-
     }
     setLoading(false);
-
   };
 
   React.useEffect(() => {
@@ -295,7 +284,7 @@ const AddWallet: React.FC = () => {
           </Button>
 
           <Box sx={{ ml: "auto" }}>
-            {loading && <CircularProgress color='primary' size='small'/>}
+            {loading && <CircularProgress color="primary" size="small" />}
             {dAppWallet.connected && (
               <Button
                 color="error"

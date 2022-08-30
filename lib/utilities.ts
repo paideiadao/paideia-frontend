@@ -37,7 +37,7 @@ export const attrOrUndefined = (
 };
 
 export const getDaoPath = (id: number, path: string) => {
-  return `/dao/${id === undefined ? "" : id}${path}`;
+  return `/dao/${id === undefined || isNaN(id) ? "" : id}${path}`;
 };
 
 export const getBaseUrl = () => {
@@ -62,7 +62,8 @@ export interface ISigningMessage {
 
 export interface ILoginResponse {
   access_token: string;
-  id: string
+  id: string;
+  alias: string;
 }
 
 export class AbstractApi {

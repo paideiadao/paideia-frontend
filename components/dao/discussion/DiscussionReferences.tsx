@@ -1,53 +1,31 @@
 import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
 import { getRandomImage } from "@components/utilities/images";
 import { deviceWrapper } from "@components/utilities/Style";
+import { getDaoPath } from "@lib/utilities";
 import { Avatar, Box, Button } from "@mui/material";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import * as React from "react";
 import { LikesDislikes, ProposalStatus } from "../proposals/ProposalCard";
 import { IDataComponent } from "./DiscussionInfo";
 
 interface IReference {
   img: string;
-  proposalName: string;
-  proposalStatus: string;
-  likes: number;
-  dislikes: number;
-  userSide: number;
+  name: string;
+  status: string;
+  likes: number[];
+  dislikes: number[];
   id: number;
+  is_proposal: boolean;
 }
 
-const references = [
-  {
-    img: "",
-    proposalName: "<Proposal Name>",
-    proposalStatus: "Active",
-    likes: 191,
-    dislikes: 50,
-    userSide: 0,
-    id: 1,
-  },
-  {
-    img: "",
-    proposalName: "<Proposal Name 1>",
-    proposalStatus: "Passed",
-    likes: 485,
-    dislikes: 10,
-    userSide: 1,
-    id: 2,
-  },
-  {
-    img: "",
-    proposalName: "<Proposal Name 2>",
-    proposalStatus: "Failed",
-    likes: 485,
-    dislikes: 10,
-    userSide: 0,
-    id: 3,
-  },
-];
-
 const DiscussionReferences: React.FC<IDataComponent> = (props) => {
-  return props.data === undefined ? <>Loading Here...</> : (
+  const router = useRouter();
+  const { id, discussion_id } = router.query;
+  console.log(props, "skeep");
+  return props.data === undefined ? (
+    <>Loading Here...</>
+  ) : (
     <>
       <Box
         sx={{
@@ -71,20 +49,31 @@ const DiscussionReferences: React.FC<IDataComponent> = (props) => {
             mb="0"
           />
         </Box>
-        <Button
-          sx={{
-            ml: deviceWrapper("0", "auto"),
-            mt: deviceWrapper(".5rem", "0"),
-          }}
-          variant="outlined"
-          size="small"
+        <Link
+          href={getDaoPath(
+            parseInt(id as string),
+            `/proposal/create?r=${discussion_id}`
+          )}
         >
-          Reference this discussion
-        </Button>
+          <Button
+            sx={{
+              ml: deviceWrapper("0", "auto"),
+              mt: deviceWrapper(".5rem", "0"),
+            }}
+            variant="outlined"
+            size="small"
+          >
+            Reference this discussion
+          </Button>
+        </Link>
       </Box>
       <Box sx={{ width: "100%", mt: "1rem" }}>
-        {references.map((i: IReference, c: number) => (
-          <DiscussionCard key={`discussion-reference-${c}`} {...i} />
+        {props.data.map((i: IReference, c: number) => (
+          <DiscussionCard
+            key={`discussion-reference-${c}`}
+            {...i}
+            status="Active"
+          />
         ))}
       </Box>
     </>
@@ -92,6 +81,8 @@ const DiscussionReferences: React.FC<IDataComponent> = (props) => {
 };
 
 const DiscussionCard: React.FC<IReference> = (props) => {
+  const router = useRouter();
+  const { id } = router.query;
   return (
     <Box
       sx={{
@@ -120,9 +111,9 @@ const DiscussionCard: React.FC<IReference> = (props) => {
           fontSize: deviceWrapper(".8rem", "1rem"),
         }}
       >
-        {props.proposalName}
+        {props.name}
         <Box sx={{ display: deviceWrapper("none", "block") }}>
-          <ProposalStatus status={props.proposalStatus} />
+          <ProposalStatus status={props.status} />
         </Box>
       </Box>
       <Box
@@ -134,17 +125,36 @@ const DiscussionCard: React.FC<IReference> = (props) => {
         }}
       >
         <Box sx={{ display: deviceWrapper("block", "none") }}>
-          <ProposalStatus status={props.proposalStatus} />
+          <ProposalStatus status={props.status} />
         </Box>
         <LikesDislikes
-          likes={props.likes}
-          dislikes={props.dislikes}
-          userSide={props.userSide}
+          likes={props.likes.length}
+          dislikes={props.dislikes.length}
+          userSide={
+            props.likes.indexOf(parseInt(localStorage.getItem("user_id"))) > -1
+              ? 1
+              : props.dislikes.indexOf(
+                  parseInt(localStorage.getItem("user_id"))
+                ) > -1
+              ? 0
+              : undefined
+          }
+          putUrl={`/proposals/like/${props.id}`}
         />
 
-        <Button sx={{ ml: "1rem", display: deviceWrapper("none", "flex") }}>
-          View
-        </Button>
+        <Link
+          href={`${getDaoPath(
+            parseInt(id as string),
+            `/${props.is_proposal ? "proposal" : "discussion"}/${props.id}`
+          )}`}
+        >
+          <Button
+            size="small"
+            sx={{ ml: "1rem", display: deviceWrapper("none", "flex") }}
+          >
+            View
+          </Button>
+        </Link>
       </Box>
     </Box>
   );

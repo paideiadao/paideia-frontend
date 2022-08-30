@@ -100,7 +100,6 @@ export interface IProposal {
 
 const CreateProposal: React.FC = () => {
   const router = useRouter();
-
   const { id } = router.query;
   const [value, setValue] = React.useState<IProposal>({
     name: "",

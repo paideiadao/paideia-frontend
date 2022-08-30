@@ -7,9 +7,9 @@ import { fetcher, getBaseUrl } from "@lib/utilities";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 
 const All: React.FC = () => {
-  const context = React.useContext<IGlobalContext>(GlobalContext)
+  const context = React.useContext<IGlobalContext>(GlobalContext);
   const router = useRouter();
-  const {id} = router.query;
+  const { id } = router.query;
   const { data, error } = useSWR(
     `${getBaseUrl()}/proposals/by_dao_id/${id === undefined ? 1 : id}`,
     fetcher
@@ -17,7 +17,7 @@ const All: React.FC = () => {
   if (error) {
     context.api.showAlert("Error fetching proposals.", "error");
   }
-  console.log(data)
+  console.log(data);
   return (
     <PropsosalListing
       title="All proposals"

@@ -216,7 +216,6 @@ const CreateDiscussion: React.FC = () => {
                           "error"
                         );
                       }
-                      
                     }
                   }}
                   startIcon={<PublishIcon />}

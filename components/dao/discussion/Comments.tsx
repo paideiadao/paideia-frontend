@@ -16,13 +16,15 @@ import { deviceWrapper } from "@components/utilities/Style";
 import { LightTheme } from "@theme/theme";
 import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
 import ReplyIcon from "@mui/icons-material/Reply";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
+import CommentsApi from "@lib/CommentsApi";
 
 export interface IComment {
   id: number;
   likes: number;
   dislikes: number;
   date: Date;
-  username: string;
+  alias: string;
   img: string;
   comment: string;
   userSide: number;
@@ -37,7 +39,7 @@ const _comments: IComment[] = [
     dislikes: 31,
     date: new Date(),
     parent: undefined,
-    username: "Lily Evans",
+    alias: "Lily Evans",
     img: "",
     userSide: 1,
     comment:
@@ -49,7 +51,7 @@ const _comments: IComment[] = [
     dislikes: 31,
     parent: undefined,
     date: new Date(),
-    username: "Joaquin Cizzin",
+    alias: "Joaquin Cizzin",
     userSide: 1,
     img: "",
     comment: "Let's upgrade this to a proposal",
@@ -60,7 +62,7 @@ const _comments: IComment[] = [
     parent: undefined,
     dislikes: 31,
     date: new Date(),
-    username: "John Daonnot",
+    alias: "John Daonnot",
     userSide: 0,
     img: "",
     comment:
@@ -73,7 +75,7 @@ const _comments: IComment[] = [
     dislikes: 3,
     userSide: undefined,
     date: new Date(),
-    username: "Michael Mirandi",
+    alias: "Michael Mirandi",
     img: "",
     comment: "I agree with this!",
   },
@@ -84,7 +86,7 @@ const _comments: IComment[] = [
     likes: 7,
     dislikes: 0,
     date: new Date(),
-    username: "Joaquin Cizzin",
+    alias: "Joaquin Cizzin",
     img: "",
     comment: "Thanks michael!",
   },
@@ -95,16 +97,26 @@ const _comments: IComment[] = [
     likes: 7,
     dislikes: 0,
     date: new Date(),
-    username: "Hank Moody",
+    alias: "Hank Moody",
     img: "",
     comment: "Agreed, Michael!",
   },
 ];
 
-const Comments: React.FC<{ title?: string, data: IComment[] }> = (props) => {
+const Comments: React.FC<{ title?: string; data: IComment[]; id: number }> = (
+  props
+) => {
   const [comments, setComments] = React.useState<IComment[]>(props.data);
-  const setCommentsWrapper = (newComment: IComment) =>
-    setComments([...comments, newComment]);
+  const appContext = React.useContext<IGlobalContext>(GlobalContext);
+  const api = new CommentsApi(appContext.api, props.id);
+
+  const setCommentsWrapper = async (newComment: IComment) => {
+    let res = await api.publish(newComment);
+    if (res.status === 200) {
+      setComments([...comments, newComment]);
+    }
+  };
+
   return (
     <>
       {props.title === undefined && (
@@ -117,19 +129,37 @@ const Comments: React.FC<{ title?: string, data: IComment[] }> = (props) => {
       <CapsInfo
         title={props.title === undefined ? "All comments" : props.title}
       />
-      {comments === undefined ? <>Loading here...</> : comments
-        .sort((a: IComment, b: IComment) => b.date.getTime() - a.date.getTime())
-        .filter((i: IComment) => i.parent == null)
-        .map((i: any) => {
-          return (
-            <BaseComment
-              comment={i}
-              data={comments}
-              key={`base-comment-${i.id}`}
-              set={setCommentsWrapper}
-            />
-          );
-        })}
+      {comments === undefined ? (
+        <>Loading here...</>
+      ) : comments.length === 0 ? (
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            mt: "2rem",
+          }}
+        >
+          No Comments Yet
+        </Box>
+      ) : (
+        comments
+          .sort(
+            (a: IComment, b: IComment) =>
+              new Date(b.date).getTime() - new Date(a.date).getTime()
+          )
+          .filter((i: IComment) => i.parent == null)
+          .map((i: any) => {
+            return (
+              <BaseComment
+                comment={i}
+                data={comments}
+                key={`base-comment-${i.id}`}
+                set={setCommentsWrapper}
+              />
+            );
+          })
+      )}
     </>
   );
 };
@@ -208,17 +238,20 @@ const CommentInput: React.FC<{
               variant="contained"
               size="small"
               onClick={() => {
-                props.set({
-                  id: props.length + 1,
-                  parent: props.parent,
-                  userSide: undefined,
-                  likes: 0,
-                  dislikes: 0,
-                  date: new Date(),
-                  username: "Current User",
-                  img: "",
-                  comment: value,
-                });
+                if (
+                  [undefined, ""].indexOf(localStorage.getItem("alias")) === -1
+                )
+                  props.set({
+                    id: props.length + 1,
+                    parent: props.parent,
+                    userSide: undefined,
+                    likes: 0,
+                    dislikes: 0,
+                    date: new Date(),
+                    alias: localStorage.getItem("alias"),
+                    img: "",
+                    comment: value,
+                  });
                 setValue("");
               }}
             >
@@ -287,7 +320,7 @@ const BaseComment: React.FC<{
                 fontSize: deviceWrapper(".7rem", "9rem"),
               }}
             >
-              {props.comment.username}
+              {props.comment.alias}
             </Box>
             <Box
               sx={{
@@ -306,7 +339,7 @@ const BaseComment: React.FC<{
               fontSize: "1rem",
             }}
           >
-            {props.comment.username}
+            {props.comment.alias}
           </Box>
           <Box
             sx={{
@@ -373,6 +406,7 @@ const BaseComment: React.FC<{
                   likes={props.comment.likes}
                   dislikes={props.comment.dislikes}
                   userSide={props.comment.userSide}
+                  putUrl={""}
                 />
               </Box>
             </Box>

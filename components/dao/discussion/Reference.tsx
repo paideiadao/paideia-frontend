@@ -16,6 +16,7 @@ import useSWR from "swr";
 import * as React from "react";
 import { clientSideOnly, fetcher, getBaseUrl } from "@lib/utilities";
 import { useRouter } from "next/router";
+import useDidMountEffect from "@components/utilities/hooks";
 
 // proposal or discussion
 // abstract: img, name, id
@@ -25,9 +26,24 @@ const Reference: React.FC<{ context?: boolean }> = (props) => {
     props.context === undefined
       ? React.useContext<IDiscussionContext>(DiscussionContext)
       : React.useContext<IProposalContext>(ProposalContext);
-  const references = context.api.value.references;
+
   const router = useRouter();
-  const { id } = router.query;
+  const { id, r } = router.query;
+  const [references, setReferences] = React.useState<number[]>(
+    context.api.value.references
+  );
+
+  React.useEffect(() => {
+    let temp = [...references];
+    temp.push(parseInt(r as string));
+    setReferences(r === undefined ? references : temp);
+  }, [r]);
+
+  useDidMountEffect(() => {
+    setReferences(context.api.value.references);
+  }, [context.api.value.references]);
+
+  console.log(references, "here");
   const { data, error } = useSWR(
     `${getBaseUrl()}/proposals/by_dao_id/${id === undefined ? 1 : id}`,
     fetcher
@@ -52,17 +68,22 @@ const Reference: React.FC<{ context?: boolean }> = (props) => {
       // @ts-ignore
       renderTags={(value: readonly string[], getTagProps) =>
         value.map((option: any, c: number) => {
-          let temp = data.filter((i: any) => i.id === option);
+          let temp =
+            data === undefined
+              ? [undefined]
+              : data.filter((i: any) => i.id === option);
           let val = temp[0];
           return (
-            <Chip
-              color="primary"
-              variant="filled"
-              label={val.name}
-              {...getTagProps({ index: c })}
-              key={"chip-tag-" + c}
-              avatar={<Avatar sx={{ fontSize: ".8rem" }}></Avatar>}
-            />
+            val !== undefined && (
+              <Chip
+                color="primary"
+                variant="filled"
+                label={val.name}
+                {...getTagProps({ index: c })}
+                key={"chip-tag-" + c}
+                avatar={<Avatar sx={{ fontSize: ".8rem" }}></Avatar>}
+              />
+            )
           );
         })
       }

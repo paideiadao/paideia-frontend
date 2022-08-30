@@ -8,7 +8,7 @@ const TextEditor: React.FC<{
   hideToolbar?: boolean;
   onChange: Function;
   initial: string;
-  value: string,
+  value: string;
   height?: string;
   readOnly?: boolean;
 }> = (props) => {
@@ -67,7 +67,7 @@ const TextEditor: React.FC<{
       }}
       // value={props.value}
       onEditorChange={(e: any) => {
-        console.log(e)
+        console.log(e);
         props.onChange(e);
       }}
       disabled={props.readOnly}

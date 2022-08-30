@@ -12,10 +12,11 @@ import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { percentage } from "../../../lib/creation/Utilities";
 import Link from "next/link";
-import { GlobalContext } from "@lib/AppContext";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import { useRouter } from "next/router";
 import { deviceWrapper } from "@components/utilities/Style";
 import { getRandomImage } from "@components/utilities/images";
+import LikesDislikesApi from "@lib/LikesDislikesApi";
 
 export interface IProposalCard {
   id: number;
@@ -132,6 +133,7 @@ interface ILikesDislikes {
   likes: number;
   dislikes: number;
   userSide: number;
+  putUrl?: string;
 }
 
 // userSide, undefined for no vote, 0 for dislike, 1 for like
@@ -149,6 +151,10 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
     xl: "1rem",
   };
 
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
+
+  const api = new LikesDislikesApi(globalContext.api, props.putUrl);
+
   return (
     <Box sx={{ display: "flex", alignItems: "center", fontSize: iconFont }}>
       {value.userSide === undefined ? (
@@ -160,13 +166,14 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
               fontSize: iconFont,
               cursor: "pointer",
             }}
-            onClick={() =>
+            onClick={() => {
+              api.like();
               setValue({
                 ...value,
                 userSide: 1,
                 likes: value.likes + 1,
-              })
-            }
+              });
+            }}
           />
           {value.likes}
           <ThumbDownOffAltIcon
@@ -176,13 +183,14 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
               cursor: "pointer",
               ml: ".4rem",
             }}
-            onClick={() =>
+            onClick={() => {
+              api.dislike();
               setValue({
                 ...value,
                 userSide: 0,
                 dislikes: value.dislikes + 1,
-              })
-            }
+              });
+            }}
           />
           {value.dislikes}
         </>
@@ -195,14 +203,15 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
               fontSize: iconFont,
               cursor: "pointer",
             }}
-            onClick={() =>
+            onClick={() => {
+              api.like();
               setValue({
                 ...value,
                 userSide: 1,
                 likes: value.likes + 1,
                 dislikes: value.dislikes - 1,
-              })
-            }
+              });
+            }}
           />
           {value.likes}
           <ThumbDownIcon
@@ -212,6 +221,15 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
               fontSize: iconFont,
               cursor: "pointer",
               color: "error.light",
+            }}
+            onClick={() => {
+              api.remove();
+              setValue({
+                ...value,
+                userSide: undefined,
+                likes: value.likes,
+                dislikes: value.dislikes - 1,
+              });
             }}
           />
           <Box sx={{ color: "error.light", display: "inline" }}>
@@ -228,6 +246,15 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
               color: "success.light",
               cursor: "pointer",
             }}
+            onClick={() => {
+              api.remove();
+              setValue({
+                ...value,
+                userSide: undefined,
+                likes: value.likes - 1,
+                dislikes: value.dislikes,
+              });
+            }}
           />
           <Box sx={{ color: "success.light" }}>{value.likes}</Box>
           <ThumbDownOffAltIcon
@@ -237,14 +264,15 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
               cursor: "pointer",
               ml: ".4rem",
             }}
-            onClick={() =>
+            onClick={() => {
+              api.dislike();
               setValue({
                 ...value,
                 userSide: 0,
                 dislikes: value.dislikes + 1,
                 likes: value.likes - 1,
-              })
-            }
+              });
+            }}
           />
           {value.dislikes}
         </>

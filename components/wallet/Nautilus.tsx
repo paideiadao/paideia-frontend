@@ -135,7 +135,7 @@ const Nautilus: React.FC<{
                         onClick={async () => {
                           if (wallet !== i.name) {
                             {
-                              setChangeLoading(c)
+                              setChangeLoading(c);
                               try {
                                 await globalContext.api
                                   .changeAddress(i.name)
@@ -173,9 +173,13 @@ const Nautilus: React.FC<{
                                             "user_id",
                                             data.data.id
                                           );
+                                          localStorage.setItem(
+                                            "alias",
+                                            data.data.alias
+                                          );
                                           props.setLoading(false);
                                           setWallet(i.name);
-                                          setChangeLoading(undefined)
+                                          setChangeLoading(undefined);
                                         })
                                         .catch((e: any) => {
                                           console.log(e);
@@ -184,8 +188,7 @@ const Nautilus: React.FC<{
                                   });
                               } catch (e) {
                                 console.log(e);
-                                setChangeLoading(undefined)
-
+                                setChangeLoading(undefined);
                               }
                             }
                           }
