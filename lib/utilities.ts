@@ -70,15 +70,9 @@ export class AbstractApi {
   alert: IAlerts[] = [];
   setAlert: (val: IAlerts[]) => void = undefined;
 
-  webSocket(request_id: string) {
+  webSocket(request_id: string): WebSocket {
     const ws = new WebSocket(`ws://localhost:8000/api/auth/ws/${request_id}`);
-    ws.onmessage = (event) => {
-      try {
-        console.log("WS:", event);
-      } catch (e) {
-        console.log(e);
-      }
-    };
+    return ws
   }
 
   async signingMessage(addresses: string[]): Promise<any> {
@@ -122,7 +116,7 @@ export class AbstractApi {
   async mobileLogin(address: string) {
     return await this.post<{ data: any }>(
       "/auth/login/mobile",
-      { address },
+      { addresses: [address] },
       "added user.",
       ""
     );

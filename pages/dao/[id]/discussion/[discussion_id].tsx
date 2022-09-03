@@ -1,17 +1,12 @@
 import { Box, Button, Chip, Skeleton } from "@mui/material";
-import { GetStaticPaths, GetStaticProps } from "next/types";
 import * as React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import DiscussionPlaceholder from "@public/dao/discussion-banner-placeholder.png";
 import { ThemeContext } from "@lib/ThemeContext";
-import { LightTheme } from "@theme/theme";
+import { DarkTheme } from "@theme/theme";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import { Header } from "@components/creation/utilities/HeaderComponents";
 import LanIcon from "@mui/icons-material/Lan";
 import { useRouter } from "next/router";
-import { IDiscussion } from "./create";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import CircleIcon from "@mui/icons-material/Circle";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import dateFormat from "dateformat";
@@ -22,14 +17,15 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import DiscussionInfo from "@components/dao/discussion/DiscussionInfo";
-import Comments, { IComment } from "@components/dao/discussion/Comments";
+import Comments from "@components/dao/discussion/Comments";
 import DiscussionReferences from "@components/dao/discussion/DiscussionReferences";
 import Layout from "@components/dao/Layout";
 import { deviceWrapper } from "@components/utilities/Style";
 import { getRandomImage } from "@components/utilities/images";
 import useSWR from "swr";
 import { attrOrUndefined, fetcher, getBaseUrl } from "@lib/utilities";
-import Follow from "@components/utilities/Follow";
+import Follow, { FollowMobile } from "@components/utilities/Follow";
+import Details from "@components/dao/discussion/Details";
 
 const Discussion: React.FC = () => {
   const themeContext = React.useContext(ThemeContext);
@@ -60,6 +56,7 @@ const Discussion: React.FC = () => {
       router.push("/404");
     }
   }
+  const randomImage = getRandomImage();
 
   return (
     <Layout width={deviceWrapper("92%", "97%")}>
@@ -71,63 +68,133 @@ const Discussion: React.FC = () => {
                 width: deviceWrapper("calc(100% + 2rem)", "100%"),
                 borderRadius: deviceWrapper("0", ".3rem"),
                 position: "relative",
-                backgroundImage: `url(${getRandomImage()})`,
+                backgroundImage: deviceWrapper(
+                  `linear-gradient(
+                  to bottom, transparent, ${
+                    themeContext.theme === DarkTheme ? "black" : "white"
+                  }
+                ), url(${randomImage})`,
+                  `url(${randomImage})`
+                ),
                 p: "1rem",
                 maxHeight: "30rem",
                 display: "flex",
                 alignItems: "flex-start",
-                minHeight: deviceWrapper("8rem", "12rem"),
+                minHeight: deviceWrapper("9.5rem", "12rem"),
                 mt: deviceWrapper("-1rem", "0"),
                 ml: deviceWrapper("-1rem", "0"),
               }}
             >
               <Button
-                variant="outlined"
-                sx={{
-                  backgroundColor: "backgroundColor.main",
-                  ":hover": {
-                    backgroundColor: "backgroundColor.main",
-                  },
-                }}
+                variant="contained"
                 size="small"
                 startIcon={<ArrowBackIcon />}
                 onClick={router.back}
               >
                 Back
               </Button>
-
-              {/* <Box
-              sx={{
-                ml: "auto",
-                position: deviceWrapper("absolute", "relative"),
-                bottom: deviceWrapper("1rem", "0"),
-                left: deviceWrapper("1rem", "0"),
-              }}
-            >
-              {value.tags.map((i: any, c: number) => (
-                <Chip
-                  key={"discussion-tag-key-" + c}
-                  label={i}
-                  variant="filled"
-                  icon={<LocalFireDepartmentIcon />}
-                  sx={{
-                    backgroundColor: "tokenAlert.main",
-                    color:
-                      themeContext.theme === LightTheme ? "white" : "black",
-                  }}
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: ".75rem",
+                  right: ".75rem",
+                  display: deviceWrapper("flex", "none"),
+                  alignItems: "center",
+                }}
+              >
+                <FollowMobile
+                  followed={
+                    data.followers.indexOf(
+                      parseInt(localStorage.getItem("user_id"))
+                    ) > -1
+                  }
+                  putUrl={"/proposals/follow/" + discussion_id}
                 />
-              ))}
-            </Box> */}
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  bottom: ".75rem",
+                  right: ".75rem",
+                  display: deviceWrapper("flex", "none"),
+                }}
+              >
+                <LikesDislikes
+                  likes={data.likes.length}
+                  dislikes={data.dislikes.length}
+                  userSide={
+                    data.likes.indexOf(
+                      parseInt(localStorage.getItem("user_id"))
+                    ) > -1
+                      ? 1
+                      : data.dislikes.indexOf(
+                          parseInt(localStorage.getItem("user_id"))
+                        ) > -1
+                      ? 0
+                      : undefined
+                  }
+                  putUrl={`/proposals/like/${discussion_id}`}
+                />
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  bottom: ".75rem",
+                  left: ".75rem",
+                  display: deviceWrapper("block", "none"),
+                  alignItems: "center",
+                }}
+              >
+                <Header title={data.name} large bold />
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <Chip
+                    label={"Discussion"}
+                    variant="outlined"
+                    icon={
+                      <CircleIcon
+                        color="primary"
+                        sx={{ mr: ".3rem", fontSize: ".7rem" }}
+                      />
+                    }
+                    sx={{
+                      color: "primary.main",
+                      borderColor: "primary.main",
+                      fontSize: ".7rem",
+                      display: "flex",
+                      p: "0rem",
+                      height: "1.4rem",
+                      backgroundColor: "background.default",
+                      mr: ".5rem",
+                    }}
+                  />
+                  <Chip
+                    label={data.category}
+                    variant="outlined"
+                    icon={
+                      <LocalFireDepartmentIcon sx={{ fontSize: ".9rem" }} />
+                    }
+                    sx={{
+                      color: "primary.main",
+                      borderColor: "primary.main",
+                      fontSize: ".7rem",
+                      display: "flex",
+                      p: "0rem",
+                      height: "1.4rem",
+                      backgroundColor: "background.default",
+                    }}
+                  />
+                </Box>
+              </Box>
             </Box>
             <Box
               sx={{
                 width: "100%",
                 mt: "1rem",
-                display: "flex",
                 alignItems: "center",
                 pb: "1rem",
                 borderBottom: "1px solid",
                 borderColor: "border.main",
+                display: deviceWrapper("none", "flex"),
               }}
             >
               <Box>
@@ -223,9 +290,9 @@ const Discussion: React.FC = () => {
             <Box
               sx={{
                 mt: ".5rem",
-                display: "flex",
                 width: "100%",
                 alignItems: "center",
+                display: deviceWrapper("none", "flex"),
               }}
             >
               {data === undefined ? (
@@ -242,7 +309,7 @@ const Discussion: React.FC = () => {
                       color: "primary.main",
                       borderColor: "primary.main",
                       fontSize: "1rem",
-                      display: deviceWrapper("none", "flex"),
+                      display: "flex",
                     }}
                   />
                   <Box
@@ -251,7 +318,7 @@ const Discussion: React.FC = () => {
                       ml: ".5rem",
                       alignItems: "center",
                       fontSize: ".9rem",
-                      display: deviceWrapper("none", "flex"),
+                      display: "flex",
                     }}
                   >
                     <CircleIcon
@@ -266,7 +333,7 @@ const Discussion: React.FC = () => {
                       ml: ".5rem",
                       color: "text.secondary",
                       fontSize: ".9rem",
-                      display: deviceWrapper("none", "flex"),
+                      display: "flex",
                     }}
                   >
                     <CalendarTodayIcon
@@ -277,7 +344,7 @@ const Discussion: React.FC = () => {
                   <Box
                     sx={{
                       ml: deviceWrapper("0", "auto"),
-                      display: "flex",
+                      display: deviceWrapper("none", "flex"),
                       mt: deviceWrapper(".5rem", "0"),
                     }}
                   >
@@ -316,22 +383,18 @@ const Discussion: React.FC = () => {
                 </>
               )}
             </Box>
-            <Box
-              sx={{
-                width: "100%",
-                mt: "1rem",
-                display: deviceWrapper("block", "none"),
-              }}
-            >
-              <Overview />
-              <State />
-            </Box>
             <TabContext value={tab}>
               <Box
                 sx={{
                   borderBottom: 1,
                   borderColor: "border.main",
-                  mt: ".5rem",
+                  mt: deviceWrapper("0", "1rem"),
+                  ml: deviceWrapper("-1rem", "0"),
+                  width: deviceWrapper("calc(100% + 2rem)", "100%"),
+                  position: "sticky",
+                  top: "3.45rem",
+                  backgroundColor: "background.default",
+                  zIndex: 10,
                 }}
               >
                 <TabList
@@ -344,6 +407,11 @@ const Discussion: React.FC = () => {
                   <Tab
                     label={`Referenced | ${data.references_meta.length}`}
                     value="3"
+                  />
+                  <Tab
+                    label="Discussion Details"
+                    value="4"
+                    sx={{ display: deviceWrapper("flex", "none") }}
                   />
                 </TabList>
               </Box>
@@ -360,6 +428,9 @@ const Discussion: React.FC = () => {
                 <DiscussionReferences
                   data={attrOrUndefined(data, "references_meta")}
                 />
+              </TabPanel>
+              <TabPanel value="4" sx={{ pl: 0, pr: 0 }}>
+                <Details date={data.date} />
               </TabPanel>
             </TabContext>
           </Box>

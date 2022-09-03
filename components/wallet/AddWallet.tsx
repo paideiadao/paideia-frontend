@@ -16,6 +16,7 @@ import ProviderListing from "./ProviderListing";
 import Nautilus from "./Nautilus";
 import MobileWallet from "./MobileWallet";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
+import useDidMountEffect from "@components/utilities/hooks";
 
 export const WALLET_ADDRESS = "wallet_address";
 export const WALLET_ADDRESS_LIST = "wallet_address_list";
@@ -38,6 +39,8 @@ const AddWallet: React.FC = () => {
   const { wallet, setWallet, dAppWallet, setDAppWallet, loggedIn } =
     useWallet();
   const [init, setInit] = React.useState(false);
+  const [qrCode, setQrCode] = React.useState<string>(undefined);
+
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   /**
    * dapp state
@@ -107,6 +110,7 @@ const AddWallet: React.FC = () => {
       connected: false,
       addresses: [],
     });
+    setQrCode(undefined)
   };
 
   const clearWallet = () => {
@@ -151,6 +155,12 @@ const AddWallet: React.FC = () => {
     }
     setLoading(false);
   };
+
+  useDidMountEffect(() => {
+    if (view === 'listing') {
+      clearWallet()
+    }
+  }, [view])
 
   const dAppLoad = async () => {
     try {
@@ -238,7 +248,7 @@ const AddWallet: React.FC = () => {
         onClose={() => setAddWalletOpen(false)}
         PaperProps={{ sx: { maxWidth: "38rem" } }}
       >
-        <DialogTitle sx={{ backgroundColor: "fileInput.main" }}>
+        <DialogTitle sx={{ backgroundColor: "fileInput.main", mb: '-.5rem' }}>
           Connect Wallet
         </DialogTitle>
         <DialogContent sx={{ backgroundColor: "fileInput.main" }}>
@@ -266,6 +276,7 @@ const AddWallet: React.FC = () => {
               set={() => setView("listing")}
               wallet={walletInput}
               setWallet={setWalletInput}
+              qrCode={qrCode}
             />
           )}
         </DialogContent>
@@ -285,7 +296,7 @@ const AddWallet: React.FC = () => {
 
           <Box sx={{ ml: "auto" }}>
             {loading && <CircularProgress color="primary" size="small" />}
-            {dAppWallet.connected && (
+            {isAddressValid(wallet) && view !== 'listing' &&(
               <Button
                 color="error"
                 variant="outlined"
@@ -297,14 +308,40 @@ const AddWallet: React.FC = () => {
                 Disconnect
               </Button>
             )}
-            {view === "mobile" && (
+            {view === "mobile" && qrCode === undefined && !isAddressValid(wallet) &&  (
               <Button
                 onClick={async () => {
                   // add try catch here...
                   let res = await globalContext.api.mobileLogin(walletInput);
                   console.log("res", res);
-                  globalContext.api.webSocket(res.data.verificationId);
-                  handleSubmitWallet();
+                  let ws = globalContext.api.webSocket(res.data.verificationId);
+                  ws.onmessage = (event) => {
+                    try {
+                      console.log("WS:", event);
+                      let wsRes = JSON.parse(event.data)
+                      localStorage.setItem(
+                        "jwt_token_login",
+                        wsRes.access_token
+                      );
+                      localStorage.setItem(
+                        "user_id",
+                        wsRes.id
+                      );
+                      localStorage.setItem(
+                        "alias",
+                        wsRes.alias
+                      );
+                      localStorage.setItem(
+                        "wallet_address",
+                        walletInput
+                      );
+                      handleSubmitWallet();
+
+                    } catch (e) {
+                      console.log(e);
+                    }
+                  };
+                  setQrCode(res.data.signingRequestUrl);
                 }}
                 disabled={walletInput === ""}
                 variant="contained"

@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Fab } from "@mui/material";
 import * as React from "react";
 import { deviceWrapper } from "./Style";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -11,6 +11,32 @@ interface IFollow {
   followed: boolean;
   putUrl: string;
 }
+
+export const FollowMobile: React.FC<IFollow> = (props) => {
+  const [followed, setFollowed] = React.useState<boolean>(props.followed);
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
+  const api = new FollowApi(globalContext.api, props.putUrl);
+  useDidMountEffect(() => {
+    api.follow(followed ? "follow" : "unfollow");
+  }, [followed]);
+  return (
+    <Fab
+      size="small"
+      onClick={() => setFollowed(!followed)}
+      sx={{
+        zIndex: 10,
+        backgroundColor: followed ? "white" : "error.main",
+        color: followed ? "error.light" : "white",
+        ":hover": {
+          backgroundColor: followed ? "white" : "error.main",
+          color: followed ? "error.light" : "white",
+        },
+      }}
+    >
+      <FavoriteIcon sx={{ fontSize: "1.2rem" }} />
+    </Fab>
+  );
+};
 
 const Follow: React.FC<IFollow> = (props) => {
   const [followed, setFollowed] = React.useState<boolean>(props.followed);
