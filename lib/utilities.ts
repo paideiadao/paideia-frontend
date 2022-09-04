@@ -10,6 +10,10 @@ const statusLookup: IObj<number> = {
   DELETE: 204,
 };
 
+export const getUserId = () => {
+  return parseInt(localStorage.getItem("user_id"));
+};
+
 export const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 interface IUpdateUser {

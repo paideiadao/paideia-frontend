@@ -23,7 +23,6 @@ const All: React.FC = () => {
     }
   }, [error]);
 
-  console.log(data);
   return (
     <Layout width={"96%"}>
       <PropsosalListing title="All proposals" proposals={data} />

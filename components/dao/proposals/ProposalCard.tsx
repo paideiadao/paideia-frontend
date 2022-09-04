@@ -149,7 +149,7 @@ const getUserSide = (likes: number[], dislikes: number[]) => {
 
 const getFavoritedSide = (favorites: number[]) => {
   const userId = parseInt(localStorage.getItem("user_id"));
-  return favorites.indexOf(userId) > -1
+  return favorites === undefined ? false : favorites.indexOf(userId) > -1;
 };
 
 // userSide, undefined for no vote, 0 for dislike, 1 for like
@@ -469,7 +469,13 @@ const CountdownWidget: React.FC<{ date: Date }> = (props) => {
 };
 
 const ProposalCard: React.FC<IProposalCard> = (props) => {
-  const [favorited, setFavorited] = React.useState<boolean>(getFavoritedSide(props.followers));
+  const [favorited, setFavorited] = React.useState<boolean>(undefined);
+  const [userSide, setUserSide] = React.useState<1 | 0 | undefined>(undefined);
+
+  React.useEffect(() => {
+    setFavorited(getFavoritedSide(props.followers));
+    setUserSide(getUserSide(props.likes, props.dislikes));
+  }, []);
   const getFooter = () => {
     const footerFont = {
       xs: "1rem",
@@ -604,7 +610,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
                 <LikesDislikes
                   likes={props.likes.length}
                   dislikes={props.dislikes.length}
-                  userSide={getUserSide(props.likes, props.dislikes)}
+                  userSide={userSide}
                   putUrl={`/proposals/like/${props.id}`}
                 />
               </Box>

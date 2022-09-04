@@ -268,7 +268,7 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
                     : i.status === filters.proposalStatus) &&
                   (filters.search === ""
                     ? true
-                    : i.proposalName
+                    : i.name
                         .toLowerCase()
                         .includes(filters.search.toLowerCase())) &&
                   (filters.categories.indexOf("All") > -1
