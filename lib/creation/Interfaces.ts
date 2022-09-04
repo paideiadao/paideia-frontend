@@ -53,6 +53,7 @@ export interface IWallet {
   alias: string;
   address: string;
   img: string;
+  userid?: number;
 }
 
 export interface IGovernance {
@@ -64,11 +65,7 @@ export interface IGovernance {
   quorum: number;
   voteDuration: number;
   voteDurationUnits: string;
-  whitelist: {
-    alias: string;
-    address: string;
-    img: string;
-  }[];
+  whitelist: IWallet[];
   amount: number | string;
   currency: string;
   supportNeeded: number;

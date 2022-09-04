@@ -21,6 +21,7 @@ import { deviceWrapper } from "@components/utilities/Style";
 const Dashboard: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const themeContext = React.useContext<IThemeContext>(ThemeContext);
+
   return (
     <Box sx={{ width: "100%" }}>
       <Box

@@ -5,6 +5,8 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import { fetcher, getBaseUrl } from "@lib/utilities";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
+import useDidMountEffect from "@components/utilities/hooks";
+import Layout from "@components/dao/Layout";
 
 const All: React.FC = () => {
   const context = React.useContext<IGlobalContext>(GlobalContext);
@@ -14,15 +16,18 @@ const All: React.FC = () => {
     `${getBaseUrl()}/proposals/by_dao_id/${id === undefined ? 1 : id}`,
     fetcher
   );
-  if (error) {
-    context.api.showAlert("Error fetching proposals.", "error");
-  }
+
+  useDidMountEffect(() => {
+    if (error) {
+      context.api.showAlert("Error fetching proposals.", "error");
+    }
+  }, [error]);
+
   console.log(data);
   return (
-    <PropsosalListing
-      title="All proposals"
-      proposals={proposals.concat(proposals).concat(proposals)}
-    />
+    <Layout width={"96%"}>
+      <PropsosalListing title="All proposals" proposals={data} />
+    </Layout>
   );
 };
 

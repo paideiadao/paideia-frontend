@@ -72,7 +72,7 @@ export class AbstractApi {
 
   webSocket(request_id: string): WebSocket {
     const ws = new WebSocket(`ws://localhost:8000/api/auth/ws/${request_id}`);
-    return ws
+    return ws;
   }
 
   async signingMessage(addresses: string[]): Promise<any> {

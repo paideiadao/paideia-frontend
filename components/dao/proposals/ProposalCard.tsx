@@ -17,21 +17,23 @@ import { useRouter } from "next/router";
 import { deviceWrapper } from "@components/utilities/Style";
 import { getRandomImage } from "@components/utilities/images";
 import LikesDislikesApi from "@lib/LikesDislikesApi";
+import useDidMountEffect from "@components/utilities/hooks";
+import FollowApi from "@lib/FollowApi";
 
 export interface IProposalCard {
   id: number;
-  proposalName: string;
-  status: string;
+  name: string;
+  is_proposal: string;
   userSide: number;
-  favorited: boolean;
-  likes: number;
-  dislikes: number;
+  followers: number[];
+  likes: number[];
+  dislikes: number[];
   category: string;
   widget: any;
   c: number;
   yes: number;
   no: number;
-  comments: number;
+  comments: any[];
   users: number;
   date: Date;
   width: any;
@@ -135,6 +137,20 @@ interface ILikesDislikes {
   userSide: number;
   putUrl?: string;
 }
+
+const getUserSide = (likes: number[], dislikes: number[]) => {
+  const userId = parseInt(localStorage.getItem("user_id"));
+  return likes.indexOf(userId) > -1
+    ? 1
+    : dislikes.indexOf(userId) > -1
+    ? 0
+    : undefined;
+};
+
+const getFavoritedSide = (favorites: number[]) => {
+  const userId = parseInt(localStorage.getItem("user_id"));
+  return favorites.indexOf(userId) > -1
+};
 
 // userSide, undefined for no vote, 0 for dislike, 1 for like
 export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
@@ -317,38 +333,42 @@ const CountdownTimer: React.FC<{ widget: any }> = (props) => {
   let widget = props.widget;
   return (
     <>
-      <Chip
-        icon={
-          <Box
-            sx={{
-              height: "1rem",
-              width: "1rem",
-              display: "flex",
-              alignItems: "center",
-              color: "white",
-            }}
-          >
-            {typeof widget === "object" ? (
-              <AccessTimeFilledIcon sx={{ fontSize: "1rem" }} />
-            ) : widget === "DAO termination" ? (
-              <DeleteIcon sx={{ fontSize: "1rem" }} />
-            ) : (
-              <LocalFireDepartmentIcon sx={{ fontSize: "1rem" }} />
-            )}
-          </Box>
-        }
-        label={typeof widget === "object" ? time : widget}
-        size="small"
-        sx={{
-          fontSize: ".7rem",
-          color: "backgroundColor.main",
-          backgroundColor:
-            widget === "DAO termination" ? "error.light" : "tokenAlert.main",
-          border: "1px solid",
-          borderColor:
-            widget === "DAO termination" ? "error.light" : "tokenAlert.main",
-        }}
-      />
+      {typeof widget === "object" || widget === "DAO termination" ? (
+        <Chip
+          icon={
+            <Box
+              sx={{
+                height: "1rem",
+                width: "1rem",
+                display: "flex",
+                alignItems: "center",
+                color: "white",
+              }}
+            >
+              {typeof widget === "object" ? (
+                <AccessTimeFilledIcon sx={{ fontSize: "1rem" }} />
+              ) : (
+                widget === "DAO termination" && (
+                  <DeleteIcon sx={{ fontSize: "1rem" }} />
+                )
+              )}
+            </Box>
+          }
+          label={typeof widget === "object" ? time : widget}
+          size="small"
+          sx={{
+            fontSize: ".7rem",
+            color: "backgroundColor.main",
+            backgroundColor:
+              widget === "DAO termination" ? "error.light" : "tokenAlert.main",
+            border: "1px solid",
+            borderColor:
+              widget === "DAO termination" ? "error.light" : "tokenAlert.main",
+          }}
+        />
+      ) : (
+        <Box></Box>
+      )}
     </>
   );
 };
@@ -449,7 +469,7 @@ const CountdownWidget: React.FC<{ date: Date }> = (props) => {
 };
 
 const ProposalCard: React.FC<IProposalCard> = (props) => {
-  const [favorited, setFavorited] = React.useState<boolean>(props.favorited);
+  const [favorited, setFavorited] = React.useState<boolean>(getFavoritedSide(props.followers));
   const getFooter = () => {
     const footerFont = {
       xs: "1rem",
@@ -465,7 +485,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
       lg: ".7rem",
       xl: ".8rem",
     };
-    switch (props.status) {
+    switch ("Discussion" as string) {
       case "Challenged": {
         return <VoteWidget yes={props.yes} no={props.no} />;
       }
@@ -477,11 +497,16 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
         return <VoteWidget yes={props.yes} no={props.no} />;
       }
       case "Discussion": {
+        const totalUsers = [
+          ...new Set(props.comments.map((item) => item.user_id)),
+        ].length;
+        const totalComments = props.comments.length;
         return (
           <Box sx={{ width: "100%", fontSize: footerFont }}>
             Join the Conversation
             <Box sx={{ fontSize: footerSmallFont, color: "text.secondary" }}>
-              {props.comments} comments from {props.users} users
+              {totalComments} comment{totalComments === 1 ? "" : "s"} from{" "}
+              {totalUsers} user{totalUsers === 1 ? "" : "s"}
             </Box>
           </Box>
         );
@@ -491,7 +516,15 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
       }
     }
   };
-  let globalContext = React.useContext(GlobalContext);
+
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
+
+  const api = new FollowApi(globalContext.api, "/proposals/follow/" + props.id);
+
+  useDidMountEffect(() => {
+    api.follow(favorited ? "follow" : "unfollow");
+  }, [favorited]);
+
   const router = useRouter();
   const { id } = router.query;
 
@@ -558,20 +591,21 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
             <Link
               href={
                 (id === undefined ? "/dao/" : `/dao/${id}/`) +
-                `${props.status === "Discussion" ? "discussion" : "proposal"}/${
-                  props.id
-                }`
+                `${!props.is_proposal ? "discussion" : "proposal"}/${props.id}`
               }
             >
-              <Box sx={{ cursor: "pointer" }}>{props.proposalName}</Box>
+              <Box sx={{ cursor: "pointer" }}>{props.name}</Box>
             </Link>
             <Box sx={{ display: "flex", fontSize: "1rem" }}>
-              <ProposalStatus status={props.status} />
+              <ProposalStatus
+                status={!props.is_proposal ? "Discussion" : "Active"}
+              />
               <Box sx={{ ml: "auto" }}>
                 <LikesDislikes
-                  likes={props.likes}
-                  dislikes={props.dislikes}
-                  userSide={props.userSide}
+                  likes={props.likes.length}
+                  dislikes={props.dislikes.length}
+                  userSide={getUserSide(props.likes, props.dislikes)}
+                  putUrl={`/proposals/like/${props.id}`}
                 />
               </Box>
             </Box>

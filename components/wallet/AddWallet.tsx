@@ -110,7 +110,7 @@ const AddWallet: React.FC = () => {
       connected: false,
       addresses: [],
     });
-    setQrCode(undefined)
+    setQrCode(undefined);
   };
 
   const clearWallet = () => {
@@ -157,10 +157,10 @@ const AddWallet: React.FC = () => {
   };
 
   useDidMountEffect(() => {
-    if (view === 'listing') {
-      clearWallet()
+    if (view === "listing") {
+      clearWallet();
     }
-  }, [view])
+  }, [view]);
 
   const dAppLoad = async () => {
     try {
@@ -248,7 +248,7 @@ const AddWallet: React.FC = () => {
         onClose={() => setAddWalletOpen(false)}
         PaperProps={{ sx: { maxWidth: "38rem" } }}
       >
-        <DialogTitle sx={{ backgroundColor: "fileInput.main", mb: '-.5rem' }}>
+        <DialogTitle sx={{ backgroundColor: "fileInput.main", mb: "-.5rem" }}>
           Connect Wallet
         </DialogTitle>
         <DialogContent sx={{ backgroundColor: "fileInput.main" }}>
@@ -296,7 +296,7 @@ const AddWallet: React.FC = () => {
 
           <Box sx={{ ml: "auto" }}>
             {loading && <CircularProgress color="primary" size="small" />}
-            {isAddressValid(wallet) && view !== 'listing' &&(
+            {isAddressValid(wallet) && view !== "listing" && (
               <Button
                 color="error"
                 variant="outlined"
@@ -308,47 +308,41 @@ const AddWallet: React.FC = () => {
                 Disconnect
               </Button>
             )}
-            {view === "mobile" && qrCode === undefined && !isAddressValid(wallet) &&  (
-              <Button
-                onClick={async () => {
-                  // add try catch here...
-                  let res = await globalContext.api.mobileLogin(walletInput);
-                  console.log("res", res);
-                  let ws = globalContext.api.webSocket(res.data.verificationId);
-                  ws.onmessage = (event) => {
-                    try {
-                      console.log("WS:", event);
-                      let wsRes = JSON.parse(event.data)
-                      localStorage.setItem(
-                        "jwt_token_login",
-                        wsRes.access_token
-                      );
-                      localStorage.setItem(
-                        "user_id",
-                        wsRes.id
-                      );
-                      localStorage.setItem(
-                        "alias",
-                        wsRes.alias
-                      );
-                      localStorage.setItem(
-                        "wallet_address",
-                        walletInput
-                      );
-                      handleSubmitWallet();
-
-                    } catch (e) {
-                      console.log(e);
-                    }
-                  };
-                  setQrCode(res.data.signingRequestUrl);
-                }}
-                disabled={walletInput === ""}
-                variant="contained"
-              >
-                Confirm
-              </Button>
-            )}
+            {view === "mobile" &&
+              qrCode === undefined &&
+              !isAddressValid(wallet) && (
+                <Button
+                  onClick={async () => {
+                    // add try catch here...
+                    let res = await globalContext.api.mobileLogin(walletInput);
+                    console.log("res", res);
+                    let ws = globalContext.api.webSocket(
+                      res.data.verificationId
+                    );
+                    ws.onmessage = (event) => {
+                      try {
+                        console.log("WS:", event);
+                        let wsRes = JSON.parse(event.data);
+                        localStorage.setItem(
+                          "jwt_token_login",
+                          wsRes.access_token
+                        );
+                        localStorage.setItem("user_id", wsRes.id);
+                        localStorage.setItem("alias", wsRes.alias);
+                        localStorage.setItem("wallet_address", walletInput);
+                        handleSubmitWallet();
+                      } catch (e) {
+                        console.log(e);
+                      }
+                    };
+                    setQrCode(res.data.signingRequestUrl);
+                  }}
+                  disabled={walletInput === ""}
+                  variant="contained"
+                >
+                  Confirm
+                </Button>
+              )}
           </Box>
         </DialogActions>
       </Dialog>

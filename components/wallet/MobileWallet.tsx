@@ -20,7 +20,7 @@ const MobileWallet: React.FC<{
   setWallet: Function;
   qrCode: string;
 }> = (props) => {
-  const {wallet} = useWallet();
+  const { wallet } = useWallet();
   return (
     <Box sx={{ width: "100%" }}>
       {props.qrCode === undefined ? (
@@ -74,11 +74,10 @@ const MobileWallet: React.FC<{
             onChange={(e: any) => props.setWallet(e.target.value)}
             autoComplete={"false"}
             size="medium"
-            
             InputProps={{
               readOnly: props.qrCode === undefined && isAddressValid(wallet),
-              endAdornment: (
-                !isAddressValid(wallet) && <InputAdornment position="end">
+              endAdornment: !isAddressValid(wallet) && (
+                <InputAdornment position="end">
                   {props.wallet !== "" && (
                     <IconButton
                       color="primary"
@@ -93,16 +92,18 @@ const MobileWallet: React.FC<{
           />
         </>
       ) : (
-        <Box sx={{width: '100%'}}>
-          <DialogContentText sx={{ fontSize: ".9rem", mb: '.75rem', mt: '.75rem' }}>
+        <Box sx={{ width: "100%" }}>
+          <DialogContentText
+            sx={{ fontSize: ".9rem", mb: ".75rem", mt: ".75rem" }}
+          >
             Please use the QR code to authenticate with Ergo Mobile Wallet.
           </DialogContentText>
-          <Box sx={{display: 'flex', justifyContent: 'center', width: '100%'}}>
-          <QRCode value={props.qrCode} />
-
+          <Box
+            sx={{ display: "flex", justifyContent: "center", width: "100%" }}
+          >
+            <QRCode value={props.qrCode} />
           </Box>
-
-      </Box>
+        </Box>
       )}
     </Box>
   );
