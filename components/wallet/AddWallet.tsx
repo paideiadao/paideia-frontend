@@ -137,14 +137,14 @@ const AddWallet: React.FC = () => {
   const dAppConnect = async () => {
     try {
       //@ts-ignore
-      if (await window.ergo_check_read_access()) {
+      if (await ergoConnector.nautilus.isConnected()) {
         await dAppLoad();
         setLoading(false);
         return;
         //@ts-ignore
-      } else if (await window.ergo_request_read_access()) {
+      } else if (await ergoConnector.nautilus.connect()) {
         //@ts-ignore
-        if (await window.ergo_check_read_access()) {
+        if (await ergoConnector.nautilus.isConnected()) {
           await dAppLoad();
           setLoading(false);
           return;

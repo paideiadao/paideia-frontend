@@ -26,7 +26,6 @@ const Content: React.FC = () => {
       </Box>
 
       <TextEditor
-        value={context.api.value.content}
         onChange={(value: any) =>
           context.api.setValue({ ...context.api.value, content: value })
         }

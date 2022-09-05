@@ -197,7 +197,8 @@ const CreateDiscussion: React.FC = () => {
                     if (!loading) {
                       setLoading(true);
                       try {
-                        let res = await api.create();
+                        let imgRes = await api.uploadFile(value.image.file);
+                        let res = await api.create(imgRes.data.image_url);
                         if (res.status == 200) {
                           router.push(
                             `/dao/${id === undefined ? "" : id}/discussion/${
@@ -209,12 +210,14 @@ const CreateDiscussion: React.FC = () => {
                             "Error adding discussion. Please try again.",
                             "error"
                           );
+                          setLoading(false);
                         }
                       } catch {
                         api.api.showAlert(
                           "Unknown error adding discussion. Please try again.",
                           "error"
                         );
+                        setLoading(false);
                       }
                     }
                   }}

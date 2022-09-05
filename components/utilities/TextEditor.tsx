@@ -8,7 +8,6 @@ const TextEditor: React.FC<{
   hideToolbar?: boolean;
   onChange: Function;
   initial: string;
-  value: string;
   height?: string;
   readOnly?: boolean;
 }> = (props) => {

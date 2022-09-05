@@ -107,8 +107,21 @@ const Comments: React.FC<{ title?: string; data: IComment[]; id: number }> = (
   props
 ) => {
   const [comments, setComments] = React.useState<IComment[]>(props.data);
-  const appContext = React.useContext<IGlobalContext>(GlobalContext);
-  const api = new CommentsApi(appContext.api, props.id);
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
+  const api = new CommentsApi(globalContext.api, props.id);
+
+  React.useEffect(() => {
+    let ws = api.webSocket();
+    ws.onmessage = (event) => {
+      try {
+        console.log("WS:", event);
+        let wsRes = JSON.parse(event.data);
+        console.log(wsRes);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+  }, []);
 
   const setCommentsWrapper = async (newComment: IComment) => {
     let res = await api.publish(newComment);

@@ -31,6 +31,11 @@ const Discussion: React.FC = () => {
   const themeContext = React.useContext(ThemeContext);
   const router = useRouter();
   const { discussion_id, id } = router.query;
+  const [loaded, setLoaded] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    setLoaded(true);
+  }, []);
 
   // replace comments with global state.... duh
   // major to do... needed for api
@@ -42,7 +47,7 @@ const Discussion: React.FC = () => {
   };
 
   const { data, error } = useSWR(
-    discussion_id !== undefined
+    discussion_id !== undefined && loaded
       ? `${getBaseUrl()}/proposals/${discussion_id}`
       : null,
     fetcher
@@ -56,7 +61,8 @@ const Discussion: React.FC = () => {
       router.push("/404");
     }
   }
-  const randomImage = getRandomImage();
+
+  console.log(data);
 
   return (
     <Layout width={deviceWrapper("92%", "97%")}>
@@ -73,9 +79,10 @@ const Discussion: React.FC = () => {
                   to bottom, transparent, ${
                     themeContext.theme === DarkTheme ? "black" : "white"
                   }
-                ), url(${randomImage})`,
-                  `url(${randomImage})`
+                ), url(${data.image_url})`,
+                  `url(${data.image_url})`
                 ),
+                backgroundSize: "100% 100%",
                 p: "1rem",
                 maxHeight: "30rem",
                 display: "flex",

@@ -19,12 +19,12 @@ export default class DiscussionApi extends AbstractApi {
     return true;
   }
 
-  cleanData(): IProposalEndpointBody {
+  cleanData(image_url: string): IProposalEndpointBody {
     return {
       dao_id: 1,
       user_id: 1,
       name: this.value.name,
-      image_url: "",
+      image_url: image_url,
       category: this.value.category,
       content: this.value.content,
       references: this.value.references,
@@ -33,9 +33,8 @@ export default class DiscussionApi extends AbstractApi {
     };
   }
 
-  create(): Promise<any> | void {
-    const data = this.cleanData();
-    console.log(this.value);
+  create(image_url: string): Promise<any> | void {
+    const data = this.cleanData(image_url);
     return this.post("/proposals", data);
   }
 }

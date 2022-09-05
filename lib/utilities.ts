@@ -2,6 +2,8 @@ import axios from "axios";
 import { IObj } from "@lib/Interfaces";
 import { IAlerts, ValidAlert } from "@components/utilities/Alert";
 
+type RequestType = "POST" | "PUT" | "GET" | "PATCH" | "DELETE";
+
 const statusLookup: IObj<number> = {
   GET: 200,
   POST: 200,
@@ -88,6 +90,22 @@ export class AbstractApi {
     );
 
     return data;
+  }
+
+  async uploadFile(file: any): Promise<any> {
+    const defaultOptions = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt_token_login")}`,
+        "Content-Type": file.type,
+      },
+    };
+    const formData = new FormData();
+    formData.append("fileobject", file, file.name);
+    return axios.post(
+      `${getBaseUrl()}/util/upload_file`,
+      formData,
+      defaultOptions
+    );
   }
 
   async changeAddress(address: string): Promise<any> {
@@ -230,7 +248,7 @@ export class AbstractApi {
     );
   }
 
-  async request(url: string, method: string, body?: any) {
+  async request(url: string, method: RequestType, body?: any) {
     return await new Promise(async (resolve, reject) => {
       try {
         if (body !== undefined) {
@@ -259,9 +277,8 @@ export class AbstractApi {
 
   async _request(
     url: string,
-    method: string,
-    body?: IObj<any>,
-    auth?: boolean
+    method: RequestType,
+    body?: IObj<any>
   ): Promise<Response> {
     const methods: IObj<Function> = {
       POST: axios.post,

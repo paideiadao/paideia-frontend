@@ -23,6 +23,7 @@ import FollowApi from "@lib/FollowApi";
 export interface IProposalCard {
   id: number;
   name: string;
+  image_url: string;
   is_proposal: string;
   userSide: number;
   followers: number[];
@@ -373,9 +374,12 @@ const CountdownTimer: React.FC<{ widget: any }> = (props) => {
   );
 };
 
-const CardContent: React.FC<{ category: string; widget: any; c: number }> = (
-  props
-) => {
+const CardContent: React.FC<{
+  category: string;
+  widget: any;
+  c: number;
+  imageUrl: string;
+}> = (props) => {
   const [widget, setWidget] = React.useState<any>(props.widget);
 
   return (
@@ -384,11 +388,7 @@ const CardContent: React.FC<{ category: string; widget: any; c: number }> = (
         mt: ".5rem",
         height: "7rem",
         backgroundColor: "fileInput.outer",
-        // backgroundImage: deviceWrapper(
-        //   `url(https://picsum.photos/350/200/?random=${props.c})`,
-        //   `url(https://picsum.photos/300/200/?random=${props.c})`
-        // ),
-        backgroundImage: `url(${getRandomImage()})`,
+        backgroundImage: `url(${props.imageUrl})`,
         backgroundSize: "100%",
         width: "100%",
         border: "1px solid",
@@ -619,6 +619,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
               category={props.category}
               widget={props.widget}
               c={props.c}
+              imageUrl={props.image_url}
             />
           </Box>
           <Box

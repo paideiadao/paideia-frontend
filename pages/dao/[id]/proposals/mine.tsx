@@ -1,5 +1,4 @@
 import * as React from "react";
-import { proposals } from "@components/dao/dashboard/ActiveProposals";
 import PropsosalListing from "@components/dao/proposals/ProposalListing";
 import Layout from "@components/dao/Layout";
 import { fetcher, getBaseUrl, getUserId } from "@lib/utilities";
@@ -14,7 +13,12 @@ const Mine: React.FC = () => {
   const { id } = router.query;
   const { data, error } = useSWR(
     `${getBaseUrl()}/proposals/by_dao_id/${id === undefined ? 1 : id}`,
-    fetcher
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
   );
 
   useDidMountEffect(() => {
