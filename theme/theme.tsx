@@ -11,31 +11,15 @@ declare module "@mui/material/styles" {
     lg: true;
     xl: true;
   }
-
-  interface TypographyVariants {
-    p: React.CSSProperties;
-  }
-
-  // allow configuration using `createTheme`
-  interface TypographyVariantsOptions {
-    p?: React.CSSProperties;
-  }
-}
-
-// Update the Typography's variant prop options
-declare module "@mui/material/Typography" {
-  interface TypographyPropsVariantOverrides {
-    p: true;
-  }
 }
 
 export const mainTheme = createTheme({
   typography: {
     fontFamily:
       '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif',
-    p: {
-      fontSize: "16px",
-      lineHeight: "24px",
+    body2: {
+      fontSize: "1rem",
+      lineHeight: 1.5,
       letterSpacing: "0.0225em",
       marginBottom: "32px",
       display: "block",
@@ -45,7 +29,7 @@ export const mainTheme = createTheme({
       fontWeight: "400",
       lineHeight: 1.167,
       letterSpacing: "0em",
-      mb: "6rem",
+      marginBottom: "1rem",
       textTransform: "uppercase",
       fontFamily: '"Viga", sans-serif',
       textShadow: "0px 2px 2px rgba(0, 0, 0, 0.6)",
@@ -57,7 +41,7 @@ export const mainTheme = createTheme({
       fontWeight: "700",
       lineHeight: 1.235,
       letterSpacing: "0.00735em",
-      mb: "4.25rem",
+      marginBottom: "1rem",
       fontFamily: '"Space Grotesk", sans-serif',
       overflowWrap: "break-word",
       hyphens: "manual",
@@ -67,7 +51,7 @@ export const mainTheme = createTheme({
       fontWeight: "700",
       lineHeight: 1.334,
       letterSpacing: "0em",
-      mb: "3rem",
+      marginBottom: "1rem",
       fontFamily: '"Space Grotesk", sans-serif',
       overflowWrap: "break-word",
       hyphens: "manual",
@@ -77,30 +61,39 @@ export const mainTheme = createTheme({
       fontWeight: "700",
       lineHeight: 1.6,
       letterSpacing: "0.0075em",
-      mb: "2.5rem",
+      marginBottom: "1rem",
       fontFamily: '"Space Grotesk", sans-serif',
       overflowWrap: "break-word",
       hyphens: "manual",
     },
     h5: {
-      fontSize: "1rem",
+      fontSize: "1.1rem",
       fontWeight: "700",
       lineHeight: 1.8,
       letterSpacing: "0.0075em",
-      mb: "2.5rem",
+      marginBottom: "1rem",
       fontFamily: '"Space Grotesk", sans-serif',
       overflowWrap: "break-word",
       hyphens: "manual",
     },
     h6: {
-      fontSize: "1rem",
+      fontSize: "1.1rem",
       fontWeight: "500",
       lineHeight: 1.8,
       letterSpacing: "0.0075em",
-      mb: "2.5rem",
+      marginBottom: "1rem",
       fontFamily: '"Space Grotesk", sans-serif',
       overflowWrap: "break-word",
       hyphens: "manual",
+    },
+  },
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          body2: 'p',
+        }
+      }
     },
   },
   breakpoints: {
@@ -132,7 +125,7 @@ export const LightTheme = createTheme({
     },
     text: {
       primary: "#000000",
-      secondary: "#666666",
+      secondary: 'rgb(56, 58, 66)',
     },
     // @ts-ignore
     linkHover: {
@@ -152,6 +145,9 @@ export const LightTheme = createTheme({
     },
     backgroundColor: {
       main: "#FFFFFF",
+    },
+    background: {
+      paper: 'rgba(0,0,0,0.1)'
     },
     primary: {
       // light: will be calculated from palette.primary.main,
@@ -267,7 +263,7 @@ export const DarkTheme = createTheme({
     mode: "dark",
     background: {
       default: "#0E1421",
-      paper: "#0E1421",
+      paper: "rgb(40, 44, 52)",
     },
     error: {
       main: "#ef5350",
@@ -275,7 +271,7 @@ export const DarkTheme = createTheme({
     },
     text: {
       primary: "#FFFFFF",
-      secondary: "#B8BABE",
+      secondary: 'rgb(171, 178, 191)',
     },
     circle: {
       main: "#9FD2DB",
