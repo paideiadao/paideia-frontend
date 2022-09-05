@@ -49,7 +49,6 @@ const Blockquote: FC<BlockquoteProps> = ({ small, noIndent, sx, children }) => {
           {children}
         </Typography>
       </Grid>
-    </Grid>
     </Box>
   );
 };
