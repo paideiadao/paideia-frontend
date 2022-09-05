@@ -17,11 +17,18 @@ import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
 import { LightTheme } from "@theme/theme";
 import { deviceWrapper } from "@components/utilities/Style";
+import { useRouter } from "next/router";
+import useSWR from "swr";
+import { getBaseUrl, fetcher } from "@lib/utilities";
 
 const Dashboard: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const themeContext = React.useContext<IThemeContext>(ThemeContext);
-  return (
+  const daoData = globalContext.api.daoData;
+
+  return daoData === undefined ? (
+    <>...</>
+  ) : (
     <Box sx={{ width: "100%" }}>
       <Box
         sx={{
@@ -168,7 +175,7 @@ const Dashboard: React.FC = () => {
           </Box>
 
           <Box sx={{ mt: ".5rem" }}>
-            <Header title="Welcome to Paideia" />
+            <Header title={`Welcome to ${daoData.dao_name}`} />
             <FinancialSummary />
             <ActiveProposals />
             <CurrentDistributions />

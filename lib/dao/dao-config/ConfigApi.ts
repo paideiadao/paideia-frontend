@@ -1,4 +1,5 @@
 import { IAlerts } from "@components/utilities/Alert";
+import { AppApi } from "@lib/AppApi";
 import {
   IBasicInformation,
   IGovernance,
@@ -15,16 +16,13 @@ export interface IConfigData {
 }
 
 export default class ConfigApi extends AbstractApi {
+  api: AppApi;
   data: IConfigData;
   setData: Function;
 
-  constructor(
-    alert: IAlerts[],
-    setAlert: Function,
-    data: IConfigData,
-    setData: Function
-  ) {
-    super(alert, setAlert);
+  constructor(api: AppApi, data: IConfigData, setData: Function) {
+    super();
+    this.api = api;
     this.data = data;
     this.setData = setData;
   }

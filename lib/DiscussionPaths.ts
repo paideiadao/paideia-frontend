@@ -29,14 +29,3 @@ export const paths: GetStaticPaths = async () => {
     fallback: false,
   };
 };
-
-export const props: GetStaticProps = async ({ params }) => {
-  const daoData = {
-    daoId: params.id,
-  };
-  return {
-    props: {
-      daoData,
-    },
-  };
-};

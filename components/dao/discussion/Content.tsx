@@ -8,6 +8,7 @@ import * as React from "react";
 
 const Content: React.FC = () => {
   const context = React.useContext<IDiscussionContext>(DiscussionContext);
+
   return (
     <Box
       sx={{

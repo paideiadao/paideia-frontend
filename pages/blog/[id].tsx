@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 import { useRouter } from "next/router";
 import {
   Container,
@@ -28,11 +28,9 @@ const navLinks: INavLink[] = [
   },
 ];
 
-interface IBlogPostProps {
+interface IBlogPostProps {}
 
-}
-
-const BlogPost: FC<IBlogPostProps> = ({ }) => {
+const BlogPost: FC<IBlogPostProps> = ({}) => {
   const router = useRouter();
   const { id } = router.query;
   return (
@@ -56,7 +54,7 @@ const BlogPost: FC<IBlogPostProps> = ({ }) => {
         titleLineTwo="Post"
         subTitleOne="Don't miss out on any of the latest updates "
         subTitleTwo="from our great writers"
-        sx={{ overflow: 'hidden' }}
+        sx={{ overflow: "hidden" }}
       />
       <Container id="navContainer">
         <PageNav navLinks={navLinks}>
@@ -119,6 +117,7 @@ const BlogPost: FC<IBlogPostProps> = ({ }) => {
               At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
             </Typography>
 
+
             <Typography variant="h5">
               Unordered List
             </Typography>
@@ -148,12 +147,13 @@ const BlogPost: FC<IBlogPostProps> = ({ }) => {
                 disablePadding
                 sx={{
                   pl: "40px",
+
                   fontSize: "16px",
                   lineHeight: "24px",
                   letterSpacing: "0.0225em",
                   listStyleType: "circle",
                   "& li": {
-                    display: 'list-item',
+                    display: "list-item",
                     pl: 0,
                   },
                 }}
@@ -172,7 +172,7 @@ const BlogPost: FC<IBlogPostProps> = ({ }) => {
                     letterSpacing: "0.0225em",
                     listStyleType: "disc",
                     "& li": {
-                      display: 'list-item',
+                      display: "list-item",
                       pl: 0,
                     },
                   }}
@@ -190,7 +190,6 @@ const BlogPost: FC<IBlogPostProps> = ({ }) => {
                 democratic processes
               </ListItem>
             </List>
-
             <Typography variant="h5">
               Ordered List
             </Typography>
@@ -223,7 +222,7 @@ const BlogPost: FC<IBlogPostProps> = ({ }) => {
                   letterSpacing: "0.0225em",
                   listStyleType: "upper-alpha",
                   "& li": {
-                    display: 'list-item',
+                    display: "list-item",
                     pl: 0,
                   },
                 }}
@@ -241,7 +240,7 @@ const BlogPost: FC<IBlogPostProps> = ({ }) => {
                     letterSpacing: "0.0225em",
                     listStyleType: "upper-roman",
                     "& li": {
-                      display: 'list-item',
+                      display: "list-item",
                       pl: 0,
                     },
                   }}
@@ -255,7 +254,6 @@ const BlogPost: FC<IBlogPostProps> = ({ }) => {
               <ListItem>Test ordered list</ListItem>
               <ListItem>Test ordered list</ListItem>
             </List>
-
             <Typography variant="body2">
               Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat…
             </Typography>

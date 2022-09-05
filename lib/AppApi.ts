@@ -1,29 +1,28 @@
 import { AbstractApi } from "./utilities";
 import { Theme } from "@mui/material";
 import { CreationApi } from "./creation/CreationApi";
+import { IAlerts } from "@components/utilities/Alert";
 
 export class AppApi extends AbstractApi {
   theme: Theme;
   setTheme: Function;
-  daoId: string;
-  setDaoId: Function;
-  constructor(
-    _alert: any,
-    _setAlert: Function,
-    _theme: Theme,
-    _setTheme: Function,
-    _daoId: string,
-    _setDaoId: Function
-  ) {
-    super(_alert, _setAlert);
-    this.theme = _theme;
-    this.setTheme = _setTheme;
-    this.daoId = _daoId;
-    this.setDaoId = _setDaoId;
-  }
+  daoData: any;
+  setDaoData: Function;
 
-  async getDaos(): Promise<any> {
-    let res = await this.get<any>("/dao");
-    return res;
+  constructor(
+    alert: IAlerts[],
+    setAlert: (val: IAlerts[]) => void,
+    theme: Theme,
+    setTheme: Function,
+    daoData: any,
+    setDaoData: Function
+  ) {
+    super();
+    this.alert = alert;
+    this.setAlert = setAlert;
+    this.theme = theme;
+    this.setTheme = setTheme;
+    this.daoData = daoData;
+    this.setDaoData = setDaoData;
   }
 }

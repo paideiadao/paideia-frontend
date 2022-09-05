@@ -18,7 +18,7 @@ import {
   AccordionDetails,
   Link,
   useMediaQuery,
-  IconButton
+  IconButton,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import ExpandMore from "@mui/icons-material/ExpandMore";
@@ -26,9 +26,9 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import SectionHeading from "@components/SectionHeading";
 import Blockquote from "@components/Blockquote";
 import Image from "next/image";
-import { DarkTheme } from '@theme/theme';
-import DiscordIcon from '@components/svgs/DiscordIcon';
-import TelegramIcon from '@components/svgs/TelegramIcon';
+import { DarkTheme } from "@theme/theme";
+import DiscordIcon from "@components/svgs/DiscordIcon";
+import TelegramIcon from "@components/svgs/TelegramIcon";
 
 interface INavLink {
   name: string;
@@ -590,47 +590,47 @@ const Education: FC = () => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            textAlign: 'center',
+            textAlign: "center",
           }}
         >
-              <Typography
-                sx={{
-                  fontFamily: '"Space Grotesk", sans-serif',
-                  fontWeight: "600",
-                  fontSize: "34px",
-                  lineHeight: "42px",
-                  mb: '12px',
-                }}
-              >
-                Any other questions?
-              </Typography>
-              <IconButton
-                href="https://discord.gg/J3KDrtCFEn"
-                target="_blank"
-                sx={{
-                  color: '#fff',
-                  background: '#007A99',
-                  '&:hover': {
-                    background: '#00566B'
-                  },
-                  mr: '24px',
-                }}
-              >
-                <DiscordIcon />
-              </IconButton>
-              <IconButton
-                href="https://t.me/paideiaDAO"
-                target="_blank"
-                sx={{
-                  color: '#fff',
-                  background: '#007A99',
-                  '&:hover': {
-                    background: '#00566B'
-                  }
-                }}
-              >
-                <TelegramIcon />
-              </IconButton>
+          <Typography
+            sx={{
+              fontFamily: '"Space Grotesk", sans-serif',
+              fontWeight: "600",
+              fontSize: "34px",
+              lineHeight: "42px",
+              mb: "12px",
+            }}
+          >
+            Any other questions?
+          </Typography>
+          <IconButton
+            href="https://discord.gg/J3KDrtCFEn"
+            target="_blank"
+            sx={{
+              color: "#fff",
+              background: "#007A99",
+              "&:hover": {
+                background: "#00566B",
+              },
+              mr: "24px",
+            }}
+          >
+            <DiscordIcon />
+          </IconButton>
+          <IconButton
+            href="https://t.me/paideiaDAO"
+            target="_blank"
+            sx={{
+              color: "#fff",
+              background: "#007A99",
+              "&:hover": {
+                background: "#00566B",
+              },
+            }}
+          >
+            <TelegramIcon />
+          </IconButton>
         </Box>
       </Container>
     </>

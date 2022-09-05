@@ -1,16 +1,25 @@
 import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
-import { Box } from "@mui/material";
+import { Box, Skeleton } from "@mui/material";
 import * as React from "react";
 
-const DiscussionInfo: React.FC = () => {
+export interface IDataComponent {
+  data: any;
+}
+
+const DiscussionInfo: React.FC<IDataComponent> = (props) => {
+  console.log(props);
   return (
     <>
       <CapsInfo title="Discussion Content" />
-      <Box
-        dangerouslySetInnerHTML={{
-          __html: "<p>Attachments should have a separate tab!</p>",
-        }}
-      ></Box>
+      {props.data === undefined ? (
+        <Skeleton animation="wave" width="100%" />
+      ) : (
+        <Box
+          dangerouslySetInnerHTML={{
+            __html: props.data.content,
+          }}
+        ></Box>
+      )}
     </>
   );
 };

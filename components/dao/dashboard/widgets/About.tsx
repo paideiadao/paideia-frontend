@@ -1,8 +1,11 @@
 import * as React from "react";
 import { CapsInfo } from "../../../creation/utilities/HeaderComponents";
 import { Box, Paper } from "@mui/material";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 
 const About: React.FC = () => {
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
+  const daoData = globalContext.api.daoData;
   return (
     <Paper
       elevation={0}
@@ -44,7 +47,7 @@ const About: React.FC = () => {
         </Box>
       </Box>
       <Box sx={{ width: "100%", fontSize: ".9rem", mt: ".5rem" }}>
-        Short bio here...
+        {daoData.dao_short_description}
       </Box>
       <Box sx={{ fontSize: ".7rem", color: "text.secondary", mt: ".5rem" }}>
         Active since 23 March 2021

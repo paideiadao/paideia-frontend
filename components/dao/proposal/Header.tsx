@@ -18,13 +18,13 @@ const CreateHeader: React.FC<{ type?: string }> = (props) => {
         <Link
           href={
             router.pathname.includes("discussion") ||
-              router.pathname.includes("proposal")
+            router.pathname.includes("proposal")
               ? id === undefined
                 ? "/dao/create"
                 : `/dao/${id}/create`
               : id === undefined
-                ? "/dao/proposals/all"
-                : `/dao/${id}/proposals/all`
+              ? "/dao/proposals/all"
+              : `/dao/${id}/proposals/all`
           }
         >
           <Button
@@ -48,9 +48,9 @@ const CreateHeader: React.FC<{ type?: string }> = (props) => {
       </Box>
       <Typography
         sx={{
-          mt: '16px',
-          mb: '16px',
-          fontSize: '0.9rem',
+          mt: "16px",
+          mb: "16px",
+          fontSize: "0.9rem",
         }}
       >
         What do you want to do?

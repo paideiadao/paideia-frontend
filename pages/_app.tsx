@@ -32,9 +32,10 @@ const daoVariants = {
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
+  const [daoData, setDaoData] = React.useState(undefined);
+
   const [alert, setAlert] = React.useState<IAlerts[]>([]);
   const router = useRouter();
-  const [daoId, setDaoId] = React.useState<any>(router.query.id);
 
   React.useEffect(() => {
     setTheme(localStorage.getItem("theme") === "dark" ? DarkTheme : LightTheme);
@@ -45,7 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
     localStorage.setItem("theme", temp);
   }, [theme]);
 
-  const api = new AppApi(alert, setAlert, theme, setTheme, daoId, setDaoId);
+  const api = new AppApi(alert, setAlert, theme, setTheme, daoData, setDaoData);
   return (
     <>
       <Head>

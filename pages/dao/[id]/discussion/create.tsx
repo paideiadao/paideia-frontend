@@ -19,12 +19,13 @@ import Layout from "@components/dao/Layout";
 import { deviceWrapper } from "@components/utilities/Style";
 import { getRandomImage } from "@components/utilities/images";
 import { IFile } from "@lib/creation/Interfaces";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 
 export interface IDiscussion {
   name: string;
   category: string;
   image?: IFile;
-  references: IProposal[];
+  references: number[];
   content: string;
   date?: Date;
   likes?: number;
@@ -37,7 +38,6 @@ export interface IDiscussion {
 }
 
 const CreateDiscussion: React.FC = () => {
-  const [alert, setAlert] = React.useState({ show: false });
   const [value, setValue] = React.useState<IDiscussion>({
     name: "",
     category: "",
@@ -50,10 +50,10 @@ const CreateDiscussion: React.FC = () => {
   });
   const [publish, setPublish] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
-
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const router = useRouter();
   const { id } = router.query;
-  const api = new DiscussionApi(alert, setAlert, value, setValue);
+  const api = new DiscussionApi(globalContext.api, value, setValue);
 
   return (
     <DiscussionContext.Provider value={{ api }}>
@@ -155,10 +155,7 @@ const CreateDiscussion: React.FC = () => {
             <Button
               variant="contained"
               sx={{ width: "50%" }}
-              onClick={() => {
-                console.log(value, "call api here...");
-                setPublish(true);
-              }}
+              onClick={() => setPublish(true)}
             >
               Publish
             </Button>
@@ -196,7 +193,34 @@ const CreateDiscussion: React.FC = () => {
                   </Button>
                 )}
                 <LoadingButton
-                  onClick={() => (loading ? null : setLoading(true))}
+                  onClick={async () => {
+                    if (!loading) {
+                      setLoading(true);
+                      try {
+                        let imgRes = await api.uploadFile(value.image.file);
+                        let res = await api.create(imgRes.data.image_url);
+                        if (res.status == 200) {
+                          router.push(
+                            `/dao/${id === undefined ? "" : id}/discussion/${
+                              res.data.id
+                            }`
+                          );
+                        } else {
+                          api.api.showAlert(
+                            "Error adding discussion. Please try again.",
+                            "error"
+                          );
+                          setLoading(false);
+                        }
+                      } catch {
+                        api.api.showAlert(
+                          "Unknown error adding discussion. Please try again.",
+                          "error"
+                        );
+                        setLoading(false);
+                      }
+                    }
+                  }}
                   startIcon={<PublishIcon />}
                   loading={loading}
                   loadingPosition="start"

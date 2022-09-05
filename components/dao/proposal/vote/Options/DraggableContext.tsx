@@ -39,7 +39,10 @@ import { ISupport } from "../YesNo/Actions/Support";
 import Support from "./Actions/Support";
 import Quorum from "./Actions/Quorum";
 import { IQuorum } from "../YesNo/Actions/Quorum";
-import { defaultOptimisticGovernanceData, IOptimisticGovernance } from "../YesNo/Actions/OptimisticGovernance";
+import {
+  defaultOptimisticGovernanceData,
+  IOptimisticGovernance,
+} from "../YesNo/Actions/OptimisticGovernance";
 import OptimisticGovernance from "./Actions/OptimisticGovernance";
 
 // fake data generator
@@ -255,7 +258,6 @@ const DraggableContext: React.FC<{ name: string }> = (props) => {
           }}
           wallets={(item.data as IOptimisticGovernance).wallets}
           activated={(item.data as IOptimisticGovernance).activated}
-
         />
       );
     } else {
