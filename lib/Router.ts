@@ -36,6 +36,7 @@ import DaoConfig from "@pages/dao/[id]/dao-config";
 import ProposalAddendum from "@pages/dao/proposal/[proposal_id]/addendum/[addendum_id]";
 import Profile from "@pages/dao/[id]/profile";
 import Member from "@pages/dao/[id]/member/[member_id]";
+import Terminate from "@pages/dao/dao-config/terminate";
 
 export const isDao = (Component: any) => {
   return (
@@ -74,6 +75,6 @@ export const isDao = (Component: any) => {
     Component === Send ||
     Component === Burn ||
     Component === DaoConfig ||
-    Component === ProposalAddendum
+    Component === ProposalAddendum || Component === Terminate
   );
 };

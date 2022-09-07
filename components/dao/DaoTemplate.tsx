@@ -15,7 +15,7 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
   const router = useRouter();
   const { id } = router.query;
   const { data: daoData, error: daoError } = useSWR(
-    `${getBaseUrl()}/dao/${id === undefined ? 1 : id}`,
+    `${getBaseUrl()}/dao/${id === undefined ? 'paideia' : id}`,
     fetcher,
     {
       revalidateIfStale: false,

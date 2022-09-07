@@ -22,7 +22,6 @@ interface IReference {
 const DiscussionReferences: React.FC<IDataComponent> = (props) => {
   const router = useRouter();
   const { id, discussion_id } = router.query;
-  console.log(props, "skeep");
   return props.data === undefined ? (
     <>Loading Here...</>
   ) : (

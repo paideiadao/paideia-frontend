@@ -22,10 +22,10 @@ const AbstractAlert: React.FC<IAbstractAlert> = (props) => {
     props.alerts.length > 0 && (
       <Box
         sx={{
-          position: "absolute",
+          position: "fixed",
           top: "4rem",
           right: deviceWrapper(".5rem", "1rem"),
-          zIndex: 1000,
+          zIndex: 100000,
         }}
       >
         {props.alerts.map((alert: IAlerts, c: number) => (

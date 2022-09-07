@@ -42,8 +42,8 @@ export const attrOrUndefined = (
   }
 };
 
-export const getDaoPath = (id: number, path: string) => {
-  return `/dao/${id === undefined || isNaN(id) ? "" : id}${path}`;
+export const getDaoPath = (id: string, path: string) => {
+  return `/dao/${id === undefined ? "" : id}${path}`;
 };
 
 export const getBaseUrl = () => {

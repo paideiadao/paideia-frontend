@@ -17,9 +17,6 @@ import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
 import { LightTheme } from "@theme/theme";
 import { deviceWrapper } from "@components/utilities/Style";
-import { useRouter } from "next/router";
-import useSWR from "swr";
-import { getBaseUrl, fetcher } from "@lib/utilities";
 
 const Dashboard: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
@@ -159,6 +156,7 @@ const Dashboard: React.FC = () => {
                   <Button
                     variant="contained"
                     color="secondary"
+                    size='small'
                     sx={{
                       fontSize: ".8rem",
                       mt: ".5rem",

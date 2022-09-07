@@ -76,7 +76,7 @@ const ActiveProposal: React.FC = () => {
               c={c}
               scrollable
               key={"proposal-card-key-" + c}
-              width={deviceStruct("25%", "25%", "35%", "33%", "34%")}
+              width={deviceStruct("25%", "25%", "35%", "33%", "26%")}
             />
           ))
         )}
