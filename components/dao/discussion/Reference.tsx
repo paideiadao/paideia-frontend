@@ -44,7 +44,7 @@ const Reference: React.FC<{ context?: boolean }> = (props) => {
   }, [context.api.value.references]);
 
   const { data, error } = useSWR(
-    `${getBaseUrl()}/proposals/by_dao_id/${id === undefined ? 1 : id}`,
+    `/proposals/by_dao_id/${id === undefined ? 1 : id}`,
     fetcher
   );
   if (error) {

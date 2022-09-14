@@ -17,7 +17,7 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import DiscussionInfo from "@components/dao/discussion/DiscussionInfo";
-import Comments from "@components/dao/discussion/Comments";
+import Comments, { IComment } from "@components/dao/discussion/Comments";
 import DiscussionReferences from "@components/dao/discussion/DiscussionReferences";
 import Layout from "@components/dao/Layout";
 import { deviceWrapper } from "@components/utilities/Style";
@@ -26,12 +26,14 @@ import useSWR from "swr";
 import { attrOrUndefined, fetcher, getBaseUrl } from "@lib/utilities";
 import Follow, { FollowMobile } from "@components/utilities/Follow";
 import Details from "@components/dao/discussion/Details";
+import useDidMountEffect from "@components/utilities/hooks";
 
 const Discussion: React.FC = () => {
   const themeContext = React.useContext(ThemeContext);
   const router = useRouter();
   const { discussion_id, id } = router.query;
   const [loaded, setLoaded] = React.useState<boolean>(false);
+  const [liveComments, setLiveComments] = React.useState<IComment[]>([]);
 
   React.useEffect(() => {
     setLoaded(true);
@@ -48,7 +50,7 @@ const Discussion: React.FC = () => {
 
   const { data, error } = useSWR(
     discussion_id !== undefined && loaded
-      ? `${getBaseUrl()}/proposals/${discussion_id}`
+      ? `/proposals/${discussion_id}`
       : null,
     fetcher
   );
@@ -62,7 +64,25 @@ const Discussion: React.FC = () => {
     }
   }
 
-  console.log(data);
+  useDidMountEffect(() => {
+    let ws = new WebSocket(
+      `ws://localhost:8000/api/proposals/ws/${discussion_id}`
+    );
+    ws.onmessage = (event: any) => {
+      try {
+        console.log("WS:", event);
+        let wsRes = JSON.parse(event.data);
+        console.log(wsRes);
+        let temp = [...liveComments];
+        temp.push(wsRes.comment);
+        setLiveComments(temp);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    return () => ws.close();
+  }, [discussion_id]);
 
   return (
     <Layout width={deviceWrapper("92%", "97%")}>
@@ -410,7 +430,12 @@ const Discussion: React.FC = () => {
                   scrollButtons="auto"
                 >
                   <Tab label="Discussion Info" value="1" />
-                  <Tab label={`Comments | ${data.comments.length}`} value="2" />
+                  <Tab
+                    label={`Comments | ${
+                      data.comments.length + liveComments.length
+                    }`}
+                    value="2"
+                  />
                   <Tab
                     label={`Referenced | ${data.references_meta.length}`}
                     value="3"
@@ -427,7 +452,7 @@ const Discussion: React.FC = () => {
               </TabPanel>
               <TabPanel value="2" sx={{ pl: 0, pr: 0 }}>
                 <Comments
-                  data={attrOrUndefined(data, "comments")}
+                  data={data.comments.concat(liveComments)}
                   id={parseInt(discussion_id as string)}
                 />
               </TabPanel>

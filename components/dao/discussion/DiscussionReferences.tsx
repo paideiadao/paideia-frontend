@@ -49,10 +49,7 @@ const DiscussionReferences: React.FC<IDataComponent> = (props) => {
           />
         </Box>
         <Link
-          href={getDaoPath(
-            parseInt(id as string),
-            `/proposal/create?r=${discussion_id}`
-          )}
+          href={getDaoPath(id as string, `/proposal/create?r=${discussion_id}`)}
         >
           <Button
             sx={{
@@ -97,7 +94,7 @@ const DiscussionCard: React.FC<IReference> = (props) => {
     >
       <Avatar
         // src={`https://picsum.photos/200/200/?random=${props.id}`}
-        src={getRandomImage()}
+        src={props.img}
         sx={{
           width: deviceWrapper("2.5rem", "3rem"),
           height: deviceWrapper("2.5rem", "3rem"),
@@ -143,7 +140,7 @@ const DiscussionCard: React.FC<IReference> = (props) => {
 
         <Link
           href={`${getDaoPath(
-            parseInt(id as string),
+            id as string,
             `/${props.is_proposal ? "proposal" : "discussion"}/${props.id}`
           )}`}
         >

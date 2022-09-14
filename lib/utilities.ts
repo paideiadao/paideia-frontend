@@ -16,7 +16,14 @@ export const getUserId = () => {
   return parseInt(localStorage.getItem("user_id"));
 };
 
-export const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+export const getBaseUrl = () => {
+  return process.env.NODE_ENV == "development"
+    ? "http://localhost:8000/api"
+    : process.env.API_URL;
+};
+
+export const fetcher = (url: string) =>
+  axios.get(getBaseUrl() + url).then((res) => res.data);
 
 interface IUpdateUser {
   alias?: string;
@@ -44,10 +51,6 @@ export const attrOrUndefined = (
 
 export const getDaoPath = (id: string, path: string) => {
   return `/dao/${id === undefined ? "" : id}${path}`;
-};
-
-export const getBaseUrl = () => {
-  return "http://localhost:8000/api";
 };
 
 export const addDays = (days: number, date: Date = new Date()): Date => {

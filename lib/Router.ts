@@ -75,6 +75,7 @@ export const isDao = (Component: any) => {
     Component === Send ||
     Component === Burn ||
     Component === DaoConfig ||
-    Component === ProposalAddendum || Component === Terminate
+    Component === ProposalAddendum ||
+    Component === Terminate
   );
 };

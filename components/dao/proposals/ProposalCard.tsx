@@ -139,7 +139,7 @@ interface ILikesDislikes {
   putUrl?: string;
 }
 
-const getUserSide = (likes: number[], dislikes: number[]) => {
+export const getUserSide = (likes: number[], dislikes: number[]) => {
   const userId = parseInt(localStorage.getItem("user_id"));
   return likes.indexOf(userId) > -1
     ? 1
@@ -527,10 +527,6 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
 
   const api = new FollowApi(globalContext.api, "/proposals/follow/" + props.id);
 
-  useDidMountEffect(() => {
-    api.follow(favorited ? "follow" : "unfollow");
-  }, [favorited]);
-
   const router = useRouter();
   const { id } = router.query;
 
@@ -563,6 +559,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
               cursor: "pointer",
             }}
             onClick={() => {
+              api.follow(!favorited ? "follow" : "unfollow");
               setFavorited(!favorited);
             }}
           >
@@ -610,7 +607,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
                 <LikesDislikes
                   likes={props.likes.length}
                   dislikes={props.dislikes.length}
-                  userSide={userSide}
+                  userSide={getUserSide(props.likes, props.dislikes)}
                   putUrl={`/proposals/like/${props.id}`}
                 />
               </Box>

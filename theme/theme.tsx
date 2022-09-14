@@ -91,9 +91,9 @@ export const mainTheme = createTheme({
     MuiTypography: {
       defaultProps: {
         variantMapping: {
-          body2: 'p',
-        }
-      }
+          body2: "p",
+        },
+      },
     },
   },
   breakpoints: {
@@ -125,7 +125,7 @@ export const LightTheme = createTheme({
     },
     text: {
       primary: "#000000",
-      secondary: 'rgb(56, 58, 66)',
+      secondary: "rgb(56, 58, 66)",
     },
     // @ts-ignore
     linkHover: {
@@ -147,7 +147,7 @@ export const LightTheme = createTheme({
       main: "#FFFFFF",
     },
     background: {
-      paper: 'rgba(0,0,0,0.1)'
+      paper: "rgba(0,0,0,0.1)",
     },
     primary: {
       // light: will be calculated from palette.primary.main,
@@ -271,7 +271,7 @@ export const DarkTheme = createTheme({
     },
     text: {
       primary: "#FFFFFF",
-      secondary: 'rgb(171, 178, 191)',
+      secondary: "rgb(171, 178, 191)",
     },
     circle: {
       main: "#9FD2DB",

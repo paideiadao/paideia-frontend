@@ -156,7 +156,7 @@ const Dashboard: React.FC = () => {
                   <Button
                     variant="contained"
                     color="secondary"
-                    size='small'
+                    size="small"
                     sx={{
                       fontSize: ".8rem",
                       mt: ".5rem",

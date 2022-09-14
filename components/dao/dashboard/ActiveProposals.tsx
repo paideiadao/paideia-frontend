@@ -32,7 +32,7 @@ const ActiveProposal: React.FC = () => {
   const router = useRouter();
   const { id } = router.query;
   const { data: proposalData, error: proposalError } = useSWR(
-    `${getBaseUrl()}/proposals/by_dao_id/${id === undefined ? 1 : id}`,
+    `/proposals/by_dao_id/${id === undefined ? 1 : id}`,
     fetcher
   );
 

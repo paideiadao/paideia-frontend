@@ -19,13 +19,6 @@ export default class CommentsApi extends AbstractApi {
     this.proposalId = proposalId;
   }
 
-  webSocket(): WebSocket {
-    const ws = new WebSocket(
-      `ws://localhost:8000/api/proposals/ws/${this.proposalId}`
-    );
-    return ws;
-  }
-
   commentData(comment: IComment): ICommentPut {
     let user_id = parseInt(localStorage.getItem("user_id"));
     return {

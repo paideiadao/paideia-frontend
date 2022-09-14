@@ -32,7 +32,7 @@ const AbstractAlert: React.FC<IAbstractAlert> = (props) => {
           <Alert
             severity={alert.severity}
             key={`alert-${c}`}
-            sx={{ position: "relative", minWidth: "250px" }}
+            sx={{ position: "relative", minWidth: "250px", mb: ".5rem" }}
           >
             {alert.content}
             <IconButton
