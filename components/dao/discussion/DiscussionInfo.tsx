@@ -7,7 +7,6 @@ export interface IDataComponent {
 }
 
 const DiscussionInfo: React.FC<IDataComponent> = (props) => {
-  console.log(props);
   return (
     <>
       <CapsInfo title="Discussion Content" />

@@ -197,7 +197,6 @@ const CreateDiscussion: React.FC = () => {
                     if (!loading) {
                       setLoading(true);
                       try {
-                        console.log(value.image);
                         let image;
                         if (value.image.file === undefined) {
                           let defaultImage = await fetch(value.image.url);

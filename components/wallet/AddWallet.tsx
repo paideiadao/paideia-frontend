@@ -129,6 +129,7 @@ const AddWallet: React.FC = () => {
       connected: false,
       addresses: [],
     });
+    globalContext.api.setDaoUserData(undefined);
   };
 
   /**
@@ -194,7 +195,7 @@ const AddWallet: React.FC = () => {
             );
             globalContext.api
               .signMessage(signingMessage.data.tokenUrl, response)
-              .then((data) => {
+              .then(async (data) => {
                 localStorage.setItem("jwt_token_login", data.data.access_token);
                 localStorage.setItem("user_id", data.data.id);
                 localStorage.setItem("alias", data.data.alias);
@@ -203,17 +204,22 @@ const AddWallet: React.FC = () => {
                   WALLET_ADDRESS,
                   signingMessage.data.address
                 );
+                await globalContext.api.getOrCreateDaoUser();
+              })
+              .catch((e) => {
+                globalContext.api.error("Unable to login with Nautilus");
+                clearWallet();
               });
           }
         });
-      // setWallet(address);
-      // // update dApp state
+
       setDAppWallet({
         connected: true,
         addresses: addressData,
       });
     } catch (e) {
       console.log(e);
+      clearWallet();
       setLoading(false);
     }
     setLoading(false);
@@ -313,29 +319,37 @@ const AddWallet: React.FC = () => {
               !isAddressValid(wallet) && (
                 <Button
                   onClick={async () => {
-                    // add try catch here...
-                    let res = await globalContext.api.mobileLogin(walletInput);
-                    console.log("res", res);
-                    let ws = globalContext.api.webSocket(
-                      res.data.verificationId
-                    );
-                    ws.onmessage = (event) => {
-                      try {
-                        console.log("WS:", event);
-                        let wsRes = JSON.parse(event.data);
-                        localStorage.setItem(
-                          "jwt_token_login",
-                          wsRes.access_token
-                        );
-                        localStorage.setItem("user_id", wsRes.id);
-                        localStorage.setItem("alias", wsRes.alias);
-                        localStorage.setItem("wallet_address", walletInput);
-                        handleSubmitWallet();
-                      } catch (e) {
-                        console.log(e);
-                      }
-                    };
-                    setQrCode(res.data.signingRequestUrl);
+                    try {
+                      // add try catch here...
+                      let res = await globalContext.api.mobileLogin(
+                        walletInput
+                      );
+                      let ws = globalContext.api.webSocket(
+                        res.data.verificationId
+                      );
+                      ws.onmessage = (event) => {
+                        try {
+                          let wsRes = JSON.parse(event.data);
+                          localStorage.setItem(
+                            "jwt_token_login",
+                            wsRes.access_token
+                          );
+                          localStorage.setItem("user_id", wsRes.id);
+                          localStorage.setItem("alias", wsRes.alias);
+                          localStorage.setItem("wallet_address", walletInput);
+                          handleSubmitWallet();
+                          globalContext.api.getOrCreateDaoUser();
+                        } catch (e) {
+                          console.log(e);
+                        }
+                      };
+                      setQrCode(res.data.signingRequestUrl);
+                    } catch (e) {
+                      globalContext.api.error(
+                        "Error logging in with Mobile Wallet"
+                      );
+                      clearWallet();
+                    }
                   }}
                   disabled={walletInput === ""}
                   variant="contained"

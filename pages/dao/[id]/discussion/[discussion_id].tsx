@@ -70,9 +70,7 @@ const Discussion: React.FC = () => {
     );
     ws.onmessage = (event: any) => {
       try {
-        console.log("WS:", event);
         let wsRes = JSON.parse(event.data);
-        console.log(wsRes);
         let temp = [...liveComments];
         temp.push(wsRes.comment);
         setLiveComments(temp);

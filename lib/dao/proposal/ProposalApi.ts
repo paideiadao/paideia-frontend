@@ -57,7 +57,6 @@ export default class ProposalApi extends AbstractApi {
 
   create(): Promise<any> | void {
     const data = this.cleanData();
-    console.log(this.value);
     return this.post("/proposals", data);
   }
 }

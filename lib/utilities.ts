@@ -156,8 +156,6 @@ export class AbstractApi {
     );
 
     if (res !== false) {
-      console.log(res);
-      console.log("token", res.data.access_token);
       localStorage.setItem("jwt_token_login", res.data.access_token);
     }
   }
@@ -196,7 +194,7 @@ export class AbstractApi {
 
   async post<T>(
     url: string,
-    body: any,
+    body: any = undefined,
     action: string = undefined,
     current: string = ""
   ): Promise<T> {

@@ -1,23 +1,10 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  IconButton,
-  InputAdornment,
-  TextField,
-} from "@mui/material";
+import { Avatar, Box, Button, InputAdornment, TextField } from "@mui/material";
 import * as React from "react";
 import nautilus from "@public/icons/nautilus.png";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import ClearIcon from "@mui/icons-material/Clear";
-import {
-  isAddressValid,
-  WALLET_ADDRESS,
-  WALLET_ADDRESS_LIST,
-} from "./AddWallet";
+import { isAddressValid } from "./AddWallet";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import { useWallet } from "./WalletContext";
-import useDidMountEffect from "@components/utilities/hooks";
 import { LoadingButton } from "@mui/lab";
 
 const Nautilus: React.FC<{
@@ -31,12 +18,10 @@ const Nautilus: React.FC<{
   loading: boolean;
   clear: Function;
 }> = (props) => {
-  const { wallet, setWallet, loggedIn, setLoggedIn, dAppWallet } = useWallet();
+  const { wallet, setWallet, loggedIn, dAppWallet } = useWallet();
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [changeLoading, setChangeLoading] = React.useState<number>(undefined);
-  const [runLoad, setRunLoad] = React.useState<boolean>(
-    !isAddressValid(wallet)
-  );
+
   React.useEffect(() => {
     const wrapper = async () => {
       props.setLoading(true);
@@ -164,7 +149,6 @@ const Nautilus: React.FC<{
                                           }
                                         )
                                         .then((data) => {
-                                          console.log("data here...", data);
                                           localStorage.setItem(
                                             "jwt_token_login",
                                             data.data.access_token
