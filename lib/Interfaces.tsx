@@ -17,8 +17,18 @@ export interface IDaoUserData {
   social_links: any;
   user_id: number;
   xp: number;
+  bio: string
 }
 
 export interface IDaoUserRes {
   data: IDaoUserData;
+}
+
+export interface IEditUser {
+  name: string,
+  profile_img_url: string,
+  bio: string,
+  level?: number,
+  xp?: number,
+  social_links: any
 }

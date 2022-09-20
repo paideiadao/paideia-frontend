@@ -1,15 +1,11 @@
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
-import { Avatar, Box, Button, Chip, LinearProgress } from "@mui/material";
+import { Box } from "@mui/material";
 import * as React from "react";
-import { GetStaticProps, GetStaticPaths } from "next";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import Link from "next/link";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import ProfileHeader from "@components/dao/profile/Header";
-import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
 import Proposals from "@components/dao/profile/Proposals";
 import Activity from "@components/dao/profile/Activity";
 import { useRouter } from "next/router";
@@ -17,10 +13,19 @@ import Layout from "../Layout";
 import { deviceWrapper } from "@components/utilities/Style";
 import AboutUser from "./AboutUser";
 import BackLink from "@components/utilities/BackLink";
+import { IProposalCard } from "../proposals/ProposalCard";
+import { IActivity } from "../activity/Activity";
+import { IDaoUserData } from "@lib/Interfaces";
 
-const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
-  props
-) => {
+interface IAbstractProfile {
+  edit?: boolean;
+  followed?: boolean;
+  data: IDaoUserData;
+  proposals: IProposalCard[];
+  activity: IActivity[];
+}
+
+const AbstractProfile: React.FC<IAbstractProfile> = (props) => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [value, setValue] = React.useState("1");
 
@@ -51,15 +56,28 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
         >
           <BackLink />
           <Box sx={{ mt: "1rem" }} />
-          <ProfileHeader edit={props.edit} followed={props.followed} />
+          <ProfileHeader
+            edit={props.edit}
+            followed={props.followed}
+            data={props.data}
+          />
           <Box sx={{ width: "100%", display: deviceWrapper("block", "none") }}>
-            <AboutUser />
+            {props.data !== undefined && (
+              <AboutUser
+                followers={props.data.followers}
+                created={0}
+                approved={0}
+              />
+            )}
           </Box>
           <Box>
             <TabContext value={value}>
               <Box sx={{ borderBottom: 1, borderColor: "border.main" }}>
                 <TabList onChange={handleChange}>
-                  <Tab label="Proposals | 5" value="1" />
+                  <Tab
+                    label={`Proposals | ${props.proposals.length}`}
+                    value="1"
+                  />
                   <Tab label="Activity" value="2" />
                 </TabList>
               </Box>
@@ -73,7 +91,13 @@ const AbstractProfile: React.FC<{ edit?: boolean; followed?: boolean }> = (
           </Box>
         </Box>
         <Box sx={{ width: "30%", display: deviceWrapper("none", "block") }}>
-          <AboutUser />
+          {props.data !== undefined && (
+            <AboutUser
+              followers={props.data.followers}
+              created={0}
+              approved={0}
+            />
+          )}
         </Box>
       </Box>
     </Layout>

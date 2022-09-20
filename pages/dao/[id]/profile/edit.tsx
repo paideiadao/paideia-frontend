@@ -17,8 +17,11 @@ import { SocialRow } from "@components/creation/design/Footer";
 import Layout from "@components/dao/Layout";
 import { deviceWrapper } from "@components/utilities/Style";
 import { IFile, ISocialLink } from "@lib/creation/Interfaces";
+import { LoadingButton } from "@mui/lab";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
+import useDidMountEffect from "@components/utilities/hooks";
 
-const ProfileEditImage: React.FC = () => {
+const ProfileEditImage: React.FC<{set: (val: IFile) => void}> = (props) => {
   const [file, setFile] = React.useState<IFile>({
     file: -1,
     url: Musk.src,
@@ -43,8 +46,14 @@ const ProfileEditImage: React.FC = () => {
         ...file,
         file: fileInput[0],
       });
+      props.set({
+        ...file,
+        file: fileInput[0],
+      })
     }
   }
+
+
   return (
     <Box
       sx={{
@@ -140,31 +149,42 @@ const Edit: React.FC<{ params: any }> = (props) => {
     username: string;
     shortBio: string;
     socialLinks: ISocialLink[];
-    alert: string;
+    img: IFile
   }>({
     username: "",
     shortBio: "",
+    img: undefined,
     socialLinks: [
       {
         socialNetwork: "",
         address: "",
       },
     ],
-    alert: undefined,
   });
 
-  React.useEffect(() => {
-    if (value.alert === "success") {
-      setTimeout(() => setValue({ ...value, alert: undefined }), 3000);
-    } else if (value.alert === "info") {
-      setTimeout(() => setValue({ ...value, alert: "success" }), 3000);
+  const [loading, setLoading] = React.useState<boolean>(false);
+
+  const appContext = React.useContext<IGlobalContext>(GlobalContext);
+
+  useDidMountEffect(() => {
+    let val = appContext.api.daoUserData
+    if (val !== undefined) {
+      console.log(val, 'val')
+      setValue({
+        username: val.name,
+        socialLinks: [],
+        img: {url: val.id.toString(), file: undefined},
+        shortBio: val.bio
+  
+      })
     }
-  }, [value.alert]);
+    
+  }, [appContext.api])
 
   return (
     <Layout>
       <Header title="Edit profile" large />
-      <ProfileEditImage />
+      <ProfileEditImage set={(val: IFile) => setValue({...value, img: val})}/>
       <TextField
         value={value.username}
         label="User name"
@@ -239,17 +259,38 @@ const Edit: React.FC<{ params: any }> = (props) => {
         >
           Cancel
         </Button>
-        <Button
+        <LoadingButton
           size="small"
           variant="contained"
           sx={{ width: "49%" }}
-          onClick={() => setValue({ ...value, alert: "info" })}
+          loadingPosition={"center"}
+          loading={false}
+          onClick={async () => {
+            setLoading(true)
+              let image = value.img.file;
+              console.log(image)
+              let imgRes = image === undefined  || image === -1 ? '' : await appContext.api.uploadFile(image);
+              await appContext.api.editUser({
+              name: value.username,
+              profile_img_url: imgRes === '' ? '' : imgRes.data.image_url,
+              bio: value.shortBio,
+              social_links: value.socialLinks
+            })
+          }}
         >
-          <Box sx={{ display: deviceWrapper("none", "block") }}>
-            {"Save Changes"}
-          </Box>
-          <Box sx={{ display: deviceWrapper("block", "none") }}>{"Save"}</Box>
-        </Button>
+          {!loading ? (
+            <>
+              <Box sx={{ display: deviceWrapper("none", "block") }}>
+                {"Save Changes"}
+              </Box>
+              <Box sx={{ display: deviceWrapper("block", "none") }}>
+                {"Save"}
+              </Box>
+            </>
+          ) : (
+            <Box>.</Box>
+          )}
+        </LoadingButton>
       </Box>
     </Layout>
   );

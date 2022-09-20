@@ -16,6 +16,16 @@ export const getUserId = () => {
   return parseInt(localStorage.getItem("user_id"));
 };
 
+export const snipAddress = (
+  val: string,
+  maxLength: number,
+  showNumber: number
+): string => {
+  return val.length > maxLength
+    ? val.slice(0, showNumber) + "....." + val.slice(-showNumber)
+    : val;
+};
+
 export const getBaseUrl = () => {
   return process.env.NODE_ENV == "development"
     ? "http://localhost:8000/api"
@@ -224,7 +234,7 @@ export class AbstractApi {
   async put<T>(
     url: string,
     body: any,
-    action: string,
+    action: string = '',
     current: string = ""
   ): Promise<T> {
     let self = this;

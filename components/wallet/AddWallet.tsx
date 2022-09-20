@@ -327,7 +327,7 @@ const AddWallet: React.FC = () => {
                       let ws = globalContext.api.webSocket(
                         res.data.verificationId
                       );
-                      ws.onmessage = (event) => {
+                      ws.onmessage = async (event) => {
                         try {
                           let wsRes = JSON.parse(event.data);
                           localStorage.setItem(
@@ -338,7 +338,7 @@ const AddWallet: React.FC = () => {
                           localStorage.setItem("alias", wsRes.alias);
                           localStorage.setItem("wallet_address", walletInput);
                           handleSubmitWallet();
-                          globalContext.api.getOrCreateDaoUser();
+                          await globalContext.api.getOrCreateDaoUser();
                         } catch (e) {
                           console.log(e);
                         }

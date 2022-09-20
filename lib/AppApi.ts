@@ -2,7 +2,7 @@ import { AbstractApi } from "./utilities";
 import { Theme } from "@mui/material";
 import { CreationApi } from "./creation/CreationApi";
 import { IAlerts } from "@components/utilities/Alert";
-import { IDaoUserData, IDaoUserRes } from "./Interfaces";
+import { IDaoUserData, IDaoUserRes, IEditUser } from "./Interfaces";
 
 export class AppApi extends AbstractApi {
   theme: Theme;
@@ -31,6 +31,10 @@ export class AppApi extends AbstractApi {
     this.setDaoData = setDaoData;
     this.daoUserData = daoUserData;
     this.setDaoUserData = setDaoUserData;
+  }
+
+  async editUser(data: IEditUser): Promise<any> {
+    return this.put(`/users/details/${this.daoUserData.user_id}?dao_id=${this.daoUserData.dao_id}`, data)
   }
 
   async getDaoUser(): Promise<any> {

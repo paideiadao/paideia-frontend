@@ -3,7 +3,6 @@ import {
   Badge,
   Box,
   Button,
-  ClickAwayListener,
   IconButton,
   Modal,
   Slide,
@@ -13,7 +12,6 @@ import { GlobalContext, IGlobalContext } from "../../../lib/AppContext";
 import { DarkTheme } from "@theme/theme";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Musk from "../../../public/profile/musk-full.png";
-import DarkSwitch from "../../utilities/DarkSwitch";
 import Link from "next/link";
 import { modalBackground } from "@components/utilities/modalBackground";
 import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
@@ -30,11 +28,11 @@ import LightFooter from "@public/dao/light-footer.png";
 import DarkFooter from "@public/dao/dark-footer.png";
 import DaoBio from "./DaoBio";
 import Contents from "./Contents";
-import CloseIcon from "@mui/icons-material/Close";
 import { useWallet } from "@components/wallet/WalletContext";
 import ConnectWallet from "@components/wallet/ConnectWallet";
 import { isAddressValid } from "@components/wallet/AddWallet";
 import { ProfilePopup } from "./Popups";
+import { snipAddress } from "@lib/utilities";
 
 export interface INav {
   setShowMobile: (val: boolean) => void;
@@ -156,9 +154,17 @@ const TopNav: React.FC<INav> = (props) => {
                     justifyContent: "center",
                   }}
                 >
-                  <Box sx={{ fontSize: ".9rem" }}>Alone Musk</Box>
+                  <Box sx={{ fontSize: ".9rem" }}>
+                    {globalContext.api.daoUserData !== undefined &&
+                      snipAddress(globalContext.api.daoUserData.name, 25, 5)}
+                  </Box>
                   <Box sx={{ color: "text.secondary", fontSize: ".7rem" }}>
-                    Lvl 7 | Philosopher
+                    Lvl{" "}
+                    {globalContext.api.daoUserData !== undefined &&
+                      globalContext.api.daoUserData.level}{" "}
+                    |{" "}
+                    {globalContext.api.daoUserData !== undefined &&
+                      globalContext.api.daoUserData.level}
                   </Box>
                 </Box>
               </Box>

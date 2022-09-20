@@ -36,7 +36,13 @@ const UserAttr: React.FC<{ label: string }> = (props) => {
   );
 };
 
-const AboutUser: React.FC = () => {
+interface IAboutUser {
+  followers: number[];
+  created: number;
+  approved: number;
+}
+
+const AboutUser: React.FC<IAboutUser> = (props) => {
   return (
     <Box
       sx={{
@@ -70,7 +76,9 @@ const AboutUser: React.FC = () => {
             }}
           >
             Followers
-            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>107</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>
+              {props.followers.length}
+            </Box>
           </Box>
           <Box
             sx={{
@@ -84,7 +92,9 @@ const AboutUser: React.FC = () => {
             }}
           >
             Created
-            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>13</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>
+              {props.created}
+            </Box>
           </Box>
           <Box
             sx={{
@@ -95,7 +105,9 @@ const AboutUser: React.FC = () => {
             }}
           >
             Approved
-            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>7</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>
+              {props.approved}
+            </Box>
           </Box>
         </Box>
         <Box sx={{ fontSize: ".9rem" }}>Short description here...</Box>
