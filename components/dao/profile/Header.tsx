@@ -20,7 +20,7 @@ interface ILevel {
   points: number;
 }
 
-let levels: ILevel[] = [
+export const levels: ILevel[] = [
   { name: "Citizen", points: 0 },
   { name: "Citizen", points: 100 },
   { name: "Citizen", points: 200 },
@@ -72,9 +72,8 @@ const ProfileHeader: React.FC<{
             width: deviceWrapper("8rem", "4.5rem"),
             height: deviceWrapper("8rem", "4.5rem"),
           }}
-        >
-          <img src={Musk.src} style={{ width: "100%", height: "100%" }} />
-        </Avatar>
+          src={props.data.profile_img_url}
+        ></Avatar>
         <Box
           sx={{ fontSize: "1.3rem", display: deviceWrapper("block", "none") }}
         >
@@ -88,7 +87,11 @@ const ProfileHeader: React.FC<{
             mb: "1.5rem",
           }}
         >
-          <EditFollow edit={props.edit} followed={props.followed} />
+          <EditFollow
+            edit={props.edit}
+            followed={props.followed}
+            user_id={props.data.user_id}
+          />
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
           <Box
@@ -118,7 +121,7 @@ const ProfileHeader: React.FC<{
                 mb: ".5rem",
               }}
             >
-              Lvl {props.data.level} | {props.data.level}
+              Lvl {props.data.level} | {levels[props.data.level].name}
               <Box sx={{ ml: "auto" }}>
                 <Button
                   onClick={handleOpen}
@@ -150,7 +153,11 @@ const ProfileHeader: React.FC<{
               ml: "auto",
             }}
           >
-            <EditFollow edit={props.edit} followed={props.followed} />
+            <EditFollow
+              edit={props.edit}
+              followed={props.followed}
+              user_id={props.data.user_id}
+            />
           </Box>
         </Box>
         <Modal open={open} onClose={handleClose}>

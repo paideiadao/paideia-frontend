@@ -5,8 +5,11 @@ import { activities } from "../dashboard/LatestActivity";
 import dateFormat from "dateformat";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import Musk from "../../../public/profile/musk-full.png";
+import { IActivity } from "../activity/Activity";
 
-const Activity: React.FC = () => {
+const Activity: React.FC<{ activities: IActivity[] }> = (props) => {
+  console.log(props.activities);
+
   return (
     <Box>
       <CapsInfo title={`User Activity`} />

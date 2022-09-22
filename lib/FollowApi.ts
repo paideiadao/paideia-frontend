@@ -20,16 +20,19 @@ export default class FollowApi extends AbstractApi {
     this.putUrl = putUrl;
   }
 
-  followData(type: FollowDirection): IFollowPut {
-    let user_id = parseInt(localStorage.getItem("user_id"));
+  followData(type: FollowDirection, user_id: number = undefined): IFollowPut {
+    let _user_id = parseInt(localStorage.getItem("user_id"));
     return {
-      user_id: user_id,
+      user_id: user_id === undefined ? _user_id : user_id,
       type: type,
     };
   }
 
-  follow(type: FollowDirection): Promise<any> | void {
-    let data = this.followData(type);
+  follow(
+    type: FollowDirection,
+    user_id: number = undefined
+  ): Promise<any> | void {
+    let data = this.followData(type, user_id);
     return this.put(this.putUrl, data, "Followed proposal");
   }
 }

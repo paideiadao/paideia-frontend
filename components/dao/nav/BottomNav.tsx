@@ -39,6 +39,7 @@ const BottomNav: React.FC = () => {
           mt: deviceWrapper(".5rem", "0"),
           display: "flex",
           alignItems: "center",
+          mr: deviceWrapper("0", ".75rem"),
         }}
       >
         <TwitterIcon color="primary" sx={{ mr: ".5rem" }} />

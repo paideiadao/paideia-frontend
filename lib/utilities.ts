@@ -28,7 +28,7 @@ export const snipAddress = (
 
 export const getBaseUrl = () => {
   return process.env.NODE_ENV == "development"
-    ? "http://localhost:8000/api"
+    ? process.env.LOCAL_URL
     : process.env.API_URL;
 };
 
@@ -234,7 +234,7 @@ export class AbstractApi {
   async put<T>(
     url: string,
     body: any,
-    action: string = '',
+    action: string = "",
     current: string = ""
   ): Promise<T> {
     let self = this;
@@ -306,10 +306,8 @@ export class AbstractApi {
       },
     };
     url = url.includes("8000/api") ? url.split("8000/api")[1] : url;
-    return await methods[method](
-      url.slice(0, 4) === "http" ? url : "http://localhost:8000/api" + url,
-      body,
-      defaultOptions
-    );
+    console.log(getBaseUrl(), "local");
+    console.log(url, "FUCK");
+    return await methods[method](getBaseUrl() + url, body, defaultOptions);
   }
 }

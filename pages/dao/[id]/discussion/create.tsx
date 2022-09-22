@@ -210,7 +210,10 @@ const CreateDiscussion: React.FC = () => {
                           image = value.image.file;
                         }
                         let imgRes = await api.uploadFile(image);
-                        let res = await api.create(imgRes.data.image_url);
+                        let res = await api.create(
+                          imgRes.data.image_url,
+                          parseInt(id as string)
+                        );
                         if (res.status == 200) {
                           router.push(
                             `/dao/${id === undefined ? "" : id}/discussion/${

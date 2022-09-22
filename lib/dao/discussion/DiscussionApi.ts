@@ -1,5 +1,5 @@
 import { AppApi } from "@lib/AppApi";
-import { AbstractApi } from "@lib/utilities";
+import { AbstractApi, getUserId } from "@lib/utilities";
 import { IDiscussion } from "@pages/dao/[id]/discussion/create";
 import { IProposalEndpointBody } from "../proposal/ProposalApi";
 
@@ -19,10 +19,11 @@ export default class DiscussionApi extends AbstractApi {
     return true;
   }
 
-  cleanData(image_url: string): IProposalEndpointBody {
+  cleanData(image_url: string, dao_id: number): IProposalEndpointBody {
+    console.log(dao_id);
     return {
-      dao_id: 1,
-      user_id: 1,
+      dao_id: isNaN(dao_id) ? 1 : dao_id,
+      user_id: getUserId(),
       name: this.value.name,
       image_url: image_url,
       category: this.value.category,
@@ -33,8 +34,8 @@ export default class DiscussionApi extends AbstractApi {
     };
   }
 
-  create(image_url: string): Promise<any> | void {
-    const data = this.cleanData(image_url);
+  create(image_url: string, dao_id: number): Promise<any> | void {
+    const data = this.cleanData(image_url, dao_id);
     return this.post("/proposals", data);
   }
 }

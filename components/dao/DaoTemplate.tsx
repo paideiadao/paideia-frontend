@@ -1,6 +1,8 @@
 import useDidMountEffect from "@components/utilities/hooks";
 import { deviceWrapper } from "@components/utilities/Style";
+import { useWallet } from "@components/wallet/WalletContext";
 import { getBaseUrl, fetcher } from "@lib/utilities";
+import { getTokenUtxos } from "@lib/wallet/Nautilus";
 import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 import * as React from "react";
@@ -24,6 +26,8 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
     }
   );
 
+  const { utxos } = useWallet();
+
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
 
   useDidMountEffect(() => {
@@ -31,7 +35,13 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
   }, [daoData]);
 
   useDidMountEffect(() => {
-    globalContext.api.getOrCreateDaoUser();
+    if (
+      getTokenUtxos(
+        utxos,
+        "1fd6e032e8476c4aa54c18c1a308dce83940e8f4a28f576440513ed7326ad489"
+      )
+    )
+      globalContext.api.getOrCreateDaoUser();
   }, [globalContext.api.daoData]);
 
   useDidMountEffect(() => {

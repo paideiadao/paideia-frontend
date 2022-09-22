@@ -121,8 +121,7 @@ export const DaoSelector: React.FC<IDaoSelector> = (props) => {
     setDropdown(false);
   };
 
-  const [utxos, setUtxos] = React.useState<any[]>(undefined);
-  const { wallet } = useWallet();
+  const { wallet, utxos, setUtxos } = useWallet();
   React.useEffect(() => {
     const load = async () => {
       try {
@@ -262,7 +261,11 @@ export const DaoSelector: React.FC<IDaoSelector> = (props) => {
               <CapsInfo
                 title={
                   search === ""
-                    ? "Daos Connected to your wallet"
+                    ? daos.filter(
+                        (i: IDao) => getTokenUtxos(utxos, i.token).length > 0
+                      )
+                      ? "Daos Connected to your wallet"
+                      : "Daos Connected to your wallet"
                     : "Search Results"
                 }
                 fontSize=".6rem"
@@ -304,7 +307,10 @@ export const DaoSelector: React.FC<IDaoSelector> = (props) => {
                         data={d}
                         set={(val: IDao) => setDaoWrapper(val)}
                         key={`dao-select-key-${c}`}
-                        selected={id === d.id}
+                        selected={
+                          id === d.id &&
+                          getTokenUtxos(utxos, d.token).length > 0
+                        }
                         inWallet={getTokenUtxos(utxos, d.token).length > 0}
                         redirect={props.redirect}
                       />

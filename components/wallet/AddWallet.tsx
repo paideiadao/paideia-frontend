@@ -122,6 +122,7 @@ const AddWallet: React.FC = () => {
     localStorage.setItem("user_id", "");
     localStorage.setItem("alias", "");
     setWalletInput("");
+    globalContext.api.setDaoUserData(undefined);
     setWallet("");
     // clear dApp state
     setView("listing");

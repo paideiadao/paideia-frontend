@@ -1,4 +1,4 @@
-import { Button, Fab } from "@mui/material";
+import { Button, Fab, Tooltip } from "@mui/material";
 import * as React from "react";
 import { deviceWrapper } from "./Style";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -10,6 +10,8 @@ import FollowApi from "@lib/FollowApi";
 interface IFollow {
   followed: boolean;
   putUrl: string;
+  user_id?: number;
+  small?: boolean
 }
 
 export const FollowMobile: React.FC<IFollow> = (props) => {
@@ -19,8 +21,10 @@ export const FollowMobile: React.FC<IFollow> = (props) => {
   useDidMountEffect(() => {
     api.follow(followed ? "follow" : "unfollow");
   }, [followed]);
+  const smallStyle = props.small === undefined ? {} : {width: '2rem', height: '2rem'}
   return (
-    <Fab
+    <Tooltip title={followed ? "Unfollow" : 'Follow'} placement='top'>
+<Fab
       size="small"
       onClick={() => setFollowed(!followed)}
       sx={{
@@ -31,10 +35,13 @@ export const FollowMobile: React.FC<IFollow> = (props) => {
           backgroundColor: followed ? "white" : "error.main",
           color: followed ? "error.light" : "white",
         },
+        ...smallStyle
       }}
     >
       <FavoriteIcon sx={{ fontSize: "1.2rem" }} />
     </Fab>
+    </Tooltip>
+    
   );
 };
 
@@ -43,7 +50,7 @@ const Follow: React.FC<IFollow> = (props) => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const api = new FollowApi(globalContext.api, props.putUrl);
   useDidMountEffect(() => {
-    api.follow(followed ? "follow" : "unfollow");
+    api.follow(followed ? "follow" : "unfollow", props.user_id);
   }, [followed]);
 
   return (

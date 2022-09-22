@@ -28,14 +28,14 @@ const Nautilus: React.FC<{
       await props.connect();
       props.setLoading(false);
     };
-    if (!dAppWallet.connected) {
+    if (!dAppWallet.connected || !isAddressValid(wallet)) {
       wrapper();
     }
   }, []);
 
   return (
     <Box sx={{ width: "100%" }}>
-      {dAppWallet.connected ? (
+      {dAppWallet.connected && isAddressValid(wallet) ? (
         <>
           <>
             <Box

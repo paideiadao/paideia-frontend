@@ -224,9 +224,9 @@ export const LightTheme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          backgroundColor: 'white'
-        }
-      }
+          backgroundColor: "white",
+        },
+      },
     },
     MuiInputBase: {
       styleOverrides: {

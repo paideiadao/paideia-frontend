@@ -17,7 +17,8 @@ export interface IDaoUserData {
   social_links: any;
   user_id: number;
   xp: number;
-  bio: string
+  bio: string;
+  profile_img_url: string;
 }
 
 export interface IDaoUserRes {
@@ -25,10 +26,10 @@ export interface IDaoUserRes {
 }
 
 export interface IEditUser {
-  name: string,
-  profile_img_url: string,
-  bio: string,
-  level?: number,
-  xp?: number,
-  social_links: any
+  name: string;
+  profile_img_url: string;
+  bio: string;
+  level?: number;
+  xp?: number;
+  social_links: any;
 }

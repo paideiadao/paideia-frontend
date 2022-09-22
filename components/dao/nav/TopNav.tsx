@@ -83,27 +83,47 @@ const TopNav: React.FC<INav> = (props) => {
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
+            height: "2rem",
           }}
         >
           {/* <DarkSwitch /> */}
-          {isAddressValid(wallet) && (
-            <>
-              <Box
-                sx={{
-                  ml: ".5rem",
-                  mr: ".5rem",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <Link
-                  href={
-                    id === undefined
-                      ? "/dao/notifications"
-                      : `/dao/${id}/notifications`
-                  }
+          {globalContext.api.daoUserData !== undefined &&
+            isAddressValid(wallet) && (
+              <>
+                <Box
+                  sx={{
+                    ml: ".5rem",
+                    mr: ".5rem",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
                 >
-                  <IconButton sx={{ display: deviceWrapper("flex", "none") }}>
+                  <Link
+                    href={
+                      id === undefined
+                        ? "/dao/notifications"
+                        : `/dao/${id}/notifications`
+                    }
+                  >
+                    <IconButton sx={{ display: deviceWrapper("flex", "none") }}>
+                      <Badge badgeContent={1} color="primary">
+                        <NotificationsIcon
+                          sx={{
+                            fontSize: "1.1rem",
+                            opacity:
+                              globalContext.api.theme === DarkTheme
+                                ? "1"
+                                : ".5",
+                          }}
+                        />
+                      </Badge>
+                    </IconButton>
+                  </Link>
+
+                  <IconButton
+                    onClick={handleOpen}
+                    sx={{ display: deviceWrapper("none", "flex") }}
+                  >
                     <Badge badgeContent={1} color="primary">
                       <NotificationsIcon
                         sx={{
@@ -114,63 +134,49 @@ const TopNav: React.FC<INav> = (props) => {
                       />
                     </Badge>
                   </IconButton>
-                </Link>
-
-                <IconButton
-                  onClick={handleOpen}
-                  sx={{ display: deviceWrapper("none", "flex") }}
-                >
-                  <Badge badgeContent={1} color="primary">
-                    <NotificationsIcon
-                      sx={{
-                        fontSize: "1.1rem",
-                        opacity:
-                          globalContext.api.theme === DarkTheme ? "1" : ".5",
-                      }}
-                    />
-                  </Badge>
-                </IconButton>
-              </Box>
-              {/* <Link
+                </Box>
+                {/* <Link
                 href={id === undefined ? "/dao/profile" : `/dao/${id}/profile`}
               > */}
-              <Box
-                sx={{
-                  ml: "1rem",
-                  display: "flex",
-                  alignItems: "center",
-                  cursor: "pointer",
-                  mr: ".5rem",
-                }}
-                onClick={handleOpenProfile}
-              >
-                <Avatar sx={{ mr: ".5rem" }}>
-                  <img src={Musk.src} />
-                </Avatar>
-                <Box
-                  sx={{
-                    display: deviceWrapper("none", "flex"),
-                    flexDirection: "column",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Box sx={{ fontSize: ".9rem" }}>
-                    {globalContext.api.daoUserData !== undefined &&
-                      snipAddress(globalContext.api.daoUserData.name, 25, 5)}
+                {globalContext.api.daoUserData !== undefined && (
+                  <Box
+                    sx={{
+                      ml: "1rem",
+                      display: "flex",
+                      alignItems: "center",
+                      cursor: "pointer",
+                      mr: ".5rem",
+                    }}
+                    onClick={handleOpenProfile}
+                  >
+                    <Avatar
+                      sx={{ mr: ".5rem" }}
+                      src={
+                        globalContext.api.daoUserData !== undefined
+                          ? globalContext.api.daoUserData.profile_img_url
+                          : ""
+                      }
+                    ></Avatar>
+                    <Box
+                      sx={{
+                        display: deviceWrapper("none", "flex"),
+                        flexDirection: "column",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Box sx={{ fontSize: ".9rem" }}>
+                        {snipAddress(globalContext.api.daoUserData.name, 25, 5)}
+                      </Box>
+                      <Box sx={{ color: "text.secondary", fontSize: ".7rem" }}>
+                        Lvl {globalContext.api.daoUserData.level} |{" "}
+                        {globalContext.api.daoUserData.level}
+                      </Box>
+                    </Box>
                   </Box>
-                  <Box sx={{ color: "text.secondary", fontSize: ".7rem" }}>
-                    Lvl{" "}
-                    {globalContext.api.daoUserData !== undefined &&
-                      globalContext.api.daoUserData.level}{" "}
-                    |{" "}
-                    {globalContext.api.daoUserData !== undefined &&
-                      globalContext.api.daoUserData.level}
-                  </Box>
-                </Box>
-              </Box>
-              {/* </Link> */}
-            </>
-          )}
+                )}
+                {/* </Link> */}
+              </>
+            )}
           <ConnectWallet show={!isAddressValid(wallet)} />
         </Box>
         <ProfilePopup open={openProfile} close={handleCloseProfile} />

@@ -140,9 +140,7 @@ const Review: React.FC = () => {
                     creationContext.api.api.error(
                       "Connection issue, please submit again."
                     );
-                    console.log("error here..", res);
                   }
-                  console.log("res", res);
                 }}
               >
                 Publish DAO

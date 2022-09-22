@@ -12,6 +12,7 @@ const WalletProvider = ({ children }: any) => {
     connected: false,
     addresses: [],
   }); // dApp only
+  const [utxos, setUtxos] = React.useState<any[]>(undefined);
 
   // Context values passed to consumer
   const value = {
@@ -21,6 +22,8 @@ const WalletProvider = ({ children }: any) => {
     setDAppWallet,
     loggedIn,
     setLoggedIn,
+    utxos,
+    setUtxos,
   };
 
   return (

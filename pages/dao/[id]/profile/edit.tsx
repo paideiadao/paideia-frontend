@@ -21,17 +21,29 @@ import { LoadingButton } from "@mui/lab";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import useDidMountEffect from "@components/utilities/hooks";
 
-const ProfileEditImage: React.FC<{set: (val: IFile) => void}> = (props) => {
+const ProfileEditImage: React.FC<{ set: (val: IFile) => void; img: string }> = (
+  props
+) => {
   const [file, setFile] = React.useState<IFile>({
     file: -1,
-    url: Musk.src,
+    url: props.img as string,
   });
+  const [deleted, setDeleted] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    setFile({
+      ...file,
+      url: props.img,
+    });
+  }, [props.img]);
 
   function handleImage(e: any) {
+    setDeleted(false);
     let fileInput = e.currentTarget.files;
     if (fileInput && fileInput[0]) {
       if (fileInput.length != 1) return;
-      if (fileInput[0].size > 1000000) {
+      console.log("here", fileInput);
+      if (fileInput[0].size > 3000000000) {
         setFile({ ...file, file: -1 });
         return;
       }
@@ -49,11 +61,12 @@ const ProfileEditImage: React.FC<{set: (val: IFile) => void}> = (props) => {
       props.set({
         ...file,
         file: fileInput[0],
-      })
+      });
     }
   }
 
-
+  console.log(props.img);
+  console.log(file);
   return (
     <Box
       sx={{
@@ -83,12 +96,13 @@ const ProfileEditImage: React.FC<{set: (val: IFile) => void}> = (props) => {
               border: "1px solid",
               borderColor: "border.main",
             }}
-            onClick={() =>
+            onClick={() => {
+              setDeleted(true);
               setFile({
                 file: -1,
                 url: "",
-              })
-            }
+              });
+            }}
           >
             <DeleteIcon color="error" sx={{ fontSize: "1.2rem" }} />
           </IconButton>
@@ -99,7 +113,7 @@ const ProfileEditImage: React.FC<{set: (val: IFile) => void}> = (props) => {
             height: deviceWrapper("8rem", "7rem"),
             width: deviceWrapper("8rem", "7rem"),
           }}
-          src={file.url}
+          src={deleted || typeof file.url !== "string" ? "" : file.url}
         ></Avatar>
       </Badge>
       <Box
@@ -149,7 +163,7 @@ const Edit: React.FC<{ params: any }> = (props) => {
     username: string;
     shortBio: string;
     socialLinks: ISocialLink[];
-    img: IFile
+    img: IFile | string;
   }>({
     username: "",
     shortBio: "",
@@ -166,132 +180,157 @@ const Edit: React.FC<{ params: any }> = (props) => {
 
   const appContext = React.useContext<IGlobalContext>(GlobalContext);
 
-  useDidMountEffect(() => {
-    let val = appContext.api.daoUserData
+  React.useEffect(() => {
+    let val = appContext.api.daoUserData;
     if (val !== undefined) {
-      console.log(val, 'val')
+      console.log(val, "val");
       setValue({
         username: val.name,
-        socialLinks: [],
-        img: {url: val.id.toString(), file: undefined},
-        shortBio: val.bio
-  
-      })
+        socialLinks: val.social_links,
+        img: val.profile_img_url,
+        shortBio: val.bio,
+      });
     }
-    
-  }, [appContext.api])
+  }, [appContext.api.daoUserData]);
 
   return (
     <Layout>
-      <Header title="Edit profile" large />
-      <ProfileEditImage set={(val: IFile) => setValue({...value, img: val})}/>
-      <TextField
-        value={value.username}
-        label="User name"
-        sx={{ width: "100%", mt: ".5rem" }}
-        onChange={(e) => setValue({ ...value, username: e.target.value })}
-      />
-      <TextField
-        value={value.shortBio}
-        label="Short bio"
-        sx={{ width: "100%", mt: "1rem" }}
-        minRows={2}
-        onChange={(e) => setValue({ ...value, shortBio: e.target.value })}
-        multiline
-        FormHelperTextProps={{ sx: { textAlign: "right" } }}
-        helperText={`${value.shortBio.length}/250`}
-      />
-      <Header title="Social Links" small />
-      <Box sx={{ mt: ".5rem" }}>
-        {value.socialLinks.map((i: ISocialLink, c: number) => (
-          <SocialRow
-            c={c}
-            data={i}
-            key={`social-link-${c}`}
-            set={(m: any) => {
-              let temp = [...value.socialLinks];
-              temp[c] = m;
-              setValue({
-                ...value,
-                socialLinks: temp,
-              });
-            }}
-            delete={(m: any) => {
-              let temp = [...value.socialLinks];
-              temp.splice(c, 1);
-              setValue({
-                ...value,
-                socialLinks: temp,
-              });
-            }}
+      {appContext.api.daoUserData !== undefined && (
+        <>
+          <Header title="Edit profile" large />
+          <ProfileEditImage
+            set={(val: IFile) => setValue({ ...value, img: val })}
+            img={value.img as string}
           />
-        ))}
-      </Box>
-      <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        <Button
-          startIcon={<AddIcon />}
-          size="small"
-          onClick={() => {
-            let temp = [...value.socialLinks];
-            temp.push({
-              socialNetwork: "",
-              address: "",
-            });
-            setValue({ ...value, socialLinks: temp });
-          }}
-        >
-          Add {value.socialLinks.length > 0 ? "Another" : ""}
-        </Button>
-      </Box>
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          mt: "1rem",
-        }}
-      >
-        <Button
-          variant="outlined"
-          sx={{ width: "49%", mr: ".5rem" }}
-          size="small"
-        >
-          Cancel
-        </Button>
-        <LoadingButton
-          size="small"
-          variant="contained"
-          sx={{ width: "49%" }}
-          loadingPosition={"center"}
-          loading={false}
-          onClick={async () => {
-            setLoading(true)
-              let image = value.img.file;
-              console.log(image)
-              let imgRes = image === undefined  || image === -1 ? '' : await appContext.api.uploadFile(image);
-              await appContext.api.editUser({
-              name: value.username,
-              profile_img_url: imgRes === '' ? '' : imgRes.data.image_url,
-              bio: value.shortBio,
-              social_links: value.socialLinks
-            })
-          }}
-        >
-          {!loading ? (
-            <>
-              <Box sx={{ display: deviceWrapper("none", "block") }}>
-                {"Save Changes"}
-              </Box>
-              <Box sx={{ display: deviceWrapper("block", "none") }}>
-                {"Save"}
-              </Box>
-            </>
-          ) : (
-            <Box>.</Box>
-          )}
-        </LoadingButton>
-      </Box>
+          <TextField
+            value={value.username}
+            label="User name"
+            sx={{ width: "100%", mt: ".5rem" }}
+            onChange={(e) => setValue({ ...value, username: e.target.value })}
+          />
+          <TextField
+            value={value.shortBio}
+            label="Short bio"
+            sx={{ width: "100%", mt: "1rem" }}
+            minRows={2}
+            onChange={(e) => setValue({ ...value, shortBio: e.target.value })}
+            multiline
+            FormHelperTextProps={{ sx: { textAlign: "right" } }}
+            helperText={`${
+              value.shortBio == null ? 0 : value.shortBio.length
+            }/250`}
+          />
+          <Header title="Social Links" small />
+          <Box sx={{ mt: ".5rem" }}>
+            {value.socialLinks.map((i: ISocialLink, c: number) => (
+              <SocialRow
+                c={c}
+                data={i}
+                key={`social-link-${c}`}
+                set={(m: any) => {
+                  let temp = [...value.socialLinks];
+                  temp[c] = m;
+                  setValue({
+                    ...value,
+                    socialLinks: temp,
+                  });
+                }}
+                delete={(m: any) => {
+                  let temp = [...value.socialLinks];
+                  temp.splice(c, 1);
+                  setValue({
+                    ...value,
+                    socialLinks: temp,
+                  });
+                }}
+              />
+            ))}
+          </Box>
+          <Box
+            sx={{ width: "100%", display: "flex", justifyContent: "center" }}
+          >
+            <Button
+              startIcon={<AddIcon />}
+              size="small"
+              onClick={() => {
+                let temp = [...value.socialLinks];
+                temp.push({
+                  socialNetwork: "",
+                  address: "",
+                });
+                setValue({ ...value, socialLinks: temp });
+              }}
+            >
+              Add {value.socialLinks.length > 0 ? "Another" : ""}
+            </Button>
+          </Box>
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              mt: "1rem",
+            }}
+          >
+            <Button
+              variant="outlined"
+              sx={{ width: "49%", mr: ".5rem" }}
+              size="small"
+            >
+              Cancel
+            </Button>
+            <LoadingButton
+              size="small"
+              variant="contained"
+              sx={{ width: "49%" }}
+              loadingPosition={"center"}
+              loading={loading}
+              onClick={async () => {
+                setLoading(true);
+                let imgRes;
+                if (typeof value.img !== "string") {
+                  let image = value.img.file;
+                  imgRes =
+                    image === undefined || image === -1
+                      ? ""
+                      : await appContext.api.uploadFile(image);
+                }
+
+                await appContext.api.editUser({
+                  name: value.username,
+                  profile_img_url:
+                    imgRes === undefined ? value.img : imgRes.data.image_url,
+                  bio: value.shortBio,
+                  social_links: value.socialLinks,
+                });
+                appContext.api.setDaoUserData({
+                  ...appContext.api.daoUserData,
+                  name: value.username,
+                  profile_img_url:
+                    imgRes === undefined ? value.img : imgRes.data.image_url,
+                  bio: value.shortBio,
+                  social_links: value.socialLinks,
+                });
+                setLoading(false);
+              }}
+            >
+              {!loading ? (
+                <>
+                  <Box sx={{ display: deviceWrapper("none", "block") }}>
+                    {"Save Changes"}
+                  </Box>
+                  <Box sx={{ display: deviceWrapper("block", "none") }}>
+                    {"Save"}
+                  </Box>
+                </>
+              ) : (
+                <Box>.</Box>
+              )}
+            </LoadingButton>
+          </Box>
+        </>
+      )}
     </Layout>
   );
 };
