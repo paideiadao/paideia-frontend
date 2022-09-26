@@ -35,41 +35,41 @@ const PageHeader: FC<IPageHeader> = ({
   subTitleTwo,
   imgPositionSx,
   mobileSx,
-  sx
+  sx,
 }) => {
   const isSmall = useMediaQuery(DarkTheme.breakpoints.down("sm"));
   return (
     <>
       <Container sx={sx}>
         {isSmall && mobileBgUrl ? (
-        <Box
-          sx={{
-            position: "absolute",
-            top: "0",
-            left: "50%",
-            transform: "translate(-50%, 0)",
-            zIndex: "-1",
-            ml: "-24px",
-            ...mobileSx,
-          }}
-        >
-          <Image src={mobileBgUrl} layout="fill" priority />
-        </Box>
-      ) : (
-        <Box
-          sx={{
-            position: "absolute",
-            top: "0",
-            left: "50%",
-            transform: "translate(-50%, 0)",
-            zIndex: "-1",
-            ml: "-24px",
-            ...imgPositionSx,
-          }}
-        >
-          <Image src={bgUrl} layout="fill" priority />
-        </Box>
-      )}
+          <Box
+            sx={{
+              position: "absolute",
+              top: "0",
+              left: "50%",
+              transform: "translate(-50%, 0)",
+              zIndex: "-1",
+              ml: "-24px",
+              ...mobileSx,
+            }}
+          >
+            <Image src={mobileBgUrl} layout="fill" priority />
+          </Box>
+        ) : (
+          <Box
+            sx={{
+              position: "absolute",
+              top: "0",
+              left: "50%",
+              transform: "translate(-50%, 0)",
+              zIndex: "-1",
+              ml: "-24px",
+              ...imgPositionSx,
+            }}
+          >
+            <Image src={bgUrl} layout="fill" priority />
+          </Box>
+        )}
         <Grid
           container
           sx={{

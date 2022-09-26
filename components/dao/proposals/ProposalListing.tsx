@@ -10,6 +10,7 @@ import {
   Fab,
   Slide,
   IconButton,
+  CircularProgress,
 } from "@mui/material";
 import * as React from "react";
 import AddIcon from "@mui/icons-material/Add";
@@ -78,10 +79,7 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
 
   return (
     <>
-      <Box
-        sx={{ width: "100%", p: deviceWrapper("1rem", "1.5rem") }}
-        onClick={() => setShowFilters(false)}
-      >
+      <Box sx={{ width: "100%" }} onClick={() => setShowFilters(false)}>
         <Box
           sx={{
             width: "100%",
@@ -241,38 +239,52 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
         <Box
           sx={{ width: "100%", flexWrap: "wrap", display: "flex", mt: "1rem" }}
         >
-          {props.proposals
-            .sort((a: any, b: any) =>
-              filters.sortBy === ""
-                ? true
-                : filters.sortBy === "Most Recent"
-                ? new Date(a.date).getTime() - new Date(b.date).getTime()
-                : true
-            )
-            .filter((i: any) => {
-              return (
-                (filters.proposalStatus === "" ||
-                filters.proposalStatus === "All"
+          {props.proposals === undefined ? (
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                mt: "1rem",
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          ) : (
+            props.proposals
+              .sort((a: any, b: any) =>
+                filters.sortBy === ""
                   ? true
-                  : i.status === filters.proposalStatus) &&
-                (filters.search === ""
-                  ? true
-                  : i.proposalName
-                      .toLowerCase()
-                      .includes(filters.search.toLowerCase())) &&
-                (filters.categories.indexOf("All") > -1
-                  ? true
-                  : filters.categories.indexOf(i.category) > -1)
-              );
-            })
-            .map((i: any, c: number) => (
-              <ProposalCard
-                {...i}
-                c={c}
-                key={"proposal-card-key-" + c + i.id}
-                width={deviceStruct("98%", "98%", "33%", "25%", "25%")}
-              />
-            ))}
+                  : filters.sortBy === "Most Recent"
+                  ? new Date(a.date).getTime() - new Date(b.date).getTime()
+                  : true
+              )
+              .filter((i: any) => {
+                return (
+                  (filters.proposalStatus === "" ||
+                  filters.proposalStatus === "All"
+                    ? true
+                    : i.status === filters.proposalStatus) &&
+                  (filters.search === ""
+                    ? true
+                    : i.name
+                        .toLowerCase()
+                        .includes(filters.search.toLowerCase())) &&
+                  (filters.categories.indexOf("All") > -1
+                    ? true
+                    : filters.categories.indexOf(i.category) > -1)
+                );
+              })
+              .map((i: any, c: number) => (
+                <ProposalCard
+                  {...i}
+                  c={c}
+                  key={"proposal-card-key-" + c + i.id}
+                  width={deviceStruct("98%", "98%", "33%", "25%", "25%")}
+                />
+              ))
+          )}
         </Box>
       </Box>
       <Fab

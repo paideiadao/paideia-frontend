@@ -50,11 +50,11 @@ const OptimisticGovernance: React.FC = () => {
       {data.optimisticGovernance && (
         <>
           <LearnMore
-              title="White listed members"
-              // tooltipTitle="Whitelisted Members"
-              tooltipText="These will be the only addresses that can submit proposals for this DAO. All members will be able to challenge proposals, but not all members will be able to submit. Make sure you add a few addresses. Too few will represent a significant centralization of control. "
-              // tooltipLink="/here"
-            />
+            title="White listed members"
+            // tooltipTitle="Whitelisted Members"
+            tooltipText="These will be the only addresses that can submit proposals for this DAO. All members will be able to challenge proposals, but not all members will be able to submit. Make sure you add a few addresses. Too few will represent a significant centralization of control. "
+            // tooltipLink="/here"
+          />
           <MultiWalletSelector
             wallets={data.whitelist}
             set={(value: IWallet[]) =>
@@ -68,12 +68,12 @@ const OptimisticGovernance: React.FC = () => {
             }
           />
           <LearnMore
-              small
-              title="Collateral"
-              // tooltipTitle="Title Here"
-              tooltipText="All proposals in Optimistic Governance require collateral. If the proposal is challenged, and is then voted down, the collateral is distributed to those who voted. A challenger must also submit equal collateral. If the challenge does not pass, and DAO members vote to pass the proposal, the challenger's collateral is distributed to voters. "
-              // tooltipLink="/here"
-            />
+            small
+            title="Collateral"
+            // tooltipTitle="Title Here"
+            tooltipText="All proposals in Optimistic Governance require collateral. If the proposal is challenged, and is then voted down, the collateral is distributed to those who voted. A challenger must also submit equal collateral. If the challenge does not pass, and DAO members vote to pass the proposal, the challenger's collateral is distributed to voters. "
+            // tooltipLink="/here"
+          />
           <Box
             sx={{
               width: "100%",
@@ -124,12 +124,12 @@ const OptimisticGovernance: React.FC = () => {
             </Box>
           </Box>
           <LearnMore
-              small
-              title="Time to challenge a proposal"
-              // tooltipTitle="Title Here"
-              tooltipText="All proposals pass in Optimistic Governance, unless challenged. DAO members need enough time to assess each proposal to make sure it's agreeable. This is the length of time each proposal can be challenged before it passes. "
-              // tooltipLink="/here"
-            />
+            small
+            title="Time to challenge a proposal"
+            // tooltipTitle="Title Here"
+            tooltipText="All proposals pass in Optimistic Governance, unless challenged. DAO members need enough time to assess each proposal to make sure it's agreeable. This is the length of time each proposal can be challenged before it passes. "
+            // tooltipLink="/here"
+          />
 
           <Box
             sx={{

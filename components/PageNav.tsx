@@ -275,7 +275,8 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
             sx={{
               position: "sticky",
               top: 100,
-              background: "linear-gradient(130.4deg, rgba(7, 10, 17, 0.4) 14.89%, rgba(7, 10, 17, 0.2) 87.67%)",
+              background:
+                "linear-gradient(130.4deg, rgba(7, 10, 17, 0.4) 14.89%, rgba(7, 10, 17, 0.2) 87.67%)",
               backdropFilter: "blur(5px)",
               borderRadius: "12px",
               zIndex: 3,

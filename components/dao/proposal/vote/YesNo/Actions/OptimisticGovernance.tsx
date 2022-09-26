@@ -22,11 +22,13 @@ export interface IOptimisticGovernance {
 export const defaultOptimisticGovernanceData = {
   activated: true,
   wallets: [{ alias: "", address: "", img: "" }],
-}
+};
 
 const OptimisticGovernance: React.FC<IProposalAction> = (props) => {
   const context = React.useContext<IProposalContext>(ProposalContext);
-  const [value, setValue] = React.useState<IOptimisticGovernance>(defaultOptimisticGovernanceData);
+  const [value, setValue] = React.useState<IOptimisticGovernance>(
+    defaultOptimisticGovernanceData
+  );
 
   React.useEffect(() => {
     const temp = [...context.api.value.actions];
@@ -66,7 +68,9 @@ const OptimisticGovernance: React.FC<IProposalAction> = (props) => {
       <TextField
         sx={{ width: "100%", mt: "1rem" }}
         label="Action descriptions"
-        value={"Turn on or off optimistic governance and or edit the whitelisted members"}
+        value={
+          "Turn on or off optimistic governance and or edit the whitelisted members"
+        }
         InputProps={{
           readOnly: true,
         }}
@@ -82,7 +86,6 @@ const OptimisticGovernance: React.FC<IProposalAction> = (props) => {
         }}
       />
       <CapsInfo title="Configuration" mb="-1rem" />
-
     </Layout>
   );
 };

@@ -18,6 +18,8 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { paths, props } from "@lib/DaoPaths";
 import { deviceWrapper } from "@components/utilities/Style";
+import Nautilus from "@public/icons/nautilus.png";
+import Ergo from "@public/icons/ergo.png";
 
 // export const getStaticPaths = paths;
 // export const getStaticProps = props;
@@ -58,10 +60,7 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
         )} */}
       </Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Avatar
-          src={ImagePlaceholder.src}
-          sx={{ width: "2.5rem", height: "2.5rem" }}
-        />
+        <Avatar src={Nautilus.src} sx={{ width: "2.5rem", height: "2.5rem" }} />
         <Box sx={{ ml: "1rem" }}>
           Nautilus
           <Box
@@ -163,7 +162,14 @@ const Wallet: React.FC = () => {
 
   return (
     <Layout>
-      <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          mb: "2rem",
+        }}
+      >
         <Header title="Wallet connection" large />
         <Button
           sx={{ ml: "auto" }}
@@ -178,7 +184,9 @@ const Wallet: React.FC = () => {
           <Box sx={{ display: deviceWrapper("block", "none") }}>Change</Box>
         </Button>
       </Box>
-      <TabContext value={value}>
+      <ActiveWallet />
+
+      {/* <TabContext value={value}>
         <Box
           sx={{
             width: "100%",
@@ -193,7 +201,6 @@ const Wallet: React.FC = () => {
           </TabList>
         </Box>
         <TabPanel value="Active" sx={{ pl: 0, pr: 0 }}>
-          <ActiveWallet />
         </TabPanel>
         <TabPanel value="Previously Connected" sx={{ pl: 0, pr: 0 }}>
           {previousWallets.map((i: any, c: number) => {
@@ -204,7 +211,7 @@ const Wallet: React.FC = () => {
             );
           })}
         </TabPanel>
-      </TabContext>
+      </TabContext> */}
     </Layout>
   );
 };

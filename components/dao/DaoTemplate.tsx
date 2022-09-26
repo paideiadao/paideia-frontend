@@ -1,27 +1,52 @@
+import useDidMountEffect from "@components/utilities/hooks";
 import { deviceWrapper } from "@components/utilities/Style";
+import { useWallet } from "@components/wallet/WalletContext";
+import { getBaseUrl, fetcher } from "@lib/utilities";
+import { getTokenUtxos } from "@lib/wallet/Nautilus";
 import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 import * as React from "react";
+import useSWR from "swr";
 import { GlobalContext, IGlobalContext } from "../../lib/AppContext";
 import BottomNav from "./nav/BottomNav";
 import Nav from "./nav/SideNav";
 import TopNav from "./nav/TopNav";
 
 const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
-  let globalContext = React.useContext<IGlobalContext>(GlobalContext);
-  let router = useRouter();
-  const api = globalContext.api;
-
-  React.useEffect(() => {
-    const getData = async () => await api.getDaos();
-    getData().then((data) => console.log(data));
-  }, []);
-
-  React.useEffect(() => {
-    api.setDaoId(router.query.id);
-  }, [router]);
-
   const [showMobile, setShowMobile] = React.useState<boolean>(false);
+  const router = useRouter();
+  const { id } = router.query;
+  const { data: daoData, error: daoError } = useSWR(
+    `/dao/${id === undefined ? "paideia" : id}`,
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
+
+  const { utxos } = useWallet();
+
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
+
+  useDidMountEffect(() => {
+    globalContext.api.setDaoData(daoData);
+  }, [daoData]);
+
+  useDidMountEffect(() => {
+    if (
+      getTokenUtxos(
+        utxos,
+        "1fd6e032e8476c4aa54c18c1a308dce83940e8f4a28f576440513ed7326ad489"
+      )
+    )
+      globalContext.api.getOrCreateDaoUser();
+  }, [globalContext.api.daoData]);
+
+  useDidMountEffect(() => {
+    router.push("/404");
+  }, [daoError]);
 
   return (
     <Box

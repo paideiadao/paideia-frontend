@@ -1,8 +1,44 @@
 import * as React from "react";
-import { paths, props } from "@lib/MemberPaths";
 import AbstractProfile from "@components/dao/profile/AbstractProfile";
+import { fetcher, getUserId } from "@lib/utilities";
+import useSWR from "swr";
+import { useRouter } from "next/router";
+import useDidMountEffect from "@components/utilities/hooks";
 
 const Member: React.FC = () => {
-  return <AbstractProfile />;
+  const router = useRouter();
+  const { member_id, id } = router.query;
+  const { data: userData, error: userError } = useSWR(
+    member_id !== undefined &&
+      `/users/details/${member_id}?dao_id=${id === undefined ? 1 : id}`,
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
+
+  useDidMountEffect(() => {
+    if (userError !== undefined) {
+      console.log(userError, "heeeeere");
+      router.push("/404");
+    }
+  }, [userError]);
+
+  console.log(userData, userError);
+
+  return (
+    <AbstractProfile
+      data={userData}
+      proposals={[]}
+      activities={[]}
+      followed={
+        userData === undefined
+          ? undefined
+          : userData.followers.indexOf(getUserId()) > -1
+      }
+    />
+  );
 };
 export default Member;

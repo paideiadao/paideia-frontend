@@ -11,125 +11,87 @@ import * as React from "react";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import TagFacesIcon from "@mui/icons-material/TagFaces";
 import dateFormat from "dateformat";
-import { LikesDislikes } from "../proposals/ProposalCard";
+import { getUserSide, LikesDislikes } from "../proposals/ProposalCard";
 import { deviceWrapper } from "@components/utilities/Style";
 import { LightTheme } from "@theme/theme";
 import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
 import ReplyIcon from "@mui/icons-material/Reply";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
+import CommentsApi from "@lib/CommentsApi";
 
 export interface IComment {
   id: number;
-  likes: number;
-  dislikes: number;
+  likes: number[];
+  dislikes: number[];
   date: Date;
-  username: string;
+  alias: string;
   img: string;
   comment: string;
-  userSide: number;
   parent: number;
   show?: boolean;
 }
 
-const _comments: IComment[] = [
-  {
-    id: 1,
-    likes: 158,
-    dislikes: 31,
-    date: new Date(),
-    parent: undefined,
-    username: "Lily Evans",
-    img: "",
-    userSide: 1,
-    comment:
-      "Hey, my name is Lily & I think this should be upgraded to a proposal",
-  },
-  {
-    id: 2,
-    likes: 158,
-    dislikes: 31,
-    parent: undefined,
-    date: new Date(),
-    username: "Joaquin Cizzin",
-    userSide: 1,
-    img: "",
-    comment: "Let's upgrade this to a proposal",
-  },
-  {
-    id: 3,
-    likes: 158,
-    parent: undefined,
-    dislikes: 31,
-    date: new Date(),
-    username: "John Daonnot",
-    userSide: 0,
-    img: "",
-    comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet fermentum sapien amet eu viverra facilisis nisl laoreet. Euismod adipiscing nam in pulvinar sed maecenas dolor, netus viverra. Id id elementum tortor gravida consequat convallis molestie vitae. Dignissim placerat blandit laoreet amet consectetur placerat aliquet eu, ullamcorper.",
-  },
-  {
-    id: 4,
-    parent: 2,
-    likes: 4,
-    dislikes: 3,
-    userSide: undefined,
-    date: new Date(),
-    username: "Michael Mirandi",
-    img: "",
-    comment: "I agree with this!",
-  },
-  {
-    id: 5,
-    parent: 4,
-    userSide: undefined,
-    likes: 7,
-    dislikes: 0,
-    date: new Date(),
-    username: "Joaquin Cizzin",
-    img: "",
-    comment: "Thanks michael!",
-  },
-  {
-    id: 6,
-    parent: 4,
-    userSide: undefined,
-    likes: 7,
-    dislikes: 0,
-    date: new Date(),
-    username: "Hank Moody",
-    img: "",
-    comment: "Agreed, Michael!",
-  },
-];
+const Comments: React.FC<{ title?: string; data: IComment[]; id: number }> = (
+  props
+) => {
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
+  const api = new CommentsApi(globalContext.api, props.id);
 
-const Comments: React.FC<{ title?: string }> = (props) => {
-  const [comments, setComments] = React.useState<IComment[]>(_comments);
-  const setCommentsWrapper = (newComment: IComment) =>
-    setComments([...comments, newComment]);
+  const setCommentsWrapper = async (newComment: IComment) => {
+    try {
+      let res = await api.publish(newComment);
+      if (res.status !== 200) {
+        api.api.error("Error adding comment");
+      }
+    } catch (e) {
+      console.log(e);
+      api.api.error("Unknown error adding comment");
+    }
+  };
+
   return (
     <>
       {props.title === undefined && (
         <>
           <CapsInfo title="Post a comment" />
-          <CommentInput length={comments.length} set={setCommentsWrapper} />
+          <CommentInput length={props.data.length} set={setCommentsWrapper} />
         </>
       )}
 
       <CapsInfo
         title={props.title === undefined ? "All comments" : props.title}
       />
-      {comments
-        .sort((a: IComment, b: IComment) => b.date.getTime() - a.date.getTime())
-        .filter((i: IComment) => i.parent == null)
-        .map((i: any) => {
-          return (
-            <BaseComment
-              comment={i}
-              data={comments}
-              key={`base-comment-${i.id}`}
-              set={setCommentsWrapper}
-            />
-          );
-        })}
+      {props.data === undefined ? (
+        <>Loading here...</>
+      ) : props.data.length === 0 ? (
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            mt: "2rem",
+          }}
+        >
+          No Comments Yet
+        </Box>
+      ) : (
+        props.data
+          .sort(
+            (a: IComment, b: IComment) =>
+              new Date(b.date).getTime() - new Date(a.date).getTime()
+          )
+          .filter((i: IComment) => i.parent == null)
+          .map((i: any) => {
+            return (
+              <BaseComment
+                comment={i}
+                data={props.data}
+                key={`base-comment-${i.id}`}
+                set={setCommentsWrapper}
+              />
+            );
+          })
+      )}
     </>
   );
 };
@@ -208,17 +170,20 @@ const CommentInput: React.FC<{
               variant="contained"
               size="small"
               onClick={() => {
-                props.set({
-                  id: props.length + 1,
-                  parent: props.parent,
-                  userSide: undefined,
-                  likes: 0,
-                  dislikes: 0,
-                  date: new Date(),
-                  username: "Current User",
-                  img: "",
-                  comment: value,
-                });
+                if (
+                  [undefined, ""].indexOf(localStorage.getItem("alias")) === -1
+                )
+                  props.set({
+                    id: props.length + 1,
+                    parent: props.parent,
+                    userSide: undefined,
+                    likes: 0,
+                    dislikes: 0,
+                    date: new Date(),
+                    alias: localStorage.getItem("alias"),
+                    img: "",
+                    comment: value,
+                  });
                 setValue("");
               }}
             >
@@ -287,7 +252,7 @@ const BaseComment: React.FC<{
                 fontSize: deviceWrapper(".7rem", "9rem"),
               }}
             >
-              {props.comment.username}
+              {props.comment.alias.length > 14 ? "skeeep" : props.comment.alias}
             </Box>
             <Box
               sx={{
@@ -306,7 +271,11 @@ const BaseComment: React.FC<{
               fontSize: "1rem",
             }}
           >
-            {props.comment.username}
+            {props.comment.alias.length > 30
+              ? props.comment.alias.slice(0, 15) +
+                "....." +
+                props.comment.alias.slice(-15)
+              : props.comment.alias}
           </Box>
           <Box
             sx={{
@@ -370,9 +339,13 @@ const BaseComment: React.FC<{
               )}
               <Box sx={{ ml: "auto" }}>
                 <LikesDislikes
-                  likes={props.comment.likes}
-                  dislikes={props.comment.dislikes}
-                  userSide={props.comment.userSide}
+                  likes={props.comment.likes.length}
+                  dislikes={props.comment.dislikes.length}
+                  userSide={getUserSide(
+                    props.comment.likes,
+                    props.comment.dislikes
+                  )}
+                  putUrl={`/proposals/comment/like/${props.comment.id}`}
                 />
               </Box>
             </Box>

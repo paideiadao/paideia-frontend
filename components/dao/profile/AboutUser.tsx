@@ -5,6 +5,12 @@ import PaideiaTokenSymbol from "../../../public/images/paideia-token-symbol.png"
 import RedditIcon from "@mui/icons-material/Reddit";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import { ISocialLink } from "@lib/creation/Interfaces";
+import { useWallet } from "@components/wallet/WalletContext";
+import { getIcon } from "@components/creation/review/Design";
+import { snipAddress } from "@lib/utilities";
+import { getTokenAmount } from "@lib/wallet/Utilities";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 
 const UserSocial: React.FC<{ icon: JSX.Element; label: string }> = (props) => {
   return (
@@ -20,6 +26,7 @@ const UserSocial: React.FC<{ icon: JSX.Element; label: string }> = (props) => {
       }}
     >
       {props.icon}
+      <Box sx={{ ml: ".5rem" }}></Box>
       {props.label}
     </Box>
   );
@@ -36,7 +43,27 @@ const UserAttr: React.FC<{ label: string }> = (props) => {
   );
 };
 
-const AboutUser: React.FC = () => {
+interface IAboutUser {
+  followers: number[];
+  created: number;
+  approved: number;
+  bio: string;
+  social_links: ISocialLink[];
+  token_id: string;
+}
+
+const AboutUser: React.FC<IAboutUser> = (props) => {
+  const { wallet } = useWallet();
+  const [tokens, setTokens] = React.useState<string>("");
+  React.useEffect(() => {
+    const load = async () => {
+      let amount = await getTokenAmount(props.token_id);
+      setTokens((amount / 10000).toFixed(2));
+    };
+    load();
+  }, []);
+  const appContext = React.useContext<IGlobalContext>(GlobalContext);
+  const ticker = "PTK";
   return (
     <Box
       sx={{
@@ -70,7 +97,9 @@ const AboutUser: React.FC = () => {
             }}
           >
             Followers
-            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>107</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>
+              {props.followers.length}
+            </Box>
           </Box>
           <Box
             sx={{
@@ -84,7 +113,9 @@ const AboutUser: React.FC = () => {
             }}
           >
             Created
-            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>13</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>
+              {props.created}
+            </Box>
           </Box>
           <Box
             sx={{
@@ -95,11 +126,13 @@ const AboutUser: React.FC = () => {
             }}
           >
             Approved
-            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>7</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>
+              {props.approved}
+            </Box>
           </Box>
         </Box>
-        <Box sx={{ fontSize: ".9rem" }}>Short description here...</Box>
-        <Box
+        <Box sx={{ fontSize: ".9rem" }}>{props.bio}</Box>
+        {/* <Box
           sx={{
             display: "flex",
             alignItems: "flex-start",
@@ -112,16 +145,17 @@ const AboutUser: React.FC = () => {
           <UserAttr label="Voter" />
           <UserAttr label="V.I.P." />
           <UserAttr label="Yes person" />
-        </Box>
+        </Box> */}
         <Box sx={{ width: "100%" }}>
-          <UserSocial
-            label="@alonemusk#4953"
-            icon={<TelegramIcon color="primary" sx={{ mr: ".5rem" }} />}
-          />
-          <UserSocial
-            label="@alonemuskreddit"
-            icon={<RedditIcon color="primary" sx={{ mr: ".5rem" }} />}
-          />
+          {props.social_links.map((i: ISocialLink, c: number) => {
+            return (
+              <UserSocial
+                label={i.address}
+                key={i.socialNetwork + "-" + c}
+                icon={getIcon(i.socialNetwork.toLowerCase())}
+              />
+            );
+          })}
         </Box>
       </Box>
       <Box
@@ -135,14 +169,17 @@ const AboutUser: React.FC = () => {
         }}
       >
         <CapsInfo title="Wallet Information" small />
-        <Chip
-          icon={<AccountBalanceWalletIcon />}
-          label="9ff37p9rmnKHSj99nRcEvvEoHcY15vNyHUELoNedU4yEPyujVSn"
-          color="primary"
-        />
+        <Box>
+          <Chip
+            icon={<AccountBalanceWalletIcon />}
+            label={snipAddress(wallet, 25, 14)}
+            color="primary"
+          />
+        </Box>
+
         <Chip
           avatar={<Avatar alt="PTK" src={PaideiaTokenSymbol.src} />}
-          label="56,759 DTK"
+          label={tokens + " " + ticker}
           sx={{ mt: ".5rem" }}
         />
       </Box>

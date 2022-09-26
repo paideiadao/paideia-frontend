@@ -21,7 +21,11 @@ import { deviceWrapper } from "@components/utilities/Style";
 const Dashboard: React.FC = () => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const themeContext = React.useContext<IThemeContext>(ThemeContext);
-  return (
+  const daoData = globalContext.api.daoData;
+
+  return daoData === undefined ? (
+    <>...</>
+  ) : (
     <Box sx={{ width: "100%" }}>
       <Box
         sx={{
@@ -152,6 +156,7 @@ const Dashboard: React.FC = () => {
                   <Button
                     variant="contained"
                     color="secondary"
+                    size="small"
                     sx={{
                       fontSize: ".8rem",
                       mt: ".5rem",
@@ -168,7 +173,7 @@ const Dashboard: React.FC = () => {
           </Box>
 
           <Box sx={{ mt: ".5rem" }}>
-            <Header title="Welcome to Paideia" />
+            <Header title={`Welcome to ${daoData.dao_name}`} />
             <FinancialSummary />
             <ActiveProposals />
             <CurrentDistributions />

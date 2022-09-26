@@ -85,6 +85,7 @@ const Experimental = () => {
       [...draggedDOM.parentElement.children]
         .slice(0, sourceIndex)
         .reduce((total, curr) => {
+          // @ts-ignore
           const style = curr.currentStyle || window.getComputedStyle(curr);
           const marginBottom = parseFloat(style.marginBottom);
           return total + curr.clientHeight + marginBottom;
@@ -147,6 +148,7 @@ const Experimental = () => {
     var clientY =
       parseFloat(window.getComputedStyle(draggedDOM.parentElement).paddingTop) +
       updatedArray.slice(0, destinationIndex).reduce((total, curr) => {
+        // @ts-ignore
         const style = curr.currentStyle || window.getComputedStyle(curr);
         const marginBottom = parseFloat(style.marginBottom);
         return total + curr.clientHeight + marginBottom;

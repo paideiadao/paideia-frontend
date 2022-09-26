@@ -1,3 +1,4 @@
+import { AppApi } from "@lib/AppApi";
 import { ITokenHolder } from "@lib/creation/Interfaces";
 import { AbstractApi } from "@lib/utilities";
 // import { IProposal } from "@pages/dao/[id]/proposal/create";
@@ -25,17 +26,18 @@ export interface ISendFunds {
 }
 
 export default class SendApi extends AbstractApi {
+  api: AppApi;
   value: ISendFunds;
   setValue: (value: ISendFunds) => void;
 
   constructor(
-    _alert: any,
-    _setAlert: Function,
-    _value: ISendFunds,
-    _setValue: (value: ISendFunds) => void
+    api: AppApi,
+    value: ISendFunds,
+    setValue: (value: ISendFunds) => void
   ) {
-    super(_alert, _setAlert);
-    this.value = _value;
-    this.setValue = _setValue;
+    super();
+    this.api = api;
+    this.value = value;
+    this.setValue = setValue;
   }
 }

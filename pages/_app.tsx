@@ -17,6 +17,7 @@ import { WalletProvider } from "@components/wallet/WalletContext";
 import { AddWalletProvider } from "@components/wallet/AddWalletContext";
 import { AnimatePresence, motion } from "framer-motion";
 import AbstractAlert, { IAlerts } from "@components/utilities/Alert";
+import { IDaoUserData } from "@lib/Interfaces";
 
 const variants = {
   hidden: { opacity: 0, x: -200, y: 0 },
@@ -32,9 +33,11 @@ const daoVariants = {
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(LightTheme);
+  const [daoData, setDaoData] = React.useState(undefined);
+  const [daoUserData, setDaoUserData] = React.useState<IDaoUserData>(undefined);
+
   const [alert, setAlert] = React.useState<IAlerts[]>([]);
   const router = useRouter();
-  const [daoId, setDaoId] = React.useState<any>(router.query.id);
 
   React.useEffect(() => {
     setTheme(localStorage.getItem("theme") === "dark" ? DarkTheme : LightTheme);
@@ -45,7 +48,16 @@ export default function App({ Component, pageProps }: AppProps) {
     localStorage.setItem("theme", temp);
   }, [theme]);
 
-  const api = new AppApi(alert, setAlert, theme, setTheme, daoId, setDaoId);
+  const api = new AppApi(
+    alert,
+    setAlert,
+    theme,
+    setTheme,
+    daoData,
+    setDaoData,
+    daoUserData,
+    setDaoUserData
+  );
   return (
     <>
       <Head>

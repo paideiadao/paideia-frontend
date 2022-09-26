@@ -58,12 +58,7 @@ const DaoConfig: React.FC = () => {
   });
 
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
-  const api = new ConfigApi(
-    globalContext.api === undefined ? undefined : globalContext.api.alert,
-    globalContext.api === undefined ? undefined : globalContext.api.setAlert,
-    data,
-    setData
-  );
+  const api = new ConfigApi(globalContext.api, data, setData);
   React.useEffect(() => {
     if (globalContext.api !== undefined) {
       api.alert = globalContext.api.alert;

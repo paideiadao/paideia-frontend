@@ -21,6 +21,13 @@ const withTM = require("next-transpile-modules")([
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  env: {
+    API_URL: "https://api.paideia.im",
+    LOCAL_URL: "http://localhost:8000/api",
+  },
+  images: {
+    domains: ["ergopad-public.s3.us-west-2.amazonaws.com"],
+  },
 };
 
 module.exports = withTM(nextConfig);

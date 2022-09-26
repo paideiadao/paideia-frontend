@@ -14,7 +14,7 @@ const Layout: React.FC<{ width?: string | any }> = (props) => {
         justifyContent: "center",
         pt: { xs: ".75rem", sm: ".75rem", md: ".5rem", lg: "1rem" },
         pb: "1.5rem",
-        minHeight: "calc(100vh - 7rem)",
+        minHeight: "calc(100vh - 6rem)",
       }}
     >
       <Box

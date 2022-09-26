@@ -13,7 +13,7 @@ const NewToken: React.FC<IData<ITokenomics>> = (props) => {
       <Grid item md={6}>
         <TextField
           value={data.tokenName}
-          sx={{ width: '100%' }}
+          sx={{ width: "100%" }}
           label="Token name"
           onChange={(e) =>
             props.setData({
@@ -26,7 +26,7 @@ const NewToken: React.FC<IData<ITokenomics>> = (props) => {
       <Grid item md={3}>
         <TextField
           value={data.tokenTicker}
-          sx={{ width: '100%' }}
+          sx={{ width: "100%" }}
           label="Token ticker"
           onChange={(e) =>
             props.setData({
@@ -39,7 +39,7 @@ const NewToken: React.FC<IData<ITokenomics>> = (props) => {
       <Grid item md={3}>
         <TextField
           value={data.tokenAmount === 0 ? "" : data.tokenAmount}
-          sx={{ width: '100%' }}
+          sx={{ width: "100%" }}
           label="Token amount"
           type="number"
           onChange={(e) =>
@@ -122,9 +122,12 @@ const TokenInformation: React.FC<IData<ITokenomics>> = (props) => {
         // small
         tooltipTitle="Token Information"
         tooltipText="If using an existing token, double check the token ID using ergo explorer. Once set, this cannot be changed. The token you choose will be the governance token for the DAO you create. "
-      // tooltipLink="/here"
+        // tooltipLink="/here"
       />
-      <ButtonGroup variant="outlined" sx={{ width: "100%", mt: ".5rem", mb: '24px', }}>
+      <ButtonGroup
+        variant="outlined"
+        sx={{ width: "100%", mt: ".5rem", mb: "24px" }}
+      >
         <Button
           sx={{
             width: "50%",

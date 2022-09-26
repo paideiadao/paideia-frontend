@@ -54,7 +54,7 @@ const Dashboard: React.FC = () => {
             title="Manage Dao Participation"
             sx={{ mb: "32px" }}
           />
-          <Typography variant="p">
+          <Typography variant="body2">
             Use this section to explore all the different DAOs that your
             connected wallet is a member of. Manage your stake and redeem tokens
             all in one place.

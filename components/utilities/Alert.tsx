@@ -22,17 +22,17 @@ const AbstractAlert: React.FC<IAbstractAlert> = (props) => {
     props.alerts.length > 0 && (
       <Box
         sx={{
-          position: "absolute",
+          position: "fixed",
           top: "4rem",
           right: deviceWrapper(".5rem", "1rem"),
-          zIndex: 1000,
+          zIndex: 100000,
         }}
       >
         {props.alerts.map((alert: IAlerts, c: number) => (
           <Alert
             severity={alert.severity}
             key={`alert-${c}`}
-            sx={{ position: "relative", minWidth: "250px" }}
+            sx={{ position: "relative", minWidth: "250px", mb: ".5rem" }}
           >
             {alert.content}
             <IconButton

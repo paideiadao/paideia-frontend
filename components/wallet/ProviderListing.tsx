@@ -20,7 +20,7 @@ const ProviderListing: React.FC<{ set: Function }> = (props) => {
       >
         <Avatar
           src={Nautilus.src}
-          sx={{ height: "2.rem", width: "2.5rem", mr: "1rem" }}
+          sx={{ height: "2.5rem", width: "2.5rem", mr: "1rem" }}
         />
         <Box sx={{ fontSize: ".9rem", color: "text.secondary" }}>
           <Box
@@ -57,7 +57,7 @@ const ProviderListing: React.FC<{ set: Function }> = (props) => {
       >
         <Avatar
           src={Ergo.src}
-          sx={{ height: "2.rem", width: "2.5rem", mr: "1rem" }}
+          sx={{ height: "2.5rem", width: "2.5rem", mr: "1rem" }}
         />
         <Box sx={{ fontSize: ".9rem", color: "text.secondary" }}>
           <Box
