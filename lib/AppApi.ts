@@ -2,7 +2,12 @@ import { AbstractApi } from "./utilities";
 import { Theme } from "@mui/material";
 import { CreationApi } from "./creation/CreationApi";
 import { IAlerts } from "@components/utilities/Alert";
-import { IDaoUserData, IDaoUserRes, IEditUser } from "./Interfaces";
+import {
+  IDaoUserData,
+  IDaoUserRes,
+  IEditUser,
+  ITokenCheckResponse,
+} from "./Interfaces";
 
 export class AppApi extends AbstractApi {
   theme: Theme;
@@ -33,6 +38,15 @@ export class AppApi extends AbstractApi {
     this.setDaoUserData = setDaoUserData;
   }
 
+  async paideiaTokenCheck(addresses: string[]): Promise<ITokenCheckResponse> {
+    return this.post<ITokenCheckResponse>(
+      "https://api.paideia.im/assets/locked/paideia",
+      {
+        addresses,
+      }
+    );
+  }
+
   async editUser(data: IEditUser): Promise<any> {
     return this.put(
       `/users/details/${this.daoUserData.user_id}?dao_id=${this.daoUserData.dao_id}`,
@@ -40,7 +54,7 @@ export class AppApi extends AbstractApi {
     );
   }
 
-  async getDaoUser(): Promise<any> {
+  async getDaoUser(): Promise<IDaoUserRes> {
     let userId = localStorage.getItem("user_id");
     if (userId != null && userId !== "" && this.daoData !== undefined) {
       return this.get<IDaoUserRes>(

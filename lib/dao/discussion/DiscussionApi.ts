@@ -20,10 +20,9 @@ export default class DiscussionApi extends AbstractApi {
   }
 
   cleanData(image_url: string, dao_id: number): IProposalEndpointBody {
-    console.log(dao_id);
     return {
       dao_id: isNaN(dao_id) ? 1 : dao_id,
-      user_id: getUserId(),
+      user_details_id: this.api.daoUserData.id,
       name: this.value.name,
       image_url: image_url,
       category: this.value.category,
@@ -36,6 +35,6 @@ export default class DiscussionApi extends AbstractApi {
 
   create(image_url: string, dao_id: number): Promise<any> | void {
     const data = this.cleanData(image_url, dao_id);
-    return this.post("/proposals", data);
+    return this.post("/proposals/", data);
   }
 }

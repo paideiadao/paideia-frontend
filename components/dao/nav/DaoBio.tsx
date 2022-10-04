@@ -17,6 +17,8 @@ import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
 import { ISideNavComponent } from "./Contents";
 import { getTokenUtxos } from "@lib/wallet/Nautilus";
 import { useWallet } from "@components/wallet/WalletContext";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
+import { isAddressValid } from "@components/wallet/AddWallet";
 
 export interface IDao {
   name: string;
@@ -121,7 +123,9 @@ export const DaoSelector: React.FC<IDaoSelector> = (props) => {
     setDropdown(false);
   };
 
-  const { wallet, utxos, setUtxos } = useWallet();
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
+
+  const { wallet, utxos, setUtxos, dAppWallet } = useWallet();
   React.useEffect(() => {
     const load = async () => {
       try {
@@ -130,23 +134,25 @@ export const DaoSelector: React.FC<IDaoSelector> = (props) => {
 
         if (dappConnected !== undefined) {
           dappConnected = JSON.parse(dappConnected);
-          if (dappConnected) {
-            // @ts-ignore
-            await ergoConnector.nautilus.connect();
-            // @ts-ignore
-            let tempUtxos = await ergo.get_utxos();
-            setUtxos(tempUtxos);
+          if (dappConnected && dAppWallet.addresses > 0) {
+            let res = await globalContext.api.paideiaTokenCheck(
+              dAppWallet.addresses.map((i: any) => i.name)
+            );
+            setUtxos(res.totalTokens);
           }
         } else if (userId !== undefined) {
           userId = JSON.parse(userId);
-          // mobile wallet here...
+          if (isAddressValid(wallet)) {
+            let res = await globalContext.api.paideiaTokenCheck([wallet]);
+            setUtxos(res.totalTokens);
+          }
         } else {
           // all should be unconnected...
-          setUtxos(undefined);
+          setUtxos(0);
         }
       } catch (e) {
         console.log(e);
-        setUtxos(undefined);
+        setUtxos(0);
       }
     };
 
@@ -261,9 +267,7 @@ export const DaoSelector: React.FC<IDaoSelector> = (props) => {
               <CapsInfo
                 title={
                   search === ""
-                    ? daos.filter(
-                        (i: IDao) => getTokenUtxos(utxos, i.token).length > 0
-                      )
+                    ? daos.filter((i: IDao) => utxos > 0)
                       ? "Daos Connected to your wallet"
                       : "Daos Connected to your wallet"
                     : "Search Results"
@@ -283,9 +287,8 @@ export const DaoSelector: React.FC<IDaoSelector> = (props) => {
                   maxHeight: "15rem",
                 }}
               >
-                {daos.filter(
-                  (i: IDao) => getTokenUtxos(utxos, i.token).length > 0
-                ).length === 0 && search === "" ? (
+                {daos.filter((i: IDao) => utxos > 0).length === 0 &&
+                search === "" ? (
                   <Box
                     sx={{
                       textAlign: "center",
@@ -299,7 +302,7 @@ export const DaoSelector: React.FC<IDaoSelector> = (props) => {
                   daos
                     .filter((i: IDao) =>
                       search === ""
-                        ? getTokenUtxos(utxos, i.token).length > 0
+                        ? utxos > 0
                         : i.name.toLowerCase().includes(search.toLowerCase())
                     )
                     .map((d: any, c: number) => (
@@ -307,11 +310,8 @@ export const DaoSelector: React.FC<IDaoSelector> = (props) => {
                         data={d}
                         set={(val: IDao) => setDaoWrapper(val)}
                         key={`dao-select-key-${c}`}
-                        selected={
-                          id === d.id &&
-                          getTokenUtxos(utxos, d.token).length > 0
-                        }
-                        inWallet={getTokenUtxos(utxos, d.token).length > 0}
+                        selected={id === d.id && utxos > 0}
+                        inWallet={utxos > 0}
                         redirect={props.redirect}
                       />
                     ))

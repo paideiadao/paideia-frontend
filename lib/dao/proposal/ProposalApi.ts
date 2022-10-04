@@ -9,7 +9,7 @@ import {
 
 export interface IProposalEndpointBody {
   dao_id: number;
-  user_id: number;
+  user_details_id: number;
   name: string;
   image_url: string;
   category: string;
@@ -41,7 +41,7 @@ export default class ProposalApi extends AbstractApi {
   cleanData(): IProposalEndpointBody {
     return {
       dao_id: 1,
-      user_id: 1,
+      user_details_id: this.api.daoUserData.id,
       name: this.value.name,
       image_url: "",
       category: this.value.category,

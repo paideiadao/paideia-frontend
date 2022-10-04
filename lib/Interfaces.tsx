@@ -33,3 +33,17 @@ export interface IEditUser {
   xp?: number;
   social_links: any;
 }
+
+interface ITokenAmount {
+  [token: string]: number;
+}
+
+export interface ITokenCheckResponse {
+  totalTokens: number;
+  totalFree: number;
+  totalStaked: number;
+  totalVested: number;
+  free: ITokenAmount;
+  staked: ITokenAmount;
+  vested: ITokenAmount;
+}

@@ -153,6 +153,7 @@ const Nautilus: React.FC<{
                                             "jwt_token_login",
                                             data.data.access_token
                                           );
+                                          console.log("HEEREEE", data.data.id);
                                           localStorage.setItem(
                                             "user_id",
                                             data.data.id

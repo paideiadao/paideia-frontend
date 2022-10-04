@@ -6,7 +6,7 @@ import { IDiscussion } from "@pages/dao/[id]/discussion/create";
 type LikeDislikeAction = "like" | "dislike" | "remove";
 
 interface ILikeDislikePut {
-  user_id: number;
+  user_details_id: number;
   type: LikeDislikeAction;
 }
 
@@ -21,9 +21,8 @@ export default class LikesDislikesApi extends AbstractApi {
   }
 
   likeDislikeData(type: LikeDislikeAction): ILikeDislikePut {
-    let user_id = parseInt(localStorage.getItem("user_id"));
     return {
-      user_id: user_id,
+      user_details_id: this.api.daoUserData.id,
       type: type,
     };
   }

@@ -35,13 +35,7 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
   }, [daoData]);
 
   useDidMountEffect(() => {
-    if (
-      getTokenUtxos(
-        utxos,
-        "1fd6e032e8476c4aa54c18c1a308dce83940e8f4a28f576440513ed7326ad489"
-      )
-    )
-      globalContext.api.getOrCreateDaoUser();
+    if (utxos > 0) globalContext.api.getOrCreateDaoUser();
   }, [globalContext.api.daoData]);
 
   useDidMountEffect(() => {

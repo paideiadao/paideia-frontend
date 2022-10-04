@@ -42,7 +42,6 @@ const ProfileEditImage: React.FC<{ set: (val: IFile) => void; img: string }> = (
     let fileInput = e.currentTarget.files;
     if (fileInput && fileInput[0]) {
       if (fileInput.length != 1) return;
-      console.log("here", fileInput);
       if (fileInput[0].size > 3000000000) {
         setFile({ ...file, file: -1 });
         return;
@@ -65,8 +64,6 @@ const ProfileEditImage: React.FC<{ set: (val: IFile) => void; img: string }> = (
     }
   }
 
-  console.log(props.img);
-  console.log(file);
   return (
     <Box
       sx={{
@@ -183,7 +180,6 @@ const Edit: React.FC<{ params: any }> = (props) => {
   React.useEffect(() => {
     let val = appContext.api.daoUserData;
     if (val !== undefined) {
-      console.log(val, "val");
       setValue({
         username: val.name,
         socialLinks: val.social_links,

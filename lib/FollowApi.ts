@@ -6,7 +6,7 @@ import { IDiscussion } from "@pages/dao/[id]/discussion/create";
 type FollowDirection = "follow" | "unfollow";
 
 interface IFollowPut {
-  user_id: number;
+  user_details_id: number;
   type: FollowDirection;
 }
 
@@ -20,19 +20,24 @@ export default class FollowApi extends AbstractApi {
     this.putUrl = putUrl;
   }
 
-  followData(type: FollowDirection, user_id: number = undefined): IFollowPut {
-    let _user_id = parseInt(localStorage.getItem("user_id"));
+  followData(
+    type: FollowDirection,
+    user_details_id: number = undefined
+  ): IFollowPut {
     return {
-      user_id: user_id === undefined ? _user_id : user_id,
+      user_details_id:
+        user_details_id === undefined
+          ? this.api.daoUserData.id
+          : user_details_id,
       type: type,
     };
   }
 
   follow(
     type: FollowDirection,
-    user_id: number = undefined
+    user_details_id: number = undefined
   ): Promise<any> | void {
-    let data = this.followData(type, user_id);
+    let data = this.followData(type, user_details_id);
     return this.put(this.putUrl, data, "Followed proposal");
   }
 }

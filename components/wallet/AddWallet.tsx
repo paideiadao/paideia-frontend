@@ -198,6 +198,7 @@ const AddWallet: React.FC = () => {
               .signMessage(signingMessage.data.tokenUrl, response)
               .then(async (data) => {
                 localStorage.setItem("jwt_token_login", data.data.access_token);
+                console.log("HEEREE", data.data.id);
                 localStorage.setItem("user_id", data.data.id);
                 localStorage.setItem("alias", data.data.alias);
                 setWallet(signingMessage.data.address);
@@ -205,7 +206,7 @@ const AddWallet: React.FC = () => {
                   WALLET_ADDRESS,
                   signingMessage.data.address
                 );
-                await globalContext.api.getOrCreateDaoUser();
+                // await globalContext.api.getOrCreateDaoUser();
               })
               .catch((e) => {
                 globalContext.api.error("Unable to login with Nautilus");
@@ -339,7 +340,7 @@ const AddWallet: React.FC = () => {
                           localStorage.setItem("alias", wsRes.alias);
                           localStorage.setItem("wallet_address", walletInput);
                           handleSubmitWallet();
-                          await globalContext.api.getOrCreateDaoUser();
+                          // await globalContext.api.getOrCreateDaoUser();
                         } catch (e) {
                           console.log(e);
                         }

@@ -1,10 +1,9 @@
 import { IComment } from "@components/dao/discussion/Comments";
 import { AppApi } from "@lib/AppApi";
 import { AbstractApi } from "@lib/utilities";
-import { IDiscussion } from "@pages/dao/[id]/discussion/create";
 
 interface ICommentPut {
-  user_id: number;
+  user_details_id: number;
   comment: string;
   parent: number;
 }
@@ -20,9 +19,8 @@ export default class CommentsApi extends AbstractApi {
   }
 
   commentData(comment: IComment): ICommentPut {
-    let user_id = parseInt(localStorage.getItem("user_id"));
     return {
-      user_id: user_id,
+      user_details_id: this.api.daoUserData.id,
       comment: comment.comment,
       parent: comment.parent,
     };

@@ -21,12 +21,9 @@ const Member: React.FC = () => {
 
   useDidMountEffect(() => {
     if (userError !== undefined) {
-      console.log(userError, "heeeeere");
       router.push("/404");
     }
   }, [userError]);
-
-  console.log(userData, userError);
 
   return (
     <AbstractProfile

@@ -5,7 +5,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { ISocialLink } from "@lib/creation/Interfaces";
-import { getUserId } from "@lib/utilities";
+import { getUserId, snipAddress } from "@lib/utilities";
 import { levels } from "../profile/Header";
 import useDidMountEffect from "@components/utilities/hooks";
 import { FollowMobile } from "@components/utilities/Follow";
@@ -32,9 +32,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
   const router = useRouter();
   const { id } = router.query;
 
-  useDidMountEffect(() => {
-
-  }, [favorited])
+  useDidMountEffect(() => {}, [favorited]);
   return (
     <Box
       sx={{
@@ -82,7 +80,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
               src={props.profile_img_url}
               sx={{ width: "4.5rem", height: "4.5rem" }}
             />
-            <Box>{props.name}</Box>
+            <Box>{snipAddress(props.name, 20, 10)}</Box>
             <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
               Level {props.level} | {levels[props.level].name}
             </Box>
