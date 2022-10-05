@@ -22,11 +22,13 @@ const ActiveProposal: React.FC = () => {
     let element = document.getElementById(
       `proposal-active-${slide === 0 ? slide : slide - 1}`
     );
-    element.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "start",
-    });
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
+    }
   }, [slide]);
 
   const router = useRouter();
@@ -38,49 +40,62 @@ const ActiveProposal: React.FC = () => {
 
   return (
     <>
-      <CardSlider
-        uniqueId="uses"
-        addMargin={0}
-        buttonTop
-        header={
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              width: deviceWrapper("80%", "90%"),
-            }}
-          >
-            <Subheader title="Active proposals" small bold />
-            <Box sx={{ ml: "auto" }}>
-              <Link
-                href={
-                  id === undefined
-                    ? "dao/proposals/all"
-                    : `/dao/${id}/proposals/all`
-                }
-              >
-                <Button sx={{ fontSize: ".8rem", mr: "1rem" }} size="small">
-                  View All
-                </Button>
-              </Link>
+      {proposalData === undefined ? (
+        <Box>Loading Here...</Box>
+      ) : proposalData.length === 0 ? (
+        <Box
+          sx={{
+            width: "100%",
+            height: "7rem",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: "1.5rem",
+          }}
+        >
+          No Proposals Yet!
+        </Box>
+      ) : (
+        <CardSlider
+          uniqueId="uses"
+          addMargin={0}
+          buttonTop
+          header={
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                width: deviceWrapper("80%", "90%"),
+              }}
+            >
+              <Subheader title="Active proposals" small bold />
+              <Box sx={{ ml: "auto" }}>
+                <Link
+                  href={
+                    id === undefined
+                      ? "dao/proposals/all"
+                      : `/dao/${id}/proposals/all`
+                  }
+                >
+                  <Button sx={{ fontSize: ".8rem", mr: "1rem" }} size="small">
+                    View All
+                  </Button>
+                </Link>
+              </Box>
             </Box>
-          </Box>
-        }
-      >
-        {proposalData === undefined ? (
-          <Box> Loading Here...</Box>
-        ) : (
-          proposalData.map((i: any, c: number) => (
+          }
+        >
+          {proposalData.map((i: any, c: number) => (
             <ProposalCard
               {...i}
               c={c}
               scrollable
               key={"proposal-card-key-" + c}
-              width={deviceStruct("25%", "25%", "35%", "33%", "70%")}
+              width={deviceStruct("25%", "25%", "35%", "33%", "17rem")}
             />
-          ))
-        )}
-      </CardSlider>
+          ))}
+        </CardSlider>
+      )}
     </>
   );
 };

@@ -27,13 +27,19 @@ export const snipAddress = (
 };
 
 export const getBaseUrl = () => {
-  return process.env.NODE_ENV == "development"
+  return false //process.env.NODE_ENV == "development"
     ? process.env.LOCAL_URL
     : process.env.API_URL;
 };
 
 export const fetcher = (url: string) =>
-  axios.get(getBaseUrl() + url).then((res) => res.data);
+  axios
+    .get(getBaseUrl() + url, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt_token_login")}`,
+      },
+    })
+    .then((res) => res.data);
 
 interface IUpdateUser {
   alias?: string;
@@ -85,12 +91,20 @@ export interface ILoginResponse {
   alias: string;
 }
 
+export const getWsUrl = (): string => {
+  return `${process.env.NODE_ENV == "development" ? "ws" : "wss"}://${
+    process.env.NODE_ENV == "development"
+      ? "localhost:8000/api"
+      : "wss.paideia.im"
+  }`;
+};
+
 export class AbstractApi {
   alert: IAlerts[] = [];
   setAlert: (val: IAlerts[]) => void = undefined;
 
   webSocket(request_id: string): WebSocket {
-    const ws = new WebSocket(`ws://localhost:8000/api/auth/ws/${request_id}`);
+    const ws = new WebSocket(`${getWsUrl()}/auth/ws/${request_id}`);
     return ws;
   }
 
@@ -305,9 +319,11 @@ export class AbstractApi {
         "Access-Control-Allow-Credentials": true,
       },
     };
-    url = url.includes("8000/api") ? url.split("8000/api")[1] : url;
-    console.log(getBaseUrl(), "local");
-    console.log(url, "FUCK");
-    return await methods[method](getBaseUrl() + url, body, defaultOptions);
+    url = url.includes("https")
+      ? url
+      : url.includes("8000")
+      ? getBaseUrl() + url.split("8000")[1]
+      : getBaseUrl() + url;
+    return await methods[method](url, body, defaultOptions);
   }
 }

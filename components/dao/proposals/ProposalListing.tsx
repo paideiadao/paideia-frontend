@@ -251,6 +251,18 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
             >
               <CircularProgress />
             </Box>
+          ) : props.proposals.length === 0 ? (
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                mt: "3rem",
+                fontSize: "1.5rem",
+              }}
+            >
+              No Proposals Yet!
+            </Box>
           ) : (
             props.proposals
               .sort((a: any, b: any) =>

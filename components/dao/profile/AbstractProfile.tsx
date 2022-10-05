@@ -65,7 +65,9 @@ const AbstractProfile: React.FC<IAbstractProfile> = (props) => {
           <Box sx={{ width: "100%", display: deviceWrapper("block", "none") }}>
             {props.data !== undefined && (
               <AboutUser
-                token_id={'1fd6e032e8476c4aa54c18c1a308dce83940e8f4a28f576440513ed7326ad489'}
+                token_id={
+                  "1fd6e032e8476c4aa54c18c1a308dce83940e8f4a28f576440513ed7326ad489"
+                }
                 followers={props.data.followers}
                 created={0}
                 approved={0}
@@ -89,7 +91,7 @@ const AbstractProfile: React.FC<IAbstractProfile> = (props) => {
                 <Proposals />
               </TabPanel>
               <TabPanel value="2" sx={{ pl: 0, pr: 0 }}>
-                <Activity activities={props.activities}/>
+                <Activity activities={props.activities} />
               </TabPanel>
             </TabContext>
           </Box>
@@ -97,7 +99,9 @@ const AbstractProfile: React.FC<IAbstractProfile> = (props) => {
         <Box sx={{ width: "30%", display: deviceWrapper("none", "block") }}>
           {props.data !== undefined && (
             <AboutUser
-              token_id={'1fd6e032e8476c4aa54c18c1a308dce83940e8f4a28f576440513ed7326ad489'}
+              token_id={
+                "1fd6e032e8476c4aa54c18c1a308dce83940e8f4a28f576440513ed7326ad489"
+              }
               followers={props.data.followers}
               created={0}
               bio={props.data.bio}

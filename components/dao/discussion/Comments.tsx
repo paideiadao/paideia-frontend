@@ -25,7 +25,7 @@ export interface IComment {
   dislikes: number[];
   date: Date;
   alias: string;
-  img: string;
+  profile_img_url: string;
   comment: string;
   parent: number;
   show?: boolean;
@@ -238,7 +238,7 @@ const BaseComment: React.FC<{
             }}
           >
             <Avatar
-              src={props.comment.img}
+              src={props.comment.profile_img_url}
               sx={{
                 width: deviceWrapper("1.75rem", "2.25rem"),
                 height: deviceWrapper("1.75rem", "2.25rem"),

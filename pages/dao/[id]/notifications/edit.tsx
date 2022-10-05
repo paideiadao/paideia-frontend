@@ -1,4 +1,4 @@
-import { Box, TextField, Button, Modal } from "@mui/material";
+import { Box, TextField, Button, Modal, Collapse } from "@mui/material";
 import * as React from "react";
 import { Header } from "@components/creation/utilities/HeaderComponents";
 import LabeledSwitch from "@components/creation/utilities/LabeledSwitch";
@@ -11,8 +11,22 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Status from "@components/utilities/Status";
 import Layout from "@components/dao/Layout";
 import { deviceWrapper } from "@components/utilities/Style";
+import { LoadingButton } from "@mui/lab";
+import { IGlobalContext, GlobalContext } from "@lib/AppContext";
+import { IUserSettings } from "@lib/dao/users/Interfaces";
+import SettingsApi from "@lib/dao/users/SettingsApi";
+import { fetcher, getDaoPath } from "@lib/utilities";
+import { id } from "date-fns/locale";
+import useSWR from "swr";
+import { useRouter } from "next/router";
+import useDidMountEffect from "@components/utilities/hooks";
 
-const notifications = [
+interface INotification {
+  label: string;
+  value: keyof IUserSettings;
+}
+
+const notifications: INotification[] = [
   {
     label: "A comment is made in a proposal I created",
     value: "createProposal",
@@ -40,117 +54,140 @@ const notifications = [
 ];
 
 const EditNotifications: React.FC<{ params: any }> = (props) => {
-  const [value, setValue] = React.useState<IObj<any>>({
-    showEmail: true,
-    emailAddress: "alone.musk@gmail.com",
-    showPhone: false,
-    phoneNumber: "",
-    createProposal: true,
-    voteCastCreatedProposal: false,
-    proposalVotedEnded: false,
-    votedAddendum: true,
-    voteOnApproved: true,
-    voteOnDenied: true,
-    commentReply: false,
-    followingNewProposal: true,
-    terminationProposal: false,
-    alert: undefined,
-  });
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
+  const [value, setValue] = React.useState<IUserSettings>();
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const settingsApi = new SettingsApi(globalContext.api, value, setValue);
+  const router = useRouter();
+  const { id } = router.query;
+
+  const { data: userSettingsData, error: userSettingsError } = useSWR(
+    settingsApi.api.daoUserData != null &&
+      `/users/profile/settings?user_details_id=${settingsApi.api.daoUserData.id}`,
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
 
   React.useEffect(() => {
-    if (value.alert === "success") {
-      setTimeout(() => setValue({ ...value, alert: undefined }), 3000);
-    } else if (value.alert === "info") {
-      setTimeout(() => setValue({ ...value, alert: "success" }), 3000);
+    if (userSettingsData) {
+      setValue(userSettingsData.settings);
     }
-  }, [value.alert]);
+  }, [userSettingsData]);
 
   return (
     <Layout>
-      <Header title="Notification settings" large />
-      <LabeledSwitch
-        title="Notify me through email"
-        value={value.showEmail}
-        onChange={() => setValue({ ...value, showEmail: !value.showEmail })}
-        small
-      />
-      {value.showEmail && (
-        <TextField
-          value={value.emailAddress}
-          label="Email address"
-          sx={{ width: "100%" }}
-          onChange={(e: any) =>
-            setValue({ ...value, emailAddress: e.target.value })
-          }
-        />
-      )}
-      <LabeledSwitch
-        title="Notify me through phone"
-        value={value.showPhone}
-        small
-        onChange={() => setValue({ ...value, showPhone: !value.showPhone })}
-      />
-      {value.showPhone && (
-        <TextField
-          value={value.phoneNumber}
-          label="Phone number"
-          sx={{ width: "100%" }}
-          onChange={(e: any) =>
-            setValue({ ...value, phoneNumber: e.target.value })
-          }
-        />
-      )}
-      <Box sx={{ width: "100%", mt: "1.5rem", fontSize: ".9rem" }}>
-        Notify me when
-        <FormGroup>
-          {notifications.map((i: any) => (
-            <FormControlLabel
-              disableTypography
-              onClick={() => setValue({ ...value, [i.value]: !value[i.value] })}
-              control={<Checkbox checked={value[i.value]} size="small" />}
-              label={i.label}
-              sx={{
-                mt: ".25rem",
-                mb: ".25rem",
-                fontSize: deviceWrapper(".8rem", ".9rem"),
-              }}
+      {value !== undefined && (
+        <>
+          <Header title="Notification settings" large />
+          <LabeledSwitch
+            title="Notify me through email"
+            value={value.showEmail}
+            onChange={() => setValue({ ...value, showEmail: !value.showEmail })}
+            small
+          />
+          <Collapse in={value.showEmail}>
+            <TextField
+              value={value.emailAddress}
+              label="Email address"
+              sx={{ width: "100%" }}
+              onChange={(e: any) =>
+                setValue({ ...value, emailAddress: e.target.value })
+              }
             />
-          ))}
-        </FormGroup>
-      </Box>
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          mt: "1rem",
-        }}
-      >
-        <Button
-          variant="outlined"
-          sx={{ width: "49%", mr: ".5rem" }}
-          size="small"
-        >
-          Cancel
-        </Button>
-        <Button
-          variant="contained"
-          sx={{ width: "49%" }}
-          size="small"
-          onClick={() => setValue({ ...value, alert: "info" })}
-        >
-          <Box sx={{ display: deviceWrapper("none", "block") }}>
-            Save Changes
+          </Collapse>
+          <LabeledSwitch
+            title="Notify me through phone"
+            value={value.showPhone}
+            small
+            onChange={() => setValue({ ...value, showPhone: !value.showPhone })}
+          />
+          <Collapse in={value.showPhone}>
+            <TextField
+              value={value.phoneNumber}
+              label="Phone number"
+              sx={{ width: "100%" }}
+              onChange={(e: any) =>
+                setValue({ ...value, phoneNumber: e.target.value })
+              }
+            />
+          </Collapse>
+          <Collapse in={value.showEmail || value.showPhone}>
+            <Box sx={{ width: "100%", mt: "1.5rem", fontSize: ".9rem" }}>
+              Notify me when
+              <FormGroup>
+                {notifications.map((i: INotification) => (
+                  <FormControlLabel
+                    disableTypography
+                    onClick={() =>
+                      setValue({ ...value, [i.value]: !value[i.value] })
+                    }
+                    control={
+                      <Checkbox
+                        checked={value[i.value] as boolean}
+                        size="small"
+                      />
+                    }
+                    label={i.label}
+                    sx={{
+                      mt: ".25rem",
+                      mb: ".25rem",
+                      fontSize: deviceWrapper(".8rem", ".9rem"),
+                    }}
+                  />
+                ))}
+              </FormGroup>
+            </Box>
+          </Collapse>
+
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              mt: "1rem",
+            }}
+          >
+            <Button
+              variant="outlined"
+              sx={{ width: "49%", mr: ".5rem" }}
+              size="small"
+            >
+              Cancel
+            </Button>
+            <LoadingButton
+              variant="contained"
+              sx={{ width: "49%" }}
+              size="small"
+              loading={loading}
+              loadingPosition="center"
+              onClick={async () => {
+                try {
+                  setLoading(true);
+                  await settingsApi.edit();
+                  settingsApi.api.showAlert(
+                    "Successfully updated user settings",
+                    "success"
+                  );
+                } catch (e) {
+                  settingsApi.error("Unable to update settings");
+                } finally {
+                  setLoading(false);
+                }
+              }}
+            >
+              <Box sx={{ display: deviceWrapper("none", "block") }}>
+                Save Changes
+              </Box>
+              <Box sx={{ display: deviceWrapper("block", "none") }}>Save</Box>
+            </LoadingButton>
           </Box>
-          <Box sx={{ display: deviceWrapper("block", "none") }}>Save</Box>
-        </Button>
-      </Box>
-      <Status
-        value={value.alert}
-        current="notification settings."
-        action="updated"
-      />
+        </>
+      )}
     </Layout>
   );
 };

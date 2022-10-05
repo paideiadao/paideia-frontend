@@ -442,47 +442,47 @@ const Contents: React.FC<ISideNavComponent> = (props) => {
         </>
       ),
     },
-    {
-      icon: <AttachMoneyIcon sx={{ opacity: ".8" }} />,
-      label: "Financials",
-      links: (
-        <>
-          <BasicLink
-            icon={<AccountBalanceIcon sx={{ opacity: ".8" }} />}
-            title={"Treasury"}
-            selected={"Treasury" === subSelected}
-            set={setSubWrapper}
-            ml=".5rem"
-          />
-          <BasicLink
-            icon={<DonutSmallIcon sx={{ opacity: ".8" }} />}
-            title={"Tokenomics"}
-            selected={"Tokenomics" === subSelected}
-            set={setSubWrapper}
-            ml=".5rem"
-          />
-          <BasicLink
-            icon={<AutorenewIcon sx={{ opacity: ".8" }} />}
-            title={"Recurring"}
-            selected={"Recurring" === subSelected}
-            set={setSubWrapper}
-            ml=".5rem"
-          />
-          <BasicLink
-            icon={<BoltIcon sx={{ opacity: ".8" }} />}
-            title={"Token"}
-            selected={"Token" === subSelected}
-            set={setSubWrapper}
-            ml=".5rem"
-          />
-        </>
-      ),
-    },
+    // {
+    //   icon: <AttachMoneyIcon sx={{ opacity: ".8" }} />,
+    //   label: "Financials",
+    //   links: (
+    //     <>
+    //       <BasicLink
+    //         icon={<AccountBalanceIcon sx={{ opacity: ".8" }} />}
+    //         title={"Treasury"}
+    //         selected={"Treasury" === subSelected}
+    //         set={setSubWrapper}
+    //         ml=".5rem"
+    //       />
+    //       <BasicLink
+    //         icon={<DonutSmallIcon sx={{ opacity: ".8" }} />}
+    //         title={"Tokenomics"}
+    //         selected={"Tokenomics" === subSelected}
+    //         set={setSubWrapper}
+    //         ml=".5rem"
+    //       />
+    //       <BasicLink
+    //         icon={<AutorenewIcon sx={{ opacity: ".8" }} />}
+    //         title={"Recurring"}
+    //         selected={"Recurring" === subSelected}
+    //         set={setSubWrapper}
+    //         ml=".5rem"
+    //       />
+    //       <BasicLink
+    //         icon={<BoltIcon sx={{ opacity: ".8" }} />}
+    //         title={"Token"}
+    //         selected={"Token" === subSelected}
+    //         set={setSubWrapper}
+    //         ml=".5rem"
+    //       />
+    //     </>
+    //   ),
+    // },
     // {
     //   icon: <AutoAwesomeIcon sx={{ opacity: ".8" }} />,
     //   label: "Distributions",
     // },
-    { icon: <DiamondIcon sx={{ opacity: ".8" }} />, label: "Staking" },
+    // { icon: <DiamondIcon sx={{ opacity: ".8" }} />, label: "Staking" },
     { icon: <GroupsIcon sx={{ opacity: ".8" }} />, label: "Members" },
     {
       icon: <MovingIcon sx={{ opacity: ".8" }} />,

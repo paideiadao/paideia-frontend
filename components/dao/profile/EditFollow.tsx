@@ -12,7 +12,6 @@ const EditFollow: React.FC<{
   followed: boolean;
   user_id: number;
 }> = (props) => {
-
   const router = useRouter();
   const { id } = router.query;
   return props.edit ? (

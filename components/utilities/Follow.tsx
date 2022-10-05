@@ -11,7 +11,7 @@ interface IFollow {
   followed: boolean;
   putUrl: string;
   user_id?: number;
-  small?: boolean
+  small?: boolean;
 }
 
 export const FollowMobile: React.FC<IFollow> = (props) => {
@@ -21,27 +21,27 @@ export const FollowMobile: React.FC<IFollow> = (props) => {
   useDidMountEffect(() => {
     api.follow(followed ? "follow" : "unfollow");
   }, [followed]);
-  const smallStyle = props.small === undefined ? {} : {width: '2rem', height: '2rem'}
+  const smallStyle =
+    props.small === undefined ? {} : { width: "2rem", height: "2rem" };
   return (
-    <Tooltip title={followed ? "Unfollow" : 'Follow'} placement='top'>
-<Fab
-      size="small"
-      onClick={() => setFollowed(!followed)}
-      sx={{
-        zIndex: 10,
-        backgroundColor: followed ? "white" : "error.main",
-        color: followed ? "error.light" : "white",
-        ":hover": {
+    <Tooltip title={followed ? "Unfollow" : "Follow"} placement="top">
+      <Fab
+        size="small"
+        onClick={() => setFollowed(!followed)}
+        sx={{
+          zIndex: 10,
           backgroundColor: followed ? "white" : "error.main",
           color: followed ? "error.light" : "white",
-        },
-        ...smallStyle
-      }}
-    >
-      <FavoriteIcon sx={{ fontSize: "1.2rem" }} />
-    </Fab>
+          ":hover": {
+            backgroundColor: followed ? "white" : "error.main",
+            color: followed ? "error.light" : "white",
+          },
+          ...smallStyle,
+        }}
+      >
+        <FavoriteIcon sx={{ fontSize: "1.2rem" }} />
+      </Fab>
     </Tooltip>
-    
   );
 };
 
@@ -50,7 +50,10 @@ const Follow: React.FC<IFollow> = (props) => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const api = new FollowApi(globalContext.api, props.putUrl);
   useDidMountEffect(() => {
-    api.follow(followed ? "follow" : "unfollow", props.user_id);
+    api.follow(
+      followed ? "follow" : "unfollow",
+      globalContext.api.daoUserData.id
+    );
   }, [followed]);
 
   return (

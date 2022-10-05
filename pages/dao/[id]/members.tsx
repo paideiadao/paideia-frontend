@@ -116,8 +116,6 @@ const Members: React.FC = () => {
     }
   );
 
-  console.log(data);
-
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
   };

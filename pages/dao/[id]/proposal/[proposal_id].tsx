@@ -428,7 +428,7 @@ const Proposal: React.FC = () => {
                   ml: "1.5rem",
                 }}
               >
-                <Overview proposal />
+                <Overview proposal userDetailId={0} alias={""} level={0} />
                 {value.votingSystem === "yes/no" ? (
                   <VoteWidget />
                 ) : (

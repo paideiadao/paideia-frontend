@@ -23,7 +23,7 @@ import Layout from "@components/dao/Layout";
 import { deviceWrapper } from "@components/utilities/Style";
 import { getRandomImage } from "@components/utilities/images";
 import useSWR from "swr";
-import { attrOrUndefined, fetcher, getBaseUrl } from "@lib/utilities";
+import { attrOrUndefined, fetcher, getBaseUrl, getWsUrl } from "@lib/utilities";
 import Follow, { FollowMobile } from "@components/utilities/Follow";
 import Details from "@components/dao/discussion/Details";
 import useDidMountEffect from "@components/utilities/hooks";
@@ -65,9 +65,7 @@ const Discussion: React.FC = () => {
   }
 
   useDidMountEffect(() => {
-    let ws = new WebSocket(
-      `ws://localhost:8000/api/proposals/ws/${discussion_id}`
-    );
+    let ws = new WebSocket(`${getWsUrl()}/proposals/ws/${discussion_id}`);
     ws.onmessage = (event: any) => {
       try {
         let wsRes = JSON.parse(event.data);
@@ -417,7 +415,7 @@ const Discussion: React.FC = () => {
                   ml: deviceWrapper("-1rem", "0"),
                   width: deviceWrapper("calc(100% + 2rem)", "100%"),
                   position: "sticky",
-                  top: "3.45rem",
+                  top: "3rem",
                   backgroundColor: "background.default",
                   zIndex: 10,
                 }}
@@ -473,7 +471,7 @@ const Discussion: React.FC = () => {
               ml: "1.5rem",
             }}
           >
-            <Overview />
+            <Overview userDetailId={0} alias={""} level={0} />
             <State />
           </Box>
         </Box>
