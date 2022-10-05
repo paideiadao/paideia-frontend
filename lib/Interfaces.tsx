@@ -39,11 +39,13 @@ interface ITokenAmount {
 }
 
 export interface ITokenCheckResponse {
-  totalTokens: number;
-  totalFree: number;
-  totalStaked: number;
-  totalVested: number;
-  free: ITokenAmount;
-  staked: ITokenAmount;
-  vested: ITokenAmount;
+  data: {
+    totalTokens: number;
+    totalFree: number;
+    totalStaked: number;
+    totalVested: number;
+    free: ITokenAmount;
+    staked: ITokenAmount;
+    vested: ITokenAmount;
+  }
 }

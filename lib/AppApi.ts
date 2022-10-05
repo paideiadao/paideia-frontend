@@ -1,4 +1,4 @@
-import { AbstractApi } from "./utilities";
+import { AbstractApi, getUserId } from "./utilities";
 import { Theme } from "@mui/material";
 import { CreationApi } from "./creation/CreationApi";
 import { IAlerts } from "@components/utilities/Alert";
@@ -49,14 +49,14 @@ export class AppApi extends AbstractApi {
 
   async editUser(data: IEditUser): Promise<any> {
     return this.put(
-      `/users/details/${this.daoUserData.user_id}?dao_id=${this.daoUserData.dao_id}`,
+      `/users/details/${this.daoUserData.id}?dao_id=${this.daoUserData.dao_id}`,
       data
     );
   }
 
   async getDaoUser(): Promise<IDaoUserRes> {
-    let userId = localStorage.getItem("user_id");
-    if (userId != null && userId !== "" && this.daoData !== undefined) {
+    let userId = getUserId();
+    if (userId != null && this.daoData !== undefined) {
       return this.get<IDaoUserRes>(
         `/users/details/${userId}?dao_id=${this.daoData.id}`
       );
@@ -65,6 +65,8 @@ export class AppApi extends AbstractApi {
   }
 
   async getOrCreateDaoUser(): Promise<void> {
+    let userId = getUserId();
+
     let res = await this.getDaoUser();
     if (res !== null) {
       if (res === undefined && this.daoUserData === undefined) {
@@ -82,7 +84,7 @@ export class AppApi extends AbstractApi {
       }
       this.setDaoUserData(res.data);
       return;
-    } else {
+    } else if (this.daoData != null && userId != null) {
       this.error("Please add Paideia tokens to participate");
     }
   }

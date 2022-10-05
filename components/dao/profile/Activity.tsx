@@ -8,8 +8,6 @@ import Musk from "../../../public/profile/musk-full.png";
 import { IActivity } from "../activity/Activity";
 
 const Activity: React.FC<{ activities: IActivity[] }> = (props) => {
-  console.log(props.activities);
-
   return (
     <Box>
       <CapsInfo title={`User Activity`} />

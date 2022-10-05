@@ -223,7 +223,6 @@ export class AbstractApi {
     current: string = ""
   ): Promise<T> {
     let self = this;
-    console.log(url);
     return await this.request(url, "POST", body).then(
       // @ts-ignore
       (data: T) => {
@@ -325,7 +324,6 @@ export class AbstractApi {
       : url.includes("8000")
       ? getBaseUrl() + url.split("8000")[1]
       : getBaseUrl() + url;
-    console.log(url, method);
     return await methods[method](url, body, defaultOptions);
   }
 }

@@ -19,6 +19,7 @@ import { getTokenUtxos } from "@lib/wallet/Nautilus";
 import { useWallet } from "@components/wallet/WalletContext";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import { isAddressValid } from "@components/wallet/AddWallet";
+import { getUserId } from "@lib/utilities";
 
 export interface IDao {
   name: string;
@@ -129,25 +130,25 @@ export const DaoSelector: React.FC<IDaoSelector> = (props) => {
   React.useEffect(() => {
     const load = async () => {
       try {
-        let dappConnected = localStorage.getItem("dapp_connected");
-        let userId = localStorage.getItem("user_id");
-
-        if (dappConnected !== undefined) {
-          dappConnected = JSON.parse(dappConnected);
-          if (dappConnected && dAppWallet.addresses > 0) {
+        if (dAppWallet.connected) {
+          if (dAppWallet.addresses.length > 0) {
             let res = await globalContext.api.paideiaTokenCheck(
               dAppWallet.addresses.map((i: any) => i.name)
             );
-            setUtxos(res.totalTokens);
+            if (res.data.totalTokens > 0) {
+              await globalContext.api.getOrCreateDaoUser()
+            }
+            setUtxos(res.data.totalTokens);
           }
-        } else if (userId !== undefined) {
-          userId = JSON.parse(userId);
+        } else if (getUserId()) {
           if (isAddressValid(wallet)) {
             let res = await globalContext.api.paideiaTokenCheck([wallet]);
-            setUtxos(res.totalTokens);
+            if (res.data.totalTokens > 0) {
+              globalContext.api.getOrCreateDaoUser()
+            }
+            setUtxos(res.data.totalTokens);
           }
         } else {
-          // all should be unconnected...
           setUtxos(0);
         }
       } catch (e) {
@@ -157,7 +158,7 @@ export const DaoSelector: React.FC<IDaoSelector> = (props) => {
     };
 
     load();
-  }, [wallet]);
+  }, [wallet, dAppWallet, globalContext.api.daoData]);
 
   return (
     <Box sx={{ width: "100%", position: "relative" }}>

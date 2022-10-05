@@ -35,10 +35,6 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
   }, [daoData]);
 
   useDidMountEffect(() => {
-    if (utxos > 0) globalContext.api.getOrCreateDaoUser();
-  }, [globalContext.api.daoData]);
-
-  useDidMountEffect(() => {
     router.push("/404");
   }, [daoError]);
 

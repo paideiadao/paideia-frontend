@@ -198,7 +198,6 @@ const AddWallet: React.FC = () => {
               .signMessage(signingMessage.data.tokenUrl, response)
               .then(async (data) => {
                 localStorage.setItem("jwt_token_login", data.data.access_token);
-                console.log("HEEREE", data.data.id);
                 localStorage.setItem("user_id", data.data.id);
                 localStorage.setItem("alias", data.data.alias);
                 setWallet(signingMessage.data.address);
