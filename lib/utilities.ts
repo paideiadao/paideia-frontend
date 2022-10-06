@@ -27,7 +27,7 @@ export const snipAddress = (
 };
 
 export const getBaseUrl = () => {
-  return false //process.env.NODE_ENV == "development"
+  return false //
     ? process.env.LOCAL_URL
     : process.env.API_URL;
 };
@@ -92,8 +92,10 @@ export interface ILoginResponse {
 }
 
 export const getWsUrl = (): string => {
-  return `${process.env.NODE_ENV == "development" ? "ws" : "wss"}://${
-    process.env.NODE_ENV == "development"
+  //process.env.NODE_ENV == "development"
+
+  return `${false ? "ws" : "wss"}://${
+    false
       ? "localhost:8000/api"
       : "wss.paideia.im"
   }`;

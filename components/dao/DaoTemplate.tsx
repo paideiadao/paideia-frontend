@@ -3,7 +3,7 @@ import { deviceWrapper } from "@components/utilities/Style";
 import { useWallet } from "@components/wallet/WalletContext";
 import { getBaseUrl, fetcher } from "@lib/utilities";
 import { getTokenUtxos } from "@lib/wallet/Nautilus";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { useRouter } from "next/router";
 import * as React from "react";
 import useSWR from "swr";
@@ -39,7 +39,9 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
   }, [daoError]);
 
   return (
-    <Box
+    <Container maxWidth="xl" disableGutters>
+
+<Box
       sx={{
         display: "flex",
         alignItems: "flex-start",
@@ -64,6 +66,8 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
         <BottomNav />
       </Box>
     </Box>
+    </Container>
+
   );
 };
 

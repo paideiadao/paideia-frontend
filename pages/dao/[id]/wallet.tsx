@@ -20,6 +20,7 @@ import { paths, props } from "@lib/DaoPaths";
 import { deviceWrapper } from "@components/utilities/Style";
 import Nautilus from "@public/icons/nautilus.png";
 import Ergo from "@public/icons/ergo.png";
+import { isAddressValid } from "@components/wallet/AddWallet";
 
 // export const getStaticPaths = paths;
 // export const getStaticProps = props;
@@ -32,7 +33,7 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
   };
   const [show, setShow] = React.useState<boolean>(false);
 
-  return (
+  return !isAddressValid(wallet) ? <>Error Message Here..</>  : (
     <Box
       sx={{
         p: "1rem",
@@ -60,9 +61,9 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
         )} */}
       </Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Avatar src={Nautilus.src} sx={{ width: "2.5rem", height: "2.5rem" }} />
+        <Avatar src={dAppWallet.connected ? Nautilus.src : Ergo.src} sx={{ width: "2.5rem", height: "2.5rem" }} />
         <Box sx={{ ml: "1rem" }}>
-          Nautilus
+          {dAppWallet.connected ? 'Nautilus' : 'Ergo Mobile Wallet'}
           <Box
             sx={{
               fontSize: deviceWrapper(".8rem", ".9rem"),
