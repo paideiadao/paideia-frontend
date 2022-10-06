@@ -25,8 +25,6 @@ const TokenHolders: React.FC<IData<ITokenomics>> = (props) => {
   return (
     <Box
       sx={{
-        borderBottom: "1px solid",
-        borderBottomColor: "border.main",
         pb: "1rem",
       }}
     >

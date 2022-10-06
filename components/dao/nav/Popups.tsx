@@ -96,7 +96,7 @@ const rows: IProfilePopupRow[] = [
 ];
 
 export const ProfilePopup: React.FC<IProfilePopup> = (props) => {
-  const { setWallet } = useWallet();
+  const { setWallet, setDAppWallet } = useWallet();
   return (
     <Modal open={props.open} onClose={props.close}>
       <Box
@@ -155,7 +155,13 @@ export const ProfilePopup: React.FC<IProfilePopup> = (props) => {
               localStorage.setItem(WALLET_ADDRESS_LIST, "[]");
               localStorage.setItem(DAPP_CONNECTED, "false");
               localStorage.setItem("jwt_token_login", "");
+              localStorage.setItem("user_id", "");
+              localStorage.setItem("alias", "");
               setWallet("");
+              setDAppWallet({
+                connected: false,
+                addresses: [],
+              });
               props.close();
             }}
           >

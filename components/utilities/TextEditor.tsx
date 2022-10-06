@@ -26,6 +26,10 @@ const TextEditor: React.FC<{
                 | numlist bullist outdent indent";
 
   const themeContext = React.useContext(ThemeContext);
+  const [loaded, setLoaded] = React.useState<boolean>(false);
+  React.useEffect(() => {
+    setLoaded(true);
+  }, []);
   const [color, setColor] = React.useState<any>(
     themeContext.theme === DarkTheme
       ? {
@@ -47,8 +51,8 @@ const TextEditor: React.FC<{
 
   return (
     <Editor
-      apiKey="z575wana8isszbqidxprdk233mmp4cra8rapgzfak98yy1u9"
-      initialValue={props.initial}
+      apiKey=""
+      // initialValue={props.initial}
       init={{
         height: props.height == null ? "50vh" : props.height,
         width: "100%",
@@ -60,8 +64,10 @@ const TextEditor: React.FC<{
           "8pt 9pt 10pt 10.5pt 11pt 12pt 14pt 18pt 24pt 30pt 36pt 48pt 60pt 72pt 96pt",
         ...color,
       }}
-      onChange={(e: any) => {
-        props.onChange(e.target.getContent());
+      // value={props.value}
+      onEditorChange={(e: any) => {
+        console.log(e);
+        props.onChange(e);
       }}
       disabled={props.readOnly}
     />

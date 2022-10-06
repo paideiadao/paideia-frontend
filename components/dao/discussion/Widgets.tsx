@@ -3,8 +3,19 @@ import { Avatar, Box, Button } from "@mui/material";
 import * as React from "react";
 import Musk from "@public/profile/musk-full.png";
 import { deviceWrapper } from "@components/utilities/Style";
+import Link from "next/link";
+import { getDaoPath } from "@lib/utilities";
+import { useRouter } from "next/router";
 
-export const Overview: React.FC<{ proposal?: boolean }> = (props) => {
+export const Overview: React.FC<{
+  proposal?: boolean;
+  userDetailId: number;
+  alias: string;
+  level: number;
+}> = (props) => {
+  const router = useRouter();
+  const { id } = router.query;
+
   return (
     <Box
       sx={{
@@ -33,9 +44,9 @@ export const Overview: React.FC<{ proposal?: boolean }> = (props) => {
             <img src={Musk.src} />
           </Avatar>
           <Box sx={{ ml: "1rem" }}>
-            <Box sx={{ fontSize: "1rem" }}>Alone Musk</Box>
+            <Box sx={{ fontSize: "1rem" }}>{props.alias}</Box>
             <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
-              Level 7 | Philosopher
+              Level {props.level} | Philosopher
             </Box>
           </Box>
         </Box>
@@ -60,7 +71,7 @@ export const Overview: React.FC<{ proposal?: boolean }> = (props) => {
             }}
           >
             Followers
-            <Box sx={{ color: "text.primary", fontSize: "1.4rem" }}>107</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.4rem" }}>0</Box>
           </Box>
           <Box
             sx={{
@@ -74,7 +85,7 @@ export const Overview: React.FC<{ proposal?: boolean }> = (props) => {
             }}
           >
             Created
-            <Box sx={{ color: "text.primary", fontSize: "1.4rem" }}>13</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.4rem" }}>0</Box>
           </Box>
           <Box
             sx={{
@@ -85,7 +96,7 @@ export const Overview: React.FC<{ proposal?: boolean }> = (props) => {
             }}
           >
             Approved
-            <Box sx={{ color: "text.primary", fontSize: "1.4rem" }}>7</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.4rem" }}>0</Box>
           </Box>
         </Box>
       </Box>
@@ -97,18 +108,20 @@ export const Overview: React.FC<{ proposal?: boolean }> = (props) => {
           justifyContent: "center",
         }}
       >
-        <Button
-          size="small"
-          sx={{
-            width: "100%",
-            borderTopRightRadius: 0,
-            borderTopLeftRadius: 0,
-            pt: ".25rem",
-            pb: ".25rem",
-          }}
-        >
-          View Profile
-        </Button>
+        <Link href={getDaoPath(id as string, `/member/${props.userDetailId}`)}>
+          <Button
+            size="small"
+            sx={{
+              width: "100%",
+              borderTopRightRadius: 0,
+              borderTopLeftRadius: 0,
+              pt: ".25rem",
+              pb: ".25rem",
+            }}
+          >
+            View Profile
+          </Button>
+        </Link>
       </Box>
     </Box>
   );

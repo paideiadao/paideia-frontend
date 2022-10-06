@@ -64,9 +64,9 @@ const ProposalVote: React.FC = () => {
     <>
       <Typography
         sx={{
-          mt: '20px',
-          mb: '12px',
-          fontSize: '1.1rem',
+          mt: "20px",
+          mb: "12px",
+          fontSize: "1.1rem",
         }}
       >
         Voting system

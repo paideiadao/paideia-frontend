@@ -40,15 +40,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         >
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              minHeight: '100vh',
-              pt: '90px', // give space for floating navbar
+              display: "flex",
+              flexDirection: "column",
+              minHeight: "100vh",
+              pt: "90px", // give space for floating navbar
             }}
           >
-            <Box sx={{ flexGrow: '1' }}>
-              {children}
-            </Box>
+            <Box sx={{ flexGrow: "1" }}>{children}</Box>
             <Footer />
           </Box>
         </motion.main>

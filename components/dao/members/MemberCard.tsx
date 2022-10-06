@@ -4,23 +4,35 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { ISocialLink } from "@lib/creation/Interfaces";
+import { getUserId, snipAddress } from "@lib/utilities";
+import { levels } from "../profile/Header";
+import useDidMountEffect from "@components/utilities/hooks";
+import { FollowMobile } from "@components/utilities/Follow";
 
 export interface IMemberCard {
   width: any;
-  favorited: boolean;
+  bio: string;
+  dao_id: number;
+  followers: number[];
+  following: number[];
   id: number;
-  name: string;
   level: number;
-  followers: number;
-  created: number;
-  approved: number;
-  img: string;
+  name: string;
+  profile_img_url: string;
+  socialLinks: ISocialLink[];
+  user_id: number;
+  xp: number;
 }
 
 const MemberCard: React.FC<IMemberCard> = (props) => {
-  const [favorited, setFavorited] = React.useState<boolean>(props.favorited);
+  const [favorited, setFavorited] = React.useState<boolean>(
+    props.followers.indexOf(getUserId()) > -1
+  );
   const router = useRouter();
   const { id } = router.query;
+
+  useDidMountEffect(() => {}, [favorited]);
   return (
     <Box
       sx={{
@@ -34,29 +46,12 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
     >
       <Badge
         badgeContent={
-          <IconButton
-            sx={{
-              backgroundColor: "favoriteBackground.main",
-              color: "text.secondary",
-              p: ".2rem",
-              borderRadius: "50%",
-              width: "1.5rem",
-              height: "1.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-            }}
-            onClick={() => {
-              setFavorited(!favorited);
-            }}
-          >
-            {favorited ? (
-              <FavoriteIcon sx={{ fontSize: "1rem", fill: "red" }} />
-            ) : (
-              <FavoriteBorderIcon sx={{ fontSize: "1rem", fill: "red" }} />
-            )}
-          </IconButton>
+          <FollowMobile
+            followed={props.followers.indexOf(getUserId()) > -1}
+            putUrl={"/users/profile/follow/"}
+            user_id={props.user_id}
+            small
+          />
         }
         sx={{ width: "100%" }}
       >
@@ -82,12 +77,12 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
             }}
           >
             <Avatar
-              src={props.img}
+              src={props.profile_img_url}
               sx={{ width: "4.5rem", height: "4.5rem" }}
             />
-            <Box>{props.name}</Box>
+            <Box>{snipAddress(props.name, 20, 10)}</Box>
             <Box sx={{ fontSize: ".8rem", color: "text.secondary" }}>
-              Level {props.level} | Philosopher
+              Level {props.level} | {levels[props.level].name}
             </Box>
             <Box
               sx={{
@@ -111,7 +106,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
               >
                 Followers
                 <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>
-                  {props.followers}
+                  {props.followers.length}
                 </Box>
               </Box>
               <Box
@@ -128,7 +123,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
               >
                 Created
                 <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>
-                  {props.created}
+                  {0}
                 </Box>
               </Box>
               <Box
@@ -141,7 +136,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
               >
                 Approved
                 <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>
-                  {props.approved}
+                  {0}
                 </Box>
               </Box>
             </Box>
@@ -159,8 +154,8 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
             <Link
               href={
                 id === undefined
-                  ? `/dao/member/${props.id}`
-                  : `/dao/${id}/member/${props.id}`
+                  ? `/dao/member/${props.user_id}`
+                  : `/dao/${id}/member/${props.user_id}`
               }
             >
               <Button

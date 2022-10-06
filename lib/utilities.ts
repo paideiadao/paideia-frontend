@@ -2,6 +2,8 @@ import axios from "axios";
 import { IObj } from "@lib/Interfaces";
 import { IAlerts, ValidAlert } from "@components/utilities/Alert";
 
+type RequestType = "POST" | "PUT" | "GET" | "PATCH" | "DELETE";
+
 const statusLookup: IObj<number> = {
   GET: 200,
   POST: 200,
@@ -10,10 +12,62 @@ const statusLookup: IObj<number> = {
   DELETE: 204,
 };
 
+export const getUserId = () => {
+  return parseInt(localStorage.getItem("user_id"));
+};
+
+export const snipAddress = (
+  val: string,
+  maxLength: number,
+  showNumber: number
+): string => {
+  return val.length > maxLength
+    ? val.slice(0, showNumber) + "....." + val.slice(-showNumber)
+    : val;
+};
+
+export const getBaseUrl = () => {
+  return false //process.env.NODE_ENV == "development"
+    ? process.env.LOCAL_URL
+    : process.env.API_URL;
+};
+
+export const fetcher = (url: string) =>
+  axios
+    .get(getBaseUrl() + url, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt_token_login")}`,
+      },
+    })
+    .then((res) => res.data);
+
 interface IUpdateUser {
   alias?: string;
   primary_wallet_address?: string;
 }
+
+export const attrOrUndefined = (
+  data: IObj<any>,
+  attr: string,
+  extraAttr: string = undefined
+): any => {
+  try {
+    if (data === undefined) {
+      return undefined;
+    } else if (extraAttr !== undefined) {
+      let temp: IObj<any> = data[attr];
+      return temp[extraAttr];
+    } else {
+      return data[attr];
+    }
+  } catch (e) {
+    return undefined;
+  }
+};
+
+export const getDaoPath = (id: string, path: string) => {
+  return `/dao/${id === undefined ? "" : id}${path}`;
+};
 
 export const addDays = (days: number, date: Date = new Date()): Date => {
   let temp = new Date(date);
@@ -31,30 +85,33 @@ export interface ISigningMessage {
   signingMessage: string;
 }
 
+export interface ILoginResponse {
+  access_token: string;
+  id: string;
+  alias: string;
+}
+
+export const getWsUrl = (): string => {
+  return `${process.env.NODE_ENV == "development" ? "ws" : "wss"}://${
+    process.env.NODE_ENV == "development"
+      ? "localhost:8000/api"
+      : "wss.paideia.im"
+  }`;
+};
+
 export class AbstractApi {
-  alert: IAlerts[];
-  setAlert: Function;
+  alert: IAlerts[] = [];
+  setAlert: (val: IAlerts[]) => void = undefined;
 
-  constructor(_alert: IAlerts[], _setAlert: Function) {
-    this.alert = _alert;
-    this.setAlert = _setAlert;
+  webSocket(request_id: string): WebSocket {
+    const ws = new WebSocket(`${getWsUrl()}/auth/ws/${request_id}`);
+    return ws;
   }
 
-  webSocket(request_id: string) {
-    const ws = new WebSocket(`ws://localhost:8000/api/auth/ws/${request_id}`);
-    ws.onmessage = (event) => {
-      try {
-        console.log("WS:", event);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-  }
-
-  async signingMessage(address: string, addresses?: string[]): Promise<any> {
+  async signingMessage(addresses: string[]): Promise<any> {
     const data = await this.post<{ data: ISigningMessage }>(
       "/auth/login",
-      { address: address === "" ? undefined : address, addresses: addresses },
+      { addresses },
       "added user.",
       ""
     );
@@ -62,8 +119,38 @@ export class AbstractApi {
     return data;
   }
 
+  async uploadFile(file: any): Promise<any> {
+    const defaultOptions = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt_token_login")}`,
+        "Content-Type": file.type,
+      },
+    };
+    const formData = new FormData();
+    formData.append("fileobject", file, file.name);
+    return axios.post(
+      `${getBaseUrl()}/util/upload_file`,
+      formData,
+      defaultOptions
+    );
+  }
+
+  async changeAddress(address: string): Promise<any> {
+    const data = await this.post<{ data: ISigningMessage }>(
+      "/users/change_primary_address",
+      { address: address }
+    );
+
+    return data;
+  }
+
   async signMessage(url: string, response: any) {
-    return await this.post<{ data: any }>(url, response, "signed message", "");
+    return await this.post<{ data: ILoginResponse }>(
+      url,
+      response,
+      "signed message",
+      ""
+    );
   }
 
   async updateUser(address: string, user: IUpdateUser) {
@@ -78,7 +165,7 @@ export class AbstractApi {
   async mobileLogin(address: string) {
     return await this.post<{ data: any }>(
       "/auth/login/mobile",
-      { address },
+      { addresses: [address] },
       "added user.",
       ""
     );
@@ -93,8 +180,6 @@ export class AbstractApi {
     );
 
     if (res !== false) {
-      console.log(res);
-      console.log("token", res.data.access_token);
       localStorage.setItem("jwt_token_login", res.data.access_token);
     }
   }
@@ -133,7 +218,7 @@ export class AbstractApi {
 
   async post<T>(
     url: string,
-    body: any,
+    body: any = undefined,
     action: string = undefined,
     current: string = ""
   ): Promise<T> {
@@ -163,7 +248,7 @@ export class AbstractApi {
   async put<T>(
     url: string,
     body: any,
-    action: string,
+    action: string = "",
     current: string = ""
   ): Promise<T> {
     let self = this;
@@ -188,7 +273,7 @@ export class AbstractApi {
     );
   }
 
-  async request(url: string, method: string, body?: any) {
+  async request(url: string, method: RequestType, body?: any) {
     return await new Promise(async (resolve, reject) => {
       try {
         if (body !== undefined) {
@@ -217,9 +302,8 @@ export class AbstractApi {
 
   async _request(
     url: string,
-    method: string,
-    body?: IObj<any>,
-    auth?: boolean
+    method: RequestType,
+    body?: IObj<any>
   ): Promise<Response> {
     const methods: IObj<Function> = {
       POST: axios.post,
@@ -235,11 +319,11 @@ export class AbstractApi {
         "Access-Control-Allow-Credentials": true,
       },
     };
-    url = url.includes("8000/api") ? url.split("8000/api")[1] : url;
-    return await methods[method](
-      url.slice(0, 4) === "http" ? url : "http://localhost:8000/api" + url,
-      body,
-      defaultOptions
-    );
+    url = url.includes("https")
+      ? url
+      : url.includes("8000")
+      ? getBaseUrl() + url.split("8000")[1]
+      : getBaseUrl() + url;
+    return await methods[method](url, body, defaultOptions);
   }
 }

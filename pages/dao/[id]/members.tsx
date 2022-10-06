@@ -24,6 +24,9 @@ import { paths, props } from "@lib/DaoPaths";
 import { deviceWrapper } from "@components/utilities/Style";
 import MobileFilters from "@components/dao/members/MobileFilters";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import useSWR from "swr";
+import { fetcher } from "@lib/utilities";
+import { useRouter } from "next/router";
 
 // export const getStaticPaths = paths;
 // export const getStaticProps = props;
@@ -70,97 +73,6 @@ export const marks = [
   },
 ];
 
-const members: IMemberCard[] = [
-  {
-    width: "25%",
-    favorited: true,
-    id: 1,
-    name: "Alone Musk",
-    level: 7,
-    followers: 107,
-    created: 13,
-    approved: 7,
-    img: Musk.src,
-  },
-  {
-    width: "25%",
-    favorited: true,
-    id: 2,
-    name: "Alone Musk",
-    level: 7,
-    followers: 107,
-    created: 13,
-    approved: 7,
-    img: Musk.src,
-  },
-  {
-    width: "25%",
-    favorited: true,
-    id: 3,
-    name: "Alone Musk",
-    level: 7,
-    followers: 107,
-    created: 13,
-    approved: 7,
-    img: Musk.src,
-  },
-  {
-    width: "25%",
-    favorited: true,
-    id: 4,
-    name: "Alone Musk",
-    level: 7,
-    followers: 107,
-    created: 13,
-    approved: 7,
-    img: Musk.src,
-  },
-  {
-    width: "25%",
-    favorited: true,
-    id: 5,
-    name: "Alone Musk",
-    level: 7,
-    followers: 107,
-    created: 13,
-    approved: 7,
-    img: Musk.src,
-  },
-  {
-    width: "25%",
-    favorited: true,
-    id: 6,
-    name: "Alone Musk",
-    level: 7,
-    followers: 107,
-    created: 13,
-    approved: 7,
-    img: Musk.src,
-  },
-  {
-    width: "25%",
-    favorited: true,
-    id: 7,
-    name: "Alone Musk",
-    level: 7,
-    followers: 107,
-    created: 13,
-    approved: 7,
-    img: Musk.src,
-  },
-  {
-    width: "25%",
-    favorited: true,
-    id: 8,
-    name: "Alone Musk",
-    level: 7,
-    followers: 107,
-    created: 13,
-    approved: 7,
-    img: Musk.src,
-  },
-];
-
 export const categories = [
   { icon: <AppsIcon sx={{ mr: ".2rem", fontSize: ".9rem" }} />, label: "All" },
   {
@@ -190,8 +102,19 @@ const Members: React.FC = () => {
     categories: ["All"],
   });
   const [value, setValue] = React.useState<number[]>([1, 10]);
-
+  const router = useRouter();
+  const { id } = router.query;
   const [showFilters, setShowFilters] = React.useState<boolean>(false);
+
+  const { data, error } = useSWR(
+    `/users/by_dao_id/${id === undefined ? 1 : id}`,
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
@@ -338,13 +261,14 @@ const Members: React.FC = () => {
       <Box
         sx={{ display: "flex", width: "100%", flexWrap: "wrap", mt: "1.5rem" }}
       >
-        {members.map((i: IMemberCard, c: number) => (
-          <MemberCard
-            {...i}
-            key={"member-card" + c}
-            width={{ xs: "100%", sm: "50%", md: "33%", lg: "33%", xl: "25%" }}
-          />
-        ))}
+        {data !== undefined &&
+          data.map((i: IMemberCard, c: number) => (
+            <MemberCard
+              {...i}
+              key={"member-card" + c}
+              width={{ xs: "100%", sm: "50%", md: "33%", lg: "33%", xl: "25%" }}
+            />
+          ))}
       </Box>
       <Fab
         color="primary"

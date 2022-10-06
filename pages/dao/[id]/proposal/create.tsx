@@ -73,6 +73,8 @@ export interface IProposalOption {
   default?: boolean;
 }
 
+export type VotingType = "yes/no" | "options" | "unselected";
+
 export interface IProposal {
   id?: number;
   name: string;
@@ -80,8 +82,8 @@ export interface IProposal {
   category: string;
   content: string;
   status: string;
-  votingSystem: "yes/no" | "options" | "unselected";
-  references: IProposal[];
+  votingSystem: VotingType;
+  references: number[];
   actions: IProposalAction[];
   date?: Date;
   createdDate?: Date;
@@ -98,7 +100,6 @@ export interface IProposal {
 
 const CreateProposal: React.FC = () => {
   const router = useRouter();
-
   const { id } = router.query;
   const [value, setValue] = React.useState<IProposal>({
     name: "",
@@ -121,26 +122,14 @@ const CreateProposal: React.FC = () => {
     addendums: [],
   });
   const context = React.useContext<IGlobalContext>(GlobalContext);
-  const api = new ProposalApi(
-    context.api === undefined ? undefined : context.api.alert,
-    context.api === undefined ? undefined : context.api.setAlert,
-    value,
-    setValue
-  );
-
-  React.useEffect(() => {
-    if (context.api !== undefined) {
-      api.alert = context.api.alert;
-      api.setAlert = context.api.setAlert;
-    }
-  }, [context.api]);
+  const api = new ProposalApi(context.api, value, setValue);
 
   const [publish, setPublish] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
 
   return (
     <ProposalContext.Provider value={{ api }}>
-      <Layout width={deviceWrapper("94%", "60%")}>
+      <Layout>
         <CreateHeader type="proposal" />
         <Box
           sx={{
@@ -250,7 +239,7 @@ const CreateProposal: React.FC = () => {
             variant="contained"
             sx={{ width: "50%" }}
             onClick={() => {
-              console.log(value, "call api here...");
+              api.create();
               setPublish(true);
             }}
           >

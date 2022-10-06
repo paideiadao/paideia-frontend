@@ -98,7 +98,7 @@ const Governance: React.FC = () => {
               title="White listed members"
               // tooltipTitle="Whitelisted Members"
               tooltipText="These will be the only addresses that can submit proposals for this DAO. All members will be able to challenge proposals, but not all members will be able to submit. Make sure you add a few addresses. Too few will represent a significant centralization of control. "
-            // tooltipLink="/here"
+              // tooltipLink="/here"
             />
 
             <Box
@@ -221,7 +221,7 @@ const Governance: React.FC = () => {
               title="Collateral"
               // tooltipTitle="Title Here"
               tooltipText="All proposals in Optimistic Governance require collateral. If the proposal is challenged, and is then voted down, the collateral is distributed to those who voted. A challenger must also submit equal collateral. If the challenge does not pass, and DAO members vote to pass the proposal, the challenger's collateral is distributed to voters. "
-            // tooltipLink="/here"
+              // tooltipLink="/here"
             />
 
             <Box
@@ -278,7 +278,7 @@ const Governance: React.FC = () => {
               title="Time to challenge a proposal"
               // tooltipTitle="Title Here"
               tooltipText="All proposals pass in Optimistic Governance, unless challenged. DAO members need enough time to assess each proposal to make sure it's agreeable. This is the length of time each proposal can be challenged before it passes. "
-            // tooltipLink="/here"
+              // tooltipLink="/here"
             />
 
             <Box
@@ -419,7 +419,7 @@ const Governance: React.FC = () => {
           title="Support needed on single choice voting"
           //tooltipTitle="Title Here"
           tooltipText="Allows you to require more votes in favor to pass proposals. For example, if you set this to 60%, and 100 votes are cast, 60 votes in favor would be required for a proposal to pass. "
-        //tooltipLink="/here"
+          //tooltipLink="/here"
         />
 
         <Box
@@ -486,7 +486,7 @@ const Governance: React.FC = () => {
           title="Quorum"
           // tooltipTitle="Title Here"
           tooltipText="Do not set this too high. Quorum means the number of voters required for any vote to pass. If you have 1000 vote tokens distributed, and quorum is set to 50%, at least 500 votes must be cast before any proposal passes. If you have many inactive members, it could mean the DAO can no longer pass any proposals. Be cautious with this setting. "
-        // tooltipLink="/here"
+          // tooltipLink="/here"
         />
 
         <Box

@@ -112,41 +112,42 @@ export const ShowHide: React.FC<{ value: boolean }> = (props) => {
   );
 };
 
+export const getIcon = (network: string) => {
+  let fontSize = { fontSize: "2rem" };
+  switch (network) {
+    case "reddit": {
+      return <RedditIcon sx={fontSize} />;
+    }
+    case "youtube": {
+      return <YouTubeIcon sx={fontSize} />;
+    }
+    case "telegram": {
+      return <TelegramIcon sx={fontSize} />;
+    }
+    case "twitter": {
+      return <TwitterIcon sx={fontSize} />;
+    }
+    case "discord": {
+      return <TelegramIcon sx={fontSize} />;
+    }
+    case "medium": {
+      return <TelegramIcon sx={fontSize} />;
+    }
+    case "github": {
+      return <GitHubIcon sx={fontSize} />;
+    }
+    case "facebook": {
+      return <FacebookIcon sx={fontSize} />;
+    }
+    case "instagram": {
+      return <InstagramIcon sx={fontSize} />;
+    }
+  }
+};
+
 export const SocialLinksPreview: React.FC<{ links: ISocialLink[] }> = (
   props
 ) => {
-  const getIcon = (network: string) => {
-    let fontSize = { fontSize: "2rem" };
-    switch (network) {
-      case "reddit": {
-        return <RedditIcon sx={fontSize} />;
-      }
-      case "youtube": {
-        return <YouTubeIcon sx={fontSize} />;
-      }
-      case "telegram": {
-        return <TelegramIcon sx={fontSize} />;
-      }
-      case "twitter": {
-        return <TwitterIcon sx={fontSize} />;
-      }
-      case "discord": {
-        return <TelegramIcon sx={fontSize} />;
-      }
-      case "medium": {
-        return <TelegramIcon sx={fontSize} />;
-      }
-      case "github": {
-        return <GitHubIcon sx={fontSize} />;
-      }
-      case "facebook": {
-        return <FacebookIcon sx={fontSize} />;
-      }
-      case "instagram": {
-        return <InstagramIcon sx={fontSize} />;
-      }
-    }
-  };
   return (
     <Box sx={{ width: "75%" }}>
       {props.links.map((i: ISocialLink, c: number) => {

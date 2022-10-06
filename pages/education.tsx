@@ -18,7 +18,7 @@ import {
   AccordionDetails,
   Link,
   useMediaQuery,
-  IconButton
+  IconButton,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import ExpandMore from "@mui/icons-material/ExpandMore";
@@ -26,9 +26,9 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import SectionHeading from "@components/SectionHeading";
 import Blockquote from "@components/Blockquote";
 import Image from "next/image";
-import { DarkTheme } from '@theme/theme';
-import DiscordIcon from '@components/svgs/DiscordIcon';
-import TelegramIcon from '@components/svgs/TelegramIcon';
+import { DarkTheme } from "@theme/theme";
+import DiscordIcon from "@components/svgs/DiscordIcon";
+import TelegramIcon from "@components/svgs/TelegramIcon";
 
 interface INavLink {
   name: string;
@@ -327,7 +327,7 @@ const Education: FC = () => {
               sx={{ mb: "32px" }}
             />
             <Box sx={{ maxWidth: "760px", mx: "auto" }}>
-              <Typography variant="p">
+              <Typography variant="body2">
                 Our mission is to give people the power, knowledge, and
                 motivation to change the way they govern and participate in
                 democratic organizations. We will help people experiment with
@@ -342,12 +342,12 @@ const Education: FC = () => {
                 a democratic organization with a shared financial treasury can
                 do so using Paideia.
               </Blockquote>
-              <Typography variant="p">
+              <Typography variant="body2">
                 The tools we create will allow anyone to initiate and manage a
                 DAO with no prior knowledge or experience, empowering groups of
                 individuals to pool their wealth and put it toward a common aim.
               </Typography>
-              <Typography variant="p">
+              <Typography variant="body2">
                 Through Paideia, DAOs will be able to:
                 <List
                   dense
@@ -422,7 +422,7 @@ const Education: FC = () => {
               sx={{ mb: "32px" }}
             />
             <Box sx={{ maxWidth: "760px", mx: "auto" }}>
-              <Typography variant="p" sx={{ mb: "64px" }}>
+              <Typography variant="body2" sx={{ mb: "64px" }}>
                 When building a DAO, it should exist on a blockchain with a
                 strong foundation and fundamentals, be inexpensive to operate,
                 be simple to use, and be secure and decentralized. It should
@@ -464,7 +464,7 @@ const Education: FC = () => {
                   );
                 })}
               </Grid>
-              <Typography variant="p">
+              <Typography variant="body2">
                 We feel that Ergo satisfies those criteria and we feel building
                 this software on Ergo first is the appropriate choice. Paideia
                 will never be designed to be exclusive to Ergo, and will accept
@@ -472,7 +472,7 @@ const Education: FC = () => {
                 Ergo first and always strive to follow the fundamental
                 philosophies therein.
               </Typography>
-              <Typography variant="p">
+              <Typography variant="body2">
                 Ergo does not have expensive gas fees like Ethereum. It is fair
                 launched, highly decentralized, and based on the original UTXO
                 model of Bitcoin
@@ -482,7 +482,7 @@ const Education: FC = () => {
                 as NIPoPoWs, soft forks for code-based changes, and an
                 efficient, ASIC resistant proof of work algorithm.
               </Blockquote>
-              <Typography variant="p">
+              <Typography variant="body2">
                 It avoids cloning the EVM and solidity code, and rather uses a
                 well-conceived Scala-based programming language called
                 Ergoscript, which provides a much safer and more robust platform
@@ -590,47 +590,47 @@ const Education: FC = () => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            textAlign: 'center',
+            textAlign: "center",
           }}
         >
-              <Typography
-                sx={{
-                  fontFamily: '"Space Grotesk", sans-serif',
-                  fontWeight: "600",
-                  fontSize: "34px",
-                  lineHeight: "42px",
-                  mb: '12px',
-                }}
-              >
-                Any other questions?
-              </Typography>
-              <IconButton
-                href="https://discord.gg/J3KDrtCFEn"
-                target="_blank"
-                sx={{
-                  color: '#fff',
-                  background: '#007A99',
-                  '&:hover': {
-                    background: '#00566B'
-                  },
-                  mr: '24px',
-                }}
-              >
-                <DiscordIcon />
-              </IconButton>
-              <IconButton
-                href="https://t.me/paideiaDAO"
-                target="_blank"
-                sx={{
-                  color: '#fff',
-                  background: '#007A99',
-                  '&:hover': {
-                    background: '#00566B'
-                  }
-                }}
-              >
-                <TelegramIcon />
-              </IconButton>
+          <Typography
+            sx={{
+              fontFamily: '"Space Grotesk", sans-serif',
+              fontWeight: "600",
+              fontSize: "34px",
+              lineHeight: "42px",
+              mb: "12px",
+            }}
+          >
+            Any other questions?
+          </Typography>
+          <IconButton
+            href="https://discord.gg/J3KDrtCFEn"
+            target="_blank"
+            sx={{
+              color: "#fff",
+              background: "#007A99",
+              "&:hover": {
+                background: "#00566B",
+              },
+              mr: "24px",
+            }}
+          >
+            <DiscordIcon />
+          </IconButton>
+          <IconButton
+            href="https://t.me/paideiaDAO"
+            target="_blank"
+            sx={{
+              color: "#fff",
+              background: "#007A99",
+              "&:hover": {
+                background: "#00566B",
+              },
+            }}
+          >
+            <TelegramIcon />
+          </IconButton>
         </Box>
       </Container>
     </>

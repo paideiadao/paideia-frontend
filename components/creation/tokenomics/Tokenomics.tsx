@@ -164,7 +164,7 @@ const Tokenomics: React.FC = () => {
       />
       <Box
         sx={{
-          borderBottom: "1px solid",
+          borderBottom: data.type === "existing" ? "0" : "1px solid",
           borderBottomColor: "border.main",
           pb: "1rem",
         }}
@@ -178,61 +178,65 @@ const Tokenomics: React.FC = () => {
           setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
         />
       </Box>
-      <Box sx={{ mt: "1rem" }}>
-        <Header title="Tokenomics" large />
-        <ButtonGroup variant="outlined" sx={{ width: "100%", mt: ".5rem" }}>
-          <Button
-            sx={{
-              width: "50%",
-              fontSize: ".8rem",
-              backgroundColor: !activateTokenomics
-                ? "primary.selectedButton"
-                : "",
-            }}
-            onClick={() =>
-              set({
-                ...data,
-                activateTokenomics: false,
-              })
-            }
-          >
-            Token Holders
-          </Button>
-          <Button
-            sx={{
-              width: "50%",
-              fontSize: ".8rem",
-              backgroundColor: activateTokenomics
-                ? "primary.selectedButton"
-                : "",
-            }}
-            onClick={() =>
-              set({
-                ...data,
-                activateTokenomics: true,
-              })
-            }
-          >
-            Advanced
-          </Button>
-        </ButtonGroup>
-      </Box>
-
-      {!activateTokenomics ? (
-        <TokenHolders
-          data={data}
-          setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
-        />
-      ) : (
+      {data.type !== "existing" && (
         <>
-          <AdvancedTokenomics
-            data={data}
-            setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
-          />
-          <TokenDistribution
-            data={data}
-            setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
-          />
+          <Box sx={{ mt: "1rem" }}>
+            <Header title="Tokenomics" large />
+            <ButtonGroup variant="outlined" sx={{ width: "100%", mt: ".5rem" }}>
+              <Button
+                sx={{
+                  width: "50%",
+                  fontSize: ".8rem",
+                  backgroundColor: !activateTokenomics
+                    ? "primary.selectedButton"
+                    : "",
+                }}
+                onClick={() =>
+                  set({
+                    ...data,
+                    activateTokenomics: false,
+                  })
+                }
+              >
+                Token Holders
+              </Button>
+              <Button
+                sx={{
+                  width: "50%",
+                  fontSize: ".8rem",
+                  backgroundColor: activateTokenomics
+                    ? "primary.selectedButton"
+                    : "",
+                }}
+                onClick={() =>
+                  set({
+                    ...data,
+                    activateTokenomics: true,
+                  })
+                }
+              >
+                Advanced
+              </Button>
+            </ButtonGroup>
+          </Box>
+
+          {!activateTokenomics ? (
+            <TokenHolders
+              data={data}
+              setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
+            />
+          ) : (
+            <>
+              <AdvancedTokenomics
+                data={data}
+                setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
+              />
+              <TokenDistribution
+                data={data}
+                setData={(tokenomicsData: ITokenomics) => set(tokenomicsData)}
+              />
+            </>
+          )}
         </>
       )}
     </Box>

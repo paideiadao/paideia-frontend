@@ -147,7 +147,7 @@ export default function Creation() {
           />
           <Box
             sx={{
-              ml: { xs: 0, md: '15rem' },
+              ml: { xs: 0, md: "15rem" },
               // mt: deviceStruct("6rem", "6rem", "3.5rem", "3.5rem", "3.5rem"),
               width: deviceStruct(
                 "100%",
@@ -156,7 +156,7 @@ export default function Creation() {
                 "calc(100% - 15rem)",
                 "calc(100% - 15rem)"
               ),
-              px: '16px',
+              px: "16px",
               pt: deviceStruct(".75rem", ".75rem", "1rem", "1.5rem", "1.5rem"),
               display: "flex",
               flexDirection: "column",

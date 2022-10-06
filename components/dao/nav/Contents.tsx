@@ -27,6 +27,7 @@ import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { isAddressValid } from "@components/wallet/AddWallet";
 
 const BasicLink: React.FC<{
   icon: JSX.Element;
@@ -402,6 +403,7 @@ const Contents: React.FC<ISideNavComponent> = (props) => {
     setSubSelected(getSubSelected());
   }, [router]);
 
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   let categories = [
     { icon: <BarChartIcon sx={{ opacity: ".8" }} />, label: "Dashboard" },
     {
@@ -440,82 +442,84 @@ const Contents: React.FC<ISideNavComponent> = (props) => {
         </>
       ),
     },
-    {
-      icon: <AttachMoneyIcon sx={{ opacity: ".8" }} />,
-      label: "Financials",
-      links: (
-        <>
-          <BasicLink
-            icon={<AccountBalanceIcon sx={{ opacity: ".8" }} />}
-            title={"Treasury"}
-            selected={"Treasury" === subSelected}
-            set={setSubWrapper}
-            ml=".5rem"
-          />
-          <BasicLink
-            icon={<DonutSmallIcon sx={{ opacity: ".8" }} />}
-            title={"Tokenomics"}
-            selected={"Tokenomics" === subSelected}
-            set={setSubWrapper}
-            ml=".5rem"
-          />
-          <BasicLink
-            icon={<AutorenewIcon sx={{ opacity: ".8" }} />}
-            title={"Recurring"}
-            selected={"Recurring" === subSelected}
-            set={setSubWrapper}
-            ml=".5rem"
-          />
-          <BasicLink
-            icon={<BoltIcon sx={{ opacity: ".8" }} />}
-            title={"Token"}
-            selected={"Token" === subSelected}
-            set={setSubWrapper}
-            ml=".5rem"
-          />
-        </>
-      ),
-    },
+    // {
+    //   icon: <AttachMoneyIcon sx={{ opacity: ".8" }} />,
+    //   label: "Financials",
+    //   links: (
+    //     <>
+    //       <BasicLink
+    //         icon={<AccountBalanceIcon sx={{ opacity: ".8" }} />}
+    //         title={"Treasury"}
+    //         selected={"Treasury" === subSelected}
+    //         set={setSubWrapper}
+    //         ml=".5rem"
+    //       />
+    //       <BasicLink
+    //         icon={<DonutSmallIcon sx={{ opacity: ".8" }} />}
+    //         title={"Tokenomics"}
+    //         selected={"Tokenomics" === subSelected}
+    //         set={setSubWrapper}
+    //         ml=".5rem"
+    //       />
+    //       <BasicLink
+    //         icon={<AutorenewIcon sx={{ opacity: ".8" }} />}
+    //         title={"Recurring"}
+    //         selected={"Recurring" === subSelected}
+    //         set={setSubWrapper}
+    //         ml=".5rem"
+    //       />
+    //       <BasicLink
+    //         icon={<BoltIcon sx={{ opacity: ".8" }} />}
+    //         title={"Token"}
+    //         selected={"Token" === subSelected}
+    //         set={setSubWrapper}
+    //         ml=".5rem"
+    //       />
+    //     </>
+    //   ),
+    // },
     // {
     //   icon: <AutoAwesomeIcon sx={{ opacity: ".8" }} />,
     //   label: "Distributions",
     // },
-    { icon: <DiamondIcon sx={{ opacity: ".8" }} />, label: "Staking" },
+    // { icon: <DiamondIcon sx={{ opacity: ".8" }} />, label: "Staking" },
     { icon: <GroupsIcon sx={{ opacity: ".8" }} />, label: "Members" },
     {
       icon: <MovingIcon sx={{ opacity: ".8" }} />,
       label: "Activity",
       notifications: 3,
     },
-    {
-      icon: <SettingsIcon sx={{ opacity: ".8" }} />,
-      label: "Settings",
-      links: (
-        <>
-          <BasicLink
-            icon={<PersonIcon sx={{ opacity: ".8" }} />}
-            title={"Edit profile"}
-            selected={"Edit profile" === subSelected}
-            set={setSubWrapper}
-            ml=".5rem"
-          />
-          <BasicLink
-            icon={<EditNotificationsIcon sx={{ opacity: ".8" }} />}
-            title={"Notifications"}
-            selected={"Notifications" === subSelected}
-            set={setSubWrapper}
-            ml=".5rem"
-          />
-          <BasicLink
-            icon={<AccountBalanceWalletIcon sx={{ opacity: ".8" }} />}
-            title={"Wallet"}
-            selected={"Wallet" === subSelected}
-            set={setSubWrapper}
-            ml=".5rem"
-          />
-        </>
-      ),
-    },
+    globalContext.api.daoUserData === undefined
+      ? undefined
+      : {
+          icon: <SettingsIcon sx={{ opacity: ".8" }} />,
+          label: "Settings",
+          links: (
+            <>
+              <BasicLink
+                icon={<PersonIcon sx={{ opacity: ".8" }} />}
+                title={"Edit profile"}
+                selected={"Edit profile" === subSelected}
+                set={setSubWrapper}
+                ml=".5rem"
+              />
+              <BasicLink
+                icon={<EditNotificationsIcon sx={{ opacity: ".8" }} />}
+                title={"Notifications"}
+                selected={"Notifications" === subSelected}
+                set={setSubWrapper}
+                ml=".5rem"
+              />
+              <BasicLink
+                icon={<AccountBalanceWalletIcon sx={{ opacity: ".8" }} />}
+                title={"Wallet"}
+                selected={"Wallet" === subSelected}
+                set={setSubWrapper}
+                ml=".5rem"
+              />
+            </>
+          ),
+        },
     {
       icon: <DisplaySettingsIcon sx={{ opacity: ".8" }} />,
       label: "DAO Config",
@@ -531,28 +535,30 @@ const Contents: React.FC<ISideNavComponent> = (props) => {
         overflowX: "hidden",
       }}
     >
-      {categories.map((i: any, c: number) =>
-        ["Proposals", "Financials", "Settings"].indexOf(i.label) > -1 ? (
-          <DropdownLink
-            title={i.label}
-            set={setWrapper}
-            subSelected={subSelected}
-            icon={i.icon}
-            selected={i.label === selected}
-            links={i.links}
-            key={"nav-contents-key-" + c}
-          />
-        ) : (
-          <BasicLink
-            icon={i.icon}
-            title={i.label}
-            selected={i.label === selected}
-            set={setWrapper}
-            notifications={i.notifications}
-            key={"nav-contents-key-" + c}
-          />
-        )
-      )}
+      {categories
+        .filter((i: any) => i !== undefined)
+        .map((i: any, c: number) =>
+          ["Proposals", "Financials", "Settings"].indexOf(i.label) > -1 ? (
+            <DropdownLink
+              title={i.label}
+              set={setWrapper}
+              subSelected={subSelected}
+              icon={i.icon}
+              selected={i.label === selected}
+              links={i.links}
+              key={"nav-contents-key-" + c}
+            />
+          ) : (
+            <BasicLink
+              icon={i.icon}
+              title={i.label}
+              selected={i.label === selected}
+              set={setWrapper}
+              notifications={i.notifications}
+              key={"nav-contents-key-" + c}
+            />
+          )
+        )}
     </Box>
   );
 };
