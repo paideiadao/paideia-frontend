@@ -26,13 +26,13 @@ const Create: React.FC = () => {
           flexDirection: deviceWrapper("column", "row"),
         }}
       >
-        <Link
+        {/* <Link
           href={
             id === undefined
               ? "/dao/proposal/create"
               : `/dao/${id}/proposal/create`
           }
-        >
+        > */}
           <Box
             sx={{
               cursor: "pointer",
@@ -50,6 +50,7 @@ const Create: React.FC = () => {
               ":hover": {
                 borderColor: "primary.main",
               },
+              opacity: '.5'
             }}
           >
             <BalanceIcon sx={{ fontSize: "2rem", opacity: ".6" }} />
@@ -74,7 +75,7 @@ const Create: React.FC = () => {
               a proposal, it can't be edited or deleted.
             </Box>
           </Box>
-        </Link>
+        {/* </Link> */}
         <Link
           href={
             id === undefined

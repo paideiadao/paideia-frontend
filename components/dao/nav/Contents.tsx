@@ -193,7 +193,7 @@ const DropdownLink: React.FC<{
       expanded={props.selected}
     >
       <AccordionSummary
-        onClick={() => props.set(props.title)}
+        onClick={() => props.selected ? props.set(undefined) : props.set(props.title)}
         expandIcon={
           <Box
             sx={{

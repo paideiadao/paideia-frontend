@@ -1,5 +1,5 @@
 import { AppApi } from "@lib/AppApi";
-import { AbstractApi, getUserId } from "@lib/utilities";
+import { AbstractApi } from "@lib/utilities";
 import { IDiscussion } from "@pages/dao/[id]/discussion/create";
 import { IProposalEndpointBody } from "../proposal/ProposalApi";
 

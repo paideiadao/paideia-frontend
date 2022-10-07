@@ -33,7 +33,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
           <script
-            src="https://cdn.tiny.cloud/1/z575wana8isszbqidxprdk233mmp4cra8rapgzfak98yy1u9/tinymce/6/tinymce.min.js"
+            src="https://cdn.tiny.cloud/1/zqjhfpipuc4o31w9futmmrkk1h580wp0khen82rp6wphf1u1/tinymce/6/tinymce.min.js"
             referrerPolicy="origin"
           ></script>
         </Head>

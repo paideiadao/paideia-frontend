@@ -27,6 +27,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { deviceStruct } from "@components/utilities/Style";
 import { IConfigContext } from "@lib/dao/dao-config/ConfigContext";
+import { Collapse } from "@material-ui/core";
 
 const Footer: React.FC<{ context?: IConfigContext }> = (props) => {
   let creationContext =
@@ -70,7 +71,7 @@ const Footer: React.FC<{ context?: IConfigContext }> = (props) => {
           })
         }
       />
-      {data.footer.show && (
+        <Collapse in={data.footer.show}>
         <Box sx={{ width: "100%", color: "text.primary" }}>
           <TextField
             label="Main text"
@@ -135,7 +136,8 @@ const Footer: React.FC<{ context?: IConfigContext }> = (props) => {
             </Button>
           </Box>
         </Box>
-      )}
+        </Collapse>
+        
     </Box>
   );
 };

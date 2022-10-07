@@ -120,6 +120,8 @@ const Members: React.FC = () => {
     setValue(newValue as number[]);
   };
 
+  console.log(data, 'skeep')
+
   return (
     <Layout width="92.5%">
       <Header large title="DAO members" />

@@ -1,4 +1,5 @@
 import { IConfigContext } from "@lib/dao/dao-config/ConfigContext";
+import { Collapse } from "@material-ui/core";
 import { Box } from "@mui/material";
 import React from "react";
 import { CreationContext } from "../../../lib/creation/Context";
@@ -101,14 +102,15 @@ const Banner: React.FC<{ context?: IConfigContext }> = (props) => {
           })
         }
       />
-      {data.banner.show && (
-        <FileBanner
-          file={data.banner.data === undefined ? "" : data.banner.data.file}
-          fileUrl={data.banner.data === undefined ? "" : data.banner.data.url}
-          handleImage={handleImage}
-          id="banner-img-upload"
-        />
-      )}
+        <Collapse in={data.banner.show}>
+          <FileBanner
+            file={data.banner.data === undefined ? "" : data.banner.data.file}
+            fileUrl={data.banner.data === undefined ? "" : data.banner.data.url}
+            handleImage={handleImage}
+            id="banner-img-upload"
+          />
+        </Collapse>
+        
     </Box>
   );
 };

@@ -8,6 +8,7 @@ import WalletSelector from "@components/creation/governance/WalletSelector";
 import { useWallet } from "@components/wallet/WalletContext";
 import { IWallet } from "@lib/creation/Interfaces";
 import { deviceWrapper } from "@components/utilities/Style";
+import CancelLink from "@components/utilities/CancelLink";
 
 const StakingForm: React.FC = () => {
   const { wallet } = useWallet();
@@ -79,6 +80,7 @@ const StakingForm: React.FC = () => {
           mt: "2rem",
         }}
       >
+        <CancelLink>
         <Button
           variant="outlined"
           sx={{ width: "50%", mr: "1rem" }}
@@ -86,6 +88,8 @@ const StakingForm: React.FC = () => {
         >
           Cancel
         </Button>
+        </CancelLink>
+        
         <Button
           variant="contained"
           sx={{ width: "50%" }}

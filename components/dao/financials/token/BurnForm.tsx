@@ -1,5 +1,6 @@
 import AbstractDate from "@components/creation/utilities/AbstractDate";
 import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
+import CancelLink from "@components/utilities/CancelLink";
 import { Box, Button, TextField } from "@mui/material";
 import * as React from "react";
 
@@ -43,10 +44,12 @@ const BurnForm: React.FC = () => {
           mt: "1.5rem",
         }}
       >
-        <Button variant="outlined" sx={{ width: "50%", mr: "1rem" }}>
-          Cancel
-        </Button>
-        <Button variant="contained" sx={{ width: "50%" }}>
+        <CancelLink>
+          <Button variant="outlined" sx={{ width: "50%", mr: "1rem" }} size='small'>
+            Cancel
+          </Button>
+        </CancelLink>
+        <Button variant="contained" sx={{ width: "50%" }} size='small'>
           Submit
         </Button>
       </Box>

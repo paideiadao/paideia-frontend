@@ -202,6 +202,7 @@ const BaseComment: React.FC<{
   set?: Function;
   level?: number;
 }> = (props) => {
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext)
   const children = props.data.filter(
     (i: IComment) => i.parent === props.comment.id
   );
@@ -343,7 +344,8 @@ const BaseComment: React.FC<{
                   dislikes={props.comment.dislikes.length}
                   userSide={getUserSide(
                     props.comment.likes,
-                    props.comment.dislikes
+                    props.comment.dislikes, 
+                    globalContext.api.daoUserData == null ? null : globalContext.api.daoUserData.id
                   )}
                   putUrl={`/proposals/comment/like/${props.comment.id}`}
                 />

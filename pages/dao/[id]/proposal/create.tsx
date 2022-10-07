@@ -34,6 +34,7 @@ import { IDaoDescription } from "@components/dao/proposal/vote/YesNo/Actions/Dao
 import { IVoteDuration } from "@components/dao/proposal/vote/YesNo/Actions/VoteDuration";
 import { ISupport } from "@components/dao/proposal/vote/YesNo/Actions/Support";
 import { OptionType } from "@components/dao/proposal/vote/Options/OptionSystemSelector";
+import CancelLink from "@components/utilities/CancelLink";
 
 export type ActionType =
   | IOptimisticGovernance
@@ -232,9 +233,12 @@ const CreateProposal: React.FC = () => {
             mt: "1rem",
           }}
         >
-          <Button variant="outlined" sx={{ width: "50%", mr: "1rem" }}>
-            Cancel
-          </Button>
+          <CancelLink>
+            <Button variant="outlined" sx={{ width: "50%", mr: "1rem" }}>
+              Cancel
+            </Button>
+          </CancelLink>
+          
           <Button
             variant="contained"
             sx={{ width: "50%" }}

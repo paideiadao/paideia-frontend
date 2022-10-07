@@ -20,6 +20,7 @@ import { IFile, ISocialLink } from "@lib/creation/Interfaces";
 import { LoadingButton } from "@mui/lab";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import useDidMountEffect from "@components/utilities/hooks";
+import CancelLink from "@components/utilities/CancelLink";
 
 const ProfileEditImage: React.FC<{ set: (val: IFile) => void; img: string }> = (
   props
@@ -269,13 +270,16 @@ const Edit: React.FC<{ params: any }> = (props) => {
               mt: "1rem",
             }}
           >
-            <Button
-              variant="outlined"
-              sx={{ width: "49%", mr: ".5rem" }}
-              size="small"
-            >
-              Cancel
-            </Button>
+            <CancelLink>
+              <Button
+                variant="outlined"
+                sx={{ width: "49%", mr: ".5rem" }}
+                size="small"
+              >
+                Cancel
+              </Button>
+            </CancelLink>
+            
             <LoadingButton
               size="small"
               variant="contained"
