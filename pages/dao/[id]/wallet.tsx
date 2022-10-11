@@ -26,12 +26,13 @@ import { isAddressValid } from "@components/wallet/AddWallet";
 // export const getStaticProps = props;
 
 const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
-  const { wallet, dAppWallet } = useWallet();
+  const { wallet, dAppWallet, utxos } = useWallet();
   const { setAddWalletOpen } = useAddWallet();
   const handleClickOpen = () => {
     setAddWalletOpen(true);
   };
   const [show, setShow] = React.useState<boolean>(false);
+  const ticker = 'PTK';
 
   return !isAddressValid(wallet) ? <>Error Message Here..</>  : (
     <Box
@@ -102,7 +103,7 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
                 sx={{ height: "1.5rem", width: "1.5rem" }}
               />
             }
-            label="56,759 PTK"
+            label={utxos && utxos.toLocaleString("en-US") + " " + ticker}
           />
         </Box>
       </Box>
