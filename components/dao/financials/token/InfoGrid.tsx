@@ -19,7 +19,7 @@ const InfoCard: React.FC<IInfoCard> = (props) => {
   return (
     <Box
       sx={{
-        width: '100%',
+        width: "100%",
         p: ".5rem",
         display: "flex",
         alignItems: deviceWrapper("flex-start", "center"),
@@ -57,7 +57,7 @@ const InfoCard: React.FC<IInfoCard> = (props) => {
 };
 
 const InfoGrid: React.FC = () => {
-  const ticker = "DTK";
+  const ticker = "PAI";
   const tempDate = new Date();
   const infoCards: IInfoCard[] = [
     {
@@ -123,16 +123,17 @@ const InfoGrid: React.FC = () => {
     },
   ];
   return (
-    <Box sx={{ width: "100%", mt: '.5rem' }}>
-      <Grid container spacing={1} alignItems='stretch'>
+    <Box sx={{ width: "100%", mt: ".5rem" }}>
+      <Grid container spacing={1} alignItems="stretch">
         {infoCards.map((i: IInfoCard, c: number) => {
-          return <Grid item xs={6} sm={4} md={6} lg={3}>
-                <InfoCard {...i} key={`info-card-${c}`} c={c} />
+          return (
+            <Grid item xs={6} sm={4} md={6} lg={3}>
+              <InfoCard {...i} key={`info-card-${c}`} c={c} />
             </Grid>
-          
+          );
         })}
-    </Grid>
-      </Box>
+      </Grid>
+    </Box>
   );
 };
 

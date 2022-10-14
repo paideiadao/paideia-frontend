@@ -238,7 +238,7 @@ const CreateProposal: React.FC = () => {
               Cancel
             </Button>
           </CancelLink>
-          
+
           <Button
             variant="contained"
             sx={{ width: "50%" }}

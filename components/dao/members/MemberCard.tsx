@@ -26,17 +26,21 @@ export interface IMemberCard {
   socialLinks: ISocialLink[];
   user_id: number;
   xp: number;
+  created: number;
 }
 
 const MemberCard: React.FC<IMemberCard> = (props) => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [favorited, setFavorited] = React.useState<boolean>(
-    props.followers.indexOf(globalContext.api.daoUserData == null ? null : globalContext.api.daoUserData.id) > -1
+    props.followers.indexOf(
+      globalContext.api.daoUserData == null
+        ? null
+        : globalContext.api.daoUserData.id
+    ) > -1
   );
   const router = useRouter();
   const { id } = router.query;
-  const api = new FollowApi(globalContext.api, '/users/profile/follow');
-
+  const api = new FollowApi(globalContext.api, "/users/profile/follow");
 
   useDidMountEffect(() => {}, [favorited]);
   return (
@@ -52,16 +56,21 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
     >
       <Badge
         badgeContent={
-          globalContext.api.daoUserData != null && globalContext.api.daoUserData.id !== props.id && <FollowBadge
-            onChange={(followed: boolean) => {
-              api.follow(
-                followed ? "follow" : "unfollow",
-                props.id
-              );
-            }}
-            followed={props.followers.indexOf(globalContext.api.daoUserData == null ? null : globalContext.api.daoUserData.id) > -1}
-
-          />
+          globalContext.api.daoUserData != null &&
+          globalContext.api.daoUserData.id !== props.id && (
+            <FollowBadge
+              onChange={(followed: boolean) => {
+                api.follow(followed ? "follow" : "unfollow", props.id);
+              }}
+              followed={
+                props.followers.indexOf(
+                  globalContext.api.daoUserData == null
+                    ? null
+                    : globalContext.api.daoUserData.id
+                ) > -1
+              }
+            />
+          )
         }
         sx={{ width: "100%" }}
       >
@@ -133,7 +142,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
               >
                 Created
                 <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>
-                  {0}
+                  {props.created}
                 </Box>
               </Box>
               <Box

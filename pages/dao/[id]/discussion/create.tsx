@@ -155,7 +155,7 @@ const CreateDiscussion: React.FC = () => {
                 Cancel
               </Button>
             </CancelLink>
-            
+
             <Button
               variant="contained"
               sx={{ width: "50%" }}

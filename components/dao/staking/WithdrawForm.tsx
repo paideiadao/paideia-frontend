@@ -17,7 +17,7 @@ const WithdrawForm: React.FC = () => {
     address: wallet,
     img: "",
   });
-  const ticker = "DTK",
+  const ticker = "PAI",
     available = "50,000";
   const [withdraw, setWithdraw] = React.useState<boolean>(false);
   const openWithdraw = () => setWithdraw(true);
@@ -88,7 +88,7 @@ const WithdrawForm: React.FC = () => {
             Cancel
           </Button>
         </CancelLink>
-        
+
         <Button
           variant="contained"
           sx={{ width: "50%" }}

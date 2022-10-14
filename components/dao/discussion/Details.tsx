@@ -4,9 +4,6 @@ import * as React from "react";
 import LanIcon from "@mui/icons-material/Lan";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import dateFormat from "dateformat";
-import DiscussionContext, {
-  IDiscussionContext,
-} from "@lib/dao/discussion/DiscussionContext";
 import { Overview, State } from "@components/dao/discussion/Widgets";
 import { useRouter } from "next/router";
 
@@ -15,7 +12,7 @@ const Details: React.FC<{ date: Date }> = (props) => {
   const { discussion_id } = router.query;
   return (
     <>
-      <Overview userDetailId={0} alias={""} level={0} />
+      <Overview userDetailId={0} alias={""} level={0} img={""} followers={[]} created={0} />
       <Box
         sx={{
           width: "100%",

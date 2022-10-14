@@ -6,6 +6,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import EditIcon from "@mui/icons-material/Edit";
 import Follow from "@components/utilities/Follow";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 
 const EditFollow: React.FC<{
   edit: boolean;
@@ -13,8 +14,10 @@ const EditFollow: React.FC<{
   user_id: number;
 }> = (props) => {
   const router = useRouter();
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const { id } = router.query;
-  return props.edit ? (
+  return globalContext.api.daoUserData == null ? null : props.edit ||
+    props.user_id == globalContext.api.daoUserData.id ? (
     <Link
       href={id === undefined ? "/dao/profile/edit" : `/dao/${id}/profile/edit`}
     >
@@ -25,7 +28,7 @@ const EditFollow: React.FC<{
   ) : (
     <Follow
       followed={props.followed}
-      putUrl={"/users/profile/follow/"}
+      putUrl={"/users/profile/follow"}
       user_id={props.user_id}
     />
   );

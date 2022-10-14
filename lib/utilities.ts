@@ -27,7 +27,7 @@ export const snipAddress = (
 };
 
 export const getBaseUrl = () => {
-  return false //
+  return process.env.NODE_ENV == "development" //
     ? process.env.LOCAL_URL
     : process.env.API_URL;
 };
@@ -94,8 +94,8 @@ export interface ILoginResponse {
 export const getWsUrl = (): string => {
   //process.env.NODE_ENV == "development"
 
-  return `${false ? "ws" : "wss"}://${
-    false
+  return `${process.env.NODE_ENV == "development" ? "ws" : "wss"}://${
+    process.env.NODE_ENV == "development"
       ? "localhost:8000/api"
       : "wss.paideia.im"
   }`;
@@ -321,7 +321,7 @@ export class AbstractApi {
         "Access-Control-Allow-Credentials": true,
       },
     };
-    url = url.includes("https")
+    url = url.includes("http")
       ? url
       : url.includes("8000")
       ? getBaseUrl() + url.split("8000")[1]

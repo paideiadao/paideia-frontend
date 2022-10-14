@@ -34,7 +34,11 @@ const Mine: React.FC = () => {
         proposals={
           data === undefined
             ? undefined
-            : data.filter((i: any) => i.user_id === context.api.daoUserData == null ? null : context.api.daoUserData.id)
+            : data.filter((i: any) =>
+                (i.user_id === context.api.daoUserData) == null
+                  ? null
+                  : context.api.daoUserData.id
+              )
         }
       />
     </Layout>

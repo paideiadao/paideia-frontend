@@ -33,48 +33,48 @@ const Create: React.FC = () => {
               : `/dao/${id}/proposal/create`
           }
         > */}
+        <Box
+          sx={{
+            cursor: "pointer",
+            borderRadius: ".5rem",
+            border: "1px solid",
+            p: ".5rem",
+            backgroundColor: "fileInput.outer",
+            borderColor: "border.main",
+            width: deviceWrapper("100%", "50%"),
+            mt: deviceWrapper("1rem", "0"),
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+            mr: "1rem",
+            ":hover": {
+              borderColor: "primary.main",
+            },
+            opacity: ".5",
+          }}
+        >
+          <BalanceIcon sx={{ fontSize: "2rem", opacity: ".6" }} />
           <Box
             sx={{
-              cursor: "pointer",
-              borderRadius: ".5rem",
-              border: "1px solid",
-              p: ".5rem",
-              backgroundColor: "fileInput.outer",
-              borderColor: "border.main",
-              width: deviceWrapper("100%", "50%"),
-              mt: deviceWrapper("1rem", "0"),
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "column",
-              mr: "1rem",
-              ":hover": {
-                borderColor: "primary.main",
-              },
-              opacity: '.5'
+              textAlign: "center",
+              fontSize: "1.3rem",
+              fontWeight: 350,
             }}
           >
-            <BalanceIcon sx={{ fontSize: "2rem", opacity: ".6" }} />
-            <Box
-              sx={{
-                textAlign: "center",
-                fontSize: "1.3rem",
-                fontWeight: 350,
-              }}
-            >
-              Create a proposal
-            </Box>
-            <Box
-              sx={{
-                textAlign: "center",
-                fontSize: ".8rem",
-                color: "text.secondary",
-              }}
-            >
-              Provide users with different options to vote on, and the proposal
-              will either be approved or declined. Keep in mind, once you create
-              a proposal, it can't be edited or deleted.
-            </Box>
+            Create a proposal
           </Box>
+          <Box
+            sx={{
+              textAlign: "center",
+              fontSize: ".8rem",
+              color: "text.secondary",
+            }}
+          >
+            Provide users with different options to vote on, and the proposal
+            will either be approved or declined. Keep in mind, once you create a
+            proposal, it can't be edited or deleted.
+          </Box>
+        </Box>
         {/* </Link> */}
         <Link
           href={

@@ -139,17 +139,16 @@ interface ILikesDislikes {
   putUrl?: string;
 }
 
-export const getUserSide = (likes: number[], dislikes: number[], userId: number) => {
+export const getUserSide = (
+  likes: number[],
+  dislikes: number[],
+  userId: number
+) => {
   return likes.indexOf(userId) > -1
     ? 1
     : dislikes.indexOf(userId) > -1
     ? 0
     : undefined;
-};
-
-const getFavoritedSide = (favorites: number[]) => {
-  const userId = parseInt(localStorage.getItem("user_id"));
-  return favorites === undefined ? false : favorites.indexOf(userId) > -1;
 };
 
 // userSide, undefined for no vote, 0 for dislike, 1 for like
@@ -170,7 +169,9 @@ export const LikesDislikes: React.FC<ILikesDislikes> = (props) => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
 
   const api = new LikesDislikesApi(globalContext.api, props.putUrl);
-
+  React.useEffect(() => {
+    setValue({ ...props });
+  }, [props]);
   return (
     <Box sx={{ display: "flex", alignItems: "center", fontSize: iconFont }}>
       {value.userSide === undefined ? (
@@ -470,16 +471,26 @@ const CountdownWidget: React.FC<{ date: Date }> = (props) => {
 const ProposalCard: React.FC<IProposalCard> = (props) => {
   const [favorited, setFavorited] = React.useState<boolean>(undefined);
   const [userSide, setUserSide] = React.useState<1 | 0 | undefined>(undefined);
-  const globalContext = React.useContext<IGlobalContext>(GlobalContext)
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
+  const getFavoritedSide = (favorites: number[]) => {
+    const userId = globalContext.api.daoUserData
+      ? globalContext.api.daoUserData.id
+      : null;
+    return favorites === undefined ? false : favorites.indexOf(userId) > -1;
+  };
 
   React.useEffect(() => {
     setFavorited(getFavoritedSide(props.followers));
-    setUserSide(getUserSide(props.likes, props.dislikes,
-      globalContext.api.daoUserData == null ? null : globalContext.api.daoUserData.id
-
-      
-      ));
-  }, []);
+    setUserSide(
+      getUserSide(
+        props.likes,
+        props.dislikes,
+        globalContext.api.daoUserData == null
+          ? null
+          : globalContext.api.daoUserData.id
+      )
+    );
+  }, [globalContext.api.daoUserData]);
   const getFooter = () => {
     const footerFont = {
       xs: "1rem",
@@ -526,7 +537,6 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
       }
     }
   };
-
 
   const api = new FollowApi(globalContext.api, "/proposals/follow/" + props.id);
 
@@ -610,11 +620,13 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
                 <LikesDislikes
                   likes={props.likes.length}
                   dislikes={props.dislikes.length}
-                  userSide={getUserSide(props.likes, props.dislikes, 
-                    globalContext.api.daoUserData == null ? null : globalContext.api.daoUserData.id
-
-                    
-                    )}
+                  userSide={getUserSide(
+                    props.likes,
+                    props.dislikes,
+                    globalContext.api.daoUserData == null
+                      ? null
+                      : globalContext.api.daoUserData.id
+                  )}
                   putUrl={`/proposals/like/${props.id}`}
                 />
               </Box>

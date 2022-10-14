@@ -1,10 +1,4 @@
-import {
-  Avatar,
-  Badge,
-  Box,
-  IconButton,
-  Slide,
-} from "@mui/material";
+import { Avatar, Badge, Box, IconButton, Slide } from "@mui/material";
 import * as React from "react";
 import { GlobalContext, IGlobalContext } from "../../../lib/AppContext";
 import { DarkTheme } from "@theme/theme";
@@ -115,7 +109,7 @@ const TopNav: React.FC<INav> = (props) => {
                     onClick={handleOpen}
                     sx={{ display: deviceWrapper("none", "flex") }}
                   >
-                    <Badge badgeContent={1} color="primary">
+                    <Badge badgeContent={undefined} color="primary">
                       <NotificationsIcon
                         sx={{
                           fontSize: "1.1rem",
@@ -132,7 +126,7 @@ const TopNav: React.FC<INav> = (props) => {
                 {globalContext.api.daoUserData !== undefined && (
                   <Box
                     sx={{
-                      ml: "1rem",
+                      ml: ".5rem",
                       display: "flex",
                       alignItems: "center",
                       cursor: "pointer",
@@ -170,11 +164,10 @@ const TopNav: React.FC<INav> = (props) => {
             )}
           <ConnectWallet show={!isAddressValid(wallet)} />
         </Box>
-        <Box sx={{position: 'relative'}}>
-        <ProfilePopup open={openProfile} close={handleCloseProfile} />
-        <NotificationsPopup open={open} close={handleClose}/>
+        <Box sx={{ position: "relative" }}>
+          <ProfilePopup open={openProfile} close={handleCloseProfile} />
+          <NotificationsPopup open={open} close={handleClose} />
         </Box>
-        
       </Box>
       <Slide direction="right" in={props.showMobile} mountOnEnter unmountOnExit>
         <Box

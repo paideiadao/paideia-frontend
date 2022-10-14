@@ -4,9 +4,11 @@ import { fetcher, getUserId } from "@lib/utilities";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import useDidMountEffect from "@components/utilities/hooks";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 
 const Member: React.FC = () => {
   const router = useRouter();
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const { member_id, id } = router.query;
   const { data: userData, error: userError } = useSWR(
     member_id !== undefined &&
@@ -33,7 +35,11 @@ const Member: React.FC = () => {
       followed={
         userData === undefined
           ? undefined
-          : userData.followers.indexOf(getUserId()) > -1
+          : userData.followers.indexOf(
+              globalContext.api.daoUserData
+                ? globalContext.api.daoUserData.id
+                : null
+            ) > -1
       }
     />
   );

@@ -45,11 +45,15 @@ const BurnForm: React.FC = () => {
         }}
       >
         <CancelLink>
-          <Button variant="outlined" sx={{ width: "50%", mr: "1rem" }} size='small'>
+          <Button
+            variant="outlined"
+            sx={{ width: "50%", mr: "1rem" }}
+            size="small"
+          >
             Cancel
           </Button>
         </CancelLink>
-        <Button variant="contained" sx={{ width: "50%" }} size='small'>
+        <Button variant="contained" sx={{ width: "50%" }} size="small">
           Submit
         </Button>
       </Box>

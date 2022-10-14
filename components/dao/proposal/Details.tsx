@@ -40,7 +40,7 @@ const Details: React.FC = () => {
   }, []);
   return (
     <>
-      <Overview proposal userDetailId={0} alias={""} level={0} />
+      <Overview proposal userDetailId={0} alias={""} level={0} img={""} followers={[]} created={0} />
       <Box
         sx={{
           width: "100%",

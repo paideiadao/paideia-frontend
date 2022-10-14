@@ -25,7 +25,7 @@ const Dashboard: React.FC = () => {
   ) => {
     setValue(newValue);
   };
-  const ticker = "DTK";
+  const ticker = "PAI";
 
   return (
     <>

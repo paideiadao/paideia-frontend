@@ -1,4 +1,3 @@
-import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import { Box } from "@mui/material";
 import * as React from "react";
 import Tab from "@mui/material/Tab";
@@ -6,9 +5,8 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import ProfileHeader from "@components/dao/profile/Header";
-import Proposals from "@components/dao/profile/Proposals";
+import ProposalsListing from "@components/dao/profile/Proposals";
 import Activity from "@components/dao/profile/Activity";
-import { useRouter } from "next/router";
 import Layout from "../Layout";
 import { deviceWrapper } from "@components/utilities/Style";
 import AboutUser from "./AboutUser";
@@ -16,7 +14,6 @@ import BackLink from "@components/utilities/BackLink";
 import { IProposalCard } from "../proposals/ProposalCard";
 import { IActivity } from "../activity/Activity";
 import { IDaoUserData } from "@lib/Interfaces";
-import { tokenLookup } from "@lib/wallet/Utilities";
 
 interface IAbstractProfile {
   edit?: boolean;
@@ -27,16 +24,11 @@ interface IAbstractProfile {
 }
 
 const AbstractProfile: React.FC<IAbstractProfile> = (props) => {
-  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
-
-  const router = useRouter();
-
-  const { id } = router.query;
 
   return (
     <Layout width="98%">
@@ -81,14 +73,16 @@ const AbstractProfile: React.FC<IAbstractProfile> = (props) => {
               <Box sx={{ borderBottom: 1, borderColor: "border.main" }}>
                 <TabList onChange={handleChange}>
                   <Tab
-                    label={`Proposals | ${props.proposals.length}`}
+                    label={`Proposals${
+                      props.proposals ? ` | ${props.proposals.length}` : ""
+                    }`}
                     value="1"
                   />
                   <Tab label="Activity" value="2" />
                 </TabList>
               </Box>
               <TabPanel value="1" sx={{ pl: 0, pr: 0 }}>
-                <Proposals />
+                <ProposalsListing proposals={props.proposals} />
               </TabPanel>
               <TabPanel value="2" sx={{ pl: 0, pr: 0 }}>
                 <Activity activities={props.activities} />
@@ -103,10 +97,11 @@ const AbstractProfile: React.FC<IAbstractProfile> = (props) => {
                 "1fd6e032e8476c4aa54c18c1a308dce83940e8f4a28f576440513ed7326ad489"
               }
               followers={props.data.followers}
-              created={0}
+              created={props.data.created}
               bio={props.data.bio}
               social_links={props.data.social_links}
               approved={0}
+              wallet={props.data.address}
             />
           )}
         </Box>

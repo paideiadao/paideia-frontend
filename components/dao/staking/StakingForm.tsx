@@ -17,7 +17,7 @@ const StakingForm: React.FC = () => {
     address: wallet,
     img: "",
   });
-  const ticker = "DTK",
+  const ticker = "PAI",
     available = "32,661";
   const [value, setValue] = React.useState<number>(100);
   const [stake, setStake] = React.useState<boolean>(false);
@@ -81,15 +81,15 @@ const StakingForm: React.FC = () => {
         }}
       >
         <CancelLink>
-        <Button
-          variant="outlined"
-          sx={{ width: "50%", mr: "1rem" }}
-          size="small"
-        >
-          Cancel
-        </Button>
+          <Button
+            variant="outlined"
+            sx={{ width: "50%", mr: "1rem" }}
+            size="small"
+          >
+            Cancel
+          </Button>
         </CancelLink>
-        
+
         <Button
           variant="contained"
           sx={{ width: "50%" }}

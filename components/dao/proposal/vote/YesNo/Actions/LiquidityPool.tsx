@@ -35,7 +35,7 @@ export interface IContingency {
   balance: number;
 }
 
-export const tokenTicker = "PTK";
+export const tokenTicker = "PAI";
 export const tempDate = new Date();
 tempDate.setDate(tempDate.getDate() + 10);
 

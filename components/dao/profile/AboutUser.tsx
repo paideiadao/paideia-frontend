@@ -50,12 +50,25 @@ interface IAboutUser {
   bio: string;
   social_links: ISocialLink[];
   token_id: string;
+  wallet?: string;
 }
 
 const AboutUser: React.FC<IAboutUser> = (props) => {
-  const { wallet, utxos} = useWallet();
+  const { wallet, utxos } = useWallet();
+  const [userTokens, setUserTokens] = React.useState<number>(0);
   const appContext = React.useContext<IGlobalContext>(GlobalContext);
-  const ticker = "PTK";
+  React.useEffect(() => {
+    const load = async () => {
+      let res = await appContext.api.paideiaTokenCheck([props.wallet]);
+      setUserTokens(res.data.totalTokens);
+    };
+    if (props.wallet) {
+      load();
+    }
+  }, []);
+
+  const ticker = "PAI";
+
   return (
     <Box
       sx={{
@@ -164,14 +177,20 @@ const AboutUser: React.FC<IAboutUser> = (props) => {
         <Box>
           <Chip
             icon={<AccountBalanceWalletIcon />}
-            label={snipAddress(wallet, 25, 14)}
+            label={snipAddress(props.wallet ? props.wallet : wallet, 25, 14)}
             color="primary"
           />
         </Box>
 
         <Chip
-          avatar={<Avatar alt="PTK" src={PaideiaTokenSymbol.src} />}
-          label={utxos.toLocaleString("en-US") + " " + ticker}
+          avatar={<Avatar alt="PAI" src={PaideiaTokenSymbol.src} />}
+          label={
+            (props.wallet
+              ? userTokens.toLocaleString("en-US")
+              : utxos.toLocaleString("en-US")) +
+            " " +
+            ticker
+          }
           sx={{ mt: ".5rem" }}
         />
       </Box>
