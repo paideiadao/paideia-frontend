@@ -90,7 +90,7 @@ const ProfileHeader: React.FC<{
           <EditFollow
             edit={props.edit}
             followed={props.followed}
-            user_id={props.data.user_id}
+            user_id={props.data.id}
           />
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
@@ -156,7 +156,7 @@ const ProfileHeader: React.FC<{
             <EditFollow
               edit={props.edit}
               followed={props.followed}
-              user_id={props.data.user_id}
+              user_id={props.data.id}
             />
           </Box>
         </Box>

@@ -103,7 +103,7 @@ const Send: React.FC = () => {
               Cancel
             </Button>
           </CancelLink>
-          
+
           <Button variant="contained" sx={{ width: "50%" }} size="small">
             Send
           </Button>

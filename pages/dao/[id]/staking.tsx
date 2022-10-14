@@ -11,25 +11,16 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import * as React from "react";
 import Coin from "../../../public/icons/coin.png";
-import dateFormat from "dateformat";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import Musk from "../../../public/profile/musk-full.png";
-import { activities } from "./activity";
 import Activity, { IActivity } from "@components/dao/activity/Activity";
 import { ThemeContext } from "@lib/ThemeContext";
 import { LightTheme } from "@theme/theme";
 
 export const StakingActivity: React.FC = () => {
-  const stakingActivities = activities.filter(
-    (i: IActivity) => i.category === "Staking"
-  );
+
   return (
     <Box>
       <Subheader title="Activity" />
-      {stakingActivities
-        .concat(stakingActivities)
-        .concat(stakingActivities)
-        .map((i: any, c: number) => {
+      {[].map((i: any, c: number) => {
           return <Activity i={i} c={c} />;
         })}
     </Box>

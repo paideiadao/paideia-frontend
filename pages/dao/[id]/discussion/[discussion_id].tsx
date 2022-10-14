@@ -27,12 +27,16 @@ import { attrOrUndefined, fetcher, getBaseUrl, getWsUrl } from "@lib/utilities";
 import Follow, { FollowMobile } from "@components/utilities/Follow";
 import Details from "@components/dao/discussion/Details";
 import useDidMountEffect from "@components/utilities/hooks";
+import { GlobalContext } from "@lib/AppContext";
 
 const Discussion: React.FC = () => {
   const themeContext = React.useContext(ThemeContext);
+  const globalContext = React.useContext(GlobalContext);
+
   const router = useRouter();
   const { discussion_id, id } = router.query;
   const [loaded, setLoaded] = React.useState<boolean>(false);
+  const [newestComment, setNewestComment] = React.useState<IComment>();
   const [liveComments, setLiveComments] = React.useState<IComment[]>([]);
 
   React.useEffect(() => {
@@ -65,11 +69,8 @@ const Discussion: React.FC = () => {
   }
 
   const setWrapper = (data: IComment) => {
-    console.log(data, liveComments)
-    let temp = [...liveComments]
-    temp.push(data)
-    setLiveComments(temp)
-  }
+    setNewestComment(data);
+  };
 
   React.useEffect(() => {
     if (discussion_id) {
@@ -82,13 +83,16 @@ const Discussion: React.FC = () => {
           console.log(e);
         }
       };
-  
+
       return () => ws.close();
     }
-    
   }, [discussion_id]);
 
-  console.log(liveComments)
+  useDidMountEffect(() => {
+    let temp = [...liveComments];
+    temp.push(newestComment);
+    setLiveComments(temp);
+  }, [newestComment]);
 
   return (
     <Layout width={deviceWrapper("92%", "97%")}>
@@ -138,7 +142,9 @@ const Discussion: React.FC = () => {
                 <FollowMobile
                   followed={
                     data.followers.indexOf(
-                      parseInt(localStorage.getItem("user_id"))
+                      globalContext.api.daoUserData
+                        ? globalContext.api.daoUserData.id
+                        : null
                     ) > -1
                   }
                   putUrl={"/proposals/follow/" + discussion_id}
@@ -157,11 +163,15 @@ const Discussion: React.FC = () => {
                   dislikes={data.dislikes.length}
                   userSide={
                     data.likes.indexOf(
-                      parseInt(localStorage.getItem("user_id"))
+                      globalContext.api.daoUserData
+                        ? globalContext.api.daoUserData.id
+                        : null
                     ) > -1
                       ? 1
                       : data.dislikes.indexOf(
-                          parseInt(localStorage.getItem("user_id"))
+                          globalContext.api.daoUserData
+                            ? globalContext.api.daoUserData.id
+                            : null
                         ) > -1
                       ? 0
                       : undefined
@@ -312,7 +322,9 @@ const Discussion: React.FC = () => {
                   <Follow
                     followed={
                       data.followers.indexOf(
-                        parseInt(localStorage.getItem("user_id"))
+                        globalContext.api.daoUserData
+                          ? globalContext.api.daoUserData.id
+                          : null
                       ) > -1
                     }
                     putUrl={"/proposals/follow/" + discussion_id}
@@ -389,7 +401,9 @@ const Discussion: React.FC = () => {
                       <Follow
                         followed={
                           data.followers.indexOf(
-                            parseInt(localStorage.getItem("user_id"))
+                            globalContext.api.daoUserData
+                              ? globalContext.api.daoUserData.id
+                              : null
                           ) > -1
                         }
                         putUrl={"/proposals/follow/" + discussion_id}
@@ -401,11 +415,15 @@ const Discussion: React.FC = () => {
                       dislikes={data.dislikes.length}
                       userSide={
                         data.likes.indexOf(
-                          parseInt(localStorage.getItem("user_id"))
+                          globalContext.api.daoUserData
+                            ? globalContext.api.daoUserData.id
+                            : null
                         ) > -1
                           ? 1
                           : data.dislikes.indexOf(
-                              parseInt(localStorage.getItem("user_id"))
+                              globalContext.api.daoUserData
+                                ? globalContext.api.daoUserData.id
+                                : null
                             ) > -1
                           ? 0
                           : undefined
@@ -481,7 +499,14 @@ const Discussion: React.FC = () => {
               ml: "1.5rem",
             }}
           >
-            <Overview userDetailId={0} alias={""} level={0} />
+            <Overview
+              userDetailId={data.user_details_id}
+              alias={data.alias}
+              img={data.profile_img_url}
+              followers={data.user_followers}
+              created={data.created}
+              level={0}
+            />
             <State />
           </Box>
         </Box>

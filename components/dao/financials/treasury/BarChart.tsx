@@ -20,7 +20,7 @@ const data = [
   },
   {
     value: "1,750",
-    ticker: "PTK",
+    ticker: "PAI",
     percentage: "27",
     usd: 2698,
   },

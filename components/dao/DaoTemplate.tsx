@@ -40,34 +40,32 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
 
   return (
     <Container maxWidth="xl" disableGutters>
-
-<Box
-      sx={{
-        display: "flex",
-        alignItems: "flex-start",
-      }}
-    >
-      <Nav showMobile={showMobile} setShowMobile={setShowMobile} />
       <Box
         sx={{
-          width: deviceWrapper("100%", "calc(100% - 14.5rem)"),
-          top: "0",
-          left: deviceWrapper("0", "14.5rem"),
-          pt: "0rem",
-          pb: "1rem",
-
-          zIndex: deviceWrapper("100", "1000"),
+          display: "flex",
+          alignItems: "flex-start",
         }}
       >
-        <TopNav showMobile={showMobile} setShowMobile={setShowMobile} />
-        <Box sx={{ width: "100%" }} onClick={() => setShowMobile(false)}>
-          {props.children}
-        </Box>
-        <BottomNav />
-      </Box>
-    </Box>
-    </Container>
+        <Nav showMobile={showMobile} setShowMobile={setShowMobile} />
+        <Box
+          sx={{
+            width: deviceWrapper("100%", "calc(100% - 14.5rem)"),
+            top: "0",
+            left: deviceWrapper("0", "14.5rem"),
+            pt: "0rem",
+            pb: "1rem",
 
+            zIndex: deviceWrapper("100", "1000"),
+          }}
+        >
+          <TopNav showMobile={showMobile} setShowMobile={setShowMobile} />
+          <Box sx={{ width: "100%" }} onClick={() => setShowMobile(false)}>
+            {props.children}
+          </Box>
+          <BottomNav />
+        </Box>
+      </Box>
+    </Container>
   );
 };
 

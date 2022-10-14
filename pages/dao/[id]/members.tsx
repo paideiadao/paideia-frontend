@@ -108,19 +108,12 @@ const Members: React.FC = () => {
 
   const { data, error } = useSWR(
     `/users/by_dao_id/${id === undefined ? 1 : id}`,
-    fetcher,
-    {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-    }
+    fetcher
   );
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
   };
-
-  console.log(data, 'skeep')
 
   return (
     <Layout width="92.5%">

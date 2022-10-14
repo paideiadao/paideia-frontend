@@ -32,9 +32,11 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
     setAddWalletOpen(true);
   };
   const [show, setShow] = React.useState<boolean>(false);
-  const ticker = 'PTK';
+  const ticker = "PAI";
 
-  return !isAddressValid(wallet) ? <>Error Message Here..</>  : (
+  return !isAddressValid(wallet) ? (
+    <>Error Message Here..</>
+  ) : (
     <Box
       sx={{
         p: "1rem",
@@ -62,9 +64,12 @@ const ActiveWallet: React.FC<{ previous?: boolean }> = (props) => {
         )} */}
       </Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Avatar src={dAppWallet.connected ? Nautilus.src : Ergo.src} sx={{ width: "2.5rem", height: "2.5rem" }} />
+        <Avatar
+          src={dAppWallet.connected ? Nautilus.src : Ergo.src}
+          sx={{ width: "2.5rem", height: "2.5rem" }}
+        />
         <Box sx={{ ml: "1rem" }}>
-          {dAppWallet.connected ? 'Nautilus' : 'Ergo Mobile Wallet'}
+          {dAppWallet.connected ? "Nautilus" : "Ergo Mobile Wallet"}
           <Box
             sx={{
               fontSize: deviceWrapper(".8rem", ".9rem"),

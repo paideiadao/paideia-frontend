@@ -102,15 +102,14 @@ const Banner: React.FC<{ context?: IConfigContext }> = (props) => {
           })
         }
       />
-        <Collapse in={data.banner.show}>
-          <FileBanner
-            file={data.banner.data === undefined ? "" : data.banner.data.file}
-            fileUrl={data.banner.data === undefined ? "" : data.banner.data.url}
-            handleImage={handleImage}
-            id="banner-img-upload"
-          />
-        </Collapse>
-        
+      <Collapse in={data.banner.show}>
+        <FileBanner
+          file={data.banner.data === undefined ? "" : data.banner.data.file}
+          fileUrl={data.banner.data === undefined ? "" : data.banner.data.url}
+          handleImage={handleImage}
+          id="banner-img-upload"
+        />
+      </Collapse>
     </Box>
   );
 };

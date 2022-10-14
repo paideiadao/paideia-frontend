@@ -98,7 +98,7 @@ const DaoConfig: React.FC = () => {
               Cancel
             </Button>
           </CancelLink>
-          
+
           <Button sx={{ width: "50%" }} size="small" variant="contained">
             <Box sx={{ display: deviceWrapper("none", "block") }}>
               Submit Proposal

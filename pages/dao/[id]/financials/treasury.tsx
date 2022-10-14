@@ -92,7 +92,7 @@ export const TreasuryInfo: React.FC = () => {
             borderColor: "border.main",
           }}
         >
-          <ValueLabel label="Ticker" value="PTK" />
+          <ValueLabel label="Ticker" value="PAI" />
         </Box>
         <Box sx={{ width: "50%" }}>
           <ValueLabel label="Price" value="$0.1342" />

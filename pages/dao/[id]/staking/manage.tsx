@@ -78,7 +78,7 @@ const ManageStake: React.FC = () => {
         </Button>
       </Link>
       <Header title="Manage your staked tokens" large />
-      <TokenBanner amount={"32,661"} ticker="DTK" />
+      <TokenBanner amount={"32,661"} ticker="PAI" />
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: "border.main", mt: "1.5rem" }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">

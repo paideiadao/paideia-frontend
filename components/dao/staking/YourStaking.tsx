@@ -5,7 +5,7 @@ import * as React from "react";
 import { InfoCard } from "./GeneralInfo";
 
 const YourStaking: React.FC = () => {
-  const ticker = "PTK";
+  const ticker = "PAI";
   return (
     <Box>
       <Subheader title="Your staking" />

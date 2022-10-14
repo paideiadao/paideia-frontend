@@ -71,7 +71,7 @@ const Footer: React.FC<{ context?: IConfigContext }> = (props) => {
           })
         }
       />
-        <Collapse in={data.footer.show}>
+      <Collapse in={data.footer.show}>
         <Box sx={{ width: "100%", color: "text.primary" }}>
           <TextField
             label="Main text"
@@ -136,8 +136,7 @@ const Footer: React.FC<{ context?: IConfigContext }> = (props) => {
             </Button>
           </Box>
         </Box>
-        </Collapse>
-        
+      </Collapse>
     </Box>
   );
 };

@@ -34,7 +34,14 @@ const Following: React.FC = () => {
         proposals={
           data === undefined
             ? undefined
-            : data.filter((i: any) => i.followers.indexOf(context.api.daoUserData == null ? null : context.api.daoUserData.id) > -1)
+            : data.filter(
+                (i: any) =>
+                  i.followers.indexOf(
+                    context.api.daoUserData == null
+                      ? null
+                      : context.api.daoUserData.id
+                  ) > -1
+              )
         }
       />
     </Layout>

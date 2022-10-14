@@ -19,6 +19,8 @@ export interface IDaoUserData {
   xp: number;
   bio: string;
   profile_img_url: string;
+  address: string;
+  created: number;
 }
 
 export interface IDaoUserRes {
@@ -47,5 +49,5 @@ export interface ITokenCheckResponse {
     free: ITokenAmount;
     staked: ITokenAmount;
     vested: ITokenAmount;
-  }
+  };
 }

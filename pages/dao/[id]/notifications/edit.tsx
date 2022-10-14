@@ -65,12 +65,7 @@ const EditNotifications: React.FC<{ params: any }> = (props) => {
   const { data: userSettingsData, error: userSettingsError } = useSWR(
     settingsApi.api.daoUserData != null &&
       `/users/profile/settings?user_details_id=${settingsApi.api.daoUserData.id}`,
-    fetcher,
-    {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-    }
+    fetcher
   );
 
   React.useEffect(() => {
@@ -162,7 +157,7 @@ const EditNotifications: React.FC<{ params: any }> = (props) => {
                 Cancel
               </Button>
             </CancelLink>
-            
+
             <LoadingButton
               variant="contained"
               sx={{ width: "49%" }}

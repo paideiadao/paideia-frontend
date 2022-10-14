@@ -62,7 +62,7 @@ const summaryCards: IFundCard[] = [
   },
   {
     value: "1,750",
-    ticker: "PTK",
+    ticker: "PAI",
     percentage: "27",
     usd: "2,698",
   },
@@ -89,7 +89,7 @@ const allCards: IFundCard[] = [
   },
   {
     value: "1,750",
-    ticker: "PTK",
+    ticker: "PAI",
     percentage: "27",
     usd: "2,698",
   },

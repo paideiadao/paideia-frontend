@@ -120,7 +120,7 @@ const AssetCard: React.FC<IAssetCard> = (props) => {
 
 const assets = [
   { amount: 5482, ticker: "SigUSD", percentage: 0.54, total: "$5482 USD" },
-  { amount: 22116, ticker: "PTK", percentage: 0.27, total: "$2,698 USD" },
+  { amount: 22116, ticker: "PAI", percentage: 0.27, total: "$2,698 USD" },
   { amount: 398.75, ticker: "ERG", percentage: 0.11, total: "$1,107 USD" },
   { amount: "$713", ticker: "Other (5)", percentage: 0.07, total: "$713 USD" },
 ];
