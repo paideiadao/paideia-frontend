@@ -81,12 +81,12 @@ const Comments: React.FC<{ title?: string; data: IComment[]; id: number }> = (
               new Date(b.date).getTime() - new Date(a.date).getTime()
           )
           .filter((i: IComment) => i.parent == null)
-          .map((i: any) => {
+          .map((i: IComment, c: number) => {
             return (
               <BaseComment
                 comment={i}
                 data={props.data}
-                key={`base-comment-${i.id}`}
+                key={`base-comment-${i.id}-${c}`}
                 set={setCommentsWrapper}
               />
             );
@@ -181,7 +181,6 @@ const CommentInput: React.FC<{
                     dislikes: 0,
                     date: new Date(),
                     alias: localStorage.getItem("alias"),
-                    img: "",
                     comment: value,
                   });
                 setValue("");
@@ -202,6 +201,7 @@ const BaseComment: React.FC<{
   set?: Function;
   level?: number;
 }> = (props) => {
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext)
   const children = props.data.filter(
     (i: IComment) => i.parent === props.comment.id
   );
@@ -310,7 +310,7 @@ const BaseComment: React.FC<{
           >
             {props.comment.comment}
             <Box sx={{ display: "flex", width: "100%", mt: ".5rem", pr: 0 }}>
-              {children.length > 0 && !show && (
+              {/* {children.length > 0 && !show && (
                 <Button
                   onClick={() => setShow(true)}
                   size="small"
@@ -327,7 +327,7 @@ const BaseComment: React.FC<{
                   View {children.length}{" "}
                   {children.length === 1 ? "reply" : "replies"}
                 </Button>
-              )}
+              )} */}
               {!reply && (
                 <Button
                   onClick={() => setReply(true)}
@@ -343,7 +343,8 @@ const BaseComment: React.FC<{
                   dislikes={props.comment.dislikes.length}
                   userSide={getUserSide(
                     props.comment.likes,
-                    props.comment.dislikes
+                    props.comment.dislikes, 
+                    globalContext.api.daoUserData == null ? null : globalContext.api.daoUserData.id
                   )}
                   putUrl={`/proposals/comment/like/${props.comment.id}`}
                 />
@@ -364,10 +365,9 @@ const BaseComment: React.FC<{
           )}
           <Box>
             {children.length >= 0 &&
-              show &&
               children.map((i: IComment) => (
                 <BaseComment
-                  key={`child-comment-${level === undefined ? 1 : level + 1}-${
+                  key={`child-comment-${i.id}-${
                     props.comment.id
                   }`}
                   comment={i}

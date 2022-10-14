@@ -10,6 +10,7 @@ import {
   ConfigContext,
   IConfigContext,
 } from "@lib/dao/dao-config/ConfigContext";
+import { Collapse } from "@material-ui/core";
 import {
   Box,
   TextField,
@@ -47,8 +48,7 @@ const OptimisticGovernance: React.FC = () => {
         value={data.optimisticGovernance}
         title="Activate optimistic governance"
       />
-      {data.optimisticGovernance && (
-        <>
+        <Collapse in={data.optimisticGovernance}>
           <LearnMore
             title="White listed members"
             // tooltipTitle="Whitelisted Members"
@@ -205,8 +205,8 @@ const OptimisticGovernance: React.FC = () => {
               </FormControl>
             </Box>
           </Box>
-        </>
-      )}
+        </Collapse>
+        
     </>
   );
 };

@@ -20,6 +20,7 @@ import { id } from "date-fns/locale";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import useDidMountEffect from "@components/utilities/hooks";
+import CancelLink from "@components/utilities/CancelLink";
 
 interface INotification {
   label: string;
@@ -152,13 +153,16 @@ const EditNotifications: React.FC<{ params: any }> = (props) => {
               mt: "1rem",
             }}
           >
-            <Button
-              variant="outlined"
-              sx={{ width: "49%", mr: ".5rem" }}
-              size="small"
-            >
-              Cancel
-            </Button>
+            <CancelLink>
+              <Button
+                variant="outlined"
+                sx={{ width: "49%", mr: ".5rem" }}
+                size="small"
+              >
+                Cancel
+              </Button>
+            </CancelLink>
+            
             <LoadingButton
               variant="contained"
               sx={{ width: "49%" }}

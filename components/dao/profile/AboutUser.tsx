@@ -53,15 +53,7 @@ interface IAboutUser {
 }
 
 const AboutUser: React.FC<IAboutUser> = (props) => {
-  const { wallet } = useWallet();
-  const [tokens, setTokens] = React.useState<string>("");
-  React.useEffect(() => {
-    const load = async () => {
-      let amount = await getTokenAmount(props.token_id);
-      setTokens((amount / 10000).toFixed(2));
-    };
-    load();
-  }, []);
+  const { wallet, utxos} = useWallet();
   const appContext = React.useContext<IGlobalContext>(GlobalContext);
   const ticker = "PTK";
   return (
@@ -179,7 +171,7 @@ const AboutUser: React.FC<IAboutUser> = (props) => {
 
         <Chip
           avatar={<Avatar alt="PTK" src={PaideiaTokenSymbol.src} />}
-          label={tokens + " " + ticker}
+          label={utxos.toLocaleString("en-US") + " " + ticker}
           sx={{ mt: ".5rem" }}
         />
       </Box>

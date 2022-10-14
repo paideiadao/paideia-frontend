@@ -20,6 +20,7 @@ import { deviceWrapper } from "@components/utilities/Style";
 import { getRandomImage } from "@components/utilities/images";
 import { IFile } from "@lib/creation/Interfaces";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
+import CancelLink from "@components/utilities/CancelLink";
 
 export interface IDiscussion {
   name: string;
@@ -149,9 +150,12 @@ const CreateDiscussion: React.FC = () => {
               mb: ".5rem",
             }}
           >
-            <Button variant="outlined" sx={{ width: "50%", mr: "1rem" }}>
-              Cancel
-            </Button>
+            <CancelLink>
+              <Button variant="outlined" sx={{ width: "50%", mr: "1rem" }}>
+                Cancel
+              </Button>
+            </CancelLink>
+            
             <Button
               variant="contained"
               sx={{ width: "50%" }}

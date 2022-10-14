@@ -64,21 +64,31 @@ const Discussion: React.FC = () => {
     }
   }
 
-  useDidMountEffect(() => {
-    let ws = new WebSocket(`${getWsUrl()}/proposals/ws/${discussion_id}`);
-    ws.onmessage = (event: any) => {
-      try {
-        let wsRes = JSON.parse(event.data);
-        let temp = [...liveComments];
-        temp.push(wsRes.comment);
-        setLiveComments(temp);
-      } catch (e) {
-        console.log(e);
-      }
-    };
+  const setWrapper = (data: IComment) => {
+    console.log(data, liveComments)
+    let temp = [...liveComments]
+    temp.push(data)
+    setLiveComments(temp)
+  }
 
-    return () => ws.close();
+  React.useEffect(() => {
+    if (discussion_id) {
+      let ws = new WebSocket(`${getWsUrl()}/proposals/ws/${discussion_id}`);
+      ws.onmessage = (event: any) => {
+        try {
+          let wsRes = JSON.parse(event.data);
+          setWrapper(wsRes.comment);
+        } catch (e) {
+          console.log(e);
+        }
+      };
+  
+      return () => ws.close();
+    }
+    
   }, [discussion_id]);
+
+  console.log(liveComments)
 
   return (
     <Layout width={deviceWrapper("92%", "97%")}>
