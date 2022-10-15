@@ -52,9 +52,13 @@ const Follow: React.FC<IFollow> = (props) => {
   useDidMountEffect(() => {
     api.follow(
       followed ? "follow" : "unfollow",
-      globalContext.api.daoUserData.id
+      props.user_id ? props.user_id : globalContext.api.daoUserData.id
     );
   }, [followed]);
+
+  React.useEffect(() => {
+    setFollowed(props.followed);
+  }, [props.followed]);
 
   return (
     <Button

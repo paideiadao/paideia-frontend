@@ -3,7 +3,7 @@ import { deviceWrapper } from "@components/utilities/Style";
 import { useWallet } from "@components/wallet/WalletContext";
 import { getBaseUrl, fetcher } from "@lib/utilities";
 import { getTokenUtxos } from "@lib/wallet/Nautilus";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { useRouter } from "next/router";
 import * as React from "react";
 import useSWR from "swr";
@@ -39,31 +39,33 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
   }, [daoError]);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "flex-start",
-      }}
-    >
-      <Nav showMobile={showMobile} setShowMobile={setShowMobile} />
+    <Container maxWidth="xl" disableGutters>
       <Box
         sx={{
-          width: deviceWrapper("100%", "calc(100% - 14.5rem)"),
-          top: "0",
-          left: deviceWrapper("0", "14.5rem"),
-          pt: "0rem",
-          pb: "1rem",
-
-          zIndex: deviceWrapper("100", "1000"),
+          display: "flex",
+          alignItems: "flex-start",
         }}
       >
-        <TopNav showMobile={showMobile} setShowMobile={setShowMobile} />
-        <Box sx={{ width: "100%" }} onClick={() => setShowMobile(false)}>
-          {props.children}
+        <Nav showMobile={showMobile} setShowMobile={setShowMobile} />
+        <Box
+          sx={{
+            width: deviceWrapper("100%", "calc(100% - 14.5rem)"),
+            top: "0",
+            left: deviceWrapper("0", "14.5rem"),
+            pt: "0rem",
+            pb: "1rem",
+
+            zIndex: deviceWrapper("100", "1000"),
+          }}
+        >
+          <TopNav showMobile={showMobile} setShowMobile={setShowMobile} />
+          <Box sx={{ width: "100%" }} onClick={() => setShowMobile(false)}>
+            {props.children}
+          </Box>
+          <BottomNav />
         </Box>
-        <BottomNav />
       </Box>
-    </Box>
+    </Container>
   );
 };
 

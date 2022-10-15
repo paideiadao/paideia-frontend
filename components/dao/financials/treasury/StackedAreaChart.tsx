@@ -76,7 +76,7 @@ const data = [
     ],
   },
   {
-    id: "PTK",
+    id: "PAI",
     color: "#987284",
     data: [
       {

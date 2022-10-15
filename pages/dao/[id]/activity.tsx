@@ -24,6 +24,11 @@ import { paths, props } from "@lib/DaoPaths";
 import { deviceWrapper } from "@components/utilities/Style";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import MobileFilters from "@components/dao/activity/MobileFilters";
+import { useRouter } from "next/router";
+import useSWR from "swr";
+import useDidMountEffect from "@components/utilities/hooks";
+import { fetcher } from "@lib/utilities";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 
 // export const getStaticPaths = paths;
 // export const getStaticProps = props;
@@ -51,126 +56,6 @@ export const categories = [
 let temp = new Date();
 temp.setDate(temp.getDate() - 4);
 
-export const activities: IActivity[] = [
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "staked",
-    value: "15,000 PTK",
-    date: temp,
-    category: "Staking",
-  },
-  {
-    img: PaideiaLogo.src,
-    name: "3 ERG ($9.07)",
-    action: "were transferred to",
-    value: "0xaEF7B95f32597E6d70e4aaa2A7b30bE51a9F893b",
-    date: new Date(),
-    category: "Transactions",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "created the proposal",
-    value: "<proposal name>",
-    date: new Date(),
-    category: "Proposals",
-  },
-  {
-    img: PaideiaLogo.src,
-    name: "10 ERG ($30.21)",
-    action: "were transferred to",
-    value: "0xaEF7B95f32597E6d70e4aaa2A7b30bE51a9F893b",
-    date: temp,
-    category: "Transactions",
-  },
-  {
-    img: PaideiaLogo.src,
-    name: "3 ERG ($9.07)",
-    action: "were transferred to",
-    value: "0xaEF7B95f32597E6d70e4aaa2A7b30bE51a9F893b",
-    date: new Date(),
-    category: "Transactions",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "created the proposal",
-    value: "<proposal name>",
-    date: temp,
-    category: "Proposals",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "earned",
-    value: "297 PTK",
-    date: new Date(),
-    category: "Staking",
-    secondary: "tokens from staking",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "voted on the proposal",
-    value: "<proposal name>",
-    date: temp,
-    category: "Proposals",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "earned",
-    value: "301 PTK",
-    date: new Date(),
-    category: "Staking",
-    secondary: "tokens from staking",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "withdrew",
-    value: "5,000 PTK",
-    date: temp,
-    category: "Staking",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "made a comment on the proposal",
-    value: "<proposal name>",
-    date: new Date(),
-    category: "Comments",
-  },
-  {
-    img: PaideiaLogo.src,
-    name: "10 ERG ($30.21)",
-    action: "were transferred to",
-    value: "0xaEF7B95f32597E6d70e4aaa2A7b30bE51a9F893b",
-    date: new Date(),
-    category: "Transactions",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "earned",
-    value: "575 PTK",
-    date: temp,
-    category: "Staking",
-    secondary: "tokens from staking",
-  },
-  {
-    img: Musk.src,
-    name: "Alone Musk",
-    action: "added an addendum",
-    value: "<addendum name>",
-    date: new Date(),
-    category: "Proposals",
-    secondary: "to the proposal",
-    secondaryValue: "<proposal name>",
-  },
-];
-
 export interface IFilters {
   sortBy: string;
   search: string;
@@ -178,12 +63,27 @@ export interface IFilters {
 }
 
 const Activities: React.FC = () => {
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [filters, setFilters] = React.useState<IFilters>({
     search: "",
-    sortBy: "",
+    sortBy: "Newest",
     categories: ["All"],
   });
   const [showFilters, setShowFilters] = React.useState<boolean>(false);
+  const router = useRouter();
+  const { id } = router.query;
+  const { data, error } = useSWR(
+    `/activities/by_dao_id/${id === undefined ? 1 : id}`,
+    fetcher
+  );
+
+  useDidMountEffect(() => {
+    if (error) {
+      globalContext.api.showAlert("Error fetching proposals.", "error");
+    }
+  }, [error]);
+
+  console.log(data)
 
   return (
     <Layout width="95%">
@@ -254,7 +154,8 @@ const Activities: React.FC = () => {
               setFilters({ ...filters, sortBy: event.target.value })
             }
           >
-            <MenuItem value={"Most Recent"}>Most Recent</MenuItem>
+            <MenuItem value={"Newest"}>Newest</MenuItem>
+            <MenuItem value={"Oldest"}>Oldest</MenuItem>
           </Select>
         </FormControl>
       </Box>
@@ -304,22 +205,31 @@ const Activities: React.FC = () => {
           />
         ))}
       </Box>
-      {activities
-        .filter((i: any) => {
-          return filters.categories.indexOf("All") > -1
-            ? true
-            : filters.categories.indexOf(i.category) > -1;
-        })
-        .sort((a, b) =>
-          filters.sortBy === ""
-            ? 1
-            : filters.sortBy === "Most Recent"
-            ? b.date.getTime() - a.date.getTime()
-            : 1
-        )
-        .map((i: any, c: number) => {
-          return <Activity i={i} c={c} />;
-        })}
+      {data ? (
+        data
+          .filter((i: IActivity) => {
+            return (
+              (filters.categories.indexOf("All") > -1
+                ? true
+                : filters.categories.indexOf(i.category) > -1) &&
+              (i.name.toLowerCase().includes(filters.search) ||
+                filters.search === "" ||
+                i.action.toLowerCase().includes(filters.search) || i.value.toLowerCase().includes(filters.search))
+            );
+          })
+          .sort((a: IActivity, b: IActivity) =>
+            filters.sortBy === "Oldest"
+              //@ts-ignore
+              ? new Date(a.date) - new Date(b.date)
+              //@ts-ignore
+              : b.date - a.date
+          )
+          .map((i: any, c: number) => {
+            return <Activity i={i} c={c} />;
+          })
+      ) : (
+        <>Loading Here...</>
+      )}
       <Fab
         color="primary"
         sx={{

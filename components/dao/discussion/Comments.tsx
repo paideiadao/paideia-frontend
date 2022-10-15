@@ -15,9 +15,10 @@ import { getUserSide, LikesDislikes } from "../proposals/ProposalCard";
 import { deviceWrapper } from "@components/utilities/Style";
 import { LightTheme } from "@theme/theme";
 import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
-import ReplyIcon from "@mui/icons-material/Reply";
+import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import CommentsApi from "@lib/CommentsApi";
+import { Expand, OpenInFull } from "@mui/icons-material";
 
 export interface IComment {
   id: number;
@@ -81,12 +82,12 @@ const Comments: React.FC<{ title?: string; data: IComment[]; id: number }> = (
               new Date(b.date).getTime() - new Date(a.date).getTime()
           )
           .filter((i: IComment) => i.parent == null)
-          .map((i: any) => {
+          .map((i: IComment, c: number) => {
             return (
               <BaseComment
                 comment={i}
                 data={props.data}
-                key={`base-comment-${i.id}`}
+                key={`base-comment-${i.id}-${c}`}
                 set={setCommentsWrapper}
               />
             );
@@ -181,7 +182,6 @@ const CommentInput: React.FC<{
                     dislikes: 0,
                     date: new Date(),
                     alias: localStorage.getItem("alias"),
-                    img: "",
                     comment: value,
                   });
                 setValue("");
@@ -202,20 +202,19 @@ const BaseComment: React.FC<{
   set?: Function;
   level?: number;
 }> = (props) => {
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const children = props.data.filter(
     (i: IComment) => i.parent === props.comment.id
   );
   const level = props.level;
-  const [show, setShow] = React.useState<boolean>(false);
+  const [show, setShow] = React.useState<boolean>(true);
   const [reply, setReply] = React.useState<boolean>(false);
-  const setShowWrapper = () => setShow(!show);
   return (
     <>
       <Box
         sx={{
           width: "100%",
           mt: "1rem",
-          mb: "1rem",
           pl: props.level === undefined ? 0 : `${0.45}rem`,
           fontSize: ".9rem",
         }}
@@ -228,6 +227,11 @@ const BaseComment: React.FC<{
             alignItems: deviceWrapper("center", "center"),
           }}
         >
+          {!show && (
+            <IconButton size="small" onClick={() => setShow(true)}>
+              <OpenInFullIcon />
+            </IconButton>
+          )}
           <Box
             sx={{
               width: deviceWrapper("12%", "7%"),
@@ -287,30 +291,49 @@ const BaseComment: React.FC<{
             {dateFormat(props.comment.date, "mmmm dS, yyyy @ h:MM TT")}
           </Box>
         </Box>
-        <Box
-          sx={{
-            width: "100%",
-            mr: ".5rem",
-            borderLeft: children.length >= 0 && show ? 1 : 0,
-            borderColor: "border.main",
-          }}
-        >
+        {show && (
           <Box
             sx={{
+              width: "100%",
+              mr: ".5rem",
               display: "flex",
-              justifyContent: "center",
-              width: deviceWrapper("96%", "98.5%"),
-              flexDirection: "column",
-              fontSize: deviceWrapper(".8rem", "1rem"),
-              borderColor: "border.main",
-              ml: ".5rem",
-              mr: 0,
-              mt: ".25rem",
+              alignContent: "stretch",
+              alignItems: "stretch",
             }}
           >
-            {props.comment.comment}
-            <Box sx={{ display: "flex", width: "100%", mt: ".5rem", pr: 0 }}>
-              {children.length > 0 && !show && (
+            {children.length > 0 && show && (
+              <Box
+                sx={{
+                  width: ".4%",
+                  ml: "1rem",
+                  backgroundColor: "border.main",
+                  ":hover": {
+                    backgroundColor: "primary.lightOpacity",
+                    cursor: "pointer",
+                  },
+                }}
+                onClick={() => setShow(false)}
+              ></Box>
+            )}
+            <Box sx={{ width: "99.6%" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  width: deviceWrapper("96%", "98.5%"),
+                  flexDirection: "column",
+                  fontSize: deviceWrapper(".8rem", "1rem"),
+                  borderColor: "border.main",
+                  ml: ".5rem",
+                  mr: 0,
+                  mt: ".25rem",
+                }}
+              >
+                {props.comment.comment}
+                <Box
+                  sx={{ display: "flex", width: "100%", mt: ".5rem", pr: 0 }}
+                >
+                  {/* {children.length > 0 && !show && (
                 <Button
                   onClick={() => setShow(true)}
                   size="small"
@@ -327,57 +350,60 @@ const BaseComment: React.FC<{
                   View {children.length}{" "}
                   {children.length === 1 ? "reply" : "replies"}
                 </Button>
-              )}
-              {!reply && (
-                <Button
-                  onClick={() => setReply(true)}
-                  size="small"
-                  variant="text"
-                >
-                  Reply
-                </Button>
-              )}
-              <Box sx={{ ml: "auto" }}>
-                <LikesDislikes
-                  likes={props.comment.likes.length}
-                  dislikes={props.comment.dislikes.length}
-                  userSide={getUserSide(
-                    props.comment.likes,
-                    props.comment.dislikes
+              )} */}
+                  {!reply && (
+                    <Button
+                      onClick={() => setReply(true)}
+                      size="small"
+                      variant="text"
+                    >
+                      Reply
+                    </Button>
                   )}
-                  putUrl={`/proposals/comment/like/${props.comment.id}`}
+                  <Box sx={{ ml: "auto" }}>
+                    <LikesDislikes
+                      likes={props.comment.likes.length}
+                      dislikes={props.comment.dislikes.length}
+                      userSide={getUserSide(
+                        props.comment.likes,
+                        props.comment.dislikes,
+                        globalContext.api.daoUserData == null
+                          ? null
+                          : globalContext.api.daoUserData.id
+                      )}
+                      putUrl={`/proposals/comment/like/${props.comment.id}`}
+                    />
+                  </Box>
+                </Box>
+              </Box>
+              {reply && (
+                <CommentInput
+                  parent={props.comment.id}
+                  length={props.data.length}
+                  set={(newComment: IComment) => {
+                    props.set(newComment);
+                    setShow(true);
+                    setReply(false);
+                  }}
+                  level={level === undefined ? 1 : level + 1}
                 />
+              )}
+              <Box>
+                {children.length >= 0 &&
+                  show &&
+                  children.map((i: IComment) => (
+                    <BaseComment
+                      key={`child-comment-${i.id}-${props.comment.id}`}
+                      comment={i}
+                      data={props.data}
+                      level={level === undefined ? 1 : level + 1}
+                      set={props.set}
+                    />
+                  ))}
               </Box>
             </Box>
           </Box>
-          {reply && (
-            <CommentInput
-              parent={props.comment.id}
-              length={props.data.length}
-              set={(newComment: IComment) => {
-                props.set(newComment);
-                setShow(true);
-                setReply(false);
-              }}
-              level={level === undefined ? 1 : level + 1}
-            />
-          )}
-          <Box>
-            {children.length >= 0 &&
-              show &&
-              children.map((i: IComment) => (
-                <BaseComment
-                  key={`child-comment-${level === undefined ? 1 : level + 1}-${
-                    props.comment.id
-                  }`}
-                  comment={i}
-                  data={props.data}
-                  level={level === undefined ? 1 : level + 1}
-                  set={props.set}
-                />
-              ))}
-          </Box>
-        </Box>
+        )}
       </Box>
     </>
   );

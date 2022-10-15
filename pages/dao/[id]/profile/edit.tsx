@@ -20,6 +20,7 @@ import { IFile, ISocialLink } from "@lib/creation/Interfaces";
 import { LoadingButton } from "@mui/lab";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import useDidMountEffect from "@components/utilities/hooks";
+import CancelLink from "@components/utilities/CancelLink";
 
 const ProfileEditImage: React.FC<{ set: (val: IFile) => void; img: string }> = (
   props
@@ -269,13 +270,16 @@ const Edit: React.FC<{ params: any }> = (props) => {
               mt: "1rem",
             }}
           >
-            <Button
-              variant="outlined"
-              sx={{ width: "49%", mr: ".5rem" }}
-              size="small"
-            >
-              Cancel
-            </Button>
+            <CancelLink>
+              <Button
+                variant="outlined"
+                sx={{ width: "49%", mr: ".5rem" }}
+                size="small"
+              >
+                Cancel
+              </Button>
+            </CancelLink>
+
             <LoadingButton
               size="small"
               variant="contained"
@@ -296,7 +300,7 @@ const Edit: React.FC<{ params: any }> = (props) => {
                 await appContext.api.editUser({
                   name: value.username,
                   profile_img_url:
-                    imgRes === undefined ? value.img : imgRes.data.image_url,
+                    imgRes === undefined ? "" : imgRes.data.image_url,
                   bio: value.shortBio,
                   social_links: value.socialLinks,
                 });
@@ -304,7 +308,7 @@ const Edit: React.FC<{ params: any }> = (props) => {
                   ...appContext.api.daoUserData,
                   name: value.username,
                   profile_img_url:
-                    imgRes === undefined ? value.img : imgRes.data.image_url,
+                    imgRes === undefined ? "" : imgRes.data.image_url,
                   bio: value.shortBio,
                   social_links: value.socialLinks,
                 });

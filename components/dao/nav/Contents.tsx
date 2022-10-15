@@ -193,7 +193,9 @@ const DropdownLink: React.FC<{
       expanded={props.selected}
     >
       <AccordionSummary
-        onClick={() => props.set(props.title)}
+        onClick={() =>
+          props.selected ? props.set(undefined) : props.set(props.title)
+        }
         expandIcon={
           <Box
             sx={{
@@ -340,12 +342,15 @@ const Contents: React.FC<ISideNavComponent> = (props) => {
       return "Members";
     } else if (path.includes("activity")) {
       return "Activity";
-    } else if (path.includes("settings")) {
+    } else if (
+      path.includes("settings") ||
+      path.includes("wallet") ||
+      path.includes("profile/edit") ||
+      path.includes("notifications/edit")
+    ) {
       return "Settings";
     } else if (path.includes("config")) {
       return "DAO Config";
-    } else if (path.includes("/wallet")) {
-      return "Settings";
     } else {
       return "Dashboard";
     }
@@ -487,7 +492,7 @@ const Contents: React.FC<ISideNavComponent> = (props) => {
     {
       icon: <MovingIcon sx={{ opacity: ".8" }} />,
       label: "Activity",
-      notifications: 3,
+      notifications: 0,
     },
     globalContext.api.daoUserData === undefined
       ? undefined

@@ -16,6 +16,7 @@ import SendApi, { ISendFunds } from "@lib/dao/financials/SendApi";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import RecurringForm from "@components/dao/financials/treasury/RecurringForm";
 import SendContext from "@lib/dao/financials/SendContext";
+import CancelLink from "@components/utilities/CancelLink";
 
 const Send: React.FC = () => {
   const router = useRouter();
@@ -93,13 +94,16 @@ const Send: React.FC = () => {
             width: "100%",
           }}
         >
-          <Button
-            variant="outlined"
-            sx={{ width: "50%", mr: "1rem" }}
-            size="small"
-          >
-            Cancel
-          </Button>
+          <CancelLink>
+            <Button
+              variant="outlined"
+              sx={{ width: "50%", mr: "1rem" }}
+              size="small"
+            >
+              Cancel
+            </Button>
+          </CancelLink>
+
           <Button variant="contained" sx={{ width: "50%" }} size="small">
             Send
           </Button>

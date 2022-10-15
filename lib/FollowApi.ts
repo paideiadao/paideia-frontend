@@ -6,6 +6,7 @@ import { IDiscussion } from "@pages/dao/[id]/discussion/create";
 type FollowDirection = "follow" | "unfollow";
 
 interface IFollowPut {
+  current_user_details_id: number;
   user_details_id: number;
   type: FollowDirection;
 }
@@ -25,6 +26,7 @@ export default class FollowApi extends AbstractApi {
     user_details_id: number = undefined
   ): IFollowPut {
     return {
+      current_user_details_id: this.api.daoUserData.id,
       user_details_id:
         user_details_id === undefined
           ? this.api.daoUserData.id

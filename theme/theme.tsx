@@ -105,7 +105,7 @@ export const mainTheme = createTheme({
       md: 900,
       md2: 1000,
       lg: 1200,
-      xl: 1536,
+      xl: 1600,
     },
   },
 });

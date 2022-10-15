@@ -6,6 +6,7 @@ import { Box } from "@mui/material";
 import * as React from "react";
 import dateFormat from "dateformat";
 import { deviceWrapper } from "@components/utilities/Style";
+import { Grid } from "@material-ui/core";
 
 interface IInfoCard {
   value: string;
@@ -18,7 +19,7 @@ const InfoCard: React.FC<IInfoCard> = (props) => {
   return (
     <Box
       sx={{
-        width: deviceWrapper("47.5%", "23.5%"),
+        width: "100%",
         p: ".5rem",
         display: "flex",
         alignItems: deviceWrapper("flex-start", "center"),
@@ -27,15 +28,6 @@ const InfoCard: React.FC<IInfoCard> = (props) => {
         backgroundColor: "fileInput.outer",
         borderRadius: ".4rem",
         border: 1,
-        ml: deviceWrapper(
-          props.c % 2 === 0 || props.c === 0 ? "0rem" : ".75rem",
-          "1rem"
-        ),
-        mt: deviceWrapper(
-          props.c > 1 ? "1rem" : "0",
-          props.c > 3 ? "1rem" : "0"
-        ),
-
         borderColor: "border.main",
       }}
     >
@@ -65,7 +57,7 @@ const InfoCard: React.FC<IInfoCard> = (props) => {
 };
 
 const InfoGrid: React.FC = () => {
-  const ticker = "DTK";
+  const ticker = "PAI";
   const tempDate = new Date();
   const infoCards: IInfoCard[] = [
     {
@@ -131,20 +123,16 @@ const InfoGrid: React.FC = () => {
     },
   ];
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box
-        sx={{
-          width: "100%",
-          mt: "1rem",
-          display: "flex",
-          alignItems: "center",
-          flexWrap: "wrap",
-        }}
-      >
+    <Box sx={{ width: "100%", mt: ".5rem" }}>
+      <Grid container spacing={1} alignItems="stretch">
         {infoCards.map((i: IInfoCard, c: number) => {
-          return <InfoCard {...i} key={`info-card-${c}`} c={c} />;
+          return (
+            <Grid item xs={6} sm={4} md={6} lg={3}>
+              <InfoCard {...i} key={`info-card-${c}`} c={c} />
+            </Grid>
+          );
         })}
-      </Box>
+      </Grid>
     </Box>
   );
 };

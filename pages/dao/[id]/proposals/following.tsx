@@ -4,7 +4,7 @@ import Layout from "@components/dao/Layout";
 import useDidMountEffect from "@components/utilities/hooks";
 import useSWR from "swr";
 import { useRouter } from "next/router";
-import { fetcher, getBaseUrl, getUserId } from "@lib/utilities";
+import { fetcher } from "@lib/utilities";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 
 const Following: React.FC = () => {
@@ -34,7 +34,14 @@ const Following: React.FC = () => {
         proposals={
           data === undefined
             ? undefined
-            : data.filter((i: any) => i.followers.indexOf(getUserId()) > -1)
+            : data.filter(
+                (i: any) =>
+                  i.followers.indexOf(
+                    context.api.daoUserData == null
+                      ? null
+                      : context.api.daoUserData.id
+                  ) > -1
+              )
         }
       />
     </Layout>

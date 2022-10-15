@@ -45,7 +45,7 @@ export interface IDistributionCard {
 export const DistributionCard: React.FC<IDistributionCard> = (props) => {
   const router = useRouter();
   const { id } = router.query;
-  const ticker = "DTK";
+  const ticker = "PAI";
   return (
     <Box
       sx={{

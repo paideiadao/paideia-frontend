@@ -47,14 +47,21 @@ const Design: React.FC = () => {
         // tooltipLink="/here"
       />
       <Subtitle subtitle="In order to best match your DAO design, you can select between four different theme colors and choose if you want a light or dark theme." />
-      <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
         {themes.map((i: any) => {
           return <ThemeCard set={setTheme} theme={theme} i={i} />;
         })}
-        <Logo context={context} />
-        <Banner context={context} />
-        <Footer context={context} />
       </Box>
+      <Logo context={context} />
+      <Banner context={context} />
+      <Footer context={context} />
     </>
   );
 };

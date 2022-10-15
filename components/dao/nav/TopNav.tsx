@@ -1,25 +1,9 @@
-import {
-  Avatar,
-  Badge,
-  Box,
-  Button,
-  IconButton,
-  Modal,
-  Slide,
-} from "@mui/material";
+import { Avatar, Badge, Box, IconButton, Slide } from "@mui/material";
 import * as React from "react";
 import { GlobalContext, IGlobalContext } from "../../../lib/AppContext";
 import { DarkTheme } from "@theme/theme";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import Musk from "../../../public/profile/musk-full.png";
 import Link from "next/link";
-import { modalBackground } from "@components/utilities/modalBackground";
-import { CapsInfo } from "@components/creation/utilities/HeaderComponents";
-import {
-  newNotifications,
-  oldNotifications,
-  Notification,
-} from "@pages/dao/[id]/notifications";
 import { useRouter } from "next/router";
 import { deviceWrapper } from "@components/utilities/Style";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -31,8 +15,9 @@ import Contents from "./Contents";
 import { useWallet } from "@components/wallet/WalletContext";
 import ConnectWallet from "@components/wallet/ConnectWallet";
 import { isAddressValid } from "@components/wallet/AddWallet";
-import { ProfilePopup } from "./Popups";
+import { ProfilePopup } from "./ProfilePopup";
 import { snipAddress } from "@lib/utilities";
+import NotificationsPopup from "./NotificationsPopup";
 
 export interface INav {
   setShowMobile: (val: boolean) => void;
@@ -124,7 +109,7 @@ const TopNav: React.FC<INav> = (props) => {
                     onClick={handleOpen}
                     sx={{ display: deviceWrapper("none", "flex") }}
                   >
-                    <Badge badgeContent={1} color="primary">
+                    <Badge badgeContent={undefined} color="primary">
                       <NotificationsIcon
                         sx={{
                           fontSize: "1.1rem",
@@ -141,7 +126,7 @@ const TopNav: React.FC<INav> = (props) => {
                 {globalContext.api.daoUserData !== undefined && (
                   <Box
                     sx={{
-                      ml: "1rem",
+                      ml: ".5rem",
                       display: "flex",
                       alignItems: "center",
                       cursor: "pointer",
@@ -179,90 +164,10 @@ const TopNav: React.FC<INav> = (props) => {
             )}
           <ConnectWallet show={!isAddressValid(wallet)} />
         </Box>
-        <ProfilePopup open={openProfile} close={handleCloseProfile} />
-        <Modal open={open} onClose={handleClose}>
-          <Box
-            sx={{
-              ...modalBackground,
-              p: 0,
-              width: "30rem",
-              right: "-12rem",
-              top: "17.5rem",
-              left: "",
-            }}
-          >
-            <Box
-              sx={{
-                backgroundColor: "fileInput.main",
-                p: ".5rem",
-                pl: "1rem",
-                display: "flex",
-                alignItems: "center",
-                width: "100%",
-                borderTopLeftRadius: ".2rem",
-                borderTopRightRadius: ".2rem",
-                borderBottom: "1px solid",
-                borderBottomColor: "border.main",
-              }}
-            >
-              <CapsInfo title="Configuration" mb={"0"} />
-              <Button sx={{ ml: "auto", width: "15rem" }} size="small">
-                Mark all as read
-              </Button>
-            </Box>
-
-            <Box sx={{ height: "25rem", overflowY: "scroll" }}>
-              {oldNotifications
-                .concat(newNotifications)
-                .map((i: any, c: number) => {
-                  return (
-                    <Notification
-                      c={c}
-                      i={i}
-                      m={"0"}
-                      key={"notification-key-modal-" + c}
-                    />
-                  );
-                })}
-            </Box>
-            <Box
-              sx={{
-                position: "fixed",
-                bottom: "0",
-                left: "0",
-                width: "100%",
-                display: "flex",
-                alignItems: "center",
-                backgroundColor: "fileInput.main",
-                justifyContent: "center",
-                borderBottomRightRadius: ".3rem",
-                borderBottomLeftRadius: ".3rem",
-              }}
-              onClick={handleClose}
-            >
-              <Link
-                href={
-                  id === undefined
-                    ? "/dao/notifications"
-                    : `/dao/${id}/notifications`
-                }
-              >
-                <Button
-                  sx={{
-                    width: "100%",
-                    borderRadius: 0,
-                    p: ".75rem",
-                    borderBottomRightRadius: ".3rem",
-                    borderBottomLeftRadius: ".3rem",
-                  }}
-                  size="small"
-                >
-                  View All
-                </Button>
-              </Link>
-            </Box>
-          </Box>
-        </Modal>
+        <Box sx={{ position: "relative" }}>
+          <ProfilePopup open={openProfile} close={handleCloseProfile} />
+          <NotificationsPopup open={open} close={handleClose} />
+        </Box>
       </Box>
       <Slide direction="right" in={props.showMobile} mountOnEnter unmountOnExit>
         <Box

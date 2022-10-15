@@ -15,20 +15,19 @@ const Profile: FC = () => {
   // const {id} =
 
   const { data: activitiesData, error } = useSWR(
-    userData !== undefined && `/activities/${userData.user_id}`,
-    fetcher,
-    {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-    }
+    userData !== undefined && `/activities/${userData.id}`,
+    fetcher
   );
 
+  const { data: proposalsData, error: proposalsError } = useSWR(
+    userData !== undefined && `/proposals/by_user_details_id/${userData.id}`,
+    fetcher
+  );
   return (
     <AbstractProfile
       edit
       data={userData}
-      proposals={[]}
+      proposals={proposalsData}
       activities={activitiesData}
     />
   );

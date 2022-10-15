@@ -43,7 +43,7 @@ interface IMyDistributionCard {
 const MyDistributionCard: React.FC<IMyDistributionCard> = (props) => {
   const router = useRouter();
   const { id } = router.query;
-  const ticker = "DTK";
+  const ticker = "PAI";
   return (
     <Box
       sx={{

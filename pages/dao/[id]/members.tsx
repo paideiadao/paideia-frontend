@@ -32,8 +32,12 @@ import { useRouter } from "next/router";
 // export const getStaticProps = props;
 export const marks = [
   {
+    value: 0,
+    label: "Level 0",
+  },
+  {
     value: 1,
-    label: "Level 1",
+    label: "",
   },
   {
     value: 2,
@@ -98,27 +102,23 @@ export interface IFilters {
 const Members: React.FC = () => {
   const [filters, setFilters] = React.useState<IFilters>({
     search: "",
-    sortBy: "",
+    sortBy: "Most Followers",
     categories: ["All"],
   });
-  const [value, setValue] = React.useState<number[]>([1, 10]);
+  const [value, setValue] = React.useState<number[]>([0, 10]);
   const router = useRouter();
   const { id } = router.query;
   const [showFilters, setShowFilters] = React.useState<boolean>(false);
 
   const { data, error } = useSWR(
     `/users/by_dao_id/${id === undefined ? 1 : id}`,
-    fetcher,
-    {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-    }
+    fetcher
   );
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
   };
+  console.log(value);
 
   return (
     <Layout width="92.5%">
@@ -185,7 +185,7 @@ const Members: React.FC = () => {
             value={value}
             valueLabelDisplay="auto"
             marks={marks}
-            min={1}
+            min={0}
             max={10}
             onChange={handleChange}
           />
@@ -208,7 +208,8 @@ const Members: React.FC = () => {
               setFilters({ ...filters, sortBy: event.target.value })
             }
           >
-            <MenuItem value={"Most Recent"}>Most Recent</MenuItem>
+            <MenuItem value={"Most Created"}>Most Created</MenuItem>
+            <MenuItem value={"Most Followers"}>Most Followers</MenuItem>
           </Select>
         </FormControl>
       </Box>
@@ -262,13 +263,32 @@ const Members: React.FC = () => {
         sx={{ display: "flex", width: "100%", flexWrap: "wrap", mt: "1.5rem" }}
       >
         {data !== undefined &&
-          data.map((i: IMemberCard, c: number) => (
-            <MemberCard
-              {...i}
-              key={"member-card" + c}
-              width={{ xs: "100%", sm: "50%", md: "33%", lg: "33%", xl: "25%" }}
-            />
-          ))}
+          data
+            .filter(
+              (i: IMemberCard) =>
+                (i.name.toLowerCase().includes(filters.search.toLowerCase()) ||
+                  filters.search === "") &&
+                value[0] <= i.level &&
+                value[1] >= i.level
+            )
+            .sort((a: IMemberCard, b: IMemberCard) =>
+              filters.sortBy == "Most Created"
+                ? b.created - a.created
+                : b.followers.length - a.followers.length
+            )
+            .map((i: IMemberCard, c: number) => (
+              <MemberCard
+                {...i}
+                key={"member-card" + c}
+                width={{
+                  xs: "100%",
+                  sm: "50%",
+                  md: "33%",
+                  lg: "33%",
+                  xl: "25%",
+                }}
+              />
+            ))}
       </Box>
       <Fab
         color="primary"

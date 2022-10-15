@@ -97,7 +97,7 @@ const rows = [
 ];
 
 const Markets: React.FC = () => {
-  const ticker = "PTK";
+  const ticker = "PAI";
   return (
     <Box sx={{ width: "100%", mt: "1rem" }}>
       <Header title={`${ticker} markets`} />

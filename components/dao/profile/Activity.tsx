@@ -11,7 +11,7 @@ const Activity: React.FC<{ activities: IActivity[] }> = (props) => {
   return (
     <Box>
       <CapsInfo title={`User Activity`} />
-      {activities.map((i: any, c: number) => {
+      {props.activities.map((i: any, c: number) => {
         return (
           <Box
             key={`activities-key-profile-${c}`}
@@ -26,7 +26,7 @@ const Activity: React.FC<{ activities: IActivity[] }> = (props) => {
             <Box sx={{ display: "flex", alignItems: "center", width: "50%" }}>
               <Avatar
                 sx={{ mr: ".5rem", width: "2rem", height: "2rem" }}
-                src={Musk.src}
+                src={i.img_url}
               ></Avatar>
               <Box>
                 {i.name + " "}
@@ -40,7 +40,7 @@ const Activity: React.FC<{ activities: IActivity[] }> = (props) => {
                 >
                   {i.action}
                 </Box>
-                {" " + i.proposalname}
+                {" " + i.value}
               </Box>
             </Box>
 

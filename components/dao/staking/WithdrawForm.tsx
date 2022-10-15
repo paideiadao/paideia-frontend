@@ -9,6 +9,7 @@ import { Box, Button, InputAdornment, TextField, Modal } from "@mui/material";
 import * as React from "react";
 import { modalBackground } from "@components/utilities/modalBackground";
 import { deviceWrapper } from "@components/utilities/Style";
+import CancelLink from "@components/utilities/CancelLink";
 const WithdrawForm: React.FC = () => {
   const { wallet } = useWallet();
   const [holder, setHolder] = React.useState<IWallet>({
@@ -16,7 +17,7 @@ const WithdrawForm: React.FC = () => {
     address: wallet,
     img: "",
   });
-  const ticker = "DTK",
+  const ticker = "PAI",
     available = "50,000";
   const [withdraw, setWithdraw] = React.useState<boolean>(false);
   const openWithdraw = () => setWithdraw(true);
@@ -78,13 +79,16 @@ const WithdrawForm: React.FC = () => {
           mt: "2rem",
         }}
       >
-        <Button
-          variant="outlined"
-          sx={{ width: "50%", mr: "1rem" }}
-          size="small"
-        >
-          Cancel
-        </Button>
+        <CancelLink>
+          <Button
+            variant="outlined"
+            sx={{ width: "50%", mr: "1rem" }}
+            size="small"
+          >
+            Cancel
+          </Button>
+        </CancelLink>
+
         <Button
           variant="contained"
           sx={{ width: "50%" }}

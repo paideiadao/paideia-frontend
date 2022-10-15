@@ -9,6 +9,9 @@ import { getUserId, snipAddress } from "@lib/utilities";
 import { levels } from "../profile/Header";
 import useDidMountEffect from "@components/utilities/hooks";
 import { FollowMobile } from "@components/utilities/Follow";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
+import FollowBadge from "@components/utilities/FollowBadge";
+import FollowApi from "@lib/FollowApi";
 
 export interface IMemberCard {
   width: any;
@@ -23,14 +26,21 @@ export interface IMemberCard {
   socialLinks: ISocialLink[];
   user_id: number;
   xp: number;
+  created: number;
 }
 
 const MemberCard: React.FC<IMemberCard> = (props) => {
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [favorited, setFavorited] = React.useState<boolean>(
-    props.followers.indexOf(getUserId()) > -1
+    props.followers.indexOf(
+      globalContext.api.daoUserData == null
+        ? null
+        : globalContext.api.daoUserData.id
+    ) > -1
   );
   const router = useRouter();
   const { id } = router.query;
+  const api = new FollowApi(globalContext.api, "/users/profile/follow");
 
   useDidMountEffect(() => {}, [favorited]);
   return (
@@ -46,12 +56,21 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
     >
       <Badge
         badgeContent={
-          <FollowMobile
-            followed={props.followers.indexOf(getUserId()) > -1}
-            putUrl={"/users/profile/follow/"}
-            user_id={props.user_id}
-            small
-          />
+          globalContext.api.daoUserData != null &&
+          globalContext.api.daoUserData.id !== props.id && (
+            <FollowBadge
+              onChange={(followed: boolean) => {
+                api.follow(followed ? "follow" : "unfollow", props.id);
+              }}
+              followed={
+                props.followers.indexOf(
+                  globalContext.api.daoUserData == null
+                    ? null
+                    : globalContext.api.daoUserData.id
+                ) > -1
+              }
+            />
+          )
         }
         sx={{ width: "100%" }}
       >
@@ -123,7 +142,7 @@ const MemberCard: React.FC<IMemberCard> = (props) => {
               >
                 Created
                 <Box sx={{ color: "text.primary", fontSize: "1.1rem" }}>
-                  {0}
+                  {props.created}
                 </Box>
               </Box>
               <Box

@@ -12,6 +12,9 @@ export const Overview: React.FC<{
   userDetailId: number;
   alias: string;
   level: number;
+  img: string;
+  followers: number[];
+  created: number;
 }> = (props) => {
   const router = useRouter();
   const { id } = router.query;
@@ -41,7 +44,7 @@ export const Overview: React.FC<{
         />
         <Box sx={{ display: "flex", alignItems: "center", width: "100%" }}>
           <Avatar sx={{ width: "2.5rem", height: "2.5rem" }}>
-            <img src={Musk.src} />
+            <img src={props.img} />
           </Avatar>
           <Box sx={{ ml: "1rem" }}>
             <Box sx={{ fontSize: "1rem" }}>{props.alias}</Box>
@@ -71,7 +74,9 @@ export const Overview: React.FC<{
             }}
           >
             Followers
-            <Box sx={{ color: "text.primary", fontSize: "1.4rem" }}>0</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.4rem" }}>
+              {props.followers.length}
+            </Box>
           </Box>
           <Box
             sx={{
@@ -85,7 +90,9 @@ export const Overview: React.FC<{
             }}
           >
             Created
-            <Box sx={{ color: "text.primary", fontSize: "1.4rem" }}>0</Box>
+            <Box sx={{ color: "text.primary", fontSize: "1.4rem" }}>
+              {props.created}
+            </Box>
           </Box>
           <Box
             sx={{
@@ -108,7 +115,7 @@ export const Overview: React.FC<{
           justifyContent: "center",
         }}
       >
-        <Link href={getDaoPath(id as string, `/member/${props.userDetailId}`)}>
+        <Link href={getDaoPath(id as string, `member/${props.userDetailId}`)}>
           <Button
             size="small"
             sx={{

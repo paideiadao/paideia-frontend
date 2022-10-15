@@ -67,9 +67,11 @@ const GeneralInformation: React.FC = () => {
               })
             }
           >
+            <MenuItem value="New Feature">New Feature</MenuItem>
             <MenuItem value="Finance">Finance</MenuItem>
-            <MenuItem value="Category 1">Category 1</MenuItem>
-            <MenuItem value="Category 2">Category 2</MenuItem>
+            <MenuItem value="General">General</MenuItem>
+            <MenuItem value="Governance">Governance</MenuItem>
+            <MenuItem value="Technical">Technical</MenuItem>
           </Select>
         </FormControl>
       </Box>

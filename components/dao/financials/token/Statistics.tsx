@@ -104,7 +104,7 @@ const StatisticsCard: React.FC<{ title: string | JSX.Element; c: number }> = (
 };
 
 const Statistics: React.FC = () => {
-  const ticker = "PTK";
+  const ticker = "PAI";
   return (
     <Box>
       <Header title={`${ticker} statistics`} />

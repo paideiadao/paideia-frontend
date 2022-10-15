@@ -136,7 +136,7 @@ export const DaoSelector: React.FC<IDaoSelector> = (props) => {
               dAppWallet.addresses.map((i: any) => i.name)
             );
             if (res.data.totalTokens > 0) {
-              await globalContext.api.getOrCreateDaoUser()
+              await globalContext.api.getOrCreateDaoUser();
             }
             setUtxos(res.data.totalTokens);
           }
@@ -144,7 +144,7 @@ export const DaoSelector: React.FC<IDaoSelector> = (props) => {
           if (isAddressValid(wallet)) {
             let res = await globalContext.api.paideiaTokenCheck([wallet]);
             if (res.data.totalTokens > 0) {
-              globalContext.api.getOrCreateDaoUser()
+              globalContext.api.getOrCreateDaoUser();
             }
             setUtxos(res.data.totalTokens);
           }

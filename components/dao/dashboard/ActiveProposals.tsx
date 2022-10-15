@@ -91,7 +91,7 @@ const ActiveProposal: React.FC = () => {
               c={c}
               scrollable
               key={"proposal-card-key-" + c}
-              width={deviceStruct("25%", "25%", "35%", "33%", "17rem")}
+              width={deviceStruct("15rem", "15rem", "15rem", "16rem", "17rem")}
             />
           ))}
         </CardSlider>

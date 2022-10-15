@@ -4,6 +4,7 @@ import Design from "@components/dao/dao-config/Design";
 import Governance from "@components/dao/dao-config/Governance";
 import Termination from "@components/dao/dao-config/Termination";
 import Layout from "@components/dao/Layout";
+import CancelLink from "@components/utilities/CancelLink";
 import Divider from "@components/utilities/Divider";
 import { deviceWrapper } from "@components/utilities/Style";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
@@ -88,13 +89,16 @@ const DaoConfig: React.FC = () => {
             mt: "1.5rem",
           }}
         >
-          <Button
-            sx={{ width: "50%", mr: "1rem" }}
-            size="small"
-            variant="outlined"
-          >
-            Cancel
-          </Button>
+          <CancelLink>
+            <Button
+              sx={{ width: "50%", mr: "1rem" }}
+              size="small"
+              variant="outlined"
+            >
+              Cancel
+            </Button>
+          </CancelLink>
+
           <Button sx={{ width: "50%" }} size="small" variant="contained">
             <Box sx={{ display: deviceWrapper("none", "block") }}>
               Submit Proposal

@@ -1,7 +1,7 @@
 import * as React from "react";
 import PropsosalListing from "@components/dao/proposals/ProposalListing";
 import Layout from "@components/dao/Layout";
-import { fetcher, getBaseUrl, getUserId } from "@lib/utilities";
+import { fetcher } from "@lib/utilities";
 import useDidMountEffect from "@components/utilities/hooks";
 import { IGlobalContext, GlobalContext } from "@lib/AppContext";
 import { useRouter } from "next/router";
@@ -34,7 +34,11 @@ const Mine: React.FC = () => {
         proposals={
           data === undefined
             ? undefined
-            : data.filter((i: any) => i.user_id === getUserId())
+            : data.filter((i: any) =>
+                (i.user_id === context.api.daoUserData) == null
+                  ? null
+                  : context.api.daoUserData.id
+              )
         }
       />
     </Layout>

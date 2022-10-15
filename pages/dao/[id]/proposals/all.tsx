@@ -13,12 +13,7 @@ const All: React.FC = () => {
   const { id } = router.query;
   const { data, error } = useSWR(
     `/proposals/by_dao_id/${id === undefined ? 1 : id}`,
-    fetcher,
-    {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-    }
+    fetcher
   );
 
   useDidMountEffect(() => {

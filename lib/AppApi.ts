@@ -56,7 +56,7 @@ export class AppApi extends AbstractApi {
 
   async getDaoUser(): Promise<IDaoUserRes> {
     let userId = getUserId();
-    if (userId != null && this.daoData !== undefined) {
+    if (userId != null && this.daoData !== undefined && !isNaN(userId)) {
       return this.get<IDaoUserRes>(
         `/users/details/${userId}?dao_id=${this.daoData.id}`
       );
@@ -84,7 +84,7 @@ export class AppApi extends AbstractApi {
       }
       this.setDaoUserData(res.data);
       return;
-    } else if (this.daoData != null && userId != null) {
+    } else if (this.daoData != null && userId != null && !isNaN(userId)) {
       this.error("Please add Paideia tokens to participate");
     }
   }
