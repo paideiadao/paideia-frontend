@@ -20,8 +20,8 @@ const Transactions: React.FC = () => {
         </Button>
       </Box>
       {[].map((i: any, c: number) => {
-          return <Activity i={i} c={c} />;
-        })}
+        return <Activity i={i} c={c} />;
+      })}
     </Box>
   );
 };

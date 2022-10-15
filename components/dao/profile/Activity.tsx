@@ -26,7 +26,7 @@ const Activity: React.FC<{ activities: IActivity[] }> = (props) => {
             <Box sx={{ display: "flex", alignItems: "center", width: "50%" }}>
               <Avatar
                 sx={{ mr: ".5rem", width: "2rem", height: "2rem" }}
-                src={Musk.src}
+                src={i.img_url}
               ></Avatar>
               <Box>
                 {i.name + " "}

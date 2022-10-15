@@ -5,7 +5,7 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { deviceWrapper } from "@components/utilities/Style";
 
 export interface IActivity {
-  img: string;
+  img_url: string;
   name: string;
   action: string;
   value: string;
@@ -36,7 +36,7 @@ const Activity: React.FC<{ i: IActivity; c: number }> = (props) => {
           height: "2rem",
           display: deviceWrapper("flex", "none"),
         }}
-        src={props.i.img}
+        src={props.i.img_url}
       ></Avatar>
       <Box
         sx={{
@@ -59,7 +59,7 @@ const Activity: React.FC<{ i: IActivity; c: number }> = (props) => {
               height: "2rem",
               display: deviceWrapper("none", "flex"),
             }}
-            src={props.i.img}
+            src={props.i.img_url}
           ></Avatar>
           <Box>
             {props.i.name + " "}

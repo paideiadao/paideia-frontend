@@ -12,7 +12,14 @@ const Details: React.FC<{ date: Date }> = (props) => {
   const { discussion_id } = router.query;
   return (
     <>
-      <Overview userDetailId={0} alias={""} level={0} img={""} followers={[]} created={0} />
+      <Overview
+        userDetailId={0}
+        alias={""}
+        level={0}
+        img={""}
+        followers={[]}
+        created={0}
+      />
       <Box
         sx={{
           width: "100%",

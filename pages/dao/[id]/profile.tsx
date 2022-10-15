@@ -23,7 +23,6 @@ const Profile: FC = () => {
     userData !== undefined && `/proposals/by_user_details_id/${userData.id}`,
     fetcher
   );
-  console.log(activitiesData)
   return (
     <AbstractProfile
       edit

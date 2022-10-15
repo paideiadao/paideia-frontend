@@ -342,7 +342,12 @@ const Contents: React.FC<ISideNavComponent> = (props) => {
       return "Members";
     } else if (path.includes("activity")) {
       return "Activity";
-    } else if (path.includes("settings") || path.includes('wallet') || path.includes('profile/edit') || path.includes('notifications/edit')) {
+    } else if (
+      path.includes("settings") ||
+      path.includes("wallet") ||
+      path.includes("profile/edit") ||
+      path.includes("notifications/edit")
+    ) {
       return "Settings";
     } else if (path.includes("config")) {
       return "DAO Config";

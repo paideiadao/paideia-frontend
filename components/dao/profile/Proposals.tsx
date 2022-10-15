@@ -10,18 +10,23 @@ interface IProposalsListing {
 const ProposalsListing: React.FC<IProposalsListing> = (props) => {
   return props.proposals ? (
     <Box sx={{ display: "flex", width: "100%", flexWrap: "wrap" }}>
-      <CapsInfo title={`This user made ${props.proposals.length} proposal${props.proposals.length <= 1 ? '' : 's'}`} />
+      <CapsInfo
+        title={`This user made ${props.proposals.length} proposal${
+          props.proposals.length <= 1 ? "" : "s"
+        }`}
+      />
       {props.proposals.map((i: IProposalCard, c: number) => (
-            <ProposalCard
-              c={c}
-              key={"proposal-card-key-profile-" + c}
-              width={{ xs: "98%", sm: "98%", md: "50%", lg: "33%" }}
-              {...i}
-            />
-          ))
-        }
+        <ProposalCard
+          c={c}
+          key={"proposal-card-key-profile-" + c}
+          width={{ xs: "98%", sm: "98%", md: "50%", lg: "33%" }}
+          {...i}
+        />
+      ))}
     </Box>
-  ) : <>Loading Here</>;
+  ) : (
+    <>Loading Here</>
+  );
 };
 
 export default ProposalsListing;

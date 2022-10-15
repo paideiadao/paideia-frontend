@@ -16,13 +16,12 @@ import { ThemeContext } from "@lib/ThemeContext";
 import { LightTheme } from "@theme/theme";
 
 export const StakingActivity: React.FC = () => {
-
   return (
     <Box>
       <Subheader title="Activity" />
       {[].map((i: any, c: number) => {
-          return <Activity i={i} c={c} />;
-        })}
+        return <Activity i={i} c={c} />;
+      })}
     </Box>
   );
 };

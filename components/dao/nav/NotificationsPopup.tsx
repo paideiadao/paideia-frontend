@@ -52,15 +52,15 @@ const NotificationsPopup: React.FC<INotificationsPopup> = (props) => {
 
         <Box sx={{ height: "25rem", overflowY: "scroll" }}>
           {[].map((i: any, c: number) => {
-              return (
-                <Notification
-                  c={c}
-                  i={i}
-                  m={"0"}
-                  key={"notification-key-modal-" + c}
-                />
-              );
-            })}
+            return (
+              <Notification
+                c={c}
+                i={i}
+                m={"0"}
+                key={"notification-key-modal-" + c}
+              />
+            );
+          })}
         </Box>
         <Box
           sx={{

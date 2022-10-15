@@ -56,7 +56,6 @@ export const categories = [
 let temp = new Date();
 temp.setDate(temp.getDate() - 4);
 
-
 export interface IFilters {
   sortBy: string;
   search: string;
@@ -64,18 +63,18 @@ export interface IFilters {
 }
 
 const Activities: React.FC = () => {
-  const globalContext = React.useContext<IGlobalContext>(GlobalContext)
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   const [filters, setFilters] = React.useState<IFilters>({
     search: "",
-    sortBy: "",
+    sortBy: "Newest",
     categories: ["All"],
   });
   const [showFilters, setShowFilters] = React.useState<boolean>(false);
   const router = useRouter();
-  const {id} = router.query;
+  const { id } = router.query;
   const { data, error } = useSWR(
     `/activities/by_dao_id/${id === undefined ? 1 : id}`,
-    fetcher,
+    fetcher
   );
 
   useDidMountEffect(() => {
@@ -83,6 +82,8 @@ const Activities: React.FC = () => {
       globalContext.api.showAlert("Error fetching proposals.", "error");
     }
   }, [error]);
+
+  console.log(data)
 
   return (
     <Layout width="95%">
@@ -153,7 +154,8 @@ const Activities: React.FC = () => {
               setFilters({ ...filters, sortBy: event.target.value })
             }
           >
-            <MenuItem value={"Most Recent"}>Most Recent</MenuItem>
+            <MenuItem value={"Newest"}>Newest</MenuItem>
+            <MenuItem value={"Oldest"}>Oldest</MenuItem>
           </Select>
         </FormControl>
       </Box>
@@ -203,22 +205,31 @@ const Activities: React.FC = () => {
           />
         ))}
       </Box>
-      {data ? data
-        .filter((i: IActivity) => {
-          return filters.categories.indexOf("All") > -1
-            ? true
-            : filters.categories.indexOf(i.category) > -1;
-        })
-        .sort((a: IActivity, b: IActivity) =>
-          filters.sortBy === ""
-            ? 1
-            : filters.sortBy === "Most Recent"
-            ? b.date.getTime() - a.date.getTime()
-            : 1
-        )
-        .map((i: any, c: number) => {
-          return <Activity i={i} c={c} />;
-        }) : <>Loading Here...</>}
+      {data ? (
+        data
+          .filter((i: IActivity) => {
+            return (
+              (filters.categories.indexOf("All") > -1
+                ? true
+                : filters.categories.indexOf(i.category) > -1) &&
+              (i.name.toLowerCase().includes(filters.search) ||
+                filters.search === "" ||
+                i.action.toLowerCase().includes(filters.search) || i.value.toLowerCase().includes(filters.search))
+            );
+          })
+          .sort((a: IActivity, b: IActivity) =>
+            filters.sortBy === "Oldest"
+              //@ts-ignore
+              ? new Date(a.date) - new Date(b.date)
+              //@ts-ignore
+              : b.date - a.date
+          )
+          .map((i: any, c: number) => {
+            return <Activity i={i} c={c} />;
+          })
+      ) : (
+        <>Loading Here...</>
+      )}
       <Fab
         color="primary"
         sx={{
