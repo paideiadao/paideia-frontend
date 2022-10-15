@@ -5,8 +5,6 @@ import {
   Box,
   Button,
   Container,
-  Divider,
-  Chip,
   useMediaQuery,
 } from "@mui/material";
 
@@ -52,7 +50,6 @@ const paragraphStyle = {
 };
 
 interface IHighlightItem {
-  label: string;
   title: string;
   content: string;
   link: string;
