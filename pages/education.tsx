@@ -1,4 +1,7 @@
 import React, { FC, memo } from "react";
+import { useRouter } from "next/router";
+import useSWR from "swr";
+import { fetcher } from "@lib/utilities";
 import PageHeader from "@components/PageHeader";
 import PageNav from "@components/PageNav";
 import {
@@ -79,36 +82,6 @@ const advantageItems = [
   },
 ];
 
-const articles = [
-  {
-    name: "Voting Mechanims",
-    image: "",
-    description:
-      "When users initiate a DAO, they will be asked to choose from some structural pre-sets. DAOs can encounter issues with scalability and resilience, and there are different approaches to solve these problems.",
-    date: "",
-    link: "/",
-    category: "Tools",
-  },
-  {
-    name: "Governance Structures",
-    image: "",
-    description:
-      "This is the weekly Paideia dev update with all the most interesting info you can even imagine. ",
-    date: "",
-    link: "/",
-    category: "Developers",
-  },
-  {
-    name: "Learn all about tokens",
-    image: "",
-    description:
-      "This is the weekly Paideia dev update with all the most interesting info you can even imagine. How would this look with too much information? Need to take into account very long descriptions that would make the window too large. Lets check if this looks good. This is the weekly Paideia dev update with all the most interesting info you can even imagine. How would this look with too much information? Need to take into account very long descriptions that would make the window too large. Lets check if this looks good.",
-    date: "",
-    link: "/",
-    category: "Tokenomics",
-  },
-];
-
 const faqQuestions = [
   {
     question: "What is a DAO? ",
@@ -161,6 +134,8 @@ const ArticleCard: FC<IArticleCard> = ({ article }) => {
     return (min + Math.random() * (max - min)).toFixed();
   };
   const rand = randomInteger(1, 18);
+  const router = useRouter();
+
   return (
     <Card
       sx={{
@@ -171,7 +146,7 @@ const ArticleCard: FC<IArticleCard> = ({ article }) => {
         mb: "36px",
       }}
     >
-      <CardActionArea>
+      <CardActionArea onClick={() => router.push(article.link)}>
         <CardContent sx={{ padding: 0 }}>
           <Grid
             container
@@ -290,6 +265,15 @@ interface IPersonObj {
 
 const Education: FC = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
+  const { data: articleData } = useSWR(
+    `/blogs/?education_only=true`,
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -500,8 +484,8 @@ const Education: FC = () => {
               title="Learn About DAOs"
               sx={{ mb: "64px" }}
             />
-            {articles.map((article, i) => (
-              <ArticleCardMemo article={article} key={i} />
+            {(articleData ?? []).map((article: IArticle, i: React.Key) => (
+              <ArticleCardMemo article={{...article, link: `/blog/${article.link}`}} key={i}/>
             ))}
           </Box>
           <Box component="section" id="faq" sx={{ position: "relative" }}>
