@@ -1,6 +1,6 @@
-import { Avatar, Box, Button, Paper } from "@mui/material";
+import { useState } from 'react';
+import { Avatar, Box, Button, Paper, Input, FormControl } from "@mui/material";
 import ImageIcon from "@mui/icons-material/Image";
-
 import { bytesToSize } from "@lib/creation/Utilities";
 import { deviceWrapper } from "@components/utilities/Style";
 
@@ -11,6 +11,29 @@ const DiscussionBanner: React.FC<{
   fileUrl: string;
   banner?: boolean;
 }> = (props) => {
+  const [dropHover, setDropHover] = useState('fileInput.outer')
+  const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setDropHover('fileInput.main')
+    e.stopPropagation();
+  };
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setDropHover('fileInput.outer')
+    e.stopPropagation();
+  };
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    console.log(e.dataTransfer.files)
+    const object = {
+      currentTarget: {
+        files: e.dataTransfer.files
+      }
+    }
+    props.handleImage(object)
+    setDropHover('fileInput.outer')
+    e.stopPropagation();
+  }
   return (
     <Paper
       elevation={0}
@@ -25,20 +48,68 @@ const DiscussionBanner: React.FC<{
       <Paper
         elevation={0}
         sx={{
-          backgroundColor: "fileInput.main",
+          backgroundColor: dropHover,
           border: "1px dashed",
           borderColor: "fileInput.border",
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          alignItems: "center",
+          display: "block",
+          position: 'relative',
+          // display: "flex",
+          // justifyContent: "center",
+          // flexDirection: "column",
+          // alignItems: "center",
           pt: 0,
           pb: "1rem",
         }}
       >
+        <FormControl
+          sx={{
+            mt: 0,
+            // pb: "1rem",
+            width: '100%',
+            height: "100%",
+            position: 'absolute',
+            display: 'flex',
+            '&:hover': {
+              cursor: 'pointer',
+            }
+          }}
+          onDragEnter={e => handleDragEnter(e)}
+          onDragLeave={e => handleDragLeave(e)}
+          onDrop={e => handleDrop(e)}
+        >
+          <Input
+            type="file"
+            id={props.id}
+            inputProps={{
+              accept: "image/*",
+            }}
+            sx={{
+              zIndex: 10,
+              opacity: 0,
+              width: '100%',
+              height: '100%',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              flexGrow: '1',
+              '& input': {
+                width: '100%',
+                height: '100%',
+                cursor: 'pointer !important',
+              },
+              '&::before': {
+                display: 'none',
+              },
+              '&::after': {
+                display: 'none',
+              }
+            }}
+            onChange={(e) => props.handleImage(e)}
+          />
+        </FormControl>
         {props.fileUrl !== "" &&
-        props.fileUrl !== undefined &&
-        props.file !== undefined ? (
+          props.fileUrl !== undefined &&
+          props.file !== undefined ? (
           <>
             <Box sx={{ width: "100%" }}>
               <img
@@ -92,13 +163,13 @@ const DiscussionBanner: React.FC<{
                 </Box>
               </Box>
             </Box>
-            <input
+            {/* <input
               type="file"
               id={props.id}
               accept="image/*"
               style={{ display: "none" }}
               onChange={(e) => props.handleImage(e)}
-            />
+            /> */}
           </>
         ) : (
           <Box
@@ -119,13 +190,13 @@ const DiscussionBanner: React.FC<{
               }}
             />
 
-            <input
+            {/* <input
               type="file"
               id={props.id}
               accept="image/*"
               style={{ display: "none" }}
               onChange={(e) => props.handleImage(e)}
-            />
+            /> */}
             <Box
               sx={{
                 color: "text.primary",
