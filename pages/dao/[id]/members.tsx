@@ -11,6 +11,7 @@ import {
   SelectChangeEvent,
   Fab,
   Slide,
+  Grid
 } from "@mui/material";
 import * as React from "react";
 import SearchIcon from "@mui/icons-material/Search";
@@ -259,9 +260,7 @@ const Members: React.FC = () => {
           />
         ))}
       </Box>
-      <Box
-        sx={{ display: "flex", width: "100%", flexWrap: "wrap", mt: "1.5rem" }}
-      >
+      <Grid container spacing={1} sx={{ mt: '1.5rem', }}>
         {data !== undefined &&
           data
             .filter(
@@ -277,19 +276,15 @@ const Members: React.FC = () => {
                 : b.followers.length - a.followers.length
             )
             .map((i: IMemberCard, c: number) => (
+              <Grid item xs={12} sm={6} lg={4} xl={3} key={"member-card" + c}>
               <MemberCard
                 {...i}
                 key={"member-card" + c}
-                width={{
-                  xs: "100%",
-                  sm: "50%",
-                  md: "33%",
-                  lg: "33%",
-                  xl: "25%",
-                }}
+                width={'100%'}
               />
+              </Grid>
             ))}
-      </Box>
+      </Grid>
       <Fab
         color="primary"
         sx={{
