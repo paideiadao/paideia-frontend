@@ -241,7 +241,7 @@ export default function Projects() {
             >
               Get Started
             </Typography>
-            <Button variant="contained">Create Your DAO</Button>
+            <Button disabled variant="contained">Create Your DAO</Button>
           </Grid>
         </Grid>
       </Container>

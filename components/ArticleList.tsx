@@ -327,7 +327,7 @@ const ArticleList: FC<IArticleListProps> = ({ articles, sx }) => {
         ))}
       </Grid>
       <Box sx={{ width: "100%", textAlign: "center" }}>
-        <Button variant="contained">Load more...</Button>
+        <Button disabled variant="contained">Load more...</Button>
       </Box>
     </Box>
   );
