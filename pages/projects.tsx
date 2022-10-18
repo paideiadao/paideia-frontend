@@ -1,4 +1,6 @@
-import React, { FC } from "react";
+import React from "react";
+import useSWR from "swr";
+import { fetcher } from "@lib/utilities";
 import PageHeader from "@components/PageHeader";
 import {
   Typography,
@@ -14,30 +16,11 @@ import Highlights from "@components/Highlights";
 import SectionHeading from "@components/SectionHeading";
 import SectionTitle from "@components/SectionTitle";
 import ProjectList from "@components/ProjectList";
-import { DarkTheme } from "@theme/theme";
 
 interface IQuotesProps {
   quote: string;
   author: string;
 }
-
-const quotes: IQuotesProps[] = [
-  {
-    quote:
-      "Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!",
-    author: "Ornella Maines",
-  },
-  {
-    quote:
-      "Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!",
-    author: "Ornella Maines",
-  },
-  {
-    quote:
-      "Love Paideia! The definition of “Simplexity” simple on the outside but so much brillance going behind the scenes!",
-    author: "Ornella Maines",
-  },
-];
 
 const daos = [
   {
@@ -98,47 +81,26 @@ const daos = [
   },
 ];
 
-const highlights = [
-  {
-    label: "Gaming",
-    title: "Using paideia in the gaming world",
-    content: `ErgoGames.io took root in the idea that the Ergo Blockchain has tremendous potential to become a leading layer-1 solution, and that blockchain-based games will play an integral role in the network's growth.`,
-    link: "/",
-    // image: "/images/highlight.png",
-  },
-  {
-    label: "Art Media",
-    title: "Teams of artists can combine forces",
-    content:
-      "You can share your NFT proceeds by using a DAO to distribute and control raised funds",
-    link: "/",
-    // image: "/images/highlight.png",
-  },
-  {
-    label: "Music DAOs",
-    title: "Want to collaborate with other musicians? ",
-    content: "Do it with Paideia",
-    link: "/",
-    // image: "/images/highlight.png",
-  },
-  {
-    label: "Music DAOs",
-    title: "Want to collaborate with other musicians? ",
-    content: "Do it with Paideia",
-    link: "/",
-    // image: "/images/highlight.png",
-  },
-  {
-    label: "Art Media",
-    title: "Teams of artists can combine forces",
-    content:
-      "You can share your NFT proceeds by using a DAO to distribute and control raised funds",
-    link: "/",
-    // image: "/images/highlight.png",
-  },
-];
-
 export default function Projects() {
+  const { data: highlightsData } = useSWR(
+    `/blogs/?highlights_only=true`,
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
+  const { data: quotesData } = useSWR(
+    `/quotes/`,
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
+
   return (
     <>
       <PageHeader
@@ -180,7 +142,19 @@ export default function Projects() {
           <Image src="/backgrounds/green-blob.png" layout="fill" priority />
         </Box>
       </Box>
-      <Highlights highlights={highlights} />
+      <Highlights
+        highlights={
+          highlightsData
+            ? highlightsData.map((highlight: { name: string, description: string, link: string }) => {
+                return { ...highlight,
+                  title: highlight.name,
+                  content: highlight.description,
+                  link: `/blog/${highlight.link}`
+                };
+              })
+            : []
+        }
+      />
       <Container sx={{ py: "240px" }}>
         <Box sx={{ position: "relative" }}>
           <Box
@@ -212,7 +186,7 @@ export default function Projects() {
               sx={{ mb: "80px", maxWidth: "550px" }}
             ></SectionHeading>
             <Grid container>
-              {quotes.map((quote, i: number) => (
+              {(quotesData ?? []).map((quote: IQuotesProps, i: number) => (
                 <Grid key={i} item md={4} sx={{ mb: "80px" }}>
                   <Typography>{quote.quote}</Typography>
                   <Box>
@@ -236,7 +210,6 @@ export default function Projects() {
           </Grid>
         </Grid>
       </Container>
-
       <Container sx={{ pb: "240px" }}>
         <Grid container>
           <Grid item md={3}></Grid>
@@ -245,12 +218,11 @@ export default function Projects() {
               category="Who Uses Paideia?"
               title="List of All Active DAOs"
               sx={{ mb: "80px", maxWidth: "550px" }}
-            ></SectionHeading>
+            />
           </Grid>
         </Grid>
         <ProjectList daos={daos} />
       </Container>
-
       <Container sx={{ pb: "280px" }}>
         <Grid container>
           <Grid item md={6}></Grid>
@@ -273,7 +245,6 @@ export default function Projects() {
           </Grid>
         </Grid>
       </Container>
-
       <Box sx={{ position: "relative" }}>
         <Box
           sx={{

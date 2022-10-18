@@ -70,10 +70,8 @@ const BlogPost: FC<IBlogPostProps> = ({}) => {
 };
 
 const getHeaders = (content: string) => {
-  if (!content)
-    return [];
   const r = /#{1,6}.+(?=\n)/g;
-  return content.match(r).filter(s => s.startsWith("# ")).map(s => s.slice(2));
+  return content?.match(r)?.filter(s => s.startsWith("# "))?.map(s => s.slice(2)) ?? [];
 };
 
 export default BlogPost;
