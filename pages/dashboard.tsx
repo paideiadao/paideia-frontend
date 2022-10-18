@@ -47,7 +47,7 @@ const Dashboard: React.FC = () => {
           height: "1574px",
         }}
       />
-      <Container>
+      <Container sx={{mb: "200px"}}>
         <Box sx={{ maxWidth: { sm: "90%", md: "760px" }, mx: "auto" }}>
           <SectionHeading
             category="Manage"
