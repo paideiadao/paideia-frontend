@@ -93,7 +93,7 @@ export default function App({ Component, pageProps }: AppProps) {
                   {Component !== Creation ? (
                     <>
                       <HideOnScroll>
-                        <AppBar position="fixed" sx={{ top: 'auto', bottom: 0, height: '50px', background: theme.palette.warning.main }}>
+                        <AppBar position="fixed" sx={{ top: 'auto', bottom: 0, background: theme.palette.warning.main }}>
                           <Toolbar variant="dense">
                             <Typography sx={{ color: '#000', fontSize: '0.9rem', fontWeight: 'bold' }}>
                               NOTE: This release of Paideia is a web2 alpha test. If you encounter any bugs, please submit them to the team via {' '}
