@@ -10,6 +10,7 @@ import {
   Fab,
   Slide,
   IconButton,
+  Grid,
   CircularProgress,
 } from "@mui/material";
 import * as React from "react";
@@ -236,9 +237,7 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
             />
           ))}
         </Box>
-        <Box
-          sx={{ width: "100%", flexWrap: "wrap", display: "flex", mt: "1rem" }}
-        >
+        <Grid container spacing={1} sx={{ mt: '1.5rem', }}>
           {props.proposals === undefined ? (
             <Box
               sx={{
@@ -252,6 +251,7 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
               <CircularProgress />
             </Box>
           ) : props.proposals.length === 0 ? (
+            <Grid item>
             <Box
               sx={{
                 width: "100%",
@@ -263,41 +263,44 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
             >
               No Proposals Yet!
             </Box>
+            </Grid>
           ) : (
             props.proposals
               .sort((a: any, b: any) =>
                 filters.sortBy === ""
                   ? true
                   : filters.sortBy === "Most Recent"
-                  ? new Date(a.date).getTime() - new Date(b.date).getTime()
-                  : true
+                    ? new Date(a.date).getTime() - new Date(b.date).getTime()
+                    : true
               )
               .filter((i: any) => {
                 return (
                   (filters.proposalStatus === "" ||
-                  filters.proposalStatus === "All"
+                    filters.proposalStatus === "All"
                     ? true
                     : i.status === filters.proposalStatus) &&
                   (filters.search === ""
                     ? true
                     : i.name
-                        .toLowerCase()
-                        .includes(filters.search.toLowerCase())) &&
+                      .toLowerCase()
+                      .includes(filters.search.toLowerCase())) &&
                   (filters.categories.indexOf("All") > -1
                     ? true
                     : filters.categories.indexOf(i.category) > -1)
                 );
               })
               .map((i: any, c: number) => (
-                <ProposalCard
-                  {...i}
-                  c={c}
-                  key={"proposal-card-key-" + c + i.id}
-                  width={deviceStruct("98%", "98%", "33%", "25%", "25%")}
-                />
+                <Grid item xs={12} sm={6} lg={4} xl={3} key={"proposal-card-key-" + c + i.id}>
+                  <ProposalCard
+                    {...i}
+                    c={c}
+                    key={"proposal-card-key-" + c + i.id}
+                    width="100%"
+                  />
+                </Grid>
               ))
           )}
-        </Box>
+        </Grid>
       </Box>
       <Fab
         color="primary"

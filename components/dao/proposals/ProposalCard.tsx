@@ -551,7 +551,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
         pt: ".5rem",
         pb: ".5rem",
         mt: props.scrollable ? ".5rem" : "0",
-        minWidth: props.width,
+        minWidth: '280px',
         maxWidth: props.width,
       }}
       id={`proposal-active-${props.c}`}

@@ -1,4 +1,7 @@
 import React, { FC, memo } from "react";
+import { useRouter } from "next/router";
+import useSWR from "swr";
+import { fetcher } from "@lib/utilities";
 import PageHeader from "@components/PageHeader";
 import PageNav from "@components/PageNav";
 import {
@@ -16,7 +19,6 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Link,
   useMediaQuery,
   IconButton,
 } from "@mui/material";
@@ -29,12 +31,18 @@ import Image from "next/image";
 import { DarkTheme } from "@theme/theme";
 import DiscordIcon from "@components/svgs/DiscordIcon";
 import TelegramIcon from "@components/svgs/TelegramIcon";
+import MarkdownRender from "@lib/MarkdownRender";
 
 interface INavLink {
   name: string;
   icon: string;
   link: string;
   position: number | undefined;
+}
+
+interface IFAQProps {
+  question: string;
+  answer: string;
 }
 
 const navLinks: INavLink[] = [
@@ -79,70 +87,6 @@ const advantageItems = [
   },
 ];
 
-const articles = [
-  {
-    name: "Voting Mechanims",
-    image: "",
-    description:
-      "When users initiate a DAO, they will be asked to choose from some structural pre-sets. DAOs can encounter issues with scalability and resilience, and there are different approaches to solve these problems.",
-    date: "",
-    link: "/",
-    category: "Tools",
-  },
-  {
-    name: "Governance Structures",
-    image: "",
-    description:
-      "This is the weekly Paideia dev update with all the most interesting info you can even imagine. ",
-    date: "",
-    link: "/",
-    category: "Developers",
-  },
-  {
-    name: "Learn all about tokens",
-    image: "",
-    description:
-      "This is the weekly Paideia dev update with all the most interesting info you can even imagine. How would this look with too much information? Need to take into account very long descriptions that would make the window too large. Lets check if this looks good. This is the weekly Paideia dev update with all the most interesting info you can even imagine. How would this look with too much information? Need to take into account very long descriptions that would make the window too large. Lets check if this looks good.",
-    date: "",
-    link: "/",
-    category: "Tokenomics",
-  },
-];
-
-const faqQuestions = [
-  {
-    question: "What is a DAO? ",
-    answer:
-      "When users initiate a DAO, they will be asked to choose from some structural pre-sets. DAOscan encounter issues with scalability and resilience, and there are different approaches to solve these problems.",
-  },
-  {
-    question: "How do DAOs work? ",
-    answer:
-      "When users initiate a DAO, they will be asked to choose from some structural pre-sets. DAOscan encounter issues with scalability and resilience, and there are different approaches to solve these problems.",
-  },
-  {
-    question: "Who would use a DAO? ",
-    answer:
-      "When users initiate a DAO, they will be asked to choose from some structural pre-sets. DAOscan encounter issues with scalability and resilience, and there are different approaches to solve these problems.",
-  },
-  {
-    question: "Why would someone use Paideia? ",
-    answer:
-      "When users initiate a DAO, they will be asked to choose from some structural pre-sets. DAOscan encounter issues with scalability and resilience, and there are different approaches to solve these problems.",
-  },
-  {
-    question: "Where do you get Paideia tokens? ",
-    answer: (
-      <>
-        <Link href="https://app.ergodex.io" target="_blank">
-          Ergodex
-        </Link>{" "}
-        is the best place to get Paideia tokens.{" "}
-      </>
-    ),
-  },
-];
-
 interface IArticle {
   name: string;
   image?: string;
@@ -161,6 +105,8 @@ const ArticleCard: FC<IArticleCard> = ({ article }) => {
     return (min + Math.random() * (max - min)).toFixed();
   };
   const rand = randomInteger(1, 18);
+  const router = useRouter();
+
   return (
     <Card
       sx={{
@@ -171,7 +117,7 @@ const ArticleCard: FC<IArticleCard> = ({ article }) => {
         mb: "36px",
       }}
     >
-      <CardActionArea>
+      <CardActionArea onClick={() => router.push(article.link)}>
         <CardContent sx={{ padding: 0 }}>
           <Grid
             container
@@ -276,20 +222,27 @@ const ArticleCard: FC<IArticleCard> = ({ article }) => {
 
 const ArticleCardMemo = memo(ArticleCard);
 
-interface IPerson {
-  name: string;
-  title: string;
-  image?: string;
-  linkedin?: string;
-  twitter?: string;
-}
-
-interface IPersonObj {
-  person: IPerson;
-}
-
 const Education: FC = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
+  const { data: articleData } = useSWR(
+    `/blogs/?education_only=true`,
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
+  const { data: faqData } = useSWR(
+    `/faq/`,
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
+  const faqQuestions: IFAQProps[] = faqData ?? [];
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -500,8 +453,8 @@ const Education: FC = () => {
               title="Learn About DAOs"
               sx={{ mb: "64px" }}
             />
-            {articles.map((article, i) => (
-              <ArticleCardMemo article={article} key={i} />
+            {(articleData ?? []).map((article: IArticle, i: React.Key) => (
+              <ArticleCardMemo article={{...article, link: `/blog/${article.link}`}} key={i}/>
             ))}
           </Box>
           <Box component="section" id="faq" sx={{ position: "relative" }}>
@@ -559,7 +512,7 @@ const Education: FC = () => {
                         p: "16px",
                       }}
                     >
-                      <Typography>{answer}</Typography>
+                      <MarkdownRender description={answer}/>
                     </AccordionDetails>
                   </Accordion>
                 );
@@ -568,7 +521,7 @@ const Education: FC = () => {
           </Box>
         </PageNav>
       </Container>
-      <Container sx={{ px: "24px", py: "60px", position: "relative" }}>
+      <Container sx={{ px: "24px", py: "60px", mb: "80px", position: "relative" }}>
         {isMobile ? (
           <Image
             src="/cta-mobile.png"

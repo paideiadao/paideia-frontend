@@ -1,6 +1,6 @@
 import * as React from "react";
 import AbstractProfile from "@components/dao/profile/AbstractProfile";
-import { fetcher, getUserId } from "@lib/utilities";
+import { fetcher } from "@lib/utilities";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import useDidMountEffect from "@components/utilities/hooks";
