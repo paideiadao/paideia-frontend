@@ -18,7 +18,6 @@ import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import CommentsApi from "@lib/CommentsApi";
-import { Expand, OpenInFull } from "@mui/icons-material";
 
 export interface IComment {
   id: number;

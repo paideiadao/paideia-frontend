@@ -37,7 +37,6 @@ const TopNav: React.FC<INav> = (props) => {
   const { id } = router.query;
   const { wallet } = useWallet();
   const themeContext = React.useContext<IThemeContext>(ThemeContext);
-
   return (
     <>
       <Box
@@ -69,6 +68,7 @@ const TopNav: React.FC<INav> = (props) => {
             display: "flex",
             alignItems: "center",
             height: "2rem",
+            mr: '.5rem'
           }}
         >
           {/* <DarkSwitch /> */}
@@ -162,7 +162,7 @@ const TopNav: React.FC<INav> = (props) => {
                 {/* </Link> */}
               </>
             )}
-          <ConnectWallet show={!isAddressValid(wallet)} />
+          <ConnectWallet show={globalContext.api.daoUserData === undefined} />
         </Box>
         <Box sx={{ position: "relative" }}>
           <ProfilePopup open={openProfile} close={handleCloseProfile} />

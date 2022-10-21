@@ -430,13 +430,13 @@ const Contents: React.FC<ISideNavComponent> = (props) => {
             set={setSubWrapper}
             ml=".5rem"
           />
-          <BasicLink
+          {globalContext.api.daoUserData && <BasicLink
             icon={<FaceIcon sx={{ opacity: ".8" }} />}
             title={"Mine"}
             selected={"Mine" === subSelected}
             set={setSubWrapper}
             ml=".5rem"
-          />
+          />}
           <BasicLink
             icon={<AccessTimeFilledIcon sx={{ opacity: ".8" }} />}
             title={"Past"}

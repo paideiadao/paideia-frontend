@@ -1,6 +1,6 @@
 import * as React from "react";
 import AbstractProfile from "@components/dao/profile/AbstractProfile";
-import { fetcher, getUserId } from "@lib/utilities";
+import { fetcher, getDaoPath } from "@lib/utilities";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 import useDidMountEffect from "@components/utilities/hooks";
@@ -23,7 +23,7 @@ const Member: React.FC = () => {
 
   useDidMountEffect(() => {
     if (userError !== undefined) {
-      router.push("/404");
+      router.push(getDaoPath(id as string, '/404'));
     }
   }, [userError]);
 

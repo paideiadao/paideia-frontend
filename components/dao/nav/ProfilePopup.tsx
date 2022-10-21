@@ -15,6 +15,7 @@ import {
   WALLET_ADDRESS_LIST,
 } from "@components/wallet/AddWallet";
 import { useWallet } from "@components/wallet/WalletContext";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 
 interface IProfilePopup {
   open: boolean;
@@ -97,6 +98,7 @@ const rows: IProfilePopupRow[] = [
 
 export const ProfilePopup: React.FC<IProfilePopup> = (props) => {
   const { setWallet, setDAppWallet } = useWallet();
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext)
   return (
     <Modal open={props.open} onClose={props.close}>
       <Box
@@ -162,6 +164,7 @@ export const ProfilePopup: React.FC<IProfilePopup> = (props) => {
                 connected: false,
                 addresses: [],
               });
+              globalContext.api.setDaoUserData(undefined)
               props.close();
             }}
           >
