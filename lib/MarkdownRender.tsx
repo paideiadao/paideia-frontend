@@ -1,4 +1,4 @@
-import React, { useContext, FC } from "react";
+import React from "react";
 import { Typography, List, ListItem, useTheme } from "@mui/material";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -31,7 +31,13 @@ const MarkdownRender = (props: { description: string }) => {
   return (
     <ReactMarkdown
       components={{
-        h1: ({ node, ...props }) => <Typography variant="h1" {...props} />,
+        h1: ({ node, ...props }) => (
+          <Typography
+            id={props.children[0].toString().split(' ').join('-')}
+            variant="h1"
+            {...props}
+          />
+        ),
         h2: ({ node, ...props }) => <Typography variant="h2" {...props} />,
         h3: ({ node, ...props }) => <Typography variant="h3" {...props} />,
         h4: ({ node, ...props }) => <Typography variant="h4" {...props} />,

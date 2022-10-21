@@ -1,4 +1,5 @@
 import React, { FC, memo } from "react";
+import { useRouter } from "next/router";
 import {
   Grid,
   Typography,
@@ -103,6 +104,8 @@ const ArticleCard: FC<IArticleCard> = ({ article }) => {
     return (min + Math.random() * (max - min)).toFixed();
   };
   const rand = randomInteger(1, 18);
+  const router = useRouter();
+
   return (
     <Card
       sx={{
@@ -112,7 +115,7 @@ const ArticleCard: FC<IArticleCard> = ({ article }) => {
         borderRadius: "16px",
       }}
     >
-      <CardActionArea sx={{ height: "100%", verticalAlign: "top" }}>
+      <CardActionArea sx={{ height: "100%", verticalAlign: "top" }} onClick={() => router.push(`/blog/${article?.link}`)}>
         <CardContent sx={{ padding: 0, minHeight: "357px", height: "100%" }}>
           <Box
             sx={{
@@ -324,7 +327,7 @@ const ArticleList: FC<IArticleListProps> = ({ articles, sx }) => {
         ))}
       </Grid>
       <Box sx={{ width: "100%", textAlign: "center" }}>
-        <Button variant="contained">Load more...</Button>
+        <Button disabled variant="contained">Load more...</Button>
       </Box>
     </Box>
   );
