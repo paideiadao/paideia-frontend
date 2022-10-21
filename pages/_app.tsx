@@ -18,6 +18,8 @@ import { AddWalletProvider } from "@components/wallet/AddWalletContext";
 import { AnimatePresence, motion } from "framer-motion";
 import AbstractAlert, { IAlerts } from "@components/utilities/Alert";
 import { IDaoUserData } from "@lib/Interfaces";
+import { Box, useScrollTrigger, Slide, AppBar, Typography, Toolbar, Link } from "@mui/material";
+
 
 const variants = {
   hidden: { opacity: 0, x: -200, y: 0 },
@@ -58,6 +60,21 @@ export default function App({ Component, pageProps }: AppProps) {
     daoUserData,
     setDaoUserData
   );
+
+  interface Props {
+    children: React.ReactElement;
+  }
+  function HideOnScroll(props: Props) {
+    const { children } = props;
+    const trigger = useScrollTrigger()
+
+    return (
+      <Slide appear={false} direction="up" in={!trigger}>
+        {children}
+      </Slide>
+    );
+  }
+
   return (
     <>
       <Head>
@@ -74,21 +91,58 @@ export default function App({ Component, pageProps }: AppProps) {
                 <ThemeProvider theme={theme}>
                   <CssBaseline />
                   {Component !== Creation ? (
-                    <DaoTemplate subdomain="">
-                      <AnimatePresence exitBeforeEnter>
-                        <motion.main
-                          variants={daoVariants}
-                          initial="hidden"
-                          animate="enter"
-                          exit="exit"
-                          transition={{ type: "linear" }}
-                          className=""
-                          key={router.route}
-                        >
-                          <Component {...pageProps} />
-                        </motion.main>
-                      </AnimatePresence>
-                    </DaoTemplate>
+                    <>
+                      <HideOnScroll>
+                        <AppBar position="fixed" sx={{ top: 'auto', bottom: 0, height: '50px', background: theme.palette.warning.main }}>
+                          <Toolbar variant="dense">
+                            <Typography sx={{ color: '#000', fontSize: '0.9rem', fontWeight: 'bold' }}>
+                              NOTE: This release of Paideia is a web2 alpha test. If you encounter any bugs, please submit them to the team via {' '}
+                              <Link
+                                href="https://discord.gg/J3KDrtCFEn"
+                                target="_blank"
+                                sx={{
+                                  color: '#000',
+                                  textDecoration: 'underline',
+                                  '&:hover': {
+                                    textDecoration: 'none',
+                                  }
+                                }}
+                              >
+                                Discord
+                              </Link>{' '} or{' '}
+                              <Link
+                                href="https://t.me/paideiaDAO"
+                                target="_blank"
+                                sx={{
+                                  color: '#000',
+                                  textDecoration: 'underline',
+                                  '&:hover': {
+                                    textDecoration: 'none',
+                                  }
+                                }}
+                              >
+                                Telegram
+                              </Link>.
+                            </Typography>
+                          </Toolbar>
+                        </AppBar>
+                      </HideOnScroll>
+                      <DaoTemplate subdomain="">
+                        <AnimatePresence exitBeforeEnter>
+                          <motion.main
+                            variants={daoVariants}
+                            initial="hidden"
+                            animate="enter"
+                            exit="exit"
+                            transition={{ type: "linear" }}
+                            className=""
+                            key={router.route}
+                          >
+                            <Component {...pageProps} />
+                          </motion.main>
+                        </AnimatePresence>
+                      </DaoTemplate>
+                    </>
                   ) : (
                     <Component {...pageProps} />
                   )}
