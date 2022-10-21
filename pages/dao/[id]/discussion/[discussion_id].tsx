@@ -23,7 +23,7 @@ import Layout from "@components/dao/Layout";
 import { deviceWrapper } from "@components/utilities/Style";
 import { getRandomImage } from "@components/utilities/images";
 import useSWR from "swr";
-import { attrOrUndefined, fetcher, getBaseUrl, getWsUrl } from "@lib/utilities";
+import { attrOrUndefined, fetcher, getBaseUrl, getDaoPath, getWsUrl } from "@lib/utilities";
 import Follow, { FollowMobile } from "@components/utilities/Follow";
 import Details from "@components/dao/discussion/Details";
 import useDidMountEffect from "@components/utilities/hooks";
@@ -59,12 +59,12 @@ const Discussion: React.FC = () => {
     fetcher
   );
   if (error) {
-    router.push("/404");
+    router.push(getDaoPath(id as string, '/404'));
   }
 
   if (data !== undefined) {
     if (data.is_proposal) {
-      router.push("/404");
+      router.push(getDaoPath(id as string, '/404'));
     }
   }
 

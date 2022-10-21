@@ -1,8 +1,7 @@
 import useDidMountEffect from "@components/utilities/hooks";
 import { deviceWrapper } from "@components/utilities/Style";
 import { useWallet } from "@components/wallet/WalletContext";
-import { getBaseUrl, fetcher } from "@lib/utilities";
-import { getTokenUtxos } from "@lib/wallet/Nautilus";
+import { fetcher, getDaoPath } from "@lib/utilities";
 import { Box, Container } from "@mui/material";
 import { useRouter } from "next/router";
 import * as React from "react";
@@ -35,7 +34,7 @@ const DaoTemplate: React.FC<{ subdomain: string }> = (props) => {
   }, [daoData]);
 
   useDidMountEffect(() => {
-    router.push("/404");
+    router.push(getDaoPath(id as string, '/404'));
   }, [daoError]);
 
   return (

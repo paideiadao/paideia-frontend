@@ -256,9 +256,9 @@ const ProposalListing: React.FC<IProposalListing> = (props) => {
               sx={{
                 width: "100%",
                 display: "flex",
-                justifyContent: "center",
                 mt: "3rem",
                 fontSize: "1.5rem",
+                justifyContent: 'center',
               }}
             >
               No Proposals Yet!
