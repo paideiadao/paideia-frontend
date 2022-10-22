@@ -118,9 +118,8 @@ const Proposal: React.FC = () => {
                     position: "relative",
                     backgroundImage: deviceWrapper(
                       `linear-gradient(
-                  to bottom, transparent, ${
-                    themeContext.theme === DarkTheme ? "black" : "white"
-                  }
+                  to bottom, transparent, ${themeContext.theme === DarkTheme ? "black" : "white"
+                      }
                 ), url(${value.image.url})`,
                       `url(${value.image.url})`
                     ),
@@ -134,23 +133,25 @@ const Proposal: React.FC = () => {
                   }}
                 >
                   <BackLink variant="contained" />
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      top: ".75rem",
-                      right: ".75rem",
-                      display: deviceWrapper("flex", "none"),
-                      alignItems: "center",
-                    }}
-                  >
-                    <FollowMobile
-                      followed={
-                        [].indexOf(parseInt(localStorage.getItem("user_id"))) >
-                        -1
-                      }
-                      putUrl={"/proposals/follow/" + proposal_id}
-                    />
-                  </Box>
+                  {context.api.daoUserData != null && (
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        top: ".75rem",
+                        right: ".75rem",
+                        display: deviceWrapper("flex", "none"),
+                        alignItems: "center",
+                      }}
+                    >
+                      <FollowMobile
+                        followed={
+                          [].indexOf(parseInt(localStorage.getItem("user_id"))) >
+                          -1
+                        }
+                        putUrl={"/proposals/follow/" + proposal_id}
+                      />
+                    </Box>
+                  )}
                   <Box
                     sx={{
                       position: "absolute",

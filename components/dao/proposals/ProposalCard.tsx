@@ -556,8 +556,10 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
       }}
       id={`proposal-active-${props.c}`}
     >
+      
       <Badge
         badgeContent={
+          globalContext.api.daoUserData != null && (
           <IconButton
             sx={{
               backgroundColor: "favoriteBackground.main",
@@ -582,6 +584,7 @@ const ProposalCard: React.FC<IProposalCard> = (props) => {
               <FavoriteBorderIcon sx={{ fontSize: "1rem", fill: "red" }} />
             )}
           </IconButton>
+          )
         }
         sx={{ width: "100%" }}
       >
