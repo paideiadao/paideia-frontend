@@ -1,6 +1,5 @@
 import { IConfigContext } from "@lib/dao/dao-config/ConfigContext";
-import { Collapse } from "@material-ui/core";
-import { Box } from "@mui/material";
+import { Box, Collapse } from "@mui/material";
 import React from "react";
 import { CreationContext } from "../../../lib/creation/Context";
 import FileBanner from "../../utilities/FileBanner";

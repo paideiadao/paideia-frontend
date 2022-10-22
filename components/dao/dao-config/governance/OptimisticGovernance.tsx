@@ -10,7 +10,6 @@ import {
   ConfigContext,
   IConfigContext,
 } from "@lib/dao/dao-config/ConfigContext";
-import { Collapse } from "@material-ui/core";
 import {
   Box,
   TextField,
@@ -19,6 +18,7 @@ import {
   Select,
   MenuItem,
   OutlinedInput,
+  Collapse
 } from "@mui/material";
 import * as React from "react";
 

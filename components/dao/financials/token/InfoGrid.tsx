@@ -2,11 +2,10 @@ import {
   PerformanceWidget,
   TimeWidget,
 } from "@components/dao/dashboard/FinancialSummary";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import * as React from "react";
 import dateFormat from "dateformat";
 import { deviceWrapper } from "@components/utilities/Style";
-import { Grid } from "@material-ui/core";
 
 interface IInfoCard {
   value: string;
