@@ -26,7 +26,7 @@ const Dashboard: React.FC = () => {
   return daoData === undefined ? (
     <>Loading Here...</>
   ) : (
-    <Box sx={{ width: "100%" }}> 
+    <Box sx={{ width: "100%" }}>
       <Box
         sx={{
           mb: ".5rem",
