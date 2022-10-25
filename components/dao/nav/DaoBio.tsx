@@ -128,6 +128,8 @@ export const DaoSelector: React.FC<IDaoSelector> = (props) => {
 
   const { wallet, utxos, setUtxos, dAppWallet } = useWallet();
 
+  console.log(globalContext.api.daoData)
+
   React.useEffect(() => {
     const load = async () => {
       try {
