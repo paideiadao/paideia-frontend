@@ -29,10 +29,10 @@ import FilterOptions from "@components/FilterOptions";
 import { SxProps } from "@mui/material";
 
 interface IDaosProps {
-  name: string;
-  image?: string;
-  description: string;
-  link: string;
+  dao_name: string;
+  logo_url?: string;
+  dao_short_description?: string;
+  dao_url: string;
   category?: string;
 }
 
@@ -81,7 +81,7 @@ const DaoCard: FC<IDaoCard> = ({ dao }) => {
           )}
 
           <Avatar
-            src={dao?.image}
+            src={dao?.logo_url}
             sx={{
               width: 80,
               height: 80,
@@ -90,7 +90,7 @@ const DaoCard: FC<IDaoCard> = ({ dao }) => {
               border: "1px solid #000",
               boxShadow: "0 0 0 2px #666",
             }}
-            alt={dao.name}
+            alt={dao.dao_name}
           />
           <Typography
             sx={{
@@ -103,7 +103,7 @@ const DaoCard: FC<IDaoCard> = ({ dao }) => {
               letterSpacing: "0.225543px",
             }}
           >
-            {dao.name}
+            {dao.dao_name}
           </Typography>
           <Typography
             sx={{
@@ -111,13 +111,13 @@ const DaoCard: FC<IDaoCard> = ({ dao }) => {
               mb: "24px",
             }}
           >
-            {dao.description}
+            {dao.dao_short_description}
           </Typography>
         </Grid>
         <Grid item>
           <Button
             endIcon={<ArrowForwardIcon />}
-            href={dao.link}
+            href={"https://app.paideia.im/" + dao.dao_url}
             sx={{ py: "2px", ml: "-6px" }}
           >
             Learn More
