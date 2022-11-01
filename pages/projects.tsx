@@ -22,65 +22,6 @@ interface IQuotesProps {
   author: string;
 }
 
-const daos = [
-  {
-    name: "Swamp Audio",
-    image: "/featured/featured.png",
-    description: "A layer 1 on chain royalty management platform",
-    link: "/",
-    category: "Music",
-  },
-  {
-    name: "Swamp Audio",
-    image: "/featured/featured.png",
-    description: "A layer 1 on chain royalty management platform",
-    link: "/",
-    category: "Music",
-  },
-  {
-    name: "Swamp Audio",
-    image: "/featured/featured.png",
-    description: "A layer 1 on chain royalty management platform",
-    link: "/",
-    category: "Music",
-  },
-  {
-    name: "Swamp Audio",
-    image: "/featured/featured.png",
-    description: "A layer 1 on chain royalty management platform",
-    link: "/",
-    category: "Music",
-  },
-  {
-    name: "Swamp Audio",
-    image: "/featured/featured.png",
-    description: "A layer 1 on chain royalty management platform",
-    link: "/",
-    category: "Music",
-  },
-  {
-    name: "Swamp Audio",
-    image: "/featured/featured.png",
-    description: "A layer 1 on chain royalty management platform",
-    link: "/",
-    category: "Music",
-  },
-  {
-    name: "Swamp Audio",
-    image: "/featured/featured.png",
-    description: "A layer 1 on chain royalty management platform",
-    link: "/",
-    category: "Music",
-  },
-  {
-    name: "Swamp Audio",
-    image: "/featured/featured.png",
-    description: "A layer 1 on chain royalty management platform",
-    link: "/",
-    category: "Music",
-  },
-];
-
 export default function Projects() {
   const { data: highlightsData } = useSWR(
     `/blogs/?highlights_only=true`,
@@ -100,6 +41,16 @@ export default function Projects() {
       revalidateOnReconnect: false,
     }
   );
+  const { data: daoData } = useSWR(
+    "/dao/",
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
+  const daos = daoData ? daoData.map((dao: any) => { return {...dao, category: "Default"}; }) : [];
 
   return (
     <>
@@ -221,7 +172,7 @@ export default function Projects() {
             />
           </Grid>
         </Grid>
-        <ProjectList daos={daos} />
+        <ProjectList daos={daos}/>
       </Container>
       <Container sx={{ pb: "280px" }}>
         <Grid container>

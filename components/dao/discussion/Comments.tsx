@@ -6,6 +6,7 @@ import {
   IconButton,
   InputBase,
   Paper,
+  Typography
 } from "@mui/material";
 import * as React from "react";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
@@ -80,13 +81,13 @@ const Comments: React.FC<{ title?: string; data: IComment[]; id: number }> = (
             (a: IComment, b: IComment) =>
               new Date(b.date).getTime() - new Date(a.date).getTime()
           )
-          .filter((i: IComment) => i.parent == null)
+          .filter((i: IComment) => i?.parent == null)
           .map((i: IComment, c: number) => {
             return (
               <BaseComment
                 comment={i}
                 data={props.data}
-                key={`base-comment-${i.id}-${c}`}
+                key={`base-comment-${c}`}
                 set={setCommentsWrapper}
               />
             );
@@ -202,12 +203,14 @@ const BaseComment: React.FC<{
   level?: number;
 }> = (props) => {
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
+  if (props.comment != undefined) {
   const children = props.data.filter(
-    (i: IComment) => i.parent === props.comment.id
+    (i: IComment) => i?.parent === props.comment.id
   );
   const level = props.level;
   const [show, setShow] = React.useState<boolean>(true);
   const [reply, setReply] = React.useState<boolean>(false);
+  
   return (
     <>
       <Box
@@ -405,7 +408,11 @@ const BaseComment: React.FC<{
         )}
       </Box>
     </>
-  );
+    );
+  }
+  else {
+    return (<Typography>Comment not found</Typography>)
+  }
 };
 
 export default Comments;
