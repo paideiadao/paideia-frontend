@@ -254,8 +254,11 @@ export default function Header() {
                 </Grid>
                 <Grid item sx={{ display: { xs: "none", md: "flex" } }}>
                   <Button
-                  href="https://app.paideia.im">
-                    Go to dApp
+                  variant="contained"
+                  href="https://app.paideia.im"
+                  size="small"
+                  >
+                    Launch dApp
                   </Button>
                 </Grid>
                 <Grid item sx={{ display: { xs: "flex", md: "none" } }}>
