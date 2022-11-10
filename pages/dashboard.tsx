@@ -7,7 +7,7 @@ import SectionHeading from "@components/SectionHeading";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Box, Container, Tab, Typography } from "@mui/material";
 import * as React from "react";
-import { StakingActivity } from "./dao/[id]/staking";
+// import { StakingActivity } from "./dao/[id]/staking";
 import GeneralInfo from "@components/dao/staking/GeneralInfo";
 import YourStaking from "@components/dao/staking/YourStaking";
 
@@ -79,7 +79,7 @@ const Dashboard: React.FC = () => {
             </TabPanel>
             <TabPanel value="Redeem Tokens"></TabPanel>
             <TabPanel value="Activity">
-              <StakingActivity />
+              {/* <StakingActivity /> */}
             </TabPanel>
           </TabContext>
         </Box>
