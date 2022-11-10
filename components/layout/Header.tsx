@@ -48,11 +48,6 @@ const pages = [
     link: "/blog",
     //disabled: true,
   },
-  {
-    name: "Dashboard",
-    link: "/dashboard",
-    // disabled: true,
-  },
 ];
 
 interface Props {
