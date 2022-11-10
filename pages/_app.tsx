@@ -3,18 +3,11 @@ import "../styles/global.css";
 import { AppProps } from "next/app";
 import { DarkTheme, LightTheme } from "../theme/theme";
 import { ThemeProvider } from "@mui/material/styles";
-import { ThemeContext } from "../lib/ThemeContext";
-import { AppApi } from "../lib/AppApi";
-import { GlobalContext } from "../lib/AppContext";
 import CssBaseline from "@mui/material/CssBaseline";
 import Layout from "@components/Layout";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { WalletProvider } from "@components/wallet/WalletContext";
-import { AddWalletProvider } from "@components/wallet/AddWalletContext";
 import { AnimatePresence, motion } from "framer-motion";
-import AbstractAlert, { IAlerts } from "@components/utilities/Alert";
-import { IDaoUserData } from "@lib/Interfaces";
 import { Box, useScrollTrigger, Slide, AppBar, Typography, Toolbar, Link } from "@mui/material";
 
 
@@ -57,21 +50,6 @@ export default function App({ Component, pageProps }: AppProps) {
     );
   }
 
-  const [alert, setAlert] = useState<IAlerts[]>([]);
-  const [daoData, setDaoData] = useState(undefined);
-  const [daoUserData, setDaoUserData] = useState<IDaoUserData>(undefined);
-
-  const api = new AppApi(
-    alert,
-    setAlert,
-    theme,
-    setTheme,
-    daoData,
-    setDaoData,
-    daoUserData,
-    setDaoUserData
-  );
-
   return (
     <>
       <Head>
@@ -80,29 +58,14 @@ export default function App({ Component, pageProps }: AppProps) {
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes"
         />
       </Head>
-      <AddWalletProvider>
-        <WalletProvider>
-        <GlobalContext.Provider value={{ api }}>
-          <ThemeProvider theme={DarkTheme}>
-            <CssBaseline />
-            <AnimatePresence exitBeforeEnter>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-            </AnimatePresence>
-          </ThemeProvider>
-          </GlobalContext.Provider>
-          <AbstractAlert
-            alerts={alert}
-            // set={(val: IAlerts[]) => setAlert(val)}
-            close={(i: number) => {
-              setAlert(prevState => (
-                prevState.filter((_item, idx) => idx !== i)
-              ))
-            }}
-          />
-        </WalletProvider>
-      </AddWalletProvider>
+      <ThemeProvider theme={DarkTheme}>
+        <CssBaseline />
+        <AnimatePresence exitBeforeEnter>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </AnimatePresence>
+      </ThemeProvider>
     </>
   );
 }

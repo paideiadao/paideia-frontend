@@ -20,7 +20,6 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Zoom from "@mui/material/Zoom";
 import { PageNavContext } from "@components/Layout";
 import { useRouter } from "next/router";
-import ConnectWallet from "@components/wallet/ConnectWallet";
 import Link from "next/link";
 import { Link as MuiLink } from "@mui/material";
 // import ConnectWallet from "@components/wallet/ConnectWallet";
@@ -259,7 +258,10 @@ export default function Header() {
                   </Grid>
                 </Grid>
                 <Grid item sx={{ display: { xs: "none", md: "flex" } }}>
-                  <ConnectWallet show />
+                  <Button
+                  href="https://app.paideia.im">
+                    Go to dApp
+                  </Button>
                 </Grid>
                 <Grid item sx={{ display: { xs: "flex", md: "none" } }}>
                   <IconButton>
