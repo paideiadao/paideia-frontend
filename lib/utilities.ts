@@ -1,6 +1,7 @@
 import axios from "axios";
 import { IObj } from "@lib/Interfaces";
 import { IAlerts, ValidAlert } from "@components/utilities/Alert";
+import { v4 as uuidv4 } from 'uuid';
 
 type RequestType = "POST" | "PUT" | "GET" | "PATCH" | "DELETE";
 
@@ -10,6 +11,16 @@ const statusLookup: IObj<number> = {
   PATCH: 200,
   PUT: 200,
   DELETE: 204,
+};
+
+export const getObj = (lst: any[], id_field: string, id: any): any => {
+  try {
+    let index = lst.map((item: any) => item[id_field]).indexOf(id);
+    return index > -1 ? lst[index] : undefined;
+  } catch (e) {
+    console.log(e);
+    return undefined;
+  }
 };
 
 export const getUserId = () => {
@@ -27,14 +38,12 @@ export const snipAddress = (
 };
 
 export const getBaseUrl = () => {
-  return process.env.NODE_ENV == "development"
-    ? process.env.LOCAL_URL
-    : process.env.API_URL;
+  return process.env.API_URL;
 };
 
 export const fetcher = (url: string) =>
   axios
-    .get(getBaseUrl() + url, {
+    .get(process.env.API_URL + url, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt_token_login")}`,
       },
@@ -66,13 +75,26 @@ export const attrOrUndefined = (
 };
 
 export const getDaoPath = (id: string, path: string) => {
-  return `/dao${id === undefined ? "" : `/${id}`}${path}`;
+  return `${id === undefined ? "" : `/${id}`}${path}`;
 };
 
 export const addDays = (days: number, date: Date = new Date()): Date => {
   let temp = new Date(date);
   temp.setDate(temp.getDate() + days);
   return temp;
+};
+
+export const generateSlug = (id: string | number, name: string) => {
+  const slug =
+    name
+      .toLowerCase()
+      .trim()
+      .replaceAll(/[^a-zA-Z0-9 ]/g, '')
+      .replaceAll(' ', '-') +
+    '-' +
+    id.toString();
+  if (slug.startsWith('-')) return id;
+  return slug;
 };
 
 export const clientSideOnly = (func: Function): void => {
@@ -93,12 +115,7 @@ export interface ILoginResponse {
 
 export const getWsUrl = (): string => {
   //process.env.NODE_ENV == "development"
-
-  return `${process.env.NODE_ENV == "development" ? "ws" : "wss"}://${
-    process.env.NODE_ENV == "development"
-      ? "localhost:8000/api"
-      : "wss.paideia.im"
-  }`;
+  return process.env.WSS_URL;
 };
 
 export class AbstractApi {
@@ -106,7 +123,7 @@ export class AbstractApi {
   setAlert: (val: IAlerts[]) => void = undefined;
 
   webSocket(request_id: string): WebSocket {
-    const ws = new WebSocket(`${getWsUrl()}/auth/ws/${request_id}`);
+    const ws = new WebSocket(`${process.env.WSS_URL}/auth/ws/${request_id}`);
     return ws;
   }
 
@@ -131,7 +148,7 @@ export class AbstractApi {
     const formData = new FormData();
     formData.append("fileobject", file, file.name);
     return axios.post(
-      `${getBaseUrl()}/util/upload_file`,
+      `${process.env.API_URL}/util/upload_file`,
       formData,
       defaultOptions
     );
@@ -193,6 +210,7 @@ export class AbstractApi {
       temp.push({
         content: err,
         severity: "error",
+        id: uuidv4()
       });
       this.setAlert(temp);
     }
@@ -204,6 +222,7 @@ export class AbstractApi {
       temp.push({
         content: content,
         severity: severity,
+        id: uuidv4()
       });
       this.setAlert(temp);
     }
@@ -296,7 +315,7 @@ export class AbstractApi {
           });
         }
       } catch (err) {
-        console.log("err", err);
+        console.log(err);
         return reject(err);
       }
     });
@@ -321,11 +340,12 @@ export class AbstractApi {
         "Access-Control-Allow-Credentials": true,
       },
     };
-    url = url.includes("http")
-      ? url
-      : url.includes("8000")
-      ? getBaseUrl() + url.split("8000")[1]
-      : getBaseUrl() + url;
+    // url = url.includes("http")
+    //   ? url
+    //   : url.includes("8000")
+    //   ? getBaseUrl() + url.split("8000")[1]
+    //   : getBaseUrl() + url;
+    url = url.includes("http") ? url : process.env.API_URL + url;
     return await methods[method](url, body, defaultOptions);
   }
 }

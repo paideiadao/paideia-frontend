@@ -22,8 +22,8 @@ const withTM = require("next-transpile-modules")([
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    API_URL: "https://api.paideia.im",
-    LOCAL_URL: "http://localhost:8000/api",
+    API_URL: process.env.API_URL,
+    WSS_URL: process.env.WSS_URL,
   },
   images: {
     domains: ["ergopad-public.s3.us-west-2.amazonaws.com"],

@@ -9,7 +9,6 @@ import SvgIcon from "@mui/material/SvgIcon";
 import Button from "@mui/material/Button";
 import { useMediaQuery } from "@mui/material";
 import Paideia from "@components/svgs/Paideia";
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { DarkTheme, LightTheme } from "@theme/theme";
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
@@ -20,10 +19,8 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Zoom from "@mui/material/Zoom";
 import { PageNavContext } from "@components/Layout";
 import { useRouter } from "next/router";
-import ConnectWallet from "@components/wallet/ConnectWallet";
 import Link from "next/link";
 import { Link as MuiLink } from "@mui/material";
-// import ConnectWallet from "@components/wallet/ConnectWallet";
 
 const pages = [
   {
@@ -48,11 +45,6 @@ const pages = [
     name: "Blog",
     link: "/blog",
     //disabled: true,
-  },
-  {
-    name: "Dashboard",
-    link: "/dashboard",
-    // disabled: true,
   },
 ];
 
@@ -183,11 +175,10 @@ export default function Header() {
         sx={{
           zIndex: "24",
           backdropFilter: `${trigger ? "blur(25px)" : ""}`,
-          background: `${
-            trigger
-              ? "linear-gradient(130.4deg, rgba(7, 10, 17, 0.6) 14.89%, rgba(7, 10, 17, 0.3) 87.67%)"
-              : ""
-          }`,
+          background: `${trigger
+            ? "linear-gradient(130.4deg, rgba(7, 10, 17, 0.6) 14.89%, rgba(7, 10, 17, 0.3) 87.67%)"
+            : ""
+            }`,
         }}
       >
         <Container>
@@ -235,10 +226,23 @@ export default function Header() {
                 </SvgIcon>
               </Link>
             </Grid>
+            <Grid item sx={{ display: { xs: "flex", md: "none" } }}>
+              <Button
+                variant="contained"
+                href="https://app.paideia.im"
+                size="small"
+                sx={{ float: 'left' }}
+              >
+                Launch dApp
+              </Button>
+            </Grid>
             <Grid item>
               <Grid
                 container
-                justifyContent="flex-end"
+                justifyContent={{
+                  xs: 'center',
+                  md: 'flex-end'
+                }}
                 alignItems="center"
                 spacing={6}
               >
@@ -259,14 +263,16 @@ export default function Header() {
                   </Grid>
                 </Grid>
                 <Grid item sx={{ display: { xs: "none", md: "flex" } }}>
-                  <ConnectWallet show />
+                  <Button
+                    variant="contained"
+                    href="https://app.paideia.im"
+                    size="small"
+                    sx={{ float: 'left' }}
+                  >
+                    Launch dApp
+                  </Button>
                 </Grid>
                 <Grid item sx={{ display: { xs: "flex", md: "none" } }}>
-                  <IconButton>
-                    <AccountBalanceWalletIcon
-                      sx={{ color: DarkTheme.palette.text.primary }}
-                    />
-                  </IconButton>
                   <Box
                     sx={{
                       zIndex: "25",
@@ -295,9 +301,8 @@ export default function Header() {
                           borderRadius: "2px",
                           background: "#fff",
                           transition: "transform 100ms ease-in-out",
-                          transform: `${
-                            navbarOpen ? "rotate(45deg)" : "translateY(6px)"
-                          }`,
+                          transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                            }`,
                         }}
                       ></Box>
                       <Box
@@ -308,9 +313,8 @@ export default function Header() {
                           borderRadius: "2px",
                           background: "#fff",
                           transition: "transform 100ms ease-in-out",
-                          transform: `${
-                            navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
-                          }`,
+                          transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                            }`,
                         }}
                       ></Box>
                     </Box>
@@ -329,9 +333,8 @@ export default function Header() {
             position: "fixed",
             width: "40px",
             height: "40px",
-
-            top: "14px",
-            right: "24px",
+            top: "15px",
+            right: "16px",
             color: "#fff",
             // focus: 'outline-none',
           }}
@@ -354,9 +357,8 @@ export default function Header() {
                 borderRadius: "2px",
                 background: "#fff",
                 transition: "transform 100ms ease-in-out",
-                transform: `${
-                  navbarOpen ? "rotate(45deg)" : "translateY(6px)"
-                }`,
+                transform: `${navbarOpen ? "rotate(45deg)" : "translateY(6px)"
+                  }`,
               }}
             ></Box>
             <Box
@@ -367,9 +369,8 @@ export default function Header() {
                 borderRadius: "2px",
                 background: "#fff",
                 transition: "transform 100ms ease-in-out",
-                transform: `${
-                  navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
-                }`,
+                transform: `${navbarOpen ? "rotate(-45deg)" : "translateY(-6px)"
+                  }`,
               }}
             ></Box>
           </Box>

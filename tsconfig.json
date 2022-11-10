@@ -25,7 +25,10 @@
       "@theme/*": ["theme/*"],
       "@lib/*": ["lib/*"],
       "@public/*": ["public/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@utils/*": ["utils/*"],
+      "@contexts/*": ["contexts/*"],
+      "@hooks/*": ["hooks/*"]
     }
   },
   "include": [

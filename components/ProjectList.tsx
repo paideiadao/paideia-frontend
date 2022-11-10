@@ -109,6 +109,11 @@ const DaoCard: FC<IDaoCard> = ({ dao }) => {
             sx={{
               fontSize: "14px",
               mb: "24px",
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              display: '-webkit-box',
+              '-webkit-line-clamp': '4',
+              '-webkit-box-orient': 'vertical'
             }}
           >
             {dao.dao_short_description}
@@ -124,7 +129,7 @@ const DaoCard: FC<IDaoCard> = ({ dao }) => {
           </Button>
         </Grid>
       </Grid>
-    </Box>
+    </Box >
   );
 };
 
