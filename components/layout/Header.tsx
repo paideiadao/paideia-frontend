@@ -419,6 +419,7 @@ export default function Header() {
             </Grid>
             <Grid item sx={{ width: "100%" }}>
               <Button
+                disabled
                 variant="contained"
                 sx={{ width: "100%" }}
                 onClick={() => setNavbarOpen(false)}

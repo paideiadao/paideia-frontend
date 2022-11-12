@@ -24,7 +24,7 @@ interface IQuotesProps {
 
 export default function Projects() {
   const { data: highlightsData } = useSWR(
-    `/blogs/?highlights_only=true`,
+    `/dao/highlights`,
     fetcher,
     {
       revalidateIfStale: false,
@@ -50,7 +50,11 @@ export default function Projects() {
       revalidateOnReconnect: false,
     }
   );
-  const daos = daoData ? daoData.map((dao: any) => { return {...dao, category: "Default"}; }) : [];
+  const daos = daoData
+    ? daoData.map((dao: any) => {
+        return { ...dao, category: dao.category ?? 'Default' };
+      })
+    : [];
 
   return (
     <>
@@ -96,11 +100,11 @@ export default function Projects() {
       <Highlights
         highlights={
           highlightsData
-            ? highlightsData.map((highlight: { name: string, description: string, link: string }) => {
+            ? highlightsData.map((highlight: any) => {
                 return { ...highlight,
-                  title: highlight.name,
-                  content: highlight.description,
-                  link: `/blog/${highlight.link}`
+                  title: highlight.dao_name,
+                  content: highlight.dao_short_description,
+                  link: `https://app.paideia.im/${highlight.dao_url}`
                 };
               })
             : []

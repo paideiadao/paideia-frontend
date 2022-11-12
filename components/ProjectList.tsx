@@ -44,6 +44,7 @@ const DaoCard: FC<IDaoCard> = ({ dao }) => {
   return (
     <Box
       sx={{
+        width: "100%",
         height: "100%",
       }}
       className="border-grad"
