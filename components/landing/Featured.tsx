@@ -8,13 +8,14 @@ import {
   Chip,
   useMediaQuery,
 } from "@mui/material";
-
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { DarkTheme, LightTheme } from "@theme/theme";
 import { useTheme } from "@mui/material/styles";
 import SectionTitle from "@components/SectionTitle";
 import StarIcon from "@mui/icons-material/Star";
 import CardSlider from "@components/CardSlider";
+import useSWR from "swr";
+import { fetcher } from "@lib/utilities";
 
 const titleStyle = {
   fontSize: "48px",
@@ -46,30 +47,6 @@ const paragraphStyle = {
   lineHeight: "24px",
   letterSpacing: "0.15px",
 };
-
-const seconaryFeaturedDaos = [
-  {
-    title: "Ergo-Lend",
-    subtitle: "P2P Lending Platform",
-    body: "A person-to-person (P2P) lending platform with easy to use tools to borrow and lend money",
-    members: 550,
-    link: "/",
-  },
-  {
-    title: "Azorus",
-    subtitle: "Data Analysis dApp",
-    body: "A web3 data intelligence suite for all UTXO blockchains.",
-    members: 320,
-    link: "/",
-  },
-  {
-    title: "Swamp Audio",
-    subtitle: "DRM Management & Music Label",
-    body: "An open-source framework to replace existing legacy media monetization & management platforms.",
-    members: 440,
-    link: "/",
-  },
-];
 
 const FeaturedCard = ({
   dao,
@@ -154,6 +131,27 @@ const FeaturedCard = ({
 
 export default function Featured() {
   const theme = useTheme();
+  const { data: featuredDaos } = useSWR(
+    `/dao/highlights`,
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
+  const secondaryFeaturedDaos = featuredDaos
+    ? featuredDaos.map((dao: any) => {
+        return {
+          title: dao.dao_name,
+          subtitle: "",
+          body: dao.dao_short_description,
+          members: dao.member_count,
+          link: `https://app.paideia.im/${dao.dao_url}`,
+        };
+      })
+    : [];
+
   return (
     <>
       <Container
@@ -232,7 +230,7 @@ export default function Featured() {
               spacing={5}
               sx={{ pt: "32px", pb: "72px" }}
             >
-              {seconaryFeaturedDaos.map((dao, i) => (
+              {secondaryFeaturedDaos.map((dao: any, i: number) => (
                 <Grid key={i} item xs={12} sm={6} md={4}>
                   <FeaturedCard dao={dao} />
                 </Grid>
@@ -243,7 +241,7 @@ export default function Featured() {
         {useMediaQuery(theme.breakpoints.down("md")) ? (
           <Box sx={{ mx: "-24px" }}>
             <CardSlider uniqueId="featured" addMargin={24}>
-              {seconaryFeaturedDaos.map((dao, i) => (
+              {secondaryFeaturedDaos.map((dao: any, i: number) => (
                 <Box
                   key={i}
                   sx={{
