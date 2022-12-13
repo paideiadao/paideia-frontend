@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   Typography,
   Grid,
@@ -7,9 +8,12 @@ import {
   Container,
   Divider,
 } from "@mui/material";
+import ButtonLink from '@components/ButtonLink';
+import axios from "axios";
 
 import { DarkTheme } from "@theme/theme";
 import SectionTitle from "@components/SectionTitle";
+import { useEffect } from "react";
 
 const titleStyle = {
   fontSize: "48px",
@@ -39,7 +43,7 @@ const paragraphStyle = {
 const statList = [
   {
     title: "DAOs initiated on Paideia",
-    value: "0",
+    value: "5",
     subTitle: "Organizations",
   },
   {
@@ -49,7 +53,7 @@ const statList = [
   },
   {
     title: "TVL on Paideia",
-    value: "$0",
+    value: "$-",
     subTitle: "SigUSD Locked",
   },
   {
@@ -60,6 +64,39 @@ const statList = [
 ];
 
 export default function Stats() {
+  const [paideiaPrice, setPaideiaPrice] = useState(0)
+
+  const statList = [
+    {
+      title: "DAOs initiated on Paideia",
+      value: "5",
+      subTitle: "Organizations",
+    },
+    {
+      title: "Participants in DAOs",
+      value: "-",
+      subTitle: "Unique wallets",
+    },
+    {
+      title: "TVL on Paideia",
+      value: "-",
+      subTitle: "SigUSD Locked",
+    },
+    {
+      title: "Paideia Token Price",
+      value: "$" + paideiaPrice,
+      subTitle: "SigUSD",
+    },
+  ];
+
+  useEffect(() => {
+    axios
+      .get('https://api.ergopad.io/asset/price/paideia')
+      .then((res) => {
+        setPaideiaPrice(res.data.price.toFixed(4))
+      });
+  }, [])
+
   return (
     <Container
       sx={{
@@ -69,7 +106,7 @@ export default function Stats() {
         mt: { xs: "120px", md: "-60px" },
         minHeight: "2200px",
         position: "relative",
-        zIndex: "-1",
+        // zIndex: "-1",
       }}
     >
       <Box
@@ -108,7 +145,7 @@ export default function Stats() {
           <Typography sx={titleStyle}>Some Numbers to Look At &lt;</Typography>
         </Grid>
         <Grid item md={3}></Grid>
-        <Grid item md={4}>
+        <Grid item md={4} zeroMinWidth>
           <Grid container wrap="nowrap" spacing={2} sx={{ mb: "120px" }}>
             <Grid item>
               <Box
@@ -122,11 +159,7 @@ export default function Stats() {
             </Grid>
             <Grid item zeroMinWidth>
               <Typography component="p" sx={paragraphStyle}>
-                Many projects use NFTs as the analogical equivalent of a key
-                being and open a door to a home. We strive to bring utility to
-                our NFTs through exclusive access to a blockchain related game,
-                along with offering other smaller utilities within our social
-                media platforms, including Discord
+                Paideia allows anyone to create a DAO and participate. Check the stats below to see how many people are using the platform. When you&apos;re ready, lauch the dApp with the link below and start participating. You&apos;ll find the communities are often very welcoming.
               </Typography>
             </Grid>
           </Grid>
@@ -136,10 +169,10 @@ export default function Stats() {
             justifyContent="flex-start"
             alignItems="stretch"
             spacing={12}
-            sx={{ maxWidth: "500px", float: "right", mb: "240px" }}
+            sx={{ maxWidth: "500px", float: "right", mb: "260px" }}
           >
             {statList.map((stat, i: number) => (
-              <Grid item key={i}>
+              <Grid item key={i} zeroMinWidth>
                 <Grid container spacing={2} direction="row">
                   <Grid item>
                     <img src={`/stats/${i + 1}.svg`} width={25} height={25} />
@@ -153,7 +186,7 @@ export default function Stats() {
                 <Typography
                   sx={{
                     fontFamily: '"Viga", sans-serif',
-                    fontSize: "100px",
+                    fontSize: {xs: '90px', md: "100px" },
                     lineHeight: "100px",
                   }}
                 >
@@ -230,9 +263,9 @@ export default function Stats() {
                 </Typography>
               </Grid>
             </Grid>
-            <Button disabled variant="contained">
-              Create Your DAO
-            </Button>
+            <ButtonLink variant="contained" href="https://app.paideia.im">
+              Launch dApp
+            </ButtonLink>
           </Box>
         </Grid>
         <Grid item md={1}></Grid>
