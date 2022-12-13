@@ -69,8 +69,8 @@ const SocialGrid: FC<Props> = ({ hoverColor }) => {
           sx={iconLinkStyles}
           rel="noreferrer"
         >
-        <GithubIcon sx={{ fontSize: "inherit" }} />
-         </Link>
+          <GithubIcon sx={{ fontSize: "inherit" }} />
+        </Link>
       </Grid>
     </>
   );
