@@ -287,7 +287,7 @@ interface IPersonObj {
 
 const MyCard: FC<IPersonObj> = ({ person }) => {
   return (
-    <Card
+    <Box
       sx={{
         // background: "rgba(255, 255, 255, 0.02)",
         width: "196px",
@@ -349,7 +349,7 @@ const MyCard: FC<IPersonObj> = ({ person }) => {
           </Grid>
         </Grid>
       </CardContent>
-    </Card>
+    </Box>
   );
 };
 
