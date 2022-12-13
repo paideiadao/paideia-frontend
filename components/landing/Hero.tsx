@@ -1,5 +1,6 @@
-import { Typography, Grid, Box, Button, Container, Link } from "@mui/material";
-
+import { Typography, Grid, Box, Button, Container } from "@mui/material";
+import Image from "next/image";
+import Link from "@components/Link";
 import { DarkTheme } from "@theme/theme";
 import SectionTitle from "@components/SectionTitle";
 import SocialGrid from "@components/SocialGrid";
@@ -126,9 +127,15 @@ export default function Hero() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container spacing={3} sx={{ mb: "120px", mt: { xs: 6, md: 0 } }}>
-        <Grid item>
-          <Grid container spacing={2}>
+      <Box sx={{ mb: "120px", mt: { xs: 6, md: 0 } }}>
+        <Box sx={{ display: { xs: 'block', md: 'inline-block' }, verticalAlign: 'middle', mb: '24px' }}>
+          <Grid
+            container
+            spacing={2}
+            direction="row"
+            justifyContent="flex-start"
+            // alignItems="center"
+          >
             <Grid item>
               <Box
                 sx={{
@@ -148,24 +155,24 @@ export default function Hero() {
               </Typography>
             </Grid>
           </Grid>
-        </Grid>
-        <Grid item>
-          <Grid
-            container
-            justifyContent="space-around"
-            spacing={2}
-            sx={{ color: "#777" }}
-          >
-            <Grid item>Ergo Foundation</Grid>
-            <Grid item>ErgoDEX</Grid>
-            <Grid item>Azorus</Grid>
-            <Grid item>AnetaBTC</Grid>
-            <Grid item>Ergo-Lend</Grid>
-            <Grid item>ErgoGames.io</Grid>
-            <Grid item>Swamp Audio</Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Container>
+        </Box>
+        <Box sx={{ width: '165px', display: { xs: 'block', md: 'inline-block' }, height: '44px', verticalAlign: 'middle', m: { xs: '0 auto 24px', md: '0 0 24px 60px' } }}>
+          <Link href="https://ergoplatform.org/en/community/#Foundation">
+            <Image layout="responsive" src="/partner-logos/ergo-foundation.png" alt="Ergo Foundation" height={44} width={165} />
+          </Link>
+        </Box>
+        <Box sx={{ width: '352px', display: { xs: 'block', md: 'inline-block' }, height: '36px', verticalAlign: 'middle', m: { xs: '0 auto 24px', md: '0 0 24px 60px' } }}>
+          <Link href="https://spectrum.fi">
+            <Image layout="responsive" src="/partner-logos/spectrum-finance.png" alt="Spectrum Finance" height={36} width={352} />
+          </Link>
+        </Box>
+        <Box sx={{ width: '189px', display: { xs: 'block', md: 'inline-block' }, height: '40px', verticalAlign: 'middle', m: { xs: '0 auto 24px', md: '0 0 24px 60px' } }}>
+          <Link href="https://ergoplatform.org/en/community/#Foundation">
+            <Image layout="responsive" src="/partner-logos/ergopad.png" alt="Ergopad" height={40} width={189} />
+          </Link>
+        </Box>
+
+      </Box>
+    </Container >
   );
 }
