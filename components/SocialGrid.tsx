@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Grid, Link } from "@mui/material";
 import TelegramIcon from "@components/svgs/TelegramIcon";
 import YoutubeIcon from "@components/svgs/YoutubeIcon";
-import MediumIcon from "@components/svgs/MediumIcon";
+import GithubIcon from "@components/svgs/GithubIcon";
 import TwitterIcon from "@components/svgs/TwitterIcon";
 import DiscordIcon from "@components/svgs/DiscordIcon";
 import { DarkTheme } from "@theme/theme";
@@ -63,14 +63,14 @@ const SocialGrid: FC<Props> = ({ hoverColor }) => {
         </Link>
       </Grid>
       <Grid item>
-        {/* <Link
-          href="/"
+        <Link
+          href="https://github.com/paideiadao/"
           target="_blank"
           sx={iconLinkStyles}
           rel="noreferrer"
-        > */}
-        <MediumIcon sx={{ color: "#aaa", fontSize: "inherit" }} />
-        {/*  </Link> */}
+        >
+        <GithubIcon sx={{ fontSize: "inherit" }} />
+         </Link>
       </Grid>
     </>
   );
