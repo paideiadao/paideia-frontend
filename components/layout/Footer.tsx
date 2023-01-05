@@ -142,7 +142,7 @@ export default function Footer() {
         <Grid container justifyContent="space-between" sx={{ py: 2 }}>
           <Grid item>
             <Typography sx={{ fontSize: "0.75rem" }}>
-              &copy; 2022 Paideia. All rights reserved.
+              &copy; 2023 Paideia. All rights reserved.
             </Typography>
           </Grid>
           <Grid item>
