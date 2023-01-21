@@ -89,7 +89,7 @@ const advantageItems = [
 
 interface IArticle {
   name: string;
-  image?: string;
+  img_url?: string;
   description: string;
   link: string;
   category?: string;
@@ -135,9 +135,11 @@ const ArticleCard: FC<IArticleCard> = ({ article }) => {
                   height: { xs: "240px", sm: "282px" },
                 }}
               >
-                {article?.image ? (
+                {article?.img_url &&
+                (article.img_url.startsWith("/") ||
+                  article.img_url.startsWith("https://")) ? (
                   <Image
-                    src={article.image}
+                    src={article.img_url}
                     alt={article.name}
                     layout="fill"
                     objectFit="cover"
@@ -224,24 +226,16 @@ const ArticleCardMemo = memo(ArticleCard);
 
 const Education: FC = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
-  const { data: articleData } = useSWR(
-    `/blogs/?education_only=true`,
-    fetcher,
-    {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-    }
-  );
-  const { data: faqData } = useSWR(
-    `/faq/`,
-    fetcher,
-    {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-    }
-  );
+  const { data: articleData } = useSWR(`/blogs/?education_only=true`, fetcher, {
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  });
+  const { data: faqData } = useSWR(`/faq/`, fetcher, {
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  });
   const faqQuestions: IFAQProps[] = faqData ?? [];
 
   const handleChange =
@@ -454,7 +448,10 @@ const Education: FC = () => {
               sx={{ mb: "64px" }}
             />
             {(articleData ?? []).map((article: IArticle, i: React.Key) => (
-              <ArticleCardMemo article={{...article, link: `/blog/${article.link}`}} key={i}/>
+              <ArticleCardMemo
+                article={{ ...article, link: `/blog/${article.link}` }}
+                key={i}
+              />
             ))}
           </Box>
           <Box component="section" id="faq" sx={{ position: "relative" }}>
@@ -512,7 +509,7 @@ const Education: FC = () => {
                         p: "16px",
                       }}
                     >
-                      <MarkdownRender description={answer}/>
+                      <MarkdownRender description={answer} />
                     </AccordionDetails>
                   </Accordion>
                 );
@@ -521,7 +518,9 @@ const Education: FC = () => {
           </Box>
         </PageNav>
       </Container>
-      <Container sx={{ px: "24px", py: "60px", mb: "80px", position: "relative" }}>
+      <Container
+        sx={{ px: "24px", py: "60px", mb: "80px", position: "relative" }}
+      >
         {isMobile ? (
           <Image
             src="/cta-mobile.png"

@@ -84,7 +84,7 @@ const SearchBar: FC<ISearchBar> = ({ sx }) => {
 
 interface IArticle {
   name: string;
-  image?: string;
+  img_url?: string;
   description: string;
   link: string;
   category?: string;
@@ -115,7 +115,10 @@ const ArticleCard: FC<IArticleCard> = ({ article }) => {
         borderRadius: "16px",
       }}
     >
-      <CardActionArea sx={{ height: "100%", verticalAlign: "top" }} onClick={() => router.push(`/blog/${article?.link}`)}>
+      <CardActionArea
+        sx={{ height: "100%", verticalAlign: "top" }}
+        onClick={() => router.push(`/blog/${article?.link}`)}
+      >
         <CardContent sx={{ padding: 0, minHeight: "357px", height: "100%" }}>
           <Box
             sx={{
@@ -125,9 +128,11 @@ const ArticleCard: FC<IArticleCard> = ({ article }) => {
               overflow: "hidden",
             }}
           >
-            {article?.image ? (
+            {article?.img_url &&
+            (article.img_url.startsWith("/") ||
+              article.img_url.startsWith("https://")) ? (
               <Image
-                src={article.image}
+                src={article.img_url}
                 alt={article.name}
                 layout="fill"
                 sizes="30vw"
@@ -289,7 +294,6 @@ const ArticleList: FC<IArticleListProps> = ({ articles, sx }) => {
           </Grid>
         </Grid>
       ) : (
-        // <FilterChips />
         <Grid container sx={{ mb: "32px" }} spacing={3} direction="row">
           <Grid item xs>
             <SearchBar />
@@ -327,7 +331,9 @@ const ArticleList: FC<IArticleListProps> = ({ articles, sx }) => {
         ))}
       </Grid>
       <Box sx={{ width: "100%", textAlign: "center" }}>
-        <Button disabled variant="contained">Load more...</Button>
+        <Button disabled variant="contained">
+          Load more...
+        </Button>
       </Box>
     </Box>
   );
