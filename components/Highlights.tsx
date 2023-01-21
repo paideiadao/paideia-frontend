@@ -53,7 +53,7 @@ interface IHighlightItem {
   title: string;
   content: string;
   link: string;
-  image?: string;
+  img_url?: string;
 }
 
 interface IItemObject {
@@ -71,8 +71,11 @@ const CarouselItem: FC<IItemObject> = ({ item }) => {
   const sizeXl = useMediaQuery(theme.breakpoints.up("xl"));
 
   const rand = randomInteger(1, 18);
-
-  const image = item?.image ? item.image : `/images/placeholder/${rand}.jpg`;
+  const image =
+    item?.img_url &&
+    (item.img_url.startsWith("/") || item.img_url.startsWith("https://"))
+      ? item.img_url
+      : `/images/placeholder/${rand}.jpg`;
 
   const Content = () => {
     return (
