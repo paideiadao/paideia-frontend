@@ -167,7 +167,7 @@ export default function Hero() {
           </Link>
         </Box>
         <Box sx={{ width: '189px', display: { xs: 'block', md: 'inline-block' }, height: '40px', verticalAlign: 'middle', m: { xs: '0 auto 24px', md: '0 0 24px 60px' } }}>
-          <Link href="https://ergoplatform.org/en/community/#Foundation">
+          <Link href="https://ergopad.io">
             <Image layout="responsive" src="/partner-logos/ergopad.png" alt="Ergopad" height={40} width={189} />
           </Link>
         </Box>
