@@ -117,7 +117,7 @@ const problems = [
   {
     num: "03",
     title: "Security",
-    body: "All smart contracts are reviewed by independent third parties familiar with Ergoscript to make sure it conforms to the best practices. Further, smart contracts will be tested extensively to ensure funds are secure, and vote tallies are fair, transparent, and untamperable. ",
+    body: "All smart contracts are reviewed by independent third parties to make sure it conforms to the best practices. Further, smart contracts will be tested extensively to ensure funds are secure, and vote tallies are fair, transparent, and untamperable. ",
   },
 ];
 
@@ -252,7 +252,7 @@ const tabs = [
   },
   {
     title: "Chart",
-    fragment: <Box sx={{ p: "24px", minHeight: "600px" }}>Hello</Box>,
+    fragment: <Box sx={{ p: "24px", minHeight: "600px" }}>Coming soon</Box>,
   },
 ];
 
@@ -362,11 +362,18 @@ const theCards: IPerson[] = [
     twitter: "https://twitter.com/esot321c",
   },
   {
-    name: "Leif Erickson",
-    title: "CTO",
+    name: "Robert Pieter van Leeuwen - Luivatra",
+    title: "Lead Blockchain Dev",
     image: "",
+    linkedin: "https://linkedin.com/in/robert-pieter-van-leeuwen-28b8b853/",
+    twitter: "https://twitter.com/Luivatra",
+  },
+  {
+    name: "Abhishek Pal - noob77777",
+    title: "Full Stack Dev",
+    image: "/images/team/noob.jpg",
     linkedin: "",
-    twitter: "https://twitter.com/leiferiqson",
+    twitter: "https://twitter.com/abhishekpc3po",
   },
   {
     name: "Nicolas Bondancia Girard",
@@ -381,20 +388,6 @@ const theCards: IPerson[] = [
     image: "/images/team/orne.jpeg",
     linkedin: "https://linkedin.com/in/ornellamanes/",
     twitter: "",
-  },
-  {
-    name: "Robert Pieter van Leeuwen - Luivatra",
-    title: "Lead Ergoscript Dev",
-    image: "",
-    linkedin: "https://linkedin.com/in/robert-pieter-van-leeuwen-28b8b853/",
-    twitter: "https://twitter.com/Luivatra",
-  },
-  {
-    name: "Abhishek Pal - noob77777",
-    title: "Full Stack Dev",
-    image: "/images/team/noob.jpg",
-    linkedin: "",
-    twitter: "https://twitter.com/abhishekpc3po",
   },
   {
     name: "Trapper T",

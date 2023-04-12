@@ -87,16 +87,13 @@ const PageNav: FC<IPageNav> = ({ navLinks, children }) => {
 
   const handleResize = () => {
     const navContainer = document.getElementById("navContainer");
-    // @ts-ignore
-    const topPosition = navContainer.offsetTop;
-    // @ts-ignore
+    const topPosition = navContainer?.offsetTop;
     const totalHeight = navContainer.getBoundingClientRect().height;
     const thisBottom = topPosition + totalHeight;
 
     navLinks.forEach((link: { link: string; position: number }) => {
       const linkElement = document.getElementById(link.link);
-      // @ts-ignore
-      const thisTop = linkElement.offsetTop - 85;
+      const thisTop = linkElement?.offsetTop - 85;
       link.position = thisTop;
     });
 

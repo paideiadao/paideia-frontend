@@ -53,9 +53,9 @@ const navLinks: INavLink[] = [
     position: undefined,
   },
   {
-    name: "Ergo Advantage",
+    name: "Blockchain",
     icon: "polyline",
-    link: "ergo-advantage",
+    link: "blockchain",
     position: undefined,
   },
   {
@@ -345,7 +345,7 @@ const Education: FC = () => {
           </Box>
           <Box
             component="section"
-            id="ergo-advantage"
+            id="blockchain"
             sx={{ mb: "240px", position: "relative" }}
           >
             <Box
@@ -364,18 +364,13 @@ const Education: FC = () => {
               <Image src="/backgrounds/green-blob-left.png" layout="fill" />
             </Box>
             <SectionHeading
-              category="Why on Ergo?"
-              title="The Ergo Advantage"
+              category="Why blockchain?"
+              title="The Blockchain Advantage"
               sx={{ mb: "32px" }}
             />
             <Box sx={{ maxWidth: "760px", mx: "auto" }}>
               <Typography variant="body2" sx={{ mb: "64px" }}>
-                When building a DAO, it should exist on a blockchain with a
-                strong foundation and fundamentals, be inexpensive to operate,
-                be simple to use, and be secure and decentralized. It should
-                resist government intervention and be accessible to anyone in
-                the world, regardless of prohibitive local laws or social
-                status.
+                A DAO should be inexpensive to operate, simple to use, be secure and decentralized. It should be able to resist government intervention and be accessible to anyone in the world, regardless of prohibitive local laws or social status. We believe blockchain is the perfect tool to achieve this due to the immutability of smart contracts, and the global access it provides. 
               </Typography>
               <Grid
                 container
@@ -412,28 +407,18 @@ const Education: FC = () => {
                 })}
               </Grid>
               <Typography variant="body2">
-                We feel that Ergo satisfies those criteria and we feel building
-                this software on Ergo first is the appropriate choice. Paideia
-                will never be designed to be exclusive to Ergo, and will accept
+                We have decided to build the software on Ergo first because it meets those criteria and then some. Paideia will never be designed to be exclusive to Ergo, and will accept
                 many other currencies in the future, however it will be built on
                 Ergo first and always strive to follow the fundamental
                 philosophies therein.
               </Typography>
               <Typography variant="body2">
-                Ergo does not have expensive gas fees like Ethereum. It is fair
+                Ergo does not have expensive gas fees. It is fair
                 launched, highly decentralized, and based on the original UTXO
-                model of Bitcoin
+                model of Bitcoin. 
               </Typography>
-              <Blockquote>
-                Ergo offers technological advantages over other blockchains such
-                as NIPoPoWs, soft forks for code-based changes, and an
-                efficient, ASIC resistant proof of work algorithm.
-              </Blockquote>
               <Typography variant="body2">
-                It avoids cloning the EVM and solidity code, and rather uses a
-                well-conceived Scala-based programming language called
-                Ergoscript, which provides a much safer and more robust platform
-                for dApp development.
+                The MVP of Paideia will be launched on Ergo, and we will use that as a jumping point before expanding to other chains. We believe the best candidate for expansion of the platform is Cardano, since it uses a similar eUTXO model to Ergo, but will also consider building the platform on EVM chains. 
               </Typography>
             </Box>
           </Box>

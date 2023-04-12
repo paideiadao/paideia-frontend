@@ -138,9 +138,9 @@ export default function Perks() {
             <img src="/icons/CubeIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Secure</Typography>
             <Typography component="p" sx={paragraphStyle}>
-              Smart contracts written in Ergoscript maintain secure, predictable
-              voting structures, which ensures your treasury is spent according
-              to fair voting.
+              Smart contracts utilitze the immutability of blockchain to maintain secure, predictable
+              voting structures. This ensures the DAO treasury is spent according
+              to fair voting. 
             </Typography>
           </Grid>
           <Grid
@@ -177,9 +177,8 @@ export default function Perks() {
             <img src="/icons/TokenIcon.svg" width={35} height={35} />
             <Typography sx={perkTitleStyle}>Inexpensive</Typography>
             <Typography component="p" sx={paragraphStyle}>
-              Paideia is built on Ergo, so transaction fees are miniscule, and
-              the platform fees will always remain low. You&apos;ll never pay
-              hundreds in gas fees here.
+              Paideia is built on blockchains that feature low transaction fees. You&apos;ll never need to pay
+              hundreds in gas fees to participate in a DAO. 
             </Typography>
           </Grid>
           <Grid

@@ -69,7 +69,7 @@ const accordionObject = [
       {
         title: "Front-end Code",
         body: "Complete the code for the front-end for both the dApp and website",
-        completed: false,
+        completed: true,
       },
     ],
   },
@@ -81,12 +81,7 @@ const accordionObject = [
       {
         title: "Front- and Back-end consolidation",
         body: "Teams will collaborate to create the necessary API endpoints and get the front-end functioning",
-        completed: false,
-      },
-      {
-        title: "Alpha Test",
-        body: "Begin testing how the platform works. Test user flows. If smart contracts are ready, use test tokens to try them out. ",
-        completed: false,
+        completed: true,
       },
     ],
   },
@@ -94,6 +89,18 @@ const accordionObject = [
     title: "Q4/ 2022",
     image: "Q4",
     panel: "panel4",
+    content: [
+      {
+        title: "Web 2 Launch",
+        body: "Begin testing how the platform works. Test user flows. If smart contracts are ready, use test tokens to try them out. ",
+        completed: true,
+      },
+    ],
+  },
+  {
+    title: "2023 & Beyond",
+    image: "2023",
+    panel: "panel5",
     content: [
       {
         title: "Public MVP Release",
@@ -110,33 +117,16 @@ const accordionObject = [
         body: "At MVP, token issuance is only airdrops. Begin adding functions to allow seed funds, adding liquidity to the dex, and other distribution methods. ",
         completed: false,
       },
-    ],
-  },
-  {
-    title: "2023 & Beyond",
-    image: "2023",
-    panel: "panel5",
-    content: [
       {
         title: "Cross-chain functionality",
-        body: "Implement cross-chain functionality between Ergo, Ada, and other UTXO blockchains, to allow DAOs to hold multi-asset treasuries. ",
+        body: "Implement cross-chain functionality between Ergo, Ada, and other blockchains, to allow DAOs to hold multi-asset treasuries. ",
         completed: false,
       },
       {
         title: "Stand-alone tools",
         body: "Build software that users can run on their local machines so they can easily interact with DAOs without requiring the Paideia website to be live. ",
         completed: false,
-      },
-      {
-        title: "Community Outreach",
-        body: "Potentially utilize funds where possible and explore outreach programs in areas that will benefit most from crypto governance solutions",
-        completed: false,
-      },
-      {
-        title: "Charitible Foundation",
-        body: "Establish a not-for-profit foundation that can educate and empower people in developing nations using the Paideia toolset",
-        completed: false,
-      },
+      }
     ],
   },
 ];
