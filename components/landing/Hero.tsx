@@ -83,11 +83,11 @@ export default function Hero() {
               DAO
             </Typography>
           </Typography>
-          {/* <Link href="/creation"> */}
-          <Button variant="contained" disabled>
-            Coming Soon
-          </Button>
-          {/* </Link> */}
+          <Link href="https://app.paideia.im/creation">
+            <Button variant="contained">
+              Create Beta DAO
+            </Button>
+          </Link>
         </Grid>
         <Grid item>
           <Typography
@@ -134,7 +134,7 @@ export default function Hero() {
             spacing={2}
             direction="row"
             justifyContent="flex-start"
-            // alignItems="center"
+          // alignItems="center"
           >
             <Grid item>
               <Box
