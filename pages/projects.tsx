@@ -16,13 +16,14 @@ import Highlights from "@components/Highlights";
 import SectionHeading from "@components/SectionHeading";
 import SectionTitle from "@components/SectionTitle";
 import ProjectList from "@components/ProjectList";
+import { NextPage } from "next";
 
 interface IQuotesProps {
   quote: string;
   author: string;
 }
 
-export default function Projects() {
+const Projects: NextPage = () => {
   const { data: highlightsData } = useSWR(
     `/dao/highlights`,
     fetcher,
@@ -52,8 +53,8 @@ export default function Projects() {
   );
   const daos = daoData
     ? daoData.map((dao: any) => {
-        return { ...dao, category: dao.category ?? 'Default' };
-      })
+      return { ...dao, category: dao.category ?? 'Default' };
+    })
     : [];
 
   return (
@@ -101,12 +102,13 @@ export default function Projects() {
         highlights={
           highlightsData
             ? highlightsData.map((highlight: any) => {
-                return { ...highlight,
-                  title: highlight.dao_name,
-                  content: highlight.dao_short_description,
-                  link: `https://app.paideia.im/${highlight.dao_url}`
-                };
-              })
+              return {
+                ...highlight,
+                title: highlight.dao_name,
+                content: highlight.dao_short_description,
+                link: `https://app.paideia.im/${highlight.dao_url}`
+              };
+            })
             : []
         }
       />
@@ -176,7 +178,7 @@ export default function Projects() {
             />
           </Grid>
         </Grid>
-        <ProjectList daos={daos}/>
+        <ProjectList daos={daos} />
       </Container>
       <Container sx={{ pb: "280px" }}>
         <Grid container>
@@ -224,3 +226,5 @@ export default function Projects() {
     </>
   );
 }
+
+export default Projects;

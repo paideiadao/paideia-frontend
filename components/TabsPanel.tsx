@@ -1,10 +1,6 @@
 import React, { FC } from "react";
 import { styled } from "@mui/system";
-import { Grid, Typography } from "@mui/material";
-import TabsUnstyled from "@mui/base/TabsUnstyled";
-import TabsListUnstyled from "@mui/base/TabsListUnstyled";
-import TabPanelUnstyled from "@mui/base/TabPanelUnstyled";
-import TabUnstyled from "@mui/base/TabUnstyled";
+import { Grid, Typography, Tabs, Tab, Box } from "@mui/material";
 
 interface ITabs {
   tabs: {
@@ -14,52 +10,32 @@ interface ITabs {
   headline?: string;
 }
 
-const TabsList = styled(TabsListUnstyled)`
+const StyledTabs = styled(Tabs)`
   display: inline-flex;
   border-radius: 4px;
   .Mui-selected {
-    -webkit-text-decoration: none;
     text-decoration: none;
     background-color: rgba(159, 210, 219, 0.08);
     border: 1px solid #9fd2db;
   }
 `;
 
-const TabsStyled = styled(TabUnstyled)`
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
+const StyledTab = styled(Tab)`
   display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
-  position: relative;
   box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
   background-color: transparent;
   outline: 0;
   border: 0;
   margin: 0;
-  border-radius: 0;
   padding: 0;
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   vertical-align: middle;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  -webkit-text-decoration: none;
   text-decoration: none;
   color: inherit;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 0.8125rem;
   line-height: 1.75;
@@ -67,38 +43,39 @@ const TabsStyled = styled(TabUnstyled)`
   min-width: 64px;
   padding: 3px 9px;
   border-radius: 4px;
-  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms, border-color 250ms, color 250ms;
   border: 1px solid rgba(159, 210, 219, 0.5);
   color: #9fd2db;
   min-width: 40px;
-  :not(:last-of-type) {
+
+  &:not(:last-of-type) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-right-color: transparent;
   }
-  :last-of-type {
+
+  &:last-of-type {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     margin-left: -1px;
   }
-  :hover {
-    -webkit-text-decoration: none;
+
+  &:hover {
     text-decoration: none;
     background-color: rgba(159, 210, 219, 0.08);
     border: 1px solid #9fd2db;
   }
 `;
 
-const CustomTable: FC<ITabs> = ({ tabs, headline }) => {
+const TabsPanel: FC<ITabs> = ({ tabs, headline }) => {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
   return (
-    <TabsUnstyled defaultValue={0}>
+    <>
       <Grid
         container
         spacing={3}
@@ -122,27 +99,26 @@ const CustomTable: FC<ITabs> = ({ tabs, headline }) => {
           </Typography>
         </Grid>
         <Grid item md="auto">
-          <TabsList>
-            {tabs.map((tab, i) => {
-              return (
-                <TabsStyled key={i} type="button">
-                  {tab.title}
-                  <span className="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
-                </TabsStyled>
-              );
-            })}
-          </TabsList>
+          <StyledTabs value={value} onChange={handleChange}>
+            {tabs.map((tab, i) => (
+              <StyledTab key={i} label={tab.title} />
+            ))}
+          </StyledTabs>
         </Grid>
       </Grid>
-      {tabs.map((tab, i) => {
-        return (
-          <TabPanelUnstyled value={i} key={i}>
-            {tab.fragment}
-          </TabPanelUnstyled>
-        );
-      })}
-    </TabsUnstyled>
+      {tabs.map((tab, i) => (
+        <Box
+          key={i}
+          role="tabpanel"
+          hidden={value !== i}
+          id={`simple-tabpanel-${i}`}
+          aria-labelledby={`simple-tab-${i}`}
+        >
+          {value === i && <Box sx={{ p: 3 }}>{tab.fragment}</Box>}
+        </Box>
+      ))}
+    </>
   );
 };
 
-export default CustomTable;
+export default TabsPanel;
