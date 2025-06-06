@@ -85,7 +85,7 @@ export default function Hero() {
           </Typography>
           <Link href="https://app.paideia.im/creation">
             <Button variant="contained">
-              Create Beta DAO
+              Create DAO
             </Button>
           </Link>
         </Grid>
