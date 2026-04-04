@@ -68,12 +68,6 @@ const navLinks: INavLink[] = [
     link: "tokenomics",
     position: undefined,
   },
-  {
-    name: "Team",
-    icon: "groups",
-    link: "team",
-    position: undefined,
-  },
 ];
 
 const examples = [
@@ -619,18 +613,6 @@ export default function About() {
                 }
               />
             </Box>
-          </Box>
-          <Box component="section" id="team">
-            <SectionHeading
-              category="Get to know us"
-              title="Our Team"
-              sx={{ mb: "100px" }}
-            />
-            <CardSlider uniqueId="team" contained>
-              {theCards.map((person, i: number) => {
-                return <MyCard key={i} person={person} />;
-              })}
-            </CardSlider>
           </Box>
 
           <Box
