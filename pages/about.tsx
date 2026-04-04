@@ -8,7 +8,6 @@ import {
   Container,
   Divider,
   Box,
-  Card,
   CardContent,
   Avatar,
   Link,
@@ -18,7 +17,6 @@ import SectionHeading from "@components/SectionHeading";
 import RoadmapAccordion from "@components/RoadmapAccordion";
 import CustomTable from "@components/CustomTable";
 import TabsPanel from "@components/TabsPanel";
-import CardSlider from "@components/CardSlider";
 import TwitterIcon from "@components/svgs/TwitterIcon";
 import LinkedinIcon from "@components/svgs/LinkedinIcon";
 import { DarkTheme } from "@theme/theme";
@@ -66,12 +64,6 @@ const navLinks: INavLink[] = [
     name: "Tokenomics",
     icon: "toll",
     link: "tokenomics",
-    position: undefined,
-  },
-  {
-    name: "Team",
-    icon: "groups",
-    link: "team",
     position: undefined,
   },
 ];
@@ -353,58 +345,6 @@ const MyCard: FC<IPersonObj> = ({ person }) => {
   );
 };
 
-const theCards: IPerson[] = [
-  {
-    name: "Marty C.",
-    title: "CEO",
-    image: "",
-    linkedin: "",
-    twitter: "https://twitter.com/esot321c",
-  },
-  {
-    name: "Robert Pieter van Leeuwen - Luivatra",
-    title: "Lead Blockchain Dev",
-    image: "",
-    linkedin: "https://linkedin.com/in/robert-pieter-van-leeuwen-28b8b853/",
-    twitter: "https://twitter.com/Luivatra",
-  },
-  {
-    name: "Abhishek Pal - noob77777",
-    title: "Full Stack Dev",
-    image: "/images/team/noob.jpg",
-    linkedin: "",
-    twitter: "https://twitter.com/abhishekpc3po",
-  },
-  {
-    name: "Nicolas Bondancia Girard",
-    title: "UX/UI Designer",
-    image: "/images/team/nico.png",
-    linkedin: "https://linkedin.com/in/nicolas-bondancia-girard-aa39a0197/",
-    twitter: "https://twitter.com/NicoUXUI",
-  },
-  {
-    name: "Ornella Manes",
-    title: "Graphic Designer",
-    image: "/images/team/orne.jpeg",
-    linkedin: "https://linkedin.com/in/ornellamanes/",
-    twitter: "",
-  },
-  {
-    name: "Trapper T",
-    title: "Front End Dev",
-    image: "",
-    linkedin: "",
-    twitter: "",
-  },
-  {
-    name: "Alexis Ekici",
-    title: "Marketing Manager",
-    image: "/images/team/alexis.jpg",
-    linkedin: "",
-    twitter: "https://twitter.com/AlexisEkici",
-  },
-];
-
 export default function About() {
   return (
     <>
@@ -619,18 +559,6 @@ export default function About() {
                 }
               />
             </Box>
-          </Box>
-          <Box component="section" id="team">
-            <SectionHeading
-              category="Get to know us"
-              title="Our Team"
-              sx={{ mb: "100px" }}
-            />
-            <CardSlider uniqueId="team" contained>
-              {theCards.map((person, i: number) => {
-                return <MyCard key={i} person={person} />;
-              })}
-            </CardSlider>
           </Box>
 
           <Box
